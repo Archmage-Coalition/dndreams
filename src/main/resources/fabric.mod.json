@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "dndreams",
+  "version": "${version}",
+
+  "name": "Demons and Dreams",
+  "description": "",
+  "authors": [
+    "Eman3600"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "CC-BY-SA-4.0",
+  "icon": "assets/dndreams/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.eman3600.dndreams.Initializer"
+    ]
+  },
+  "mixins": [
+    "dndreams.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

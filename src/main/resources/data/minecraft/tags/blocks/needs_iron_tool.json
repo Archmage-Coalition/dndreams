@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "dndreams:corrupt_block",
+    "dndreams:celestium_block",
+	"dndreams:hellslate",
+	"dndreams:hellsoil",
+	"dndreams:hellsand"
+  ]
+}

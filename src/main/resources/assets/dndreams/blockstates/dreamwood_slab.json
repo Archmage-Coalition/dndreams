@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "dndreams:block/dreamwood_slab"
+    },
+    "type=double": {
+      "model": "dndreams:block/dreamwood_planks"
+    },
+    "type=top": {
+      "model": "dndreams:block/dreamwood_slab_top"
+    }
+  }
+}

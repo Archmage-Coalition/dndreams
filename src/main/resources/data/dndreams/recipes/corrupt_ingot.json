@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:corrupt_ingot",
+  "ingredients": [
+    {
+      "item": "dndreams:corrupt_scrap"
+    },
+	{
+      "item": "dndreams:corrupt_scrap"
+    },
+	{
+      "item": "dndreams:corrupt_scrap"
+    },
+	{
+      "item": "minecraft:iron_ingot"
+    },
+	{
+      "item": "dndreams:blight_powder"
+    }
+  ],
+  "result": {
+    "item": "dndreams:corrupt_ingot",
+    "count": 1
+  }
+}

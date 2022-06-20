@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:corrupt_ingot",
+  "ingredients": [
+    {
+      "item": "dndreams:corrupt_block"
+    }
+  ],
+  "result": {
+    "item": "dndreams:corrupt_ingot",
+    "count": 9
+  }
+}

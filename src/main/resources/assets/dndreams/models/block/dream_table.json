@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "dndreams:block/dream_table_front",
+    "north": "dndreams:block/dream_table_front",
+    "south": "dndreams:block/dream_table_side",
+    "east": "dndreams:block/dream_table_side",
+    "west": "dndreams:block/dream_table_front",
+    "up": "dndreams:block/dream_table_top",
+    "down": "dndreams:block/dreamwood_planks"
+  }
+}

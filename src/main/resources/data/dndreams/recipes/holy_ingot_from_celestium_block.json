@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:holy_ingot",
+  "ingredients": [
+    {
+      "item": "dndreams:celestium_block"
+    }
+  ],
+  "result": {
+    "item": "dndreams:holy_ingot",
+    "count": 9
+  }
+}

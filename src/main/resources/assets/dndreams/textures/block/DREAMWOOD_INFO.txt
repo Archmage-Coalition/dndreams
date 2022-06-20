@@ -1,0 +1,12 @@
+Notice:
+
+To make dreamwood blocks:
+Take oak blocks and apply the following effects:
+
+Brightness/Contrast:
+    10 Brightness
+    25 Contrast
+Colorize:
+    Hue: 0.85
+    Saturation: 0.85
+    Lightnessness: 0.0

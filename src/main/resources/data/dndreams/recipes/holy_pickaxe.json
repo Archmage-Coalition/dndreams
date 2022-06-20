@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    " X ",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:holy_ingot"
+    },
+    "X": {
+      "item": "dndreams:end_stick"
+    }
+  },
+  "result": {
+    "item": "dndreams:holy_pickaxe"
+  }
+}

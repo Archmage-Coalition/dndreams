@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.eman3600.dndreams.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "InjectPlayerStats",
+    "WardenBottleTaker",
+    "SonicboomDisabler",
+    "BloodMoonMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
