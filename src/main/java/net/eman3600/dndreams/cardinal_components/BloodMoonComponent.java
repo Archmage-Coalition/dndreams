@@ -14,13 +14,13 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
     private boolean damnedNight = false;
     private boolean isNight = false;
 
-    private final int CUMULATIVE_CHANCE = 4;
+    private World world;
+
+    private final int CUMULATIVE_CHANCE = 3;
     private Random random = new Random();
 
-    private final Object provider;
-
-    public BloodMoonComponent(Object provider) {
-        this.provider = provider;
+    public BloodMoonComponent(World worldIn) {
+        world = worldIn;
     }
 
     @Override
@@ -39,7 +39,8 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
     }
 
     @Override
-    public void tick(boolean nighttime) {
+    public void tick() {
+        boolean nighttime = world.isNight();
         if (!isNight && nighttime) {
             isNight = true;
         }
@@ -54,7 +55,7 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
             } else {
                 chance += CUMULATIVE_CHANCE;
             }
-            WorldComponents.BLOOD_MOON.sync(provider);
+            WorldComponents.BLOOD_MOON.sync(world);
         }
     }
 

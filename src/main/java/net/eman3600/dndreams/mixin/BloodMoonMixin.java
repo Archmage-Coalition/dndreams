@@ -24,6 +24,6 @@ public abstract class BloodMoonMixin extends World {
 
     @Inject(method = "tick()V", at = @At("HEAD"))
     protected void injectTick(CallbackInfo info) {
-        WorldComponents.tickBloodMoon(this);
+        WorldComponents.BLOOD_MOON.get(this).tick();;
     }
 }

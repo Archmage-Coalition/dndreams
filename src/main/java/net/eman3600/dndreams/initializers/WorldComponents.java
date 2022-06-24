@@ -17,10 +17,6 @@ public class WorldComponents implements WorldComponentInitializer {
 
 
 
-    public static void tickBloodMoon(World world) {
-        BLOOD_MOON.get(world).tick(world.isNight());
-    }
-
 
 
     @Override

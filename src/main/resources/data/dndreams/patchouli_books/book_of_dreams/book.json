@@ -1,0 +1,11 @@
+{
+  "name": "item.dndreams.book_of_dreams",
+  "landing_text": "item.dndreams.book_of_dreams.landing_text",
+  "custom_book_item": "dndreams:book_of_dreams",
+  "book_texture": "dndreams:textures/gui/patchouli/book.png",
+  "filler_texture": "dndreams:textures/gui/patchouli/filler.png",
+  "dont_generate_book": true,
+  "link_color": "0000ff",
+  "link_hover_color": "0000ff",
+  "progress_bar_color": "8500b9"
+}

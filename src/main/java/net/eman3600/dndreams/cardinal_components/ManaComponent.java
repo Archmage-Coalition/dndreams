@@ -11,9 +11,18 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     private int mana = 50;
     private int maxMana = 50;
     private int infusion = 0;
+    private int regenTime = 0;
+    private PlayerEntity player;
 
-    private static final int MAX_XP_BONUS = 50;
+    private final int MAX_XP_BONUS = 50;
+    private final int BASE_RATE = 8;
+    private final int REGEN_REQUIRE = 60;
+    private final int MIN_REGEN = -120;
 
+
+    public ManaComponent(PlayerEntity playerIn) {
+        player = playerIn;
+    }
 
     @Override
     public int getMana() {
@@ -35,15 +44,40 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         infusion = change;
     }
 
-    public static int getManaMax(Entity entity) {
-        return EntityComponents.MANA.get(entity).getBaseManaMax() + getXPBonus(entity);
+    @Override
+    public void tick() {
+        if (mana < getManaMax()) {
+            regenerate();
+        } else if (regenTime != 0) {
+            regenTime = 0;
+        }
     }
 
-    public static int getXPBonus(Entity entity) {
-        if (entity instanceof PlayerEntity) {
-            return Math.min(((PlayerEntity)entity).experienceLevel / 2, MAX_XP_BONUS);
+    private void regenerate() {
+        regenTime += getRegenRate();
+        if (regenTime >= getRegenRequirement()) {
+            chargeMana(1);
+            regenTime -= getRegenRequirement();
         }
-        return 0;
+    }
+
+    private int getRegenRequirement() {
+        return REGEN_REQUIRE;
+    }
+
+    @Override
+    public int getRegenRate() {
+        return BASE_RATE;
+    }
+
+    @Override
+    public int getManaMax() {
+        return getBaseManaMax() + getXPBonus();
+    }
+
+    @Override
+    public int getXPBonus() {
+        return Math.min(player.experienceLevel/2, MAX_XP_BONUS);
     }
 
     @Override
@@ -52,18 +86,17 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             return false;
         } else {
             mana -= cost;
+            EntityComponents.MANA.sync(player);
             return true;
         }
     }
 
-    public static boolean chargeMana(Entity entity, int charge) {
-        ManaComponent component = EntityComponents.MANA.get(entity);
-        component.mana += charge;
-        if (component.mana > getManaMax(entity)) {
-            component.mana = getManaMax(entity);
-            return false;
+    public void chargeMana(int charge) {
+        mana += charge;
+        if (mana > getManaMax()) {
+            mana = getManaMax();
         }
-        return true;
+        EntityComponents.MANA.sync(player);
     }
 
     @Override
@@ -71,6 +104,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         mana = tag.getInt("mana");
         maxMana = tag.getInt("max_mana");
         infusion = tag.getInt("infusion");
+        regenTime = tag.getInt("regen_time");
     }
 
     @Override
@@ -78,5 +112,6 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         tag.putInt("mana", mana);
         tag.putInt("max_mana", maxMana);
         tag.putInt("infusion", infusion);
+        tag.putInt("regen_time", regenTime);
     }
 }

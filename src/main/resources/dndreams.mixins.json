@@ -4,7 +4,7 @@
   "package": "net.eman3600.dndreams.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "InjectPlayerStats",
+    "PlayerMixin",
     "WardenBottleTaker",
     "SonicboomDisabler",
     "BloodMoonMixin"

@@ -85,6 +85,10 @@ public class ModItems {
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
             new NightmareFuel(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL)));
 
+    // Book of Dreams
+    public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
+            new BookOfDreams(new FabricItemSettings().group(ItemGroup.MISC)));
+
 
     /*
      * Item Registration

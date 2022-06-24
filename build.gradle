@@ -20,6 +20,7 @@ repositories {
 		name = 'Ladysnake Mods'
 		url = 'https://ladysnake.jfrog.io/artifactory/mods'
 	}
+	maven { url 'https://maven.blamejared.com' }
 }
 
 dependencies {
@@ -39,6 +40,8 @@ dependencies {
 	// Adds a dependency on a specific module
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cardinal_components_version}"
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-level:${cardinal_components_version}"
+
+	modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
 }
 
 processResources {

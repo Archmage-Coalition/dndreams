@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.mob_effects;
 
 import net.eman3600.dndreams.initializers.ModStatusEffects;
-import net.eman3600.dndreams.mixin_interfaces.ImplementPlayerStats;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
@@ -18,16 +17,7 @@ public class ModStatusEffect extends StatusEffect {
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         super.onApplied(entity, attributes, amplifier);
 
-        if (entity.isPlayer()) {
-            PlayerEntity player = (PlayerEntity)entity;
-            ImplementPlayerStats playerStats = (ImplementPlayerStats)player;
 
-            if (playerStats.getInitiated() == null || !playerStats.getInitiated().getBoolean("value")) {
-                playerStats.getInitiated().putBoolean("value", true);
-                playerStats.getMana();
-                playerStats.getTorment();
-            }
-        }
     }
 
     @Override

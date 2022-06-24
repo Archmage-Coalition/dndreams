@@ -8,6 +8,6 @@ public interface BloodMoonComponentI extends Component {
     int getChance();
     long getKnownDay();
     boolean damnedNight();
-    void tick(boolean nighttime);
+    void tick();
     boolean manualStart();
 }
