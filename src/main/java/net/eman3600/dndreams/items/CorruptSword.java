@@ -1,7 +1,8 @@
 package net.eman3600.dndreams.items;
 
+import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
-import net.eman3600.dndreams.mixin_interfaces.BloodMoonWorld;
+import net.eman3600.dndreams.initializers.WorldComponents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -10,7 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -38,11 +38,20 @@ public class CorruptSword extends SwordItem {
         }
 
         if (attacker.hasStatusEffect(ModStatusEffects.BLOODLUST)) {
+            int amplifier;
+
+            if (BloodMoonComponent.isBloodMoon(attacker.getWorld())) {
+                amplifier = 2;
+            } else {
+                amplifier = 1;
+            }
+
+
             StatusEffectInstance effect = attacker.getStatusEffect(ModStatusEffects.BLOODLUST);
             int newDuration = effect.getDuration() + (int)(multiplier * LUST_DURATION);
             if (newDuration >= MAX_DURATION) {
                 attacker.addStatusEffect(new StatusEffectInstance(ModStatusEffects.BLOODLUST, MAX_DURATION,
-                        1));
+                        amplifier));
                 addStatusEffects(target, attacker);
             } else {
                 if (effect.getAmplifier() > 0) {
@@ -61,19 +70,27 @@ public class CorruptSword extends SwordItem {
         return super.postHit(stack, target, attacker);
     }
 
-    private void addStatusEffects(LivingEntity target, LivingEntity attacker) {
-        target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, DEBUFF_DURATION, 0), attacker);
-        target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, DEBUFF_DURATION, 0), attacker);
-        target.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, DEBUFF_DURATION, 0), attacker);
-    }
-
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (world instanceof ServerWorld && hand == Hand.MAIN_HAND) {
-            System.out.println("Blood Moon: " + ((BloodMoonWorld)world).isBloodMoon());
-            System.out.println("Blood Moon Chance: " + ((BloodMoonWorld)world).getBloodMoonChance());
+        BloodMoonComponent component = WorldComponents.BLOOD_MOON.get(world);
+
+        if (!world.isClient() && user.getActiveHand() == hand) {
+            System.out.println("Known Day: " + component.getKnownDay());
+            System.out.println("Blood Moon Chance: " + component.getChance());
+            System.out.println("Damned Night: " + component.damnedNight());
+            System.out.println("Blood Moon: " + BloodMoonComponent.isBloodMoon(world));
         }
 
+
+
         return super.use(world, user, hand);
+    }
+
+    private void addStatusEffects(LivingEntity target, LivingEntity attacker) {
+        int amplifier = attacker.getStatusEffect(ModStatusEffects.BLOODLUST).getAmplifier() - 1;
+
+        target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, DEBUFF_DURATION, amplifier), attacker);
+        target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, DEBUFF_DURATION, amplifier), attacker);
+        target.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, DEBUFF_DURATION, amplifier), attacker);
     }
 }

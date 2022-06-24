@@ -6,7 +6,8 @@
   "mixins": [
     "InjectPlayerStats",
     "WardenBottleTaker",
-    "SonicboomDisabler"
+    "SonicboomDisabler",
+    "BloodMoonMixin"
   ],
   "client": [
   ],
