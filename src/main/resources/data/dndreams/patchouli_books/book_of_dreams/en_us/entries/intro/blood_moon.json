@@ -1,0 +1,17 @@
+{
+  "category": "dndreams:intro",
+  "name": "Blood Moon",
+  "icon": "dndreams:blight_powder",
+  "pages": [
+	{
+      "type": "patchouli:text",
+      "text": "The corruption of the Dark has managed to affect even the moon. On nights their influence peaks, the moon turns red as blood and brings upon the world a demonic incursion."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "dndreams:blight_powder",
+      "anchor": "blight_powder",
+      "text": "Demons found under the Blood Moon yield a corrupt residue used in creating $(l:dndreams:materials/corrupt_ingot)Hellsteel$(/l) and other items powered by Darkness."
+    }
+  ]
+}

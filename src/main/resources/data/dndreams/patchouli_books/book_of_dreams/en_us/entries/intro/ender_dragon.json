@@ -1,0 +1,16 @@
+{
+  "category": "dndreams:intro",
+  "name": "The Ender Dragon",
+  "priority":  true,
+  "icon": "minecraft:dragon_head",
+  "pages": [
+	{
+      "type": "patchouli:text",
+      "text": "She resides on the Central End Island. What she did to the Land of the Light, it is irredeemable. She guards the World Fountain, slumbering the world. Seek her out and slay her to awaken the world."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "minecraft:ender_dragon"
+    }
+  ]
+}

@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 public class EntityComponents implements EntityComponentInitializer {
     public static final ComponentKey<ManaComponent> MANA = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "mana"), ManaComponent.class);
-    private static final ComponentKey<TormentComponent> TORMENT = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "torment"), TormentComponent.class);
+    public static final ComponentKey<TormentComponent> TORMENT = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "torment"), TormentComponent.class);
 
 
 

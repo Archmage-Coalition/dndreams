@@ -87,7 +87,7 @@ public class ModItems {
 
     // Book of Dreams
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
-            new BookOfDreams(new FabricItemSettings().group(ItemGroup.MISC)));
+            new BookOfDreams(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
 
 
     /*

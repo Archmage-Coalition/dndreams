@@ -7,4 +7,7 @@ public interface TormentComponentI extends Component {
     int getForcedTorment();
     void setTorment(float value);
     void addTorment(float value);
+
+    void addPerSecond(float value);
+    void addPerMinute(float value);
 }
