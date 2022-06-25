@@ -12,7 +12,6 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
     private int chance = 100;
     private long knownDay = -1;
     private boolean damnedNight = false;
-    private boolean isNight = true;
 
     private World world;
     private Object provider;
@@ -41,13 +40,9 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
 
     @Override
     public void serverTick() {
-        boolean nighttime = world.isNight();
-        if (!isNight && nighttime) {
-            isNight = true;
-        }
-        if (isNight && !nighttime) {
-            isNight = false;
-            knownDay++;
+        long day = world.getTimeOfDay() / 24000;
+        if (knownDay != day) {
+            knownDay = day;
             if (damnedNight) {
                 chance = 0;
                 damnedNight = false;
@@ -78,7 +73,6 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
         chance = tag.getInt("chance");
         knownDay = tag.getLong("known_day");
         damnedNight = tag.getBoolean("damned_night");
-        isNight = tag.getBoolean("is_night");
     }
 
     @Override
@@ -86,6 +80,5 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
         tag.putInt("chance", chance);
         tag.putLong("known_day", knownDay);
         tag.putBoolean("damned_night", damnedNight);
-        tag.putBoolean("is_night", isNight);
     }
 }

@@ -29,6 +29,8 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     @Override
     public void readFromNbt(NbtCompound tag) {
         dragonSlain = tag.getBoolean("dragon_slain");
+
+        WorldComponents.BOSS_STATE.sync(world);
     }
 
     @Override

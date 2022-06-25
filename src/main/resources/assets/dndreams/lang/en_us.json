@@ -6,6 +6,7 @@
   "item.dndreams.end_stick":  "End Stick",
   "item.dndreams.sculk_powder":  "Memory Dust",
   "item.dndreams.liquid_soul":  "Liquid Soul",
+  "item.dndreams.liquid_void":  "World Flow",
   "item.dndreams.corrupt_scrap":  "Hellslate",
   "item.dndreams.shade_cloth":  "Shade Veil",
   "item.dndreams.blight_powder":  "Corrupt Residue",
@@ -13,6 +14,8 @@
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
   "item.dndreams.corrupt_axe": "Hellsteel Axe",
+  "item.dndreams.corrupt_shovel": "Hellsteel Shovel",
+  "item.dndreams.corrupt_hoe": "Hellsteel Hoe",
   "item.dndreams.holy_sword": "Celestium Sword",
   "item.dndreams.holy_pickaxe": "Celestium Pickaxe",
   "item.dndreams.holy_axe": "Celestium Axe",
@@ -20,8 +23,10 @@
   "item.dndreams.nightmare_fuel": "Nightmare Fuel",
   "item.dndreams.book_of_dreams": "Codex Somnus",
   "item.dndreams.book_of_dreams.landing_text": "Why, what dreams you'll have.",
+  
   "effect.dndreams.impending": "Impending",
   "effect.dndreams.bloodlust": "Bloodlust",
+  "effect.dndreams.suppressed": "Suppressed",
 
   "block.dndreams.corrupt_block": "Hellsteel Block",
   "block.dndreams.hellslate": "Hellslate Ore",

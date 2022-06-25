@@ -30,6 +30,10 @@ public class ModItems {
     // Shade Veil
     public static final Item SHADE_CLOTH = registerItem("shade_cloth", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    // World Flow
+    public static final Item LIQUID_VOID = registerItem("liquid_void",
+            new Item(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.UNCOMMON)));
+
     // Liquid Soul
     public static final Item LIQUID_SOUL = registerItem("liquid_soul",
             new Item(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.RARE)));
@@ -52,34 +56,43 @@ public class ModItems {
     public static final Item HOLY_INGOT = registerItem("holy_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Corrupt & Holy Swords
+    // Hellsteel Sword & Tools
     public static final Item CORRUPT_SWORD = registerItem("corrupt_sword",
             new CorruptSword(ModMaterials.CORRUPT, 3, -1.8F,
             new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
+    public static final Item CORRUPT_PICKAXE = registerItem("corrupt_pickaxe",
+            new CorruptPickaxe(ModMaterials.CORRUPT, 1, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
+    public static final Item CORRUPT_AXE = registerItem("corrupt_axe",
+            new CorruptAxe(ModMaterials.CORRUPT, 5.0F, -2.9F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
+    public static final Item CORRUPT_SHOVEL = registerItem("corrupt_shovel",
+            new CorruptShovel(ModMaterials.CORRUPT, 1.5F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
+    public static final Item CORRUPT_HOE = registerItem("corrupt_hoe",
+            new CorruptHoe(ModMaterials.CORRUPT, -5, 0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
+
+
+    // Celestium Swords & Tools
     public static final Item HOLY_SWORD = registerItem("holy_sword",
             new SwordItem(ModMaterials.HOLY, 3, -2.8F,
             new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item HOLY_PICKAXE = registerItem("holy_pickaxe",
+            new ModPickaxeItem(ModMaterials.HOLY, 1, -2.8F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item HOLY_AXE = registerItem("holy_axe",
+            new ModAxeItem(ModMaterials.HOLY, 5.0F, -3.4F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+
+
+
 
     // Excalibur
     public static final Item EXCALIBUR = registerItem("excalibur",
             new Excalibur(ModMaterials.ARTIFACT, 1, -2.6F,
             new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
-    // Corrupt & Holy Pickaxes
-    public static final Item CORRUPT_PICKAXE = registerItem("corrupt_pickaxe",
-            new CorruptPickaxe(ModMaterials.CORRUPT, 1, -2.4F,
-            new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
-    public static final Item HOLY_PICKAXE = registerItem("holy_pickaxe",
-            new ModPickaxeItem(ModMaterials.HOLY, 1, -2.8F,
-            new FabricItemSettings().group(ItemGroup.TOOLS)));
-
-    // Corrupt & Holy Axes
-    public static final Item CORRUPT_AXE = registerItem("corrupt_axe",
-            new CorruptAxe(ModMaterials.CORRUPT, 5.0F, -2.9F,
-            new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
-    public static final Item HOLY_AXE = registerItem("holy_axe",
-            new ModAxeItem(ModMaterials.HOLY, 5.0F, -3.4F,
-            new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     // Nightmare Fuel
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",

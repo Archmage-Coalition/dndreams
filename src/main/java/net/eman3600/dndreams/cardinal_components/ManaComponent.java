@@ -3,6 +3,7 @@ package net.eman3600.dndreams.cardinal_components;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.ManaComponentI;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -67,6 +68,10 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public int getRegenRate() {
+        if (player.hasStatusEffect(ModStatusEffects.SUPPRESSED)) {
+            return 0;
+        }
+
         return BASE_RATE;
     }
 
