@@ -42,6 +42,7 @@
   "custom": {
     "cardinal-components": [
       "dndreams:blood_moon",
+      "dndreams:boss_state",
       "dndreams:mana",
       "dndreams:torment"
     ]

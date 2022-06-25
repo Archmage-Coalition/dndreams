@@ -40,7 +40,7 @@ public class CorruptSword extends SwordItem {
         if (attacker.hasStatusEffect(ModStatusEffects.BLOODLUST)) {
             int amplifier;
 
-            if (BloodMoonComponent.isBloodMoon(attacker.getWorld())) {
+            if (WorldComponents.BLOOD_MOON.get(attacker.getWorld()).isBloodMoon()) {
                 amplifier = 2;
             } else {
                 amplifier = 1;
@@ -68,22 +68,6 @@ public class CorruptSword extends SwordItem {
         }
 
         return super.postHit(stack, target, attacker);
-    }
-
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        BloodMoonComponent component = WorldComponents.BLOOD_MOON.get(world);
-
-        if (!world.isClient() && user.getActiveHand() == hand) {
-            System.out.println("Known Day: " + component.getKnownDay());
-            System.out.println("Blood Moon Chance: " + component.getChance());
-            System.out.println("Damned Night: " + component.damnedNight());
-            System.out.println("Blood Moon: " + BloodMoonComponent.isBloodMoon(world));
-        }
-
-
-
-        return super.use(world, user, hand);
     }
 
     private void addStatusEffects(LivingEntity target, LivingEntity attacker) {

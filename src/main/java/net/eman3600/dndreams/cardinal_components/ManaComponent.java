@@ -45,7 +45,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     }
 
     @Override
-    public void tick() {
+    public void serverTick() {
         if (mana < getManaMax()) {
             regenerate();
         } else if (regenTime != 0) {

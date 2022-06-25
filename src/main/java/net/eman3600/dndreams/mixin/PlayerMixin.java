@@ -19,8 +19,5 @@ public abstract class PlayerMixin extends LivingEntity {
         super(entityType, world);
     }
 
-    @Inject(method = "tick()V", at = @At("TAIL"))
-    private void injectTick(CallbackInfo info) {
-        EntityComponents.MANA.get(this).tick();
-    }
+
 }
