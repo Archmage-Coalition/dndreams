@@ -12,5 +12,7 @@ public interface ManaComponentI extends ServerTickingComponent {
     void setInfusion(int change);
     int getRegenRate();
 
-    boolean useMana(int cost);
+    void useMana(int cost);
+
+    void setMana(int value);
 }

@@ -4,13 +4,13 @@ import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.ManaComponentI;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
 public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
-    private int mana = 50;
-    private int maxMana = 50;
+    private int mana = 0;
+    private int maxMana = 25;
     private int infusion = 0;
     private int regenTime = 0;
     private PlayerEntity player;
@@ -47,11 +47,17 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public void serverTick() {
-        if (mana < getManaMax()) {
+        if (mana < getManaMax() || player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
             regenerate();
         } else if (regenTime != 0) {
             regenTime = 0;
         }
+
+        if (mana > getManaMax()) {
+            mana = getManaMax();
+        }
+
+        EntityComponents.MANA.sync(player);
     }
 
     private void regenerate() {
@@ -68,11 +74,23 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public int getRegenRate() {
-        if (player.hasStatusEffect(ModStatusEffects.SUPPRESSED)) {
+        float regenRate = BASE_RATE;
+
+        if (player.isCreative()) {
+            return REGEN_REQUIRE - regenTime;
+        }
+        else if (player.hasStatusEffect(ModStatusEffects.SUPPRESSED)) {
             return 0;
         }
 
-        return BASE_RATE;
+        if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
+            regenRate *= 1.5f * Math.pow(1.2f, player.getStatusEffect(ModStatusEffects.VOID_FLOW).getAmplifier());
+        }
+        if (player.hasStatusEffect(ModStatusEffects.DREAMY)) {
+            regenRate *= 1.5f * Math.pow(1.1f, player.getStatusEffect(ModStatusEffects.DREAMY).getAmplifier());
+        }
+
+        return (int)regenRate;
     }
 
     @Override
@@ -86,22 +104,24 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     }
 
     @Override
-    public boolean useMana(int cost) {
-        if (cost > mana) {
-            return false;
-        } else {
-            mana -= cost;
-            EntityComponents.MANA.sync(player);
-            return true;
-        }
+    public void useMana(int cost) {
+        mana = Math.max(0, mana - cost);
+        regenTime = Math.min(regenTime, -getRegenRequirement());
+    }
+
+    @Override
+    public void setMana(int value) {
+        mana = value;
     }
 
     public void chargeMana(int charge) {
         mana += charge;
         if (mana > getManaMax()) {
             mana = getManaMax();
+            if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
+                player.damage(DamageSource.MAGIC, 1.0f);
+            }
         }
-        EntityComponents.MANA.sync(player);
     }
 
     @Override

@@ -11,6 +11,10 @@ public class ModStatusEffects {
     public static StatusEffect IMPENDING = register(4240, "impending", new ModStatusEffect(StatusEffectCategory.HARMFUL, 11141290));
     public static StatusEffect BLOODLUST = register(4241, "bloodlust", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 15597568));
     public static StatusEffect SUPPRESSED = register(4242, "suppressed", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0));
+    public static StatusEffect LOOMING = register(4243, "looming", new ModStatusEffect(StatusEffectCategory.HARMFUL, 11141290));
+    public static StatusEffect SPIRIT_WARD = register(4244, "spirit_ward", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 11184640));
+    public static StatusEffect DREAMY = register(4245, "dreamy", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 13369480));
+    public static StatusEffect VOID_FLOW = register(4246, "void_flow", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5592405));
 
     private static StatusEffect register(int rawId, String name, StatusEffect entry) {
         return (StatusEffect) Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

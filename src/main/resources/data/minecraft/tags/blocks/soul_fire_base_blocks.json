@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:sculk",
+    "minecraft:sculk_catalyst",
+    "dndreams:hellsand",
+    "dndreams:hellsoil"
+  ]
+}

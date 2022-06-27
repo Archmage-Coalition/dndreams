@@ -3,6 +3,7 @@ package net.eman3600.dndreams.cardinal_components;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
@@ -11,20 +12,39 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent 
 
     private PlayerEntity player;
 
-    private static final float MAX_TORMENT = 20;
+    public static final float MAX_TORMENT = 100;
 
     public TormentComponent(PlayerEntity playerIn) {
         player = playerIn;
     }
 
     @Override
-    public int getTorment() {
-        return (int)torment;
+    public float getTorment() {
+        if (isTormentForced()) {
+            return getForcedTorment();
+        }
+
+        return torment;
     }
 
     @Override
-    public int getForcedTorment() {
-        return getTorment();
+    public float getTrueTorment() {
+        return torment;
+    }
+
+    private int getForcedTorment() {
+        if (player.hasStatusEffect(ModStatusEffects.LOOMING)) {
+            return 100;
+        } else if (player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD)) {
+            return 0;
+        }
+
+        return -1;
+    }
+
+    @Override
+    public boolean isTormentForced() {
+        return getForcedTorment() != -1;
     }
 
     @Override

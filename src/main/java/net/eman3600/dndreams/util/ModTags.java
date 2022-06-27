@@ -16,6 +16,7 @@ public class ModTags {
     public static final TagKey<Block> BASE_SOIL_NETHER = ofBlock("base_soil_nether");
 
     public static final TagKey<Biome> GEN_HELLSLATE = ofBiome("gen_hellslate");
+    public static final TagKey<Biome> GEN_HELLSLATE_COMMON = ofBiome("gen_hellslate_common");
     public static final TagKey<Biome> GEN_SCULK_ORE = ofBiome("gen_sculk_ore");
 
     public static final TagKey<Structure> BLIGHT_POWDER_LOCATED = ofStructure("blight_powder_located");

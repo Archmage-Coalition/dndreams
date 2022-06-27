@@ -70,8 +70,12 @@ public class ModItems {
             new CorruptShovel(ModMaterials.CORRUPT, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item CORRUPT_HOE = registerItem("corrupt_hoe",
-            new CorruptHoe(ModMaterials.CORRUPT, -5, 0F,
+            new CorruptHoe(ModMaterials.CORRUPT, -3, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
+
+    // Flint and Hellsteel
+    public static final Item FLINT_AND_HELLSTEEL = registerItem("flint_and_hellsteel", new FlintAndHellsteel(new FabricItemSettings()
+            .group(ItemGroup.TOOLS).fireproof().maxCount(1)));
 
 
     // Celestium Swords & Tools

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dndreams:item/flint_and_hellsteel"
+  }
+}

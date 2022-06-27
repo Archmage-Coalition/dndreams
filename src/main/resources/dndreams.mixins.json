@@ -8,9 +8,12 @@
     "ItemMixin",
     "SonicboomDisabler",
     "WorldMixin",
-    "WorldRendererMixin"
+    "DragonFightMixin",
+    "LivingEntityMixin"
   ],
   "client": [
+    "WorldRendererMixin",
+    "HudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

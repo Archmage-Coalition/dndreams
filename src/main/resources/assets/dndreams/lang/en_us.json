@@ -23,10 +23,15 @@
   "item.dndreams.nightmare_fuel": "Nightmare Fuel",
   "item.dndreams.book_of_dreams": "Codex Somnus",
   "item.dndreams.book_of_dreams.landing_text": "Why, what dreams you'll have.",
+  "item.dndreams.flint_and_hellsteel": "Flint and Hellsteel",
   
   "effect.dndreams.impending": "Impending",
   "effect.dndreams.bloodlust": "Bloodlust",
   "effect.dndreams.suppressed": "Suppressed",
+  "effect.dndreams.looming": "Looming",
+  "effect.dndreams.spirit_ward": "Spirit Ward",
+  "effect.dndreams.dreamy": "Dream Flow",
+  "effect.dndreams.void_flow": "Chaos Flow",
 
   "block.dndreams.corrupt_block": "Hellsteel Block",
   "block.dndreams.hellslate": "Hellslate Ore",

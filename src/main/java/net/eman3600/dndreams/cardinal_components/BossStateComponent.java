@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 
 public class BossStateComponent implements BossStateComponentI, AutoSyncedComponent {
     private boolean dragonSlain = false;
+    private boolean witherSlain = false;
 
     private World world;
 
@@ -27,8 +28,28 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     }
 
     @Override
+    public boolean witherSlain() {
+        return witherSlain;
+    }
+
+    @Override
+    public void flagWitherSlain(boolean flag) {
+        witherSlain = flag;
+        WorldComponents.BOSS_STATE.sync(world);
+    }
+
+
+
+
+    @Override
+    public boolean gatewaysSlain() {
+        return dragonSlain && witherSlain;
+    }
+
+    @Override
     public void readFromNbt(NbtCompound tag) {
         dragonSlain = tag.getBoolean("dragon_slain");
+        witherSlain = tag.getBoolean("wither_slain");
 
         WorldComponents.BOSS_STATE.sync(world);
     }
@@ -36,5 +57,6 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putBoolean("dragon_slain", dragonSlain);
+        tag.putBoolean("wither_slain", witherSlain);
     }
 }
