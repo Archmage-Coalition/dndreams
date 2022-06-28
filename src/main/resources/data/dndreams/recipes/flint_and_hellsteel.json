@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:flint_and_hellsteel",
+  "ingredients": [
+    {
+      "item": "dndreams:corrupt_ingot"
+    },
+	{
+      "item": "minecraft:flint"
+    },
+	{
+      "item": "dndreams:sculk_powder"
+    }
+  ],
+  "result": {
+    "item": "dndreams:flint_and_hellsteel",
+    "count": 1
+  }
+}

@@ -5,11 +5,8 @@ import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModMaterials;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.NetherStarItem;
-import net.minecraft.item.SwordItem;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -32,11 +29,11 @@ public class ModItems {
 
     // World Flow
     public static final Item LIQUID_VOID = registerItem("liquid_void",
-            new Item(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.UNCOMMON)));
+            new Item(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON)));
 
     // Liquid Soul
     public static final Item LIQUID_SOUL = registerItem("liquid_soul",
-            new Item(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.RARE)));
+            new Item(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE)));
 
     // End Sticks
     public static final Item END_STICK = registerItem("end_stick", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));

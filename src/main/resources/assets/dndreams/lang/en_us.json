@@ -6,7 +6,7 @@
   "item.dndreams.end_stick":  "End Stick",
   "item.dndreams.sculk_powder":  "Memory Dust",
   "item.dndreams.liquid_soul":  "Liquid Soul",
-  "item.dndreams.liquid_void":  "World Flow",
+  "item.dndreams.liquid_void":  "Cosmic Fluid",
   "item.dndreams.corrupt_scrap":  "Hellslate",
   "item.dndreams.shade_cloth":  "Shade Veil",
   "item.dndreams.blight_powder":  "Corrupt Residue",
@@ -32,6 +32,18 @@
   "effect.dndreams.spirit_ward": "Spirit Ward",
   "effect.dndreams.dreamy": "Dream Flow",
   "effect.dndreams.void_flow": "Chaos Flow",
+  
+  "item.minecraft.potion.effect.void_flow": "Potion of Unstable Mana",
+  "item.minecraft.splash_potion.effect.void_flow": "Splash Potion of Unstable Mana",
+  "item.minecraft.lingering_potion.effect.void_flow": "Lingering Potion of Unstable Mana",
+  
+  "item.minecraft.potion.effect.dreamy": "Potion of Flowing Magic",
+  "item.minecraft.splash_potion.effect.dreamy": "Splash Potion of Flowing Magic",
+  "item.minecraft.lingering_potion.effect.dreamy": "Lingering Potion of Flowing Magic",
+  
+  "item.minecraft.potion.effect.spirit_ward": "Potion of Silence",
+  "item.minecraft.splash_potion.effect.spirit_ward": "Splash Potion of Silence",
+  "item.minecraft.lingering_potion.effect.spirit_ward": "Lingering Potion of Silence",
 
   "block.dndreams.corrupt_block": "Hellsteel Block",
   "block.dndreams.hellslate": "Hellslate Ore",

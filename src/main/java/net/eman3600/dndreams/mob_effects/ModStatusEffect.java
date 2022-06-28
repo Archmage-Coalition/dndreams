@@ -58,4 +58,17 @@ public class ModStatusEffect extends StatusEffect {
 
         return false;
     }
+
+    @Override
+    public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+        super.onRemoved(entity, attributes, amplifier);
+
+        if (this == ModStatusEffects.VOID_FLOW && entity.isPlayer()) {
+            ManaComponent component = EntityComponents.MANA.get(entity);
+
+            if (component.getMana() > component.getManaMax()) {
+                entity.damage(DamageSource.MAGIC, 1.0f * ((float)component.getMana() - component.getManaMax()));
+            }
+        }
+    }
 }

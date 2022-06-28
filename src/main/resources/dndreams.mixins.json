@@ -9,7 +9,8 @@
     "SonicboomDisabler",
     "WorldMixin",
     "DragonFightMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "BrewingRegistryMixin"
   ],
   "client": [
     "WorldRendererMixin",

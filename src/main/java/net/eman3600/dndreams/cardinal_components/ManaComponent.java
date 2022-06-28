@@ -53,7 +53,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             regenTime = 0;
         }
 
-        if (mana > getManaMax()) {
+        if (mana > getManaMax() && !player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
             mana = getManaMax();
         }
 
@@ -84,10 +84,10 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         }
 
         if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
-            regenRate *= 1.5f * Math.pow(1.2f, player.getStatusEffect(ModStatusEffects.VOID_FLOW).getAmplifier());
+            regenRate *= 1.85f * Math.pow(1.3f, player.getStatusEffect(ModStatusEffects.VOID_FLOW).getAmplifier());
         }
         if (player.hasStatusEffect(ModStatusEffects.DREAMY)) {
-            regenRate *= 1.5f * Math.pow(1.1f, player.getStatusEffect(ModStatusEffects.DREAMY).getAmplifier());
+            regenRate *= 1.85f * Math.pow(1.3f, player.getStatusEffect(ModStatusEffects.DREAMY).getAmplifier());
         }
 
         return (int)regenRate;
@@ -116,11 +116,11 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     public void chargeMana(int charge) {
         mana += charge;
-        if (mana > getManaMax()) {
+        if (mana > getManaMax() && !player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
             mana = getManaMax();
-            if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
-                player.damage(DamageSource.MAGIC, 1.0f);
-            }
+        }
+        if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW) && mana > getManaMax()) {
+            player.damage(DamageSource.MAGIC, 0.1f * ((float)mana - getManaMax()));
         }
     }
 

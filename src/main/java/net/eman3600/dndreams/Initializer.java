@@ -4,6 +4,9 @@ import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.util.ModRegistries;
 import net.eman3600.dndreams.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableSource;
+import net.fabricmc.fabric.mixin.loot.LootTableAccessor;
 import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +30,11 @@ public class Initializer implements ModInitializer {
 		ModBlocks.registerBlocks();
 		ModRegistries.register();
 		ModStatusEffects.registerEffects();
+		ModPotions.registerPotions();
 		ModFeatures.registerFeatures();
 
 		ModWorldGen.generate();
+
+		LootModifiers.modifyLootTables();
 	}
 }

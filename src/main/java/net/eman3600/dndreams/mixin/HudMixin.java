@@ -102,7 +102,7 @@ public abstract class HudMixin extends DrawableHelper {
                 RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
                 drawTexture(matrices, xPosMana, (yPos), 0, 0, MANA_WIDTH, MANA_HEIGHT);
-                drawTexture(matrices, (xPosMana + MANA_INNER_OFFSET), (yPos + MANA_INNER_OFFSET), 2, vPos, (int)((MANA_WIDTH - MANA_INNER_OFFSET * 2) * ((float)manaComponent.getMana() / manaComponent.getManaMax())), MANA_HEIGHT - MANA_INNER_OFFSET * 2);
+                drawTexture(matrices, (xPosMana + MANA_INNER_OFFSET), (yPos + MANA_INNER_OFFSET), 2, vPos, (int)((MANA_WIDTH - MANA_INNER_OFFSET * 2) * Math.min((float)manaComponent.getMana() / manaComponent.getManaMax(), 1f)), MANA_HEIGHT - MANA_INNER_OFFSET * 2);
                 drawCenteredText(matrices, client.textRenderer, manaComponent.getMana() + "/" + manaComponent.getManaMax(), (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
