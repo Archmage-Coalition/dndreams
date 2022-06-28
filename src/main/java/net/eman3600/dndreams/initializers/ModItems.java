@@ -2,9 +2,12 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.items.*;
+import net.eman3600.dndreams.items.managold.*;
+import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModMaterials;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.util.Formatting;
@@ -47,10 +50,12 @@ public class ModItems {
     // Baleful Residue
     public static final Item BLIGHT_POWDER = registerItem("blight_powder", new BlightPowderItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Corrupt & Holy Ingots
+    // Ingots
     public static final Item CORRUPT_INGOT = registerItem("corrupt_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
     public static final Item HOLY_INGOT = registerItem("holy_ingot",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item MANAGOLD_INGOT = registerItem("managold_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Hellsteel Sword & Tools
@@ -85,6 +90,37 @@ public class ModItems {
     public static final Item HOLY_AXE = registerItem("holy_axe",
             new ModAxeItem(ModMaterials.HOLY, 5.0F, -3.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
+
+
+    // Managold Gear
+    public static final Item MANAGOLD_SWORD = registerItem("managold_sword",
+            new ManagoldSword(ModMaterials.MANAGOLD, 3, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item MANAGOLD_PICKAXE = registerItem("managold_pickaxe",
+            new ManagoldPickaxe(ModMaterials.MANAGOLD, 1, -2.8F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item MANAGOLD_AXE = registerItem("managold_axe",
+            new ManagoldAxe(ModMaterials.MANAGOLD, 6.0F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item MANAGOLD_SHOVEL = registerItem("managold_shovel",
+            new ManagoldShovel(ModMaterials.MANAGOLD, 1.5F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item MANAGOLD_HOE = registerItem("managold_hoe",
+            new ManagoldHoe(ModMaterials.MANAGOLD, -2, 0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+
+    public static final Item MANAGOLD_HELMET = registerItem("managold_helmet",
+            new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item MANAGOLD_CHESTPLATE = registerItem("managold_chestplate",
+            new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item MANAGOLD_LEGGINGS = registerItem("managold_leggings",
+            new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item MANAGOLD_BOOTS = registerItem("managold_boots",
+            new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
 
 
 

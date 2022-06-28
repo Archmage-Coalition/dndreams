@@ -18,6 +18,9 @@ public enum ModMaterials implements ToolMaterial {
     }),
     ARTIFACT(4, 3002, 12.0F, 4.0F, 22, () -> {
         return Ingredient.ofItems(new ItemConvertible[]{ModItems.DREAM_POWDER});
+    }),
+    MANAGOLD(2, 32, 12.0F, 2.0F, 22, () -> {
+        return Ingredient.ofItems(new ItemConvertible[]{ModItems.MANAGOLD_INGOT});
     });
 
     private final int miningLevel;

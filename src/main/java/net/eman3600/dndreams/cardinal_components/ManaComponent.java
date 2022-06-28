@@ -83,9 +83,6 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             return 0;
         }
 
-        if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
-            regenRate *= 1.85f * Math.pow(1.3f, player.getStatusEffect(ModStatusEffects.VOID_FLOW).getAmplifier());
-        }
         if (player.hasStatusEffect(ModStatusEffects.DREAMY)) {
             regenRate *= 1.85f * Math.pow(1.3f, player.getStatusEffect(ModStatusEffects.DREAMY).getAmplifier());
         }
@@ -95,7 +92,12 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public int getManaMax() {
-        return getBaseManaMax() + getXPBonus();
+        int manaFactors = 0;
+        if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
+            manaFactors -= 10 * player.getStatusEffect(ModStatusEffects.VOID_FLOW).getAmplifier();
+        }
+
+        return Math.max(getBaseManaMax() + getXPBonus() + manaFactors, 1);
     }
 
     @Override
@@ -119,7 +121,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         if (mana > getManaMax() && !player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
             mana = getManaMax();
         }
-        if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW) && mana > getManaMax()) {
+        if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW) && mana > getManaMax() && player.canTakeDamage()) {
             player.damage(DamageSource.MAGIC, 0.1f * ((float)mana - getManaMax()));
         }
     }

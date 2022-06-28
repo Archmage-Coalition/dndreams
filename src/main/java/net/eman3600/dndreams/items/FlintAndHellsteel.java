@@ -1,9 +1,11 @@
 package net.eman3600.dndreams.items;
 
+import com.mojang.brigadier.Message;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.*;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
@@ -13,10 +15,14 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class FlintAndHellsteel extends Item {
     private static int MANA_USE = 4;
@@ -67,5 +73,15 @@ public class FlintAndHellsteel extends Item {
 
             return ActionResult.success(world.isClient());
         }
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Texts.toText(new Message() {
+            @Override
+            public String getString() {
+                return "§dMana Cost: " + MANA_USE;
+            }
+        }));
     }
 }

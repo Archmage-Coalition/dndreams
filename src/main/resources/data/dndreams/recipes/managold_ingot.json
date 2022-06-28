@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:managold_ingot",
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot"
+    },
+	{
+      "item": "dndreams:sculk_powder"
+    }
+  ],
+  "result": {
+    "item": "dndreams:managold_ingot",
+    "count": 1
+  }
+}

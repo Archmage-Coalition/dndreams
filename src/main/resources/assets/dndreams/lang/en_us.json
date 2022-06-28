@@ -24,6 +24,16 @@
   "item.dndreams.book_of_dreams": "Codex Somnus",
   "item.dndreams.book_of_dreams.landing_text": "Why, what dreams you'll have.",
   "item.dndreams.flint_and_hellsteel": "Flint and Hellsteel",
+  "item.dndreams.managold_ingot": "Managold Ingot",
+  "item.dndreams.managold_sword": "Managold Sword",
+  "item.dndreams.managold_pickaxe": "Managold Pickaxe",
+  "item.dndreams.managold_axe": "Managold Axe",
+  "item.dndreams.managold_shovel": "Managold Shovel",
+  "item.dndreams.managold_hoe": "Managold Hoe",
+  "item.dndreams.managold_helmet": "Managold Helmet",
+  "item.dndreams.managold_chestplate": "Managold Chestplate",
+  "item.dndreams.managold_leggings": "Managold Leggings",
+  "item.dndreams.managold_boots": "Managold Boots",
   
   "effect.dndreams.impending": "Impending",
   "effect.dndreams.bloodlust": "Bloodlust",
@@ -57,6 +67,7 @@
   "block.dndreams.dreamwood_slab": "Dreamwood Slab",
   "block.dndreams.dreamwood_fence": "Dreamwood Fence",
   "block.dndreams.dreamwood_fence_gate": "Dreamwood Fence Gate",
+  "block.dndreams.managold_block": "Managold Block",
 
   "itemGroup.dndreams.dndreams": "Demons and Dreams"
 }

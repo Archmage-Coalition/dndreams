@@ -10,7 +10,8 @@
     "WorldMixin",
     "DragonFightMixin",
     "LivingEntityMixin",
-    "BrewingRegistryMixin"
+    "BrewingRegistryMixin",
+    "PlayerInventoryMixin"
   ],
   "client": [
     "WorldRendererMixin",
