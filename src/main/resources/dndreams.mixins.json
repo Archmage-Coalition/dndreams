@@ -11,7 +11,8 @@
     "DragonFightMixin",
     "LivingEntityMixin",
     "BrewingRegistryMixin",
-    "PlayerInventoryMixin"
+    "PlayerInventoryMixin",
+    "EndPortalFeatureMixin"
   ],
   "client": [
     "WorldRendererMixin",

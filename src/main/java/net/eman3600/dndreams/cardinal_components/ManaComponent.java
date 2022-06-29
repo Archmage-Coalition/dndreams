@@ -96,6 +96,9 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
             manaFactors -= 10 * player.getStatusEffect(ModStatusEffects.VOID_FLOW).getAmplifier();
         }
+        if (player.hasStatusEffect(ModStatusEffects.MEMORY)) {
+            manaFactors += 15 * (player.getStatusEffect(ModStatusEffects.MEMORY).getAmplifier() + 1);
+        }
 
         return Math.max(getBaseManaMax() + getXPBonus() + manaFactors, 1);
     }
@@ -122,7 +125,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             mana = getManaMax();
         }
         if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW) && mana > getManaMax() && player.canTakeDamage()) {
-            player.damage(DamageSource.MAGIC, 0.1f * ((float)mana - getManaMax()));
+            player.damage(DamageSource.MAGIC, 0.3f * ((float)mana - getManaMax()));
         }
     }
 

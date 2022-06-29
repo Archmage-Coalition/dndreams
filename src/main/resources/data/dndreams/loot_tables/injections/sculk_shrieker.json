@@ -12,8 +12,8 @@
             {
               "function": "set_count",
               "count": {
-                "min": 4,
-                "max": 7
+                "min": 3,
+                "max": 5
               }
             }
           ]

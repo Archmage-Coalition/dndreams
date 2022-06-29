@@ -1,6 +1,7 @@
 package net.eman3600.dndreams;
 
 import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.eman3600.dndreams.util.ModRegistries;
 import net.eman3600.dndreams.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
@@ -36,5 +37,7 @@ public class Initializer implements ModInitializer {
 		ModWorldGen.generate();
 
 		LootModifiers.modifyLootTables();
+
+		ModModelPredicateProvider.registerModModels();
 	}
 }

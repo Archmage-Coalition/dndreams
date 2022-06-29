@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "minecraft:block/bedrock",
+    "side": "dndreams:block/world_fountain_side"
+  }
+}

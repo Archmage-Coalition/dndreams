@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -24,8 +25,12 @@ public abstract class ItemMixin {
         World world = context.getWorld();
         BlockPos pos = context.getBlockPos();
         ItemStack stack = context.getStack();
-        if (world.getBlockState(pos).getBlock() == Blocks.END_PORTAL && world.getDimensionKey() == DimensionTypes.THE_END && stack.getItem() == Items.GLASS_BOTTLE) {
-            ItemUsage.exchangeStack(stack, context.getPlayer(), new ItemStack(ModItems.LIQUID_VOID));
+        if (world.getBlockState(pos).getBlock() == Blocks.END_PORTAL && stack.getItem() == Items.GLASS_BOTTLE) {
+            if (world.getDimensionKey() == DimensionTypes.THE_END) {
+                ItemUsage.exchangeStack(stack, context.getPlayer(), new ItemStack(ModItems.LIQUID_VOID));
+            } else {
+                context.getPlayer().sendMessage(Text.translatable("item.dndreams.liquid_void.wrong_dimension"), true);
+            }
 
             info.setReturnValue(ActionResult.SUCCESS);
         }

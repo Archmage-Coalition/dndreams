@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:managold_ingot",
+  "ingredients": [
+    {
+      "item": "dndreams:managold_block"
+    }
+  ],
+  "result": {
+    "item": "dndreams:managold_ingot",
+    "count": 9
+  }
+}

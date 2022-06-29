@@ -7,19 +7,22 @@ import net.eman3600.dndreams.blocks.ModStairsBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.BlockView;
 
 public class ModBlocks {
 
     // Hellsteel Block
     public static final Block CORRUPT_BLOCK = registerBlock("corrupt_block",
-            new Block(FabricBlockSettings.of(Material.METAL).strength(4.0f).resistance(5.0f)
+            new Block(FabricBlockSettings.of(Material.METAL, MapColor.BRIGHT_RED).strength(4.0f).resistance(5.0f)
                     .sounds(BlockSoundGroup.METAL)
                     .requiresTool()),
 
@@ -27,21 +30,21 @@ public class ModBlocks {
 
     // Hellslate Ores
     public static final Block HELLSLATE = registerBlock("hellslate",
-            new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4.0f).resistance(5.0f)
+            new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.BRIGHT_RED).strength(4.0f).resistance(5.0f)
                     .sounds(BlockSoundGroup.NETHERRACK)
                     .requiresTool(), UniformIntProvider.create(2, 5)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
 
     public static final Block HELLSAND = registerBlock("hellsand",
-            new Hellsand(FabricBlockSettings.of(Material.AGGREGATE).strength(2.0f).resistance(5.0f)
+            new Hellsand(FabricBlockSettings.of(Material.AGGREGATE, MapColor.BRIGHT_RED).strength(2.0f).resistance(5.0f)
                     .sounds(BlockSoundGroup.SOUL_SAND)
                     .requiresTool(), UniformIntProvider.create(2, 5)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
 
     public static final Block HELLSOIL = registerBlock("hellsoil",
-            new OreBlock(FabricBlockSettings.of(Material.SOIL).strength(2.0f).resistance(5.0f)
+            new OreBlock(FabricBlockSettings.of(Material.SOIL, MapColor.BRIGHT_RED).strength(2.0f).resistance(5.0f)
                     .sounds(BlockSoundGroup.SOUL_SOIL)
                     .requiresTool(), UniformIntProvider.create(2, 5)),
 
@@ -49,19 +52,37 @@ public class ModBlocks {
 
     // Celestium Block
     public static final Block CELESTIUM_BLOCK = registerBlock("celestium_block",
-            new Block(FabricBlockSettings.of(Material.METAL).strength(4.0f).resistance(9.0f)
+            new Block(FabricBlockSettings.of(Material.METAL, MapColor.PALE_YELLOW).strength(4.0f).resistance(9.0f)
                     .sounds(BlockSoundGroup.METAL)
                     .requiresTool()),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Celestium Ore
     public static final Block CELESTIUM_ORE = registerBlock("celestium_ore",
-            new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4.0f).resistance(8.0f)
-                    .sounds(BlockSoundGroup.NETHERRACK)
+            new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE_GRAY).strength(4.0f).resistance(8.0f)
+                    .sounds(BlockSoundGroup.STONE)
                     .requiresTool()),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Managold Block
+    public static final Block MANAGOLD_BLOCK = registerBlock("managold_block",
+            new Block(FabricBlockSettings.of(Material.METAL, MapColor.GOLD).strength(3.0f).resistance(6.0f)
+                    .sounds(BlockSoundGroup.METAL)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // World Fountain
+    public static final Block WORLD_FOUNTAIN = registerBlock("world_fountain",
+            new Block(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block FLOWING_BEDROCK = registerBlock("flowing_bedrock",
+            new Block(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // DREAM TABLE
     public static final Block DREAM_TABLE = registerBlock("dream_table",
@@ -124,5 +145,9 @@ public class ModBlocks {
 
     public static void registerBlocks() {
          System.out.println("Registering blocks for " + Initializer.MODID);
+    }
+
+    private static Boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
+        return false;
     }
 }

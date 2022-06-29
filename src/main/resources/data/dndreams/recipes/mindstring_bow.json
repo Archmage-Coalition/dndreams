@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " #X",
+    "# X",
+    " #X"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "dndreams:sculk_powder"
+    }
+  },
+  "result": {
+    "item": "dndreams:mindstring_bow"
+  }
+}

@@ -92,6 +92,10 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
 
+    // Mindstring Bow
+    public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
+            new MindstringBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
+
     // Managold Gear
     public static final Item MANAGOLD_SWORD = registerItem("managold_sword",
             new ManagoldSword(ModMaterials.MANAGOLD, 3, -2.4F,

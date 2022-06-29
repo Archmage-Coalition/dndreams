@@ -1,0 +1,45 @@
+{
+  "category": "dndreams:materials",
+  "name": "Managold",
+  "icon": "dndreams:managold_ingot",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Managold is forged from gold and $(l:dndreams:materials/sculk_powder)Memory Dust$(/l). It reinforces the naturally enchantable gold with the ability to shield itself from damage using mana. Its strength is also improved."
+    },
+    {
+	  "type": "patchouli:crafting",
+      "title": "Managold Ingot",
+	  "recipe": "dndreams:managold_ingot",
+      "recipe2": "dndreams:managold_block"
+	},
+    {
+      "type": "patchouli:text",
+      "text": "Items made from managold will prioritize consuming mana over durability. Run out of mana, and managold tools and armor will begin to fracture."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "dndreams:managold_sword",
+      "recipe2": "dndreams:managold_pickaxe"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "dndreams:managold_axe",
+      "recipe2": "dndreams:managold_shovel"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "dndreams:managold_hoe",
+      "recipe2": "dndreams:managold_helmet"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "dndreams:managold_chestplate",
+      "recipe2": "dndreams:managold_leggings"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "dndreams:managold_boots"
+    }
+  ]
+}

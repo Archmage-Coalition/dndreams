@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.mob_effects.InstantModStatusEffect;
 import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -15,6 +16,8 @@ public class ModStatusEffects {
     public static StatusEffect SPIRIT_WARD = register(4244, "spirit_ward", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 11184640));
     public static StatusEffect DREAMY = register(4245, "dreamy", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 13369480));
     public static StatusEffect VOID_FLOW = register(4246, "void_flow", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5592405));
+    public static StatusEffect MEMORY = register(4247, "memory", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 26214));
+    public static StatusEffect SILENCE = register(4248, "silence", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 12303291));
 
     private static StatusEffect register(int rawId, String name, StatusEffect entry) {
         return (StatusEffect) Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

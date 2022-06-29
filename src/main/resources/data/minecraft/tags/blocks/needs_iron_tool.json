@@ -3,8 +3,10 @@
   "values": [
     "dndreams:corrupt_block",
     "dndreams:celestium_block",
+	"dndreams:managold_block",
 	"dndreams:hellslate",
 	"dndreams:hellsoil",
-	"dndreams:hellsand"
+	"dndreams:hellsand",
+    "dndreams:celestium_ore"
   ]
 }

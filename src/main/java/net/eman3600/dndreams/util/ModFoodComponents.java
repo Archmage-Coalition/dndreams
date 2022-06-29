@@ -6,7 +6,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 
 public class ModFoodComponents {
-    public static final FoodComponent NIGHTMARE_FUEL = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.6F)
+    public static final FoodComponent NIGHTMARE_FUEL = (new FoodComponent.Builder()).hunger(9).saturationModifier(1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 0), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 300, 0), 1.0F)

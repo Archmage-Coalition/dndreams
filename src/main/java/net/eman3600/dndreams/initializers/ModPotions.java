@@ -19,9 +19,15 @@ public class ModPotions {
     public static Potion DREAMY_LONG = registerPotion("long_dreamy", "dreamy", ModStatusEffects.DREAMY, 3600, 0);
     public static Potion DREAMY_STRONG = registerPotion("strong_dreamy", "dreamy", ModStatusEffects.DREAMY, 1500, 1);
 
-
     public static Potion SPIRIT_WARD = registerPotion("spirit_ward", ModStatusEffects.SPIRIT_WARD, 3600, 0);
     public static Potion SPIRIT_WARD_LONG = registerPotion("long_spirit_ward", "spirit_ward", ModStatusEffects.SPIRIT_WARD, 9600, 0);
+
+    public static Potion MEMORY = registerPotion("memory", ModStatusEffects.MEMORY, 3600, 0);
+    public static Potion MEMORY_LONG = registerPotion("long_memory", "memory", ModStatusEffects.MEMORY, 9600, 0);
+    public static Potion MEMORY_STRONG = registerPotion("strong_memory", "memory", ModStatusEffects.MEMORY, 2400, 1);
+
+    public static Potion SILENCE = registerPotion("silence", ModStatusEffects.SILENCE, 1, 0);
+    public static Potion SILENCE_STRONG = registerPotion("strong_silence", "silence", ModStatusEffects.SILENCE, 1, 1);
 
 
 
@@ -51,5 +57,18 @@ public class ModPotions {
         BrewingRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.DREAM_POWDER, ModPotions.DREAMY);
         BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.DREAMY, Items.REDSTONE, ModPotions.DREAMY_LONG);
         BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.DREAMY, Items.GLOWSTONE_DUST, ModPotions.DREAMY_STRONG);
+
+        // Memory
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.SCULK_POWDER, ModPotions.MEMORY);
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.MEMORY, Items.REDSTONE, ModPotions.MEMORY_LONG);
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.MEMORY, Items.GLOWSTONE_DUST, ModPotions.MEMORY_STRONG);
+
+        // Silence
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.NIGHTMARE_FUEL, ModPotions.SILENCE);
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.SILENCE, Items.GLOWSTONE_DUST, ModPotions.SILENCE_STRONG);
+
+        // Spirit Ward
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.SILENCE, Items.FERMENTED_SPIDER_EYE, ModPotions.SPIRIT_WARD);
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.SPIRIT_WARD, Items.REDSTONE, ModPotions.SPIRIT_WARD_LONG);
     }
 }

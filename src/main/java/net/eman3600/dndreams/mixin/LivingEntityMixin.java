@@ -24,7 +24,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "onDeath", at = @At("HEAD"))
     public void injectDeath(DamageSource damageSource, CallbackInfo info) {
         if ((Entity)this instanceof WitherEntity) {
-            WorldComponents.BOSS_STATE.get(world).flagWitherSlain(true);
+            WorldComponents.BOSS_STATE.get(world.getScoreboard()).flagWitherSlain(true);
         }
     }
 }

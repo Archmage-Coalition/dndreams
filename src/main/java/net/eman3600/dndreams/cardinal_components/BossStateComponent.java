@@ -4,16 +4,21 @@ import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.BossStateComponentI;
 import net.eman3600.dndreams.initializers.WorldComponents;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionTypes;
 
 public class BossStateComponent implements BossStateComponentI, AutoSyncedComponent {
     private boolean dragonSlain = false;
     private boolean witherSlain = false;
 
-    private World world;
+    private Scoreboard scoreboard;
+    private MinecraftServer server;
 
-    public BossStateComponent(World worldIn) {
-        world = worldIn;
+    public BossStateComponent(Scoreboard worldIn, MinecraftServer serverIn) {
+        scoreboard = worldIn;
+        server = serverIn;
     }
 
     @Override
@@ -24,7 +29,7 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     @Override
     public void flagDragonSlain(boolean flag) {
         dragonSlain = flag;
-        WorldComponents.BOSS_STATE.sync(world);
+        WorldComponents.BOSS_STATE.sync(scoreboard);
     }
 
     @Override
@@ -35,7 +40,7 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     @Override
     public void flagWitherSlain(boolean flag) {
         witherSlain = flag;
-        WorldComponents.BOSS_STATE.sync(world);
+        WorldComponents.BOSS_STATE.sync(scoreboard);
     }
 
 
@@ -51,7 +56,7 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
         dragonSlain = tag.getBoolean("dragon_slain");
         witherSlain = tag.getBoolean("wither_slain");
 
-        WorldComponents.BOSS_STATE.sync(world);
+        WorldComponents.BOSS_STATE.sync(scoreboard);
     }
 
     @Override

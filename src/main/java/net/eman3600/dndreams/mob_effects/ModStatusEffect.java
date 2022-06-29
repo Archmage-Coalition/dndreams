@@ -67,7 +67,7 @@ public class ModStatusEffect extends StatusEffect {
             ManaComponent component = EntityComponents.MANA.get(entity);
 
             if (component.getMana() > component.getManaMax()) {
-                entity.damage(DamageSource.MAGIC, 0.1f * ((float)component.getMana() - component.getManaMax()));
+                entity.damage(DamageSource.MAGIC, 0.3f * ((float)component.getMana() - component.getManaMax()));
             }
         }
     }
