@@ -18,6 +18,7 @@ public class ModStatusEffects {
     public static StatusEffect VOID_FLOW = register(4246, "void_flow", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5592405));
     public static StatusEffect MEMORY = register(4247, "memory", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 26214));
     public static StatusEffect SILENCE = register(4248, "silence", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 12303291));
+    public static StatusEffect LIFEMANA = register(4249, "lifemana", new ModStatusEffect(StatusEffectCategory.HARMFUL, 17510));
 
     private static StatusEffect register(int rawId, String name, StatusEffect entry) {
         return (StatusEffect) Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

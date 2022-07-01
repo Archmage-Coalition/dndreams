@@ -52,6 +52,7 @@
   "effect.dndreams.void_flow": "Cosmic Overload",
   "effect.dndreams.memory": "Honed Mind",
   "effect.dndreams.silence": "Spirit Silence",
+  "effect.dndreams.lifemana": "Soulpour",
   
   "item.minecraft.potion.effect.void_flow": "Potion of Unstable Mana",
   "item.minecraft.splash_potion.effect.void_flow": "Splash Potion of Unstable Mana",
@@ -77,6 +78,11 @@
   "item.minecraft.splash_potion.effect.silence": "Splash Potion of Silence",
   "item.minecraft.lingering_potion.effect.silence": "Lingering Potion of Silence",
   "item.minecraft.tipped_arrow.effect.silence": "Arrow of Silence",
+  
+  "item.minecraft.potion.effect.lifemana": "Potion of Soulcasting",
+  "item.minecraft.splash_potion.effect.lifemana": "Splash Potion of Soulcasting",
+  "item.minecraft.lingering_potion.effect.lifemana": "Lingering Potion of Soulcasting",
+  "item.minecraft.tipped_arrow.effect.lifemana": "Arrow of Soulcasting",
 
   "block.dndreams.corrupt_block": "Hellsteel Block",
   "block.dndreams.hellslate": "Hellslate Ore",

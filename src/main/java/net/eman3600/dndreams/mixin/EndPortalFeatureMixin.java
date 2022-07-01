@@ -28,6 +28,7 @@ public abstract class EndPortalFeatureMixin extends Feature<DefaultFeatureConfig
         super(configCodec);
     }
 
+    @Override
     public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
         BlockPos blockPos = context.getOrigin();
         StructureWorldAccess structureWorldAccess = context.getWorld();

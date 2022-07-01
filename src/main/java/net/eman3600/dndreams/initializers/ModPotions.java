@@ -13,7 +13,6 @@ import net.minecraft.util.registry.Registry;
 public class ModPotions {
     public static Potion VOID_FLOW = registerPotion("void_flow", ModStatusEffects.VOID_FLOW, 600, 0);
     public static Potion VOID_FLOW_LONG = registerPotion("long_void_flow", "void_flow", ModStatusEffects.VOID_FLOW, 900, 0);
-    public static Potion VOID_FLOW_STRONG = registerPotion("strong_void_flow", "void_flow", ModStatusEffects.VOID_FLOW, 400, 1);
 
     public static Potion DREAMY = registerPotion("dreamy", ModStatusEffects.DREAMY, 1800, 0);
     public static Potion DREAMY_LONG = registerPotion("long_dreamy", "dreamy", ModStatusEffects.DREAMY, 3600, 0);
@@ -28,6 +27,9 @@ public class ModPotions {
 
     public static Potion SILENCE = registerPotion("silence", ModStatusEffects.SILENCE, 1, 0);
     public static Potion SILENCE_STRONG = registerPotion("strong_silence", "silence", ModStatusEffects.SILENCE, 1, 1);
+
+    public static Potion LIFEMANA = registerPotion("lifemana", ModStatusEffects.LIFEMANA, 900, 0);
+    public static Potion LIFEMANA_LONG = registerPotion("long_lifemana", "lifemana", ModStatusEffects.LIFEMANA, 1800, 0);
 
 
 
@@ -51,7 +53,6 @@ public class ModPotions {
         // Void Flow
         BrewingRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.LIQUID_VOID, ModPotions.VOID_FLOW);
         BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.VOID_FLOW, Items.REDSTONE, ModPotions.VOID_FLOW_LONG);
-        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.VOID_FLOW, Items.GLOWSTONE_DUST, ModPotions.VOID_FLOW_STRONG);
 
         // Dreamy
         BrewingRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.DREAM_POWDER, ModPotions.DREAMY);
@@ -70,5 +71,11 @@ public class ModPotions {
         // Spirit Ward
         BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.SILENCE, Items.FERMENTED_SPIDER_EYE, ModPotions.SPIRIT_WARD);
         BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.SPIRIT_WARD, Items.REDSTONE, ModPotions.SPIRIT_WARD_LONG);
+
+        // Soulpour
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.VOID_FLOW, Items.FERMENTED_SPIDER_EYE, ModPotions.LIFEMANA);
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.VOID_FLOW_LONG, Items.FERMENTED_SPIDER_EYE, ModPotions.LIFEMANA_LONG);
+
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.LIFEMANA, Items.REDSTONE, ModPotions.LIFEMANA_LONG);
     }
 }

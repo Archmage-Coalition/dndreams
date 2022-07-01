@@ -98,7 +98,8 @@ public abstract class HudMixin extends DrawableHelper {
         }
 
         int xPosMana = xPos;
-        EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
+        if (!player.hasStatusEffect(ModStatusEffects.LIFEMANA))
+            EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
                 RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
                 drawTexture(matrices, xPosMana, (yPos), 0, 0, MANA_WIDTH, MANA_HEIGHT);
@@ -106,7 +107,7 @@ public abstract class HudMixin extends DrawableHelper {
                 drawCenteredText(matrices, client.textRenderer, manaComponent.getMana() + "/" + manaComponent.getManaMax(), (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
-        });
+            });
 
         int tormentXPos;
 

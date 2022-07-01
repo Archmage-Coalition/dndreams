@@ -4,6 +4,7 @@ import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.ManaComponentI;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -27,6 +28,9 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public int getMana() {
+        if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {
+            return (int)(player.getHealth() * 2);
+        }
         return mana;
     }
 
@@ -47,6 +51,10 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public void serverTick() {
+        if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {
+            return;
+        }
+
         if (mana < getManaMax() || player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
             regenerate();
         } else if (regenTime != 0) {
@@ -93,9 +101,11 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     @Override
     public int getManaMax() {
         int manaFactors = 0;
-        if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
-            manaFactors -= 10 * player.getStatusEffect(ModStatusEffects.VOID_FLOW).getAmplifier();
+
+        if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {
+            return (int)(player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH) * 2);
         }
+
         if (player.hasStatusEffect(ModStatusEffects.MEMORY)) {
             manaFactors += 15 * (player.getStatusEffect(ModStatusEffects.MEMORY).getAmplifier() + 1);
         }
@@ -110,6 +120,10 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public void useMana(int cost) {
+        if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {
+            player.damage(DamageSource.MAGIC, (float)cost/2);
+            return;
+        }
         mana = Math.max(0, mana - cost);
         regenTime = Math.min(regenTime, -getRegenRequirement());
     }
