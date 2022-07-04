@@ -3,35 +3,28 @@ package net.eman3600.dndreams.screen;
 import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModRecipeTypes;
 import net.eman3600.dndreams.initializers.ModScreenHandlerTypes;
+import net.eman3600.dndreams.recipe.WeavingRecipe;
+import net.eman3600.dndreams.recipe.WeavingShapedRecipe;
 import net.eman3600.dndreams.screen.slot.WeavingResultSlot;
 import net.eman3600.dndreams.screen.slot.WeavingSlot;
 import net.eman3600.dndreams.util.inventory.WeavingInventory;
 import net.eman3600.dndreams.util.inventory.WeavingResultInventory;
-import net.eman3600.dndreams.util.recipe.WeavingRecipe;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
-import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.book.RecipeBookCategory;
-import net.minecraft.screen.AbstractRecipeScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class WeavingScreenHandler extends AbstractRecipeScreenHandler<WeavingInventory> {
+public class WeavingScreenHandler extends ScreenHandler {
     public static final int field_30781 = 0;
     private static final int field_30782 = 1;
     private static final int field_30783 = 10;
@@ -192,10 +185,6 @@ public class WeavingScreenHandler extends AbstractRecipeScreenHandler<WeavingInv
 
     public int getCraftingSlotCount() {
         return 11;
-    }
-
-    public RecipeBookCategory getCategory() {
-        return RecipeBookCategory.CRAFTING;
     }
 
     public boolean canInsertIntoSlot(int index) {

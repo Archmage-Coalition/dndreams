@@ -5,6 +5,8 @@
     "dndreams:sculk_powder",
     "dndreams:nightmare_fuel",
     "dndreams:liquid_soul",
-    "dndreams:liquid_void"
+    "dndreams:liquid_void",
+    "minecraft:redstone",
+    "minecraft:glowstone_dust"
   ]
 }
