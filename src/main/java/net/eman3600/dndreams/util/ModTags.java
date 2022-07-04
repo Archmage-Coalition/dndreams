@@ -2,6 +2,7 @@ package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.Initializer;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -21,9 +22,15 @@ public class ModTags {
 
     public static final TagKey<Structure> BLIGHT_POWDER_LOCATED = ofStructure("blight_powder_located");
 
+    public static final TagKey<Item> WEAVING_ITEM = ofItem("weaving_items");
+
     /* TAG REGISTRIES */
     private static TagKey<Block> ofBlock(String id) {
         return TagKey.of(Registry.BLOCK_KEY, new Identifier(Initializer.MODID, id));
+    }
+
+    private static TagKey<Item> ofItem(String id) {
+        return TagKey.of(Registry.ITEM_KEY, new Identifier(Initializer.MODID, id));
     }
 
     private static TagKey<Biome> ofBiome(String id) {

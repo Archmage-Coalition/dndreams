@@ -35,6 +35,8 @@ public class Initializer implements ModInitializer {
 		ModFeatures.registerFeatures();
 
 		ModBlockEntities.registerBlockEntities();
+		ModRecipeTypes.registerTypes();
+		ModScreenHandlerTypes.registerTypes();
 
 		ModWorldGen.generate();
 
