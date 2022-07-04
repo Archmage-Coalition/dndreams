@@ -1,9 +1,7 @@
 package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.blocks.DreamTable;
-import net.eman3600.dndreams.blocks.Hellsand;
-import net.eman3600.dndreams.blocks.ModStairsBlock;
+import net.eman3600.dndreams.blocks.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -76,11 +74,11 @@ public class ModBlocks {
 
     // World Fountain
     public static final Block WORLD_FOUNTAIN = registerBlock("world_fountain",
-            new Block(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
+            new WorldFountain(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block FLOWING_BEDROCK = registerBlock("flowing_bedrock",
-            new Block(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
+            new FlowingBedrock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 

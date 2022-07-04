@@ -99,6 +99,8 @@
   "block.dndreams.managold_block": "Managold Block",
   "block.dndreams.flowing_bedrock": "Flowing Bedrock",
   "block.dndreams.world_fountain": "World Fountain",
+  
+  "container.dndreams.world_fountain": "World Fountain",
 
   "itemGroup.dndreams.dndreams": "Demons and Dreams"
 }

@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "dndreams:block/flowing_bedrock",
+      "y": 90
+    },
+    "facing=north": {
       "model": "dndreams:block/flowing_bedrock"
+    },
+    "facing=south": {
+      "model": "dndreams:block/flowing_bedrock",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "dndreams:block/flowing_bedrock",
+      "y": 270
     }
   }
 }

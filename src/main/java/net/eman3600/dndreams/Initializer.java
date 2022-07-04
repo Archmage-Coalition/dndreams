@@ -34,6 +34,8 @@ public class Initializer implements ModInitializer {
 		ModPotions.registerPotions();
 		ModFeatures.registerFeatures();
 
+		ModBlockEntities.registerBlockEntities();
+
 		ModWorldGen.generate();
 
 		LootModifiers.modifyLootTables();

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "front": "dndreams:block/world_fountain_front",
+    "front": "dndreams:block/world_fountain_on_front",
     "side": "minecraft:block/bedrock",
     "top": "minecraft:block/bedrock"
   }
