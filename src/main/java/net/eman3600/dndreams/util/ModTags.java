@@ -15,10 +15,12 @@ public class ModTags {
     public static final TagKey<Block> BASE_STONE_END = ofBlock("base_stone_end");
     public static final TagKey<Block> BASE_SAND_NETHER = ofBlock("base_sand_nether");
     public static final TagKey<Block> BASE_SOIL_NETHER = ofBlock("base_soil_nether");
+    public static final TagKey<Block> DREAMWOOD_LOGS = ofBlock("dreamwood_logs");
+    public static final TagKey<Block> DREAMWOOD = ofBlock("dreamwood");
 
     public static final TagKey<Biome> GEN_HELLSLATE = ofBiome("gen_hellslate");
     public static final TagKey<Biome> GEN_HELLSLATE_COMMON = ofBiome("gen_hellslate_common");
-    public static final TagKey<Biome> GEN_SCULK_ORE = ofBiome("gen_sculk_ore");
+    public static final TagKey<Biome> GEN_DREAM_TREES = ofBiome("gen_dream_trees");
 
     public static final TagKey<Structure> BLIGHT_POWDER_LOCATED = ofStructure("blight_powder_located");
 
@@ -39,5 +41,10 @@ public class ModTags {
 
     private static TagKey<Structure> ofStructure(String id) {
         return TagKey.of(Registry.STRUCTURE_KEY, new Identifier(Initializer.MODID, id));
+    }
+
+
+    public static void registerTags() {
+        System.out.println("Registering tags for " + Initializer.MODID);
     }
 }

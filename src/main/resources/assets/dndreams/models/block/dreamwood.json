@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "dndreams:block/dreamwood_log",
+    "side": "dndreams:block/dreamwood_log"
+  }
+}

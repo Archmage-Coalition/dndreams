@@ -3,6 +3,7 @@ package net.eman3600.dndreams;
 import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.eman3600.dndreams.util.ModRegistries;
+import net.eman3600.dndreams.util.ModTags;
 import net.eman3600.dndreams.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
@@ -27,9 +28,10 @@ public class Initializer implements ModInitializer {
 
 		LOGGER.info("Hello Fabric world!");
 
+		ModConfiguredFeatures.registerConfiguredFeatures();
+
 		ModItems.registerItems();
 		ModBlocks.registerBlocks();
-		ModRegistries.register();
 		ModStatusEffects.registerEffects();
 		ModPotions.registerPotions();
 		ModFeatures.registerFeatures();
@@ -38,10 +40,14 @@ public class Initializer implements ModInitializer {
 		ModRecipeTypes.registerTypes();
 		ModScreenHandlerTypes.registerTypes();
 
+		ModDimensions.registerDimensions();
 		ModWorldGen.generate();
 
 		LootModifiers.modifyLootTables();
 
 		ModModelPredicateProvider.registerModModels();
+
+		ModTags.registerTags();
+		ModRegistries.register();
 	}
 }

@@ -1,0 +1,22 @@
+{
+  "type": "dndreams:weaving_shaped",
+  "pattern": [
+    " X ",
+    "X#X",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:mindstring_bow"
+    },
+    "X": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "weave_item": {
+    "item": "dndreams:dream_powder"
+  },
+  "result": {
+    "item": "dndreams:lightstring_bow"
+  }
+}

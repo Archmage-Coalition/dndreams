@@ -65,6 +65,11 @@ public class WeavingShapedRecipe implements WeavingRecipe {
         return this.input;
     }
 
+    @Override
+    public Ingredient getWeavingIngredient() {
+        return this.weave_input;
+    }
+
     public boolean fits(int width, int height) {
         return width >= this.width && height >= this.height;
     }

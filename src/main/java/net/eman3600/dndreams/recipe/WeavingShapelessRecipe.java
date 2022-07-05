@@ -62,6 +62,11 @@ public class WeavingShapelessRecipe implements WeavingRecipe {
         return this.input;
     }
 
+    @Override
+    public Ingredient getWeavingIngredient() {
+        return this.weave_input;
+    }
+
     public boolean matches(WeavingInventory craftingInventory, World world) {
         if (!weave_input.test(craftingInventory.getStack(9))) {
             return false;

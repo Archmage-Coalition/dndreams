@@ -3,14 +3,14 @@ package net.eman3600.dndreams.initializers;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.managold.*;
+import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
+import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModMaterials;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
@@ -95,6 +95,8 @@ public class ModItems {
     // Mindstring Bow
     public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
             new MindstringBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
+    public static final Item LIGHTSTRING_BOW = registerItem("lightstring_bow",
+            new LightstringBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
 
     // Managold Gear
     public static final Item MANAGOLD_SWORD = registerItem("managold_sword",

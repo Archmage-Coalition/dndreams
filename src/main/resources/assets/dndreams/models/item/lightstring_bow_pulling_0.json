@@ -1,0 +1,6 @@
+{
+    "parent": "dndreams:item/lightstring_bow",
+    "textures": {
+        "layer0": "dndreams:item/lightstring_bow_pulling_0"
+    }
+}

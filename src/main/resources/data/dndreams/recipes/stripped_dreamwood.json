@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:stripped_dreamwood_log"
+    }
+  },
+  "result": {
+    "item": "dndreams:stripped_dreamwood",
+    "count": 3
+  }
+}

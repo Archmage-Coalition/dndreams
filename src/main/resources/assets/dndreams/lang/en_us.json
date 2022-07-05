@@ -42,6 +42,8 @@
   "item.dndreams.managold_boots": "Managold Boots",
   
   "item.dndreams.mindstring_bow": "Mindstrung Bow",
+  "item.dndreams.lightstring_bow": "Lightstrung Bow",
+  
   
   "effect.dndreams.impending": "Impending",
   "effect.dndreams.bloodlust": "Bloodlust",
@@ -53,6 +55,7 @@
   "effect.dndreams.memory": "Honed Mind",
   "effect.dndreams.silence": "Spirit Silence",
   "effect.dndreams.lifemana": "Soulpour",
+  
   
   "item.minecraft.potion.effect.void_flow": "Potion of Unstable Mana",
   "item.minecraft.splash_potion.effect.void_flow": "Splash Potion of Unstable Mana",
@@ -84,23 +87,36 @@
   "item.minecraft.lingering_potion.effect.lifemana": "Lingering Potion of Soulcasting",
   "item.minecraft.tipped_arrow.effect.lifemana": "Arrow of Soulcasting",
 
+
   "block.dndreams.corrupt_block": "Hellsteel Block",
   "block.dndreams.hellslate": "Hellslate Ore",
   "block.dndreams.hellsand": "Hellslate Sand",
   "block.dndreams.hellsoil": "Hellslate Soil",
+  
   "block.dndreams.celestium_ore": "Celestium Ore",
   "block.dndreams.celestium_block": "Celestium Block",
+  
   "block.dndreams.dream_table": "Dream Weaver",
+  "block.dndreams.dreamwood_log": "Dreamwood Log",
+  "block.dndreams.dreamwood": "Dreamwood",
+  "block.dndreams.stripped_dreamwood_log": "Stripped Dreamwood Log",
+  "block.dndreams.stripped_dreamwood": "Stripped Dreamwood",
   "block.dndreams.dreamwood_planks": "Dreamwood Planks",
+  "block.dndreams.dreamwood_leaves": "Dreamwood Leaves",
+  "block.dndreams.dreamwood_sapling": "Dreamwood Sapling",
   "block.dndreams.dreamwood_stairs": "Dreamwood Stairs",
   "block.dndreams.dreamwood_slab": "Dreamwood Slab",
   "block.dndreams.dreamwood_fence": "Dreamwood Fence",
   "block.dndreams.dreamwood_fence_gate": "Dreamwood Fence Gate",
+  
   "block.dndreams.managold_block": "Managold Block",
+  
   "block.dndreams.flowing_bedrock": "Flowing Bedrock",
   "block.dndreams.world_fountain": "World Fountain",
   
+  
   "container.dndreams.dream_table": "Dream Weaving",
+
 
   "itemGroup.dndreams.dndreams": "Demons and Dreams"
 }

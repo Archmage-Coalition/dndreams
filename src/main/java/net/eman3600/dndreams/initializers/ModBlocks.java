@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
+import net.eman3600.dndreams.world.feature.tree.DreamwoodSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -82,14 +83,40 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    // DREAM TABLE
+    // Dream Weaver
     public static final Block DREAM_TABLE = registerBlock("dream_table",
             new DreamTable(FabricBlockSettings.of(Material.WOOD).strength(2.5f)
                     .sounds(BlockSoundGroup.WOOD)),
 
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // Dreamwood Logs
+    public static final Block DREAMWOOD_LOG = registerBlock("dreamwood_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block DREAMWOOD = registerBlock("dreamwood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STRIPPED_DREAMWOOD_LOG = registerBlock("stripped_dreamwood_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STRIPPED_DREAMWOOD = registerBlock("stripped_dreamwood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .requiresTool()),
+
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    // DREAMWOOD PLANKS
+    // Dreamwood Planks
     public static final Block DREAMWOOD_PLANKS = registerBlock("dreamwood_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)
@@ -97,7 +124,19 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    // DREAMWOOD STAIRS
+    // Dreamwood Leaves & Sapling
+    public static final Block DREAMWOOD_LEAVES = registerBlock("dreamwood_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block DREAMWOOD_SAPLING = registerBlock("dreamwood_sapling",
+            new ModSaplingBlock(new DreamwoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // Dreamwood Stairs
     public static final Block DREAMWOOD_STAIRS = registerBlock("dreamwood_stairs",
             new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)
@@ -105,7 +144,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    // DREAMWOOD SLAB
+    // Dreamwood Slab
     public static final Block DREAMWOOD_SLAB = registerBlock("dreamwood_slab",
             new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)
@@ -113,7 +152,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    // DREAMWOOD FENCE
+    // Dreamwood Fence
     public static final Block DREAMWOOD_FENCE = registerBlock("dreamwood_fence",
             new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)
@@ -121,7 +160,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    // DREAMWOOD FENCE GATE
+    // Dreamwood Fence Gate
     public static final Block DREAMWOOD_FENCE_GATE = registerBlock("dreamwood_fence_gate",
             new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)

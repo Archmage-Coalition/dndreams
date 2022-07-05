@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "dndreams:dream_table",
+    "#dndreams:dreamwood_logs",
     "dndreams:dreamwood_planks",
     "dndreams:dreamwood_stairs",
     "dndreams:dreamwood_slab",

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "dndreams:dreamwood_logs"
+    }
+  ],
+  "result": {
+    "item": "dndreams:dreamwood_planks",
+    "count": 4
+  }
+}
