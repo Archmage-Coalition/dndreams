@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "dndreams:block/dream_grass"
+      },
+      {
+        "model": "dndreams:block/dream_grass",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/dream_grass",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/dream_grass",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "minecraft:block/grass_block_snow"
+    }
+  }
+}

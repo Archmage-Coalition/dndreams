@@ -9,7 +9,7 @@ import net.minecraft.world.gen.GenerationStep;
 
 public class ModTreeGeneration {
     public static void generateTrees() {
-        BiomeModifications.addFeature(ModDimensions.foundInDream(),
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.DREAMWOOD_PLACED.getKey().get());
     }
 }

@@ -90,6 +90,12 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
+    // Dream Grass
+    public static final Block DREAM_GRASS = registerBlock("dream_grass",
+            new DreamGrassBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
     // Dreamwood Logs
     public static final Block DREAMWOOD_LOG = registerBlock("dreamwood_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
@@ -131,7 +137,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block DREAMWOOD_SAPLING = registerBlock("dreamwood_sapling",
-            new ModSaplingBlock(new DreamwoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new DreamSapling(new DreamwoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));

@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.blocks.DreamGrassBlock;
 import net.eman3600.dndreams.initializers.ModBlocks;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.registry.RegistryEntry;
@@ -19,7 +20,7 @@ public class ModConfiguredFeatures {
                     new StraightTrunkPlacer(5, 6, 3),
                     BlockStateProvider.of(ModBlocks.DREAMWOOD_LEAVES),
                     new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
-                    new TwoLayersFeatureSize(1, 0, 2)).build());
+                    new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(ModBlocks.DREAM_GRASS)).build());
 
     public static final RegistryEntry<PlacedFeature> DREAMWOOD_CHECKED =
             PlacedFeatures.register("dreamwood_checked", DREAMWOOD_TREE,

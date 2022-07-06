@@ -1,0 +1,21 @@
+{
+  "type": "dndreams:weaving_shaped",
+  "pattern": [
+    "#",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:grass"
+    },
+    "X": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "weave_item": {
+    "item": "dndreams:dream_powder"
+  },
+  "result": {
+    "item": "dndreams:dream_grass"
+  }
+}

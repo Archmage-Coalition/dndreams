@@ -40,7 +40,6 @@ public class Initializer implements ModInitializer {
 		ModRecipeTypes.registerTypes();
 		ModScreenHandlerTypes.registerTypes();
 
-		ModDimensions.registerDimensions();
 		ModWorldGen.generate();
 
 		LootModifiers.modifyLootTables();
@@ -49,5 +48,7 @@ public class Initializer implements ModInitializer {
 
 		ModTags.registerTags();
 		ModRegistries.register();
+
+		ModDimensions.registerDimensions();
 	}
 }
