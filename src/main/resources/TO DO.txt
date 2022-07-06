@@ -1,6 +1,6 @@
-1. Create the Dream Dimension.
+
 2. Set up Dream-handling player component. Store an inventory, leaving coordinates, and whether or not the player is in the Dream.
-3. Get Dreamwood trees to generate exclusively in the Dream Dimension.
+
 4. Create the consumable entry item. Inventory is for later, but store other variables.
 5. Make death only wake the player up from the Dream.
 6. Swap inventories when the Dream boolean changes.
