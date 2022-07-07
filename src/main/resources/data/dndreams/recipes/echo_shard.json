@@ -1,0 +1,18 @@
+{
+  "type": "dndreams:weaving_shaped",
+  "pattern": [
+    "# ",
+    " #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "weave_item": {
+    "item": "dndreams:sculk_powder"
+  },
+  "result": {
+    "item": "minecraft:echo_shard"
+  }
+}

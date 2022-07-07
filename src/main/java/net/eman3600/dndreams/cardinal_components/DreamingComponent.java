@@ -1,7 +1,13 @@
 package net.eman3600.dndreams.cardinal_components;
 
+import dev.emi.trinkets.api.TrinketInventory;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.cardinal_components.interfaces.DreamingComponentI;
+import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModDimensions;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
@@ -25,6 +31,10 @@ public class DreamingComponent implements DreamingComponentI {
         storedInv = new PlayerInventory(player);
     }
 
+    private TormentComponent torment() {
+        return EntityComponents.TORMENT.get(player);
+    }
+
     @Override
     public void changeDimension(boolean toDream) {
         dreaming = toDream;
@@ -33,6 +43,18 @@ public class DreamingComponent implements DreamingComponentI {
         transferInventories(player.getInventory(), storedInv);
         transferInventories(storedInv, currInv);
         currInv.clear();
+
+        if (toDream) {
+            returnPos = player.getPos();
+            player.setHealth((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
+            torment().setTorment(0);
+        } else {
+            player.setPosition(returnPos);
+            player.setHealth((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
+            torment().setTorment(0);
+        }
     }
 
     @Override
@@ -56,7 +78,11 @@ public class DreamingComponent implements DreamingComponentI {
             changeDimension(false);
         } else if (!dreaming && getDimension() == ModDimensions.DREAM_TYPE_KEY) {
             changeDimension(true);
+        } else if (dreaming) {
+            torment().addPerMinute(10f);
         }
+
+        EntityComponents.DREAMING.sync(player);
     }
 
     private RegistryKey<DimensionType> getDimension() {
@@ -64,6 +90,7 @@ public class DreamingComponent implements DreamingComponentI {
     }
 
     private void transferInventories(PlayerInventory into, PlayerInventory outOf) {
+        into.clear();
         for (int i = 0; i < outOf.size(); i++) {
             into.setStack(i, outOf.getStack(i));
         }

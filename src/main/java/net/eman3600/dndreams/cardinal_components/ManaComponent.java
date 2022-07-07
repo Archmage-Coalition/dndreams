@@ -3,6 +3,7 @@ package net.eman3600.dndreams.cardinal_components;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.ManaComponentI;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.ModDimensions;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -93,6 +94,9 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
         if (player.hasStatusEffect(ModStatusEffects.DREAMY)) {
             regenRate *= 1.85f * Math.pow(1.3f, player.getStatusEffect(ModStatusEffects.DREAMY).getAmplifier());
+        }
+        if (player.getWorld().getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+            regenRate *= 3f;
         }
 
         return (int)regenRate;

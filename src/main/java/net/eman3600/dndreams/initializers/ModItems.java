@@ -5,6 +5,7 @@ import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.managold.*;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
+import net.eman3600.dndreams.items.trinkets.PhantomNecklace;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModMaterials;
@@ -127,6 +128,10 @@ public class ModItems {
     public static final Item MANAGOLD_BOOTS = registerItem("managold_boots",
             new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
+
+    // Phantom Necklace
+    public static final Item PHANTOM_NECKLACE = registerItem("phantom_necklace",
+            new PhantomNecklace(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).rarity(Rarity.RARE)));
 
 
 

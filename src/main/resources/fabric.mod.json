@@ -39,7 +39,8 @@
     "minecraft": "~1.19",
     "java": ">=17",
     "cardinal-components-base": "*",
-    "patchouli": "*"
+    "patchouli": "*",
+    "trinkets": "*"
   },
   "suggests": {
     "another-mod": "*"
