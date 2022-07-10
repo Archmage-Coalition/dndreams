@@ -30,6 +30,8 @@ public class Initializer implements ModInitializer {
 
 		ModConfiguredFeatures.registerConfiguredFeatures();
 
+		ModAttributes.registerAttributes();
+
 		ModItems.registerItems();
 		ModBlocks.registerBlocks();
 		ModStatusEffects.registerEffects();

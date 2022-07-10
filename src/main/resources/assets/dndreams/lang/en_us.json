@@ -59,6 +59,10 @@
   "effect.dndreams.lifemana": "Soulpour",
   
   
+  "attribute.dndreams.name.player.max_mana": "Mana Maximum",
+  "attribute.dndreams.name.player.mana_regen": "Mana Regeneration",
+  
+  
   "item.minecraft.potion.effect.void_flow": "Potion of Unstable Mana",
   "item.minecraft.splash_potion.effect.void_flow": "Splash Potion of Unstable Mana",
   "item.minecraft.lingering_potion.effect.void_flow": "Lingering Potion of Unstable Mana",

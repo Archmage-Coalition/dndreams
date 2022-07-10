@@ -2,7 +2,9 @@ package net.eman3600.dndreams.cardinal_components;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.ManaComponentI;
+import net.eman3600.dndreams.infusions.Infusion;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.ModAttributes;
 import net.eman3600.dndreams.initializers.ModDimensions;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -12,11 +14,11 @@ import net.minecraft.nbt.NbtCompound;
 
 public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     private int mana = 0;
-    private int maxMana = 25;
-    private int infusion = 0;
+    private Infusion infusion = Infusion.NONE;
     private int regenTime = 0;
     private PlayerEntity player;
 
+    private final int MAX_MANA = 25;
     private final int MAX_XP_BONUS = 50;
     private final int BASE_RATE = 8;
     private final int REGEN_REQUIRE = 60;
@@ -37,16 +39,16 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public int getBaseManaMax() {
-        return maxMana;
+        return MAX_MANA;
     }
 
     @Override
-    public int getInfusion() {
+    public Infusion getInfusion() {
         return infusion;
     }
 
     @Override
-    public void setInfusion(int change) {
+    public void setInfusion(Infusion change) {
         infusion = change;
     }
 
@@ -114,7 +116,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             manaFactors += 15 * (player.getStatusEffect(ModStatusEffects.MEMORY).getAmplifier() + 1);
         }
 
-        return Math.max(getBaseManaMax() + getXPBonus() + manaFactors, 1);
+        return Math.max(getBaseManaMax() + getXPBonus() + infusion.manaBonus() + manaFactors, 1);
     }
 
     @Override
@@ -150,16 +152,14 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     @Override
     public void readFromNbt(NbtCompound tag) {
         mana = tag.getInt("mana");
-        maxMana = tag.getInt("max_mana");
-        infusion = tag.getInt("infusion");
+        infusion = Infusion.getFromNum(tag.getInt("infusion"));
         regenTime = tag.getInt("regen_time");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putInt("mana", mana);
-        tag.putInt("max_mana", maxMana);
-        tag.putInt("infusion", infusion);
+        tag.putInt("infusion", infusion.getNum());
         tag.putInt("regen_time", regenTime);
     }
 }
