@@ -6,6 +6,7 @@ import net.eman3600.dndreams.initializers.WorldComponents;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionTypes;
 
@@ -29,6 +30,7 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     @Override
     public void flagDragonSlain(boolean flag) {
         dragonSlain = flag;
+        setDifficulty();
         WorldComponents.BOSS_STATE.sync(scoreboard);
     }
 
@@ -52,10 +54,29 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     }
 
     @Override
+    public int totalGatewaysSlain() {
+        int slain = 0;
+
+        if (dragonSlain)
+            slain++;
+        if (witherSlain)
+            slain++;
+
+        return slain;
+    }
+
+    @Override
+    public void setDifficulty() {
+        server.setDifficultyLocked(true);
+        server.setDifficulty(dragonSlain ? Difficulty.HARD : Difficulty.NORMAL, true);
+    }
+
+    @Override
     public void readFromNbt(NbtCompound tag) {
         dragonSlain = tag.getBoolean("dragon_slain");
         witherSlain = tag.getBoolean("wither_slain");
 
+        setDifficulty();
         WorldComponents.BOSS_STATE.sync(scoreboard);
     }
 

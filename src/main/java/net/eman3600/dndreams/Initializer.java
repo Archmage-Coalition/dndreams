@@ -1,15 +1,14 @@
 package net.eman3600.dndreams;
 
 import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.items.managold.ManagoldHoe;
+import net.eman3600.dndreams.items.managold.ManagoldShovel;
+import net.eman3600.dndreams.util.LootModifiers;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.eman3600.dndreams.util.ModRegistries;
 import net.eman3600.dndreams.util.ModTags;
 import net.eman3600.dndreams.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.loot.v2.LootTableSource;
-import net.fabricmc.fabric.mixin.loot.LootTableAccessor;
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,6 +33,8 @@ public class Initializer implements ModInitializer {
 
 		ModItems.registerItems();
 		ModBlocks.registerBlocks();
+		ManagoldHoe.injectTillActions();
+		ManagoldShovel.injectPathStates();
 		ModStatusEffects.registerEffects();
 		ModPotions.registerPotions();
 		ModFeatures.registerFeatures();
@@ -48,6 +49,7 @@ public class Initializer implements ModInitializer {
 
 		ModModelPredicateProvider.registerModModels();
 
+		ModStats.registerStats();
 		ModTags.registerTags();
 		ModRegistries.register();
 

@@ -3,7 +3,9 @@ package net.eman3600.dndreams.items.managold;
 import com.mojang.datafixers.util.Pair;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.ModBlocks;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,6 +25,10 @@ import java.util.function.Predicate;
 public class ManagoldHoe extends HoeItem {
     public ManagoldHoe(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
+    }
+
+    public static void injectTillActions() {
+        TILLING_ACTIONS.put(ModBlocks.DREAM_GRASS, Pair.of(HoeItem::canTillFarmland, createTillAction(Blocks.FARMLAND.getDefaultState())));
     }
 
     @Override

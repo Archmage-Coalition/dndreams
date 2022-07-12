@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:dream_eye",
+  "ingredients": [
+    {
+      "item": "minecraft:ender_pearl"
+    },
+	{
+      "item": "dndreams:liquid_void"
+    },
+	{
+      "item": "dndreams:dream_powder"
+    }
+  ],
+  "result": {
+    "item": "dndreams:dream_eye",
+    "count": 1
+  }
+}

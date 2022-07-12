@@ -2,7 +2,9 @@ package net.eman3600.dndreams.items.managold;
 
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.ModBlocks;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -22,6 +24,10 @@ import net.minecraft.world.event.GameEvent;
 public class ManagoldShovel extends ShovelItem {
     public ManagoldShovel(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
+    }
+
+    public static void injectPathStates() {
+        PATH_STATES.put(ModBlocks.DREAM_GRASS, Blocks.DIRT_PATH.getDefaultState());
     }
 
     @Override

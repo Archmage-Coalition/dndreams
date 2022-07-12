@@ -1,0 +1,37 @@
+{
+  "type": "dndreams:weaving_shapeless",
+  "group": "dndreams:tormite_ingot",
+  "ingredients": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "dndreams:dream_powder"
+    },
+    {
+      "item": "dndreams:dream_powder"
+    },
+    {
+      "item": "dndreams:dream_powder"
+    },
+    {
+      "item": "dndreams:dream_powder"
+    }
+  ],
+  "weave_item": {
+    "item": "dndreams:nightmare_fuel"
+  },
+  "result": {
+    "item": "dndreams:tormite_ingot",
+    "count": 1
+  }
+}

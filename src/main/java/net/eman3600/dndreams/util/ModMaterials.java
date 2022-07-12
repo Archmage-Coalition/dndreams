@@ -10,18 +10,16 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModMaterials implements ToolMaterial {
-    CORRUPT(3, 1785, 4.0F, 3.0F, 18, () -> {
-        return Ingredient.ofItems(new ItemConvertible[]{ModItems.CORRUPT_INGOT});
-    }),
-    HOLY(4, 1824, 12.0F, 5.0F, 18, () -> {
-        return Ingredient.ofItems(new ItemConvertible[]{ModItems.HOLY_INGOT});
-    }),
-    ARTIFACT(4, 3002, 12.0F, 4.0F, 22, () -> {
-        return Ingredient.ofItems(new ItemConvertible[]{ModItems.DREAM_POWDER});
-    }),
-    MANAGOLD(2, 32, 12.0F, 2.0F, 22, () -> {
-        return Ingredient.ofItems(new ItemConvertible[]{ModItems.MANAGOLD_INGOT});
-    });
+    CORRUPT(3, 1785, 4.0F, 3.0F, 18,
+            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.CORRUPT_INGOT})),
+    HOLY(4, 1824, 12.0F, 5.0F, 18,
+            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.HOLY_INGOT})),
+    ARTIFACT(4, 3002, 12.0F, 4.0F, 22,
+            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.DREAM_POWDER})),
+    MANAGOLD(2, 32, 12.0F, 2.0F, 22,
+            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.MANAGOLD_INGOT})),
+    TORMITE(4, 128, 12.0F, 4.0F, 22,
+            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.TORMITE_INGOT}));
 
     private final int miningLevel;
     private final int itemDurability;

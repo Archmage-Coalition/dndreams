@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "dndreams:tormite_ingot"
+  },
+  "base": {
+    "item": "dndreams:managold_shovel"
+  },
+  "result": {
+    "item": "dndreams:tormite_shovel"
+  }
+}

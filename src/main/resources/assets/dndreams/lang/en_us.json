@@ -13,6 +13,7 @@
   "item.dndreams.shade_cloth":  "Shade Veil",
   "item.dndreams.blight_powder":  "Corrupt Residue",
   "item.dndreams.craft_staff": "Staff of Infusion",
+  "item.dndreams.water_artichoke_globe": "Water Artichoke Globe",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
@@ -40,6 +41,23 @@
   "item.dndreams.managold_chestplate": "Managold Chestplate",
   "item.dndreams.managold_leggings": "Managold Leggings",
   "item.dndreams.managold_boots": "Managold Boots",
+  
+  "item.dndreams.tormite_ingot": "Tormite Ingot",
+  "item.dndreams.tormite_sword": "Tormite Sword",
+  "item.dndreams.tormite_pickaxe": "Tormite Pickaxe",
+  "item.dndreams.tormite_axe": "Tormite Axe",
+  "item.dndreams.tormite_shovel": "Tormite Shovel",
+  "item.dndreams.tormite_hoe": "Tormite Hoe",
+  "item.dndreams.tormite_helmet": "Tormite Helmet",
+  "item.dndreams.tormite_chestplate": "Tormite Chestplate",
+  "item.dndreams.tormite_leggings": "Tormite Leggings",
+  "item.dndreams.tormite_boots": "Tormite Boots",
+  
+  "item.dndreams.dream_eye": "Eye of Oneiros",
+  "item.dndreams.icy_needle": "Icy Needle",
+  
+  "item.dndreams.snowbell_seeds": "Snowbell Seeds",
+  "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",
   
   "item.dndreams.mindstring_bow": "Mindstrung Bow",
   "item.dndreams.lightstring_bow": "Lightstrung Bow",
@@ -117,13 +135,17 @@
   "block.dndreams.dreamwood_fence_gate": "Dreamwood Fence Gate",
   
   "block.dndreams.managold_block": "Managold Block",
+  "block.dndreams.tormite_block": "Tormite Block",
   
   "block.dndreams.flowing_bedrock": "Flowing Bedrock",
   "block.dndreams.world_fountain": "World Fountain",
+  
+  "block.dndreams.snowbell_crop": "Snowbell",
+  "block.dndreams.water_artichoke": "Water Artichoke",
   
   
   "container.dndreams.dream_table": "Dream Weaving",
 
 
-  "itemGroup.dndreams.dndreams": "Demons and Dreams"
+  "stat.dndreams.enter_dream": "Times Dreamt"
 }

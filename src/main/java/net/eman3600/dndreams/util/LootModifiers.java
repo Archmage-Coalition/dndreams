@@ -1,5 +1,6 @@
-package net.eman3600.dndreams;
+package net.eman3600.dndreams.util;
 
+import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.ModItems;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.enchantment.Enchantments;
@@ -22,6 +23,8 @@ public class LootModifiers {
             = new Identifier("minecraft", "blocks/sculk_catalyst");
     private static final Identifier SCULK_SHRIEKER_ID
             = new Identifier("minecraft", "blocks/sculk_shrieker");
+    private static final Identifier GRASS_ID
+            = new Identifier("minecraft", "blocks/grass");
 
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register(((resourceManager, manager, id, supplier, setter) -> {
@@ -51,6 +54,13 @@ public class LootModifiers {
              * */
             if(SCULK_SHRIEKER_ID.equals(id)) {
                 LootPool[] pools = manager.getTable(new Identifier(Initializer.MODID, "injections/sculk_shrieker")).pools;
+
+                if (pools != null)
+                    supplyPools(supplier, pools);
+            }
+
+            if(GRASS_ID.equals(id)) {
+                LootPool[] pools = manager.getTable(new Identifier(Initializer.MODID, "injections/grass")).pools;
 
                 if (pools != null)
                     supplyPools(supplier, pools);

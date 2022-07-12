@@ -3,6 +3,7 @@ package net.eman3600.dndreams.cardinal_components;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.ModDimensions;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.eman3600.dndreams.initializers.WorldComponents;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +12,7 @@ import net.minecraft.nbt.NbtCompound;
 public class TormentComponent implements TormentComponentI, AutoSyncedComponent {
     private float torment = 0;
 
-    private PlayerEntity player;
+    private final PlayerEntity player;
 
     public static final float MAX_TORMENT = 100;
 
@@ -73,7 +74,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent 
     private void normalize() {
         torment = Math.max(torment, 0);
         torment = Math.min(torment, MAX_TORMENT);
-        if (!WorldComponents.BOSS_STATE.get(player.getWorld().getScoreboard()).dragonSlain() && !player.getWorld().isClient()) {
+        if (!WorldComponents.BOSS_STATE.get(player.getWorld().getScoreboard()).dragonSlain()
+                && !player.getWorld().isClient()
+                && player.getWorld().getDimensionKey() != ModDimensions.DREAM_TYPE_KEY) {
             torment = Math.min(torment, MAX_TORMENT * .25f);
         }
         EntityComponents.TORMENT.sync(player);

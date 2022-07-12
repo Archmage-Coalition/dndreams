@@ -2,10 +2,13 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.items.*;
+import net.eman3600.dndreams.items.consumable.DreamEye;
+import net.eman3600.dndreams.items.consumable.IcyNeedle;
+import net.eman3600.dndreams.items.consumable.NightmareFuel;
 import net.eman3600.dndreams.items.managold.*;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
-import net.eman3600.dndreams.items.trinkets.PhantomNecklace;
+import net.eman3600.dndreams.items.trinket.PhantomNecklace;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModMaterials;
@@ -22,7 +25,8 @@ public class ModItems {
      * */
 
     // Dream Powder
-    public static final Item DREAM_POWDER = registerItem("dream_powder", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item DREAM_POWDER = registerItem("dream_powder",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Sculk Powder
     public static final Item SCULK_POWDER = registerItem("sculk_powder",
@@ -39,6 +43,10 @@ public class ModItems {
     public static final Item LIQUID_SOUL = registerItem("liquid_soul",
             new Item(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE)));
 
+    // Nightmare Fuel
+    public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
+            new NightmareFuel(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL)));
+
     // End Sticks
     public static final Item END_STICK = registerItem("end_stick", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
@@ -51,12 +59,18 @@ public class ModItems {
     // Baleful Residue
     public static final Item BLIGHT_POWDER = registerItem("blight_powder", new BlightPowderItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    // Water Artichoke Globe
+    public static final Item WATER_ARTICHOKE_GLOBE = registerItem("water_artichoke_globe",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
     // Ingots
     public static final Item CORRUPT_INGOT = registerItem("corrupt_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
     public static final Item HOLY_INGOT = registerItem("holy_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item MANAGOLD_INGOT = registerItem("managold_ingot",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item TORMITE_INGOT = registerItem("tormite_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Hellsteel Sword & Tools
@@ -129,6 +143,36 @@ public class ModItems {
             new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
 
+    // Tormite Gear
+    public static final Item TORMITE_SWORD = registerItem("tormite_sword",
+            new ManagoldSword(ModMaterials.TORMITE, 3, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item TORMITE_PICKAXE = registerItem("tormite_pickaxe",
+            new ManagoldPickaxe(ModMaterials.TORMITE, 1, -2.8F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item TORMITE_AXE = registerItem("tormite_axe",
+            new ManagoldAxe(ModMaterials.TORMITE, 5.0F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item TORMITE_SHOVEL = registerItem("tormite_shovel",
+            new ManagoldShovel(ModMaterials.TORMITE, 1.5F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item TORMITE_HOE = registerItem("tormite_hoe",
+            new ManagoldHoe(ModMaterials.TORMITE, -4, 0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+
+    public static final Item TORMITE_HELMET = registerItem("tormite_helmet",
+            new ManagoldArmor(ModArmorMaterials.TORMITE, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item TORMITE_CHESTPLATE = registerItem("tormite_chestplate",
+            new ManagoldArmor(ModArmorMaterials.TORMITE, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item TORMITE_LEGGINGS = registerItem("tormite_leggings",
+            new ManagoldArmor(ModArmorMaterials.TORMITE, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item TORMITE_BOOTS = registerItem("tormite_boots",
+            new ManagoldArmor(ModArmorMaterials.TORMITE, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+
     // Phantom Necklace
     public static final Item PHANTOM_NECKLACE = registerItem("phantom_necklace",
             new PhantomNecklace(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).rarity(Rarity.RARE)));
@@ -142,13 +186,30 @@ public class ModItems {
             new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
 
-    // Nightmare Fuel
-    public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
-            new NightmareFuel(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL)));
+
+
+    // Eye of Oneiros
+    public static final Item DREAM_EYE = registerItem("dream_eye",
+            new DreamEye(new FabricItemSettings().group(ItemGroup.MISC)));
+
+    // Icy Needle
+    public static final Item ICY_NEEDLE = registerItem("icy_needle",
+            new IcyNeedle(new FabricItemSettings().group(ItemGroup.MISC)));
 
     // Book of Dreams
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
             new BookOfDreams(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
+
+
+
+    // Snowbell Seeds
+    public static final Item SNOWBELL_SEEDS = registerItem("snowbell_seeds",
+            new AliasedBlockItem(ModBlocks.SNOWBELL_CROP, new FabricItemSettings().group(ItemGroup.MISC)));
+
+    // Water Artichoke Seeds
+    public static final Item WATER_ARTICHOKE_SEEDS = registerItem("water_artichoke_seeds",
+            new AliasedPlaceableOnWaterItem(ModBlocks.WATER_ARTICHOKE, new FabricItemSettings().group(ItemGroup.MISC)));
+
 
 
     /*

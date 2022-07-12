@@ -16,11 +16,9 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     private int mana = 0;
     private Infusion infusion = Infusion.NONE;
     private int regenTime = 0;
-    private PlayerEntity player;
+    private final PlayerEntity player;
 
-    private final int MAX_MANA = 25;
     private final int MAX_XP_BONUS = 50;
-    private final int BASE_RATE = 8;
     private final int REGEN_REQUIRE = 60;
     private final int MIN_REGEN = -120;
 
@@ -39,7 +37,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public int getBaseManaMax() {
-        return MAX_MANA;
+        return (int)player.getAttributeValue(ModAttributes.PLAYER_MAX_MANA);
     }
 
     @Override
@@ -85,7 +83,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public int getRegenRate() {
-        float regenRate = BASE_RATE;
+        float regenRate = (float)player.getAttributeValue(ModAttributes.PLAYER_MANA_REGEN);
 
         if (player.isCreative()) {
             return REGEN_REQUIRE - regenTime;

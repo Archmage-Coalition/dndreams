@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items;
+package net.eman3600.dndreams.items.consumable;
 
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.minecraft.entity.LivingEntity;

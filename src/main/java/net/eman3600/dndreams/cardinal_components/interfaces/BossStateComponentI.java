@@ -11,4 +11,6 @@ public interface BossStateComponentI extends Component {
 
 
     boolean gatewaysSlain();
+    int totalGatewaysSlain();
+    void setDifficulty();
 }

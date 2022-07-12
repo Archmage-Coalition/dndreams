@@ -15,6 +15,9 @@ import java.util.function.Supplier;
 public enum ModArmorMaterials implements ArmorMaterial {
     MANAGOLD("managold", 7, new int[]{2, 5, 6, 2}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
         return Ingredient.ofItems(new ItemConvertible[]{ModItems.MANAGOLD_INGOT});
+    }),
+    TORMITE("tormite", 14, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F, 0.0F, () -> {
+        return Ingredient.ofItems(new ItemConvertible[]{ModItems.TORMITE_INGOT});
     });
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};

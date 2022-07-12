@@ -6,6 +6,7 @@ import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModDimensions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
@@ -35,6 +36,12 @@ public abstract class WorldMixin implements WorldAccess {
     @Shadow
     public abstract long getTimeOfDay();
 
+    @Shadow
+    public abstract float getRainGradient(float delta);
+
+    @Shadow
+    public abstract float getThunderGradient(float delta);
+
     @Inject(method = "getTimeOfDay", at = @At("HEAD"), cancellable = true)
     public void injectTimeOfDay(CallbackInfoReturnable info) {
         if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
@@ -42,13 +49,6 @@ public abstract class WorldMixin implements WorldAccess {
             float highestTorment = highestTorment(players);
 
             info.setReturnValue((long)(6000 + (highestTorment * 120)));
-        }
-    }
-
-    @Inject(method = "isDay", at = @At("HEAD"), cancellable = true)
-    public void injectIsDay(CallbackInfoReturnable info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
-            info.setReturnValue(getTimeOfDay() < 13500);
         }
     }
 
@@ -70,6 +70,17 @@ public abstract class WorldMixin implements WorldAccess {
     private void injectThunderGradient(float delta, CallbackInfoReturnable info) {
         if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             info.setReturnValue(0f);
+        }
+    }
+
+    @Inject(method = "calculateAmbientDarkness", at = @At("HEAD"), cancellable = true)
+    private void injectAmbientDarkness(CallbackInfo info) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+            double d = 1.0D - (double)(this.getRainGradient(1.0F) * 5.0F) / 16.0D;
+            double e = 1.0D - (double)(this.getThunderGradient(1.0F) * 5.0F) / 16.0D;
+            double f = 0.5D + 2.0D * MathHelper.clamp((double)MathHelper.cos(this.getDimension().getSkyAngle(this.getTimeOfDay()) * 6.2831855F), -0.25D, 0.25D);
+            this.ambientDarkness = (int)((1.0D - f * d * e) * 11.0D);
+            info.cancel();
         }
     }
 

@@ -3,9 +3,6 @@ package net.eman3600.dndreams.infusions;
 import net.eman3600.dndreams.Initializer;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public enum Infusion {
     NONE(0, "none", 0),
     OVERWORLD(1, "overworld", 25),
@@ -13,11 +10,11 @@ public enum Infusion {
     END(3, "end", 40),
     SPIRIT(4, "spirit", 50);
 
-    private int num;
-    private Identifier id;
-    private int mana_bonus;
+    private final int num;
+    private final Identifier id;
+    private final int mana_bonus;
 
-    private Infusion(int num, String name, int mana_bonus) {
+    Infusion(int num, String name, int mana_bonus) {
         this.num = num;
         this.id = new Identifier(Initializer.MODID, name);
         this.mana_bonus = mana_bonus;
