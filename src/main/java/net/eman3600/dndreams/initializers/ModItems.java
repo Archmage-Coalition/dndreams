@@ -3,11 +3,15 @@ package net.eman3600.dndreams.initializers;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.consumable.DreamEye;
+import net.eman3600.dndreams.items.consumable.MaterializeTome;
 import net.eman3600.dndreams.items.consumable.IcyNeedle;
 import net.eman3600.dndreams.items.consumable.NightmareFuel;
-import net.eman3600.dndreams.items.managold.*;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
+import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
+import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
+import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
+import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.items.trinket.PhantomNecklace;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
@@ -115,62 +119,62 @@ public class ModItems {
 
     // Managold Gear
     public static final Item MANAGOLD_SWORD = registerItem("managold_sword",
-            new ManagoldSword(ModMaterials.MANAGOLD, 3, -2.4F,
+            new SwordItem(ModMaterials.MANAGOLD, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item MANAGOLD_PICKAXE = registerItem("managold_pickaxe",
-            new ManagoldPickaxe(ModMaterials.MANAGOLD, 1, -2.8F,
+            new ModPickaxeItem(ModMaterials.MANAGOLD, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item MANAGOLD_AXE = registerItem("managold_axe",
-            new ManagoldAxe(ModMaterials.MANAGOLD, 6.0F, -3.0F,
+            new ModAxeItem(ModMaterials.MANAGOLD, 6.0F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item MANAGOLD_SHOVEL = registerItem("managold_shovel",
-            new ManagoldShovel(ModMaterials.MANAGOLD, 1.5F, -3.0F,
+            new ModShovelItem(ModMaterials.MANAGOLD, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item MANAGOLD_HOE = registerItem("managold_hoe",
-            new ManagoldHoe(ModMaterials.MANAGOLD, -2, 0F,
+            new ModHoeItem(ModMaterials.MANAGOLD, -2, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item MANAGOLD_HELMET = registerItem("managold_helmet",
-            new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.HEAD,
+            new ArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.HEAD,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item MANAGOLD_CHESTPLATE = registerItem("managold_chestplate",
-            new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.CHEST,
+            new ArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.CHEST,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item MANAGOLD_LEGGINGS = registerItem("managold_leggings",
-            new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.LEGS,
+            new ArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.LEGS,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item MANAGOLD_BOOTS = registerItem("managold_boots",
-            new ManagoldArmor(ModArmorMaterials.MANAGOLD, EquipmentSlot.FEET,
+            new ArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Tormite Gear
     public static final Item TORMITE_SWORD = registerItem("tormite_sword",
-            new ManagoldSword(ModMaterials.TORMITE, 3, -2.4F,
+            new SwordItem(ModMaterials.TORMITE, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item TORMITE_PICKAXE = registerItem("tormite_pickaxe",
-            new ManagoldPickaxe(ModMaterials.TORMITE, 1, -2.8F,
+            new ModPickaxeItem(ModMaterials.TORMITE, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item TORMITE_AXE = registerItem("tormite_axe",
-            new ManagoldAxe(ModMaterials.TORMITE, 5.0F, -3.0F,
+            new ModAxeItem(ModMaterials.TORMITE, 5.0F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item TORMITE_SHOVEL = registerItem("tormite_shovel",
-            new ManagoldShovel(ModMaterials.TORMITE, 1.5F, -3.0F,
+            new ModShovelItem(ModMaterials.TORMITE, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item TORMITE_HOE = registerItem("tormite_hoe",
-            new ManagoldHoe(ModMaterials.TORMITE, -4, 0F,
+            new ModHoeItem(ModMaterials.TORMITE, -4, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item TORMITE_HELMET = registerItem("tormite_helmet",
-            new ManagoldArmor(ModArmorMaterials.TORMITE, EquipmentSlot.HEAD,
+            new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.HEAD,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item TORMITE_CHESTPLATE = registerItem("tormite_chestplate",
-            new ManagoldArmor(ModArmorMaterials.TORMITE, EquipmentSlot.CHEST,
+            new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.CHEST,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item TORMITE_LEGGINGS = registerItem("tormite_leggings",
-            new ManagoldArmor(ModArmorMaterials.TORMITE, EquipmentSlot.LEGS,
+            new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.LEGS,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item TORMITE_BOOTS = registerItem("tormite_boots",
-            new ManagoldArmor(ModArmorMaterials.TORMITE, EquipmentSlot.FEET,
+            new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Phantom Necklace
@@ -195,6 +199,8 @@ public class ModItems {
     // Icy Needle
     public static final Item ICY_NEEDLE = registerItem("icy_needle",
             new IcyNeedle(new FabricItemSettings().group(ItemGroup.MISC)));
+    public static final Item MATERIALIZE_TOME = registerItem("materialize_tome",
+            new MaterializeTome(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.RARE)));
 
     // Book of Dreams
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",

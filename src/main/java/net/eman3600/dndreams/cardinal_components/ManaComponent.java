@@ -14,7 +14,6 @@ import net.minecraft.nbt.NbtCompound;
 
 public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     private int mana = 0;
-    private Infusion infusion = Infusion.NONE;
     private int regenTime = 0;
     private final PlayerEntity player;
 
@@ -38,16 +37,6 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     @Override
     public int getBaseManaMax() {
         return (int)player.getAttributeValue(ModAttributes.PLAYER_MAX_MANA);
-    }
-
-    @Override
-    public Infusion getInfusion() {
-        return infusion;
-    }
-
-    @Override
-    public void setInfusion(Infusion change) {
-        infusion = change;
     }
 
     @Override
@@ -114,7 +103,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             manaFactors += 15 * (player.getStatusEffect(ModStatusEffects.MEMORY).getAmplifier() + 1);
         }
 
-        return Math.max(getBaseManaMax() + getXPBonus() + infusion.manaBonus() + manaFactors, 1);
+        return Math.max(getBaseManaMax() + getXPBonus() + manaFactors, 1);
     }
 
     @Override
@@ -150,14 +139,12 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     @Override
     public void readFromNbt(NbtCompound tag) {
         mana = tag.getInt("mana");
-        infusion = Infusion.getFromNum(tag.getInt("infusion"));
         regenTime = tag.getInt("regen_time");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putInt("mana", mana);
-        tag.putInt("infusion", infusion.getNum());
         tag.putInt("regen_time", regenTime);
     }
 }

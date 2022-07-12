@@ -9,8 +9,6 @@ public interface ManaComponentI extends ServerTickingComponent {
     int getBaseManaMax();
     int getManaMax();
     int getXPBonus();
-    Infusion getInfusion();
-    void setInfusion(Infusion change);
     int getRegenRate();
 
     void useMana(int cost);

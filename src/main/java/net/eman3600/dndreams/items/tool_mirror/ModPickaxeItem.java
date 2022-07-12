@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items;
+package net.eman3600.dndreams.items.tool_mirror;
 
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ToolMaterial;

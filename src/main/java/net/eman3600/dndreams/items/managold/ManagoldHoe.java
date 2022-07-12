@@ -27,10 +27,6 @@ public class ManagoldHoe extends HoeItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
-    public static void injectTillActions() {
-        TILLING_ACTIONS.put(ModBlocks.DREAM_GRASS, Pair.of(HoeItem::canTillFarmland, createTillAction(Blocks.FARMLAND.getDefaultState())));
-    }
-
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (attacker.isPlayer()) {

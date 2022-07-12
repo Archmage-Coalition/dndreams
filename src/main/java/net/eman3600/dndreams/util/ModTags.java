@@ -8,7 +8,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.Structure;
-import net.minecraft.world.gen.structure.StructureType;
 
 public class ModTags {
     /* TAGS */
@@ -23,7 +22,9 @@ public class ModTags {
 
     public static final TagKey<Structure> BLIGHT_POWDER_LOCATED = ofStructure("blight_powder_located");
 
-    public static final TagKey<Item> WEAVING_ITEM = ofItem("weaving_items");
+    public static final TagKey<Item> WEAVING_ITEMS = ofItem("weaving_items");
+    public static final TagKey<Item> MANA_USING_TOOLS = ofItem("mana_using_tools");
+    public static final TagKey<Item> POWER_USING_TOOLS = ofItem("power_using_tools");
 
     /* TAG REGISTRIES */
     private static TagKey<Block> ofBlock(String id) {

@@ -9,6 +9,7 @@ import net.minecraft.util.math.Vec3d;
 
 public interface DreamingComponentI extends ServerTickingComponent, AutoSyncedComponent {
     void changeDimension(boolean toDream);
+    void flagTransference();
     boolean isDreaming();
     PlayerInventory storedInv();
     Vec3d returnPos();

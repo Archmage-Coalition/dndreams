@@ -29,6 +29,8 @@ public class DreamingComponent implements DreamingComponentI {
     private Vec3d returnPos;
     private PlayerInventory storedInv;
     private boolean hasDreamt = false;
+    private boolean transferAll = false;
+
 
     public DreamingComponent(PlayerEntity player) {
         this.player = player;
@@ -38,6 +40,10 @@ public class DreamingComponent implements DreamingComponentI {
 
     private TormentComponent torment() {
         return EntityComponents.TORMENT.get(player);
+    }
+
+    public void flagTransference() {
+        transferAll = true;
     }
 
     @Override
@@ -51,12 +57,18 @@ public class DreamingComponent implements DreamingComponentI {
         transferInventories(storedInv, currInv);
         currInv.clear();
 
+        if (transferAll) {
+            transferAll = false;
+            hasDreamt = false;
+            storedInv.dropAll();
+        }
+
         if (toDream) {
             player.incrementStat(ModStats.ENTER_DREAM);
 
             if (!hasDreamt) {
                 hasDreamt = true;
-                player.getInventory().insertStack(new ItemStack(ModItems.ICY_NEEDLE, 5));
+                player.getInventory().insertStack(new ItemStack(ModItems.BOOK_OF_DREAMS, 1));
             }
 
             returnPos = player.getPos();
@@ -120,6 +132,7 @@ public class DreamingComponent implements DreamingComponentI {
         returnPos = new Vec3d(posList.getDouble(0),posList.getDouble(1),posList.getDouble(2));
         dreaming = tag.getBoolean("dreaming");
         hasDreamt = tag.getBoolean("has_dreamt");
+        transferAll = tag.getBoolean("transfer_all");
     }
 
     @Override
@@ -128,6 +141,7 @@ public class DreamingComponent implements DreamingComponentI {
         tag.put("return_pos", this.toNbtList(returnPos.getX(),returnPos.getY(),returnPos.getZ()));
         tag.putBoolean("dreaming", dreaming);
         tag.putBoolean("has_dreamt", hasDreamt);
+        tag.putBoolean("transfer_all", transferAll);
     }
 
     private NbtList toNbtList(double... values) {

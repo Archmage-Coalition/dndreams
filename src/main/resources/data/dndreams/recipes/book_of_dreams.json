@@ -3,16 +3,10 @@
   "group": "dndreams:book_of_dreams",
   "ingredients": [
     {
-      "item": "minecraft:paper"
+      "item": "minecraft:book"
     },
     {
-      "item": "minecraft:paper"
-    },
-    {
-      "item": "minecraft:paper"
-    },
-    {
-      "item": "minecraft:rotten_flesh"
+      "item": "dndreams:snowbell_seeds"
     }
   ],
   "result": {

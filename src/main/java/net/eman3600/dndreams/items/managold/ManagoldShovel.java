@@ -26,10 +26,6 @@ public class ManagoldShovel extends ShovelItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
-    public static void injectPathStates() {
-        PATH_STATES.put(ModBlocks.DREAM_GRASS, Blocks.DIRT_PATH.getDefaultState());
-    }
-
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (attacker.isPlayer()) {

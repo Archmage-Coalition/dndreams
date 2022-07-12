@@ -3,6 +3,8 @@ package net.eman3600.dndreams;
 import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.items.managold.ManagoldHoe;
 import net.eman3600.dndreams.items.managold.ManagoldShovel;
+import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
+import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.util.LootModifiers;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.eman3600.dndreams.util.ModRegistries;
@@ -33,8 +35,8 @@ public class Initializer implements ModInitializer {
 
 		ModItems.registerItems();
 		ModBlocks.registerBlocks();
-		ManagoldHoe.injectTillActions();
-		ManagoldShovel.injectPathStates();
+		ModHoeItem.injectTillActions();
+		ModShovelItem.injectPathStates();
 		ModStatusEffects.registerEffects();
 		ModPotions.registerPotions();
 		ModFeatures.registerFeatures();

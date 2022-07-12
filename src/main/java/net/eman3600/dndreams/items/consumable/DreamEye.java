@@ -52,8 +52,9 @@ public class DreamEye extends Item {
 
                 if (user instanceof PlayerEntity) {
                     PlayerEntity player = (PlayerEntity)user;
-                    player.getItemCooldownManager().set(ModItems.DREAM_EYE, 100);
-                    player.getItemCooldownManager().set(ModItems.ICY_NEEDLE, 100);
+                    player.getItemCooldownManager().set(ModItems.DREAM_EYE, 200);
+                    player.getItemCooldownManager().set(ModItems.ICY_NEEDLE, 200);
+                    player.getItemCooldownManager().set(ModItems.MATERIALIZE_TOME, 200);
                 }
             }
         }

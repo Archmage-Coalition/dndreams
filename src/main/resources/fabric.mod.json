@@ -51,7 +51,8 @@
       "dndreams:boss_state",
       "dndreams:mana",
       "dndreams:torment",
-      "dndreams:dreaming"
+      "dndreams:dreaming",
+      "dndreams:infusion"
     ]
   }
 }

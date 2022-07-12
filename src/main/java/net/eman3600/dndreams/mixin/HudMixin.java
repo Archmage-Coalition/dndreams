@@ -37,19 +37,16 @@ public abstract class HudMixin extends DrawableHelper {
     private static final Identifier DNDREAMS_GUI_ICONS = new Identifier(Initializer.MODID, "textures/gui/icons.png");
 
     @Unique
-    private static final int MANA_INNER_OFFSET = 2;
-
-    @Unique
     private static final int MANA_X_OFFSET = 6;
 
     @Unique
     private static final int MANA_Y_OFFSET = 7;
 
     @Unique
-    private static final int MANA_WIDTH = 80;
+    private static final int MANA_WIDTH = 71;
 
     @Unique
-    private static final int MANA_HEIGHT = 6;
+    private static final int MANA_HEIGHT = 5;
 
     @Unique
     private static final int TORMENT_X_OFFSET = 6;
@@ -90,7 +87,7 @@ public abstract class HudMixin extends DrawableHelper {
         if (player.hasStatusEffect(ModStatusEffects.SUPPRESSED)) {
             vPos = 10;
         } else {
-            vPos = 8;
+            vPos = 5;
         }
 
         if (client.options.getMainArm().getValue() == Arm.LEFT) {
@@ -103,7 +100,7 @@ public abstract class HudMixin extends DrawableHelper {
                 RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
                 drawTexture(matrices, xPosMana, (yPos), 0, 0, MANA_WIDTH, MANA_HEIGHT);
-                drawTexture(matrices, (xPosMana + MANA_INNER_OFFSET), (yPos + MANA_INNER_OFFSET), 2, vPos, (int)((MANA_WIDTH - MANA_INNER_OFFSET * 2) * Math.min((float)manaComponent.getMana() / manaComponent.getManaMax(), 1f)), MANA_HEIGHT - MANA_INNER_OFFSET * 2);
+                drawTexture(matrices, xPosMana, yPos, 0, vPos, (int)((MANA_WIDTH) * Math.min((float)manaComponent.getMana() / manaComponent.getManaMax(), 1f)), MANA_HEIGHT);
                 drawCenteredText(matrices, client.textRenderer, manaComponent.getMana() + "/" + manaComponent.getManaMax(), (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
@@ -112,9 +109,9 @@ public abstract class HudMixin extends DrawableHelper {
         int tormentXPos;
 
         if (client.options.getMainArm().getValue() == Arm.RIGHT) {
-            tormentXPos = scaledWidth - MANA_X_OFFSET - TORMENT_WIDTH;
+            tormentXPos = scaledWidth - TORMENT_X_OFFSET - TORMENT_WIDTH;
         } else {
-            tormentXPos = MANA_X_OFFSET;
+            tormentXPos = TORMENT_X_OFFSET;
         }
 
         int tormentV;
