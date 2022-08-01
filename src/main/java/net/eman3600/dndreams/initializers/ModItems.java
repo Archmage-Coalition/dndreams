@@ -49,7 +49,7 @@ public class ModItems {
 
     // Nightmare Fuel
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
-            new NightmareFuel(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL)));
+            new NightmareFuel(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL).fireproof()));
 
     // End Sticks
     public static final Item END_STICK = registerItem("end_stick", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
@@ -75,7 +75,7 @@ public class ModItems {
     public static final Item MANAGOLD_INGOT = registerItem("managold_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item TORMITE_INGOT = registerItem("tormite_ingot",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
 
     // Hellsteel Sword & Tools
     public static final Item CORRUPT_SWORD = registerItem("corrupt_sword",
@@ -150,32 +150,32 @@ public class ModItems {
     // Tormite Gear
     public static final Item TORMITE_SWORD = registerItem("tormite_sword",
             new SwordItem(ModMaterials.TORMITE, 3, -2.4F,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item TORMITE_PICKAXE = registerItem("tormite_pickaxe",
             new ModPickaxeItem(ModMaterials.TORMITE, 1, -2.8F,
-                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+                    new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item TORMITE_AXE = registerItem("tormite_axe",
             new ModAxeItem(ModMaterials.TORMITE, 5.0F, -3.0F,
-                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+                    new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item TORMITE_SHOVEL = registerItem("tormite_shovel",
             new ModShovelItem(ModMaterials.TORMITE, 1.5F, -3.0F,
-                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+                    new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item TORMITE_HOE = registerItem("tormite_hoe",
             new ModHoeItem(ModMaterials.TORMITE, -4, 0F,
-                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+                    new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
     public static final Item TORMITE_HELMET = registerItem("tormite_helmet",
             new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.HEAD,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item TORMITE_CHESTPLATE = registerItem("tormite_chestplate",
             new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.CHEST,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item TORMITE_LEGGINGS = registerItem("tormite_leggings",
             new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.LEGS,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item TORMITE_BOOTS = registerItem("tormite_boots",
             new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.FEET,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
 
     // Phantom Necklace
     public static final Item PHANTOM_NECKLACE = registerItem("phantom_necklace",

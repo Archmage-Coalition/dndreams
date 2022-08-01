@@ -33,9 +33,34 @@ public class DreamEye extends Item {
 
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return 72000;
+        return USE_TIME;
     }
 
+    @Override
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        if (world instanceof ServerWorld && !user.hasVehicle() && !user.hasPassengers()
+                && user.canUsePortals() && world.getRegistryKey() == World.OVERWORLD) {
+            RegistryKey<World> registryKey = ModDimensions.DREAM_DIMENSION_KEY;
+            ServerWorld serverWorld = ((ServerWorld)world).getServer().getWorld(registryKey);
+            if (serverWorld == null) {
+                return stack;
+            }
+
+            stack.decrement(1);
+            FabricDimensions.teleport(user, serverWorld, new TeleportTarget(user.getPos(), Vec3d.ZERO, user.getYaw(), user.getPitch()));
+
+            if (user instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity)user;
+                player.getItemCooldownManager().set(ModItems.DREAM_EYE, 200);
+                player.getItemCooldownManager().set(ModItems.ICY_NEEDLE, 200);
+                player.getItemCooldownManager().set(ModItems.MATERIALIZE_TOME, 200);
+            }
+        }
+
+        return stack;
+    }
+
+    /*
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (getMaxUseTime(stack) - remainingUseTicks >= USE_TIME) {
@@ -59,6 +84,8 @@ public class DreamEye extends Item {
             }
         }
     }
+
+     */
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {

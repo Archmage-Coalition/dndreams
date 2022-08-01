@@ -69,7 +69,7 @@ public class LootModifiers {
         }));
     }
 
-    public static void supplyPools(LootTable.Builder supplier, LootPool[] pools) {
+    private static void supplyPools(LootTable.Builder supplier, LootPool[] pools) {
         for (LootPool pool: pools) {
             supplier.pool(pool);
         }

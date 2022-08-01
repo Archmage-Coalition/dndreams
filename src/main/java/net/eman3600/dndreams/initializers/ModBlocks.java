@@ -81,7 +81,7 @@ public class ModBlocks {
                     .sounds(BlockSoundGroup.METAL)
                     .requiresTool()),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
 
     // World Fountain
     public static final Block WORLD_FOUNTAIN = registerBlock("world_fountain",

@@ -29,6 +29,7 @@ repositories {
 		name = "Ladysnake Libs"
 		url = "https://ladysnake.jfrog.io/artifactory/mods"
 	}
+	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 }
 
 dependencies {
@@ -53,6 +54,8 @@ dependencies {
 	modImplementation "dev.emi:trinkets:${trinkets_version}"
 
 	modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
+
+	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.5'
 }
 
 processResources {
