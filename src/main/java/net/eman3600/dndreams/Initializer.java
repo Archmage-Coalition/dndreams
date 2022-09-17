@@ -35,6 +35,7 @@ public class Initializer implements ModInitializer {
 
 		ModItems.registerItems();
 		ModBlocks.registerBlocks();
+		ModFluids.registerFluids();
 		ModHoeItem.injectTillActions();
 		ModShovelItem.injectPathStates();
 		ModStatusEffects.registerEffects();

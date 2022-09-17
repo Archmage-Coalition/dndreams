@@ -187,16 +187,16 @@ public class ModBlocks {
 
 
 
-    private static Block registerBlock(String name, Block block, Item.Settings settings) {
+    public static Block registerBlock(String name, Block block, Item.Settings settings) {
         registerBlockItem(name, block, settings);
         return registerBlock(name, block);
     }
 
-    private static Block registerBlock(String name, Block block) {
+    public static Block registerBlock(String name, Block block) {
         return Registry.register(Registry.BLOCK, new Identifier(Initializer.MODID, name), block);
     }
 
-    private static Item registerBlockItem(String name, Block block, Item.Settings settings) {
+    public static Item registerBlockItem(String name, Block block, Item.Settings settings) {
         return Registry.register(Registry.ITEM, new Identifier(Initializer.MODID, name),
                 new BlockItem(block, settings));
     }

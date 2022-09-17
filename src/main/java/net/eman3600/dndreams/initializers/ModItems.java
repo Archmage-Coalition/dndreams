@@ -221,7 +221,7 @@ public class ModItems {
     /*
      * Item Registration
      * */
-    private static Item registerItem(String name, Item item) {
+    public static Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(Initializer.MODID, name), item);
     }
 
