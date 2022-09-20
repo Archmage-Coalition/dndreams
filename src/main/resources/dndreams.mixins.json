@@ -12,7 +12,8 @@
     "LivingEntityMixin",
     "BrewingRegistryMixin",
     "EndPortalFeatureMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "EndermanEntityMixin"
   ],
   "client": [
     "WorldRendererMixin",
