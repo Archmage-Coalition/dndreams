@@ -27,6 +27,9 @@ public class WorldComponents implements WorldComponentInitializer, ScoreboardCom
 
     @Override
     public void registerScoreboardComponentFactories(ScoreboardComponentFactoryRegistry registry) {
-        registry.registerScoreboardComponent(BOSS_STATE, BossStateComponent::new);
+        registry.registerScoreboardComponent(BOSS_STATE, (scoreboard, server) -> server == null
+                ? new BossStateComponent(scoreboard, null)
+                : new BossStateComponent(scoreboard, server)
+        );
     }
 }

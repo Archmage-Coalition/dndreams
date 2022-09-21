@@ -43,7 +43,7 @@ public abstract class WorldMixin implements WorldAccess {
     public abstract float getThunderGradient(float delta);
 
     @Inject(method = "getTimeOfDay", at = @At("HEAD"), cancellable = true)
-    public void injectTimeOfDay(CallbackInfoReturnable info) {
+    public void injectTimeOfDay(CallbackInfoReturnable<Long> info) {
         if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             List<? extends PlayerEntity> players = getPlayers();
             float highestTorment = highestTorment(players);
@@ -60,14 +60,14 @@ public abstract class WorldMixin implements WorldAccess {
     }
 
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
-    private void injectRainGradient(float delta, CallbackInfoReturnable info) {
+    private void injectRainGradient(float delta, CallbackInfoReturnable<Float> info) {
         if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             info.setReturnValue(0f);
         }
     }
 
     @Inject(method = "getThunderGradient", at = @At("HEAD"), cancellable = true)
-    private void injectThunderGradient(float delta, CallbackInfoReturnable info) {
+    private void injectThunderGradient(float delta, CallbackInfoReturnable<Float> info) {
         if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             info.setReturnValue(0f);
         }
@@ -78,7 +78,7 @@ public abstract class WorldMixin implements WorldAccess {
         if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             double d = 1.0D - (double)(this.getRainGradient(1.0F) * 5.0F) / 16.0D;
             double e = 1.0D - (double)(this.getThunderGradient(1.0F) * 5.0F) / 16.0D;
-            double f = 0.5D + 2.0D * MathHelper.clamp((double)MathHelper.cos(this.getDimension().getSkyAngle(this.getTimeOfDay()) * 6.2831855F), -0.25D, 0.25D);
+            double f = 0.5D + 2.0D * MathHelper.clamp(MathHelper.cos(this.getDimension().getSkyAngle(this.getTimeOfDay()) * 6.2831855F), -0.25D, 0.25D);
             this.ambientDarkness = (int)((1.0D - f * d * e) * 11.0D);
             info.cancel();
         }

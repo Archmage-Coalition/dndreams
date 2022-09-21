@@ -7,19 +7,18 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionTypes;
+import org.jetbrains.annotations.Nullable;
 
 public class BossStateComponent implements BossStateComponentI, AutoSyncedComponent {
     private boolean dragonSlain = false;
     private boolean witherSlain = false;
 
-    private Scoreboard scoreboard;
-    private MinecraftServer server;
+    private final Scoreboard scoreboard;
+    @Nullable private final MinecraftServer server;
 
-    public BossStateComponent(Scoreboard worldIn, MinecraftServer serverIn) {
-        scoreboard = worldIn;
-        server = serverIn;
+    public BossStateComponent(Scoreboard scoreboard, @Nullable MinecraftServer server) {
+        this.scoreboard = scoreboard;
+        this.server = server;
     }
 
     @Override
@@ -67,8 +66,10 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
 
     @Override
     public void setDifficulty() {
-        server.setDifficultyLocked(true);
-        server.setDifficulty(dragonSlain ? Difficulty.HARD : Difficulty.NORMAL, true);
+        if (server != null) {
+            server.setDifficultyLocked(true);
+            server.setDifficulty(dragonSlain ? Difficulty.HARD : Difficulty.NORMAL, true);
+        }
     }
 
     @Override

@@ -25,7 +25,7 @@ public abstract class DragonFightMixin {
     }
 
     @Inject(method = "createDragon", at = @At("HEAD"))
-    public void reviveComponent(CallbackInfoReturnable info) {
+    public void reviveComponent(CallbackInfoReturnable<EnderDragonEntity> cir) {
         WorldComponents.BOSS_STATE.get(world.getScoreboard()).flagDragonSlain(false);
     }
 }

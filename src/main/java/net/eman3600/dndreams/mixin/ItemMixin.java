@@ -20,27 +20,30 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Item.class)
 public abstract class ItemMixin {
-    @Inject(method = "useOnBlock", at = @At("Head"), cancellable = true)
-    public void blockBottler(ItemUsageContext context, CallbackInfoReturnable info) {
+    @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
+    public void blockBottler(ItemUsageContext context, CallbackInfoReturnable<ActionResult> info) {
         World world = context.getWorld();
         BlockPos pos = context.getBlockPos();
         ItemStack stack = context.getStack();
-        if (world.getBlockState(pos).getBlock() == Blocks.END_PORTAL && stack.getItem() == Items.GLASS_BOTTLE) {
-            if (world.getDimensionKey() == DimensionTypes.THE_END) {
-                ItemUsage.exchangeStack(stack, context.getPlayer(), new ItemStack(ModItems.LIQUID_VOID));
-            } else {
-                context.getPlayer().sendMessage(Text.translatable("item.dndreams.liquid_void.wrong_dimension"), true);
-            }
 
-            info.setReturnValue(ActionResult.SUCCESS);
+        PlayerEntity player = context.getPlayer();
+        if (player != null) {
+            if (world.getBlockState(pos).getBlock() == Blocks.END_PORTAL && stack.getItem() == Items.GLASS_BOTTLE) {
+                if (world.getDimensionKey() == DimensionTypes.THE_END) {
+                    ItemUsage.exchangeStack(stack, context.getPlayer(), new ItemStack(ModItems.LIQUID_VOID));
+                } else {
+                    player.sendMessage(Text.translatable("item.dndreams.liquid_void.wrong_dimension"), true);
+                }
+
+                info.setReturnValue(ActionResult.SUCCESS);
+            }
         }
     }
 
 
     @Inject(method = "useOnEntity", at = @At("HEAD"), cancellable = true)
-    public void entityBottler(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable info) {
-        if (entity instanceof WardenEntity && stack.getItem() == Items.GLASS_BOTTLE) {
-            WardenEntity warden = (WardenEntity)entity;
+    public void entityBottler(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> info) {
+        if (entity instanceof WardenEntity warden && stack.getItem() == Items.GLASS_BOTTLE) {
             ItemUsage.exchangeStack(stack, user, new ItemStack(ModItems.LIQUID_SOUL));
             warden.increaseAngerAt(user, 80, true);
 

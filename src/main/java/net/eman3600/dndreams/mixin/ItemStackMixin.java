@@ -6,27 +6,22 @@ import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.UnbreakingEnchantment;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.random.Random;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.function.Consumer;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
     @Shadow
     public abstract boolean isDamageable();
 
-    @Inject(at = @At("HEAD"), cancellable = true, method = "damage(ILio/netty/util/internal/ThreadLocalRandom/Random;Lnet/minecraft/server/network/ServerPlayerEntity;)Z")
-    public void injectDamage(int amount, Random random, @Nullable ServerPlayerEntity player, CallbackInfoReturnable info) {
+    @Inject(at = @At("HEAD"), cancellable = true, method = "damage(ILnet/minecraft/util/math/random/Random;Lnet/minecraft/server/network/ServerPlayerEntity;)Z")
+    public void injectDamage(int amount, Random random, ServerPlayerEntity player, CallbackInfoReturnable<Boolean> info) {
         ItemStack stack = (ItemStack)(Object)this;
         if (isDamageable() && stack.isIn(ModTags.MANA_USING_TOOLS)) {
             ManaComponent mana = EntityComponents.MANA.get(player);

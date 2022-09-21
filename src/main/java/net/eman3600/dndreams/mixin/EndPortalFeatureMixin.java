@@ -2,7 +2,6 @@ package net.eman3600.dndreams.mixin;
 
 import com.mojang.serialization.Codec;
 import net.eman3600.dndreams.initializers.ModBlocks;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.WallTorchBlock;
 import net.minecraft.util.math.BlockPos;
@@ -32,7 +31,7 @@ public abstract class EndPortalFeatureMixin extends Feature<DefaultFeatureConfig
     public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
         BlockPos blockPos = context.getOrigin();
         StructureWorldAccess structureWorldAccess = context.getWorld();
-        Iterator var4 = BlockPos.iterate(new BlockPos(blockPos.getX() - 4, blockPos.getY() - 1, blockPos.getZ() - 4), new BlockPos(blockPos.getX() + 4, blockPos.getY() + 32, blockPos.getZ() + 4)).iterator();
+        Iterator<BlockPos> var4 = BlockPos.iterate(new BlockPos(blockPos.getX() - 4, blockPos.getY() - 1, blockPos.getZ() - 4), new BlockPos(blockPos.getX() + 4, blockPos.getY() + 32, blockPos.getZ() + 4)).iterator();
 
         while(true) {
             BlockPos blockPos2;
@@ -52,17 +51,15 @@ public abstract class EndPortalFeatureMixin extends Feature<DefaultFeatureConfig
                     }
 
                     BlockPos blockPos3 = blockPos.up(2);
-                    Iterator var9 = Direction.Type.HORIZONTAL.iterator();
 
-                    while(var9.hasNext()) {
-                        Direction direction = (Direction)var9.next();
-                        this.setBlockState(structureWorldAccess, blockPos3.offset(direction), (BlockState)Blocks.WALL_TORCH.getDefaultState().with(WallTorchBlock.FACING, direction));
+                    for (Direction direction : Direction.Type.HORIZONTAL) {
+                        this.setBlockState(structureWorldAccess, blockPos3.offset(direction), Blocks.WALL_TORCH.getDefaultState().with(WallTorchBlock.FACING, direction));
                     }
 
                     return true;
                 }
 
-                blockPos2 = (BlockPos)var4.next();
+                blockPos2 = var4.next();
                 bl = blockPos2.isWithinDistance(blockPos, 2.5D);
             } while(!bl && !blockPos2.isWithinDistance(blockPos, 3.5D));
 

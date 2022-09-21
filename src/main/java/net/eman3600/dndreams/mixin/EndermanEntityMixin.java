@@ -21,7 +21,7 @@ public abstract class EndermanEntityMixin extends HostileEntity implements Anger
     }
 
     @Inject(method = "isPlayerStaring", at = @At("RETURN"), cancellable = true)
-    private void playerStareStopper(PlayerEntity player, CallbackInfoReturnable info) {
+    private void playerStareStopper(PlayerEntity player, CallbackInfoReturnable<Boolean> info) {
         if (world.getScoreboard() != null && WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
             info.setReturnValue(false);
         }

@@ -46,8 +46,8 @@ public abstract class PlayerMixin extends LivingEntity {
     }
 
     @Inject(method = "createPlayerAttributes", at = @At("RETURN"), cancellable = true)
-    private static void injectAttributes(CallbackInfoReturnable info) {
-        info.setReturnValue(((DefaultAttributeContainer.Builder)info.getReturnValue())
+    private static void injectAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
+        info.setReturnValue((info.getReturnValue())
                 .add(ModAttributes.PLAYER_MANA_REGEN, 8d)
                 .add(ModAttributes.PLAYER_MAX_MANA, 25d));
     }
