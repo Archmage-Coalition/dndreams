@@ -8,18 +8,13 @@ import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.FontStorage;
-import net.minecraft.client.font.TextHandler;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.font.TextVisitFactory;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
-import org.apache.logging.log4j.core.config.plugins.convert.HexConverter;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -75,6 +70,23 @@ public abstract class HudMixin extends DrawableHelper {
     @Final
     private MinecraftClient client;
 
+    @Shadow public abstract TextRenderer getTextRenderer();
+
+    @Inject(method = "renderExperienceBar", at = @At("TAIL"))
+    public void dndreams$renderManaModifier(MatrixStack matrices, int x, CallbackInfo ci) {
+        PlayerEntity player = getCameraPlayer();
+        if (player.experienceLevel > 0) {
+            String string = "+" + player.experienceLevel/2;
+            int k = x + 182 + 2;
+            int l = this.scaledHeight - 31 + 1;
+            this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
+            this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
+            this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
+            this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
+            this.getTextRenderer().draw(matrices, string, (float)k, (float)l, Color.MAGENTA.getRGB());
+        }
+    }
+
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
     private void renderPre(MatrixStack matrices, CallbackInfo callbackInfo) {
         int xPos = MANA_X_OFFSET;
@@ -97,6 +109,10 @@ public abstract class HudMixin extends DrawableHelper {
         int xPosMana = xPos;
         if (!player.hasStatusEffect(ModStatusEffects.LIFEMANA))
             EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
+                int mana = manaComponent.getMana();
+                int maxMana = manaComponent.getManaMax();
+                if (mana >= maxMana) return;
+
                 RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
                 drawTexture(matrices, xPosMana, (yPos), 0, 0, MANA_WIDTH, MANA_HEIGHT);
@@ -126,6 +142,7 @@ public abstract class HudMixin extends DrawableHelper {
 
         EntityComponents.TORMENT.maybeGet(player).ifPresent(tormentComponent -> {
             float tormentPercent = (tormentComponent.getTorment() / TormentComponent.MAX_TORMENT);
+            if (tormentPercent <= 0) return;
             int skipV = (int)(TORMENT_HEIGHT * (1f - tormentPercent));
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
