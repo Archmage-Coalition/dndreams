@@ -2,6 +2,7 @@ package net.eman3600.dndreams.mixin;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
@@ -76,7 +77,7 @@ public abstract class HudMixin extends DrawableHelper {
     public void dndreams$renderManaModifier(MatrixStack matrices, int x, CallbackInfo ci) {
         PlayerEntity player = getCameraPlayer();
         if (player.experienceLevel > 0) {
-            String string = "+" + player.experienceLevel/2;
+            String string = "+" + EntityComponents.MANA.get(player).getXPBonus();
             int k = x + 182 + 2;
             int l = this.scaledHeight - 31 + 1;
             this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
@@ -111,13 +112,13 @@ public abstract class HudMixin extends DrawableHelper {
             EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
                 int mana = manaComponent.getMana();
                 int maxMana = manaComponent.getManaMax();
-                if (mana >= maxMana) return;
+                if (manaComponent.getRenderTime() <= 0) return;
 
                 RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
                 drawTexture(matrices, xPosMana, (yPos), 0, 0, MANA_WIDTH, MANA_HEIGHT);
-                drawTexture(matrices, xPosMana, yPos, 0, vPos, (int)((MANA_WIDTH) * Math.min((float)manaComponent.getMana() / manaComponent.getManaMax(), 1f)), MANA_HEIGHT);
-                drawCenteredText(matrices, client.textRenderer, manaComponent.getMana() + "/" + manaComponent.getManaMax(), (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
+                drawTexture(matrices, xPosMana, yPos, 0, vPos, (int)((MANA_WIDTH) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT);
+                drawCenteredText(matrices, client.textRenderer, mana + "/" + maxMana, (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
             });

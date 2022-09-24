@@ -13,14 +13,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
 public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
-    private int mana = 0;
-    private int regenTime = 0;
-    private final PlayerEntity player;
-
     private final int MAX_XP_BONUS = 50;
     private final int REGEN_REQUIRE = 60;
+    private final int RENDER_LINGER = 60;
     private final int MIN_REGEN = -120;
 
+    private int mana = 0;
+    private int regenTime = 0;
+    private int renderTime = RENDER_LINGER;
+    private final PlayerEntity player;
 
     public ManaComponent(PlayerEntity playerIn) {
         player = playerIn;
@@ -49,6 +50,12 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             regenerate();
         } else if (regenTime != 0) {
             regenTime = 0;
+        }
+
+        if (mana < getManaMax()) {
+            renderTime = RENDER_LINGER;
+        } else if (renderTime > 0) {
+            renderTime--;
         }
 
         if (mana > getManaMax() && !player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
@@ -111,6 +118,10 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         return Math.min(player.experienceLevel/2, MAX_XP_BONUS);
     }
 
+    public int getRenderTime() {
+        return renderTime;
+    }
+
     @Override
     public void useMana(int cost) {
         if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {
@@ -119,11 +130,13 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         }
         mana = Math.max(0, mana - cost);
         regenTime = Math.min(regenTime, -getRegenRequirement());
+        renderTime = RENDER_LINGER;
     }
 
     @Override
     public void setMana(int value) {
         mana = value;
+        renderTime = RENDER_LINGER;
     }
 
     public void chargeMana(int charge) {
@@ -134,17 +147,20 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW) && mana > getManaMax() && player.canTakeDamage()) {
             player.damage(DamageSource.MAGIC, 0.3f * ((float)mana - getManaMax()));
         }
+        renderTime = RENDER_LINGER;
     }
 
     @Override
     public void readFromNbt(NbtCompound tag) {
         mana = tag.getInt("mana");
         regenTime = tag.getInt("regen_time");
+        renderTime = tag.getInt("render_time");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putInt("mana", mana);
         tag.putInt("regen_time", regenTime);
+        tag.putInt("render_time", renderTime);
     }
 }
