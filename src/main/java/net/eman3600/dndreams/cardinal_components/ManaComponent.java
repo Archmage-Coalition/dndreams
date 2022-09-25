@@ -118,8 +118,12 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         return Math.min(player.experienceLevel/2, MAX_XP_BONUS);
     }
 
-    public int getRenderTime() {
-        return renderTime;
+    public boolean shouldRender() {
+        return renderTime > 0;
+    }
+
+    public void reRender() {
+        renderTime = RENDER_LINGER;
     }
 
     @Override
@@ -130,13 +134,13 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         }
         mana = Math.max(0, mana - cost);
         regenTime = Math.min(regenTime, -getRegenRequirement());
-        renderTime = RENDER_LINGER;
+        reRender();
     }
 
     @Override
     public void setMana(int value) {
         mana = value;
-        renderTime = RENDER_LINGER;
+        reRender();
     }
 
     public void chargeMana(int charge) {
@@ -147,7 +151,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW) && mana > getManaMax() && player.canTakeDamage()) {
             player.damage(DamageSource.MAGIC, 0.3f * ((float)mana - getManaMax()));
         }
-        renderTime = RENDER_LINGER;
+        reRender();
     }
 
     @Override

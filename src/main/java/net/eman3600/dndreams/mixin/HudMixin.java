@@ -56,6 +56,18 @@ public abstract class HudMixin extends DrawableHelper {
     @Unique
     private static final int TORMENT_HEIGHT = 13;
 
+    @Unique
+    private static final int POWER_X_OFFSET = 8;
+
+    @Unique
+    private static final int POWER_Y_OFFSET = 8;
+
+    @Unique
+    private static final int POWER_WIDTH = 5;
+
+    @Unique
+    private static final int POWER_HEIGHT = 82;
+
 
 
     @Shadow
@@ -76,21 +88,60 @@ public abstract class HudMixin extends DrawableHelper {
     @Inject(method = "renderExperienceBar", at = @At("TAIL"))
     public void dndreams$renderManaModifier(MatrixStack matrices, int x, CallbackInfo ci) {
         PlayerEntity player = getCameraPlayer();
-        if (player.experienceLevel > 0) {
-            String string = "+" + EntityComponents.MANA.get(player).getXPBonus();
-            int k = x + 182 + 2;
-            int l = this.scaledHeight - 31 + 1;
-            this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
-            this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
-            this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
-            this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-            this.getTextRenderer().draw(matrices, string, (float)k, (float)l, Color.MAGENTA.getRGB());
-        }
+
+
+        EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
+            int mana = manaComponent.getMana();
+            int maxMana = manaComponent.getManaMax();
+            int xpBonus = manaComponent.getXPBonus();
+
+            if (xpBonus > 0) {
+                String string = "+" + xpBonus;
+                int k = x + 182 + 2;
+                int l = this.scaledHeight - 31 + 1;
+                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, Color.MAGENTA.getRGB());
+            }
+
+            if (manaComponent.shouldRender()) {
+                int xPos = client.options.getMainArm().getValue() == Arm.LEFT ? scaledWidth - MANA_X_OFFSET - MANA_WIDTH : MANA_X_OFFSET;
+                int yPos = scaledHeight - MANA_Y_OFFSET - MANA_HEIGHT;
+
+                String string = mana + "/" + maxMana;
+                int k = xPos + 9;
+                int l = (yPos - MANA_HEIGHT - 5);
+                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, Color.MAGENTA.getRGB());
+                //drawCenteredText(matrices, client.textRenderer, mana + "/" + maxMana, (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
+            }
+        });
+
+
+
+        EntityComponents.INFUSION.maybeGet(player).ifPresent(infusionComponent -> {
+            if (infusionComponent.infused()) {
+                float power = infusionComponent.getRoundedPower();
+                String string = power + "%";
+                int k = POWER_X_OFFSET + POWER_WIDTH + 7;
+                int l = POWER_Y_OFFSET + 4;
+                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, infusionComponent.getInfusion().getColor().getRGB());
+            }
+        });
     }
 
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
     private void renderPre(MatrixStack matrices, CallbackInfo callbackInfo) {
-        int xPos = MANA_X_OFFSET;
+        int xPos = client.options.getMainArm().getValue() == Arm.LEFT ? scaledWidth - MANA_X_OFFSET - MANA_WIDTH : MANA_X_OFFSET;
         int yPos = scaledHeight - MANA_Y_OFFSET - MANA_HEIGHT;
 
         int vPos;
@@ -103,22 +154,17 @@ public abstract class HudMixin extends DrawableHelper {
             vPos = 5;
         }
 
-        if (client.options.getMainArm().getValue() == Arm.LEFT) {
-            xPos = scaledWidth - xPos - MANA_WIDTH;
-        }
-
-        int xPosMana = xPos;
         if (!player.hasStatusEffect(ModStatusEffects.LIFEMANA))
             EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
                 int mana = manaComponent.getMana();
                 int maxMana = manaComponent.getManaMax();
-                if (manaComponent.getRenderTime() <= 0) return;
+                if (!manaComponent.shouldRender()) return;
 
                 RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
-                drawTexture(matrices, xPosMana, (yPos), 0, 0, MANA_WIDTH, MANA_HEIGHT);
-                drawTexture(matrices, xPosMana, yPos, 0, vPos, (int)((MANA_WIDTH) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT);
-                drawCenteredText(matrices, client.textRenderer, mana + "/" + maxMana, (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
+                drawTexture(matrices, xPos, (yPos), 0, 0, MANA_WIDTH, MANA_HEIGHT);
+                drawTexture(matrices, xPos, yPos, 0, vPos, (int)((MANA_WIDTH) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT);
+                //drawCenteredText(matrices, client.textRenderer, mana + "/" + maxMana, (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
             });
@@ -150,6 +196,24 @@ public abstract class HudMixin extends DrawableHelper {
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
             drawTexture(matrices, tormentXPos, tormentYPos, 80, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
             drawTexture(matrices, tormentXPos, tormentYPos + skipV, 80, tormentV + skipV, TORMENT_WIDTH, (int)(TORMENT_HEIGHT * tormentPercent));
+            RenderSystem.setShaderColor(1, 1, 1, 1);
+            RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
+        });
+
+        int powerXPos = POWER_X_OFFSET;
+        int powerYPos = POWER_Y_OFFSET;
+
+        EntityComponents.INFUSION.maybeGet(player).ifPresent(infusionComponent -> {
+            float powerPercent = (infusionComponent.getPower() / infusionComponent.getPowerMax());
+            if (!infusionComponent.infused()) return;
+            int skipV = (int)(POWER_HEIGHT * (1f - powerPercent));
+
+            Color color = infusionComponent.getInfusion().getColor();
+
+            RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
+            RenderSystem.setShaderColor(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, 1.0f);
+            drawTexture(matrices, powerXPos, powerYPos, 93, 0, POWER_WIDTH, POWER_HEIGHT);
+            drawTexture(matrices, powerXPos, powerYPos + skipV, 98, skipV, POWER_WIDTH, (int)(POWER_HEIGHT * powerPercent));
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });

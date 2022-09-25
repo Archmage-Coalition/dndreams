@@ -13,4 +13,5 @@ public interface InfusionComponentI extends AutoSyncedComponent, ServerTickingCo
     void setPower(float value);
     void chargePower(float charge);
     void usePower(float cost);
+    float getRoundedPower();
 }

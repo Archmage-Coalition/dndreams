@@ -6,6 +6,7 @@ import net.eman3600.dndreams.items.consumable.DreamEye;
 import net.eman3600.dndreams.items.consumable.MaterializeTome;
 import net.eman3600.dndreams.items.consumable.IcyNeedle;
 import net.eman3600.dndreams.items.consumable.NightmareFuel;
+import net.eman3600.dndreams.items.creative.InfusionChangerItem;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
@@ -215,6 +216,13 @@ public class ModItems {
     // Water Artichoke Seeds
     public static final Item WATER_ARTICHOKE_SEEDS = registerItem("water_artichoke_seeds",
             new AliasedPlaceableOnWaterItem(ModBlocks.WATER_ARTICHOKE, new FabricItemSettings().group(ItemGroup.MISC)));
+
+
+
+
+    // Pearl of Limitless Infusion
+    public static final Item INFUSION_CHANGER = registerItem("infusion_changer",
+            new InfusionChangerItem(new FabricItemSettings().group(ItemGroup.MISC)));
 
 
 

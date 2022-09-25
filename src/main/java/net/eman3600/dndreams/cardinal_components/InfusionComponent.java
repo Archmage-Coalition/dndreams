@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class InfusionComponent implements InfusionComponentI {
     private static final float MAX_POWER = 100f;
-    private static final float DIMENSIONAL_REGEN_RATE = 10f;
+    private static final float DIMENSIONAL_REGEN_RATE = 2f;
 
     private final PlayerEntity player;
 
@@ -39,6 +39,10 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public float getPower() {
         return power;
+    }
+
+    public float getRoundedPower() {
+        return ((int)(power * 10)) / 10f;
     }
 
     @Override

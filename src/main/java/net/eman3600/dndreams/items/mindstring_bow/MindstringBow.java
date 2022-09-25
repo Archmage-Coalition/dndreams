@@ -3,6 +3,7 @@ package net.eman3600.dndreams.items.mindstring_bow;
 import com.mojang.brigadier.Message;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -25,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MindstringBow extends BowItem {
+public class MindstringBow extends BowItem implements ManaCostItem {
     public MindstringBow(Settings settings) {
         super(settings);
     }
@@ -47,8 +48,7 @@ public class MindstringBow extends BowItem {
         if (user instanceof PlayerEntity) {
             PlayerEntity playerEntity = (PlayerEntity)user;
             boolean bl = playerEntity.getAbilities().creativeMode || EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0;
-            ManaComponent component = EntityComponents.MANA.get(user);
-            if (component.getMana() >= getManaCost() || bl) {
+            if (canAfford(playerEntity) || bl) {
                 ItemStack itemStack = getProjectile();
 
                 int i = this.getMaxUseTime(stack) - remainingUseTicks;
@@ -78,7 +78,7 @@ public class MindstringBow extends BowItem {
                         }
 
                         if (!bl && (!(EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0) || !allowInfinity())) {
-                            component.useMana(getManaCost());
+                            payAmmo(playerEntity);
                         }
 
                         stack.damage(1, playerEntity, (p) -> {
@@ -107,12 +107,22 @@ public class MindstringBow extends BowItem {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         ManaComponent component = EntityComponents.MANA.get(user);
-        boolean bl = component.getMana() >= getManaCost();
+        boolean bl = canAfford(user);
         if (!user.getAbilities().creativeMode && !bl) {
             return TypedActionResult.fail(itemStack);
         } else {
             user.setCurrentHand(hand);
             return TypedActionResult.consume(itemStack);
+        }
+    }
+
+    protected boolean canAfford(PlayerEntity player) {
+        return canAffordMana(player);
+    }
+
+    protected void payAmmo(PlayerEntity player) {
+        if (player != null) {
+            EntityComponents.MANA.get(player).useMana(getManaCost());
         }
     }
 
@@ -132,11 +142,6 @@ public class MindstringBow extends BowItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Texts.toText(new Message() {
-            @Override
-            public String getString() {
-                return "§dMana Cost: " + getManaCost();
-            }
-        }));
+        tooltip.add(getTooltipMana());
     }
 }
