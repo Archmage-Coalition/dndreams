@@ -13,7 +13,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 
-public class InsubstantialStatusEffect extends StatusEffect implements StickyStatusEffect {
+public class InsubstantialStatusEffect extends StatusEffect {
 
     public InsubstantialStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
         super(statusEffectCategory, color);
@@ -39,10 +39,5 @@ public class InsubstantialStatusEffect extends StatusEffect implements StickySta
         super.onRemoved(entity, attributes, amplifier);
 
         entity.setVelocity(new Vec3d(entity.getVelocity().x, 0, entity.getVelocity().z));
-    }
-
-    @Override
-    public boolean shouldStick(LivingEntity entity) {
-        return ((LivingEntityMixinI)entity).isTrulyInsideWall();
     }
 }
