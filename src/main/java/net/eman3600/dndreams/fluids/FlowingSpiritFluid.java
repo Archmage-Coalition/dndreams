@@ -35,10 +35,6 @@ public abstract class FlowingSpiritFluid extends FlowableFluid {
         return true;
     }
 
-
-    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-    }
-
     @Override
     protected void beforeBreakingBlock(WorldAccess world, BlockPos pos, BlockState state) {
         BlockEntity blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;

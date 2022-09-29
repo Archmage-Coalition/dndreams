@@ -65,7 +65,7 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                 Direction direction = (Direction)var5.next();
                 BlockPos blockPos = pos.offset(direction.getOpposite());
                 if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-                    Block block = world.getFluidState(pos).isStill() ? Blocks.TUFF : Blocks.GLASS;
+                    Block block = world.getFluidState(pos).isStill() ? Blocks.TUFF : Blocks.ICE;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
