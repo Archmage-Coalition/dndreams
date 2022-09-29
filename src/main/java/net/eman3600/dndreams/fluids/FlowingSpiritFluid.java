@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.fluid.*;
 import net.minecraft.item.Item;
 import net.minecraft.state.StateManager;
@@ -14,6 +15,7 @@ import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
@@ -31,6 +33,10 @@ public abstract class FlowingSpiritFluid extends FlowableFluid {
     @Override
     protected boolean isInfinite() {
         return true;
+    }
+
+
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
     }
 
     @Override

@@ -2,6 +2,7 @@ package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.Initializer;
 import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -16,6 +17,9 @@ public class ModTags {
     public static final TagKey<Block> BASE_SOIL_NETHER = ofBlock("base_soil_nether");
     public static final TagKey<Block> DREAMWOOD_LOGS = ofBlock("dreamwood_logs");
     public static final TagKey<Block> DREAMWOOD = ofBlock("dreamwood");
+    public static final TagKey<Block> SUBSTANTIAL = ofBlock("substantial");
+
+    public static final TagKey<Fluid> FLOWING_SPIRIT = ofFluid("flowing_spirit");
 
     public static final TagKey<Biome> GEN_HELLSLATE = ofBiome("gen_hellslate");
     public static final TagKey<Biome> GEN_HELLSLATE_COMMON = ofBiome("gen_hellslate_common");
@@ -29,6 +33,10 @@ public class ModTags {
     /* TAG REGISTRIES */
     private static TagKey<Block> ofBlock(String id) {
         return TagKey.of(Registry.BLOCK_KEY, new Identifier(Initializer.MODID, id));
+    }
+
+    private static TagKey<Fluid> ofFluid(String id) {
+        return TagKey.of(Registry.FLUID_KEY, new Identifier(Initializer.MODID, id));
     }
 
     private static TagKey<Item> ofItem(String id) {

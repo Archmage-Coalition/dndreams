@@ -14,7 +14,9 @@
     "LivingEntityMixin",
     "PlayerMixin",
     "SonicBoomDisabler",
-    "WorldMixin"
+    "WorldMixin",
+    "FluidBlockMixin",
+    "EntityMixin"
   ],
   "client": [
     "HudMixin",
