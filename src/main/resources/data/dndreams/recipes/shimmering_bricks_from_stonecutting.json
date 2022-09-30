@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "dndreams:shimmering_stone"
+  },
+  "result": "dndreams:shimmering_bricks"
+}

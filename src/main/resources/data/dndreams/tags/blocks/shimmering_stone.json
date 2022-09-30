@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "dndreams:shimmering_stone"
+    "dndreams:shimmering_stone",
+    "dndreams:shimmering_cobblestone",
+    "dndreams:shimmering_bricks"
   ]
 }

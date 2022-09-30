@@ -2,6 +2,7 @@ package net.eman3600.dndreams.mixin;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.UnmodifiableIterator;
+import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FlowableFluid;
@@ -65,12 +66,12 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                 Direction direction = (Direction)var5.next();
                 BlockPos blockPos = pos.offset(direction.getOpposite());
                 if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-                    Block block = world.getFluidState(pos).isStill() ? Blocks.TUFF : Blocks.ICE;
+                    Block block = world.getFluidState(pos).isStill() ? ModBlocks.SHIMMERING_STONE : ModBlocks.SHIMMERING_COBBLESTONE;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
                 } else if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
-                    Block block = world.getFluidState(pos).isStill() ? Blocks.SOUL_SOIL : Blocks.CLAY;
+                    Block block = world.getFluidState(pos).isStill() ? Blocks.SOUL_SOIL : ModBlocks.SHIMMERING_SAND;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);

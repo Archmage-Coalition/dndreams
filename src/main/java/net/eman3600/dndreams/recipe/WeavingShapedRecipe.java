@@ -45,7 +45,7 @@ public class WeavingShapedRecipe implements WeavingRecipe {
     }
 
     public RecipeSerializer<?> getSerializer() {
-        return RecipeSerializer.SHAPED;
+        return ModRecipeTypes.WEAVING_SERIALIZER;
     }
 
     @Override

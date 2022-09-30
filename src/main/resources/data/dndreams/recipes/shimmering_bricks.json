@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "shimmering_bricks",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:shimmering_stone"
+    }
+  },
+  "result": {
+    "item": "dndreams:shimmering_bricks",
+    "count": 4
+  }
+}

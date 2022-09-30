@@ -42,7 +42,7 @@ public class WeavingShapelessRecipe implements WeavingRecipe {
     }
 
     public RecipeSerializer<?> getSerializer() {
-        return RecipeSerializer.SHAPELESS;
+        return ModRecipeTypes.WEAVING_SHAPELESS_SERIALIZER;
     }
 
     @Override

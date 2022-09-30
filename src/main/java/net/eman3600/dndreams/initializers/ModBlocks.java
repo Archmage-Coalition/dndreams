@@ -93,6 +93,27 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
+    // Shimmering blocks
+    public static final Block SHIMMERING_STONE = registerBlock("shimmering_stone",
+            new Block(FabricBlockSettings.copy(Blocks.STONE)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SHIMMERING_COBBLESTONE = registerBlock("shimmering_cobblestone",
+            new Block(FabricBlockSettings.copy(Blocks.COBBLESTONE)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SHIMMERING_BRICKS = registerBlock("shimmering_bricks",
+            new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SHIMMERING_SAND = registerBlock("shimmering_sand",
+            new FallingBlock(FabricBlockSettings.copy(Blocks.SAND)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
     // Dream Weaver
     public static final Block DREAM_TABLE = registerBlock("dream_table",
             new DreamTable(FabricBlockSettings.of(Material.WOOD).strength(2.5f)
