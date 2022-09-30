@@ -4,7 +4,6 @@ import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModRecipeTypes;
 import net.eman3600.dndreams.initializers.ModScreenHandlerTypes;
 import net.eman3600.dndreams.recipe.WeavingRecipe;
-import net.eman3600.dndreams.recipe.WeavingShapedRecipe;
 import net.eman3600.dndreams.screen.slot.WeavingResultSlot;
 import net.eman3600.dndreams.screen.slot.WeavingSlot;
 import net.eman3600.dndreams.util.inventory.WeavingInventory;
@@ -77,7 +76,7 @@ public class WeavingScreenHandler extends ScreenHandler {
             ItemStack itemStack = ItemStack.EMPTY;
             Optional<WeavingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.WEAVING, craftingInventory, world);
             if (optional.isPresent()) {
-                WeavingRecipe craftingRecipe = (WeavingRecipe)optional.get();
+                WeavingRecipe craftingRecipe = (WeavingRecipe) optional.get();
                 if (resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe)) {
                     itemStack = craftingRecipe.craft(craftingInventory);
                 }

@@ -4,6 +4,7 @@ import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModFluids;
 import net.eman3600.dndreams.initializers.ModScreenHandlerTypes;
 import net.eman3600.dndreams.screen.WeavingScreen;
+import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -32,5 +33,7 @@ public class ClientInitializer implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluids.STILL_FLOWING_SPIRIT, ModFluids.FLOWING_FLOWING_SPIRIT);
+
+        ModModelPredicateProvider.registerModModels();
     }
 }

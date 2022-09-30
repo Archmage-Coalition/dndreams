@@ -50,8 +50,6 @@ public class Initializer implements ModInitializer {
 
 		LootModifiers.modifyLootTables();
 
-		ModModelPredicateProvider.registerModModels();
-
 		ModStats.registerStats();
 		ModTags.registerTags();
 		ModRegistries.register();

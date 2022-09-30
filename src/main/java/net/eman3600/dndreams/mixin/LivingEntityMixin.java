@@ -58,18 +58,17 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityMi
 
     @Inject(method = "baseTick", at = @At("HEAD"))
     public void dndreams$baseTick(CallbackInfo ci) {
-        if (!((Entity)this instanceof ClientPlayerEntity)) {
-            if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
-                addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE));
-                if (hasStatusEffect(ModStatusEffects.GRACE)) {
-                    removeStatusEffect(ModStatusEffects.GRACE);
-                }
-            } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!isInsideWall() || isOnGround())) {
-                removeStatusEffect(ModStatusEffects.INSUBSTANTIAL);
-            }
-            if (hasStatusEffect(ModStatusEffects.GRACE) && isOnGround()) {
+        if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
+            addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE));
+            if (hasStatusEffect(ModStatusEffects.GRACE)) {
                 removeStatusEffect(ModStatusEffects.GRACE);
             }
+        } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!isInsideWall() || isOnGround())) {
+            removeStatusEffect(ModStatusEffects.INSUBSTANTIAL);
         }
+        if (hasStatusEffect(ModStatusEffects.GRACE) && isOnGround()) {
+            removeStatusEffect(ModStatusEffects.GRACE);
+        }
+
     }
 }
