@@ -8,6 +8,7 @@ import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class ModStatusEffect extends StatusEffect {
@@ -69,6 +70,10 @@ public class ModStatusEffect extends StatusEffect {
             if (component.getMana() > component.getManaMax()) {
                 entity.damage(DamageSource.MAGIC, 0.3f * ((float)component.getMana() - component.getManaMax()));
             }
+        }
+
+        if (this == ModStatusEffects.INSUBSTANTIAL && !entity.isOnGround()) {
+            entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.GRACE, Integer.MAX_VALUE));
         }
     }
 }

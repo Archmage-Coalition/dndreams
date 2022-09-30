@@ -2,7 +2,6 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.mob_effects.InstantModStatusEffect;
-import net.eman3600.dndreams.mob_effects.InsubstantialStatusEffect;
 import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -20,7 +19,8 @@ public class ModStatusEffects {
     public static StatusEffect MEMORY = register("memory", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 26214));
     public static StatusEffect SILENCE = register("silence", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 12303291));
     public static StatusEffect LIFEMANA = register("lifemana", new ModStatusEffect(StatusEffectCategory.HARMFUL, 17510));
-    public static StatusEffect INSUBSTANTIAL = register("insubstantial", new InsubstantialStatusEffect(StatusEffectCategory.HARMFUL, 2289390));
+    public static StatusEffect INSUBSTANTIAL = register("insubstantial", new ModStatusEffect(StatusEffectCategory.HARMFUL, 2289390));
+    public static StatusEffect GRACE = register("grace", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 15658496));
 
     private static StatusEffect register(String name, StatusEffect entry) {
         return (StatusEffect) Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

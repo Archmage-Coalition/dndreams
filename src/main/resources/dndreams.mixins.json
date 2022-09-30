@@ -16,7 +16,8 @@
     "SonicBoomDisabler",
     "WorldMixin",
     "FluidBlockMixin",
-    "EntityMixin"
+    "EntityMixin",
+    "AbstractBlockStateMixin"
   ],
   "client": [
     "HudMixin",

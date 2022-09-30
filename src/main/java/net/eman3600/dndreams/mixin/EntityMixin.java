@@ -6,6 +6,7 @@ import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.command.CommandOutput;
 import net.minecraft.util.Nameable;
 import net.minecraft.util.math.BlockPos;
@@ -22,13 +23,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput, ComponentAccess {
-    @Shadow
-    public float fallDistance;
-
-    @Inject(method = "fall", at = @At(value = "FIELD", opcode = Opcodes.GETFIELD, target = "Lnet/minecraft/entity/Entity;fallDistance:F", ordinal = 0))
-    private void preventFallEffects(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
-        if ((Entity)(Object)this instanceof LivingEntity living && living.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
-            this.fallDistance = 0;
+    @Inject(method = "isInvulnerableTo", at = @At("RETURN"), cancellable = true)
+    private void dndreams$isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
+        if ((Object)this instanceof LivingEntity living && living.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
+            cir.setReturnValue(cir.getReturnValue() || damageSource == DamageSource.IN_WALL || damageSource == DamageSource.FALL);
         }
     }
 }
