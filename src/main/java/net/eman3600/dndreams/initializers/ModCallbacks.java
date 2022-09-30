@@ -53,6 +53,7 @@ public class ModCallbacks {
 
                             stack.decrement(stack.getCount() - amount);
 
+
                             if (amount <= 0) {
                                 item.remove(Entity.RemovalReason.DISCARDED);
                             }

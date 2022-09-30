@@ -3,6 +3,7 @@ package net.eman3600.dndreams.mixin;
 import net.eman3600.dndreams.initializers.ModFluids;
 import net.eman3600.dndreams.util.ItemEntityInterface;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
+import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -21,7 +22,7 @@ public abstract class ItemEntityMixin extends Entity implements ItemEntityInterf
 
     @Inject(method = "tick", at = @At("TAIL"))
     public void dndreams$itemEntityTick(CallbackInfo ci) {
-        if (this.isSubmergedIn(ModFluids.FLOWING_SPIRIT_TAG)) {
+        if (this.isSubmergedIn(ModTags.FLOWING_SPIRIT)) {
             ItemInFlowingSpiritCallback.EVENT.invoker().collision((ItemEntity) (Object) this);
         }
     }
