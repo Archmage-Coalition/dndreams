@@ -27,6 +27,19 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
         super(owner, entries, codec);
     }
 
+    @Inject(method = "getOutlineShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;", at = @At("HEAD"), cancellable = true)
+    private void dndreams$getOutlineShape(BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
+        if(context instanceof EntityShapeContext) {
+            EntityShapeContext esc = (EntityShapeContext)context;
+            if(esc.getEntity() != null) {
+                Entity entity = esc.getEntity();
+                if (entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModStatusEffects.RESTRICTED)) {
+                    cir.setReturnValue(VoxelShapes.empty());
+                }
+            }
+        }
+    }
+
     @Inject(at = @At("RETURN"), method = "getCollisionShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;", cancellable = true)
     private void dndreams$getCollisionShape(BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
         VoxelShape blockShape = cir.getReturnValue();

@@ -4,6 +4,7 @@
     "minecraft:obsidian",
     "minecraft:crying_obsidian",
     "minecraft:bedrock",
-    "minecraft:barrier"
+    "minecraft:barrier",
+    "#dndreams:shimmering_stone"
   ]
 }
