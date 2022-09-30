@@ -59,7 +59,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityMi
     @Inject(method = "baseTick", at = @At("HEAD"))
     public void dndreams$baseTick(CallbackInfo ci) {
         if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
-            addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE));
+            addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE, 0, true, true));
             if (hasStatusEffect(ModStatusEffects.GRACE)) {
                 removeStatusEffect(ModStatusEffects.GRACE);
             }

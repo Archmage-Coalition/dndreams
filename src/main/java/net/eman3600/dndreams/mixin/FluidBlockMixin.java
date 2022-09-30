@@ -53,7 +53,7 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                 Direction direction = (Direction)var5.next();
                 BlockPos blockPos = pos.offset(direction.getOpposite());
                 if (world.getFluidState(blockPos).isIn(ModTags.FLOWING_SPIRIT)) {
-                    Block block = world.getFluidState(pos).isStill() ? Blocks.CRYING_OBSIDIAN : Blocks.NETHERRACK;
+                    Block block = world.getFluidState(pos).isStill() ? Blocks.MAGMA_BLOCK : Blocks.NETHERRACK;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
