@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "minecraft:obsidian"
+  },
+  "result": {
+    "item": "minecraft:crying_obsidian"
+  }
+}

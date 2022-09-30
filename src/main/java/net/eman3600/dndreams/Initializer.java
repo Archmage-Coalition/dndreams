@@ -55,5 +55,7 @@ public class Initializer implements ModInitializer {
 		ModRegistries.register();
 
 		ModDimensions.registerDimensions();
+
+		ModCallbacks.registerCallbacks();
 	}
 }

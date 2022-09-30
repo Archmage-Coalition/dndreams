@@ -1,0 +1,10 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "item": "minecraft:emerald",
+    "count": 10
+  }
+}

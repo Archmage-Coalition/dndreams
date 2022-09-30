@@ -4,20 +4,21 @@
   "package": "net.eman3600.dndreams.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AbstractBlockStateMixin",
     "BrewingRegistryMixin",
     "DragonFightMixin",
     "EndermanEntityMixin",
     "EndermanEyesFeatureRendererMixin",
     "EndPortalFeatureMixin",
+    "EntityMixin",
+    "FluidBlockMixin",
+    "ItemEntityMixin",
     "ItemMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
     "PlayerMixin",
     "SonicBoomDisabler",
-    "WorldMixin",
-    "FluidBlockMixin",
-    "EntityMixin",
-    "AbstractBlockStateMixin"
+    "WorldMixin"
   ],
   "client": [
     "HudMixin",

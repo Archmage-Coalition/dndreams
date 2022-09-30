@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.recipe.TransmutationRecipe;
 import net.eman3600.dndreams.recipe.WeavingRecipe;
 import net.eman3600.dndreams.recipe.WeavingShapedRecipe;
 import net.eman3600.dndreams.recipe.WeavingShapelessRecipe;
@@ -12,12 +13,15 @@ public class ModRecipeTypes {
     // Types
 
     public static final RecipeType<WeavingRecipe> WEAVING = register("weaving");
+    public static final RecipeType<TransmutationRecipe> TRANSMUTATION = register("transmutation");
 
 
     // Serializers
 
     public static final RecipeSerializer<WeavingShapedRecipe> WEAVING_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER,
             new Identifier(Initializer.MODID, WeavingShapedRecipe.Serializer.ID), WeavingShapedRecipe.Serializer.INSTANCE);
+    public static final RecipeSerializer<TransmutationRecipe> TRANSMUTATION_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER,
+            new Identifier(Initializer.MODID, TransmutationRecipe.Serializer.ID), TransmutationRecipe.Serializer.INSTANCE);
     public static final RecipeSerializer<WeavingShapelessRecipe> WEAVING_SHAPELESS_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER,
             new Identifier(Initializer.MODID, WeavingShapelessRecipe.Serializer.ID), WeavingShapelessRecipe.Serializer.INSTANCE);
 
