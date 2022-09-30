@@ -37,7 +37,5 @@ public class InsubstantialStatusEffect extends StatusEffect {
     @Override
     public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         super.onRemoved(entity, attributes, amplifier);
-
-        entity.setVelocity(new Vec3d(entity.getVelocity().x, 0, entity.getVelocity().z));
     }
 }

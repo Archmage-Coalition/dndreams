@@ -44,6 +44,10 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityMi
 
     @Shadow public abstract EntityDimensions getDimensions(EntityPose pose);
 
+    @Shadow public abstract boolean isInsideWall();
+
+    @Shadow public abstract boolean removeStatusEffect(StatusEffect type);
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -57,8 +61,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityMi
 
     @Inject(method = "baseTick", at = @At("HEAD"))
     public void dndreams$baseTick(CallbackInfo ci) {
-        if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !((Entity)this instanceof ClientPlayerEntity)) {
-            addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE));
+        if (!((Entity)this instanceof ClientPlayerEntity)) {
+            if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
+                addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE));
+            } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!isInsideWall() || isOnGround())) {
+                removeStatusEffect(ModStatusEffects.INSUBSTANTIAL);
+            }
         }
     }
 
