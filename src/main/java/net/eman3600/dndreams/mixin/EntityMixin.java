@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput, ComponentAccess {
     @Inject(method = "isInvulnerableTo", at = @At("RETURN"), cancellable = true)
     private void dndreams$isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
-        if ((Object)this instanceof LivingEntity living && living.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
+        if ((Object)this instanceof LivingEntity living && (living.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) || living.hasStatusEffect(ModStatusEffects.GRACE))) {
             cir.setReturnValue(cir.getReturnValue() || damageSource == DamageSource.IN_WALL || damageSource == DamageSource.FALL);
         }
     }

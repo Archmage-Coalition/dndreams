@@ -72,21 +72,4 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityMi
             }
         }
     }
-
-    @ModifyArg(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z", ordinal = 0))
-    private StatusEffect dndreams$fallSlowInsubstantial(StatusEffect effect) {
-        LivingEntity self = (LivingEntity)(Object)this;
-
-        return self.hasStatusEffect(ModStatusEffects.GRACE) ? ModStatusEffects.GRACE : effect;
-    }
-
-    @Unique
-    public boolean isTrulyInsideWall() {
-        float f = getDimensions(getPose()).width * 0.8F;
-        Box box = Box.of(this.getEyePos(), (double)f, 1.0E-6D, (double)f);
-        return BlockPos.stream(box).anyMatch((pos) -> {
-            BlockState blockState = this.world.getBlockState(pos);
-            return !blockState.isAir() && blockState.shouldSuffocate(this.world, pos) && VoxelShapes.matchesAnywhere(blockState.getCollisionShape(this.world, pos).offset((double)pos.getX(), (double)pos.getY(), (double)pos.getZ()), VoxelShapes.cuboid(box), BooleanBiFunction.AND);
-        });
-    }
 }
