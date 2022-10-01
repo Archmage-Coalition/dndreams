@@ -6,6 +6,7 @@
     "minecraft:bedrock",
     "minecraft:barrier",
     "#dndreams:shimmering_stone",
-    "dndreams:shimmering_sand"
+    "dndreams:shimmering_glass",
+    "dndreams:shimmering_ice"
   ]
 }

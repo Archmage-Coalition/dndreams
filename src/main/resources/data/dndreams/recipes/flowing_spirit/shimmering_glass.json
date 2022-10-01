@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "dndreams:shimmering_ice"
+  },
+  "result": {
+    "item": "dndreams:shimmering_glass"
+  }
+}

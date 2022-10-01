@@ -1,8 +1,8 @@
 package net.eman3600.dndreams.initializers;
 
+import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
 import net.eman3600.dndreams.recipe.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
-import net.eman3600.dndreams.util.ItemEntityInterface;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventory;
@@ -48,6 +48,7 @@ public class ModCallbacks {
                             for (int i = 0; i < amount; i++) {
                                 if (launchNewItem(world, item.getPos(), output)) {
                                     amount -= 1;
+                                    i--;
                                 }
                             }
 

@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "dndreams:sculk_powder"
+  },
+  "result": {
+    "item": "dndreams:dream_powder"
+  }
+}

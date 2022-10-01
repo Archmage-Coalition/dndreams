@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:weaving_shaped",
+  "pattern": [
+    "# #",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:shimmering_glass"
+    }
+  },
+  "weave_item": {
+    "item": "dndreams:sculk_powder"
+  },
+  "result": {
+    "item": "minecraft:experience_bottle",
+	"count": 3
+  }
+}

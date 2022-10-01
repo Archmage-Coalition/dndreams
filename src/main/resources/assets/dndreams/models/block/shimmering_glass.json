@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "dndreams:block/shimmering_sand"
+    "all": "dndreams:block/shimmering_glass"
   }
 }

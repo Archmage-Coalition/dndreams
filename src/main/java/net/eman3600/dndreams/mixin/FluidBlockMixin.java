@@ -40,7 +40,7 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                 Direction direction = (Direction)var5.next();
                 BlockPos blockPos = pos.offset(direction.getOpposite());
                 if (world.getFluidState(blockPos).isIn(ModTags.FLOWING_SPIRIT)) {
-                    Block block = world.getFluidState(pos).isStill() ? Blocks.DEEPSLATE : Blocks.SAND;
+                    Block block = ModBlocks.SHIMMERING_ICE;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
@@ -53,7 +53,7 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                 Direction direction = (Direction)var5.next();
                 BlockPos blockPos = pos.offset(direction.getOpposite());
                 if (world.getFluidState(blockPos).isIn(ModTags.FLOWING_SPIRIT)) {
-                    Block block = world.getFluidState(pos).isStill() ? Blocks.MAGMA_BLOCK : Blocks.NETHERRACK;
+                    Block block = ModBlocks.SHIMMERING_STONE;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
@@ -66,12 +66,12 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                 Direction direction = (Direction)var5.next();
                 BlockPos blockPos = pos.offset(direction.getOpposite());
                 if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-                    Block block = world.getFluidState(pos).isStill() ? ModBlocks.SHIMMERING_STONE : ModBlocks.SHIMMERING_COBBLESTONE;
+                    Block block = ModBlocks.SHIMMERING_ICE;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
                 } else if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
-                    Block block = world.getFluidState(pos).isStill() ? Blocks.SOUL_SOIL : ModBlocks.SHIMMERING_SAND;
+                    Block block = ModBlocks.SHIMMERING_STONE;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);

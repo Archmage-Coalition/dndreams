@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.recipe;
 
 import com.google.gson.JsonObject;
+import net.eman3600.dndreams.initializers.ModDimensions;
 import net.eman3600.dndreams.initializers.ModRecipeTypes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -17,12 +18,14 @@ public class TransmutationRecipe implements Recipe<Inventory> {
     final String group;
     final Ingredient input;
     final ItemStack output;
+    private final boolean realOnly;
 
-    public TransmutationRecipe(Identifier id, String group, Ingredient input, ItemStack output) {
+    public TransmutationRecipe(Identifier id, String group, Ingredient input, ItemStack output, boolean realOnly) {
         this.id = id;
         this.group = group;
         this.input = input;
         this.output = output;
+        this.realOnly = realOnly;
     }
 
     public Identifier getId() {
@@ -30,7 +33,7 @@ public class TransmutationRecipe implements Recipe<Inventory> {
     }
 
     public RecipeSerializer<TransmutationRecipe> getSerializer() {
-        return Serializer.INSTANCE;
+        return ModRecipeTypes.TRANSMUTATION_SERIALIZER;
     }
 
     @Override
@@ -45,6 +48,10 @@ public class TransmutationRecipe implements Recipe<Inventory> {
     public boolean matches(Inventory inventory, World world) {
         int size = 0;
         boolean hasMatch = false;
+
+        if (realOnly && world.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+            return false;
+        }
 
         for(int j = 0; j < inventory.size(); j++) {
             ItemStack itemStack = inventory.getStack(j);
@@ -88,8 +95,9 @@ public class TransmutationRecipe implements Recipe<Inventory> {
             String string = JsonHelper.getString(jsonObject, "group", "");
             Ingredient ingredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient"));
             ItemStack itemStack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
+            boolean realOnly = JsonHelper.getBoolean(jsonObject, "real_only", false);
 
-            return new TransmutationRecipe(identifier, string, ingredient, itemStack);
+            return new TransmutationRecipe(identifier, string, ingredient, itemStack, realOnly);
 
         }
 
@@ -97,8 +105,9 @@ public class TransmutationRecipe implements Recipe<Inventory> {
             String group = packetByteBuf.readString();
             Ingredient ingredient = Ingredient.fromPacket(packetByteBuf);
             ItemStack itemStack = packetByteBuf.readItemStack();
+            boolean realOnly = packetByteBuf.readBoolean();
 
-            return new TransmutationRecipe(identifier, group, ingredient, itemStack);
+            return new TransmutationRecipe(identifier, group, ingredient, itemStack, realOnly);
         }
 
         public void write(PacketByteBuf packetByteBuf, TransmutationRecipe transmutationRecipe) {

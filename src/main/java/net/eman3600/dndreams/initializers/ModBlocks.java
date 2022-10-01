@@ -109,8 +109,12 @@ public class ModBlocks {
                     .requiresTool()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHIMMERING_SAND = registerBlock("shimmering_sand",
-            new FallingBlock(FabricBlockSettings.copy(Blocks.SAND)),
+    public static final Block SHIMMERING_ICE = registerBlock("shimmering_ice",
+            new ShimmeringIceBlock(FabricBlockSettings.copy(Blocks.ICE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SHIMMERING_GLASS = registerBlock("shimmering_glass",
+            new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
