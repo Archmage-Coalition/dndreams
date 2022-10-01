@@ -96,25 +96,29 @@ public class ModBlocks {
     // Shimmering blocks
     public static final Block SHIMMERING_STONE = registerBlock("shimmering_stone",
             new Block(FabricBlockSettings.copy(Blocks.STONE)
-                    .requiresTool()),
+                    .requiresTool().luminance(state -> 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block SHIMMERING_COBBLESTONE = registerBlock("shimmering_cobblestone",
             new Block(FabricBlockSettings.copy(Blocks.COBBLESTONE)
-                    .requiresTool()),
+                    .requiresTool().luminance(state -> 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block SHIMMERING_BRICKS = registerBlock("shimmering_bricks",
             new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS)
-                    .requiresTool()),
+                    .requiresTool().luminance(state -> 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block SHIMMERING_ICE = registerBlock("shimmering_ice",
-            new ShimmeringIceBlock(FabricBlockSettings.copy(Blocks.ICE)),
+            new ShimmeringIceBlock(FabricBlockSettings.copy(Blocks.ICE).luminance(state -> 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block SHIMMERING_GLASS = registerBlock("shimmering_glass",
-            new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS)),
+            new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(state -> 7)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SHIMMERING_GLASS_PANE = registerBlock("shimmering_glass_pane",
+            new PaneBlock(FabricBlockSettings.copy(Blocks.GLASS_PANE).luminance(state -> 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 

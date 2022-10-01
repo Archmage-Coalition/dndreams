@@ -566,7 +566,7 @@
                           "then_run": {
                             "type": "minecraft:block",
                             "result_state": {
-                              "Name": "minecraft:water",
+                              "Name": "dndreams:flowing_spirit",
                               "Properties": {
                                 "level": "0"
                               }
@@ -618,7 +618,7 @@
                           "then_run": {
                             "type": "minecraft:block",
                             "result_state": {
-                              "Name": "minecraft:water",
+                              "Name": "dndreams:block/flowing_spirit",
                               "Properties": {
                                 "level": "0"
                               }
@@ -978,7 +978,7 @@
                             {
                               "type": "minecraft:block",
                               "result_state": {
-                                "Name": "minecraft:water",
+                                "Name": "dndreams:block/flowing_spirit",
                                 "Properties": {
                                   "level": "0"
                                 }
@@ -1781,7 +1781,7 @@
                         "then_run": {
                           "type": "minecraft:block",
                           "result_state": {
-                            "Name": "minecraft:water",
+                            "Name": "dndreams:block/flowing_spirit",
                             "Properties": {
                               "level": "0"
                             }

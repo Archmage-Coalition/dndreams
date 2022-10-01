@@ -3,10 +3,7 @@ package net.eman3600.dndreams.cardinal_components;
 import dev.emi.trinkets.api.TrinketInventory;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.cardinal_components.interfaces.DreamingComponentI;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.initializers.ModItems;
-import net.eman3600.dndreams.initializers.ModStats;
+import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -74,11 +71,13 @@ public class DreamingComponent implements DreamingComponentI {
             returnPos = player.getPos();
             player.setHealth((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
+            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.GRACE, 60, 0), player);
             torment().setTorment(0);
         } else {
             player.setPosition(returnPos);
             player.setHealth((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
+            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.GRACE, 60, 0), player);
             torment().setTorment(0);
         }
     }

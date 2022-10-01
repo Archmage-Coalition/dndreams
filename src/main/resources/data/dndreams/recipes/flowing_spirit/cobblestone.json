@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "minecraft:cobbled_deepslate"
+  },
+  "result": {
+    "item": "minecraft:cobblestone"
+  }
+}

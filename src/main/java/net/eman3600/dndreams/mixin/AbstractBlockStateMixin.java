@@ -47,7 +47,7 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
             EntityShapeContext esc = (EntityShapeContext)context;
             if(esc.getEntity() != null) {
                 Entity entity = esc.getEntity();
-                if (entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !world.getBlockState(pos).isIn(ModTags.SUBSTANTIAL)) {
+                if (entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !world.getBlockState(pos).isIn(ModTags.SUBSTANTIAL) && !entity.getType().isIn(ModTags.SUBSTANTIAL_ENTITIES)) {
                     cir.setReturnValue(VoxelShapes.empty());
                 }
             }

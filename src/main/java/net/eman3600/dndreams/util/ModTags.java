@@ -2,8 +2,11 @@ package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.Initializer;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
+import net.minecraft.tag.EntityTypeTags;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -30,6 +33,8 @@ public class ModTags {
     public static final TagKey<Item> MANA_USING_TOOLS = ofItem("mana_using_tools");
     public static final TagKey<Item> POWER_USING_TOOLS = ofItem("power_using_tools");
 
+    public static final TagKey<EntityType<?>> SUBSTANTIAL_ENTITIES = ofEntity("substantial");
+
     /* TAG REGISTRIES */
     private static TagKey<Block> ofBlock(String id) {
         return TagKey.of(Registry.BLOCK_KEY, new Identifier(Initializer.MODID, id));
@@ -49,6 +54,10 @@ public class ModTags {
 
     private static TagKey<Structure> ofStructure(String id) {
         return TagKey.of(Registry.STRUCTURE_KEY, new Identifier(Initializer.MODID, id));
+    }
+
+    private static TagKey<EntityType<?>> ofEntity(String id) {
+        return TagKey.of(Registry.ENTITY_TYPE_KEY, new Identifier(Initializer.MODID, id));
     }
 
 
