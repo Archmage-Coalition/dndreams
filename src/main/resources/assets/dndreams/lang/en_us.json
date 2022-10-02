@@ -56,6 +56,7 @@
   "item.dndreams.dream_eye": "Eye of Oneiros",
   "item.dndreams.icy_needle": "Icy Needle",
   "item.dndreams.materialize_tome": "Solemn Return",
+  "item.dndreams.ancient_spark": "Soul Chime",
   
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
   "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",
@@ -155,6 +156,8 @@
   "block.dndreams.shimmering_ice": "Shimmering Ice",
   "block.dndreams.shimmering_glass": "Shimmering Glass",
   "block.dndreams.shimmering_glass_pane": "Shimmering Glass Pane",
+  
+  "block.dndreams.charged_deepslate": "Charged Deepslate",
   
   "block.dndreams.managold_block": "Managold Block",
   "block.dndreams.tormite_block": "Tormite Block",

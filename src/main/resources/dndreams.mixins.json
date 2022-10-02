@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AbstractBlockStateMixin",
+    "BlockItemMixin",
     "BrewingRegistryMixin",
+    "BucketItemMixin",
     "DragonFightMixin",
     "EndermanEntityMixin",
     "EndermanEyesFeatureRendererMixin",

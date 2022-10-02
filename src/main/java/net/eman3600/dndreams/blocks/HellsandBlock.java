@@ -7,10 +7,10 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.IntProvider;
 
-public class Hellsand extends SoulSandBlock {
+public class HellsandBlock extends SoulSandBlock {
     private final IntProvider experienceDropped;
 
-    public Hellsand(Settings settings, IntProvider experience) {
+    public HellsandBlock(Settings settings, IntProvider experience) {
         super(settings);
         this.experienceDropped = experience;
     }

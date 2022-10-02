@@ -2,10 +2,7 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.items.*;
-import net.eman3600.dndreams.items.consumable.DreamEye;
-import net.eman3600.dndreams.items.consumable.MaterializeTome;
-import net.eman3600.dndreams.items.consumable.IcyNeedle;
-import net.eman3600.dndreams.items.consumable.NightmareFuel;
+import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.creative.InfusionChangerItem;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
@@ -98,6 +95,10 @@ public class ModItems {
     // Flint and Hellsteel
     public static final Item FLINT_AND_HELLSTEEL = registerItem("flint_and_hellsteel", new FlintAndHellsteel(new FabricItemSettings()
             .group(ItemGroup.TOOLS).fireproof().maxCount(1)));
+
+    // Ancient Portal Activation
+    public static final Item ANCIENT_SPARK = registerItem("ancient_spark", new AncientSparkItem(new FabricItemSettings()
+            .group(ItemGroup.MISC).maxCount(1).maxDamage(64)));
 
 
     // Celestium Swords & Tools

@@ -38,7 +38,7 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
 
     public static final Block HELLSAND = registerBlock("hellsand",
-            new Hellsand(FabricBlockSettings.of(Material.AGGREGATE, MapColor.BRIGHT_RED).strength(2.0f).resistance(5.0f)
+            new HellsandBlock(FabricBlockSettings.of(Material.AGGREGATE, MapColor.BRIGHT_RED).strength(2.0f).resistance(5.0f)
                     .sounds(BlockSoundGroup.SOUL_SAND)
                     .requiresTool(), UniformIntProvider.create(2, 5)),
 
@@ -85,11 +85,17 @@ public class ModBlocks {
 
     // World Fountain
     public static final Block WORLD_FOUNTAIN = registerBlock("world_fountain",
-            new WorldFountain(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
+            new WorldFountainBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block FLOWING_BEDROCK = registerBlock("flowing_bedrock",
-            new FlowingBedrock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
+            new FlowingBedrockBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Ancient Portal
+    public static final Block CHARGED_DEEPSLATE = registerBlock("charged_deepslate",
+            new ChargedDeepslateBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
@@ -124,7 +130,7 @@ public class ModBlocks {
 
     // Dream Weaver
     public static final Block DREAM_TABLE = registerBlock("dream_table",
-            new DreamTable(FabricBlockSettings.of(Material.WOOD).strength(2.5f)
+            new DreamTableBlock(FabricBlockSettings.of(Material.WOOD).strength(2.5f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -171,7 +177,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block DREAMWOOD_SAPLING = registerBlock("dreamwood_sapling",
-            new DreamSapling(new DreamwoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new DreamSaplingBlock(new DreamwoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));

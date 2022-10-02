@@ -3,7 +3,6 @@ package net.eman3600.dndreams.blocks;
 import net.eman3600.dndreams.screen.WeavingScreenHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.CraftingScreenHandler;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
@@ -15,11 +14,11 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class DreamTable extends Block {
+public class DreamTableBlock extends Block {
 
     private static final Text TITLE = Text.translatable("container.dndreams.dream_table");
 
-    public DreamTable(Settings settings) {
+    public DreamTableBlock(Settings settings) {
         super(settings);
     }
 

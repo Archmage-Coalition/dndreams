@@ -1,0 +1,109 @@
+package net.eman3600.dndreams.items.consumable;
+
+import net.eman3600.dndreams.initializers.ModBlocks;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.SculkShriekerBlock;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import java.util.Random;
+
+public class AncientSparkItem extends Item {
+    private static Random random = new Random();
+
+    public AncientSparkItem(Settings settings) {
+        super(settings);
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        World world = context.getWorld();
+        BlockPos pos = context.getBlockPos();
+        PlayerEntity player = context.getPlayer();
+        ItemStack stack = context.getStack();
+
+        if (spreadCharge(world, pos, 0) || spreadDischarge(world, pos, 0)) {
+            world.playSound(null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 4.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
+
+            stack.damage(1, player, (p) -> {
+                p.sendToolBreakStatus(context.getHand());
+            });
+            return ActionResult.SUCCESS;
+        } else if (world.getBlockState(pos).getBlock() instanceof SculkShriekerBlock shrieker) {
+            BlockState state = world.getBlockState(pos);
+
+            if (!state.get(SculkShriekerBlock.CAN_SUMMON)) {
+                world.setBlockState(pos, state.with(SculkShriekerBlock.CAN_SUMMON, true));
+
+                world.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 4.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
+
+                stack.damage(1, player, (p) -> {
+                    p.sendToolBreakStatus(context.getHand());
+                });
+                return ActionResult.CONSUME;
+            }
+        }
+
+        return ActionResult.PASS;
+    }
+
+    private boolean spreadCharge(World world, BlockPos pos, int iterations) {
+        if (world.getBlockState(pos).isOf(Blocks.REINFORCED_DEEPSLATE)) {
+            world.setBlockState(pos, ModBlocks.CHARGED_DEEPSLATE.getDefaultState());
+
+            world.addParticle(ParticleTypes.SONIC_BOOM, pos.getX() + random.nextDouble(-0.7, 0.7), pos.getY() + random.nextDouble(-0.7, 0.7), pos.getZ() + random.nextDouble(-0.7, 0.7), 0, 0, 0);
+
+            iterations++;
+
+            if (iterations < 40) {
+                spreadCharge(world, pos.up(), iterations);
+                spreadCharge(world, pos.down(), iterations);
+                spreadCharge(world, pos.north(), iterations);
+                spreadCharge(world, pos.east(), iterations);
+                spreadCharge(world, pos.south(), iterations);
+                spreadCharge(world, pos.west(), iterations);
+            }
+
+            return true;
+        }
+        return false;
+    }
+
+    private boolean spreadDischarge(World world, BlockPos pos, int iterations) {
+        if (world.getBlockState(pos).isOf(ModBlocks.CHARGED_DEEPSLATE)) {
+            world.setBlockState(pos, Blocks.REINFORCED_DEEPSLATE.getDefaultState());
+
+            world.addParticle(ParticleTypes.SONIC_BOOM, pos.getX() + random.nextDouble(-0.2, 1.2), pos.getY() + random.nextDouble(-0.2, 1.2), pos.getZ() + random.nextDouble(-0.2, 1.2), 0, 0, 0);
+
+            iterations++;
+
+            if (iterations < 40) {
+                spreadDischarge(world, pos.up(), iterations);
+                spreadDischarge(world, pos.down(), iterations);
+                spreadDischarge(world, pos.north(), iterations);
+                spreadDischarge(world, pos.east(), iterations);
+                spreadDischarge(world, pos.south(), iterations);
+                spreadDischarge(world, pos.west(), iterations);
+            }
+
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean hasGlint(ItemStack stack) {
+        return true;
+    }
+}

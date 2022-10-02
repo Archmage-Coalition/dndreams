@@ -8,10 +8,10 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.Direction;
 
-public class FlowingBedrock extends Block {
+public class FlowingBedrockBlock extends Block {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 
-    public FlowingBedrock(Settings settings) {
+    public FlowingBedrockBlock(Settings settings) {
         super(settings);
         this.setDefaultState((BlockState)this.getDefaultState()
                 .with(FACING, Direction.EAST));

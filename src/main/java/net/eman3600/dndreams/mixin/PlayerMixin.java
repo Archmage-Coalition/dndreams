@@ -1,10 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
 import com.mojang.authlib.GameProfile;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModAttributes;
-import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.initializers.WorldComponents;
+import net.eman3600.dndreams.initializers.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -13,8 +10,11 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.encryption.PlayerPublicKey;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionTypes;
 import org.checkerframework.checker.units.qual.A;
@@ -50,5 +50,12 @@ public abstract class PlayerMixin extends LivingEntity {
         info.setReturnValue((info.getReturnValue())
                 .add(ModAttributes.PLAYER_MANA_REGEN, 8d)
                 .add(ModAttributes.PLAYER_MAX_MANA, 25d));
+    }
+
+    @Inject(method = "isBlockBreakingRestricted", at = @At("HEAD"), cancellable = true)
+    private void dndreams$isBlockBreakingRestricted(World world, BlockPos pos, GameMode gameMode, CallbackInfoReturnable<Boolean> cir) {
+        if (hasStatusEffect(ModStatusEffects.RESTRICTED)) {
+            cir.setReturnValue(true);
+        }
     }
 }
