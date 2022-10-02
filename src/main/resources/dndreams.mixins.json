@@ -6,6 +6,7 @@
   "mixins": [
     "AbstractBlockStateMixin",
     "BlockItemMixin",
+    "BoatEntityMixin",
     "BrewingRegistryMixin",
     "BucketItemMixin",
     "DragonFightMixin",
@@ -13,6 +14,7 @@
     "EndermanEyesFeatureRendererMixin",
     "EndPortalFeatureMixin",
     "EntityMixin",
+    "FarmlandBlockMixin",
     "FluidBlockMixin",
     "ItemEntityMixin",
     "ItemMixin",

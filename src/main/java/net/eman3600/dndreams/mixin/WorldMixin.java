@@ -16,6 +16,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -54,21 +55,21 @@ public abstract class WorldMixin implements WorldAccess {
 
     @Inject(method = "initWeatherGradients", at = @At("HEAD"), cancellable = true)
     private void injectInitWeatherGardients(CallbackInfo info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
             info.cancel();
         }
     }
 
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
     private void injectRainGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
             info.setReturnValue(0f);
         }
     }
 
     @Inject(method = "getThunderGradient", at = @At("HEAD"), cancellable = true)
     private void injectThunderGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
             info.setReturnValue(0f);
         }
     }
@@ -84,6 +85,7 @@ public abstract class WorldMixin implements WorldAccess {
         }
     }
 
+    @Unique
     private float highestTorment(List<? extends PlayerEntity> players) {
         float highest = 0f;
 

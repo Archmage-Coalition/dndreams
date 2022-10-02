@@ -1,0 +1,10 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "dndreams:sculk"
+  },
+  "result": {
+    "item": "dndreams:soul_sand"
+  },
+  "real_only": true
+}

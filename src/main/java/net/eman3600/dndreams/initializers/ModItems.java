@@ -28,7 +28,7 @@ public class ModItems {
 
     // Dream Powder
     public static final Item DREAM_POWDER = registerItem("dream_powder",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+            new DreamPowderItem(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.DREAM_POWDER)));
 
     // Sculk Powder
     public static final Item SCULK_POWDER = registerItem("sculk_powder",

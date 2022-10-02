@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.blocks.crop;
 
 import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.initializers.ModFluids;
 import net.eman3600.dndreams.initializers.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
@@ -34,7 +35,7 @@ public class WaterArtichokeBlock extends BeetrootsBlock {
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         FluidState fluidState = world.getFluidState(pos);
         FluidState fluidState2 = world.getFluidState(pos.up());
-        return (fluidState.getFluid() == Fluids.WATER || floor.getMaterial() == Material.ICE) && fluidState2.getFluid() == Fluids.EMPTY;
+        return (fluidState.getFluid() == Fluids.WATER || fluidState.getFluid() == ModFluids.STILL_FLOWING_SPIRIT || floor.getMaterial() == Material.ICE) && fluidState2.getFluid() == Fluids.EMPTY;
     }
 
     protected float getMoisture(BlockView world, BlockPos pos) {
@@ -46,7 +47,7 @@ public class WaterArtichokeBlock extends BeetrootsBlock {
             for(int j = -1; j <= 1; ++j) {
                 float g = 0.0F;
                 BlockState blockState = world.getBlockState(blockPos.add(i, 0, j));
-                if (blockState.isOf(Blocks.WATER)) {
+                if (blockState.isOf(Blocks.WATER) || blockState.isOf(ModFluids.FLOWING_SPIRIT_BLOCK)) {
                     g = 3.0F;
                 }
 
