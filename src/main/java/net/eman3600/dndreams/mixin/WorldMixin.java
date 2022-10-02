@@ -1,9 +1,12 @@
 package net.eman3600.dndreams.mixin;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentProvider;
+import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModDimensions;
+import net.eman3600.dndreams.mixin_interfaces.WorldMixinI;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
@@ -26,7 +29,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 @Mixin(World.class)
-public abstract class WorldMixin implements WorldAccess {
+public abstract class WorldMixin implements WorldAccess, WorldMixinI {
 
     @Shadow
     private int ambientDarkness;
@@ -45,7 +48,9 @@ public abstract class WorldMixin implements WorldAccess {
 
     @Inject(method = "getTimeOfDay", at = @At("HEAD"), cancellable = true)
     public void injectTimeOfDay(CallbackInfoReturnable<Long> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+        if (drawAether()) {
+            info.setReturnValue(18000L);
+        } else if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             List<? extends PlayerEntity> players = getPlayers();
             float highestTorment = highestTorment(players);
 
@@ -55,21 +60,21 @@ public abstract class WorldMixin implements WorldAccess {
 
     @Inject(method = "initWeatherGradients", at = @At("HEAD"), cancellable = true)
     private void injectInitWeatherGardients(CallbackInfo info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
             info.cancel();
         }
     }
 
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
     private void injectRainGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
             info.setReturnValue(0f);
         }
     }
 
     @Inject(method = "getThunderGradient", at = @At("HEAD"), cancellable = true)
     private void injectThunderGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
             info.setReturnValue(0f);
         }
     }
@@ -86,7 +91,7 @@ public abstract class WorldMixin implements WorldAccess {
     }
 
     @Unique
-    private float highestTorment(List<? extends PlayerEntity> players) {
+    public float highestTorment(List<? extends PlayerEntity> players) {
         float highest = 0f;
 
         for (PlayerEntity player: players) {
@@ -95,5 +100,10 @@ public abstract class WorldMixin implements WorldAccess {
         }
 
         return highest;
+    }
+
+    @Unique
+    private boolean drawAether() {
+        return ((WorldAccess)this instanceof ClientWorld self && ClientInitializer.drawAether(self));
     }
 }

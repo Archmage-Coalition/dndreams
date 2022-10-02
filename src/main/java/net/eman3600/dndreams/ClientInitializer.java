@@ -1,8 +1,7 @@
 package net.eman3600.dndreams;
 
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModFluids;
-import net.eman3600.dndreams.initializers.ModScreenHandlerTypes;
+import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
 import net.eman3600.dndreams.screen.WeavingScreen;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
@@ -11,6 +10,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.Identifier;
 
 public class ClientInitializer implements ClientModInitializer {
@@ -38,5 +38,10 @@ public class ClientInitializer implements ClientModInitializer {
                 ModFluids.STILL_FLOWING_SPIRIT, ModFluids.FLOWING_FLOWING_SPIRIT);
 
         ModModelPredicateProvider.registerModModels();
+    }
+
+
+    public static boolean drawAether(ClientWorld world) {
+        return (world != null) && (world instanceof ClientWorldMixinI accessedWorld) && (accessedWorld.getClient().player != null) && accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.RESTRICTED);
     }
 }

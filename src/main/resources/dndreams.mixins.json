@@ -25,6 +25,9 @@
     "WorldMixin"
   ],
   "client": [
+    "ClientWorldMixin",
+    "GameOptionsMixin",
+    "GameRendererMixin",
     "HudMixin",
     "WorldRendererMixin"
   ],
