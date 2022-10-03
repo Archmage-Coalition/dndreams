@@ -1,30 +1,31 @@
 package net.eman3600.dndreams.mixin;
 
+import net.eman3600.dndreams.cardinal_components.DreamingComponent;
+import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.eman3600.dndreams.initializers.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityMixinI;
 import net.eman3600.dndreams.util.ModTags;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.network.ClientPlayerEntity;
+import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements LivingEntityMixinI {
@@ -70,5 +71,21 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityMi
             removeStatusEffect(ModStatusEffects.GRACE);
         }
 
+    }
+
+    @Inject(method = "tryUseTotem", at = @At("RETURN"), cancellable = true)
+    private void dndreams$tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+        if (!cir.getReturnValue() && (Entity)this instanceof PlayerEntity player) {
+            DreamingComponent component = EntityComponents.DREAMING.get(player);
+            if (component.isDreaming()) {
+                player.setHealth(1.0f);
+
+                RegistryKey<World> registryKey = World.OVERWORLD;
+                ServerWorld serverWorld = ((ServerWorld)world).getServer().getWorld(registryKey);
+                FabricDimensions.teleport(player, serverWorld, new TeleportTarget(component.returnPos(), Vec3d.ZERO, player.getYaw(), player.getPitch()));
+
+                cir.setReturnValue(true);
+            }
+        }
     }
 }
