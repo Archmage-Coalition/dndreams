@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SonicBoomTask.class)
-public abstract class SonicBoomDisabler {
+public abstract class SonicBoomTaskMixin {
     @Inject(method = "shouldRun(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LivingEntity;)Z", at = @At("HEAD"), cancellable = true)
     public void dndreams$disasbleSonicBoom(ServerWorld world, LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(false);

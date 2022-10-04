@@ -21,7 +21,8 @@
     "ItemStackMixin",
     "LivingEntityMixin",
     "PlayerMixin",
-    "SonicBoomDisabler",
+    "SonicBoomTaskMixin",
+    "WardenAngerManagerMixin",
     "WorldMixin"
   ],
   "client": [
