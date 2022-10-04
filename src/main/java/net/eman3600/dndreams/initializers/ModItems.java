@@ -59,7 +59,7 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Baleful Residue
-    public static final Item BLIGHT_POWDER = registerItem("blight_powder", new BlightPowderItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item INFERNAL_RESIDUE = registerItem("infernal_residue", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Water Artichoke Globe
     public static final Item WATER_ARTICHOKE_GLOBE = registerItem("water_artichoke_globe",

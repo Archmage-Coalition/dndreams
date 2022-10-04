@@ -1,7 +1,7 @@
 {
   "category": "dndreams:intro",
   "name": "Blood Moon",
-  "icon": "dndreams:blight_powder",
+  "icon": "dndreams:infernal_residue",
   "pages": [
 	{
       "type": "patchouli:text",
@@ -9,9 +9,9 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "dndreams:blight_powder",
-      "anchor": "blight_powder",
-      "text": "Demons found under the Blood Moon yield a corrupt residue used in creating $(l:dndreams:materials/corrupt_ingot)Hellsteel$(/l) and other items powered by Darkness."
+      "item": "dndreams:infernal_residue",
+      "anchor": "infernal_residue",
+      "text": "Demons found under the Blood Moon yield an infernal residue used in creating $(l:dndreams:materials/corrupt_ingot)Hellsteel$(/l) and other items powered by Darkness."
     }
   ]
 }

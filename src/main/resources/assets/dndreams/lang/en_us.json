@@ -12,8 +12,8 @@
   "item.dndreams.nightmare_fuel": "Nightmare Fuel",
   "item.dndreams.corrupt_scrap":  "Hellslate",
   "item.dndreams.shade_cloth":  "Shade Veil",
-  "item.dndreams.blight_powder":  "Corrupt Residue",
-  "item.dndreams.craft_staff": "Staff of Infusion",
+  "item.dndreams.infernal_residue":  "Infernal Residue",
+  "item.dndreams.tainted_pearl":  "Tainted Pearl",
   "item.dndreams.water_artichoke_globe": "Water Artichoke Globe",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
@@ -85,6 +85,7 @@
   "effect.dndreams.insubstantial": "Insubstantial",
   "effect.dndreams.grace": "Grace",
   "effect.dndreams.restricted": "Restricted",
+  "effect.dndreams.spotted": "Echolocated",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",

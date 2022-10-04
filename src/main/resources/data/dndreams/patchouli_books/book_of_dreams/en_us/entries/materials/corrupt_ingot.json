@@ -19,7 +19,7 @@
 	},
     {
       "type": "patchouli:text",
-      "text": "Combining Hellslate, Iron, and $(l:dndreams:intro/blood_moon#blight_powder)Corrupt Residue$(/l), you can create Hellsteel. Hellsteel is light and volatile, and tools made with it require blaze rods for handles."
+      "text": "Combining Hellslate, Iron, and $(l:dndreams:intro/blood_moon#infernal residue)Infernal Residue$(/l), you can create Hellsteel. Hellsteel is light and volatile, and tools made with it require blaze rods for handles."
     },
     {
       "type": "patchouli:crafting",
