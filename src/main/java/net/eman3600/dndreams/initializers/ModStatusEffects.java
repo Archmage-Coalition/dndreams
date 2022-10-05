@@ -23,6 +23,7 @@ public class ModStatusEffects {
     public static StatusEffect GRACE = register("grace", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 15658496));
     public static StatusEffect RESTRICTED = register("restricted", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5570560));
     public static StatusEffect SPOTTED = register("spotted", new ModStatusEffect(StatusEffectCategory.HARMFUL, 21862));
+    public static StatusEffect AETHER = register("aether", new ModStatusEffect(StatusEffectCategory.HARMFUL, 1118481));
 
     private static StatusEffect register(String name, StatusEffect entry) {
         return (StatusEffect) Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

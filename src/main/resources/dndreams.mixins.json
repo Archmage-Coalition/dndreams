@@ -30,6 +30,7 @@
     "GameOptionsMixin",
     "GameRendererMixin",
     "HudMixin",
+    "LightmapTextureManagerMixin",
     "WorldRendererMixin"
   ],
   "injectors": {

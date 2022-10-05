@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.BiomeKeys;
 
 public class ClientInitializer implements ClientModInitializer {
     @Override
@@ -42,6 +43,10 @@ public class ClientInitializer implements ClientModInitializer {
 
 
     public static boolean drawAether(ClientWorld world) {
-        return (world != null) && (world instanceof ClientWorldMixinI accessedWorld) && (accessedWorld.getClient().player != null) && accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.RESTRICTED);
+        try {
+            return (world instanceof ClientWorldMixinI accessedWorld) && (accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER) || world.getBiome(accessedWorld.getClient().player.getBlockPos()).matchesKey(BiomeKeys.DEEP_DARK));
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 }
