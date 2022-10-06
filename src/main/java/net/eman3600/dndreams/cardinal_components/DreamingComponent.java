@@ -60,6 +60,8 @@ public class DreamingComponent implements DreamingComponentI {
             storedInv.dropAll();
         }
 
+        player.clearStatusEffects();
+
         if (toDream) {
             player.incrementStat(ModStats.ENTER_DREAM);
 
