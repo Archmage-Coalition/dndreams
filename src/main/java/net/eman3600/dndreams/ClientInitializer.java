@@ -44,7 +44,7 @@ public class ClientInitializer implements ClientModInitializer {
 
     public static boolean drawAether(ClientWorld world) {
         try {
-            return (world instanceof ClientWorldMixinI accessedWorld) && (accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER) || world.getBiome(accessedWorld.getClient().player.getBlockPos()).matchesKey(BiomeKeys.DEEP_DARK));
+            return (world instanceof ClientWorldMixinI accessedWorld) && (accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER)/* || world.getBiome(accessedWorld.getClient().player.getBlockPos()).matchesKey(BiomeKeys.DEEP_DARK)*/);
         } catch (NullPointerException e) {
             return false;
         }
