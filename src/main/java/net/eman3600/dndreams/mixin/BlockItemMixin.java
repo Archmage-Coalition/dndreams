@@ -18,7 +18,7 @@ public abstract class BlockItemMixin extends Item {
 
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void dndreams$useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-        if (context.getPlayer().hasStatusEffect(ModStatusEffects.RESTRICTED)) {
+        if (ModStatusEffects.shouldRestrict(context.getPlayer())) {
             cir.setReturnValue(ActionResult.PASS);
         }
     }

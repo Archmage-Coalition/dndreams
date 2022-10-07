@@ -5,6 +5,7 @@ import net.eman3600.dndreams.mob_effects.InstantModStatusEffect;
 import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -31,5 +32,13 @@ public class ModStatusEffects {
 
     public static void registerEffects() {
         System.out.println("Registering effects for " + Initializer.MODID);
+    }
+
+    public static boolean shouldRestrict(PlayerEntity player) {
+        try {
+            return player.hasStatusEffect(RESTRICTED) || player.world.getRegistryKey() == ModDimensions.GATEWAY_DIMENSION_KEY;
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 }

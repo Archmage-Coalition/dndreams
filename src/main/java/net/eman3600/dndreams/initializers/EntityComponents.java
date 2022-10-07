@@ -14,6 +14,7 @@ public class EntityComponents implements EntityComponentInitializer {
     public static final ComponentKey<TormentComponent> TORMENT = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "torment"), TormentComponent.class);
     public static final ComponentKey<DreamingComponent> DREAMING = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "dreaming"), DreamingComponent.class);
     public static final ComponentKey<InfusionComponent> INFUSION = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "infusion"), InfusionComponent.class);
+    public static final ComponentKey<GatewayComponent> GATEWAY = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "gateway"), GatewayComponent.class);
 
 
 
@@ -26,5 +27,6 @@ public class EntityComponents implements EntityComponentInitializer {
         registry.registerForPlayers(TORMENT, player -> new TormentComponent(player), RespawnCopyStrategy.LOSSLESS_ONLY);
         registry.registerForPlayers(DREAMING, player -> new DreamingComponent(player), RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(INFUSION, player -> new InfusionComponent(player), RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(GATEWAY, player -> new GatewayComponent(player), RespawnCopyStrategy.ALWAYS_COPY);
     }
 }

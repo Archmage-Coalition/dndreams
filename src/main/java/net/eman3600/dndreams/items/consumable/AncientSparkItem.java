@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.items.consumable;
 
+import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -11,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -51,8 +53,16 @@ public class AncientSparkItem extends Item {
                 stack.damage(1, player, (p) -> {
                     p.sendToolBreakStatus(context.getHand());
                 });
-                return ActionResult.CONSUME;
+                return ActionResult.SUCCESS;
             }
+        } else if (world.getBlockState(pos).getBlock() == ModBlocks.WORLD_FOUNTAIN) {
+            if (context.getPlayer() instanceof ServerPlayerEntity player2) {
+                EntityComponents.GATEWAY.get(player2).enterGateway(0, true);
+            }
+            stack.damage(1, player, (p) -> {
+                p.sendToolBreakStatus(context.getHand());
+            });
+            return ActionResult.SUCCESS;
         }
 
         return ActionResult.PASS;

@@ -54,7 +54,7 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Inject(method = "isBlockBreakingRestricted", at = @At("HEAD"), cancellable = true)
     private void dndreams$isBlockBreakingRestricted(World world, BlockPos pos, GameMode gameMode, CallbackInfoReturnable<Boolean> cir) {
-        if (hasStatusEffect(ModStatusEffects.RESTRICTED)) {
+        if (ModStatusEffects.shouldRestrict((PlayerEntity)(Object)this)) {
             cir.setReturnValue(true);
         }
     }
