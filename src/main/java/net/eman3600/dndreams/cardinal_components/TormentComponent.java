@@ -11,6 +11,7 @@ import net.minecraft.nbt.NbtCompound;
 
 public class TormentComponent implements TormentComponentI, AutoSyncedComponent {
     private float torment = 0;
+    private int dragonFlashTicks = 0;
 
     private final PlayerEntity player;
 
@@ -85,10 +86,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent 
     @Override
     public void readFromNbt(NbtCompound tag) {
         torment = tag.getFloat("torment");
+        dragonFlashTicks = tag.getInt("dragon_flash_ticks");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putFloat("torment", torment);
+        tag.putInt("dragon_flash_ticks", dragonFlashTicks);
     }
 }

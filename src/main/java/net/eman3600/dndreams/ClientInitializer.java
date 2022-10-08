@@ -39,6 +39,9 @@ public class ClientInitializer implements ClientModInitializer {
                 ModFluids.STILL_FLOWING_SPIRIT, ModFluids.FLOWING_FLOWING_SPIRIT);
 
         ModModelPredicateProvider.registerModModels();
+
+
+        ModMessages.registerS2CPackets();
     }
 
 

@@ -56,6 +56,7 @@ public class Initializer implements ModInitializer {
 
 		ModDimensions.registerDimensions();
 
+		ModMessages.registerC2SPackets();
 		ModCallbacks.registerCallbacks();
 	}
 }

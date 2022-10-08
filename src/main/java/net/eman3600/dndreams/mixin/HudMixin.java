@@ -2,10 +2,10 @@ package net.eman3600.dndreams.mixin;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
+import net.eman3600.dndreams.mixin_interfaces.HudMixinI;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -23,14 +23,18 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.awt.*;
 
 @Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)
-public abstract class HudMixin extends DrawableHelper {
+public abstract class HudMixin extends DrawableHelper implements HudMixinI {
     @Unique
     private static final Identifier DNDREAMS_GUI_ICONS = new Identifier(Initializer.MODID, "textures/gui/icons.png");
+
+    @Unique
+    private static final Identifier DRAGON_FLASH_IMAGE = new Identifier(Initializer.MODID, "textures/gui/shader/dragon_flash.png");
 
     @Unique
     private static final int MANA_X_OFFSET = 6;
@@ -68,6 +72,9 @@ public abstract class HudMixin extends DrawableHelper {
     @Unique
     private static final int POWER_HEIGHT = 82;
 
+    @Unique
+    private int dragonFlashTicks = 0;
+
 
 
     @Shadow
@@ -84,6 +91,13 @@ public abstract class HudMixin extends DrawableHelper {
     private MinecraftClient client;
 
     @Shadow public abstract TextRenderer getTextRenderer();
+
+
+    @Override
+    public void setDragonFlash(int ticks) {
+        dragonFlashTicks = ticks;
+    }
+
 
     @Inject(method = "renderExperienceBar", at = @At("TAIL"))
     public void dndreams$renderManaModifier(MatrixStack matrices, int x, CallbackInfo ci) {
@@ -140,7 +154,7 @@ public abstract class HudMixin extends DrawableHelper {
     }
 
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
-    private void renderPre(MatrixStack matrices, CallbackInfo callbackInfo) {
+    private void dndreams$renderStatusBars(MatrixStack matrices, CallbackInfo callbackInfo) {
         int xPos = client.options.getMainArm().getValue() == Arm.LEFT ? scaledWidth - MANA_X_OFFSET - MANA_WIDTH : MANA_X_OFFSET;
         int yPos = scaledHeight - MANA_Y_OFFSET - MANA_HEIGHT;
 
@@ -217,5 +231,34 @@ public abstract class HudMixin extends DrawableHelper {
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });
+
+        /*if (dragonFlashTicks > 0) {
+            RenderSystem.setShaderTexture(0, DRAGON_FLASH_IMAGE);
+
+            int n = scaledWidth / 2;
+            int m = scaledHeight / 2;
+
+            n -= 323;
+            m -= 207;
+
+            float alpha = 1;
+
+            if (dragonFlashTicks <= 20) {
+                alpha = (dragonFlashTicks / 20.0f);
+            }
+
+            RenderSystem.setShaderColor(1, 1, 1, alpha);
+
+            drawTexture(matrices, n, m, 0, 0, scaledWidth, scaledHeight, scaledWidth, scaledHeight);
+
+            RenderSystem.setShaderColor(1, 1, 1, 1);
+        }*/
+    }
+
+    @Inject(method = "tick()V", at = @At("HEAD"))
+    private void dndreams$tick(CallbackInfo ci) {
+        if (dragonFlashTicks > 0) {
+            dragonFlashTicks--;
+        }
     }
 }
