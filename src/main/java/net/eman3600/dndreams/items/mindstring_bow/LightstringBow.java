@@ -52,6 +52,6 @@ public class LightstringBow extends MindstringBow implements PowerCostItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(getTooltipPower());
+        tooltip.add(getTooltipPower(world));
     }
 }

@@ -68,7 +68,7 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getAttributeValue(Lnet/minecraft/entity/attribute/EntityAttribute;)D"))
     private void dndreams$attack(Entity target, CallbackInfo ci) {
         if (getMainHandStack().getItem() instanceof AirSwingItem item && ((Object)this) instanceof ServerPlayerEntity player) {
-            item.swingItem(player, getActiveHand(), (ServerWorld) player.world, getMainHandStack(), true);
+            item.swingItem(player, getActiveHand(), (ServerWorld) player.world, getMainHandStack(), target);
         }
     }
 }

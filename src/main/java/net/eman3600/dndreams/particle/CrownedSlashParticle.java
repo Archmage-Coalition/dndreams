@@ -17,7 +17,7 @@ public class CrownedSlashParticle extends SpriteBillboardParticle {
         this.y = yd;
         this.z = zd;
         this.scale *= 0.75F;
-        this.maxAge = 10;
+        this.maxAge = 40;
         this.setSpriteForAge(spriteSet);
 
         this.red = 1f;

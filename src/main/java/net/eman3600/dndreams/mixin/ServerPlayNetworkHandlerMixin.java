@@ -28,7 +28,7 @@ public abstract class ServerPlayNetworkHandlerMixin implements ServerPlayPacketL
 
         try {
             if (stack.getItem() instanceof AirSwingItem item) {
-                item.swingItem(player, packet.getHand(), (ServerWorld) player.world, stack, false);
+                item.swingItem(player, packet.getHand(), (ServerWorld) player.world, stack, null);
             }
         } catch (ClassCastException ignored) {}
     }
