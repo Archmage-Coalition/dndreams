@@ -21,6 +21,7 @@
     "ItemStackMixin",
     "LivingEntityMixin",
     "PlayerMixin",
+    "ServerPlayNetworkHandlerMixin",
     "SonicBoomTaskMixin",
     "WardenAngerManagerMixin",
     "WorldMixin"

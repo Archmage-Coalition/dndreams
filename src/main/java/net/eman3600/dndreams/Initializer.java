@@ -54,6 +54,8 @@ public class Initializer implements ModInitializer {
 		ModTags.registerTags();
 		ModRegistries.register();
 
+		ModParticles.registerParticles();
+
 		ModDimensions.registerDimensions();
 
 		ModMessages.registerC2SPackets();

@@ -2,10 +2,12 @@ package net.eman3600.dndreams;
 
 import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
+import net.eman3600.dndreams.particle.CrownedSlashParticle;
 import net.eman3600.dndreams.screen.WeavingScreen;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
@@ -42,6 +44,8 @@ public class ClientInitializer implements ClientModInitializer {
 
 
         ModMessages.registerS2CPackets();
+
+        ParticleFactoryRegistry.getInstance().register(ModParticles.CROWNED_SLASH_PARTICLE, CrownedSlashParticle.Factory::new);
     }
 
 

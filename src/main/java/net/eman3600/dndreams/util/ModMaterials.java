@@ -11,15 +11,17 @@ import java.util.function.Supplier;
 
 public enum ModMaterials implements ToolMaterial {
     CORRUPT(3, 1785, 4.0F, 3.0F, 18,
-            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.CORRUPT_INGOT})),
+            () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
     HOLY(4, 1824, 12.0F, 5.0F, 18,
-            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.HOLY_INGOT})),
+            () -> Ingredient.ofItems(ModItems.HOLY_INGOT)),
     ARTIFACT(4, 3002, 12.0F, 4.0F, 22,
-            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.DREAM_POWDER})),
+            () -> Ingredient.ofItems(ModItems.DREAM_POWDER)),
     MANAGOLD(2, 32, 12.0F, 2.0F, 22,
-            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.MANAGOLD_INGOT})),
+            () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
     TORMITE(4, 128, 12.0F, 4.0F, 22,
-            () -> Ingredient.ofItems(new ItemConvertible[]{ModItems.TORMITE_INGOT}));
+            () -> Ingredient.ofItems(ModItems.TORMITE_INGOT)),
+    CROWNED_EDGE(4, 2000, 12.0F, 3.0F, 18,
+            () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL));
 
     private final int miningLevel;
     private final int itemDurability;
