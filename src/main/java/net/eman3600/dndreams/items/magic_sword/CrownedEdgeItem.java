@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.items.magic_sword;
 
+import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
 import net.eman3600.dndreams.initializers.ModMessages;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
@@ -8,6 +9,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ArmorStandEntity;
@@ -29,11 +31,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCostItem {
-    private int magicDamage;
+    private final int magicDamage;
 
     public CrownedEdgeItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, int magicDamage, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
         this.magicDamage = magicDamage;
+    }
+
+
+    public int magicDamage() {
+        return magicDamage;
     }
 
 
@@ -42,22 +49,26 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
         if (canAffordMana(user) && user.getAttackCooldownProgress(0.5f) > 0.9f) {
             spendMana(user);
 
-            Vec3d rot = AirSwingItem.rayZVector(user.getYaw(), user.getPitch());
+            if (hit == null) {
+                stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+            }
+
+            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, user.getSoundCategory(), 1.0f, 1.5f);
+
+            CrownedSlashEntity slash = new CrownedSlashEntity(user, world);
+            slash.initFromStack(stack);
+
+            world.spawnEntity(slash);
+
+            /*Vec3d rot = AirSwingItem.rayZVector(user.getYaw(), user.getPitch());
 
             Vec3d userPos = user.getEyePos();
 
             Vec3d targetPos = userPos.add(rot.multiply(1.5));
             targetPos = targetPos.subtract(0, 0.25d, 0);
 
-            /*PacketByteBuf packet = PacketByteBufs.create();
-
-            packet.writeDouble(targetPos.x);
-            packet.writeDouble(targetPos.y);
-            packet.writeDouble(targetPos.z);
-
-            ServerPlayNetworking.send(user, ModMessages.CROWNED_SLASH_ID, packet);*/
-
-            Box box = new RotatedBox(targetPos, targetPos, user.getYaw()).expand(1.5d, 1d, 1.5d);
+            RotatedBox box = new RotatedBox(targetPos, targetPos, user.getYaw()).expand(1.5d, 1d, 1.5d);
+            Box fullBox = box.engulf();
 
             List<LivingEntity> entities = world.getNonSpectatingEntities(LivingEntity.class, box);
 
@@ -66,21 +77,20 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
                 livingEntity.takeKnockback(0.4f, MathHelper.sin(user.getYaw() * ((float)Math.PI / 180)), -MathHelper.cos(user.getYaw() * ((float)Math.PI / 180)));
                 livingEntity.damage(DamageSource.magic(user, user), magicDamage);
             }
-            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, user.getSoundCategory(), 1.0f, 1.5f);
 
-            for (double i = box.minX; i <= box.maxX; i += 0.25d) {
-                for (double j = box.minZ; j <= box.maxZ; j+= 0.25d) {
-                    PacketByteBuf packet = PacketByteBufs.create();
+            for (double i = fullBox.minX; i <= fullBox.maxX; i += 0.25d) {
+                for (double j = fullBox.minZ; j <= fullBox.maxZ; j+= 0.25d) {
+                    if (box.contains(i, (box.minY + box.maxY) * .5, j)) {
+                        PacketByteBuf packet = PacketByteBufs.create();
 
-                    packet.writeDouble(i);
-                    packet.writeDouble(box.minY);
-                    packet.writeDouble(j);
+                        packet.writeDouble(i);
+                        packet.writeDouble(box.minY);
+                        packet.writeDouble(j);
 
-                    ServerPlayNetworking.send(user, ModMessages.CROWNED_SLASH_ID, packet);
-
-
+                        ServerPlayNetworking.send(user, ModMessages.CROWNED_SLASH_ID, packet);
+                    }
                 }
-            }
+            }*/
         }
     }
 

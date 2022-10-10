@@ -195,12 +195,12 @@ public class ModItems {
 
     // Slumbering Sword
     public static final Item SLUMBERING_SWORD = registerItem("slumbering_sword",
-            new SwordItem(ModMaterials.CROWNED_EDGE, 1, -2.3F,
+            new SwordItem(ModMaterials.CROWNED_EDGE, 3, -2.3F,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
     // Crowned Edge
     public static final Item CROWNED_EDGE = registerItem("crowned_edge",
-            new CrownedEdgeItem(ModMaterials.CROWNED_EDGE, 1, -2.3F, 5,
+            new CrownedEdgeItem(ModMaterials.CROWNED_EDGE, 3, -2.3F, 5,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
 

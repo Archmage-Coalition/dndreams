@@ -11,6 +11,6 @@ public class CrownedSlashPacket {
     public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf packet, PacketSender sender) {
         Vec3d vec = new Vec3d(packet.readDouble(), packet.readDouble(), packet.readDouble());
 
-        client.world.addParticle(ModParticles.CROWNED_SLASH_PARTICLE, vec.x, vec.y, vec.z, 0, 0, 0);
+        client.world.addParticle(ModParticles.CROWNED_SLASH_PARTICLE, true, vec.x, vec.y, vec.z, 0, 0, 0);
     }
 }

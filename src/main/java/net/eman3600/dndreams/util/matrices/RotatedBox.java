@@ -5,6 +5,8 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Position;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.Objects;
+
 public class RotatedBox extends Box {
     private float yaw;
 
@@ -45,6 +47,11 @@ public class RotatedBox extends Box {
         this.yaw = yaw;
     }
 
+    public RotatedBox(double d, double e, double f, double g, double h, double i, float yaw) {
+        super(d, e, f, g, h, i);
+
+        this.yaw = yaw;
+    }
 
 
     public static boolean isSimple(Box box) {
@@ -152,21 +159,86 @@ public class RotatedBox extends Box {
 
     private boolean collides(RotatedBox box) {
         Matrix self = toMatrix();
-        Matrix other = box.toMatrix();
 
         for (int i = 0; i < 8; i++) {
             Vec3d vertex = matrixColToVec3d(self, i);
 
-            for (int j = 0; j < 4; j++) {
-                Vec3d in = matrixColToVec3d(other, j);
-                Vec3d out = matrixColToVec3d(other, j);
-
-                if (!vertex.isInRange(in, in.distanceTo(out))) break;
-
-                if (j == 3) return true;
+            if (box.contains(vertex)) {
+                return true;
             }
         }
 
         return false;
+    }
+
+    @Override
+    public boolean contains(double x, double y, double z) {
+        return contains(new Vec3d(x, y, z));
+    }
+
+    @Override
+    public boolean contains(Vec3d vec) {
+        Matrix matrix = toMatrix();
+
+        for (int j = 0; j < 4; j++) {
+            Vec3d in = matrixColToVec3d(matrix, j);
+            Vec3d out = matrixColToVec3d(matrix, 7 - j);
+
+            if (!vec.isInRange(in, in.distanceTo(out))) break;
+
+            if (j == 3) return true;
+        }
+
+        return false;
+    }
+
+    public Box engulf() {
+        Matrix matrix = toMatrix();
+
+        double[] smallest = new double[] {
+                matrix.get(0, 0),
+                matrix.get(1, 0),
+                matrix.get(2, 0)
+        };
+
+        double[] largest = new double[] {
+                matrix.get(0, 0),
+                matrix.get(1, 0),
+                matrix.get(2, 0)
+        };
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 1; j < 8; j++) {
+                if (matrix.get(i, j) < smallest[i]) {
+                    smallest[i] = matrix.get(i, j);
+                }
+                if (matrix.get(i, j) > largest[i]) {
+                    largest[i] = matrix.get(i, j);
+                }
+            }
+        }
+
+        return new Box(smallest[0], smallest[1], smallest[2], largest[0], largest[1], largest[2]);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o) && ((RotatedBox)o).yaw == this.yaw;
+    }
+
+    @Override
+    public RotatedBox expand(double value) {
+        return this.expand(value, value, value);
+    }
+
+    @Override
+    public RotatedBox expand(double x, double y, double z) {
+        double d = this.minX - x;
+        double e = this.minY - y;
+        double f = this.minZ - z;
+        double g = this.maxX + x;
+        double h = this.maxY + y;
+        double i = this.maxZ + z;
+        return new RotatedBox(d, e, f, g, h, i, yaw);
     }
 }

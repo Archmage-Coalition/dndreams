@@ -1,5 +1,6 @@
 package net.eman3600.dndreams;
 
+import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
 import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
 import net.eman3600.dndreams.particle.CrownedSlashParticle;
@@ -10,10 +11,15 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.EmptyEntityRenderer;
+import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
 
 public class ClientInitializer implements ClientModInitializer {
@@ -46,10 +52,13 @@ public class ClientInitializer implements ClientModInitializer {
         ModMessages.registerS2CPackets();
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.CROWNED_SLASH_PARTICLE, CrownedSlashParticle.Factory::new);
+
+
+        EntityRendererRegistry.register(ModEntities.CROWNED_SLASH_ENTITY_TYPE, EmptyEntityRenderer::new);
     }
 
 
-    public static boolean drawAether(ClientWorld world) {
+    public static boolean drawAether(World world) {
         try {
             return (world instanceof ClientWorldMixinI accessedWorld) && (accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER)/* || world.getBiome(accessedWorld.getClient().player.getBlockPos()).matchesKey(BiomeKeys.DEEP_DARK)*/);
         } catch (NullPointerException e) {

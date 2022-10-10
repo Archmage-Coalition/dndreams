@@ -41,8 +41,8 @@ public class ModCallbacks {
 
                     Optional<TransmutationRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.TRANSMUTATION, DUMMY_INVENTORY, world);
                     if (optional.isPresent()) {
-                        TransmutationRecipe craftingRecipe = optional.get();
-                        ItemStack output = craftingRecipe.craft(DUMMY_INVENTORY);
+                        TransmutationRecipe recipe = optional.get();
+                        ItemStack output = recipe.craft(DUMMY_INVENTORY);
 
                         if (!output.isEmpty()) {
                             for (int i = 0; i < amount; i++) {

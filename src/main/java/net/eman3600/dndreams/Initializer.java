@@ -55,6 +55,7 @@ public class Initializer implements ModInitializer {
 		ModRegistries.register();
 
 		ModParticles.registerParticles();
+		ModEntities.registerEntities();
 
 		ModDimensions.registerDimensions();
 

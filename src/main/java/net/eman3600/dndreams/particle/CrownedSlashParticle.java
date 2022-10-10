@@ -12,12 +12,12 @@ public class CrownedSlashParticle extends SpriteBillboardParticle {
                                    SpriteProvider spriteSet, double xd, double yd, double zd) {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
-        this.velocityMultiplier = 0.6F;
+        this.velocityMultiplier = 0F;
         this.x = xd;
         this.y = yd;
         this.z = zd;
         this.scale *= 0.75F;
-        this.maxAge = 40;
+        this.maxAge = 10;
         this.setSpriteForAge(spriteSet);
 
         this.red = 1f;
@@ -27,7 +27,7 @@ public class CrownedSlashParticle extends SpriteBillboardParticle {
 
     @Override
     public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
+        return ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override

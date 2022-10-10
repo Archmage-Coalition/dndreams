@@ -1,22 +1,17 @@
 package net.eman3600.dndreams.mixin;
 
-import dev.onyxstudios.cca.api.v3.component.ComponentProvider;
 import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.WorldMixinI;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.profiler.Profiler;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.dimension.DimensionType;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -26,7 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 @Mixin(World.class)
 public abstract class WorldMixin implements WorldAccess, WorldMixinI {
@@ -45,6 +39,8 @@ public abstract class WorldMixin implements WorldAccess, WorldMixinI {
 
     @Shadow
     public abstract float getThunderGradient(float delta);
+
+    @Shadow @Final public boolean isClient;
 
     @Inject(method = "getTimeOfDay", at = @At("HEAD"), cancellable = true)
     public void injectTimeOfDay(CallbackInfoReturnable<Long> info) {
@@ -104,6 +100,8 @@ public abstract class WorldMixin implements WorldAccess, WorldMixinI {
 
     @Unique
     private boolean drawAether() {
-        return ((WorldAccess)this instanceof ClientWorld self && ClientInitializer.drawAether(self));
+
+        return (isClient && ClientInitializer.drawAether((World)(Object) this));
+
     }
 }

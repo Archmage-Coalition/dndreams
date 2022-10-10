@@ -19,13 +19,15 @@ public class TransmutationRecipe implements Recipe<Inventory> {
     final Ingredient input;
     final ItemStack output;
     private final boolean realOnly;
+    private final boolean keepData;
 
-    public TransmutationRecipe(Identifier id, String group, Ingredient input, ItemStack output, boolean realOnly) {
+    public TransmutationRecipe(Identifier id, String group, Ingredient input, ItemStack output, boolean realOnly, boolean keepData) {
         this.id = id;
         this.group = group;
         this.input = input;
         this.output = output;
         this.realOnly = realOnly;
+        this.keepData = keepData;
     }
 
     public Identifier getId() {
@@ -68,7 +70,14 @@ public class TransmutationRecipe implements Recipe<Inventory> {
     }
 
     public ItemStack craft(Inventory inventory) {
-        return this.output.copy();
+        if (!keepData) {
+            return this.output.copy();
+        } else {
+            ItemStack newOutput = output.copy();
+            newOutput.setNbt(inventory.getStack(0).getNbt());
+
+            return newOutput;
+        }
     }
 
     public boolean fits(int width, int height) {
@@ -96,8 +105,9 @@ public class TransmutationRecipe implements Recipe<Inventory> {
             Ingredient ingredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient"));
             ItemStack itemStack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
             boolean realOnly = JsonHelper.getBoolean(jsonObject, "real_only", false);
+            boolean keepData = JsonHelper.getBoolean(jsonObject, "keep_data", false);
 
-            return new TransmutationRecipe(identifier, string, ingredient, itemStack, realOnly);
+            return new TransmutationRecipe(identifier, string, ingredient, itemStack, realOnly, keepData);
 
         }
 
@@ -106,14 +116,17 @@ public class TransmutationRecipe implements Recipe<Inventory> {
             Ingredient ingredient = Ingredient.fromPacket(packetByteBuf);
             ItemStack itemStack = packetByteBuf.readItemStack();
             boolean realOnly = packetByteBuf.readBoolean();
+            boolean keepData = packetByteBuf.readBoolean();
 
-            return new TransmutationRecipe(identifier, group, ingredient, itemStack, realOnly);
+            return new TransmutationRecipe(identifier, group, ingredient, itemStack, realOnly, keepData);
         }
 
         public void write(PacketByteBuf packetByteBuf, TransmutationRecipe transmutationRecipe) {
             packetByteBuf.writeString(transmutationRecipe.group);
             transmutationRecipe.input.write(packetByteBuf);
             packetByteBuf.writeItemStack(transmutationRecipe.output);
+            packetByteBuf.writeBoolean(transmutationRecipe.realOnly);
+            packetByteBuf.writeBoolean(transmutationRecipe.keepData);
         }
     }
 
