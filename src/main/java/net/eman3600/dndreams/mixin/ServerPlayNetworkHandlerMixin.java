@@ -22,7 +22,7 @@ public abstract class ServerPlayNetworkHandlerMixin implements ServerPlayPacketL
 
     @Shadow @Final private MinecraftServer server;
 
-    @Inject(method = "onHandSwing", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;updateLastActionTime()V"))
+    /*@Inject(method = "onHandSwing", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;updateLastActionTime()V"))
     private void dndreams$onHandSwing(HandSwingC2SPacket packet, CallbackInfo ci) {
         ItemStack stack = player.getStackInHand(packet.getHand());
 
@@ -31,7 +31,7 @@ public abstract class ServerPlayNetworkHandlerMixin implements ServerPlayPacketL
                 item.swingItem(player, packet.getHand(), (ServerWorld) player.world, stack, null);
             }
         } catch (ClassCastException ignored) {}
-    }
+    }*/
 
     @Inject(method = "checkForSpam", at = @At("HEAD"), cancellable = true)
     private void dndreams$checkForSpam(CallbackInfo ci) {

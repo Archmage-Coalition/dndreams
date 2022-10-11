@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.mixin;
+package net.eman3600.dndreams.mixin.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.Initializer;

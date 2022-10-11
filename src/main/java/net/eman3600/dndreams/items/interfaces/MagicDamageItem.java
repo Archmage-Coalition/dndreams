@@ -7,9 +7,9 @@ public interface MagicDamageItem {
 
     default Text getTooltipMagicDamage() {
         if (getMagicDamage() % 1 == 0f) {
-            return Text.translatable("tooltip.dndreams.magic_damage", (int)getMagicDamage());
+            return Text.translatable("tooltip.dndreams.magic_damage", "§2" + (int)getMagicDamage());
         } else {
-            return Text.translatable("tooltip.dndreams.magic_damage", getMagicDamage());
+            return Text.translatable("tooltip.dndreams.magic_damage", "§2" + getMagicDamage());
         }
     }
 }

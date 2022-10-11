@@ -28,12 +28,13 @@
     "WorldMixin"
   ],
   "client": [
-    "ClientWorldMixin",
-    "GameOptionsMixin",
-    "GameRendererMixin",
-    "HudMixin",
-    "LightmapTextureManagerMixin",
-    "WorldRendererMixin"
+    "client.ClientWorldMixin",
+    "client.GameOptionsMixin",
+    "client.GameRendererMixin",
+    "client.HudMixin",
+    "client.LightmapTextureManagerMixin",
+    "client.MinecraftClientMixin",
+    "client.WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

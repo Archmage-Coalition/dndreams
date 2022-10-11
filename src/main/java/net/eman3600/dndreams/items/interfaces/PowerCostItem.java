@@ -23,6 +23,6 @@ public interface PowerCostItem {
                 return Text.translatable("tooltip.dndreams.power_required");
             }
         } catch (ClassCastException | NullPointerException ignored) {}
-        return Text.translatable("tooltip.dndreams.power_cost", getPowerCost());
+        return Text.translatable("tooltip.dndreams.power_cost", "§d" + getPowerCost());
     }
 }

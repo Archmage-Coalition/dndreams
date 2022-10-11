@@ -53,8 +53,8 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(getTooltipMagicDamage());
         tooltip.add(getTooltipMana());
+        tooltip.add(getTooltipMagicDamage());
     }
 
 
