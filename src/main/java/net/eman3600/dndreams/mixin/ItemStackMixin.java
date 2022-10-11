@@ -3,12 +3,16 @@ package net.eman3600.dndreams.mixin;
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.UnbreakingEnchantment;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -70,6 +74,15 @@ public abstract class ItemStackMixin {
 
                 info.setReturnValue(false);
             }
+        }
+    }
+
+    @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
+    private void dndreams$useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
+        PlayerEntity player = context.getPlayer();
+
+        if (player != null && ModStatusEffects.shouldRestrict(player)) {
+            cir.setReturnValue(ActionResult.PASS);
         }
     }
 }

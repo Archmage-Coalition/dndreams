@@ -3,6 +3,7 @@ package net.eman3600.dndreams.entities.projectiles;
 import net.eman3600.dndreams.initializers.ModEntities;
 import net.eman3600.dndreams.initializers.ModMessages;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
+import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.magic_sword.CrownedEdgeItem;
 import net.eman3600.dndreams.util.matrices.RotatedBox;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -29,11 +30,12 @@ import java.util.List;
 
 public class CrownedSlashEntity extends PersistentProjectileEntity implements ProjectileOverhaulEntity {
     private Vec3d origin;
-    private List<LivingEntity> victims = new ArrayList<>();
-    private static final float yawPerTick = 2;
-    private static final float changeInYaw = 120;
-    private static final int moveTicksPerTick = 12;
-    private static final float range = 3f;
+    public List<LivingEntity> victims = new ArrayList<>();
+    public static final float yawPerTick = 2;
+    public static final float changeInYaw = 120;
+    public static final int moveTicksPerTick = 12;
+    public static final float range = 3f;
+    public CrownedBeamEntity beam = null;
     private int lifeTicks = 0;
 
 
@@ -55,8 +57,8 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
     }
 
     public void initFromStack(ItemStack stack) {
-        if (stack.getItem() instanceof CrownedEdgeItem item) {
-            this.setDamage(item.magicDamage());
+        if (stack.getItem() instanceof MagicDamageItem item) {
+            this.setDamage(item.getMagicDamage());
         } else {
             setDamage(1);
         }
@@ -65,22 +67,12 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
 
         setYaw(getOwner().getYaw() + changeInYaw/2);
 
-        Vec3d vec = AirSwingItem.rayZVector(this.getYaw(), this.getPitch());
-        Vec3d side = AirSwingItem.rayXVector(this.getYaw(), this.getPitch());
-
-        setBoundingBox(new RotatedBox(origin.subtract(vec).subtract(side).subtract(0, 0.5d, 0), origin.add(vec).add(side).add(0, 0.5d, 0)));
-
         setPierceLevel((byte) 3);
     }
 
     @Override
     public boolean hasNoGravity() {
         return true;
-    }
-
-    @Override
-    public void baseTick() {
-        super.baseTick();
     }
 
     @Override
@@ -120,6 +112,10 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
 
                             if (!victims.contains(livingEntity)) {
                                 victims.add(livingEntity);
+                                if (beam != null) {
+                                    beam.victims.add(livingEntity);
+                                }
+
 
                                 livingEntity.timeUntilRegen = 1;
 
@@ -142,25 +138,7 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
 
                     updatePositionAndAngles(getX(), getY(), getZ(), getYaw(), getPitch());
 
-                }/* else if (world.isClient && !doNotDisplay && !world.getNonSpectatingEntities(PlayerEntity.class, getBoundingBox()).contains(getOwner())) {
-
-                    Vec3d supposedPos = origin.add(AirSwingItem.rayZVector(getYaw() - yawPerTick * (l + 1), getPitch()).multiply(range));
-                    if (lifeTicks + l > changeInYaw / yawPerTick) continue;
-
-
-//                        for (double i = box.minX; i <= box.maxX; i += 0.25d) {
-//                            for (double j = box.minZ; j <= box.maxZ; j += 0.25d) {
-//                                this.world.addParticle(ModParticles.CROWNED_SLASH_PARTICLE, i, center.y, j, 0, 0, 0);
-//                            }
-//                        }
-
-                    this.world.addParticle(ModParticles.CROWNED_SLASH_PARTICLE, supposedPos.x, supposedPos.y, supposedPos.z, 0, 0, 0);
-
-                } else if (world.isClient) {
-                    origin = getPos().subtract(0, 1d, 0);
-
-                    doNotDisplay = false;
-                }*/
+                }
             }
 
             if (lifeTicks > changeInYaw / yawPerTick && world instanceof ServerWorld) {
@@ -197,10 +175,5 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
         if (hitResult.getType() == HitResult.Type.BLOCK) {
             this.kill();
         }
-    }
-
-    @Override
-    protected void updateRotation() {
-
     }
 }

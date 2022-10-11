@@ -30,7 +30,7 @@
   "item.dndreams.excalibur": "Excalibur",
   "item.dndreams.slumbering_sword": "Slumbering Sword",
   "item.dndreams.crowned_edge": "Crowned Edge",
-  "item.dndreams.true_crowned_edge": "Lord's Wrath",
+  "item.dndreams.true_crowned_edge": "Epitome",
   
   "item.dndreams.book_of_dreams": "Codex Somnus",
   "item.dndreams.book_of_dreams.landing_text": "Why, what dreams you'll have.",
@@ -73,6 +73,12 @@
   "item.dndreams.phantom_necklace": "Phantom Necklace",
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
+  
+  
+  "tooltip.dndreams.mana_cost": "§dMana Cost: %s",
+  "tooltip.dndreams.power_cost": "§dPower Cost: %s",
+  "tooltip.dndreams.power_required": "§cRequires Infusion Power",
+  "tooltip.dndreams.magic_damage": "§2Magic Damage: %s",
   
   
   "effect.dndreams.impending": "Impending",

@@ -32,4 +32,11 @@ public abstract class ServerPlayNetworkHandlerMixin implements ServerPlayPacketL
             }
         } catch (ClassCastException ignored) {}
     }
+
+    @Inject(method = "checkForSpam", at = @At("HEAD"), cancellable = true)
+    private void dndreams$checkForSpam(CallbackInfo ci) {
+        if (server.isHost(player.getGameProfile())) {
+            ci.cancel();
+        }
+    }
 }

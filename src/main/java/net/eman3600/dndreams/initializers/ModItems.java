@@ -6,6 +6,7 @@ import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.creative.InfusionChangerItem;
 import net.eman3600.dndreams.items.magic_sword.CorruptSword;
 import net.eman3600.dndreams.items.magic_sword.CrownedEdgeItem;
+import net.eman3600.dndreams.items.magic_sword.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
@@ -202,6 +203,11 @@ public class ModItems {
     public static final Item CROWNED_EDGE = registerItem("crowned_edge",
             new CrownedEdgeItem(ModMaterials.CROWNED_EDGE, 3, -2.3F, 5,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+
+    // True Crowned Edge (aka Epitome)
+    public static final Item TRUE_CROWNED_EDGE = registerItem("true_crowned_edge",
+            new TrueCrownedEdgeItem(ModMaterials.CROWNED_EDGE, 6, -2.2F, 5,
+                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC)));
 
 
 

@@ -14,7 +14,7 @@ public interface ManaCostItem {
         return false;
     }
     default Text getTooltipMana() {
-        return Texts.toText(() -> "§dMana Cost: " + getManaCost());
+        return Text.translatable("tooltip.dndreams.mana_cost", getManaCost());
     }
     default void spendMana(PlayerEntity player) {
         if (canAffordMana(player))

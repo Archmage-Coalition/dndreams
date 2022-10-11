@@ -20,9 +20,9 @@ public interface PowerCostItem {
     default Text getTooltipPower(World world) {
         try {
             if (world instanceof ClientWorldMixinI access && !EntityComponents.INFUSION.get(access.getClient().player).infused()) {
-                return Texts.toText(() -> "§cRequires Infusion Power");
+                return Text.translatable("tooltip.dndreams.power_required");
             }
         } catch (ClassCastException | NullPointerException ignored) {}
-        return Texts.toText(() -> "§dPower Cost: " + getPowerCost() + "%");
+        return Text.translatable("tooltip.dndreams.power_cost", getPowerCost());
     }
 }
