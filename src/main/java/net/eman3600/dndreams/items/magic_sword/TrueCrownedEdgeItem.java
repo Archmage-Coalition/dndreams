@@ -18,7 +18,7 @@ public class TrueCrownedEdgeItem extends CrownedEdgeItem {
 
 
     @Override
-    public int getManaCost() {
+    public int getBaseManaCost() {
         return 8;
     }
 
@@ -36,8 +36,8 @@ public class TrueCrownedEdgeItem extends CrownedEdgeItem {
             world.spawnEntity(slash);
             slash.initFromStack(stack);
 
-            if (canAffordMana(user)) {
-                spendMana(user);
+            if (canAffordMana(user, stack)) {
+                spendMana(user, stack);
 
                 CrownedBeamEntity beam = new CrownedBeamEntity(user, world);
                 world.spawnEntity(beam);

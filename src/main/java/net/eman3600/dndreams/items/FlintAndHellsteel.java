@@ -3,6 +3,7 @@ package net.eman3600.dndreams.items;
 import com.mojang.brigadier.Message;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
@@ -24,8 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FlintAndHellsteel extends Item {
-    private static int MANA_USE = 4;
+public class FlintAndHellsteel extends Item implements ManaCostItem {
 
     public FlintAndHellsteel(Settings settings) {
         super(settings);
@@ -38,9 +38,7 @@ public class FlintAndHellsteel extends Item {
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
 
-        ManaComponent component = EntityComponents.MANA.get(playerEntity);
-
-        if (component.getMana() < MANA_USE) {
+        if (!canAffordMana(playerEntity, context.getStack())) {
             return ActionResult.FAIL;
         }
 
@@ -54,7 +52,7 @@ public class FlintAndHellsteel extends Item {
                 ItemStack itemStack = context.getStack();
                 if (playerEntity instanceof ServerPlayerEntity) {
                     Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos2, itemStack);
-                    component.useMana(MANA_USE);
+                    spendMana(playerEntity, itemStack);
                 }
 
                 return ActionResult.success(world.isClient());
@@ -66,7 +64,7 @@ public class FlintAndHellsteel extends Item {
             world.setBlockState(blockPos, (BlockState)blockState.with(Properties.LIT, true), 11);
             world.emitGameEvent(playerEntity, GameEvent.BLOCK_CHANGE, blockPos);
             if (playerEntity != null) {
-                component.useMana(MANA_USE);
+                spendMana(playerEntity, context.getStack());
             }
 
 
@@ -77,11 +75,11 @@ public class FlintAndHellsteel extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Texts.toText(new Message() {
-            @Override
-            public String getString() {
-                return "§dMana Cost: " + MANA_USE;
-            }
-        }));
+        tooltip.add(getTooltipMana(stack));
+    }
+
+    @Override
+    public int getBaseManaCost() {
+        return 4;
     }
 }

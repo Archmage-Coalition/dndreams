@@ -16,7 +16,7 @@ import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.items.trinket.PhantomNecklace;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
-import net.eman3600.dndreams.util.ModMaterials;
+import net.eman3600.dndreams.util.ModToolMaterials;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -80,19 +80,19 @@ public class ModItems {
 
     // Hellsteel Sword & Tools
     public static final Item CORRUPT_SWORD = registerItem("corrupt_sword",
-            new CorruptSword(ModMaterials.CORRUPT, 3, -1.8F,
+            new CorruptSword(ModToolMaterials.CORRUPT, 3, -1.8F,
             new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item CORRUPT_PICKAXE = registerItem("corrupt_pickaxe",
-            new CorruptPickaxe(ModMaterials.CORRUPT, 1, -2.4F,
+            new CorruptPickaxe(ModToolMaterials.CORRUPT, 1, -2.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item CORRUPT_AXE = registerItem("corrupt_axe",
-            new CorruptAxe(ModMaterials.CORRUPT, 5.0F, -2.9F,
+            new CorruptAxe(ModToolMaterials.CORRUPT, 5.0F, -2.9F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item CORRUPT_SHOVEL = registerItem("corrupt_shovel",
-            new CorruptShovel(ModMaterials.CORRUPT, 1.5F, -3.0F,
+            new CorruptShovel(ModToolMaterials.CORRUPT, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item CORRUPT_HOE = registerItem("corrupt_hoe",
-            new CorruptHoe(ModMaterials.CORRUPT, -3, 0F,
+            new CorruptHoe(ModToolMaterials.CORRUPT, -3, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
     // Flint and Hellsteel
@@ -106,13 +106,13 @@ public class ModItems {
 
     // Celestium Swords & Tools
     public static final Item HOLY_SWORD = registerItem("holy_sword",
-            new SwordItem(ModMaterials.HOLY, 3, -2.8F,
+            new SwordItem(ModToolMaterials.HOLY, 3, -2.8F,
             new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item HOLY_PICKAXE = registerItem("holy_pickaxe",
-            new ModPickaxeItem(ModMaterials.HOLY, 1, -2.8F,
+            new ModPickaxeItem(ModToolMaterials.HOLY, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item HOLY_AXE = registerItem("holy_axe",
-            new ModAxeItem(ModMaterials.HOLY, 5.0F, -3.4F,
+            new ModAxeItem(ModToolMaterials.HOLY, 5.0F, -3.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
 
@@ -124,19 +124,19 @@ public class ModItems {
 
     // Managold Gear
     public static final Item MANAGOLD_SWORD = registerItem("managold_sword",
-            new SwordItem(ModMaterials.MANAGOLD, 3, -2.4F,
+            new SwordItem(ModToolMaterials.MANAGOLD, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item MANAGOLD_PICKAXE = registerItem("managold_pickaxe",
-            new ModPickaxeItem(ModMaterials.MANAGOLD, 1, -2.8F,
+            new ModPickaxeItem(ModToolMaterials.MANAGOLD, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item MANAGOLD_AXE = registerItem("managold_axe",
-            new ModAxeItem(ModMaterials.MANAGOLD, 6.0F, -3.0F,
+            new ModAxeItem(ModToolMaterials.MANAGOLD, 6.0F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item MANAGOLD_SHOVEL = registerItem("managold_shovel",
-            new ModShovelItem(ModMaterials.MANAGOLD, 1.5F, -3.0F,
+            new ModShovelItem(ModToolMaterials.MANAGOLD, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item MANAGOLD_HOE = registerItem("managold_hoe",
-            new ModHoeItem(ModMaterials.MANAGOLD, -2, 0F,
+            new ModHoeItem(ModToolMaterials.MANAGOLD, -2, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item MANAGOLD_HELMET = registerItem("managold_helmet",
@@ -154,19 +154,19 @@ public class ModItems {
 
     // Tormite Gear
     public static final Item TORMITE_SWORD = registerItem("tormite_sword",
-            new SwordItem(ModMaterials.TORMITE, 3, -2.4F,
+            new SwordItem(ModToolMaterials.TORMITE, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item TORMITE_PICKAXE = registerItem("tormite_pickaxe",
-            new ModPickaxeItem(ModMaterials.TORMITE, 1, -2.8F,
+            new ModPickaxeItem(ModToolMaterials.TORMITE, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item TORMITE_AXE = registerItem("tormite_axe",
-            new ModAxeItem(ModMaterials.TORMITE, 5.0F, -3.0F,
+            new ModAxeItem(ModToolMaterials.TORMITE, 5.0F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item TORMITE_SHOVEL = registerItem("tormite_shovel",
-            new ModShovelItem(ModMaterials.TORMITE, 1.5F, -3.0F,
+            new ModShovelItem(ModToolMaterials.TORMITE, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item TORMITE_HOE = registerItem("tormite_hoe",
-            new ModHoeItem(ModMaterials.TORMITE, -4, 0F,
+            new ModHoeItem(ModToolMaterials.TORMITE, -4, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
     public static final Item TORMITE_HELMET = registerItem("tormite_helmet",
@@ -191,22 +191,22 @@ public class ModItems {
 
     // Excalibur
     public static final Item EXCALIBUR = registerItem("excalibur",
-            new Excalibur(ModMaterials.ARTIFACT, 1, -2.6F,
+            new Excalibur(ModToolMaterials.ARTIFACT, 1, -2.6F,
             new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
     // Slumbering Sword
     public static final Item SLUMBERING_SWORD = registerItem("slumbering_sword",
-            new SwordItem(ModMaterials.CROWNED_EDGE, 3, -2.3F,
+            new SwordItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
     // Crowned Edge
     public static final Item CROWNED_EDGE = registerItem("crowned_edge",
-            new CrownedEdgeItem(ModMaterials.CROWNED_EDGE, 3, -2.3F, 5,
+            new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 5,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
     // True Crowned Edge (aka Epitome)
     public static final Item TRUE_CROWNED_EDGE = registerItem("true_crowned_edge",
-            new TrueCrownedEdgeItem(ModMaterials.CROWNED_EDGE, 6, -2.2F, 5,
+            new TrueCrownedEdgeItem(ModToolMaterials.LAMENT, 6, -2.2F, 5,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC)));
 
 

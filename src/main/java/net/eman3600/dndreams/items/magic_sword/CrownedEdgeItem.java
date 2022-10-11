@@ -1,10 +1,13 @@
 package net.eman3600.dndreams.items.magic_sword;
 
 import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
+import net.eman3600.dndreams.initializers.ModEnchantments;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -31,8 +34,8 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
 
     @Override
     public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, Entity hit) {
-        if (canAffordMana(user) && user.getAttackCooldownProgress(0.5f) > 0.9f) {
-            spendMana(user);
+        if (canAffordMana(user, stack) && user.getAttackCooldownProgress(0.5f) > 0.9f) {
+            spendMana(user, stack);
 
             if (hit == null) {
                 stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
@@ -47,19 +50,36 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
     }
 
     @Override
-    public int getManaCost() {
+    public int getBaseManaCost() {
         return 5;
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(getTooltipMana());
-        tooltip.add(getTooltipMagicDamage());
+        tooltip.add(getTooltipMana(stack));
+        tooltip.add(getTooltipMagicDamage(stack));
     }
 
 
     @Override
-    public float getMagicDamage() {
+    public float getBaseMagicDamage() {
         return magicDamage;
+    }
+
+
+    public static class CrownedEnchantment extends Enchantment {
+        public CrownedEnchantment(Rarity weight, EquipmentSlot[] slotTypes) {
+            super(weight, EnchantmentTarget.VANISHABLE, slotTypes);
+        }
+
+        @Override
+        public int getMaxLevel() {
+            return 1;
+        }
+
+        @Override
+        public boolean isAcceptableItem(ItemStack stack) {
+            return stack.getItem() instanceof CrownedEdgeItem;
+        }
     }
 }

@@ -81,6 +81,14 @@
   "tooltip.dndreams.magic_damage": "§2Magic Damage: %s",
   
   
+  "enchantment.dndreams.potency": "Potency",
+  "enchantment.dndreams.potency.desc": "Increases magic damage dealt.",
+  "enchantment.dndreams.thrifty": "Thrifty",
+  "enchantment.dndreams.thrifty_desc": "Decreases mana cost.",
+  "enchantment.dndreams.wicked": "Wicked",
+  "enchantment.dndreams.wicked_desc": "Magic slashes wither foes.",
+  
+  
   "effect.dndreams.impending": "Impending",
   "effect.dndreams.bloodlust": "Bloodlust",
   "effect.dndreams.suppressed": "Suppressed",

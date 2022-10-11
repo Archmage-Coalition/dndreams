@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.items.mindstring_bow;
 
-import com.mojang.brigadier.Message;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
@@ -18,7 +17,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import net.minecraft.text.Texts;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -35,7 +33,7 @@ public class MindstringBow extends BowItem implements ManaCostItem {
         return new ItemStack(Items.ARROW);
     }
 
-    public int getManaCost() {
+    public int getBaseManaCost() {
         return 7;
     }
 
@@ -48,7 +46,7 @@ public class MindstringBow extends BowItem implements ManaCostItem {
         if (user instanceof PlayerEntity) {
             PlayerEntity playerEntity = (PlayerEntity)user;
             boolean bl = playerEntity.getAbilities().creativeMode || EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0;
-            if (canAfford(playerEntity) || bl) {
+            if (canAfford(playerEntity, stack) || bl) {
                 ItemStack itemStack = getProjectile();
 
                 int i = this.getMaxUseTime(stack) - remainingUseTicks;
@@ -78,7 +76,7 @@ public class MindstringBow extends BowItem implements ManaCostItem {
                         }
 
                         if (!bl && (!(EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0) || !allowInfinity())) {
-                            payAmmo(playerEntity);
+                            payAmmo(playerEntity, stack);
                         }
 
                         stack.damage(1, playerEntity, (p) -> {
@@ -106,8 +104,7 @@ public class MindstringBow extends BowItem implements ManaCostItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        ManaComponent component = EntityComponents.MANA.get(user);
-        boolean bl = canAfford(user);
+        boolean bl = canAfford(user, itemStack);
         if (!user.getAbilities().creativeMode && !bl) {
             return TypedActionResult.fail(itemStack);
         } else {
@@ -116,13 +113,13 @@ public class MindstringBow extends BowItem implements ManaCostItem {
         }
     }
 
-    protected boolean canAfford(PlayerEntity player) {
-        return canAffordMana(player);
+    protected boolean canAfford(PlayerEntity player, ItemStack stack) {
+        return canAffordMana(player, stack);
     }
 
-    protected void payAmmo(PlayerEntity player) {
+    protected void payAmmo(PlayerEntity player, ItemStack stack) {
         if (player != null) {
-            EntityComponents.MANA.get(player).useMana(getManaCost());
+            spendMana(player, stack);
         }
     }
 
@@ -142,6 +139,6 @@ public class MindstringBow extends BowItem implements ManaCostItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(getTooltipMana());
+        tooltip.add(getTooltipMana(stack));
     }
 }

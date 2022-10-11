@@ -1,21 +1,28 @@
 package net.eman3600.dndreams.entities.projectiles;
 
+import net.eman3600.dndreams.initializers.ModEnchantments;
 import net.eman3600.dndreams.initializers.ModEntities;
 import net.eman3600.dndreams.initializers.ModMessages;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
+import net.eman3600.dndreams.items.magic_sword.CrownedEdgeItem;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
@@ -34,6 +41,7 @@ public class CrownedBeamEntity extends PersistentProjectileEntity implements Pro
     public List<LivingEntity> victims = new ArrayList<>();
     public CrownedSlashEntity slash = null;
     private Vec3d origin;
+    private boolean wicked = false;
 
     public CrownedBeamEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
@@ -59,7 +67,7 @@ public class CrownedBeamEntity extends PersistentProjectileEntity implements Pro
 
     public void initFromStack(ItemStack stack) {
         if (stack.getItem() instanceof MagicDamageItem item) {
-            this.setDamage(item.getMagicDamage());
+            this.setDamage(item.getMagicDamage(stack));
         } else {
             setDamage(1);
         }
@@ -70,6 +78,8 @@ public class CrownedBeamEntity extends PersistentProjectileEntity implements Pro
         setYaw(getOwner().getYaw());
 
         setVelocity(0, 0, 0);
+
+        wicked = EnchantmentHelper.getLevel(ModEnchantments.WICKED, stack) > 0;
 
         setPierceLevel((byte) 3);
     }
@@ -104,6 +114,7 @@ public class CrownedBeamEntity extends PersistentProjectileEntity implements Pro
 
                                     livingEntity.takeKnockback(0.4f, MathHelper.sin(getOwner().getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getOwner().getYaw() * ((float) Math.PI / 180)));
                                     livingEntity.damage(DamageSource.magic(getOwner(), getOwner()), (float) this.getDamage());
+                                    if (wicked) livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 80, 1), getOwner());
                                 }
                             }
 
@@ -164,5 +175,10 @@ public class CrownedBeamEntity extends PersistentProjectileEntity implements Pro
         if (hitResult.getType() == HitResult.Type.BLOCK) {
             this.kill();
         }
+    }
+
+    @Override
+    protected SoundEvent getHitSound() {
+        return SoundEvents.BLOCK_AMETHYST_BLOCK_HIT;
     }
 }

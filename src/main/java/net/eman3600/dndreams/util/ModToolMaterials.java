@@ -1,15 +1,13 @@
 package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.initializers.ModItems;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Lazy;
 
 import java.util.function.Supplier;
 
-public enum ModMaterials implements ToolMaterial {
+public enum ModToolMaterials implements ToolMaterial {
     CORRUPT(3, 1785, 4.0F, 3.0F, 18,
             () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
     HOLY(4, 1824, 12.0F, 5.0F, 18,
@@ -20,7 +18,9 @@ public enum ModMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
     TORMITE(4, 128, 12.0F, 4.0F, 22,
             () -> Ingredient.ofItems(ModItems.TORMITE_INGOT)),
-    CROWNED_EDGE(4, 2000, 12.0F, 3.0F, 18,
+    CROWNED_EDGE(4, 2500, 12.0F, 3.0F, 18,
+            () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
+    LAMENT(4, 5000, 12.0F, 3.0F, 18,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL));
 
     private final int miningLevel;
@@ -30,7 +30,7 @@ public enum ModMaterials implements ToolMaterial {
     private final int enchantability;
     private final Lazy<Ingredient> repairIngredient;
 
-    private ModMaterials(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
+    private ModToolMaterials(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
         this.miningLevel = miningLevel;
         this.itemDurability = itemDurability;
         this.miningSpeed = miningSpeed;

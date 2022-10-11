@@ -23,7 +23,7 @@ public class LightstringBow extends MindstringBow implements PowerCostItem {
     }
 
     @Override
-    public int getManaCost() {
+    public int getBaseManaCost() {
         return 7;
     }
 
@@ -32,26 +32,26 @@ public class LightstringBow extends MindstringBow implements PowerCostItem {
     }
 
     @Override
-    public float getPowerCost() {
+    public float getBasePowerCost() {
         return 0.5f;
     }
 
     @Override
-    protected boolean canAfford(PlayerEntity player) {
-        return super.canAfford(player) && canAffordPower(player);
+    protected boolean canAfford(PlayerEntity player, ItemStack stack) {
+        return super.canAfford(player, stack) && canAffordPower(player, stack);
     }
 
     @Override
-    protected void payAmmo(PlayerEntity player) {
+    protected void payAmmo(PlayerEntity player, ItemStack stack) {
         if (player != null) {
-            EntityComponents.MANA.get(player).useMana(getManaCost());
-            EntityComponents.INFUSION.get(player).usePower(getPowerCost());
+            spendMana(player, stack);
+            spendPower(player, stack);
         }
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(getTooltipPower(world));
+        tooltip.add(getTooltipPower(world, stack));
     }
 }
