@@ -30,7 +30,7 @@
   "item.dndreams.excalibur": "Excalibur",
   "item.dndreams.slumbering_sword": "Slumbering Sword",
   "item.dndreams.crowned_edge": "Crowned Edge",
-  "item.dndreams.true_crowned_edge": "Epitome",
+  "item.dndreams.true_crowned_edge": "True Crowned Edge",
   
   "item.dndreams.book_of_dreams": "Codex Somnus",
   "item.dndreams.book_of_dreams.landing_text": "Why, what dreams you'll have.",
@@ -192,8 +192,17 @@
   "block.dndreams.echo_candle": "Echo Candle",
   "block.dndreams.cosmic_candle": "Cosmic Candle",
   
+  "block.dndreams.flowing_spirit": "Flowing Spirit",
+  "block.dndreams.flowing_flowing_spirit": "Flowing Spirit",
+  
   
   "container.dndreams.dream_table": "Dream Weaving",
+  
+  
+  "rei.dndreams.weaving": "Dream Weaving",
+  "rei.dndreams.weaving_shapeless": "Shapeless Weaving",
+  "rei.dndreams.transmutation": "Spirit Transmutation",
+  "rei.dndreams.transmutation.real_only": "Real World Only",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"

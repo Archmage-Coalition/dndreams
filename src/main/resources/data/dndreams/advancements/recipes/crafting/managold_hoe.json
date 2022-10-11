@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "dndreams:managold_hoe"
+        "recipe": "dndreams:crafting/managold_hoe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "dndreams:managold_hoe"
+      "dndreams:crafting/managold_hoe"
     ]
   }
 }

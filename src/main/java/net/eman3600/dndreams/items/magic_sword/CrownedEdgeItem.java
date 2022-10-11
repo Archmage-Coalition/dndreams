@@ -2,11 +2,13 @@ package net.eman3600.dndreams.items.magic_sword;
 
 import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
 import net.eman3600.dndreams.initializers.ModEnchantments;
+import net.eman3600.dndreams.items.enchantments.AliasedEnchantment;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -55,6 +57,11 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
     }
 
     @Override
+    public int getManaCost(ItemStack stack) {
+        return ManaCostItem.super.getManaCost(stack) + (EnchantmentHelper.getLevel(ModEnchantments.WICKED, stack) > 0 ? 2 : 0);
+    }
+
+    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(getTooltipMana(stack));
         tooltip.add(getTooltipMagicDamage(stack));
@@ -67,14 +74,9 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
     }
 
 
-    public static class CrownedEnchantment extends Enchantment {
-        public CrownedEnchantment(Rarity weight, EquipmentSlot[] slotTypes) {
-            super(weight, EnchantmentTarget.VANISHABLE, slotTypes);
-        }
-
-        @Override
-        public int getMaxLevel() {
-            return 1;
+    public static class CrownedEnchantment extends AliasedEnchantment {
+        public CrownedEnchantment(Rarity weight, int maxLevel, EquipmentSlot[] slotTypes) {
+            super(weight, maxLevel, slotTypes);
         }
 
         @Override

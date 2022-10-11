@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "dndreams:managold_ingot_from_managold_block"
+        "recipe": "dndreams:crafting/managold_ingot_from_managold_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "dndreams:managold_ingot_from_managold_block"
+      "dndreams:crafting/managold_ingot_from_managold_block"
     ]
   }
 }

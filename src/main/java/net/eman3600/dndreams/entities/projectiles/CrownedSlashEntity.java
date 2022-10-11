@@ -141,6 +141,7 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
                     packet.writeDouble(getX());
                     packet.writeDouble(getY());
                     packet.writeDouble(getZ());
+                    packet.writeBoolean(wicked);
 
                     for (ServerPlayerEntity player : serverWorld.getPlayers()) {
                         ServerPlayNetworking.send(player, ModMessages.CROWNED_SLASH_ID, packet);

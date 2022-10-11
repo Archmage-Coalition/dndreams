@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "dndreams:managold_shovel"
+        "recipe": "dndreams:crafting/managold_shovel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "dndreams:managold_shovel"
+      "dndreams:crafting/managold_shovel"
     ]
   }
 }

@@ -5,6 +5,7 @@ import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
 import net.eman3600.dndreams.particle.CrownedBeamParticle;
 import net.eman3600.dndreams.particle.CrownedSlashParticle;
+import net.eman3600.dndreams.particle.CrownedWickedParticle;
 import net.eman3600.dndreams.screen.WeavingScreen;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
@@ -54,6 +55,7 @@ public class ClientInitializer implements ClientModInitializer {
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.CROWNED_SLASH_PARTICLE, CrownedSlashParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.CROWNED_BEAM_PARTICLE, CrownedBeamParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.CROWNED_WICKED_PARTICLE, CrownedWickedParticle.Factory::new);
 
 
         EntityRendererRegistry.register(ModEntities.CROWNED_SLASH_ENTITY_TYPE, EmptyEntityRenderer::new);

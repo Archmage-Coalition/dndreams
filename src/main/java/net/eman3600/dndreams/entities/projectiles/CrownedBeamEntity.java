@@ -127,6 +127,7 @@ public class CrownedBeamEntity extends PersistentProjectileEntity implements Pro
                         packet.writeDouble(edge.x);
                         packet.writeDouble(edge.y);
                         packet.writeDouble(edge.z);
+                        packet.writeBoolean(wicked);
 
                         for (ServerPlayerEntity player : serverWorld.getPlayers()) {
                             ServerPlayNetworking.send(player, ModMessages.CROWNED_BEAM_ID, packet);

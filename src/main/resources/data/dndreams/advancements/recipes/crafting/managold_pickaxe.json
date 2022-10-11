@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "dndreams:managold_pickaxe"
+        "recipe": "dndreams:crafting/managold_pickaxe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "dndreams:managold_pickaxe"
+      "dndreams:crafting/managold_pickaxe"
     ]
   }
 }

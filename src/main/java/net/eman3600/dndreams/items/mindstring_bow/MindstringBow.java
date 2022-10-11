@@ -45,7 +45,7 @@ public class MindstringBow extends BowItem implements ManaCostItem {
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (user instanceof PlayerEntity) {
             PlayerEntity playerEntity = (PlayerEntity)user;
-            boolean bl = playerEntity.getAbilities().creativeMode || EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0;
+            boolean bl = playerEntity.getAbilities().creativeMode;
             if (canAfford(playerEntity, stack) || bl) {
                 ItemStack itemStack = getProjectile();
 
@@ -75,7 +75,7 @@ public class MindstringBow extends BowItem implements ManaCostItem {
                             persistentProjectileEntity.setOnFireFor(100);
                         }
 
-                        if (!bl && (!(EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0) || !allowInfinity())) {
+                        if (!bl) {
                             payAmmo(playerEntity, stack);
                         }
 

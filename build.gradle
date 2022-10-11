@@ -30,6 +30,7 @@ repositories {
 		url = "https://ladysnake.jfrog.io/artifactory/mods"
 	}
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+	maven { url "https://maven.shedaniel.me" }
 }
 
 dependencies {
@@ -56,6 +57,10 @@ dependencies {
 	modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
 
 	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.5'
+
+
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
 }
 
 processResources {

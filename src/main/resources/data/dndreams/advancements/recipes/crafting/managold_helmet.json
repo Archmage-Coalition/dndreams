@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "dndreams:managold_helmet"
+        "recipe": "dndreams:crafting/managold_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "dndreams:managold_helmet"
+      "dndreams:crafting/managold_helmet"
     ]
   }
 }

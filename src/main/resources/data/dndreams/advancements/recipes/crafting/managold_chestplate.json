@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "dndreams:managold_chestplate"
+        "recipe": "dndreams:crafting/managold_chestplate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "dndreams:managold_chestplate"
+      "dndreams:crafting/managold_chestplate"
     ]
   }
 }

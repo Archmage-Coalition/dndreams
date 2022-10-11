@@ -17,6 +17,7 @@
     "EntityMixin",
     "FarmlandBlockMixin",
     "FluidBlockMixin",
+    "EnchantmentMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "ItemStackMixin",

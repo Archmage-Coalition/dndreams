@@ -18,8 +18,8 @@ public class TransmutationRecipe implements Recipe<Inventory> {
     final String group;
     final Ingredient input;
     final ItemStack output;
-    private final boolean realOnly;
-    private final boolean keepData;
+    public final boolean realOnly;
+    public final boolean keepData;
 
     public TransmutationRecipe(Identifier id, String group, Ingredient input, ItemStack output, boolean realOnly, boolean keepData) {
         this.id = id;

@@ -12,10 +12,12 @@ import net.minecraft.util.registry.Registry;
 public class ModParticles {
     public static final DefaultParticleType CROWNED_SLASH_PARTICLE = FabricParticleTypes.simple();
     public static final DefaultParticleType CROWNED_BEAM_PARTICLE = FabricParticleTypes.simple();
+    public static final DefaultParticleType CROWNED_WICKED_PARTICLE = FabricParticleTypes.simple();
 
     public static void registerParticles() {
         registerParticle("crowned_slash", CROWNED_SLASH_PARTICLE);
         registerParticle("crowned_beam", CROWNED_BEAM_PARTICLE);
+        registerParticle("crowned_wicked", CROWNED_WICKED_PARTICLE);
     }
 
 

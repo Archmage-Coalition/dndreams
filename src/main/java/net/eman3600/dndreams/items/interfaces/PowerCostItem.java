@@ -4,10 +4,11 @@ import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Vanishable;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
-public interface PowerCostItem {
+public interface PowerCostItem extends Vanishable {
     float getBasePowerCost();
 
     default float getPowerCost(ItemStack stack) {

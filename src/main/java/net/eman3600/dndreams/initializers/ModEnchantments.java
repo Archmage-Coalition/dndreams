@@ -11,9 +11,9 @@ import net.minecraft.util.registry.Registry;
 
 public class ModEnchantments {
 
-    public static final Enchantment POTENCY = register("potency", new PotencyEnchantment(Enchantment.Rarity.UNCOMMON, 4, EquipmentSlot.values()));
+    public static final Enchantment POTENCY = register("potency", new PotencyEnchantment(Enchantment.Rarity.COMMON, 4, EquipmentSlot.values()));
     public static final Enchantment THRIFTY = register("thrifty", new ManaCostEnchantment(Enchantment.Rarity.UNCOMMON, 3, EquipmentSlot.values()));
-    public static final Enchantment WICKED = register("wicked", new CrownedEdgeItem.CrownedEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.values()));
+    public static final Enchantment WICKED = register("wicked", new CrownedEdgeItem.CrownedEnchantment(Enchantment.Rarity.UNCOMMON, 1, EquipmentSlot.values()));
 
     public static Enchantment register(String id, Enchantment enchant) {
         return Registry.register(Registry.ENCHANTMENT, new Identifier(Initializer.MODID, id), enchant);
