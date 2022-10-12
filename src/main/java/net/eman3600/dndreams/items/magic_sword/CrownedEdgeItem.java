@@ -57,11 +57,6 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
     }
 
     @Override
-    public int getManaCost(ItemStack stack) {
-        return ManaCostItem.super.getManaCost(stack) + (EnchantmentHelper.getLevel(ModEnchantments.WICKED, stack) > 0 ? 2 : 0);
-    }
-
-    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(getTooltipMana(stack));
         tooltip.add(getTooltipMagicDamage(stack));

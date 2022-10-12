@@ -44,7 +44,7 @@ public class WeavingShapedCategory implements DisplayCategory<WeavingShapedDispl
 
     @Override
     public int getDisplayHeight() {
-        return 100;
+        return 80;
     }
 
     @Override

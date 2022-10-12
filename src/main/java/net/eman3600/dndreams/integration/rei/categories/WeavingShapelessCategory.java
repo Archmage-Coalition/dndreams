@@ -42,7 +42,7 @@ public class WeavingShapelessCategory implements DisplayCategory<WeavingShapeles
 
     @Override
     public int getDisplayHeight() {
-        return 100;
+        return 80;
     }
 
     @Override

@@ -197,17 +197,17 @@ public class ModItems {
     // Slumbering Sword
     public static final Item SLUMBERING_SWORD = registerItem("slumbering_sword",
             new SwordItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON).fireproof()));
 
     // Crowned Edge
     public static final Item CROWNED_EDGE = registerItem("crowned_edge",
             new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 5,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.RARE).fireproof()));
 
     // True Crowned Edge (aka Epitome)
     public static final Item TRUE_CROWNED_EDGE = registerItem("true_crowned_edge",
             new TrueCrownedEdgeItem(ModToolMaterials.LAMENT, 6, -2.2F, 5,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC)));
+                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).fireproof()));
 
 
 
