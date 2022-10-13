@@ -1,6 +1,7 @@
 package net.eman3600.dndreams;
 
-import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
+import net.eman3600.dndreams.entities.renderers.BloodSkeletonEntityRenderer;
+import net.eman3600.dndreams.entities.renderers.BloodZombieEntityRenderer;
 import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
 import net.eman3600.dndreams.particle.CrownedBeamParticle;
@@ -17,12 +18,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeKeys;
 
 public class ClientInitializer implements ClientModInitializer {
     @Override
@@ -60,6 +57,9 @@ public class ClientInitializer implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.CROWNED_SLASH_ENTITY_TYPE, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CROWNED_BEAM_ENTITY_TYPE, EmptyEntityRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.BLOOD_ZOMBIE_ENTITY_TYPE, BloodZombieEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BLOOD_SKELETON_ENTITY_TYPE, BloodSkeletonEntityRenderer::new);
     }
 
 

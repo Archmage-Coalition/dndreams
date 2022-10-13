@@ -3,7 +3,7 @@ package net.eman3600.dndreams.initializers;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.items.enchantments.ManaCostEnchantment;
 import net.eman3600.dndreams.items.enchantments.PotencyEnchantment;
-import net.eman3600.dndreams.items.magic_sword.CrownedEdgeItem;
+import net.eman3600.dndreams.items.magic_sword.CrownedEdgeItem.CrownedEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;
@@ -13,7 +13,7 @@ public class ModEnchantments {
 
     public static final Enchantment POTENCY = register("potency", new PotencyEnchantment(Enchantment.Rarity.COMMON, 4, EquipmentSlot.values()));
     public static final Enchantment THRIFTY = register("thrifty", new ManaCostEnchantment(Enchantment.Rarity.UNCOMMON, 3, EquipmentSlot.values()));
-    public static final Enchantment WICKED = register("wicked", new CrownedEdgeItem.CrownedEnchantment(Enchantment.Rarity.UNCOMMON, 1, EquipmentSlot.values()));
+    public static final Enchantment WICKED = register("wicked", new CrownedEnchantment(Enchantment.Rarity.UNCOMMON, 1, EquipmentSlot.values()));
 
     public static Enchantment register(String id, Enchantment enchant) {
         return Registry.register(Registry.ENCHANTMENT, new Identifier(Initializer.MODID, id), enchant);

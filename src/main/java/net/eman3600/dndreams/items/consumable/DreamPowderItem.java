@@ -40,7 +40,7 @@ public class DreamPowderItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if (world != null & world.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+        if (world != null && world.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             tooltip.add(Text.translatable("item.dndreams.dream_powder.tooltip"));
         }
     }

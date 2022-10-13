@@ -43,6 +43,7 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
     public static final float range = 3f;
     public CrownedBeamEntity beam = null;
     private int lifeTicks = 0;
+    private int failsafeTicks = 0;
     private boolean wicked = false;
 
 
@@ -157,6 +158,10 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
             }
 
         } catch (NullPointerException e) {
+            kill();
+        }
+
+        if (failsafeTicks > 600) {
             kill();
         }
     }

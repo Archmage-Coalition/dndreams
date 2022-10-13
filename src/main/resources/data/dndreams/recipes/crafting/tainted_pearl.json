@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:tainted_pearl",
+  "ingredients": [
+    {
+      "item": "minecraft:ender_pearl"
+    },
+	{
+      "item": "dndreams:infernal_residue"
+    }
+  ],
+  "result": {
+    "item": "dndreams:tainted_pearl",
+    "count": 1
+  }
+}

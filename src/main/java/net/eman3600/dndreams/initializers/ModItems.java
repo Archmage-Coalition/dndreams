@@ -24,6 +24,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
+import static net.eman3600.dndreams.Initializer.MODID;
+
 public class ModItems {
     /*
      * Declaration
@@ -101,7 +103,7 @@ public class ModItems {
 
     // Ancient Portal Activation
     public static final Item ANCIENT_SPARK = registerItem("ancient_spark", new AncientSparkItem(new FabricItemSettings()
-            .group(ItemGroup.MISC).maxCount(1).maxDamage(64)));
+            .group(ItemGroup.TOOLS).maxCount(1).maxDamage(64)));
 
 
     // Celestium Swords & Tools
@@ -221,6 +223,10 @@ public class ModItems {
     public static final Item MATERIALIZE_TOME = registerItem("materialize_tome",
             new MaterializeTome(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.RARE)));
 
+    // Tainted Pearl
+    public static final Item TAINTED_PEARL = registerItem("tainted_pearl",
+            new TaintedPearlItem(new FabricItemSettings().group(ItemGroup.MISC)));
+
     // Book of Dreams
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
             new BookOfDreams(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
@@ -248,10 +254,10 @@ public class ModItems {
      * Item Registration
      * */
     public static Item registerItem(String name, Item item) {
-        return Registry.register(Registry.ITEM, new Identifier(Initializer.MODID, name), item);
+        return Registry.register(Registry.ITEM, new Identifier(MODID, name), item);
     }
 
     public static void registerItems() {
-        System.out.println("Registering items for " + Initializer.MODID);
+        System.out.println("Registering items for " + MODID);
     }
 }

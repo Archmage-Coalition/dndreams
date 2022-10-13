@@ -28,7 +28,8 @@
     "ServerPlayNetworkHandlerMixin",
     "SonicBoomTaskMixin",
     "WardenAngerManagerMixin",
-    "WorldMixin"
+    "WorldMixin",
+    "server.ServerWorldMixin"
   ],
   "client": [
     "client.ClientWorldMixin",

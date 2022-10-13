@@ -199,6 +199,15 @@
   "container.dndreams.dream_table": "Dream Weaving",
   
   
+  "entity.dndreams.crowned_slash": "Crowned Slash",
+  "entity.dndreams.crowned_beam": "Crowned Beam",
+  "entity.dndreams.blood_moon.blood_zombie": "Blood Zombie",
+  "entity.dndreams.blood_moon.blood_skeleton": "Blood Skeleton",
+  "entity.dndreams.blood_moon.blood_spider": "Blood Spider",
+  "entity.dndreams.blood_moon.blood_creeper": "Blood Creeper",
+  "entity.dndreams.tormentor": "Tormentor",
+  
+  
   "rei.dndreams.weaving": "Dream Weaving",
   "rei.dndreams.weaving_shapeless": "Shapeless Weaving",
   "rei.dndreams.transmutation": "Spirit Transmutation",

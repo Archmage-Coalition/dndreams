@@ -23,6 +23,11 @@ public class TrueCrownedEdgeItem extends CrownedEdgeItem {
     }
 
     @Override
+    public float getBaseMagicDamage() {
+        return 7;
+    }
+
+    @Override
     public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, Entity hit) {
         if (user.getAttackCooldownProgress(0.5f) > 0.9f) {
             if (hit == null) {
