@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.initializers;
 
-import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.creative.InfusionChangerItem;
@@ -48,7 +47,7 @@ public class ModItems {
 
     // Liquid Soul
     public static final Item LIQUID_SOUL = registerItem("liquid_soul",
-            new Item(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE)));
+            new LiquidSoulItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE)));
 
     // Nightmare Fuel
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",

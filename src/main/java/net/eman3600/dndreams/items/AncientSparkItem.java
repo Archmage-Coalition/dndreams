@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items.consumable;
+package net.eman3600.dndreams.items;
 
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModBlocks;
