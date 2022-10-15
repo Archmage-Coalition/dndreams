@@ -9,6 +9,7 @@
     "BoatEntityMixin",
     "BrewingRegistryMixin",
     "BucketItemMixin",
+    "ComposterBlockMixin",
     "DragonFightMixin",
     "EnchantHelperMixin",
     "EnchantmentMixin",

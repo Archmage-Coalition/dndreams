@@ -48,6 +48,10 @@ public abstract class WorldRendererMixin {
 
     @Shadow @Nullable private VertexBuffer starsBuffer;
 
+    @Shadow public abstract void tick();
+
+    @Shadow public abstract void tickRainSplashing(Camera camera);
+
     @Inject(method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;getMoonPhase()I"))
     private void dndreams$renderSky$changeMoon(MatrixStack matrices, Matrix4f projectionMatrix, float tickDelta, Camera camera, boolean bl, Runnable runnable, CallbackInfo info) {
         if (WorldComponents.BLOOD_MOON.get(this.world).damnedNight()) {
@@ -77,11 +81,33 @@ public abstract class WorldRendererMixin {
 
                     RenderSystem.enableTexture();
                     RenderSystem.depthMask(true);
+                    BackgroundRenderer.clearFog();
                 }
             }
 
             info.cancel();
         }
+    }
+
+    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/DimensionEffects;useThickFog(II)Z"))
+    private boolean dndreams$render$removeFog(DimensionEffects instance, int i, int j) {
+        if (drawAether()) return false;
+
+        return instance.useThickFog(i, j);
+    }
+
+    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/GameRenderer;getSkyDarkness(F)F"))
+    private float dndreams$render$getSkyDarkness(GameRenderer instance, float tickDelta) {
+        if (drawAether()) return 1f;
+
+        return instance.getSkyDarkness(tickDelta);
+    }
+
+    @Redirect(method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/DimensionEffects;getFogColorOverride(FF)[F"))
+    private float[] dndreams$renderSky$removeFog(DimensionEffects instance, float skyAngle, float tickDelta) {
+        if (drawAether()) return null;
+
+        return instance.getFogColorOverride(skyAngle, tickDelta);
     }
 
 
