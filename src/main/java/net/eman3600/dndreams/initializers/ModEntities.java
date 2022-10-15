@@ -25,6 +25,7 @@ public class ModEntities {
             FabricEntityTypeBuilder.<CrownedSlashEntity>create(SpawnGroup.MISC, CrownedSlashEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
                     .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .disableSummon()
                     .build()
     );
 
@@ -33,6 +34,7 @@ public class ModEntities {
             FabricEntityTypeBuilder.<CrownedBeamEntity>create(SpawnGroup.MISC, CrownedBeamEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
                     .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .disableSummon()
                     .build()
     );
 

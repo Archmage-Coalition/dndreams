@@ -22,6 +22,7 @@
     "ItemMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
+    "MobEntityMixin",
     "PersistentProjectileEntityMixin",
     "PlayerMixin",
     "RocketItemMixin",
