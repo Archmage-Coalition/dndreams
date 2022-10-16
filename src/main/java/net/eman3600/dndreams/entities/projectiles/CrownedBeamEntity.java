@@ -18,6 +18,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -181,5 +182,19 @@ public class CrownedBeamEntity extends PersistentProjectileEntity implements Pro
     @Override
     protected SoundEvent getHitSound() {
         return SoundEvents.BLOCK_AMETHYST_BLOCK_HIT;
+    }
+
+    @Override
+    public NbtCompound writeNbt(NbtCompound nbt) {
+        nbt.putInt("life_ticks", lifeTicks);
+
+        return super.writeNbt(nbt);
+    }
+
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        lifeTicks = nbt.getInt("life_ticks");
+
+        super.readNbt(nbt);
     }
 }

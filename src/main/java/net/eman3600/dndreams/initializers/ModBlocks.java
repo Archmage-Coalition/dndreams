@@ -4,6 +4,7 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.crop.SnowbellBlock;
 import net.eman3600.dndreams.blocks.crop.WaterArtichokeBlock;
+import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.world.feature.tree.DreamwoodSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -90,12 +91,6 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block FLOWING_BEDROCK = registerBlock("flowing_bedrock",
             new FlowingBedrockBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
-
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-
-    // Ancient Portal
-    public static final Block CHARGED_DEEPSLATE = registerBlock("charged_deepslate",
-            new ChargedDeepslateBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
@@ -219,6 +214,34 @@ public class ModBlocks {
     // Water Artichoke Crop
     public static final Block WATER_ARTICHOKE = registerBlock("water_artichoke",
             new WaterArtichokeBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
+
+
+    // Ancient Portal
+    public static final Block CHARGED_DEEPSLATE = registerBlock("charged_deepslate",
+            new ChargedDeepslateBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Ancient Portal
+    public static final Block DEEPSLATE_CORE = registerBlock("deepslate_core",
+            new DeepslateCoreBlock(FabricBlockSettings.of(Material.STONE)
+                    .strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)
+                    .nonOpaque()));
+
+    public static final Block WEAK_PORTAL = registerBlock("weak_portal",
+            new GenericPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), CHARGED_DEEPSLATE));
+
+    public static final Block HORDE_PORTAL = registerBlock("horde_portal",
+            new GenericPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), CHARGED_DEEPSLATE));
+
+    public static final Block OVERHELL_PORTAL = registerBlock("overhell_portal",
+            new GenericPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), CHARGED_DEEPSLATE));
+
+    public static final Block MORTAL_PORTAL = registerBlock("mortal_portal",
+            new GenericPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), CHARGED_DEEPSLATE));
+
+
+
 
 
 

@@ -14,6 +14,7 @@ public class ModMessages {
     public static final Identifier DRAGON_FLASH_ID = new Identifier(Initializer.MODID, "dragon_flash");
     public static final Identifier CROWNED_SLASH_ID = new Identifier(Initializer.MODID, "crowned_slash");
     public static final Identifier CROWNED_BEAM_ID = new Identifier(Initializer.MODID, "crowned_beam");
+    public static final Identifier ANCIENT_PORTAL_SOUND_ID = new Identifier(Initializer.MODID, "ancient_portal_sound");
 
     public static void registerC2SPackets() {
         ServerPlayNetworking.registerGlobalReceiver(AIR_SWING_ID, AirSwingPacket::receive);
@@ -23,5 +24,6 @@ public class ModMessages {
         ClientPlayNetworking.registerGlobalReceiver(DRAGON_FLASH_ID, DragonFlashPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(CROWNED_SLASH_ID, CrownedSlashPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(CROWNED_BEAM_ID, CrownedBeamPacket::receive);
+        ClientPlayNetworking.registerGlobalReceiver(ANCIENT_PORTAL_SOUND_ID, AncientPortalSoundPacket::receive);
     }
 }

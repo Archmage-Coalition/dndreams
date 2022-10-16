@@ -21,6 +21,7 @@ public class ModTags {
     public static final TagKey<Block> DREAMWOOD_LOGS = ofBlock("dreamwood_logs");
     public static final TagKey<Block> DREAMWOOD = ofBlock("dreamwood");
     public static final TagKey<Block> SUBSTANTIAL = ofBlock("substantial");
+    public static final TagKey<Block> DEEPSLATE_FRAME = ofBlock("deepslate_frame");
 
     public static final TagKey<Fluid> FLOWING_SPIRIT = ofFluid("flowing_spirit");
 

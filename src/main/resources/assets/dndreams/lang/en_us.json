@@ -178,6 +178,11 @@
   "block.dndreams.shimmering_glass_pane": "Shimmering Glass Pane",
   
   "block.dndreams.charged_deepslate": "Charged Deepslate",
+  "block.dndreams.deepslate_core": "Charged Deepslate Core",
+  "block.dndreams.weak_portal": "Unstable Ancient Portal",
+  "block.dndreams.horde_portal": "Overloaded Ancient Portal",
+  "block.dndreams.overhell_portal": "Ancient Portal",
+  "block.dndreams.mortal_portal": "Mortal Portal",
   
   "block.dndreams.managold_block": "Managold Block",
   "block.dndreams.tormite_block": "Tormite Block",

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "dndreams:block/horde_portal_ns"
+    },
+    "axis=z": {
+      "model": "dndreams:block/horde_portal_ew"
+    }
+  }
+}

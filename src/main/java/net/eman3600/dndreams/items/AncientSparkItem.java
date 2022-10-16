@@ -2,6 +2,7 @@ package net.eman3600.dndreams.items;
 
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SculkShriekerBlock;
@@ -42,13 +43,13 @@ public class AncientSparkItem extends Item {
                 p.sendToolBreakStatus(context.getHand());
             });
             return ActionResult.SUCCESS;
-        } else if (world.getBlockState(pos).getBlock() instanceof SculkShriekerBlock shrieker) {
+        } else if (world.getBlockState(pos).getBlock() instanceof SculkShriekerBlock) {
             BlockState state = world.getBlockState(pos);
 
             if (!state.get(SculkShriekerBlock.CAN_SUMMON)) {
                 world.setBlockState(pos, state.with(SculkShriekerBlock.CAN_SUMMON, true));
 
-                world.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 4.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
+                world.playSound(null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 4.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
 
                 stack.damage(1, player, (p) -> {
                     p.sendToolBreakStatus(context.getHand());
@@ -71,12 +72,13 @@ public class AncientSparkItem extends Item {
     private boolean spreadCharge(World world, BlockPos pos, int iterations) {
         if (world.getBlockState(pos).isOf(Blocks.REINFORCED_DEEPSLATE)) {
             world.setBlockState(pos, ModBlocks.CHARGED_DEEPSLATE.getDefaultState());
+            world.updateNeighborsAlways(pos, ModBlocks.CHARGED_DEEPSLATE);
 
             world.addParticle(ParticleTypes.SONIC_BOOM, pos.getX() + random.nextDouble(-0.7, 0.7), pos.getY() + random.nextDouble(-0.7, 0.7), pos.getZ() + random.nextDouble(-0.7, 0.7), 0, 0, 0);
 
             iterations++;
 
-            if (iterations < 40) {
+            if (iterations < 80) {
                 spreadCharge(world, pos.up(), iterations);
                 spreadCharge(world, pos.down(), iterations);
                 spreadCharge(world, pos.north(), iterations);
@@ -91,14 +93,15 @@ public class AncientSparkItem extends Item {
     }
 
     private boolean spreadDischarge(World world, BlockPos pos, int iterations) {
-        if (world.getBlockState(pos).isOf(ModBlocks.CHARGED_DEEPSLATE)) {
+        if (world.getBlockState(pos).isIn(ModTags.DEEPSLATE_FRAME)) {
             world.setBlockState(pos, Blocks.REINFORCED_DEEPSLATE.getDefaultState());
+            world.updateNeighborsAlways(pos, Blocks.REINFORCED_DEEPSLATE);
 
             world.addParticle(ParticleTypes.SONIC_BOOM, pos.getX() + random.nextDouble(-0.2, 1.2), pos.getY() + random.nextDouble(-0.2, 1.2), pos.getZ() + random.nextDouble(-0.2, 1.2), 0, 0, 0);
 
             iterations++;
 
-            if (iterations < 40) {
+            if (iterations < 80) {
                 spreadDischarge(world, pos.up(), iterations);
                 spreadDischarge(world, pos.down(), iterations);
                 spreadDischarge(world, pos.north(), iterations);
