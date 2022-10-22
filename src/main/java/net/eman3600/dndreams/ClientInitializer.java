@@ -1,22 +1,24 @@
 package net.eman3600.dndreams;
 
+import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.BloodSkeletonEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.BloodZombieEntityRenderer;
+import net.eman3600.dndreams.entities.renderers.WardenRagdollEntityRenderer;
 import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
-import net.eman3600.dndreams.particle.CrownedBeamParticle;
-import net.eman3600.dndreams.particle.CrownedSlashParticle;
-import net.eman3600.dndreams.particle.CrownedWickedParticle;
 import net.eman3600.dndreams.screen.WeavingScreen;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.render.block.entity.EndPortalBlockEntityRenderer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -35,9 +37,12 @@ public class ClientInitializer implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HORDE_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.OVERHELL_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MORTAL_PORTAL, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.COSMIC_PORTAL, RenderLayer.getEndPortal());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SNOWBELL_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WATER_ARTICHOKE, RenderLayer.getCutout());
+
+        BlockEntityRendererRegistry.register(ModBlockEntities.COSMIC_PORTAL_ENTITY, CosmicPortalBlockEntityRenderer::new);
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_FLOWING_SPIRIT, ModFluids.FLOWING_FLOWING_SPIRIT,
                 new SimpleFluidRenderHandler(
@@ -54,9 +59,7 @@ public class ClientInitializer implements ClientModInitializer {
 
         ModMessages.registerS2CPackets();
 
-        ParticleFactoryRegistry.getInstance().register(ModParticles.CROWNED_SLASH_PARTICLE, CrownedSlashParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.CROWNED_BEAM_PARTICLE, CrownedBeamParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.CROWNED_WICKED_PARTICLE, CrownedWickedParticle.Factory::new);
+        ModParticles.registerParticleFactories();
 
 
         EntityRendererRegistry.register(ModEntities.CROWNED_SLASH_ENTITY_TYPE, EmptyEntityRenderer::new);
@@ -64,6 +67,8 @@ public class ClientInitializer implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.BLOOD_ZOMBIE_ENTITY_TYPE, BloodZombieEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BLOOD_SKELETON_ENTITY_TYPE, BloodSkeletonEntityRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.WARDEN_RAGDOLL_ENTITY_TYPE, WardenRagdollEntityRenderer::new);
     }
 
 

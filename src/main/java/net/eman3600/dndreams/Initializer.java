@@ -13,6 +13,7 @@ import net.eman3600.dndreams.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import software.bernie.geckolib3.GeckoLib;
 
 public class Initializer implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -62,5 +63,7 @@ public class Initializer implements ModInitializer {
 
 		ModMessages.registerC2SPackets();
 		ModCallbacks.registerCallbacks();
+
+		GeckoLib.initialize();
 	}
 }

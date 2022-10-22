@@ -2,6 +2,9 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
+import net.eman3600.dndreams.blocks.candle.CosmicFountainBlock;
+import net.eman3600.dndreams.blocks.candle.CosmicFountainPoleBlock;
+import net.eman3600.dndreams.blocks.candle.CosmicPortalBlock;
 import net.eman3600.dndreams.blocks.crop.SnowbellBlock;
 import net.eman3600.dndreams.blocks.crop.WaterArtichokeBlock;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
@@ -239,6 +242,22 @@ public class ModBlocks {
 
     public static final Block MORTAL_PORTAL = registerBlock("mortal_portal",
             new GenericPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), CHARGED_DEEPSLATE));
+
+
+
+    // Rituals
+    public static final Block COSMIC_FOUNTAIN = registerBlock("cosmic_fountain",
+            new CosmicFountainBlock(FabricBlockSettings.copy(Blocks.END_STONE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block COSMIC_FOUNTAIN_POLE = registerBlock("cosmic_fountain_pole",
+            new CosmicFountainPoleBlock(FabricBlockSettings.copy(Blocks.END_STONE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block COSMIC_PORTAL = registerBlock("cosmic_portal",
+            new CosmicPortalBlock(FabricBlockSettings.copy(Blocks.END_PORTAL)));
 
 
 

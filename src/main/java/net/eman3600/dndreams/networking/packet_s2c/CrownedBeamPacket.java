@@ -19,11 +19,11 @@ public class CrownedBeamPacket {
             Random random = new Random();
 
             if (random.nextInt(5) == 0) {
-                client.world.addParticle(ModParticles.CROWNED_WICKED_PARTICLE, true, vec.x, vec.y, vec.z, 0, 0, 0);
+                client.world.addParticle(ModParticles.CROWNED_WICKED, true, vec.x, vec.y, vec.z, 0, 0, 0);
                 return;
             }
         }
 
-        client.world.addParticle(ModParticles.CROWNED_BEAM_PARTICLE, true, vec.x, vec.y, vec.z, 0, 0, 0);
+        client.world.addParticle(ModParticles.CROWNED_BEAM, true, vec.x, vec.y, vec.z, 0, 0, 0);
     }
 }

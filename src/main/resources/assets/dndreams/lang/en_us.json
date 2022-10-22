@@ -196,6 +196,9 @@
   "block.dndreams.soul_candle": "Soul Candle",
   "block.dndreams.echo_candle": "Echo Candle",
   "block.dndreams.cosmic_candle": "Cosmic Candle",
+  "block.dndreams.cosmic_fountain": "Cosmic Fountain",
+  "block.dndreams.cosmic_fountain.power": "Cosmic Power: %s/%s",
+  "block.dndreams.cosmic_fountain_pole": "Cosmic Pillar",
   
   "block.dndreams.flowing_spirit": "Flowing Spirit",
   "block.dndreams.flowing_flowing_spirit": "Flowing Spirit",
@@ -211,6 +214,11 @@
   "entity.dndreams.blood_moon.blood_spider": "Blood Spider",
   "entity.dndreams.blood_moon.blood_creeper": "Blood Creeper",
   "entity.dndreams.tormentor": "Tormentor",
+  "entity.dndreams.warden_ragdoll": "Warden",
+  
+  
+  "advancement.dndreams.main.root.title": "Demons and Dreams",
+  "advancement.dndreams.main.root.description": "The Heart of the Past",
   
   
   "rei.dndreams.weaving": "Dream Weaving",

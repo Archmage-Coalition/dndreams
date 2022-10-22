@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,functional=false": {
+      "model": "dndreams:block/cosmic_fountain",
+      "y": 90
+    },
+    "facing=east,functional=true": {
+      "model": "dndreams:block/cosmic_fountain_on",
+      "y": 90
+    },
+    "facing=north,functional=false": {
+      "model": "dndreams:block/cosmic_fountain"
+    },
+    "facing=north,functional=true": {
+      "model": "dndreams:block/cosmic_fountain_on"
+    },
+    "facing=south,functional=false": {
+      "model": "dndreams:block/cosmic_fountain",
+      "y": 180
+    },
+    "facing=south,functional=true": {
+      "model": "dndreams:block/cosmic_fountain_on",
+      "y": 180
+    },
+    "facing=west,functional=false": {
+      "model": "dndreams:block/cosmic_fountain",
+      "y": 270
+    },
+    "facing=west,functional=true": {
+      "model": "dndreams:block/cosmic_fountain_on",
+      "y": 270
+    }
+  }
+}

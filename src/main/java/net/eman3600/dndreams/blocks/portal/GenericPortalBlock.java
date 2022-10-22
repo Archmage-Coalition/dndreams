@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
@@ -72,6 +73,11 @@ public class GenericPortalBlock extends Block {
             }
         }
         return state;
+    }
+
+    @Override
+    public BlockSoundGroup getSoundGroup(BlockState state) {
+        return BlockSoundGroup.AMETHYST_BLOCK;
     }
 
     @Override

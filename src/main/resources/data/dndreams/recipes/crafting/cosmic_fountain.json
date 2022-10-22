@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PXP",
+    "X#X",
+    "PXP"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:liquid_void"
+    },
+	"X": {
+	  "item": "minecraft:end_stone"
+	},
+	"P": {
+	  "item": "minecraft:popped_chorus_fruit"
+	}
+  },
+  "result": {
+    "item": "dndreams:cosmic_fountain"
+  }
+}
