@@ -33,7 +33,7 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public void setInfusion(Infusion change) {
         infusion = change;
-        setPower(getPowerMax());
+        setPower(getPowerMax() / 8);
     }
 
     @Override
@@ -88,8 +88,8 @@ public class InfusionComponent implements InfusionComponentI {
 
     @Override
     public void serverTick() {
-        if (player.getWorld().getRegistryKey() == infusion.getWorld() && power < MAX_POWER) {
+        /*if (player.getWorld().getRegistryKey() == infusion.getWorld() && power < MAX_POWER) {
             chargePower(DIMENSIONAL_REGEN_RATE/1200);
-        }
+        }*/
     }
 }

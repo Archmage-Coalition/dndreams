@@ -197,7 +197,10 @@
   "block.dndreams.echo_candle": "Echo Candle",
   "block.dndreams.cosmic_candle": "Cosmic Candle",
   "block.dndreams.cosmic_fountain": "Cosmic Fountain",
-  "block.dndreams.cosmic_fountain.power": "Cosmic Power: %s/%s",
+  "block.dndreams.cosmic_fountain.power": "Power: %s/%s (%s/sec)",
+  "block.dndreams.cosmic_fountain.no_power": "Soul Blocks Required",
+  "block.dndreams.cosmic_fountain.invalid": "Fountain Setup Required for Power",
+  "block.dndreams.cosmic_fountain.sealed": "The World Fountain is Sealed...",
   "block.dndreams.cosmic_fountain_pole": "Cosmic Pillar",
   
   "block.dndreams.flowing_spirit": "Flowing Spirit",

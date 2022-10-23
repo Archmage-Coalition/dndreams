@@ -1,42 +1,73 @@
 package net.eman3600.dndreams.blocks.entities;
 
-import com.google.common.collect.ImmutableList;
+import dev.architectury.utils.Env;
 import net.eman3600.dndreams.blocks.candle.CosmicFountainBlock;
 import net.eman3600.dndreams.blocks.candle.CosmicFountainPoleBlock;
 import net.eman3600.dndreams.blocks.candle.CosmicPortalBlock;
-import net.eman3600.dndreams.initializers.ModBlockEntities;
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.WorldComponents;
+import net.eman3600.dndreams.cardinal_components.InfusionComponent;
+import net.eman3600.dndreams.cardinal_components.ManaComponent;
+import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.networking.packet_s2c.EnergyParticlePacket;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+
+import static net.eman3600.dndreams.blocks.candle.CosmicFountainBlock.GIVE_RANGE;
 
 public class CosmicFountainBlockEntity extends BlockEntity {
     private int ticks = 0;
     private int power = 0;
     private int length = 0;
+    private int maxPower = 0;
+    private int rate = 5;
 
-    public static int MAX_POWER = 5000;
-    public static int COSMIC_RATE = 25;
+    private static final Box eRange = new Box(-GIVE_RANGE,-GIVE_RANGE,-GIVE_RANGE,GIVE_RANGE,GIVE_RANGE,GIVE_RANGE);
+
+    public static int MINIMUM_POWER = 50;
+    public static int VERY_MAX_POWER = 10000;
+
+    public static int COSMIC_RATE = 5;
 
 
     public CosmicFountainBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.COSMIC_FOUNTAIN_ENTITY, pos, state);
+
+
+    }
+
+    public Box boxRange() {
+        return eRange.offset(pos);
     }
 
     public int getPower() {
         return power;
+    }
+
+    public int getLength() {
+        return length;
     }
 
     public int findLength(World world, boolean mustBeActive) {
@@ -90,7 +121,41 @@ public class CosmicFountainBlockEntity extends BlockEntity {
         return true;
     }
 
+    public void recalculateCapacity(World world) {
+        int capacity = 0;
+        int multiplier = COSMIC_RATE;
+        int l = findLength(world, false);
 
+        for (BlockPos blockPos: CosmicFountainBlock.SEARCH_OFFSETS) {
+            if (CosmicFountainBlock.isSoulPower(world, pos.down(l), blockPos)) {
+                BlockState state = world.getBlockState(pos.down(l).add(blockPos));
+
+                capacity += worth(state);
+            }
+        }
+
+        for (BlockPos blockPos: CosmicFountainBlock.COSMIC_AUGMENT_OFFSETS) {
+            if (CosmicFountainBlock.isCosmicAugment(world, pos.down(l - 1), blockPos)) {
+                BlockState state = world.getBlockState(pos.down(l - 1).add(blockPos));
+
+                multiplier += multiplicity(state);
+            }
+        }
+
+        maxPower = Math.min(capacity, VERY_MAX_POWER);
+        rate = multiplier;
+    }
+
+    private int worth(BlockState state) {
+        if (state.isOf(Blocks.SOUL_FIRE) || state.isOf(Blocks.SCULK)) return 10;
+        if (state.isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) return 15;
+
+        return 25;
+    }
+
+    private int multiplicity(BlockState state) {
+        return 1;
+    }
 
     public void disable(World world) {
         world.setBlockState(pos, getCachedState().with(CosmicFountainBlock.FUNCTIONAL, false));
@@ -111,6 +176,7 @@ public class CosmicFountainBlockEntity extends BlockEntity {
 
         ticks = 0;
         length = 0;
+        power = 0;
     }
 
     public void enable(World world) {
@@ -135,25 +201,53 @@ public class CosmicFountainBlockEntity extends BlockEntity {
     }
 
     public static void tick(World world, BlockPos blockPos, BlockState blockState, CosmicFountainBlockEntity entity) {
-        entity.tick(world);
+        try {
+            ServerWorld server = (ServerWorld) world;
+
+            entity.tick(server);
+        } catch (ClassCastException ignored) {}
     }
 
-    private void tick(World world) {
+    @Environment(EnvType.CLIENT)
+    public static void tickClient(World world, BlockPos blockPos, BlockState blockState, CosmicFountainBlockEntity entity) {
+        try {
+            ClientWorld client = (ClientWorld) world;
+
+            entity.tickClient(client);
+        } catch (ClassCastException ignored) {}
+    }
+
+    private void tick(ServerWorld world) {
         ticks++;
 
-        if (getCachedState().get(CosmicFountainBlock.FUNCTIONAL)) {
+        main: if (getCachedState().get(CosmicFountainBlock.FUNCTIONAL)) {
             if (ticks % 20 == 0) {
-                int mult = 1;
+                recalculateCapacity(world);
+                addPower(rate);
 
-                addPower(mult * COSMIC_RATE);
+                if (!isValid(world, true) || maxPower < MINIMUM_POWER) {
+                    disable(world);
+                    break main;
+                }
             }
 
-            if (ticks % 60 == 0) {
-                if (!isValid(world, true)) disable(world);
+            if (ticks % 5 == 0) {
+                for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, boxRange())) {
+                    InfusionComponent infusion = EntityComponents.INFUSION.get(player);
+
+                    if (infusion.infused() && infusion.getPower() < infusion.getPowerMax() && usePower(10)) {
+                        infusion.chargePower(.4f);
+
+                        for (ServerPlayerEntity viewer: world.getPlayers()) {
+                            EnergyParticlePacket.send(viewer, pos, player);
+                        }
+                    }
+                }
             }
         } else {
-            if (ticks % 60 == 0) {
-                if (isValid(world, false)) enable(world);
+            if (ticks % 20 == 0) {
+                recalculateCapacity(world);
+                if (isValid(world, false) && maxPower >= MINIMUM_POWER) enable(world);
             }
         }
 
@@ -162,24 +256,39 @@ public class CosmicFountainBlockEntity extends BlockEntity {
         }
     }
 
+    @Nullable
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
+    }
+
+    @Environment(EnvType.CLIENT)
+    private void tickClient(ClientWorld world) {
+
+    }
+
     public boolean addPower(int amount) {
-        if (power >= 5000) return false;
-        power = Math.min(5000, power + amount);
+        if (power >= maxPower) {
+            power = maxPower;
+            return false;
+        }
+        power = Math.min(maxPower, power + amount);
         return true;
     }
 
-    public int blocksInRange(WorldAccess world, Block block) {
-        List<BlockState> states = world.getStatesInBox(new Box(pos.add(16, 17 - length, 16), pos.add(-16, -15 - length, -16))).toList();
+    public boolean canAfford(int amount) {
+        return power >= amount;
+    }
 
-        List<BlockState> found = new ArrayList<>();
-
-        for (int i = states.size() - 1; i >= 0; i--) {
-            if (states.get(i).getBlock() == block) {
-                found.add(states.get(i));
-            }
-        }
-
-        return found.size();
+    public boolean usePower(int amount) {
+        if (!canAfford(amount)) return false;
+        power -= amount;
+        return true;
     }
 
     @Override
@@ -187,6 +296,8 @@ public class CosmicFountainBlockEntity extends BlockEntity {
         nbt.putInt("ticks", ticks);
         nbt.putInt("power", power);
         nbt.putInt("length", length);
+        nbt.putInt("max_power", maxPower);
+        nbt.putInt("rate", rate);
     }
 
     @Override
@@ -194,5 +305,15 @@ public class CosmicFountainBlockEntity extends BlockEntity {
         ticks = nbt.getInt("ticks");
         power = nbt.getInt("power");
         length = nbt.getInt("length");
+        maxPower = nbt.getInt("max_power");
+        rate = nbt.getInt("rate");
+    }
+
+    public int getMaxPower() {
+        return maxPower;
+    }
+
+    public int getRate() {
+        return rate;
     }
 }

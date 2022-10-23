@@ -1,9 +1,8 @@
 package net.eman3600.dndreams.blocks.candle;
 
 import net.eman3600.dndreams.blocks.entities.CosmicFountainBlockEntity;
-import net.eman3600.dndreams.blocks.entities.CosmicFountainPoleBlockEntity;
-import net.eman3600.dndreams.initializers.ModBlockEntities;
-import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -13,23 +12,40 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 public class CosmicFountainBlock extends BlockWithEntity {
     public static final BooleanProperty FUNCTIONAL = BooleanProperty.of("functional");
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+
+    public static final int SEARCH_RANGE = 16;
+    public static final int GIVE_RANGE = 24;
+
+    public static final List<BlockPos> SEARCH_OFFSETS = BlockPos.stream(-SEARCH_RANGE, -SEARCH_RANGE, -SEARCH_RANGE, SEARCH_RANGE, SEARCH_RANGE, SEARCH_RANGE).map(BlockPos::toImmutable).toList();
+    public static final List<BlockPos> PORTAL_OFFSETS = BlockPos.stream(-3, -1, -3, 3, 1, 3).map(BlockPos::toImmutable).toList();
+    public static final List<BlockPos> COSMIC_AUGMENT_OFFSETS = BlockPos.stream(-3, 0, -3, 3, 0, 3)
+            .filter(p -> {
+                if (Math.abs(p.getX()) == 2 && Math.abs(p.getZ()) == 2) return true;
+                if ((Math.abs(p.getX()) == 3 && Math.abs(p.getZ()) <= 1) || (Math.abs(p.getZ()) == 3 && Math.abs(p.getX()) <= 1)) return true;
+
+                return false;
+            })
+            .map(BlockPos::toImmutable).toList();
 
 
     public CosmicFountainBlock(Settings settings) {
@@ -48,13 +64,22 @@ public class CosmicFountainBlock extends BlockWithEntity {
             CosmicFountainBlockEntity entity = (CosmicFountainBlockEntity) world.getBlockEntity(pos);
 
             ItemStack stack = player.getStackInHand(hand);
-            if (stack.getItem() == ModItems.LIQUID_SOUL && entity.addPower(500)) {
+            assert entity != null;
+            if (state.get(FUNCTIONAL) && stack.getItem() == ModItems.LIQUID_SOUL && entity.addPower(500)) {
                 player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
                 return ActionResult.SUCCESS;
             }
 
             if (!world.isClient) {
-                player.sendMessage(Text.translatable("block.dndreams.cosmic_fountain.power", entity.getPower(), CosmicFountainBlockEntity.MAX_POWER), true);
+                if (state.get(FUNCTIONAL)) {
+                    player.sendMessage(Text.translatable("block.dndreams.cosmic_fountain.power", entity.getPower(), entity.getMaxPower(), entity.getRate()), true);
+                } else if (!WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
+                    player.sendMessage(Text.translatable("block.dndreams.cosmic_fountain.sealed"), true);
+                } else if (entity.isValid(world, false)) {
+                    player.sendMessage(Text.translatable("block.dndreams.cosmic_fountain.no_power"), true);
+                } else {
+                    player.sendMessage(Text.translatable("block.dndreams.cosmic_fountain.invalid"), true);
+                }
             }
 
             return ActionResult.SUCCESS;
@@ -81,6 +106,52 @@ public class CosmicFountainBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : checkType(type, ModBlockEntities.COSMIC_FOUNTAIN_ENTITY, CosmicFountainBlockEntity::tick);
+        return world.isClient ? checkType(type, ModBlockEntities.COSMIC_FOUNTAIN_ENTITY, CosmicFountainBlockEntity::tickClient) : checkType(type, ModBlockEntities.COSMIC_FOUNTAIN_ENTITY, CosmicFountainBlockEntity::tick);
+    }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        super.randomDisplayTick(state, world, pos, random);
+
+        if (state.get(FUNCTIONAL) && world.getBlockEntity(pos) instanceof CosmicFountainBlockEntity entity) {
+            BlockPos portal = pos.down(entity.getLength());
+
+            for (BlockPos blockPos: SEARCH_OFFSETS) {
+                if (random.nextInt(16) != 0 || !isSoulPower(world, portal, blockPos)) continue;
+                displayEnchantParticle(world, pos, blockPos.down(entity.getLength()), ModParticles.SOUL_ENERGY);
+            }
+
+            for (BlockPos blockPos: PORTAL_OFFSETS) {
+                if (random.nextInt(16) != 0 || !isCosmicPortal(world, portal, blockPos)) continue;
+
+                BlockPos inversePos = blockPos.multiply(-1).up(entity.getLength());
+                BlockPos inverseBlockPos = blockPos.add(pos).down(entity.getLength());
+
+                displayEnchantParticle(world, inverseBlockPos, inversePos, ModParticles.COSMIC_ENERGY);
+            }
+
+            for (BlockPos blockPos: COSMIC_AUGMENT_OFFSETS) {
+                if (random.nextInt(6) != 0 || !isCosmicAugment(world, portal.up(), blockPos)) continue;
+                displayEnchantParticle(world, pos, blockPos.down(entity.getLength() - 1), ModParticles.COSMIC_ENERGY);
+            }
+        }
+    }
+
+    public static boolean isSoulPower(World world, BlockPos pos, BlockPos offset) {
+        return world.getBlockState(pos.add(offset)).isIn(ModTags.SOUL_POWER);
+    }
+
+    public static boolean isCosmicPortal(World world, BlockPos pos, BlockPos offset) {
+        return world.getBlockState(pos.add(offset)).isOf(ModBlocks.COSMIC_PORTAL);
+    }
+
+    public static boolean isCosmicAugment(World world, BlockPos pos, BlockPos offset) {
+        return world.getBlockState(pos.add(offset)).isIn(ModTags.COSMIC_AUGMENTS);
+    }
+
+    public void displayEnchantParticle(World world, BlockPos pos, BlockPos blockPos, ParticleEffect type) {
+        Random random = world.random;
+
+        world.addParticle(type, (double)pos.getX() + 0.5, (double)pos.getY() + 2.0, (double)pos.getZ() + 0.5, (double)((float)blockPos.getX() + random.nextFloat()) - 0.5, (float)blockPos.getY() - random.nextFloat() - 1.0f, (double)((float)blockPos.getZ() + random.nextFloat()) - 0.5);
     }
 }

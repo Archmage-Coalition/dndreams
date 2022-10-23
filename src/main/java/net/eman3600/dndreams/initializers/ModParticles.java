@@ -4,11 +4,11 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.particle.CrownedBeamParticle;
 import net.eman3600.dndreams.particle.CrownedSlashParticle;
 import net.eman3600.dndreams.particle.CrownedWickedParticle;
-import net.eman3600.dndreams.particle.EnergyParticle;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.minecraft.client.particle.EnchantGlyphParticle;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.Identifier;
@@ -51,8 +51,8 @@ public class ModParticles {
         ParticleFactoryRegistry.getInstance().register(ECHO_CANDLE_FLAME, FlameParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(SOUL_CANDLE_FLAME, FlameParticle.Factory::new);
 
-        ParticleFactoryRegistry.getInstance().register(COSMIC_ENERGY, EnergyParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(SOUL_ENERGY, EnergyParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(COSMIC_ENERGY, EnchantGlyphParticle.EnchantFactory::new);
+        ParticleFactoryRegistry.getInstance().register(SOUL_ENERGY, EnchantGlyphParticle.EnchantFactory::new);
     }
 
 
