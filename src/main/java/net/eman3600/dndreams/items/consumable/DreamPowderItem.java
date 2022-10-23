@@ -3,6 +3,7 @@ package net.eman3600.dndreams.items.consumable;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModDimensions;
+import net.eman3600.dndreams.items.DreamyItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -40,6 +41,7 @@ public class DreamPowderItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        DreamyItem.dreamTooltip(world, tooltip);
         if (world != null && world.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             tooltip.add(Text.translatable("item.dndreams.dream_powder.tooltip"));
         }

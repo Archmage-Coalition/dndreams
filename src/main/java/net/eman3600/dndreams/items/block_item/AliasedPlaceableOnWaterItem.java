@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items;
+package net.eman3600.dndreams.items.block_item;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.PlaceableOnWaterItem;

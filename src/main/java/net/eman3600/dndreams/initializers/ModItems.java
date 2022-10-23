@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.items.*;
+import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.creative.InfusionChangerItem;
 import net.eman3600.dndreams.items.magic_sword.CorruptSword;

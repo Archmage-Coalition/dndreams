@@ -79,6 +79,8 @@
   "tooltip.dndreams.power_cost": "§dPower Cost: %s",
   "tooltip.dndreams.power_required": "§cRequires Infusion Power",
   "tooltip.dndreams.magic_damage": "§2Magic Damage: %s",
+  "tooltip.dndreams.dream_origin": "§3They said this item doesn't exist,",
+  "tooltip.dndreams.dream_origin_2": "§3and they were probably right.",
   
   
   "enchantment.dndreams.potency": "Potency",
