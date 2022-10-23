@@ -121,15 +121,6 @@ public class CosmicFountainBlock extends BlockWithEntity {
                 displayEnchantParticle(world, pos, blockPos.down(entity.getLength()), ModParticles.SOUL_ENERGY);
             }
 
-            for (BlockPos blockPos: PORTAL_OFFSETS) {
-                if (random.nextInt(16) != 0 || !isCosmicPortal(world, portal, blockPos)) continue;
-
-                BlockPos inversePos = blockPos.multiply(-1).up(entity.getLength());
-                BlockPos inverseBlockPos = blockPos.add(pos).down(entity.getLength());
-
-                displayEnchantParticle(world, inverseBlockPos, inversePos, ModParticles.COSMIC_ENERGY);
-            }
-
             for (BlockPos blockPos: COSMIC_AUGMENT_OFFSETS) {
                 if (random.nextInt(6) != 0 || !isCosmicAugment(world, portal.up(), blockPos)) continue;
                 displayEnchantParticle(world, pos, blockPos.down(entity.getLength() - 1), ModParticles.COSMIC_ENERGY);

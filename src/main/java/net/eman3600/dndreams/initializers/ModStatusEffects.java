@@ -27,7 +27,7 @@ public class ModStatusEffects {
     public static StatusEffect AETHER = register("aether", new ModStatusEffect(StatusEffectCategory.HARMFUL, 1118481));
 
     private static StatusEffect register(String name, StatusEffect entry) {
-        return (StatusEffect) Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);
+        return Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);
     }
 
     public static void registerEffects() {
@@ -36,6 +36,7 @@ public class ModStatusEffects {
 
     public static boolean shouldRestrict(PlayerEntity player) {
         try {
+            if (player.isCreative()) return false;
             return player.hasStatusEffect(RESTRICTED) || player.world.getRegistryKey() == ModDimensions.GATEWAY_DIMENSION_KEY;
         } catch (NullPointerException e) {
             return false;

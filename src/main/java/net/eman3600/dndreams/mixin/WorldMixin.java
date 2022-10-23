@@ -4,12 +4,11 @@ import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.mixin_interfaces.WorldMixinI;
+import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
 @Mixin(World.class)
-public abstract class WorldMixin implements WorldAccess, WorldMixinI {
+public abstract class WorldMixin implements net.minecraft.world.WorldAccess, WorldAccess {
 
     @Shadow
     private int ambientDarkness;

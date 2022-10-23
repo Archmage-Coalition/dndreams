@@ -2,8 +2,8 @@ package net.eman3600.dndreams.mixin.client;
 
 import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
-import net.eman3600.dndreams.mixin_interfaces.WorldMixinI;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
+import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -26,7 +26,7 @@ import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
 @Mixin(ClientWorld.class)
-public abstract class ClientWorldMixin extends World implements ClientWorldMixinI {
+public abstract class ClientWorldMixin extends World implements ClientWorldAccess {
     @Shadow @Final private MinecraftClient client;
 
     protected ClientWorldMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, RegistryEntry<DimensionType> dimension, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed, int maxChainedNeighborUpdates) {
@@ -35,7 +35,7 @@ public abstract class ClientWorldMixin extends World implements ClientWorldMixin
 
     @Redirect(method = "tickTime", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"))
     private boolean dndreams$tickTime(GameRules instance, GameRules.Key<GameRules.BooleanRule> rule) {
-        if (drawAether() || (this.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY && ((WorldMixinI)this).highestTorment(getPlayers()) >= 100f)) {
+        if (drawAether() || (this.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY && ((WorldAccess)this).highestTorment(getPlayers()) >= 100f)) {
             return false;
         } else {
             return instance.getBoolean(rule);

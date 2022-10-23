@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.items.interfaces;
 
 import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Vanishable;
@@ -23,7 +23,7 @@ public interface PowerCostItem extends Vanishable {
 
     default Text getTooltipPower(World world, ItemStack stack) {
         try {
-            if (world instanceof ClientWorldMixinI access && !EntityComponents.INFUSION.get(access.getClient().player).infused()) {
+            if (world instanceof ClientWorldAccess access && !EntityComponents.INFUSION.get(access.getClient().player).infused()) {
                 return Text.translatable("tooltip.dndreams.power_required");
             }
         } catch (ClassCastException | NullPointerException ignored) {}

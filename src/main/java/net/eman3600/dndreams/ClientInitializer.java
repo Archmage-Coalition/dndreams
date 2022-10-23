@@ -5,7 +5,7 @@ import net.eman3600.dndreams.entities.renderers.BloodSkeletonEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.BloodZombieEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.WardenRagdollEntityRenderer;
 import net.eman3600.dndreams.initializers.*;
-import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.screen.WeavingScreen;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
@@ -15,10 +15,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.render.block.entity.EndPortalBlockEntityRenderer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -74,7 +71,7 @@ public class ClientInitializer implements ClientModInitializer {
 
     public static boolean drawAether(World world) {
         try {
-            return (world instanceof ClientWorldMixinI accessedWorld) && (accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER)/* || world.getBiome(accessedWorld.getClient().player.getBlockPos()).matchesKey(BiomeKeys.DEEP_DARK)*/);
+            return (world instanceof ClientWorldAccess accessedWorld) && (accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER)/* || world.getBiome(accessedWorld.getClient().player.getBlockPos()).matchesKey(BiomeKeys.DEEP_DARK)*/);
         } catch (NullPointerException e) {
             return false;
         }

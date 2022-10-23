@@ -27,8 +27,9 @@
     "LivingEntityMixin",
     "MobEntityMixin",
     "PersistentProjectileEntityMixin",
-    "PlayerMixin",
+    "PlayerEntityMixin",
     "RocketItemMixin",
+    "ServerPlayerEntityMixin",
     "ServerPlayNetworkHandlerMixin",
     "SonicBoomTaskMixin",
     "WardenAngerManagerMixin",
@@ -36,6 +37,7 @@
     "server.ServerWorldMixin"
   ],
   "client": [
+    "client.ClientPlayerEntityMixin",
     "client.ClientWorldMixin",
     "client.GameOptionsMixin",
     "client.GameRendererMixin",

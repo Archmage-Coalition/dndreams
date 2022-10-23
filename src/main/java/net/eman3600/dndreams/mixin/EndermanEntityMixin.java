@@ -2,8 +2,6 @@ package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.initializers.ModDimensions;
 import net.eman3600.dndreams.initializers.WorldComponents;
-import net.eman3600.dndreams.mixin_interfaces.ClientWorldMixinI;
-import net.eman3600.dndreams.mixin_interfaces.HudMixinI;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.RevengeGoal;
@@ -55,7 +53,7 @@ public abstract class EndermanEntityMixin extends HostileEntity implements Anger
 //    @Inject(method = "playAngrySound", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FFZ)V"))
 //    private void dndreams$playAngrySound(CallbackInfo ci) {
 //        if (world.isClient && !WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
-//            ((HudMixinI)((ClientWorldMixinI)world).getClient().inGameHud).setDragonFlash(30);
+//            ((HudAccess)((ClientWorldAccess)world).getClient().inGameHud).setDragonFlash(30);
 //        }
 //    }
 }

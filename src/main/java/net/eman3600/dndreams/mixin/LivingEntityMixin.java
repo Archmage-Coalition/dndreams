@@ -4,7 +4,7 @@ import net.eman3600.dndreams.cardinal_components.DreamingComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.eman3600.dndreams.initializers.WorldComponents;
-import net.eman3600.dndreams.mixin_interfaces.LivingEntityMixinI;
+import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.*;
@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements LivingEntityMixinI {
+public abstract class LivingEntityMixin extends Entity implements LivingEntityAccess {
     @Shadow
     @Final
     private AttributeContainer attributes;

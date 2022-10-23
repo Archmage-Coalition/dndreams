@@ -27,6 +27,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -154,7 +155,7 @@ public class CosmicFountainBlockEntity extends BlockEntity {
     }
 
     private int multiplicity(BlockState state) {
-        return 1;
+        return 2;
     }
 
     public void disable(World world) {
@@ -269,7 +270,19 @@ public class CosmicFountainBlockEntity extends BlockEntity {
 
     @Environment(EnvType.CLIENT)
     private void tickClient(ClientWorld world) {
+        if (power >= maxPower && getCachedState().get(CosmicFountainBlock.FUNCTIONAL)) {
+            System.out.println("Found");
+            Random random = world.random;
 
+            for (BlockPos blockPos: CosmicFountainBlock.PORTAL_OFFSETS) {
+                if (random.nextInt(6) != 0 || !CosmicFountainBlock.isCosmicPortal(world, pos.down(length), blockPos)) continue;
+
+                BlockPos inversePos = blockPos.multiply(-1).up(length);
+                BlockPos inverseBlockPos = blockPos.add(pos).down(length);
+
+                ((CosmicFountainBlock) ModBlocks.COSMIC_FOUNTAIN).displayEnchantParticle(world, inverseBlockPos, inversePos, ModParticles.COSMIC_ENERGY);
+            }
+        }
     }
 
     public boolean addPower(int amount) {

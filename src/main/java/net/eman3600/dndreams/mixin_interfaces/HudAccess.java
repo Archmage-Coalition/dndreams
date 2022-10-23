@@ -1,5 +1,5 @@
 package net.eman3600.dndreams.mixin_interfaces;
 
-public interface HudMixinI {
+public interface HudAccess {
     void setDragonFlash(int ticks);
 }

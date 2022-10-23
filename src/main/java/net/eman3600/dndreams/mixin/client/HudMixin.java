@@ -5,7 +5,7 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
-import net.eman3600.dndreams.mixin_interfaces.HudMixinI;
+import net.eman3600.dndreams.mixin_interfaces.HudAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -23,13 +23,12 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.awt.*;
 
 @Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)
-public abstract class HudMixin extends DrawableHelper implements HudMixinI {
+public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Unique
     private static final Identifier DNDREAMS_GUI_ICONS = new Identifier(Initializer.MODID, "textures/gui/icons.png");
 
