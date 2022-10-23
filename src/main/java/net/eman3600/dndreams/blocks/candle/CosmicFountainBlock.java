@@ -7,6 +7,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,7 @@ import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -141,8 +143,23 @@ public class CosmicFountainBlock extends BlockWithEntity {
     }
 
     public void displayEnchantParticle(World world, BlockPos pos, BlockPos blockPos, ParticleEffect type) {
+        if (world instanceof ServerWorld server) {
+            displayEnchantParticle(server, pos, blockPos, type, 1);
+            return;
+        }
+
         Random random = world.random;
 
         world.addParticle(type, (double)pos.getX() + 0.5, (double)pos.getY() + 2.0, (double)pos.getZ() + 0.5, (double)((float)blockPos.getX() + random.nextFloat()) - 0.5, (float)blockPos.getY() - random.nextFloat() - 1.0f, (double)((float)blockPos.getZ() + random.nextFloat()) - 0.5);
+    }
+
+    public void displayEnchantParticle(ServerWorld world, BlockPos pos, BlockPos blockPos, ParticleEffect type, int count) {
+        Random random = world.random;
+
+        world.spawnParticles(type, (double)pos.getX() + 0.5, (double)pos.getY() + 2.0, (double)pos.getZ() + 0.5, count, (double)((float)blockPos.getX() + random.nextFloat()) - 0.5, (float)blockPos.getY() - random.nextFloat() - 1.0f, (double)((float)blockPos.getZ() + random.nextFloat()) - 0.5, 1f);
+    }
+
+    public void displayEnchantParticle(ServerWorld world, BlockPos pos, LivingEntity target, ParticleEffect type, int count) {
+        displayEnchantParticle(world, target.getBlockPos(), pos.subtract(target.getBlockPos()), type, count);
     }
 }

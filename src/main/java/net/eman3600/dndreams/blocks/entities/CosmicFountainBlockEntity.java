@@ -222,6 +222,19 @@ public class CosmicFountainBlockEntity extends BlockEntity {
         ticks++;
 
         main: if (getCachedState().get(CosmicFountainBlock.FUNCTIONAL)) {
+            if (power >= maxPower) {
+                Random random = world.random;
+
+                for (BlockPos blockPos: CosmicFountainBlock.PORTAL_OFFSETS) {
+                    if (random.nextInt(10) != 0 || !CosmicFountainBlock.isCosmicPortal(world, pos.down(length), blockPos)) continue;
+
+                    BlockPos inversePos = blockPos.multiply(-1).up(length);
+                    BlockPos inverseBlockPos = blockPos.add(pos).down(length);
+
+                    ((CosmicFountainBlock) ModBlocks.COSMIC_FOUNTAIN).displayEnchantParticle(world, inverseBlockPos, inversePos, ModParticles.COSMIC_ENERGY);
+                }
+            }
+
             if (ticks % 20 == 0) {
                 recalculateCapacity(world);
                 addPower(rate);
@@ -239,9 +252,7 @@ public class CosmicFountainBlockEntity extends BlockEntity {
                     if (infusion.infused() && infusion.getPower() < infusion.getPowerMax() && usePower(10)) {
                         infusion.chargePower(.4f);
 
-                        for (ServerPlayerEntity viewer: world.getPlayers()) {
-                            EnergyParticlePacket.send(viewer, pos, player);
-                        }
+                        ((CosmicFountainBlock) ModBlocks.COSMIC_FOUNTAIN).displayEnchantParticle(world, pos, player, ModParticles.COSMIC_ENERGY, 3);
                     }
                 }
             }
@@ -259,7 +270,7 @@ public class CosmicFountainBlockEntity extends BlockEntity {
 
     @Nullable
     @Override
-    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+    public BlockEntityUpdateS2CPacket toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);
     }
 
@@ -270,19 +281,7 @@ public class CosmicFountainBlockEntity extends BlockEntity {
 
     @Environment(EnvType.CLIENT)
     private void tickClient(ClientWorld world) {
-        if (power >= maxPower && getCachedState().get(CosmicFountainBlock.FUNCTIONAL)) {
-            System.out.println("Found");
-            Random random = world.random;
 
-            for (BlockPos blockPos: CosmicFountainBlock.PORTAL_OFFSETS) {
-                if (random.nextInt(6) != 0 || !CosmicFountainBlock.isCosmicPortal(world, pos.down(length), blockPos)) continue;
-
-                BlockPos inversePos = blockPos.multiply(-1).up(length);
-                BlockPos inverseBlockPos = blockPos.add(pos).down(length);
-
-                ((CosmicFountainBlock) ModBlocks.COSMIC_FOUNTAIN).displayEnchantParticle(world, inverseBlockPos, inversePos, ModParticles.COSMIC_ENERGY);
-            }
-        }
     }
 
     public boolean addPower(int amount) {
