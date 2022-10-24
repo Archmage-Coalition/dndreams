@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.blocks;
+package net.eman3600.dndreams.blocks.crop;
 
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.sapling.SaplingGenerator;

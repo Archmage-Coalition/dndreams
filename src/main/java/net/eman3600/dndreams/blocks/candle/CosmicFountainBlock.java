@@ -37,8 +37,10 @@ public class CosmicFountainBlock extends BlockWithEntity {
 
     public static final int SEARCH_RANGE = 16;
     public static final int GIVE_RANGE = 24;
+    public static final int SPLIT_RANGE = 49;
 
     public static final List<BlockPos> SEARCH_OFFSETS = BlockPos.stream(-SEARCH_RANGE, -SEARCH_RANGE, -SEARCH_RANGE, SEARCH_RANGE, SEARCH_RANGE, SEARCH_RANGE).map(BlockPos::toImmutable).toList();
+    public static final List<BlockPos> SPLIT_OFFSETS = BlockPos.stream(-SPLIT_RANGE, -SPLIT_RANGE, -SPLIT_RANGE, SPLIT_RANGE, SPLIT_RANGE, SPLIT_RANGE).map(BlockPos::toImmutable).toList();
     public static final List<BlockPos> PORTAL_OFFSETS = BlockPos.stream(-3, -1, -3, 3, 1, 3).map(BlockPos::toImmutable).toList();
     public static final List<BlockPos> COSMIC_AUGMENT_OFFSETS = BlockPos.stream(-3, 0, -3, 3, 0, 3)
             .filter(p -> {

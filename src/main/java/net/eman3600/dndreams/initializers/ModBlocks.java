@@ -5,6 +5,7 @@ import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.candle.CosmicFountainBlock;
 import net.eman3600.dndreams.blocks.candle.CosmicFountainPoleBlock;
 import net.eman3600.dndreams.blocks.candle.CosmicPortalBlock;
+import net.eman3600.dndreams.blocks.crop.DreamSaplingBlock;
 import net.eman3600.dndreams.blocks.crop.SnowbellBlock;
 import net.eman3600.dndreams.blocks.crop.WaterArtichokeBlock;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
