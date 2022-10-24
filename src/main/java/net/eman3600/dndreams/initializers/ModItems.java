@@ -248,7 +248,9 @@ public class ModItems {
     public static final Item INFUSION_CHANGER = registerItem("infusion_changer",
             new InfusionChangerItem(new FabricItemSettings().group(ItemGroup.MISC)));
 
-
+    // Staff of Satiation
+    public static final Item STAFF_OF_SATIATION = registerItem("staff_of_satiation",
+            new Item(new Item.Settings()));
 
     /*
      * Item Registration
