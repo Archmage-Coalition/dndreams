@@ -37,6 +37,8 @@
     "server.ServerWorldMixin"
   ],
   "client": [
+    "client.BiomeColorsMixin",
+    "client.ChunkRendererRegionMixin",
     "client.ClientPlayerEntityMixin",
     "client.ClientPlayNetworkHandlerMixin",
     "client.ClientWorldMixin",

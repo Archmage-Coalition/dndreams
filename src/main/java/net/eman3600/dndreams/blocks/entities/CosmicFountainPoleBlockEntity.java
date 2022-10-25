@@ -1,22 +1,14 @@
 package net.eman3600.dndreams.blocks.entities;
 
-import net.eman3600.dndreams.blocks.candle.CosmicFountainBlock;
-import net.eman3600.dndreams.blocks.candle.CosmicFountainPoleBlock;
-import net.eman3600.dndreams.blocks.candle.CosmicPortalBlock;
-import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
+import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
+import net.eman3600.dndreams.blocks.energy.CosmicFountainPoleBlock;
+import net.eman3600.dndreams.blocks.energy.CosmicPortalBlock;
 import net.eman3600.dndreams.initializers.ModBlockEntities;
 import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModMessages;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class CosmicFountainPoleBlockEntity extends BlockEntity {

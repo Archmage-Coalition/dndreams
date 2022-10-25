@@ -2,9 +2,9 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
-import net.eman3600.dndreams.blocks.candle.CosmicFountainBlock;
-import net.eman3600.dndreams.blocks.candle.CosmicFountainPoleBlock;
-import net.eman3600.dndreams.blocks.candle.CosmicPortalBlock;
+import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
+import net.eman3600.dndreams.blocks.energy.CosmicFountainPoleBlock;
+import net.eman3600.dndreams.blocks.energy.CosmicPortalBlock;
 import net.eman3600.dndreams.blocks.crop.DreamSaplingBlock;
 import net.eman3600.dndreams.blocks.crop.SnowbellBlock;
 import net.eman3600.dndreams.blocks.crop.WaterArtichokeBlock;

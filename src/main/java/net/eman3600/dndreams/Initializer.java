@@ -5,6 +5,7 @@ import net.eman3600.dndreams.items.managold.ManagoldHoe;
 import net.eman3600.dndreams.items.managold.ManagoldShovel;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
+import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
 import net.eman3600.dndreams.util.LootModifiers;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.eman3600.dndreams.util.ModRegistries;
@@ -43,6 +44,8 @@ public class Initializer implements ModInitializer {
 		ModStatusEffects.registerEffects();
 		ModPotions.registerPotions();
 		ModFeatures.registerFeatures();
+
+		AttunementBurnSlot.registerEnergyFuels();
 
 		ModBlockEntities.registerBlockEntities();
 		ModRecipeTypes.registerTypes();

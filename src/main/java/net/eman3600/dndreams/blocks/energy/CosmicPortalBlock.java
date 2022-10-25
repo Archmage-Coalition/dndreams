@@ -1,8 +1,7 @@
-package net.eman3600.dndreams.blocks.candle;
+package net.eman3600.dndreams.blocks.energy;
 
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntity;
 import net.eman3600.dndreams.initializers.ModItems;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.EndPortalBlock;
 import net.minecraft.block.entity.BlockEntity;

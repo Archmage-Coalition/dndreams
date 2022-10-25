@@ -2,6 +2,8 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
+import net.eman3600.dndreams.items.charge.AttunedShardItem;
+import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.creative.InfusionChangerItem;
 import net.eman3600.dndreams.items.magic_sword.CorruptSword;
@@ -243,14 +245,24 @@ public class ModItems {
 
 
 
+    // Attuned Amethyst
+    public static final Item ATTUNED_SHARD = registerItem("attuned_shard",
+            new AttunedShardItem(500, new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+    public static final Item CHARGED_SHARD = registerItem("charged_shard",
+            new ChargedShardItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+
+
+
 
     // Pearl of Limitless Infusion
     public static final Item INFUSION_CHANGER = registerItem("infusion_changer",
             new InfusionChangerItem(new FabricItemSettings().group(ItemGroup.MISC)));
 
+
+    
     // Staff of Satiation
-    public static final Item STAFF_OF_SATIATION = registerItem("staff_of_satiation",
-            new Item(new Item.Settings()));
+    public static final Item SATIATION_STAFF = registerItem("satiation_staff",
+            new StaffOfSatiationItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
     /*
      * Item Registration

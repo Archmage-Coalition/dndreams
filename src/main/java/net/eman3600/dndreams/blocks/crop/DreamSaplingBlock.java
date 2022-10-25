@@ -19,11 +19,11 @@ public class DreamSaplingBlock extends SaplingBlock {
     @Override
     public boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         try {
-            if (world instanceof World level)
-                return floor.isOf(ModBlocks.DREAM_GRASS) || level.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY;
+            if (world instanceof World)
+                return super.canPlantOnTop(floor, world, pos);
             else if (world instanceof ChunkRegion region) {
                 ServerWorld server = region.toServerWorld();
-                return floor.isOf(ModBlocks.DREAM_GRASS) || server.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY;
+                return (server.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY && super.canPlantOnTop(floor, world, pos));
             }
 
 

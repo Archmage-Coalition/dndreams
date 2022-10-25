@@ -38,7 +38,7 @@ public class DreamEye extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (world instanceof ServerWorld && !user.hasVehicle() && !user.hasPassengers()
+        if (world instanceof ServerWorld && user instanceof PlayerEntity player && !user.hasVehicle() && !user.hasPassengers()
                 && user.canUsePortals() && world.getRegistryKey() == World.OVERWORLD) {
             RegistryKey<World> registryKey = ModDimensions.DREAM_DIMENSION_KEY;
             ServerWorld serverWorld = ((ServerWorld)world).getServer().getWorld(registryKey);
@@ -46,15 +46,13 @@ public class DreamEye extends Item {
                 return stack;
             }
 
-            stack.decrement(1);
+            if (!player.isCreative()) stack.decrement(1);
             FabricDimensions.teleport(user, serverWorld, new TeleportTarget(user.getPos(), Vec3d.ZERO, user.getYaw(), user.getPitch()));
 
-            if (user instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity)user;
-                player.getItemCooldownManager().set(ModItems.DREAM_EYE, 200);
-                player.getItemCooldownManager().set(ModItems.ICY_NEEDLE, 200);
-                player.getItemCooldownManager().set(ModItems.MATERIALIZE_TOME, 200);
-            }
+            player.getItemCooldownManager().set(ModItems.DREAM_EYE, 200);
+            player.getItemCooldownManager().set(ModItems.ICY_NEEDLE, 200);
+            player.getItemCooldownManager().set(ModItems.MATERIALIZE_TOME, 200);
+
         }
 
         return stack;

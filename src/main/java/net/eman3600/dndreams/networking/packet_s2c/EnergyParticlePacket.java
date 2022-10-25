@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.networking.packet_s2c;
 
-import net.eman3600.dndreams.blocks.candle.CosmicFountainBlock;
-import net.eman3600.dndreams.blocks.entities.CosmicFountainBlockEntity;
+import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
 import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModMessages;
 import net.eman3600.dndreams.initializers.ModParticles;
@@ -14,10 +13,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-
-import javax.swing.text.html.parser.Entity;
-import java.util.Random;
 
 public class EnergyParticlePacket {
     public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf packet, PacketSender sender) {

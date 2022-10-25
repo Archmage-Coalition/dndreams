@@ -33,7 +33,7 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public void setInfusion(Infusion change) {
         infusion = change;
-        setPower(getPowerMax() / 8);
+        setPower(getPowerMax());
     }
 
     @Override

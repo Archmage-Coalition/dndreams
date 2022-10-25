@@ -16,6 +16,9 @@
   "item.dndreams.tainted_pearl":  "Tainted Pearl",
   "item.dndreams.water_artichoke_globe": "Water Artichoke Globe",
   
+  "item.dndreams.attuned_shard": "Attuned Amethyst",
+  "item.dndreams.charged_shard": "Attuned Amethyst",
+  
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
   "item.dndreams.corrupt_axe": "Hellsteel Axe",
@@ -74,7 +77,7 @@
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
 
-  "item.dndreams.staff_of_satiation": "Staff of Satiation",
+  "item.dndreams.satiation_staff": "Satiation Staff",
   
   "tooltip.dndreams.mana_cost": "§dMana Cost: %s",
   "tooltip.dndreams.power_cost": "§dPower Cost: %s",
@@ -154,17 +157,17 @@
   
   "block.dndreams.dream_grass": "Living Silk Block",
   "block.dndreams.dream_table": "Dream Weaver",
-  "block.dndreams.dreamwood_log": "Dreamwood Log",
-  "block.dndreams.dreamwood": "Dreamwood",
-  "block.dndreams.stripped_dreamwood_log": "Stripped Dreamwood Log",
-  "block.dndreams.stripped_dreamwood": "Stripped Dreamwood",
-  "block.dndreams.dreamwood_planks": "Dreamwood Planks",
-  "block.dndreams.dreamwood_leaves": "Dreamwood Leaves",
-  "block.dndreams.dreamwood_sapling": "Dreamwood Sapling",
-  "block.dndreams.dreamwood_stairs": "Dreamwood Stairs",
-  "block.dndreams.dreamwood_slab": "Dreamwood Slab",
-  "block.dndreams.dreamwood_fence": "Dreamwood Fence",
-  "block.dndreams.dreamwood_fence_gate": "Dreamwood Fence Gate",
+  "block.dndreams.dreamwood_log": "Cakewood Log",
+  "block.dndreams.dreamwood": "Cakewood",
+  "block.dndreams.stripped_dreamwood_log": "Stripped Cakewood Log",
+  "block.dndreams.stripped_dreamwood": "Stripped Cakewood",
+  "block.dndreams.dreamwood_planks": "Cakewood Planks",
+  "block.dndreams.dreamwood_leaves": "Cakewood Leaves",
+  "block.dndreams.dreamwood_sapling": "Cakewood Sapling",
+  "block.dndreams.dreamwood_stairs": "Cakewood Stairs",
+  "block.dndreams.dreamwood_slab": "Cakewood Slab",
+  "block.dndreams.dreamwood_fence": "Cakewood Fence",
+  "block.dndreams.dreamwood_fence_gate": "Cakewood Fence Gate",
   
   "block.dndreams.shimmering_stone": "Shimmering Stone",
   "block.dndreams.shimmering_bricks": "Shimmering Bricks",
@@ -211,6 +214,8 @@
   
   
   "container.dndreams.dream_table": "Dream Weaving",
+  "container.dndreams.attunement_chamber": "Attunement",
+  "container.dndreams.attunement_chamber.energy": "Charge: %s",
   
   
   "entity.dndreams.crowned_slash": "Crowned Slash",

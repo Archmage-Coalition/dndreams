@@ -1,0 +1,25 @@
+{
+  "type": "dndreams:weaving_shaped",
+  "pattern": [
+    " G#",
+    " XG",
+    "X  "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:charged_shard"
+    },
+    "X": {
+      "item": "dndreams:end_stick"
+    },
+    "G": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "weave_item": {
+    "item": "dndreams:nightmare_fuel"
+  },
+  "result": {
+    "item": "dndreams:satiation_staff"
+  }
+}

@@ -1,46 +1,31 @@
 package net.eman3600.dndreams.blocks.entities;
 
-import dev.architectury.utils.Env;
-import net.eman3600.dndreams.blocks.candle.CosmicFountainBlock;
-import net.eman3600.dndreams.blocks.candle.CosmicFountainPoleBlock;
-import net.eman3600.dndreams.blocks.candle.CosmicPortalBlock;
+import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
+import net.eman3600.dndreams.blocks.energy.CosmicFountainPoleBlock;
+import net.eman3600.dndreams.blocks.energy.CosmicPortalBlock;
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
-import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.*;
-import net.eman3600.dndreams.networking.packet_s2c.EnergyParticlePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
+import static net.eman3600.dndreams.blocks.energy.CosmicFountainBlock.FUNCTIONAL;
+import static net.eman3600.dndreams.blocks.energy.CosmicFountainBlock.GIVE_RANGE;
 
-import static net.eman3600.dndreams.blocks.candle.CosmicFountainBlock.GIVE_RANGE;
-
-public class CosmicFountainBlockEntity extends BlockEntity {
+public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
     private int ticks = 0;
-    private int power = 0;
     private int length = 0;
     private int maxPower = 0;
     private int rate = 5;
@@ -54,17 +39,11 @@ public class CosmicFountainBlockEntity extends BlockEntity {
 
 
     public CosmicFountainBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.COSMIC_FOUNTAIN_ENTITY, pos, state);
-
-
+        super(ModBlockEntities.COSMIC_FOUNTAIN_ENTITY, pos, state, CosmicFountainBlock.GIVE_OFFSETS);
     }
 
     public Box boxRange() {
         return eRange.offset(pos);
-    }
-
-    public int getPower() {
-        return power;
     }
 
     public int getLength() {
@@ -177,7 +156,7 @@ public class CosmicFountainBlockEntity extends BlockEntity {
 
         ticks = 0;
         length = 0;
-        power = 0;
+        setPower(0);
     }
 
     public void enable(World world) {
@@ -222,7 +201,7 @@ public class CosmicFountainBlockEntity extends BlockEntity {
         ticks++;
 
         main: if (getCachedState().get(CosmicFountainBlock.FUNCTIONAL)) {
-            if (power >= maxPower) {
+            if (getPower() >= getMaxPower()) {
                 Random random = world.random;
 
                 for (BlockPos blockPos: CosmicFountainBlock.PORTAL_OFFSETS) {
@@ -256,10 +235,12 @@ public class CosmicFountainBlockEntity extends BlockEntity {
                     }
                 }
             }
+
+            donate(world);
         } else {
             if (ticks % 20 == 0) {
                 recalculateCapacity(world);
-                if (isValid(world, false) && maxPower >= MINIMUM_POWER) enable(world);
+                if (isValid(world, false) && getMaxPower() >= MINIMUM_POWER) enable(world);
             }
         }
 
@@ -284,29 +265,10 @@ public class CosmicFountainBlockEntity extends BlockEntity {
 
     }
 
-    public boolean addPower(int amount) {
-        if (power >= maxPower) {
-            power = maxPower;
-            return false;
-        }
-        power = Math.min(maxPower, power + amount);
-        return true;
-    }
-
-    public boolean canAfford(int amount) {
-        return power >= amount;
-    }
-
-    public boolean usePower(int amount) {
-        if (!canAfford(amount)) return false;
-        power -= amount;
-        return true;
-    }
-
     @Override
     protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
         nbt.putInt("ticks", ticks);
-        nbt.putInt("power", power);
         nbt.putInt("length", length);
         nbt.putInt("max_power", maxPower);
         nbt.putInt("rate", rate);
@@ -314,13 +276,14 @@ public class CosmicFountainBlockEntity extends BlockEntity {
 
     @Override
     public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
         ticks = nbt.getInt("ticks");
-        power = nbt.getInt("power");
         length = nbt.getInt("length");
         maxPower = nbt.getInt("max_power");
         rate = nbt.getInt("rate");
     }
 
+    @Override
     public int getMaxPower() {
         return maxPower;
     }

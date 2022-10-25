@@ -1,5 +1,6 @@
-package net.eman3600.dndreams.blocks.candle;
+package net.eman3600.dndreams.blocks.energy;
 
+import net.eman3600.dndreams.blocks.entities.AbstractPowerReceiver;
 import net.eman3600.dndreams.blocks.entities.CosmicFountainBlockEntity;
 import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.util.ModTags;
@@ -14,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -29,7 +29,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 public class CosmicFountainBlock extends BlockWithEntity {
     public static final BooleanProperty FUNCTIONAL = BooleanProperty.of("functional");
@@ -50,6 +49,7 @@ public class CosmicFountainBlock extends BlockWithEntity {
                 return false;
             })
             .map(BlockPos::toImmutable).toList();
+    public static final List<BlockPos> GIVE_OFFSETS = BlockPos.stream(-GIVE_RANGE, -GIVE_RANGE, -GIVE_RANGE, GIVE_RANGE, GIVE_RANGE, GIVE_RANGE).map(BlockPos::toImmutable).toList();
 
 
     public CosmicFountainBlock(Settings settings) {
@@ -142,6 +142,10 @@ public class CosmicFountainBlock extends BlockWithEntity {
 
     public static boolean isCosmicAugment(World world, BlockPos pos, BlockPos offset) {
         return world.getBlockState(pos.add(offset)).isIn(ModTags.COSMIC_AUGMENTS);
+    }
+
+    public static AbstractPowerReceiver findPowerReceiver(World world, BlockPos pos, BlockPos offset) {
+        return world.getBlockEntity(pos.add(offset)) instanceof AbstractPowerReceiver entity ? entity : null;
     }
 
     public void displayEnchantParticle(World world, BlockPos pos, BlockPos blockPos, ParticleEffect type) {
