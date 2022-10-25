@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "dndreams:block/sakura_log",
+    "side": "dndreams:block/sakura_log"
+  }
+}

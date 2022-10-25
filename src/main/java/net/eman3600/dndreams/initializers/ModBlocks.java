@@ -139,29 +139,29 @@ public class ModBlocks {
     // Dreamwood Logs
     public static final Block DREAMWOOD_LOG = registerDreamBlock("dreamwood_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+                    .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block DREAMWOOD = registerDreamBlock("dreamwood",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+                    .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block STRIPPED_DREAMWOOD_LOG = registerDreamBlock("stripped_dreamwood_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+                    .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block STRIPPED_DREAMWOOD = registerDreamBlock("stripped_dreamwood",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+                    .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Dreamwood Planks
     public static final Block DREAMWOOD_PLANKS = registerDreamBlock("dreamwood_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+                    .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
@@ -180,30 +180,108 @@ public class ModBlocks {
     // Dreamwood Stairs
     public static final Block DREAMWOOD_STAIRS = registerDreamBlock("dreamwood_stairs",
             new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+                    .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Dreamwood Slab
     public static final Block DREAMWOOD_SLAB = registerDreamBlock("dreamwood_slab",
             new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+                    .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Dreamwood Fence
     public static final Block DREAMWOOD_FENCE = registerDreamBlock("dreamwood_fence",
             new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+                    .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Dreamwood Fence Gate
     public static final Block DREAMWOOD_FENCE_GATE = registerDreamBlock("dreamwood_fence_gate",
             new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOL)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+
+
+
+
+    // Sakura Wood Logs
+    public static final Block SAKURA_LOG = registerBlock("sakura_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SAKURA_WOOD = registerBlock("sakura_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STRIPPED_SAKURA_LOG = registerBlock("stripped_sakura_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STRIPPED_SAKURA_WOOD = registerBlock("stripped_sakura_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Sakura Wood Planks
+    public static final Block SAKURA_PLANKS = registerBlock("sakura_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Sakura Wood Leaves & Sapling
+    public static final Block SAKURA_LEAVES = registerBlock("sakura_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block SAKURA_SAPLING = registerBlock("sakura_sapling",
+            new DreamSaplingBlock(new DreamwoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // Sakura Wood Stairs
+    public static final Block SAKURA_STAIRS = registerBlock("sakura_stairs",
+            new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Sakura Wood Slab
+    public static final Block SAKURA_SLAB = registerBlock("sakura_slab",
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Sakura Wood Fence
+    public static final Block SAKURA_FENCE = registerBlock("sakura_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Sakura Wood Fence Gate
+    public static final Block SAKURA_FENCE_GATE = registerBlock("sakura_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
 
 
 

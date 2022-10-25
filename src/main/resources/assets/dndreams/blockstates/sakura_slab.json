@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "dndreams:block/sakura_slab"
+    },
+    "type=double": {
+      "model": "dndreams:block/sakura_planks"
+    },
+    "type=top": {
+      "model": "dndreams:block/sakura_slab_top"
+    }
+  }
+}

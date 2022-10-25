@@ -156,6 +156,7 @@
   "block.dndreams.celestium_block": "Celestium Block",
   
   "block.dndreams.dream_table": "Dream Weaver",
+
   "block.dndreams.dreamwood_log": "Cakewood Log",
   "block.dndreams.dreamwood": "Cakewood",
   "block.dndreams.stripped_dreamwood_log": "Stripped Cakewood Log",
@@ -167,7 +168,19 @@
   "block.dndreams.dreamwood_slab": "Cakewood Slab",
   "block.dndreams.dreamwood_fence": "Cakewood Fence",
   "block.dndreams.dreamwood_fence_gate": "Cakewood Fence Gate",
-  
+
+  "block.dndreams.sakura_log": "Sakura Log",
+  "block.dndreams.sakura_wood": "Sakura Wood",
+  "block.dndreams.stripped_sakura_log": "Stripped Sakura Log",
+  "block.dndreams.stripped_sakura_wood": "Stripped Sakura Wood",
+  "block.dndreams.sakura_planks": "Sakura Planks",
+  "block.dndreams.sakura_leaves": "Sakura Leaves",
+  "block.dndreams.sakura_sapling": "Sakura Sapling",
+  "block.dndreams.sakura_stairs": "Sakura Stairs",
+  "block.dndreams.sakura_slab": "Sakura Slab",
+  "block.dndreams.sakura_fence": "Sakura Fence",
+  "block.dndreams.sakura_fence_gate": "Sakura Fence Gate",
+
   "block.dndreams.shimmering_stone": "Shimmering Stone",
   "block.dndreams.shimmering_bricks": "Shimmering Bricks",
   "block.dndreams.shimmering_cobblestone": "Shimmering Cobblestone",
