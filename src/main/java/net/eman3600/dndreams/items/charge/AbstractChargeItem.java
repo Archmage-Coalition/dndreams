@@ -11,4 +11,5 @@ public abstract class AbstractChargeItem extends Item {
     public abstract ItemStack charge(ItemStack stack, int amount);
     public abstract boolean canAffordCharge(ItemStack stack, int amount);
     public abstract ItemStack discharge(ItemStack stack, int amount);
+    public abstract int getCharge(ItemStack stack);
 }

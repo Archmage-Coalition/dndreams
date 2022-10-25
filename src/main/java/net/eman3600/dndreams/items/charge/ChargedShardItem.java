@@ -38,6 +38,21 @@ public class ChargedShardItem extends AbstractChargeItem{
         return shard;
     }
 
+    @Override
+    public int getCharge(ItemStack stack) {
+        return 500;
+    }
+
+    @Override
+    public ItemStack getDefaultStack() {
+        NbtCompound nbt = new NbtCompound();
+        nbt.putInt("charge", 0);
+
+        ItemStack stack = new ItemStack(this);
+        stack.setNbt(nbt);
+
+        return stack;
+    }
 
     @Override
     public int getItemBarColor(ItemStack stack) {

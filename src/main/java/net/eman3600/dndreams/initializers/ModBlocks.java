@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
+import net.eman3600.dndreams.blocks.energy.AttunementChamberBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicFountainPoleBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicPortalBlock;
@@ -135,12 +136,6 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
-    // Dream Grass
-    public static final Block DREAM_GRASS = registerDreamBlock("dream_grass",
-            new DreamGrassBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)),
-
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-
     // Dreamwood Logs
     public static final Block DREAMWOOD_LOG = registerDreamBlock("dreamwood_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
@@ -260,6 +255,13 @@ public class ModBlocks {
 
     public static final Block COSMIC_PORTAL = registerBlock("cosmic_portal",
             new CosmicPortalBlock(FabricBlockSettings.copy(Blocks.END_PORTAL)));
+
+
+    // Attunement Chamber
+    public static final Block ATTUNEMENT_CHAMBER = registerBlock("attunement_chamber",
+            new AttunementChamberBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.5f)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
 
 

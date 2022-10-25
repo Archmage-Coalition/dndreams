@@ -15,4 +15,9 @@ public class AttunementSlot extends Slot {
     public boolean canInsert(ItemStack stack) {
         return stack.isOf(Items.AMETHYST_SHARD) || stack.isOf(ModItems.ATTUNED_SHARD) || stack.isOf(ModItems.CHARGED_SHARD);
     }
+
+    @Override
+    public int getMaxItemCount() {
+        return 1;
+    }
 }

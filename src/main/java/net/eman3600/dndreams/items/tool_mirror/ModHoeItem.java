@@ -12,6 +12,6 @@ public class ModHoeItem extends HoeItem {
     }
 
     public static void injectTillActions() {
-        TILLING_ACTIONS.put(ModBlocks.DREAM_GRASS, Pair.of(HoeItem::canTillFarmland, createTillAction(Blocks.FARMLAND.getDefaultState())));
+
     }
 }

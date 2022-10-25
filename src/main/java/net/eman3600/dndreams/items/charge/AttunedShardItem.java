@@ -96,4 +96,15 @@ public class AttunedShardItem extends AbstractChargeItem {
 
         return stack;
     }
+
+    @Override
+    public int getCharge(ItemStack stack) {
+        NbtCompound nbt = stack.getOrCreateNbt();
+
+        if (nbt.contains("charge")) {
+            return nbt.getInt("charge");
+        }
+
+        return 0;
+    }
 }

@@ -6,6 +6,7 @@ import net.eman3600.dndreams.entities.renderers.BloodZombieEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.WardenRagdollEntityRenderer;
 import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
+import net.eman3600.dndreams.screen.AttunementScreen;
 import net.eman3600.dndreams.screen.WeavingScreen;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
@@ -15,6 +16,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.util.Identifier;
@@ -23,7 +25,8 @@ import net.minecraft.world.World;
 public class ClientInitializer implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        ScreenRegistry.register(ModScreenHandlerTypes.WEAVING, WeavingScreen::new);
+        HandledScreens.register(ModScreenHandlerTypes.WEAVING, WeavingScreen::new);
+        HandledScreens.register(ModScreenHandlerTypes.ATTUNEMENT, AttunementScreen::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DREAMWOOD_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DREAMWOOD_SAPLING, RenderLayer.getCutout());

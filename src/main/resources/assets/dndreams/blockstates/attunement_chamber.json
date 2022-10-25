@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "dndreams:block/attunement_chamber",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "dndreams:block/attunement_chamber"
+    },
+    "facing=south": {
+      "model": "dndreams:block/attunement_chamber",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "dndreams:block/attunement_chamber",
+      "y": 270
+    }
+  }
+}

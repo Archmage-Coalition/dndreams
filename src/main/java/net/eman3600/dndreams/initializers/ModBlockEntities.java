@@ -13,6 +13,7 @@ public class ModBlockEntities {
     public static BlockEntityType<CosmicFountainBlockEntity> COSMIC_FOUNTAIN_ENTITY;
     public static BlockEntityType<CosmicPortalBlockEntity> COSMIC_PORTAL_ENTITY;
     public static BlockEntityType<CosmicFountainPoleBlockEntity> COSMIC_FOUNTAIN_POLE_ENTITY;
+    public static BlockEntityType<AttunementChamberBlockEntity> ATTUNEMENT_CHAMBER_ENTITY;
 
     public static void registerBlockEntities() {
 
@@ -33,5 +34,7 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(CosmicPortalBlockEntity::new, ModBlocks.COSMIC_PORTAL).build());
         COSMIC_FOUNTAIN_POLE_ENTITY = registerEntity("cosmic_fountain_pole",
                 FabricBlockEntityTypeBuilder.create(CosmicFountainPoleBlockEntity::new, ModBlocks.COSMIC_FOUNTAIN_POLE).build());
+        ATTUNEMENT_CHAMBER_ENTITY = registerEntity("attunement_chamber",
+                FabricBlockEntityTypeBuilder.create(AttunementChamberBlockEntity::new, ModBlocks.ATTUNEMENT_CHAMBER).build());
     }
 }

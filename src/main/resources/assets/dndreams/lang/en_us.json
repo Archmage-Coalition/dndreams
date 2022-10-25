@@ -155,7 +155,6 @@
   "block.dndreams.celestium_ore": "Celestium Ore",
   "block.dndreams.celestium_block": "Celestium Block",
   
-  "block.dndreams.dream_grass": "Living Silk Block",
   "block.dndreams.dream_table": "Dream Weaver",
   "block.dndreams.dreamwood_log": "Cakewood Log",
   "block.dndreams.dreamwood": "Cakewood",
@@ -208,6 +207,7 @@
   "block.dndreams.cosmic_fountain.invalid": "Fountain Setup Required for Power",
   "block.dndreams.cosmic_fountain.sealed": "The World Fountain is Sealed...",
   "block.dndreams.cosmic_fountain_pole": "Cosmic Pillar",
+  "block.dndreams.attunement_chamber": "Attunement Chamber",
   
   "block.dndreams.flowing_spirit": "Flowing Spirit",
   "block.dndreams.flowing_flowing_spirit": "Flowing Spirit",

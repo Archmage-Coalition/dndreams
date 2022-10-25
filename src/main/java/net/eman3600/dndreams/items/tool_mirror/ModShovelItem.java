@@ -11,6 +11,6 @@ public class ModShovelItem extends ShovelItem {
     }
 
     public static void injectPathStates() {
-        PATH_STATES.put(ModBlocks.DREAM_GRASS, Blocks.DIRT_PATH.getDefaultState());
+
     }
 }
