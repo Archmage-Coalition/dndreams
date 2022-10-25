@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "dndreams:dreamwood_log",
+	"dndreams:sakura_log",
+	"dndreams:stripped_dreamwood_log",
+	"dndreams:stripped_sakura_log",
+	"dndreams:dreamwood",
+	"dndreams:sakura_wood",
+	"dndreams:stripped_dreamwood",
+	"dndreams:stripped_sakura_wood"
+  ]
+}

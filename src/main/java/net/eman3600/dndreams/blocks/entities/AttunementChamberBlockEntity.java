@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.blocks.entities;
 
+import net.eman3600.dndreams.blocks.energy.AttunementChamberBlock;
 import net.eman3600.dndreams.initializers.ModBlockEntities;
 import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.items.charge.AbstractChargeItem;
@@ -40,7 +41,7 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
 
     @Override
     public boolean needsPower() {
-        return getPower() < getMaxPower();
+        return getPower() < getMaxPower() && !getCachedState().get(AttunementChamberBlock.POWERED);
     }
 
     @Override
@@ -122,6 +123,7 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
 
         if (stack.getItem() instanceof AbstractChargeItem item && canAfford(amount)) {
             inventory.set(0, item.discharge(stack, amount));
+            return true;
         }
 
         return false;
@@ -159,7 +161,7 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
             cooldownTicks--;
         }
 
-        if (inventory.get(0).getItem() instanceof AbstractChargeItem) {
+        if (inventory.get(0).getItem() instanceof AbstractChargeItem && getCachedState().get(AttunementChamberBlock.POWERED)) {
             donate(world);
         }
     }

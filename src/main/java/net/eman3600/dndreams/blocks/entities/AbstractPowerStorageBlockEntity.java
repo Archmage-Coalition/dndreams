@@ -24,34 +24,16 @@ public abstract class AbstractPowerStorageBlockEntity extends BlockEntity {
     }
 
     /**
-     * Will find all power receivers that require power.
-     * @return List of all block positions in range with entities implementing AbstractPowerReceiver
-     * */
-    public List<BlockPos> powerRequests(ServerWorld world) {
-        List<BlockPos> valid = new ArrayList<>();
-
-        for (BlockPos blockPos: search) {
-            try {
-                AbstractPowerReceiver receiver = CosmicFountainBlock.findPowerReceiver(world, pos, blockPos);
-                if (receiver == null || receiver == this || receiver.getClass() == this.getClass()) continue;
-
-                if (receiver.needsPower()) {
-                    valid.add(blockPos);
-                }
-            } catch (ClassCastException ignored) {}
-        }
-
-        return valid;
-    }
-
-    /**
      * Will find all power receivers in range that require power and deliver power if possible.
+     * @apiNote If this BlockEntity implements AbstractPowerReceiver, it will only donate power if it does not request power itself.
      */
     public void donate(ServerWorld world) {
+        if (this instanceof AbstractPowerReceiver receiver && receiver.needsPower()) return;
+
         for (BlockPos blockPos: search) {
             try {
                 AbstractPowerReceiver receiver = CosmicFountainBlock.findPowerReceiver(world, pos, blockPos);
-                if (receiver == null || receiver == this || receiver.getClass() == this.getClass()) continue;
+                if (receiver == null || receiver == this) continue;
 
                 if (receiver.needsPower() && usePower(receiver.powerRequest())) {
                     receiver.addPower(receiver.powerRequest());

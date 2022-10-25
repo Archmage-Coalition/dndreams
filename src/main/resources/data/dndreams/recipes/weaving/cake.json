@@ -1,0 +1,22 @@
+{
+  "type": "dndreams:weaving_shaped",
+  "pattern": [
+    "XXX",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:dreamwood_slab"
+    },
+	"X": {
+      "item": "minecraft:sweet_berries"
+    }
+  },
+  "weave_item": {
+    "item": "dndreams:dream_powder"
+  },
+  "result": {
+    "item": "minecraft:cake",
+	"count": 1
+  }
+}

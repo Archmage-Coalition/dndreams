@@ -66,7 +66,7 @@ public class AttunedShardItem extends AbstractChargeItem {
         NbtCompound nbt = stack.getOrCreateNbt();
 
         if (!nbt.contains("charge")) {
-            nbt.putInt("charge", 1);
+            nbt.putInt("charge", 0);
         }
 
         return nbt.getInt("charge") >= amount;
@@ -77,7 +77,7 @@ public class AttunedShardItem extends AbstractChargeItem {
         NbtCompound nbt = stack.getOrCreateNbt();
 
         if (!nbt.contains("charge")) {
-            nbt.putInt("charge", 1);
+            nbt.putInt("charge", 0);
         }
 
         int charge = nbt.getInt("charge");

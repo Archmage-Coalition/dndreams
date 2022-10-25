@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
+import net.eman3600.dndreams.blocks.crop.ModSaplingBlock;
 import net.eman3600.dndreams.blocks.energy.AttunementChamberBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicFountainPoleBlock;
@@ -12,6 +13,7 @@ import net.eman3600.dndreams.blocks.crop.WaterArtichokeBlock;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
 import net.eman3600.dndreams.world.feature.tree.DreamwoodSaplingGenerator;
+import net.eman3600.dndreams.world.feature.tree.SakuraSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -168,7 +170,7 @@ public class ModBlocks {
     // Dreamwood Leaves & Sapling
     public static final Block DREAMWOOD_LEAVES = registerDreamBlock("dreamwood_leaves",
             new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
-                    .nonOpaque()),
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block DREAMWOOD_SAPLING = registerDreamBlock("dreamwood_sapling",
@@ -243,11 +245,11 @@ public class ModBlocks {
     // Sakura Wood Leaves & Sapling
     public static final Block SAKURA_LEAVES = registerBlock("sakura_leaves",
             new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
-                    .nonOpaque()),
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block SAKURA_SAPLING = registerBlock("sakura_sapling",
-            new DreamSaplingBlock(new DreamwoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new ModSaplingBlock(new SakuraSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -298,7 +300,7 @@ public class ModBlocks {
     public static final Block CHARGED_DEEPSLATE = registerBlock("charged_deepslate",
             new ChargedDeepslateBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     // Ancient Portal
     public static final Block DEEPSLATE_CORE = registerBlock("deepslate_core",
@@ -324,12 +326,12 @@ public class ModBlocks {
     public static final Block COSMIC_FOUNTAIN = registerBlock("cosmic_fountain",
             new CosmicFountainBlock(FabricBlockSettings.copy(Blocks.END_STONE)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block COSMIC_FOUNTAIN_POLE = registerBlock("cosmic_fountain_pole",
             new CosmicFountainPoleBlock(FabricBlockSettings.copy(Blocks.END_STONE)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block COSMIC_PORTAL = registerBlock("cosmic_portal",
             new CosmicPortalBlock(FabricBlockSettings.copy(Blocks.END_PORTAL)));
