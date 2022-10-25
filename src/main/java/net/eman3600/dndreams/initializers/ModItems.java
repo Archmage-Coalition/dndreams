@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
+import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.consumable.*;
@@ -35,7 +36,7 @@ public class ModItems {
 
     // Dream Powder
     public static final Item DREAM_POWDER = registerItem("dream_powder",
-            new DreamPowderItem(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.DREAM_POWDER)));
+            new DreamyItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Sculk Powder
     public static final Item SCULK_POWDER = registerItem("sculk_powder",

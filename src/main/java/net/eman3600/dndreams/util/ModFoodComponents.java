@@ -15,4 +15,8 @@ public class ModFoodComponents {
     public static final FoodComponent DREAM_POWDER = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.0F)
             .snack()
             .build();
+    public static FoodComponent cakewood(float planks) {
+        return (new FoodComponent.Builder()).hunger((int)(3 * planks)).saturationModifier(0.3F)
+                .build();
+    }
 }

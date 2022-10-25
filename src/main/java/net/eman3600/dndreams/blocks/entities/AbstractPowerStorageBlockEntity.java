@@ -42,6 +42,8 @@ public abstract class AbstractPowerStorageBlockEntity extends BlockEntity {
                     BlockPos inverseBlockPos = blockPos.add(pos);
 
                     ((CosmicFountainBlock) ModBlocks.COSMIC_FOUNTAIN).displayEnchantParticle(world, inverseBlockPos, inversePos, ModParticles.COSMIC_ENERGY, 2);
+
+                    markDirty();
                 }
             } catch (ClassCastException ignored) {}
         }

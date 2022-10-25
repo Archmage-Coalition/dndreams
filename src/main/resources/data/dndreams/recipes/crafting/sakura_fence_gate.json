@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "#X#"
+  ],
+  "key": {
+    "X": {
+      "item": "dndreams:sakura_planks"
+    },
+	"#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "dndreams:sakura_fence_gate"
+  }
+}

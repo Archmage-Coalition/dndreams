@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:dreamwood_planks"
+    },
+	"X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "dndreams:dreamwood_fence",
+	"count": 3
+  }
+}
