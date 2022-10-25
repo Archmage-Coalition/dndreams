@@ -33,6 +33,9 @@ public class ModRegistries {
     private static void registerStrippables() {
         StrippableBlockRegistry.register(ModBlocks.DREAMWOOD, ModBlocks.STRIPPED_DREAMWOOD);
         StrippableBlockRegistry.register(ModBlocks.DREAMWOOD_LOG, ModBlocks.STRIPPED_DREAMWOOD_LOG);
+
+        StrippableBlockRegistry.register(ModBlocks.SAKURA_WOOD, ModBlocks.STRIPPED_SAKURA_WOOD);
+        StrippableBlockRegistry.register(ModBlocks.SAKURA_LOG, ModBlocks.STRIPPED_SAKURA_LOG);
     }
 
     private static void registerFlammableBlocks() {
@@ -44,7 +47,17 @@ public class ModRegistries {
         registry.add(ModBlocks.STRIPPED_DREAMWOOD, 5, 5);
 
         registry.add(ModBlocks.DREAMWOOD_PLANKS, 5, 20);
+        registry.add(ModBlocks.DREAMWOOD_SLAB, 5, 20);
         registry.add(ModBlocks.DREAMWOOD_LEAVES, 30, 60);
+
+        registry.add(ModBlocks.SAKURA_LOG, 10, 10);
+        registry.add(ModBlocks.SAKURA_WOOD, 10, 10);
+        registry.add(ModBlocks.STRIPPED_SAKURA_LOG, 10, 10);
+        registry.add(ModBlocks.STRIPPED_SAKURA_WOOD, 10, 10);
+
+        registry.add(ModBlocks.SAKURA_PLANKS, 10, 40);
+        registry.add(ModBlocks.SAKURA_SLAB, 10, 40);
+        registry.add(ModBlocks.SAKURA_LEAVES, 60, 120);
     }
 
     private static void registerCompostables() {
@@ -52,6 +65,8 @@ public class ModRegistries {
         access.registerCompostable(.3f, ModItems.SNOWBELL_SEEDS);
         access.registerCompostable(.3f, ModItems.WATER_ARTICHOKE_SEEDS);
         access.registerCompostable(.65f, ModItems.WATER_ARTICHOKE_GLOBE);
+        access.registerCompostable(.3f, ModBlocks.SAKURA_SAPLING);
+        access.registerCompostable(.65f, ModBlocks.DREAMWOOD_SAPLING);
     }
 
     private static void registerAttributes() {

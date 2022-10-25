@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#dndreams:sakura_logs",
+    "dndreams:sakura_planks",
+    "dndreams:sakura_stairs",
+    "dndreams:sakura_slab",
+    "dndreams:sakura_fence",
+    "dndreams:sakura_fence_gate"
+  ]
+}

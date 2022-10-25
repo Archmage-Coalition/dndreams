@@ -337,7 +337,7 @@ public class ModBlocks {
 
     // Attunement Chamber
     public static final Block ATTUNEMENT_CHAMBER = registerBlock("attunement_chamber",
-            new AttunementChamberBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.5f)),
+            new AttunementChamberBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 6.0f)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 

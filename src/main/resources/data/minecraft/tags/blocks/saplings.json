@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dndreams:dreamwood_sapling"
+    "dndreams:dreamwood_sapling",
+	"dndreams:sakura_sapling"
   ]
 }

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dndreams:dreamwood_planks"
+    "dndreams:dreamwood_planks",
+	"dndreams:sakura_planks"
   ]
 }

@@ -4,6 +4,7 @@ import net.eman3600.dndreams.initializers.ModBlockEntities;
 import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.items.charge.AbstractChargeItem;
 import net.eman3600.dndreams.screen.AttunementScreenHandler;
+import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
@@ -27,6 +28,8 @@ import java.util.List;
 public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntity implements AbstractPowerReceiver, NamedScreenHandlerFactory, ImplementedInventory {
     public static final int GIVE_RANGE = 16;
     public static final List<BlockPos> GIVE_OFFSETS = BlockPos.stream(-GIVE_RANGE, -GIVE_RANGE, -GIVE_RANGE, GIVE_RANGE, GIVE_RANGE, GIVE_RANGE).map(BlockPos::toImmutable).toList();
+
+    private int cooldownTicks = 0;
 
     private final DefaultedList<ItemStack> inventory =
             DefaultedList.ofSize(2, ItemStack.EMPTY);
@@ -54,12 +57,14 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
+        nbt.putInt("cooldown", cooldownTicks);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         Inventories.readNbt(nbt, inventory);
+        cooldownTicks = nbt.getInt("cooldown");
     }
 
     @Override
@@ -143,6 +148,19 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
     }
 
     private void tick(ServerWorld world) {
+        ItemStack burn = inventory.get(1);
 
+        if (needsPower() && cooldownTicks <= 0 && AttunementBurnSlot.ITEM_TO_ENERGY.containsKey(burn.getItem())) {
+            addPower(AttunementBurnSlot.ITEM_TO_ENERGY.getOrDefault(burn.getItem(), 0));
+
+            burn.decrement(1);
+            cooldownTicks = 10;
+        } else if (cooldownTicks > 0) {
+            cooldownTicks--;
+        }
+
+        if (inventory.get(0).getItem() instanceof AbstractChargeItem) {
+            donate(world);
+        }
     }
 }

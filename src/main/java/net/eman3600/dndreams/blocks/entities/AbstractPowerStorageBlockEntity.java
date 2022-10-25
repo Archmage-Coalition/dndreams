@@ -51,7 +51,7 @@ public abstract class AbstractPowerStorageBlockEntity extends BlockEntity {
         for (BlockPos blockPos: search) {
             try {
                 AbstractPowerReceiver receiver = CosmicFountainBlock.findPowerReceiver(world, pos, blockPos);
-                if (receiver == null || receiver == this) continue;
+                if (receiver == null || receiver == this || receiver.getClass() == this.getClass()) continue;
 
                 if (receiver.needsPower() && usePower(receiver.powerRequest())) {
                     receiver.addPower(receiver.powerRequest());

@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
@@ -27,33 +28,48 @@ public class AttunementScreenHandler extends ScreenHandler {
         addSlot(new AttunementSlot(inventory, 0, 80, 35));
         addSlot(new AttunementBurnSlot(inventory, 1, 134, 35));
 
-        addPlayerHotbar(playerInventory);
         addPlayerInventory(playerInventory);
+        addPlayerHotbar(playerInventory);
     }
 
     @Override
-    public ItemStack transferSlot(PlayerEntity player, int invSlot) {
-        ItemStack newStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(invSlot);
+    public ItemStack transferSlot(PlayerEntity player, int index) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
         if (slot != null && slot.hasStack()) {
-            ItemStack originalStack = slot.getStack();
-            newStack = originalStack.copy();
-            if (invSlot < this.inventory.size()) {
-                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
+            ItemStack itemStack2 = slot.getStack();
+            itemStack = itemStack2.copy();
+            if (index == 0) {
+                if (!this.insertItem(itemStack2, 2, 38, true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
+            } else if (index == 1) {
+                if (!this.insertItem(itemStack2, 2, 38, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (AttunementBurnSlot.ITEM_TO_ENERGY.containsKey(itemStack2.getItem())) {
+                if (!this.insertItem(itemStack2, 1, 2, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.slots.get(0).hasStack() && this.slots.get(0).canInsert(itemStack2)) {
+                ItemStack itemStack3 = itemStack2.copy();
+                itemStack3.setCount(1);
+                itemStack2.decrement(1);
+                this.slots.get(0).setStack(itemStack3);
+            } else {
                 return ItemStack.EMPTY;
             }
-
-            if (originalStack.isEmpty()) {
+            if (itemStack2.isEmpty()) {
                 slot.setStack(ItemStack.EMPTY);
             } else {
                 slot.markDirty();
             }
+            if (itemStack2.getCount() == itemStack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+            slot.onTakeItem(player, itemStack2);
         }
-
-        return newStack;
+        return itemStack;
     }
 
     @Override
