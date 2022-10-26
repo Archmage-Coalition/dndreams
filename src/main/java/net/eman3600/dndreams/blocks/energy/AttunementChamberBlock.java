@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class AttunementChamberBlock extends BlockWithEntity implements BlockEntityProvider {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final BooleanProperty POWERED = RedstoneLampBlock.LIT;
+    public static final BooleanProperty POWERED = BooleanProperty.of("powered");
 
     public AttunementChamberBlock(Settings settings) {
         super(settings);

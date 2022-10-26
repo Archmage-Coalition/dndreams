@@ -2,7 +2,6 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
-import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.consumable.*;
@@ -263,7 +262,7 @@ public class ModItems {
     
     // Staff of Satiation
     public static final Item SATIATION_STAFF = registerItem("satiation_staff",
-            new StaffOfSatiationItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+            new SatiationStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
     /*
      * Item Registration
