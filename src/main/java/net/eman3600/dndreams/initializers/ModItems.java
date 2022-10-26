@@ -62,7 +62,7 @@ public class ModItems {
     // Corrupt Scrap & Raw Celestium
     public static final Item CORRUPT_SCRAP = registerItem("corrupt_scrap", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)
             .fireproof()));
-    public static final Item RAW_CELESTIUM = registerItem("raw_celestium",
+    public static final Item RAW_CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Baleful Residue
@@ -80,6 +80,10 @@ public class ModItems {
     public static final Item MANAGOLD_INGOT = registerItem("managold_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item TORMITE_INGOT = registerItem("tormite_ingot",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
+
+    // Obsidian Stick
+    public static final Item OBSIDIAN_STICK = registerItem("obsidian_stick",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
 
     // Hellsteel Sword & Tools
