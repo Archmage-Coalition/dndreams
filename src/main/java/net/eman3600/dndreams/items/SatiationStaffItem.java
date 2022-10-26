@@ -3,8 +3,6 @@ package net.eman3600.dndreams.items;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.eman3600.dndreams.items.interfaces.PowerCostItem;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -15,10 +13,10 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
-public class StaffOfSatiationItem extends Item implements ManaCostItem, PowerCostItem {
+public class SatiationStaffItem extends Item implements ManaCostItem, PowerCostItem {
     private static final int USE_TIME = 30;
 
-    public StaffOfSatiationItem(Item.Settings settings) {
+    public SatiationStaffItem(Item.Settings settings) {
         super(settings);
     }
 
@@ -38,6 +36,7 @@ public class StaffOfSatiationItem extends Item implements ManaCostItem, PowerCos
             manager.add(12, 1f);
 
             player.heal(3);
+
         }
 
         return stack;

@@ -41,7 +41,7 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
 
     @Override
     public boolean needsPower() {
-        return getPower() < getMaxPower() && !getCachedState().get(AttunementChamberBlock.POWERED);
+        return getPower() < getMaxPower() && getCachedState().get(AttunementChamberBlock.POWERED);
     }
 
     @Override
@@ -95,11 +95,15 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
         if (stack.getItem() instanceof AbstractChargeItem item) {
             boolean bl = !item.canAffordCharge(stack, 500);
             inventory.set(0, item.charge(stack, amount));
+
+            markDirty();
             return bl;
         } else if (stack.getItem() == Items.AMETHYST_SHARD) {
             ItemStack shard = ModItems.ATTUNED_SHARD.getDefaultStack();
 
             inventory.set(0, shard);
+
+            markDirty();
             return addPower(amount);
         }
 
@@ -123,6 +127,7 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
 
         if (stack.getItem() instanceof AbstractChargeItem item && canAfford(amount)) {
             inventory.set(0, item.discharge(stack, amount));
+            markDirty();
             return true;
         }
 
@@ -132,8 +137,8 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
     @Override
     public void setPower(int amount) {
         inventory.set(0, Items.AMETHYST_SHARD.getDefaultStack());
-
         addPower(amount);
+        markDirty();
     }
 
     @Override
@@ -152,16 +157,17 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
     private void tick(ServerWorld world) {
         ItemStack burn = inventory.get(1);
 
-        if (needsPower() && cooldownTicks <= 0 && AttunementBurnSlot.ITEM_TO_ENERGY.containsKey(burn.getItem())) {
+        if (getPower() < getMaxPower() && cooldownTicks <= 0 && AttunementBurnSlot.ITEM_TO_ENERGY.containsKey(burn.getItem())) {
             addPower(AttunementBurnSlot.ITEM_TO_ENERGY.getOrDefault(burn.getItem(), 0));
 
             burn.decrement(1);
-            cooldownTicks = 10;
+            markDirty();
+            cooldownTicks = 5;
         } else if (cooldownTicks > 0) {
             cooldownTicks--;
         }
 
-        if (inventory.get(0).getItem() instanceof AbstractChargeItem && getCachedState().get(AttunementChamberBlock.POWERED)) {
+        if (inventory.get(0).getItem() instanceof AbstractChargeItem && !getCachedState().get(AttunementChamberBlock.POWERED)) {
             donate(world);
         }
     }

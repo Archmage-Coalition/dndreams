@@ -9,6 +9,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -27,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class AttunementChamberBlock extends BlockWithEntity implements BlockEntityProvider {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final BooleanProperty POWERED = RedstoneLampBlock.LIT;
+    public static final BooleanProperty POWERED = BooleanProperty.of("powered");
 
     public AttunementChamberBlock(Settings settings) {
         super(settings);
@@ -88,6 +89,19 @@ public class AttunementChamberBlock extends BlockWithEntity implements BlockEnti
         if (state.get(POWERED).booleanValue() && !world.isReceivingRedstonePower(pos)) {
             world.setBlockState(pos, (BlockState)state.cycle(POWERED), Block.NOTIFY_LISTENERS);
         }
+    }
+
+    @Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+        if (world.getBlockEntity(pos) instanceof AttunementChamberBlockEntity entity && entity.getMaxPower() > 0) {
+            return (entity.getPower() * 15 / entity.getMaxPower());
+        }
+        return 0;
     }
 
     @Nullable

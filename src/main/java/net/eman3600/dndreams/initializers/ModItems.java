@@ -35,7 +35,7 @@ public class ModItems {
 
     // Dream Powder
     public static final Item DREAM_POWDER = registerItem("dream_powder",
-            new DreamPowderItem(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.DREAM_POWDER)));
+            new DreamyItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Sculk Powder
     public static final Item SCULK_POWDER = registerItem("sculk_powder",
@@ -262,7 +262,7 @@ public class ModItems {
     
     // Staff of Satiation
     public static final Item SATIATION_STAFF = registerItem("satiation_staff",
-            new StaffOfSatiationItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+            new SatiationStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
     /*
      * Item Registration

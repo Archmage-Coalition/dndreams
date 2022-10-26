@@ -12,6 +12,7 @@ import net.eman3600.dndreams.blocks.crop.SnowbellBlock;
 import net.eman3600.dndreams.blocks.crop.WaterArtichokeBlock;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
+import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.world.feature.tree.DreamwoodSaplingGenerator;
 import net.eman3600.dndreams.world.feature.tree.SakuraSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -140,32 +141,32 @@ public class ModBlocks {
 
     // Dreamwood Logs
     public static final Block DREAMWOOD_LOG = registerDreamBlock("dreamwood_log",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block DREAMWOOD = registerDreamBlock("dreamwood",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block STRIPPED_DREAMWOOD_LOG = registerDreamBlock("stripped_dreamwood_log",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(4f)));
     public static final Block STRIPPED_DREAMWOOD = registerDreamBlock("stripped_dreamwood",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(5.34f)));
 
     // Dreamwood Planks
     public static final Block DREAMWOOD_PLANKS = registerDreamBlock("dreamwood_planks",
-            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(1)));
 
     // Dreamwood Leaves & Sapling
     public static final Block DREAMWOOD_LEAVES = registerDreamBlock("dreamwood_leaves",
@@ -177,35 +178,35 @@ public class ModBlocks {
             new DreamSaplingBlock(new DreamwoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
-            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+            new FabricItemSettings().group(ItemGroup.DECORATIONS).food(ModFoodComponents.cakewood(2)));
 
     // Dreamwood Stairs
     public static final Block DREAMWOOD_STAIRS = registerDreamBlock("dreamwood_stairs",
-            new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(1.5f)));
 
     // Dreamwood Slab
     public static final Block DREAMWOOD_SLAB = registerDreamBlock("dreamwood_slab",
-            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(0.5f)));
 
     // Dreamwood Fence
     public static final Block DREAMWOOD_FENCE = registerDreamBlock("dreamwood_fence",
-            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(1.34f)));
 
     // Dreamwood Fence Gate
     public static final Block DREAMWOOD_FENCE_GATE = registerDreamBlock("dreamwood_fence_gate",
-            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(2)));
 
 
 
