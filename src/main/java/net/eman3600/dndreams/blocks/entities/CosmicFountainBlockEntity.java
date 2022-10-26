@@ -3,6 +3,7 @@ package net.eman3600.dndreams.blocks.entities;
 import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicFountainPoleBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicPortalBlock;
+import net.eman3600.dndreams.blocks.energy.RitualCandleBlock;
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.initializers.*;
 import net.fabricmc.api.EnvType;
@@ -134,7 +135,9 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
     }
 
     private int multiplicity(BlockState state) {
-        return 2;
+        if (state.getBlock() == ModBlocks.COSMIC_CANDLE) return state.get(RitualCandleBlock.LIT) ? 6 : 0;
+
+        return 1;
     }
 
     public void disable(World world) {

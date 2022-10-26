@@ -15,13 +15,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionTypes;
 import org.checkerframework.checker.units.qual.A;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Item.class)
 public abstract class ItemMixin {
+    @Shadow @Final private boolean fireproof;
+
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     public void blockBottler(ItemUsageContext context, CallbackInfoReturnable<ActionResult> info) {
         World world = context.getWorld();
