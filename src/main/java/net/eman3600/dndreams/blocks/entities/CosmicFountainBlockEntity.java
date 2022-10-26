@@ -135,7 +135,7 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
     }
 
     private int multiplicity(BlockState state) {
-        if (state.getBlock() == ModBlocks.COSMIC_CANDLE) return state.get(RitualCandleBlock.LIT) ? 6 : 0;
+        if (state.getBlock() == ModBlocks.COSMIC_CANDLE) return state.get(RitualCandleBlock.LIT) ? 4 : 0;
 
         return 1;
     }

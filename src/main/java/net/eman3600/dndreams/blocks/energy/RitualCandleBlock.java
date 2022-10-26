@@ -1,13 +1,20 @@
 package net.eman3600.dndreams.blocks.energy;
 
+import net.eman3600.dndreams.items.FlintAndHellsteel;
 import net.minecraft.block.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
@@ -19,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 public class RitualCandleBlock extends Block {
     private static final VoxelShape CANDLE_SHAPE = Block.createCuboidShape(4.5, 0.0, 4.5, 11.5, 13.0, 11.5);
     private final ParticleEffect particle;
-    private static final Vec3d OFFSET = new Vec3d(0.5, .83f, 0.5);
+    private static final Vec3d OFFSET = new Vec3d(0.5, .87f, 0.5);
 
     public static final BooleanProperty LIT = CandleBlock.LIT;
 
@@ -45,6 +52,18 @@ public class RitualCandleBlock extends Block {
         }
 
         spawnCandleParticles(world, OFFSET.add(pos.getX(), pos.getY(), pos.getZ()), random);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        ItemStack stack = player.getStackInHand(hand);
+
+        if (!state.get(LIT) && !world.isClient && (stack.getItem() instanceof FlintAndSteelItem || stack.getItem() instanceof FlintAndHellsteel)) {
+            world.setBlockState(pos, state.with(LIT, true));
+            return ActionResult.SUCCESS;
+        }
+
+        return ActionResult.PASS;
     }
 
     public static int luminence(BlockState state) {
