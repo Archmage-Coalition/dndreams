@@ -3,10 +3,7 @@ package net.eman3600.dndreams.initializers;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.crop.ModSaplingBlock;
-import net.eman3600.dndreams.blocks.energy.AttunementChamberBlock;
-import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
-import net.eman3600.dndreams.blocks.energy.CosmicFountainPoleBlock;
-import net.eman3600.dndreams.blocks.energy.CosmicPortalBlock;
+import net.eman3600.dndreams.blocks.energy.*;
 import net.eman3600.dndreams.blocks.crop.DreamSaplingBlock;
 import net.eman3600.dndreams.blocks.crop.SnowbellBlock;
 import net.eman3600.dndreams.blocks.crop.WaterArtichokeBlock;
@@ -323,7 +320,7 @@ public class ModBlocks {
 
 
 
-    // Rituals
+    // Cosmic Fountain
     public static final Block COSMIC_FOUNTAIN = registerBlock("cosmic_fountain",
             new CosmicFountainBlock(FabricBlockSettings.copy(Blocks.END_STONE)),
 
@@ -341,6 +338,29 @@ public class ModBlocks {
     // Attunement Chamber
     public static final Block ATTUNEMENT_CHAMBER = registerBlock("attunement_chamber",
             new AttunementChamberBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 6.0f)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+
+    // Ritual Candles
+    public static final Block ECHO_CANDLE = registerBlock("echo_candle",
+            new RitualCandleBlock(ModParticles.ECHO_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
+                    .luminance(RitualCandleBlock::luminence)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    public static final Block SOUL_CANDLE = registerBlock("soul_candle",
+            new RitualCandleBlock(ModParticles.SOUL_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
+                    .luminance(RitualCandleBlock::luminence)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    public static final Block COSMIC_CANDLE = registerBlock("cosmic_candle",
+            new RitualCandleBlock(ModParticles.COSMIC_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
+                    .luminance(RitualCandleBlock::luminence)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
