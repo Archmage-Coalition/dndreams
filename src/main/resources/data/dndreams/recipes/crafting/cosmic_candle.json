@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "W",
+    "X",
+    "#"
+  ],
+  "key": {
+	"W": {
+      "item": "minecraft:dragon_breath"
+    },
+	"X": {
+      "item": "minecraft:end_stone"
+    },
+	"#": {
+      "item": "dndreams:charged_shard"
+    }
+  },
+  "result": {
+    "item": "dndreams:cosmic_candle"
+  }
+}

@@ -1,20 +1,15 @@
 package net.eman3600.dndreams.blocks.energy;
 
-import net.eman3600.dndreams.items.FlintAndHellsteel;
+import net.eman3600.dndreams.initializers.ModBlocks;
 import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
@@ -28,7 +23,7 @@ public class RitualCandleBlock extends Block {
     private final ParticleEffect particle;
     private static final Vec3d OFFSET = new Vec3d(0.5, .87f, 0.5);
 
-    public static final BooleanProperty LIT = CandleBlock.LIT;
+    public static final BooleanProperty LIT = Properties.LIT;
 
     public RitualCandleBlock(ParticleEffect particle, Settings settings) {
         super(settings);
@@ -54,16 +49,23 @@ public class RitualCandleBlock extends Block {
         spawnCandleParticles(world, OFFSET.add(pos.getX(), pos.getY(), pos.getZ()), random);
     }
 
-    @Override
+    /*@Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack stack = player.getStackInHand(hand);
 
-        if (!state.get(LIT) && !world.isClient && (stack.getItem() instanceof FlintAndSteelItem || stack.getItem() instanceof FlintAndHellsteel)) {
+        if (!state.get(LIT) && !world.isClient && (stack.getItem() instanceof FlintAndSteelItem || stack.getItem() instanceof FlintAndHellsteelItem)) {
             world.setBlockState(pos, state.with(LIT, true));
             return ActionResult.SUCCESS;
         }
 
         return ActionResult.PASS;
+    }*/
+
+    public static boolean canBeLit(BlockState state) {
+        if (state.getBlock() instanceof RitualCandleBlock block && block != ModBlocks.ECHO_CANDLE) {
+            return !state.get(LIT);
+        }
+        return false;
     }
 
     public static int luminence(BlockState state) {

@@ -1,14 +1,11 @@
 package net.eman3600.dndreams.items;
 
-import com.mojang.brigadier.Message;
-import net.eman3600.dndreams.cardinal_components.ManaComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.blocks.energy.RitualCandleBlock;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FlintAndSteelItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -25,9 +22,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FlintAndHellsteel extends Item implements ManaCostItem {
+public class FlintAndHellsteelItem extends Item implements ManaCostItem {
 
-    public FlintAndHellsteel(Settings settings) {
+    public FlintAndHellsteelItem(Settings settings) {
         super(settings);
     }
 
@@ -42,7 +39,7 @@ public class FlintAndHellsteel extends Item implements ManaCostItem {
             return ActionResult.FAIL;
         }
 
-        if (!CampfireBlock.canBeLit(blockState) && !CandleBlock.canBeLit(blockState) && !CandleCakeBlock.canBeLit(blockState)) {
+        if (!CampfireBlock.canBeLit(blockState) && !CandleBlock.canBeLit(blockState) && !CandleCakeBlock.canBeLit(blockState) && !RitualCandleBlock.canBeLit(blockState)) {
             BlockPos blockPos2 = blockPos.offset(context.getSide());
             if (AbstractFireBlock.canPlaceAt(world, blockPos2, context.getPlayerFacing())) {
                 world.playSound(playerEntity, blockPos2, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);

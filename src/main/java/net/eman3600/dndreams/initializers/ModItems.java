@@ -104,7 +104,7 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
     // Flint and Hellsteel
-    public static final Item FLINT_AND_HELLSTEEL = registerItem("flint_and_hellsteel", new FlintAndHellsteel(new FabricItemSettings()
+    public static final Item FLINT_AND_HELLSTEEL = registerItem("flint_and_hellsteel", new FlintAndHellsteelItem(new FabricItemSettings()
             .group(ItemGroup.TOOLS).fireproof().maxCount(1)));
 
     // Ancient Portal Activation
