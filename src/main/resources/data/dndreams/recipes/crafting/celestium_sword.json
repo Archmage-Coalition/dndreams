@@ -7,13 +7,13 @@
   ],
   "key": {
     "#": {
-      "item": "dndreams:holy_ingot"
+      "item": "dndreams:celestium"
     },
     "X": {
       "item": "dndreams:end_stick"
     }
   },
   "result": {
-    "item": "dndreams:holy_sword"
+    "item": "dndreams:celestium_sword"
   }
 }

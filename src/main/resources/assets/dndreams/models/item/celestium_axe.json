@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "dndreams:item/holy_axe"
+        "layer0": "dndreams:item/celestium_axe"
     }
 }
