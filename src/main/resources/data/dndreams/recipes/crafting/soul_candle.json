@@ -1,19 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "bark",
   "pattern": [
-    "W",
-    "X",
-    "#"
+    "S#S",
+    "#X#",
+    "S#S"
   ],
   "key": {
-    "W": {
-      "item": "minecraft:string"
-    },
-	"X": {
-      "item": "minecraft:soul_sand"
+    "X": {
+      "item": "dndreams:echo_candle"
     },
 	"#": {
+      "tag": "minecraft:soul_fire_base_blocks"
+    },
+	"S": {
       "item": "dndreams:sculk_powder"
     }
   },
