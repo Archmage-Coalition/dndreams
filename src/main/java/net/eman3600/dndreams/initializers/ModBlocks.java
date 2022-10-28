@@ -344,14 +344,14 @@ public class ModBlocks {
 
     // Ritual Candles
     public static final Block ECHO_CANDLE = registerBlock("echo_candle",
-            new RitualCandleBlock(ModParticles.ECHO_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+            new EchoCandleBlock(ModParticles.ECHO_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
                     .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
                     .luminance(RitualCandleBlock::luminence).breakInstantly()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block SOUL_CANDLE = registerBlock("soul_candle",
-            new RitualCandleBlock(ModParticles.SOUL_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+            new SoulCandleBlock(ModParticles.SOUL_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
                     .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
                     .luminance(RitualCandleBlock::luminence).breakInstantly()),
 
