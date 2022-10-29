@@ -62,7 +62,7 @@ public class ModItems {
     // Corrupt Scrap & Raw Celestium
     public static final Item CORRUPT_SCRAP = registerItem("corrupt_scrap", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)
             .fireproof()));
-    public static final Item RAW_CELESTIUM = registerItem("celestium",
+    public static final Item CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Baleful Residue
@@ -75,8 +75,6 @@ public class ModItems {
     // Ingots
     public static final Item CORRUPT_INGOT = registerItem("corrupt_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
-    public static final Item HOLY_INGOT = registerItem("holy_ingot",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item MANAGOLD_INGOT = registerItem("managold_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item TORMITE_INGOT = registerItem("tormite_ingot",
@@ -113,14 +111,14 @@ public class ModItems {
 
 
     // Celestium Swords & Tools
-    public static final Item HOLY_SWORD = registerItem("holy_sword",
-            new SwordItem(ModToolMaterials.HOLY, 3, -2.8F,
+    public static final Item CELESTIUM_SWORD = registerItem("celestium_sword",
+            new SwordItem(ModToolMaterials.CELESTIUM, 3, -2.8F,
             new FabricItemSettings().group(ItemGroup.COMBAT)));
-    public static final Item HOLY_PICKAXE = registerItem("holy_pickaxe",
-            new ModPickaxeItem(ModToolMaterials.HOLY, 1, -2.8F,
+    public static final Item CELESTIUM_PICKAXE = registerItem("celestium_pickaxe",
+            new ModPickaxeItem(ModToolMaterials.CELESTIUM, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
-    public static final Item HOLY_AXE = registerItem("holy_axe",
-            new ModAxeItem(ModToolMaterials.HOLY, 5.0F, -3.4F,
+    public static final Item CELESTIUM_AXE = registerItem("celestium_axe",
+            new ModAxeItem(ModToolMaterials.CELESTIUM, 5.0F, -3.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
 

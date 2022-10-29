@@ -2,9 +2,9 @@
   "type": "minecraft:smelting",
   "cookingtime": 200,
   "experience": 0.7,
-  "group": "dndreams:holy_ingot",
+  "group": "dndreams:celestium",
   "ingredient": {
     "item": "dndreams:celestium_ore"
   },
-  "result": "dndreams:holy_ingot"
+  "result": "dndreams:celestium"
 }

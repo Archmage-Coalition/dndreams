@@ -70,7 +70,7 @@ public class ModBlocks {
     public static final Block CELESTIUM_ORE = registerBlock("celestium_ore",
             new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE_GRAY).strength(4.0f).resistance(8.0f)
                     .sounds(BlockSoundGroup.STONE)
-                    .requiresTool()),
+                    .requiresTool(), UniformIntProvider.create(3, 6)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
