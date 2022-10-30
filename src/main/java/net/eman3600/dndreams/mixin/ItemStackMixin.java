@@ -27,7 +27,7 @@ public abstract class ItemStackMixin {
     public abstract boolean isDamageable();
 
     @Unique
-    private static final float POWER_DIVISOR = 100f;
+    private static final float POWER_DIVISOR = 20f;
 
     @Inject(at = @At("HEAD"), cancellable = true, method = "damage(ILnet/minecraft/util/math/random/Random;Lnet/minecraft/server/network/ServerPlayerEntity;)Z")
     public void injectDamage(int amount, Random random, ServerPlayerEntity player, CallbackInfoReturnable<Boolean> info) {

@@ -4,6 +4,7 @@ import net.eman3600.dndreams.blocks.energy.AttunementChamberBlock;
 import net.eman3600.dndreams.initializers.ModBlockEntities;
 import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.items.WaystoneItem;
 import net.eman3600.dndreams.items.charge.AbstractChargeItem;
 import net.eman3600.dndreams.recipe.RitualRecipe;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual;
@@ -47,6 +48,8 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
     public int power;
     public AbstractRitual ritual = null;
     public DefaultedList<ItemStack> items = DefaultedList.ofSize(0);
+
+    private BlockPos boundPos = pos;
 
     private final Box itemReach = new Box(-3, -1, -3, 3, 1, 3).offset(pos);
     private final Box playerReach = new Box(-5, -1, -5, 5, 1, 5).offset(pos);
@@ -112,12 +115,12 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
                 }
 
                 if (ringsMatch(true) && power >= getMaxPower()) {
-                    if (ticks++ > 20) castRitual(world);
+                    if (ticks++ > 60) castRitual(world);
                 }
 
             } else if (ritual instanceof AbstractSustainedRitual susRite) {
 
-                susRite.tickSustained(world, pos, this);
+                susRite.tickSustained(world, boundPos, this);
 
                 if (ticks++ >= 20) {
                     ticks = 0;
@@ -130,6 +133,10 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         } else {
             if (casting || sustained) deactivate(false);
         }
+    }
+
+    public void setBoundPos(BlockPos boundPos) {
+        this.boundPos = boundPos;
     }
 
     public boolean isCasting() {
@@ -232,11 +239,13 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
             ritual = null;
             ticks = 0;
+
+            boundPos = pos;
         }
     }
 
     private void castRitual(ServerWorld world) {
-        ritual.onCast(world, pos, this);
+        ritual.onCast(world, boundPos, this);
         casting = false;
         ticks = 0;
 
@@ -254,6 +263,8 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
     public void beginRitual(ServerWorld world) {
         List<ItemEntity> entities = findRitualIngredients(world);
+
+        boundPos = pos;
 
         DefaultedList<ItemStack> stacks = DefaultedList.ofSize(entities.size(), ItemStack.EMPTY);
 
@@ -286,7 +297,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
     public void endRitual(ServerWorld world) {
         if (sustained && ritual instanceof AbstractSustainedRitual susRite) {
-            susRite.onCease(world, pos, this);
+            susRite.onCease(world, boundPos, this);
         }
 
         ritual = null;
@@ -294,6 +305,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         casting = false;
         power = 0;
         ticks = 0;
+        boundPos = pos;
         clearItems();
     }
 
@@ -319,6 +331,8 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
         nbt.putBoolean("casting", casting);
         nbt.putBoolean("sustained", sustained);
+
+        WaystoneItem.writeBoundPos(nbt, boundPos);
     }
 
     @Override
@@ -336,6 +350,8 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
             sustained = false;
             casting = false;
         }
+
+        boundPos = WaystoneItem.readBoundPos(nbt, pos);
     }
 
     public boolean identifyRitual(ServerWorld world, Inventory inv) {

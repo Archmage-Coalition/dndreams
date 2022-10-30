@@ -253,6 +253,10 @@ public class ModItems {
     public static final Item CHARGED_SHARD = registerItem("charged_shard",
             new ChargedShardItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
+    // Waystone
+    public static final Item WAYSTONE = registerItem("waystone",
+            new WaystoneItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(32)));
+
 
 
 

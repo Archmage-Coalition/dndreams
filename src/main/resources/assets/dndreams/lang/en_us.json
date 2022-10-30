@@ -16,9 +16,6 @@
   "item.dndreams.tainted_pearl":  "Tainted Pearl",
   "item.dndreams.water_artichoke_globe": "Water Artichoke Globe",
   
-  "item.dndreams.attuned_shard": "Attuned Amethyst",
-  "item.dndreams.charged_shard": "Attuned Amethyst",
-  
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
   "item.dndreams.corrupt_axe": "Hellsteel Axe",
@@ -64,6 +61,10 @@
   "item.dndreams.icy_needle": "Icy Needle",
   "item.dndreams.materialize_tome": "Solemn Return",
   "item.dndreams.ancient_spark": "Soul Chime",
+  "item.dndreams.attuned_shard": "Attuned Amethyst",
+  "item.dndreams.charged_shard": "Attuned Amethyst",
+  "item.dndreams.waystone": "Waystone",
+  "item.dndreams.waystone.tooltip": "Bound: %s %s %s",
   
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
   "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",

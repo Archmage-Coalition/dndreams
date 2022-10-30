@@ -1,5 +1,7 @@
 package net.eman3600.dndreams.util;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.ModAttributes;
 import net.eman3600.dndreams.initializers.ModBlocks;
@@ -9,17 +11,32 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.EntityType;
+import net.minecraft.tag.BlockTags;
+import net.minecraft.tag.TagKey;
 
 public class ModRegistries {
+    public static final Object2ObjectMap<TagKey<Block>, Block> SCULK_TRANSFORM = new Object2ObjectOpenHashMap<>();
+
+
+
     public static void register() {
+        registerSculkTransform();
         registerFuels();
         registerFlammableBlocks();
         registerStrippables();
         registerCompostables();
         registerAttributes();
+    }
+
+    private static void registerSculkTransform() {
+        SCULK_TRANSFORM.put(BlockTags.LOGS, ModBlocks.SAKURA_LOG);
+        SCULK_TRANSFORM.put(BlockTags.PLANKS, ModBlocks.SAKURA_PLANKS);
+        SCULK_TRANSFORM.put(BlockTags.LEAVES, ModBlocks.SAKURA_LEAVES);
+        SCULK_TRANSFORM.put(BlockTags.SAPLINGS, ModBlocks.SAKURA_SAPLING);
     }
 
     private static void registerFuels() {

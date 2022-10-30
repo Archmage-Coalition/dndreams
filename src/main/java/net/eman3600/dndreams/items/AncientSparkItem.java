@@ -1,7 +1,10 @@
 package net.eman3600.dndreams.items;
 
+import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
+import net.eman3600.dndreams.rituals.setup.AbstractRitual;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -22,7 +25,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class AncientSparkItem extends Item {
+public class AncientSparkItem extends Item implements RitualRemainItem {
     private static Random random = new Random();
 
     public AncientSparkItem(Settings settings) {
@@ -118,5 +121,15 @@ public class AncientSparkItem extends Item {
     @Override
     public boolean hasGlint(ItemStack stack) {
         return true;
+    }
+
+    @Override
+    public ItemStack getRitualRemains(AbstractRitual ritual, SoulCandleBlockEntity entity, ItemStack stack) {
+        ItemStack clone = stack.copy();
+        clone.setDamage(clone.getDamage() + 8);
+
+        if (clone.getDamage() >= clone.getMaxDamage()) return ItemStack.EMPTY;
+
+        return clone;
     }
 }

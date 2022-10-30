@@ -50,6 +50,9 @@ public class AttunedShardItem extends AbstractChargeItem {
         if (charge >= maxCharge) {
             ItemStack shard = new ItemStack(ModItems.CHARGED_SHARD);
             nbt.remove("charge");
+            if (nbt.isEmpty()) {
+                nbt = null;
+            }
             shard.setNbt(nbt);
 
             return shard;
@@ -86,6 +89,9 @@ public class AttunedShardItem extends AbstractChargeItem {
         if (charge <= 0) {
             ItemStack shard = new ItemStack(Items.AMETHYST_SHARD);
             nbt.remove("charge");
+            if (nbt.isEmpty()) {
+                nbt = null;
+            }
             shard.setNbt(nbt);
 
             return shard;

@@ -4,6 +4,7 @@ import net.eman3600.dndreams.blocks.entities.AttunementChamberBlockEntity;
 import net.eman3600.dndreams.blocks.entities.EchoCandleBlockEntity;
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.eman3600.dndreams.initializers.ModBlockEntities;
+import net.eman3600.dndreams.items.WaystoneItem;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -11,6 +12,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -55,6 +57,18 @@ public class SoulCandleBlock extends RitualCandleBlock {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof SoulCandleBlockEntity entity) {
             if (state.get(LIT)) {
+                ItemStack stack = player.getStackInHand(hand);
+                if (stack.getItem() instanceof WaystoneItem && stack.getOrCreateNbt().contains("bound_pos")) {
+
+                    stack.damage(1, player, (p) -> {
+                        p.sendToolBreakStatus(hand);
+                    });
+
+                    entity.setBoundPos(WaystoneItem.readBoundPos(stack.getOrCreateNbt()));
+
+                    return ActionResult.SUCCESS;
+                }
+
                 entity.deactivate(true);
                 return ActionResult.SUCCESS;
             }
