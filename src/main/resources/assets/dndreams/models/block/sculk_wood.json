@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "dndreams:block/sculk_wood_log",
+    "side": "dndreams:block/sculk_wood_log"
+  }
+}

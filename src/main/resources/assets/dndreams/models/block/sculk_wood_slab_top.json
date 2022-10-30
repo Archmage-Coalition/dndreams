@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "dndreams:block/sculk_wood_planks",
+    "top": "dndreams:block/sculk_wood_planks",
+    "side": "dndreams:block/sculk_wood_planks"
+  }
+}
