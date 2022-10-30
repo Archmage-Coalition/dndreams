@@ -8,7 +8,7 @@ public enum ShieldType implements StringIdentifiable {
     PLAYERS("players"),
     MOBS("mobs");
 
-    private String name;
+    private final String name;
 
     ShieldType(String name) {
         this.name = name;

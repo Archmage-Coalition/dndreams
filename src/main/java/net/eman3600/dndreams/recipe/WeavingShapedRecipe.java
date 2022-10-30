@@ -267,7 +267,7 @@ public class WeavingShapedRecipe implements WeavingRecipe {
         } else {
             int i = JsonHelper.getInt(json, "count", 1);
             if (i < 1) {
-                throw new JsonSyntaxException("Invalid output count: " + i);
+                throw new JsonSyntaxException("Invalid icon count: " + i);
             } else {
                 return new ItemStack(item, i);
             }

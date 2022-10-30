@@ -19,7 +19,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class RitualCandleBlock extends Block {
+public class RitualCandleBlock extends BlockWithEntity {
     private static final VoxelShape CANDLE_SHAPE = Block.createCuboidShape(4.5, 0.0, 4.5, 11.5, 13.0, 11.5);
     private final ParticleEffect particle;
     private static final Vec3d OFFSET = new Vec3d(0.5, .87f, 0.5);
@@ -70,7 +70,9 @@ public class RitualCandleBlock extends Block {
     }
 
     public static int luminence(BlockState state) {
-        return state.get(LIT) ? 12 : 0;
+        try {
+            return state.get(LIT) ? 12 : 0;
+        } catch (IllegalArgumentException e) {return 0;}
     }
 
     @Nullable
@@ -90,5 +92,16 @@ public class RitualCandleBlock extends Block {
             }
         }
         world.addParticle(particle, vec3d.x, vec3d.y, vec3d.z, 0.0, 0.0, 0.0);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return null;
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 }

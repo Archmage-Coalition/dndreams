@@ -222,6 +222,9 @@
   "block.dndreams.cosmic_fountain_pole": "Cosmic Pillar",
   "block.dndreams.attunement_chamber": "Attunement Chamber",
   
+  "ritual.dndreams.error.unknown": "Unknown Rite",
+  "ritual.dndreams.error.rings": "Incorrect Candle Rings",
+  
   "block.dndreams.flowing_spirit": "Flowing Spirit",
   "block.dndreams.flowing_flowing_spirit": "Flowing Spirit",
   

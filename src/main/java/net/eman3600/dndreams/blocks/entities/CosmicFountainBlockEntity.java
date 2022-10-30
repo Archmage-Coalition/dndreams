@@ -186,6 +186,7 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
     public static void tick(World world, BlockPos blockPos, BlockState blockState, CosmicFountainBlockEntity entity) {
         try {
             ServerWorld server = (ServerWorld) world;
+            if (world == null) throw new ClassCastException();
 
             entity.tick(server);
         } catch (ClassCastException ignored) {}

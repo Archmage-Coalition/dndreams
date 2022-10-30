@@ -4,7 +4,10 @@ public interface AbstractPowerReceiver {
     boolean addPower(int amount);
     void setPower(int amount);
     int getPower();
-    boolean canAfford(int amount);
+    int getMaxPower();
+    default boolean canAfford(int amount) {
+        return getPower() >= amount;
+    };
     boolean usePower(int amount);
 
     boolean needsPower();
