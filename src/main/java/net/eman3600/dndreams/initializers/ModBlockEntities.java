@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.blocks.entities.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -14,13 +15,15 @@ public class ModBlockEntities {
     public static BlockEntityType<CosmicPortalBlockEntity> COSMIC_PORTAL_ENTITY;
     public static BlockEntityType<CosmicFountainPoleBlockEntity> COSMIC_FOUNTAIN_POLE_ENTITY;
     public static BlockEntityType<AttunementChamberBlockEntity> ATTUNEMENT_CHAMBER_ENTITY;
+    public static BlockEntityType<SoulCandleBlockEntity> SOUL_CANDLE_ENTITY;
+    public static BlockEntityType<EchoCandleBlockEntity> ECHO_CANDLE_ENTITY;
 
     public static void registerBlockEntities() {
 
 
     }
 
-    private static BlockEntityType registerEntity(String id, BlockEntityType type) {
+    private static <T extends BlockEntity> BlockEntityType<T> registerEntity(String id, BlockEntityType<T> type) {
         return Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MODID, id),
                 type);
     }
@@ -36,5 +39,9 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(CosmicFountainPoleBlockEntity::new, ModBlocks.COSMIC_FOUNTAIN_POLE).build());
         ATTUNEMENT_CHAMBER_ENTITY = registerEntity("attunement_chamber",
                 FabricBlockEntityTypeBuilder.create(AttunementChamberBlockEntity::new, ModBlocks.ATTUNEMENT_CHAMBER).build());
+        SOUL_CANDLE_ENTITY = registerEntity("soul_candle",
+                FabricBlockEntityTypeBuilder.create(SoulCandleBlockEntity::new, ModBlocks.SOUL_CANDLE).build());
+        ECHO_CANDLE_ENTITY = registerEntity("echo_candle",
+                FabricBlockEntityTypeBuilder.create(EchoCandleBlockEntity::new, ModBlocks.ECHO_CANDLE).build());
     }
 }

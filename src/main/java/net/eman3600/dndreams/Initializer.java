@@ -45,6 +45,8 @@ public class Initializer implements ModInitializer {
 		ModPotions.registerPotions();
 		ModFeatures.registerFeatures();
 
+		ModRituals.registerRituals();
+
 		AttunementBurnSlot.registerEnergyFuels();
 
 		ModBlockEntities.registerBlockEntities();

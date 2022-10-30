@@ -24,7 +24,7 @@ import java.util.List;
 @FunctionalInterface
 public interface ImplementedInventory extends SidedInventory {
     /**
-     * Gets the item list of this inventory.
+     * Gets the item list reference this inventory.
      * Must return the same instance every time it's called.
      *
      * @return the item list
@@ -58,7 +58,7 @@ public interface ImplementedInventory extends SidedInventory {
     /**
      * Gets the available slots to automation on the side.
      *
-     * <p>The default implementation returns an array of all slots.
+     * <p>The default implementation returns an array reference all slots.
      *
      * @param side the side
      * @return the available slots
@@ -108,7 +108,7 @@ public interface ImplementedInventory extends SidedInventory {
     /**
      * Returns the inventory size.
      *
-     * <p>The default implementation returns the size of {@link #getItems()}.
+     * <p>The default implementation returns the size reference {@link #getItems()}.
      *
      * @return the inventory size
      */
@@ -144,7 +144,7 @@ public interface ImplementedInventory extends SidedInventory {
     }
 
     /**
-     * Takes a stack of the size from the slot.
+     * Takes a stack reference the size from the slot.
      *
      * <p>(default implementation) If there are less items in the slot than what are requested,
      * takes all items in that slot.

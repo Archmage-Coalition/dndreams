@@ -1,19 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "W",
-    "X",
-    "#"
+    "A#A",
+    "#X#",
+    "#S#"
   ],
   "key": {
-	"W": {
-      "item": "minecraft:dragon_breath"
-    },
-	"X": {
-      "item": "minecraft:end_stone"
+    "X": {
+      "item": "dndreams:echo_candle"
     },
 	"#": {
+      "item": "minecraft:end_stone"
+    },
+	"S": {
       "item": "dndreams:charged_shard"
+    },
+	"A": {
+      "item": "minecraft:dragon_breath"
     }
   },
   "result": {

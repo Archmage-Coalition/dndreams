@@ -16,7 +16,7 @@ public class ModFoodComponents {
             .snack()
             .build();
     public static FoodComponent cakewood(float planks) {
-        return (new FoodComponent.Builder()).hunger((int)(3 * planks)).saturationModifier(0.3F)
+        return (new FoodComponent.Builder()).hunger((int)(3 * planks)).saturationModifier(0.6F)
                 .build();
     }
 }

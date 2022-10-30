@@ -149,6 +149,7 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
     public static void tick(World world, BlockPos blockPos, BlockState blockState, AttunementChamberBlockEntity entity) {
         try {
             ServerWorld server = (ServerWorld) world;
+            if (world == null) throw new ClassCastException();
 
             entity.tick(server);
         } catch (ClassCastException ignored) {}

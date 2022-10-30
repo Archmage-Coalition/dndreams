@@ -217,7 +217,7 @@ public class ModItems {
 
 
 
-    // Eye of Oneiros
+    // Eye reference Oneiros
     public static final Item DREAM_EYE = registerItem("dream_eye",
             new DreamEye(new FabricItemSettings().group(ItemGroup.MISC)));
 
@@ -231,7 +231,7 @@ public class ModItems {
     public static final Item TAINTED_PEARL = registerItem("tainted_pearl",
             new TaintedPearlItem(new FabricItemSettings().group(ItemGroup.MISC)));
 
-    // Book of Dreams
+    // Book reference Dreams
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
             new BookOfDreams(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
 
@@ -256,13 +256,13 @@ public class ModItems {
 
 
 
-    // Pearl of Limitless Infusion
+    // Pearl reference Limitless Infusion
     public static final Item INFUSION_CHANGER = registerItem("infusion_changer",
             new InfusionChangerItem(new FabricItemSettings().group(ItemGroup.MISC)));
 
 
     
-    // Staff of Satiation
+    // Staff reference Satiation
     public static final Item SATIATION_STAFF = registerItem("satiation_staff",
             new SatiationStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 

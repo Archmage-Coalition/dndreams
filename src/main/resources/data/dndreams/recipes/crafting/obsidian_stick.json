@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:end_stone"
+      "item": "minecraft:obsidian"
     },
 	"X": {
-      "item": "dndreams:liquid_void"
+      "item": "minecraft:blaze_powder"
     }
   },
   "result": {
-    "item": "dndreams:end_stick",
+    "item": "dndreams:obsidian_stick",
     "count": 8
   }
 }
