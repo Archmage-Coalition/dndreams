@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "dndreams:block/sculk_wood_slab"
+    },
+    "type=double": {
+      "model": "dndreams:block/sculk_wood_planks"
+    },
+    "type=top": {
+      "model": "dndreams:block/sculk_wood_slab_top"
+    }
+  }
+}

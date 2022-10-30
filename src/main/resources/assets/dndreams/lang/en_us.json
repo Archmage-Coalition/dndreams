@@ -182,6 +182,18 @@
   "block.dndreams.sakura_fence": "Sakura Fence",
   "block.dndreams.sakura_fence_gate": "Sakura Fence Gate",
 
+  "block.dndreams.sculk_wood_log": "Echo Log",
+  "block.dndreams.sculk_wood": "Echo Wood",
+  "block.dndreams.stripped_sculk_wood_log": "Stripped Echo Log",
+  "block.dndreams.stripped_sculk_wood": "Stripped Echo Wood",
+  "block.dndreams.sculk_wood_planks": "Echo Planks",
+  "block.dndreams.sculk_wood_leaves": "Echo Leaves",
+  "block.dndreams.sculk_wood_sapling": "Echo Sapling",
+  "block.dndreams.sculk_wood_stairs": "Echo Stairs",
+  "block.dndreams.sculk_wood_slab": "Echo Slab",
+  "block.dndreams.sculk_wood_fence": "Echo Fence",
+  "block.dndreams.sculk_wood_fence_gate": "Echo Fence Gate",
+
   "block.dndreams.shimmering_stone": "Shimmering Stone",
   "block.dndreams.shimmering_bricks": "Shimmering Bricks",
   "block.dndreams.shimmering_cobblestone": "Shimmering Cobblestone",

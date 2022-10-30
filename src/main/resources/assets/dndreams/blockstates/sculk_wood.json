@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "dndreams:block/sculk_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "dndreams:block/sculk_wood"
+    },
+    "axis=z": {
+      "model": "dndreams:block/sculk_wood",
+      "x": 90
+    }
+  }
+}
