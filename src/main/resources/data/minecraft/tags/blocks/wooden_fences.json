@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "dndreams:dreamwood_fence",
-	"dndreams:sakura_fence"
+	"dndreams:sakura_fence",
+    "dndreams:sculk_wood_fence",
+    "dndreams:japanese_maple_fence"
   ]
 }

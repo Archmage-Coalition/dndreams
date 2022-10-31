@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "dndreams:block/japanese_maple_leaves"
+  }
+}

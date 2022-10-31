@@ -2,16 +2,15 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
-import net.eman3600.dndreams.blocks.crop.ModSaplingBlock;
+import net.eman3600.dndreams.blocks.crop.*;
 import net.eman3600.dndreams.blocks.energy.*;
-import net.eman3600.dndreams.blocks.crop.DreamSaplingBlock;
-import net.eman3600.dndreams.blocks.crop.SnowbellBlock;
-import net.eman3600.dndreams.blocks.crop.WaterArtichokeBlock;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.world.feature.tree.DreamwoodSaplingGenerator;
 import net.eman3600.dndreams.world.feature.tree.SakuraSaplingGenerator;
+import net.eman3600.dndreams.world.feature.tree.JapaneseMapleSaplingGenerator;
+import net.eman3600.dndreams.world.feature.tree.SculkWoodSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -298,7 +297,7 @@ public class ModBlocks {
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block STRIPPED_SCULK_WOOD_WOOD = registerBlock("stripped_sculk_wood",
+    public static final Block STRIPPED_SCULK_WOOD = registerBlock("stripped_sculk_wood",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
@@ -318,7 +317,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block SCULK_WOOD_SAPLING = registerBlock("sculk_wood_sapling",
-            new ModSaplingBlock(new SakuraSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new SculkWoodSaplingBlock(new SculkWoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -350,6 +349,80 @@ public class ModBlocks {
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+    // Japanese Maple Wood Logs
+    public static final Block JAPANESE_MAPLE_LOG = registerBlock("japanese_maple_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block JAPANESE_MAPLE_WOOD = registerBlock("japanese_maple_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STRIPPED_JAPANESE_MAPLE_LOG = registerBlock("stripped_japanese_maple_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STRIPPED_JAPANESE_MAPLE_WOOD = registerBlock("stripped_japanese_maple_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Japanese Maple Planks
+    public static final Block JAPANESE_MAPLE_PLANKS = registerBlock("japanese_maple_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Japanese Maple Leaves & Sapling
+    public static final Block JAPANESE_MAPLE_LEAVES = registerBlock("japanese_maple_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block JAPANESE_MAPLE_SAPLING = registerBlock("japanese_maple_sapling",
+            new ModSaplingBlock(new JapaneseMapleSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // Japanese Maple Stairs
+    public static final Block JAPANESE_MAPLE_STAIRS = registerBlock("japanese_maple_stairs",
+            new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Japanese Maple Slab
+    public static final Block JAPANESE_MAPLE_SLAB = registerBlock("japanese_maple_slab",
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Japanese Maple Fence
+    public static final Block JAPANESE_MAPLE_FENCE = registerBlock("japanese_maple_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Japanese Maple Fence Gate
+    public static final Block JAPANESE_MAPLE_FENCE_GATE = registerBlock("japanese_maple_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
 
 
 

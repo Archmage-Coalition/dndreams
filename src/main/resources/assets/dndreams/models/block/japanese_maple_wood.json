@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "dndreams:block/japanese_maple_log",
+    "side": "dndreams:block/japanese_maple_log"
+  }
+}

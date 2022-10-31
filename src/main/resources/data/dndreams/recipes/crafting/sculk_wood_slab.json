@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:sculk_wood_planks"
+    }
+  },
+  "result": {
+    "item": "dndreams:sculk_wood_slab",
+    "count": 6
+  }
+}
