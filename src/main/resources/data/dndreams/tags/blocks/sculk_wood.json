@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#dndreams:sculk_wood_logs",
+    "dndreams:sculk_wood_planks",
+    "dndreams:sculk_wood_stairs",
+    "dndreams:sculk_wood_slab",
+    "dndreams:sculk_wood_fence",
+    "dndreams:sculk_wood_fence_gate"
+  ]
+}

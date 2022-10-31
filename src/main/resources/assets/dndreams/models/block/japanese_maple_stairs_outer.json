@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "dndreams:block/japanese_maple_planks",
+    "top": "dndreams:block/japanese_maple_planks",
+    "side": "dndreams:block/japanese_maple_planks"
+  }
+}
