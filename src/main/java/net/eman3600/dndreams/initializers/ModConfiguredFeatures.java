@@ -38,8 +38,8 @@ public class ModConfiguredFeatures {
                     new HugeFungusFeatureConfig(Blocks.SCULK.getDefaultState(),
                             ModBlocks.SCULK_WOOD_LOG.getDefaultState(),
                             ModBlocks.SCULK_WOOD_LEAVES.getDefaultState(),
-                            Blocks.SEA_LANTERN.getDefaultState(),
-                            false));
+                            ModBlocks.SCULK_LIGHT.getDefaultState(),
+                            true));
 
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> JAPANESE_MAPLE_TREE =
             ConfiguredFeatures.register("japanese_maple_tree", Feature.TREE, new TreeFeatureConfig.Builder(

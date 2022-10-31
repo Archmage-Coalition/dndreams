@@ -283,73 +283,75 @@ public class ModBlocks {
 
     // Sculk Wood Logs
     public static final Block SCULK_WOOD_LOG = registerBlock("sculk_wood_log",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+                    .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block SCULK_WOOD = registerBlock("sculk_wood",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+                    .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block STRIPPED_SCULK_WOOD_LOG = registerBlock("stripped_sculk_wood_log",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+                    .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block STRIPPED_SCULK_WOOD = registerBlock("stripped_sculk_wood",
-            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+                    .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Sculk Wood Planks
     public static final Block SCULK_WOOD_PLANKS = registerBlock("sculk_wood_planks",
-            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+                    .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Sculk Wood Leaves & Sapling
     public static final Block SCULK_WOOD_LEAVES = registerBlock("sculk_wood_leaves",
-            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+            new SculkLeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .sounds(BlockSoundGroup.SCULK_SHRIEKER)
                     .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block SCULK_WOOD_SAPLING = registerBlock("sculk_wood_sapling",
             new SculkWoodSaplingBlock(new SculkWoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .sounds(BlockSoundGroup.SCULK_SHRIEKER)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block SCULK_LIGHT = registerBlock("sculk_light",
-            new Block(AbstractBlock.Settings.of(Material.SOLID_ORGANIC, MapColor.CYAN).strength(1.0f).sounds(BlockSoundGroup.SHROOMLIGHT).luminance(state -> 15)));
+            new SculkLeavesBlock(AbstractBlock.Settings.of(Material.SOLID_ORGANIC, MapColor.CYAN).strength(1.0f).sounds(BlockSoundGroup.SHROOMLIGHT).luminance(state -> 15)));
 
     // Sculk Wood Stairs
     public static final Block SCULK_WOOD_STAIRS = registerBlock("sculk_wood_stairs",
             new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+                    .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Sculk Wood Slab
     public static final Block SCULK_WOOD_SLAB = registerBlock("sculk_wood_slab",
-            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+                    .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Sculk Wood Fence
     public static final Block SCULK_WOOD_FENCE = registerBlock("sculk_wood_fence",
-            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+                    .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Sculk Wood Fence Gate
     public static final Block SCULK_WOOD_FENCE_GATE = registerBlock("sculk_wood_fence_gate",
-            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
-                    .sounds(BlockSoundGroup.WOOD)),
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+                    .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 

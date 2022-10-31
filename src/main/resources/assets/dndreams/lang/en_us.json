@@ -88,7 +88,7 @@
   "tooltip.dndreams.power_cost": "§dPower Cost: %s",
   "tooltip.dndreams.power_required": "§cRequires Infusion Power",
   "tooltip.dndreams.magic_damage": "§2Magic Damage: %s",
-  "tooltip.dndreams.dream_origin": "§3They said it doesn't exist,",
+  "tooltip.dndreams.dream_origin": "§3They said this didn't exist,",
   "tooltip.dndreams.dream_origin_2": "§3and they were probably right.",
   
   
@@ -150,6 +150,11 @@
   "item.minecraft.splash_potion.effect.lifemana": "Splash Potion of Soulcasting",
   "item.minecraft.lingering_potion.effect.lifemana": "Lingering Potion of Soulcasting",
   "item.minecraft.tipped_arrow.effect.lifemana": "Arrow of Soulcasting",
+  
+  "item.minecraft.potion.effect.decay": "Potion of Decay",
+  "item.minecraft.splash_potion.effect.decay": "Splash Potion of Decay",
+  "item.minecraft.lingering_potion.effect.decay": "Lingering Potion of Decay",
+  "item.minecraft.tipped_arrow.effect.decay": "Arrow of Decay",
 
 
   "block.dndreams.corrupt_block": "Hellsteel Block",
@@ -197,18 +202,19 @@
   "block.dndreams.sculk_wood_slab": "Echo Slab",
   "block.dndreams.sculk_wood_fence": "Echo Fence",
   "block.dndreams.sculk_wood_fence_gate": "Echo Fence Gate",
+  "block.dndreams.sculk_light": "Echo Lamp",
 
-  "block.dndreams.japanese_maple_log": "Japanese Maple Log",
-  "block.dndreams.japanese_maple_wood": "Japanese Maple Wood",
-  "block.dndreams.stripped_japanese_maple_log": "Stripped Japanese Maple Log",
-  "block.dndreams.stripped_japanese_maple_wood": "Stripped Japanese Maple Wood",
-  "block.dndreams.japanese_maple_planks": "Japanese Maple Planks",
-  "block.dndreams.japanese_maple_leaves": "Japanese Maple Leaves",
-  "block.dndreams.japanese_maple_sapling": "Japanese Maple Sapling",
-  "block.dndreams.japanese_maple_stairs": "Japanese Maple Stairs",
-  "block.dndreams.japanese_maple_slab": "Japanese Maple Slab",
-  "block.dndreams.japanese_maple_fence": "Japanese Maple Fence",
-  "block.dndreams.japanese_maple_fence_gate": "Japanese Maple Fence Gate",
+  "block.dndreams.japanese_maple_log": "Maple Log",
+  "block.dndreams.japanese_maple_wood": "Maple Wood",
+  "block.dndreams.stripped_japanese_maple_log": "Stripped Maple Log",
+  "block.dndreams.stripped_japanese_maple_wood": "Stripped Maple Wood",
+  "block.dndreams.japanese_maple_planks": "Maple Planks",
+  "block.dndreams.japanese_maple_leaves": "Maple Leaves",
+  "block.dndreams.japanese_maple_sapling": "Maple Sapling",
+  "block.dndreams.japanese_maple_stairs": "Maple Stairs",
+  "block.dndreams.japanese_maple_slab": "Maple Slab",
+  "block.dndreams.japanese_maple_fence": "Maple Fence",
+  "block.dndreams.japanese_maple_fence_gate": "Maple Fence Gate",
 
   "block.dndreams.shimmering_stone": "Shimmering Stone",
   "block.dndreams.shimmering_bricks": "Shimmering Bricks",

@@ -5,6 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 
 public class SculkWoodSaplingBlock extends SaplingBlock {
@@ -21,7 +22,7 @@ public class SculkWoodSaplingBlock extends SaplingBlock {
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return state.getBlock() == Blocks.SCULK;
+    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+        return floor.isOf(Blocks.SCULK);
     }
 }
