@@ -322,6 +322,9 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
+    public static final Block SCULK_LIGHT = registerBlock("sculk_light",
+            new Block(AbstractBlock.Settings.of(Material.SOLID_ORGANIC, MapColor.CYAN).strength(1.0f).sounds(BlockSoundGroup.SHROOMLIGHT).luminance(state -> 15)));
+
     // Sculk Wood Stairs
     public static final Block SCULK_WOOD_STAIRS = registerBlock("sculk_wood_stairs",
             new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
