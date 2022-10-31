@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.initializers;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectFunction;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.crop.*;
@@ -325,7 +326,13 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block SCULK_LIGHT = registerBlock("sculk_light",
-            new SculkLeavesBlock(AbstractBlock.Settings.of(Material.SOLID_ORGANIC, MapColor.CYAN).strength(1.0f).sounds(BlockSoundGroup.SHROOMLIGHT).luminance(state -> 15)));
+            new SculkLeavesBlock(AbstractBlock.Settings.of(Material.SOLID_ORGANIC, MapColor.CYAN).strength(0.2f).ticksRandomly().nonOpaque().allowsSpawning(ModBlocks::canSpawnOnLeaves).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.SCULK_CATALYST).luminance(state -> 15)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    private static boolean never(BlockState blockState, BlockView blockView, BlockPos blockPos) {
+        return false;
+    }
 
     // Sculk Wood Stairs
     public static final Block SCULK_WOOD_STAIRS = registerBlock("sculk_wood_stairs",
@@ -487,6 +494,12 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
+    // Lumber Oven
+    public static final Block OVEN = registerBlock("oven",
+            new OvenBlock(FabricBlockSettings.copy(Blocks.SMOKER)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
 
     // Ritual Candles
     public static final Block ECHO_CANDLE = registerBlock("echo_candle",
@@ -545,5 +558,9 @@ public class ModBlocks {
 
     private static Boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
         return false;
+    }
+
+    private static Boolean canSpawnOnLeaves(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
+        return type == EntityType.OCELOT || type == EntityType.PARROT;
     }
 }

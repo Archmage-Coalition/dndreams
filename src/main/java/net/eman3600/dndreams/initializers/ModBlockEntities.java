@@ -17,6 +17,7 @@ public class ModBlockEntities {
     public static BlockEntityType<AttunementChamberBlockEntity> ATTUNEMENT_CHAMBER_ENTITY;
     public static BlockEntityType<SoulCandleBlockEntity> SOUL_CANDLE_ENTITY;
     public static BlockEntityType<EchoCandleBlockEntity> ECHO_CANDLE_ENTITY;
+    public static BlockEntityType<OvenBlockEntity> OVEN_ENTITY;
 
     public static void registerBlockEntities() {
 
@@ -43,5 +44,7 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(SoulCandleBlockEntity::new, ModBlocks.SOUL_CANDLE).build());
         ECHO_CANDLE_ENTITY = registerEntity("echo_candle",
                 FabricBlockEntityTypeBuilder.create(EchoCandleBlockEntity::new, ModBlocks.ECHO_CANDLE).build());
+        OVEN_ENTITY = registerEntity("oven",
+                FabricBlockEntityTypeBuilder.create(OvenBlockEntity::new, ModBlocks.OVEN).build());
     }
 }

@@ -32,6 +32,7 @@ public class AttunementChamberBlock extends BlockWithEntity implements BlockEnti
 
     public AttunementChamberBlock(Settings settings) {
         super(settings);
+        this.setDefaultState(getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false));
     }
 
     @Nullable

@@ -29,7 +29,7 @@ public class ModCallbacks {
         ItemInFlowingSpiritCallback.EVENT.register(item -> {
             if (item.world instanceof ServerWorld world && item instanceof ItemEntityInterface entityInterface) {
                 int windupTicks = entityInterface.getWindupTicks();
-                if (windupTicks >= 60) {
+                if (windupTicks >= 30) {
                     entityInterface.setWindupTicks(0);
                     ItemStack stack = item.getStack();
                     int amount = stack.getCount();

@@ -70,6 +70,9 @@ public class ModItems {
     // Baleful Residue
     public static final Item INFERNAL_RESIDUE = registerItem("infernal_residue", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    // Amethyst Jars
+    public static final Item AMETHYST_JAR = registerItem("amethyst_jar", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
     // Water Artichoke Globe
     public static final Item WATER_ARTICHOKE_GLOBE = registerItem("water_artichoke_globe",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
