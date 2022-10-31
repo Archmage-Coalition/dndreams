@@ -33,10 +33,10 @@ public class ModRegistries {
     }
 
     private static void registerSculkTransform() {
-        SCULK_TRANSFORM.put(BlockTags.LOGS, ModBlocks.SAKURA_LOG);
-        SCULK_TRANSFORM.put(BlockTags.PLANKS, ModBlocks.SAKURA_PLANKS);
-        SCULK_TRANSFORM.put(BlockTags.LEAVES, ModBlocks.SAKURA_LEAVES);
-        SCULK_TRANSFORM.put(BlockTags.SAPLINGS, ModBlocks.SAKURA_SAPLING);
+        SCULK_TRANSFORM.put(BlockTags.LOGS, ModBlocks.SCULK_WOOD_LOG);
+        SCULK_TRANSFORM.put(BlockTags.PLANKS, ModBlocks.SCULK_WOOD_PLANKS);
+        SCULK_TRANSFORM.put(BlockTags.LEAVES, ModBlocks.SCULK_WOOD_LEAVES);
+        SCULK_TRANSFORM.put(BlockTags.SAPLINGS, ModBlocks.SCULK_WOOD_SAPLING);
     }
 
     private static void registerFuels() {
@@ -58,23 +58,23 @@ public class ModRegistries {
     private static void registerFlammableBlocks() {
         FlammableBlockRegistry registry = FlammableBlockRegistry.getDefaultInstance();
 
-        registry.add(ModBlocks.DREAMWOOD_LOG, 5, 5);
-        registry.add(ModBlocks.DREAMWOOD, 5, 5);
-        registry.add(ModBlocks.STRIPPED_DREAMWOOD_LOG, 5, 5);
-        registry.add(ModBlocks.STRIPPED_DREAMWOOD, 5, 5);
+        registry.add(ModBlocks.SAKURA_LOG, 5, 5);
+        registry.add(ModBlocks.SAKURA_WOOD, 5, 5);
+        registry.add(ModBlocks.STRIPPED_SAKURA_LOG, 5, 5);
+        registry.add(ModBlocks.STRIPPED_SAKURA_WOOD, 5, 5);
 
-        registry.add(ModBlocks.DREAMWOOD_PLANKS, 5, 20);
-        registry.add(ModBlocks.DREAMWOOD_SLAB, 5, 20);
-        registry.add(ModBlocks.DREAMWOOD_LEAVES, 30, 60);
+        registry.add(ModBlocks.SAKURA_PLANKS, 5, 20);
+        registry.add(ModBlocks.SAKURA_SLAB, 5, 20);
+        registry.add(ModBlocks.SAKURA_LEAVES, 30, 60);
 
-        registry.add(ModBlocks.SAKURA_LOG, 10, 10);
-        registry.add(ModBlocks.SAKURA_WOOD, 10, 10);
-        registry.add(ModBlocks.STRIPPED_SAKURA_LOG, 10, 10);
-        registry.add(ModBlocks.STRIPPED_SAKURA_WOOD, 10, 10);
+        registry.add(ModBlocks.DREAMWOOD_LOG, 10, 10);
+        registry.add(ModBlocks.DREAMWOOD, 10, 10);
+        registry.add(ModBlocks.DREAMWOOD_LOG, 10, 10);
+        registry.add(ModBlocks.STRIPPED_DREAMWOOD, 10, 10);
 
-        registry.add(ModBlocks.SAKURA_PLANKS, 10, 40);
-        registry.add(ModBlocks.SAKURA_SLAB, 10, 40);
-        registry.add(ModBlocks.SAKURA_LEAVES, 60, 120);
+        registry.add(ModBlocks.DREAMWOOD_PLANKS, 10, 40);
+        registry.add(ModBlocks.DREAMWOOD_SLAB, 10, 40);
+        registry.add(ModBlocks.DREAMWOOD_LEAVES, 60, 120);
     }
 
     private static void registerCompostables() {

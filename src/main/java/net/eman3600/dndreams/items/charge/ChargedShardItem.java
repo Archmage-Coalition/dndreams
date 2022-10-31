@@ -55,16 +55,6 @@ public class ChargedShardItem extends AbstractChargeItem{
     }
 
     @Override
-    public int getItemBarColor(ItemStack stack) {
-        return 0x8923D6;
-    }
-
-    @Override
-    public boolean isItemBarVisible(ItemStack stack) {
-        return true;
-    }
-
-    @Override
     public int getItemBarStep(ItemStack stack) {
         return 13;
     }

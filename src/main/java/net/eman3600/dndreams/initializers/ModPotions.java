@@ -2,8 +2,10 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.mixin.BrewingRegistryMixin;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
@@ -30,6 +32,10 @@ public class ModPotions {
 
     public static Potion LIFEMANA = registerPotion("lifemana", ModStatusEffects.LIFEMANA, 900, 0);
     public static Potion LIFEMANA_LONG = registerPotion("long_lifemana", "lifemana", ModStatusEffects.LIFEMANA, 1800, 0);
+
+    public static Potion DECAY = registerPotion("decay", StatusEffects.WITHER, 300, 0);
+    public static Potion DECAY_LONG = registerPotion("long_decay", "decay", StatusEffects.WITHER, 500, 0);
+    public static Potion DECAY_STRONG = registerPotion("strong_decay", "decay", StatusEffects.WITHER, 200, 1);
 
 
 
@@ -77,5 +83,9 @@ public class ModPotions {
         BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.VOID_FLOW_LONG, Items.FERMENTED_SPIDER_EYE, ModPotions.LIFEMANA_LONG);
 
         BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.LIFEMANA, Items.REDSTONE, ModPotions.LIFEMANA_LONG);
+
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, Items.WITHER_ROSE, ModPotions.DECAY);
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.DECAY, Items.REDSTONE, ModPotions.DECAY_LONG);
+        BrewingRegistryMixin.invokeRegisterPotionRecipe(ModPotions.DECAY, Items.GLOWSTONE_DUST, ModPotions.DECAY_STRONG);
     }
 }

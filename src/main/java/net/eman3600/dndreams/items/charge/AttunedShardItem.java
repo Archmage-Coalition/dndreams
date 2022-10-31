@@ -1,9 +1,11 @@
 package net.eman3600.dndreams.items.charge;
 
 import net.eman3600.dndreams.initializers.ModItems;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.collection.DefaultedList;
 
 public class AttunedShardItem extends AbstractChargeItem {
     public final int maxCharge;
@@ -11,16 +13,6 @@ public class AttunedShardItem extends AbstractChargeItem {
     public AttunedShardItem(int maxCharge, Settings settings) {
         super(settings);
         this.maxCharge = maxCharge;
-    }
-
-    @Override
-    public int getItemBarColor(ItemStack stack) {
-        return 0x8923D6;
-    }
-
-    @Override
-    public boolean isItemBarVisible(ItemStack stack) {
-        return true;
     }
 
     @Override
@@ -112,5 +104,15 @@ public class AttunedShardItem extends AbstractChargeItem {
         }
 
         return 0;
+    }
+
+    @Override
+    public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+        if (this.isIn(group)) {
+            ItemStack stack = new ItemStack(this);
+            charge(stack, 250);
+
+            stacks.add(stack);
+        }
     }
 }

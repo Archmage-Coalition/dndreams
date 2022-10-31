@@ -4,6 +4,7 @@ import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
+import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.creative.InfusionChangerItem;
 import net.eman3600.dndreams.items.magic_sword.CorruptSword;
@@ -16,6 +17,7 @@ import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.items.trinket.PhantomNecklace;
+import net.eman3600.dndreams.rituals.setup.AbstractRitual;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModToolMaterials;
@@ -256,6 +258,19 @@ public class ModItems {
     // Waystone
     public static final Item WAYSTONE = registerItem("waystone",
             new WaystoneItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(32)));
+
+    // Tuning Shards
+    public static final Item OVERWORLD_TUNER = registerItem("overworld_tuner",
+            new TuningItem(AbstractRitual.CandleTuning.OVERWORLD,
+                   new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
+
+    public static final Item NETHER_TUNER = registerItem("nether_tuner",
+            new TuningItem(AbstractRitual.CandleTuning.NETHER,
+                    new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
+
+    public static final Item END_TUNER = registerItem("end_tuner",
+            new TuningItem(AbstractRitual.CandleTuning.END,
+                    new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
 
 
 

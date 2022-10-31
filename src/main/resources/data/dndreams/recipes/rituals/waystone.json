@@ -2,12 +2,15 @@
   "type": "dndreams:ritual",
   "ingredients": [
     {
-      "item": "dndreams:waystone"
+      "item": "minecraft:amethyst_shard"
+    },
+	{
+      "item": "minecraft:end_stone"
     }
   ],
   "result": {
     "item": "dndreams:waystone",
     "count": 1
   },
-  "ritual": "dndreams:waystone_simple"
+  "ritual": "dndreams:waystone"
 }
