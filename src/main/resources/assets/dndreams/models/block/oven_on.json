@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "dndreams:block/oven_bottom",
+    "front": "dndreams:block/oven_front_on",
+    "side": "dndreams:block/oven_side",
+    "top": "dndreams:block/oven_top"
+  }
+}

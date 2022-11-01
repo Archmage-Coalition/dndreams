@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "#S#",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:cobbled_deepslate"
+    },
+	"X": {
+      "item": "minecraft:iron_bars"
+    },
+	"S": {
+      "item": "minecraft:cobbled_deepslate_slab"
+    }
+  },
+  "result": {
+    "item": "dndreams:smokestack"
+  }
+}

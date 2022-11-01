@@ -56,14 +56,12 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
         nbt.putInt("cooldown", cooldownTicks);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
         Inventories.readNbt(nbt, inventory);
         cooldownTicks = nbt.getInt("cooldown");
     }
