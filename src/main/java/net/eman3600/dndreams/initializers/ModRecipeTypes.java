@@ -12,6 +12,7 @@ public class ModRecipeTypes {
     public static final RecipeType<WeavingRecipe> WEAVING = register("weaving");
     public static final RecipeType<TransmutationRecipe> TRANSMUTATION = register("transmutation");
     public static final RecipeType<RitualRecipe> RITUAL = register("ritual");
+    public static final RecipeType<SmokestackRecipe> SMOKESTACK = register("smokestack");
 
 
     // Serializers
@@ -24,6 +25,8 @@ public class ModRecipeTypes {
             new Identifier(Initializer.MODID, WeavingShapelessRecipe.Serializer.ID), WeavingShapelessRecipe.Serializer.INSTANCE);
     public static final RecipeSerializer<RitualRecipe> RITUAL_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER,
             new Identifier(Initializer.MODID, RitualRecipe.Serializer.ID), RitualRecipe.Serializer.INSTANCE);
+    public static final RecipeSerializer<SmokestackRecipe> SMOKESTACK_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER,
+            new Identifier(Initializer.MODID, SmokestackRecipe.Serializer.ID), SmokestackRecipe.Serializer.INSTANCE);
 
     private static <T extends Recipe<?>> RecipeType<T> register(String id) {
         return Registry.register(Registry.RECIPE_TYPE, new Identifier(Initializer.MODID, id), new RecipeType<T>() {

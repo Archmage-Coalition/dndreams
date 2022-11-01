@@ -494,31 +494,33 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
-    // Lumber Oven
-    public static final Block OVEN = registerBlock("oven",
-            new OvenBlock(FabricBlockSettings.copy(Blocks.SMOKER)),
+
+    // Smokestack
+    public static final Block SMOKESTACK = registerBlock("smokestack",
+            new SmokestackBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(1.0f, 6.0f)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
 
     // Ritual Candles
     public static final Block ECHO_CANDLE = registerBlock("echo_candle",
-            new EchoCandleBlock(ModParticles.ECHO_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
-                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
+            new EchoCandleBlock(ModParticles.ECHO_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)
                     .luminance(RitualCandleBlock::luminence).breakInstantly()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block SOUL_CANDLE = registerBlock("soul_candle",
-            new SoulCandleBlock(ModParticles.SOUL_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
-                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
+            new SoulCandleBlock(ModParticles.SOUL_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)
                     .luminance(RitualCandleBlock::luminence).breakInstantly()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block COSMIC_CANDLE = registerBlock("cosmic_candle",
-            new RitualCandleBlock(ModParticles.COSMIC_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
-                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
+            new RitualCandleBlock(ModParticles.COSMIC_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)
                     .luminance(RitualCandleBlock::luminence).breakInstantly()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));

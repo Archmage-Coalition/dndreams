@@ -71,6 +71,8 @@
   "item.dndreams.end_tuner": "End Tuner",
   
   "item.dndreams.amethyst_jar": "Amethyst Jar",
+  "item.dndreams.wood_ash": "Wood Ash",
+  "item.dndreams.foul_fume": "Foul Fume",
   
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
   "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",
@@ -258,7 +260,7 @@
   "block.dndreams.cosmic_fountain.sealed": "The World Fountain is Sealed...",
   "block.dndreams.cosmic_fountain_pole": "Cosmic Pillar",
   "block.dndreams.attunement_chamber": "Attunement Chamber",
-  "block.dndreams.oven": "Lumber Oven",
+  "block.dndreams.smokestack": "Smokestack",
   
   "ritual.dndreams.error.unknown": "Unknown Rite",
   "ritual.dndreams.error.rings": "Incorrect Candle Rings",
@@ -269,7 +271,7 @@
   
   "container.dndreams.dream_table": "Dream Weaving",
   "container.dndreams.attunement_chamber": "Attunement",
-  "container.dndreams.oven": "Oven",
+  "container.dndreams.smokestack": "Fume Collection",
   
   
   "entity.dndreams.crowned_slash": "Crowned Slash",
@@ -290,6 +292,7 @@
   "rei.dndreams.weaving_shapeless": "Shapeless Weaving",
   "rei.dndreams.transmutation": "Spirit Transmutation",
   "rei.dndreams.transmutation.real_only": "Real World Only",
+  "rei.dndreams.smokestack": "Fume Collection",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"
