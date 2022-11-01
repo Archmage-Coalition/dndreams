@@ -15,12 +15,12 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeManager;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -34,6 +34,9 @@ public class SmokestackBlockEntity extends BlockEntity implements NamedScreenHan
     }
 
     public void receiveBurn(DefaultedList<ItemStack> stacks) {
+        Random random = world.random;
+        if (random.nextInt(5) != 0) return;
+
         Inventory inv = new SimpleInventory(1);
         inv.setStack(0, stacks.get(0));
 
