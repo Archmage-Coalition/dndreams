@@ -254,7 +254,7 @@ public class ModBlocks {
 
     // Sakura Wood Stairs
     public static final Block SAKURA_STAIRS = registerBlock("sakura_stairs",
-            new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new ModStairsBlock(SAKURA_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
@@ -336,7 +336,7 @@ public class ModBlocks {
 
     // Sculk Wood Stairs
     public static final Block SCULK_WOOD_STAIRS = registerBlock("sculk_wood_stairs",
-            new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new ModStairsBlock(SCULK_WOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.SCULK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
@@ -407,7 +407,7 @@ public class ModBlocks {
 
     // Japanese Maple Stairs
     public static final Block JAPANESE_MAPLE_STAIRS = registerBlock("japanese_maple_stairs",
-            new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+            new ModStairsBlock(JAPANESE_MAPLE_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
@@ -428,6 +428,225 @@ public class ModBlocks {
 
     // Japanese Maple Fence Gate
     public static final Block JAPANESE_MAPLE_FENCE_GATE = registerBlock("japanese_maple_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+
+
+
+    // Selene Wood Logs
+    public static final Block SELENE_LOG = registerBlock("selene_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SELENE_WOOD = registerBlock("selene_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SELENE_STRIPPED_LOG = registerBlock("selene_stripped_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SELENE_STRIPPED_WOOD = registerBlock("selene_stripped_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Selene Wood Planks
+    public static final Block SELENE_PLANKS = registerBlock("selene_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Selene Wood Leaves & Sapling
+    public static final Block SELENE_LEAVES = registerBlock("selene_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block SELENE_SAPLING = registerBlock("selene_sapling",
+            new ModSaplingBlock(new SakuraSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // Selene Wood Stairs
+    public static final Block SELENE_STAIRS = registerBlock("selene_stairs",
+            new ModStairsBlock(SELENE_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Selene Wood Slab
+    public static final Block SELENE_SLAB = registerBlock("selene_slab",
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Selene Wood Fence
+    public static final Block SELENE_FENCE = registerBlock("selene_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Selene Wood Fence Gate
+    public static final Block SELENE_FENCE_GATE = registerBlock("selene_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+
+    // Helios Wood Logs
+    public static final Block HELIOS_LOG = registerBlock("helios_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HELIOS_WOOD = registerBlock("helios_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HELIOS_STRIPPED_LOG = registerBlock("helios_stripped_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HELIOS_STRIPPED_WOOD = registerBlock("helios_stripped_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Helios Wood Planks
+    public static final Block HELIOS_PLANKS = registerBlock("helios_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Helios Wood Leaves & Sapling
+    public static final Block HELIOS_LEAVES = registerBlock("helios_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block HELIOS_SAPLING = registerBlock("helios_sapling",
+            new ModSaplingBlock(new SakuraSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // Helios Wood Stairs
+    public static final Block HELIOS_STAIRS = registerBlock("helios_stairs",
+            new ModStairsBlock(HELIOS_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Helios Wood Slab
+    public static final Block HELIOS_SLAB = registerBlock("helios_slab",
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Helios Wood Fence
+    public static final Block HELIOS_FENCE = registerBlock("helios_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Helios Wood Fence Gate
+    public static final Block HELIOS_FENCE_GATE = registerBlock("helios_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+
+
+    // Eos Wood Logs
+    public static final Block EOS_LOG = registerBlock("eos_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block EOS_WOOD = registerBlock("eos_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block EOS_STRIPPED_LOG = registerBlock("eos_stripped_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block EOS_STRIPPED_WOOD = registerBlock("eos_stripped_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Eos Wood Planks
+    public static final Block EOS_PLANKS = registerBlock("eos_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Eos Wood Leaves & Sapling
+    public static final Block EOS_LEAVES = registerBlock("eos_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block EOS_SAPLING = registerBlock("eos_sapling",
+            new ModSaplingBlock(new SakuraSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // Eos Wood Stairs
+    public static final Block EOS_STAIRS = registerBlock("eos_stairs",
+            new ModStairsBlock(EOS_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Eos Wood Slab
+    public static final Block EOS_SLAB = registerBlock("eos_slab",
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Eos Wood Fence
+    public static final Block EOS_FENCE = registerBlock("eos_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Eos Wood Fence Gate
+    public static final Block EOS_FENCE_GATE = registerBlock("eos_fence_gate",
             new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 

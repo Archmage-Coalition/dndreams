@@ -59,6 +59,15 @@ public class ModRegistries {
 
         StrippableBlockRegistry.register(ModBlocks.JAPANESE_MAPLE_WOOD, ModBlocks.STRIPPED_JAPANESE_MAPLE_WOOD);
         StrippableBlockRegistry.register(ModBlocks.JAPANESE_MAPLE_LOG, ModBlocks.STRIPPED_JAPANESE_MAPLE_LOG);
+
+        StrippableBlockRegistry.register(ModBlocks.SELENE_WOOD, ModBlocks.SELENE_STRIPPED_WOOD);
+        StrippableBlockRegistry.register(ModBlocks.SELENE_LOG, ModBlocks.SELENE_STRIPPED_LOG);
+
+        StrippableBlockRegistry.register(ModBlocks.HELIOS_WOOD, ModBlocks.HELIOS_STRIPPED_WOOD);
+        StrippableBlockRegistry.register(ModBlocks.HELIOS_LOG, ModBlocks.HELIOS_STRIPPED_LOG);
+
+        StrippableBlockRegistry.register(ModBlocks.EOS_WOOD, ModBlocks.EOS_STRIPPED_WOOD);
+        StrippableBlockRegistry.register(ModBlocks.EOS_LOG, ModBlocks.EOS_STRIPPED_LOG);
     }
 
     private static void registerFlammableBlocks() {
@@ -73,6 +82,7 @@ public class ModRegistries {
         registry.add(ModBlocks.SAKURA_SLAB, 5, 20);
         registry.add(ModBlocks.SAKURA_LEAVES, 30, 60);
 
+
         registry.add(ModBlocks.DREAMWOOD_LOG, 10, 10);
         registry.add(ModBlocks.DREAMWOOD, 10, 10);
         registry.add(ModBlocks.DREAMWOOD_LOG, 10, 10);
@@ -82,6 +92,7 @@ public class ModRegistries {
         registry.add(ModBlocks.DREAMWOOD_SLAB, 10, 40);
         registry.add(ModBlocks.DREAMWOOD_LEAVES, 60, 120);
 
+
         registry.add(ModBlocks.JAPANESE_MAPLE_LOG, 5, 5);
         registry.add(ModBlocks.JAPANESE_MAPLE_WOOD, 5, 5);
         registry.add(ModBlocks.STRIPPED_JAPANESE_MAPLE_LOG, 5, 5);
@@ -90,6 +101,36 @@ public class ModRegistries {
         registry.add(ModBlocks.JAPANESE_MAPLE_PLANKS, 5, 10);
         registry.add(ModBlocks.JAPANESE_MAPLE_SLAB, 5, 10);
         registry.add(ModBlocks.JAPANESE_MAPLE_LEAVES, 30, 60);
+
+
+        registry.add(ModBlocks.SELENE_LOG, 5, 5);
+        registry.add(ModBlocks.SELENE_WOOD, 5, 5);
+        registry.add(ModBlocks.SELENE_STRIPPED_LOG, 5, 5);
+        registry.add(ModBlocks.SELENE_STRIPPED_WOOD, 5, 5);
+
+        registry.add(ModBlocks.SELENE_PLANKS, 5, 10);
+        registry.add(ModBlocks.SELENE_SLAB, 5, 10);
+        registry.add(ModBlocks.SELENE_LEAVES, 30, 60);
+
+
+        registry.add(ModBlocks.HELIOS_LOG, 10, 10);
+        registry.add(ModBlocks.HELIOS_WOOD, 10, 10);
+        registry.add(ModBlocks.HELIOS_STRIPPED_LOG, 10, 10);
+        registry.add(ModBlocks.HELIOS_STRIPPED_WOOD, 10, 10);
+
+        registry.add(ModBlocks.HELIOS_PLANKS, 10, 20);
+        registry.add(ModBlocks.HELIOS_SLAB, 10, 20);
+        registry.add(ModBlocks.HELIOS_LEAVES, 60, 120);
+
+
+        registry.add(ModBlocks.EOS_LOG, 5, 5);
+        registry.add(ModBlocks.EOS_WOOD, 5, 5);
+        registry.add(ModBlocks.EOS_STRIPPED_LOG, 5, 5);
+        registry.add(ModBlocks.EOS_STRIPPED_WOOD, 5, 5);
+
+        registry.add(ModBlocks.EOS_SLAB, 5, 10);
+        registry.add(ModBlocks.EOS_PLANKS, 5, 10);
+        registry.add(ModBlocks.EOS_LEAVES, 30, 60);
     }
 
     private static void registerCompostables() {
