@@ -10,13 +10,6 @@ import net.minecraft.world.WorldView;
 
 public class SculkWoodSaplingBlock extends SaplingBlock {
 
-    /**
-     * Access widened by fabric-transitive-access-wideners-v1 to accessible
-     * Access widened by architectury to accessible
-     *
-     * @param generator
-     * @param settings
-     */
     public SculkWoodSaplingBlock(SaplingGenerator generator, Settings settings) {
         super(generator, settings);
     }

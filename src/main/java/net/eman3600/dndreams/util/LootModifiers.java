@@ -27,7 +27,7 @@ public class LootModifiers {
             = new Identifier("minecraft", "blocks/grass");
 
     public static void modifyLootTables() {
-        LootTableEvents.MODIFY.register(((resourceManager, manager, id, supplier, setter) -> {
+        LootTableEvents.MODIFY.register((resourceManager, manager, id, supplier, setter) -> {
 
             /*
             * SCULK SENSOR
@@ -66,7 +66,7 @@ public class LootModifiers {
                     supplyPools(supplier, pools);
             }
 
-        }));
+        });
     }
 
     private static void supplyPools(LootTable.Builder supplier, LootPool[] pools) {

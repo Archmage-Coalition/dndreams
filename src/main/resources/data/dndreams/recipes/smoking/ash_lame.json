@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "cookingtime": 100,
+  "experience": 0,
+  "group": "dndreams:ash",
+  "ingredient": {
+    "tag": "dndreams:lame_planks"
+  },
+  "result": "dndreams:wood_ash"
+}

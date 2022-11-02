@@ -70,6 +70,17 @@ public class ModItems {
     // Baleful Residue
     public static final Item INFERNAL_RESIDUE = registerItem("infernal_residue", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    // Wood Ash
+    public static final Item WOOD_ASH = registerItem("wood_ash", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
+    // Amethyst Jars & Fumes
+    public static final Item AMETHYST_JAR = registerItem("amethyst_jar", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item FOUL_FUME = registerItem("foul_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item SAKURA_FUME = registerItem("sakura_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item DREAMWOOD_FUME = registerItem("dreamwood_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item SCULK_WOOD_FUME = registerItem("sculk_wood_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item JAPANESE_MAPLE_FUME = registerItem("japanese_maple_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+
     // Water Artichoke Globe
     public static final Item WATER_ARTICHOKE_GLOBE = registerItem("water_artichoke_globe",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));

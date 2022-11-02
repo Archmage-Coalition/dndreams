@@ -70,6 +70,17 @@
   "item.dndreams.nether_tuner": "Nether Tuner",
   "item.dndreams.end_tuner": "End Tuner",
   
+  "item.dndreams.amethyst_jar": "Amethyst Jar",
+  "item.dndreams.wood_ash": "Wood Ash",
+  "item.dndreams.foul_fume": "Foul Fume",
+  "item.dndreams.sakura_fume": "Sweet Scent",
+  "item.dndreams.dreamwood_fume": "Whiff of Magic",
+  "item.dndreams.sculk_wood_fume": "Reek of the Damned",
+  "item.dndreams.japanese_maple_fume": "Sour Spice",
+  "item.dndreams.selene_fume": "Fragrance of Solitude",
+  "item.dndreams.eos_fume": "Hint of Purity",
+  "item.dndreams.helios_fume": "Odour of Exhaustion",
+  
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
   "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",
   
@@ -256,6 +267,7 @@
   "block.dndreams.cosmic_fountain.sealed": "The World Fountain is Sealed...",
   "block.dndreams.cosmic_fountain_pole": "Cosmic Pillar",
   "block.dndreams.attunement_chamber": "Attunement Chamber",
+  "block.dndreams.smokestack": "Smokestack",
   
   "ritual.dndreams.error.unknown": "Unknown Rite",
   "ritual.dndreams.error.rings": "Incorrect Candle Rings",
@@ -266,7 +278,7 @@
   
   "container.dndreams.dream_table": "Dream Weaving",
   "container.dndreams.attunement_chamber": "Attunement",
-  "container.dndreams.attunement_chamber.energy": "Charge: %s",
+  "container.dndreams.smokestack": "Fume Collection",
   
   
   "entity.dndreams.crowned_slash": "Crowned Slash",
@@ -287,6 +299,7 @@
   "rei.dndreams.weaving_shapeless": "Shapeless Weaving",
   "rei.dndreams.transmutation": "Spirit Transmutation",
   "rei.dndreams.transmutation.real_only": "Real World Only",
+  "rei.dndreams.smokestack": "Fume Collection",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"

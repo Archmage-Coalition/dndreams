@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.initializers;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectFunction;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.crop.*;
@@ -325,7 +326,13 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block SCULK_LIGHT = registerBlock("sculk_light",
-            new SculkLeavesBlock(AbstractBlock.Settings.of(Material.SOLID_ORGANIC, MapColor.CYAN).strength(1.0f).sounds(BlockSoundGroup.SHROOMLIGHT).luminance(state -> 15)));
+            new SculkLeavesBlock(AbstractBlock.Settings.of(Material.SOLID_ORGANIC, MapColor.CYAN).strength(0.2f).ticksRandomly().nonOpaque().allowsSpawning(ModBlocks::canSpawnOnLeaves).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.SCULK_CATALYST).luminance(state -> 15)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    private static boolean never(BlockState blockState, BlockView blockView, BlockPos blockPos) {
+        return false;
+    }
 
     // Sculk Wood Stairs
     public static final Block SCULK_WOOD_STAIRS = registerBlock("sculk_wood_stairs",
@@ -488,24 +495,32 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
 
+    // Smokestack
+    public static final Block SMOKESTACK = registerBlock("smokestack",
+            new SmokestackBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(1.0f, 6.0f)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+
     // Ritual Candles
     public static final Block ECHO_CANDLE = registerBlock("echo_candle",
-            new EchoCandleBlock(ModParticles.ECHO_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
-                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
+            new EchoCandleBlock(ModParticles.ECHO_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)
                     .luminance(RitualCandleBlock::luminence).breakInstantly()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block SOUL_CANDLE = registerBlock("soul_candle",
-            new SoulCandleBlock(ModParticles.SOUL_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
-                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
+            new SoulCandleBlock(ModParticles.SOUL_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)
                     .luminance(RitualCandleBlock::luminence).breakInstantly()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block COSMIC_CANDLE = registerBlock("cosmic_candle",
-            new RitualCandleBlock(ModParticles.COSMIC_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).nonOpaque().strength(0.1f).sounds(BlockSoundGroup.CANDLE)
-                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)
+            new RitualCandleBlock(ModParticles.COSMIC_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).strength(0.1f).sounds(BlockSoundGroup.CANDLE)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)
                     .luminance(RitualCandleBlock::luminence).breakInstantly()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -545,5 +560,9 @@ public class ModBlocks {
 
     private static Boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
         return false;
+    }
+
+    private static Boolean canSpawnOnLeaves(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
+        return type == EntityType.OCELOT || type == EntityType.PARROT;
     }
 }

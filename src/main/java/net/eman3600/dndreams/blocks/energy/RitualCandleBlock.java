@@ -29,6 +29,7 @@ public class RitualCandleBlock extends BlockWithEntity {
     public RitualCandleBlock(ParticleEffect particle, Settings settings) {
         super(settings);
         this.particle = particle;
+        this.setDefaultState(getDefaultState().with(LIT, false));
     }
 
     @Override
