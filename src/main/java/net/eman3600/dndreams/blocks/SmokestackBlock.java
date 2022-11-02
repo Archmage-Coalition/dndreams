@@ -20,7 +20,8 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 public class SmokestackBlock extends BlockWithEntity {
-    private static final VoxelShape SMOKESTACK_SHAPE = Block.createCuboidShape(4, 0.0, 4, 12, 16, 12);
+    private static final VoxelShape SMOKESTACK_COLLISION_SHAPE = Block.createCuboidShape(4, 0.0, 4, 12, 16, 12);
+    private static final VoxelShape SMOKESTACK_SHAPE = Block.createCuboidShape(4, 0.0, 4, 12, 17, 12);
 
     public SmokestackBlock(Settings settings) {
         super(settings);
@@ -29,6 +30,11 @@ public class SmokestackBlock extends BlockWithEntity {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SMOKESTACK_SHAPE;
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SMOKESTACK_COLLISION_SHAPE;
     }
 
     @Nullable

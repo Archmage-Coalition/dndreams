@@ -35,7 +35,7 @@ public class SmokestackBlockEntity extends BlockEntity implements NamedScreenHan
 
     public void receiveBurn(DefaultedList<ItemStack> stacks) {
         Random random = world.random;
-        if (random.nextInt(5) != 0) return;
+        if (random.nextInt(10) > 3) return;
 
         Inventory inv = new SimpleInventory(1);
         inv.setStack(0, stacks.get(0));
