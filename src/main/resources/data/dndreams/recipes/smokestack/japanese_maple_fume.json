@@ -1,0 +1,7 @@
+{
+  "type": "dndreams:smokestack",
+  "ingredient": {
+    "item": "dndreams:japanese_maple_planks"
+  },
+  "result": "dndreams:japanese_maple_fume"
+}

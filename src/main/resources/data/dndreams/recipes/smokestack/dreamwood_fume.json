@@ -1,0 +1,7 @@
+{
+  "type": "dndreams:smokestack",
+  "ingredient": {
+    "item": "dndreams:dreamwood_planks"
+  },
+  "result": "dndreams:dreamwood_fume"
+}
