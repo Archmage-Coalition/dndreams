@@ -8,6 +8,7 @@
   "authors": [
     "Eman3600",
     "MoltenCookie62",
+    "RobotSimp",
     "SciRave"
   ],
   "contact": {
@@ -45,7 +46,11 @@
     "java": ">=17",
     "cardinal-components-base": "*",
     "patchouli": "*",
-    "trinkets": "*"
+    "trinkets": "*",
+    "bclib": "2.0.x"
+  },
+  "breaks": {
+    "bclib": "<2.0.6"
   },
   "suggests": {
     "another-mod": "*"
