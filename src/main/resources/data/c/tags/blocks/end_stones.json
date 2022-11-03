@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:end_stone",
+	"dndreams:selene_grass_block",
+	"dndreams:helios_grass_block",
+	"dndreams:eos_grass_block"
+  ]
+}

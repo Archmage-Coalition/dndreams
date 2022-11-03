@@ -22,6 +22,7 @@ public class ModTags {
     public static final TagKey<Block> DEEPSLATE_FRAME = ofBlock("deepslate_frame");
     public static final TagKey<Block> SOUL_POWER = ofBlock("soul_power");
     public static final TagKey<Block> COSMIC_AUGMENTS = ofBlock("cosmic_augments");
+    public static final TagKey<Block> END_GRASSES = TagKey.of(Registry.BLOCK_KEY, new Identifier("c", "end_grasses"));
 
     public static final TagKey<Fluid> FLOWING_SPIRIT = ofFluid("flowing_spirit");
 

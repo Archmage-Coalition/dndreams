@@ -657,6 +657,47 @@ public class ModBlocks {
 
 
 
+    // End Grass
+    public static final Block SELENE_GRASS_BLOCK = registerBlock("selene_grass_block",
+            new Block(FabricBlockSettings.copy(Blocks.END_STONE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block SELENE_GRASS = registerBlock("selene_grass",
+            new EndFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+
+    public static final Block HELIOS_GRASS_BLOCK = registerBlock("helios_grass_block",
+            new Block(FabricBlockSettings.copy(Blocks.END_STONE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block HELIOS_GRASS = registerBlock("helios_grass",
+            new EndFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+
+    public static final Block EOS_GRASS_BLOCK = registerBlock("eos_grass_block",
+            new Block(FabricBlockSettings.copy(Blocks.END_STONE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block EOS_GRASS = registerBlock("eos_grass",
+            new EndFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+
+
+
+
+
     // Snowbell Crop
     public static final Block SNOWBELL_CROP = registerBlock("snowbell_crop",
             new SnowbellBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));

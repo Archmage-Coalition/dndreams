@@ -78,7 +78,7 @@
   "item.dndreams.sculk_wood_fume": "Reek of the Damned",
   "item.dndreams.japanese_maple_fume": "Sour Spice",
   "item.dndreams.selene_fume": "Fragrance of Solitude",
-  "item.dndreams.eos_fume": "Odour of Emptiness",
+  "item.dndreams.eos_fume": "Odour of Equilibrium",
   "item.dndreams.helios_fume": "Hint of Purity",
   
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
@@ -262,6 +262,13 @@
   "block.dndreams.eos_slab": "Eos Slab",
   "block.dndreams.eos_fence": "Eos Fence",
   "block.dndreams.eos_fence_gate": "Eos Fence Gate",
+  
+  "block.dndreams.selene_grass": "Selene Grass",
+  "block.dndreams.helios_grass": "Helios Grass",
+  "block.dndreams.eos_grass": "Eos Grass",
+  "block.dndreams.selene_grass_block": "Selene Grass Block",
+  "block.dndreams.helios_grass_block": "Helios Grass Block",
+  "block.dndreams.eos_grass_block": "Eos Grass Block",
 
   "block.dndreams.shimmering_stone": "Shimmering Stone",
   "block.dndreams.shimmering_bricks": "Shimmering Bricks",
