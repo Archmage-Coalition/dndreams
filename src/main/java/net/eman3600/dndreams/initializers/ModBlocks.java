@@ -471,7 +471,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block SELENE_SAPLING = registerBlock("selene_sapling",
-            new ModSaplingBlock(new GenericLargeSaplingGenerator(ModConfiguredFeatures.SELENE_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new ModSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.SELENE_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -543,7 +543,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block HELIOS_SAPLING = registerBlock("helios_sapling",
-            new ModSaplingBlock(new GenericLargeSaplingGenerator(ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new ModSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -616,7 +616,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block EOS_SAPLING = registerBlock("eos_sapling",
-            new ModSaplingBlock(new GenericLargeSaplingGenerator(ModConfiguredFeatures.EOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new ModSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.EOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));

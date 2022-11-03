@@ -6,6 +6,7 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.ModAttributes;
 import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.mixin_interfaces.ComposterBlockAccess;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -30,6 +31,20 @@ public class ModRegistries {
         registerStrippables();
         registerCompostables();
         registerAttributes();
+        registerMutables();
+    }
+
+    private static void registerMutables() {
+        MutandisItem.registerMutable(Blocks.GRASS);
+        MutandisItem.registerMutable(Blocks.OAK_SAPLING);
+        MutandisItem.registerMutable(Blocks.BIRCH_SAPLING);
+        MutandisItem.registerMutable(Blocks.SPRUCE_SAPLING);
+        MutandisItem.registerMutable(Blocks.ACACIA_SAPLING);
+        MutandisItem.registerMutable(Blocks.DARK_OAK_SAPLING);
+        MutandisItem.registerMutable(Blocks.JUNGLE_SAPLING);
+        MutandisItem.registerMutable(Blocks.MANGROVE_PROPAGULE);
+        MutandisItem.registerMutable(ModBlocks.SAKURA_SAPLING);
+        MutandisItem.registerMutable(ModBlocks.JAPANESE_MAPLE_SAPLING);
     }
 
     private static void registerSculkTransform() {

@@ -69,6 +69,7 @@
   "item.dndreams.overworld_tuner": "Overworld Tuner",
   "item.dndreams.nether_tuner": "Nether Tuner",
   "item.dndreams.end_tuner": "End Tuner",
+  "item.dndreams.mutandis": "Mutandis",
   
   "item.dndreams.amethyst_jar": "Amethyst Jar",
   "item.dndreams.wood_ash": "Wood Ash",
@@ -344,6 +345,7 @@
   "rei.dndreams.transmutation.real_only": "Real World Only",
   "rei.dndreams.smokestack": "Fume Collection",
   "rei.dndreams.smokestack.smoker": "Burn in Smoker",
+  "rei.dndreams.mutandis": "Mutation",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"

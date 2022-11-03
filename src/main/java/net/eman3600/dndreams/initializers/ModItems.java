@@ -70,6 +70,9 @@ public class ModItems {
     // Baleful Residue
     public static final Item INFERNAL_RESIDUE = registerItem("infernal_residue", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    // Mutandis
+    public static final Item MUTANDIS = registerItem("mutandis", new MutandisItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
     // Wood Ash
     public static final Item WOOD_ASH = registerItem("wood_ash", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
