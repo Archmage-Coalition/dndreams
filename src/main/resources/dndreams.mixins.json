@@ -6,6 +6,7 @@
   "mixins": [
     "AbstractBlockStateMixin",
     "AbstractFurnaceBlockEntityMixin",
+    "AbstractFurnaceBlockMixin",
     "BlockItemMixin",
     "BlockStateModelGeneratorMixin",
     "BoatEntityMixin",
