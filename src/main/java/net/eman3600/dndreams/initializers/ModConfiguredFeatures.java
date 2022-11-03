@@ -6,15 +6,19 @@ import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.size.ThreeLayersFeatureSize;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
+import net.minecraft.world.gen.foliage.DarkOakFoliagePlacer;
 import net.minecraft.world.gen.foliage.SpruceFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.trunk.DarkOakTrunkPlacer;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
 import java.util.List;
+import java.util.OptionalInt;
 
 public class ModConfiguredFeatures {
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> DREAMWOOD_TREE =
@@ -50,8 +54,26 @@ public class ModConfiguredFeatures {
                     new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
 
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> HELIOS_TREE =
+            ConfiguredFeatures.register("helios_tree", Feature.TREE,
+                    new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.HELIOS_LOG),
+                            new DarkOakTrunkPlacer(6, 2, 1), BlockStateProvider.of(ModBlocks.HELIOS_LEAVES),
+                            new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
+                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())).ignoreVines().build());
 
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> EOS_TREE =
+            ConfiguredFeatures.register("eos_tree", Feature.TREE,
+                    new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.EOS_LOG),
+                            new DarkOakTrunkPlacer(6, 2, 1), BlockStateProvider.of(ModBlocks.EOS_LEAVES),
+                            new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
+                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())).ignoreVines().build());
 
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> SELENE_TREE =
+            ConfiguredFeatures.register("selene_tree", Feature.TREE,
+                    new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.SELENE_LOG),
+                            new DarkOakTrunkPlacer(6, 2, 1), BlockStateProvider.of(ModBlocks.SELENE_LEAVES),
+                            new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
+                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())).ignoreVines().build());
 
     public static final RegistryEntry<PlacedFeature> DREAMWOOD_CHECKED =
             PlacedFeatures.register("dreamwood_checked", DREAMWOOD_TREE,

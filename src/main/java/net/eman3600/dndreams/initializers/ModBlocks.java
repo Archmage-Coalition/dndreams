@@ -8,10 +8,7 @@ import net.eman3600.dndreams.blocks.energy.*;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
 import net.eman3600.dndreams.util.ModFoodComponents;
-import net.eman3600.dndreams.world.feature.tree.DreamwoodSaplingGenerator;
-import net.eman3600.dndreams.world.feature.tree.SakuraSaplingGenerator;
-import net.eman3600.dndreams.world.feature.tree.JapaneseMapleSaplingGenerator;
-import net.eman3600.dndreams.world.feature.tree.SculkWoodSaplingGenerator;
+import net.eman3600.dndreams.world.feature.tree.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -474,7 +471,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block SELENE_SAPLING = registerBlock("selene_sapling",
-            new ModSaplingBlock(new SakuraSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new ModSaplingBlock(new GenericLargeSaplingGenerator(ModConfiguredFeatures.SELENE_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -546,7 +543,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block HELIOS_SAPLING = registerBlock("helios_sapling",
-            new ModSaplingBlock(new SakuraSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new ModSaplingBlock(new GenericLargeSaplingGenerator(ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -619,7 +616,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block EOS_SAPLING = registerBlock("eos_sapling",
-            new ModSaplingBlock(new SakuraSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new ModSaplingBlock(new GenericLargeSaplingGenerator(ModConfiguredFeatures.EOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
