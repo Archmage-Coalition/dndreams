@@ -1,1 +1,1 @@
-{"parent":"minecraft:block\/cube_bottom_top","textures":{"side":"dndreams:block\/selene_grass_side","top":"dndreams:block\/selene_grass_top","bottom":"dndreams:block\/end_stone"}}
+{"parent":"minecraft:block\/cube_bottom_top","textures":{"side":"dndreams:block\/selene_grass_side","top":"dndreams:block\/selene_grass_top","bottom":"minecraft:block\/end_stone"}}
