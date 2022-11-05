@@ -59,21 +59,33 @@ public class ModConfiguredFeatures {
                     new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.HELIOS_LOG),
                             new DarkOakTrunkPlacer(6, 2, 1), BlockStateProvider.of(ModBlocks.HELIOS_LEAVES),
                             new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
-                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())).ignoreVines().build());
+                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
+                            .dirtProvider(BlockStateProvider.of(Blocks.END_STONE)).ignoreVines().build());
 
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> EOS_TREE =
             ConfiguredFeatures.register("eos_tree", Feature.TREE,
                     new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.EOS_LOG),
                             new DarkOakTrunkPlacer(6, 2, 1), BlockStateProvider.of(ModBlocks.EOS_LEAVES),
                             new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
-                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())).ignoreVines().build());
+                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
+                            .dirtProvider(BlockStateProvider.of(Blocks.END_STONE)).ignoreVines().build());
 
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> SELENE_TREE =
             ConfiguredFeatures.register("selene_tree", Feature.TREE,
                     new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.SELENE_LOG),
                             new DarkOakTrunkPlacer(6, 2, 1), BlockStateProvider.of(ModBlocks.SELENE_LEAVES),
                             new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
-                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())).ignoreVines().build());
+                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
+                            .dirtProvider(BlockStateProvider.of(Blocks.END_STONE)).ignoreVines().build());
+
+
+
+
+
+
+
+
+
 
     public static final RegistryEntry<PlacedFeature> DREAMWOOD_CHECKED =
             PlacedFeatures.register("dreamwood_checked", DREAMWOOD_TREE,

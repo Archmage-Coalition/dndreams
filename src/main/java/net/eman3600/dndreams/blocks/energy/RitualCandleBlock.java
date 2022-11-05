@@ -21,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class RitualCandleBlock extends BlockWithEntity {
     private static final VoxelShape CANDLE_SHAPE = Block.createCuboidShape(4.5, 0.0, 4.5, 11.5, 13.0, 11.5);
+    private static final VoxelShape CANDLE_COLLISION = Block.createCuboidShape(5, 0.0, 5, 11, 13.0, 11);
     private final ParticleEffect particle;
     private static final Vec3d OFFSET = new Vec3d(0.5, .87f, 0.5);
 
@@ -35,6 +36,10 @@ public class RitualCandleBlock extends BlockWithEntity {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return CANDLE_SHAPE;
+    }
+
+    public static VoxelShape getCandleCollision() {
+        return CANDLE_COLLISION;
     }
 
     @Override

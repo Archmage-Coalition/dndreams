@@ -10,14 +10,18 @@ import me.shedaniel.rei.api.common.registry.ReloadStage;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.ModFluids;
+import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.integration.rei.categories.*;
 import net.eman3600.dndreams.integration.rei.display.*;
+import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
+import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
 import net.eman3600.dndreams.recipe.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class DnDreamsREIPlugin implements REIClientPlugin {
@@ -30,19 +34,23 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
+        registry.add(new SmokestackCategory());
+        registry.addWorkstations(SMOKESTACK, SmokestackCategory.ICON);
+        registry.addWorkstations(SMOKESTACK, EntryStacks.of(Blocks.SMOKER));
+        registry.add(new RefineryCategory());
+        registry.addWorkstations(REFINERY, RefineryCategory.ICON);
+
+        registry.add(new MutandisCategory());
+        registry.addWorkstations(MUTANDIS, MutandisCategory.ICON);
+        registry.addWorkstations(MUTANDIS, EntryStacks.of(ModItems.MUTANDIS_EXTREMIS));
+        registry.addWorkstations(MUTANDIS, EntryStacks.of(ModItems.MUTANDIS_ONEIROS));
+
         registry.add(new WeavingShapedCategory());
         registry.addWorkstations(WEAVING_SHAPED, WeavingShapedCategory.ICON);
         registry.add(new WeavingShapelessCategory());
         registry.addWorkstations(WEAVING_SHAPELESS, WeavingShapelessCategory.ICON);
         registry.add(new TransmutationCategory());
         registry.addWorkstations(TRANSMUTATION, EntryStacks.of(ModFluids.STILL_FLOWING_SPIRIT));
-        registry.add(new SmokestackCategory());
-        registry.addWorkstations(SMOKESTACK, SmokestackCategory.ICON);
-        registry.addWorkstations(SMOKESTACK, EntryStacks.of(Blocks.SMOKER));
-        registry.add(new MutandisCategory());
-        registry.addWorkstations(MUTANDIS, MutandisCategory.ICON);
-        registry.add(new RefineryCategory());
-        registry.addWorkstations(REFINERY, RefineryCategory.ICON);
 
 
 
@@ -62,12 +70,16 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         registry.registerFiller(SmokestackRecipe.class, SmokestackDisplay::new);
         registry.registerFiller(RefineryRecipe.class, RefineryDisplay::new);
 
-        for (Block in: MutandisItem.mutables) {
-            for (Block out: MutandisItem.mutables) {
-                if (in != out) {
-                    registry.add(new MutandisDisplay(EntryStacks.of(in), EntryStacks.of(out)));
-                }
+        for (List<Block> blocks: MutandisItem.mutables.values()) {
+            for (Block out: blocks) {
+                registry.add(new MutandisDisplay(EntryStacks.of(blocks.get(0)), EntryStacks.of(out)));
             }
+        }
+        for (Block out: MutandisExtremisItem.extremeMutables) {
+            registry.add(new MutandisDisplay(EntryStacks.of(ModItems.MUTANDIS_EXTREMIS), EntryStacks.of(out)));
+        }
+        for (Block out: MutandisOneirosItem.fullMutables) {
+            registry.add(new MutandisDisplay(EntryStacks.of(ModItems.MUTANDIS_ONEIROS), EntryStacks.of(out)));
         }
 
 

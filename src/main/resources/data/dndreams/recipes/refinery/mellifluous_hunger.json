@@ -1,0 +1,24 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:nightmare_fuel"
+    },
+	{
+      "item": "dndreams:infernal_residue"
+    },
+	{
+      "item": "minecraft:cake"
+    },
+	{
+      "item": "minecraft:rotten_flesh"
+    }
+  ],
+  "result": {
+    "item": "dndreams:mellifluous_hunger",
+    "count": 2
+  },
+  "cost": 250,
+  "refine_time": 300,
+  "dream_only": true
+}

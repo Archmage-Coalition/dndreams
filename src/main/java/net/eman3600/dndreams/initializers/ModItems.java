@@ -70,11 +70,13 @@ public class ModItems {
 
     // Mutandis
     public static final Item MUTANDIS = registerItem("mutandis", new MutandisItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item MUTANDIS_EXTREMIS = registerItem("mutandis_extremis", new MutandisExtremisItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item MUTANDIS_ONEIROS = registerItem("mutandis_oneiros", new MutandisOneirosItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Wood Ash
     public static final Item WOOD_ASH = registerItem("wood_ash", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Amethyst Jars & Fumes
+    // Amethyst Jars, Fumes, & Essences
     public static final Item AMETHYST_JAR = registerItem("amethyst_jar", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item FOUL_FUME = registerItem("foul_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item SAKURA_FUME = registerItem("sakura_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
@@ -84,6 +86,9 @@ public class ModItems {
     public static final Item SELENE_FUME = registerItem("selene_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item HELIOS_FUME = registerItem("helios_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item EOS_FUME = registerItem("eos_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+
+    public static final Item MELLIFLUOUS_HUNGER = registerItem("mellifluous_hunger", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item DISTILLED_SPIRIT = registerItem("distilled_spirit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
     // Water Artichoke Globe
     public static final Item WATER_ARTICHOKE_GLOBE = registerItem("water_artichoke_globe",

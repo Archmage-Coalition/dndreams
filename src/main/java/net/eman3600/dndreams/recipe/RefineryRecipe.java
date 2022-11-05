@@ -3,6 +3,7 @@ package net.eman3600.dndreams.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import net.eman3600.dndreams.initializers.ModDimensions;
 import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.initializers.ModRecipeTypes;
 import net.minecraft.inventory.Inventory;
@@ -22,8 +23,9 @@ public class RefineryRecipe implements Recipe<Inventory> {
     public final DefaultedList<Ingredient> input;
     public final int refineTime;
     public final int powerCost;
+    public final boolean dreamOnly;
 
-    public RefineryRecipe(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input, ItemStack byproduct, int refineTime, int powerCost) {
+    public RefineryRecipe(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input, ItemStack byproduct, int refineTime, int powerCost, boolean dreamOnly) {
         this.id = id;
         this.group = group;
         this.output = output;
@@ -31,6 +33,7 @@ public class RefineryRecipe implements Recipe<Inventory> {
         this.byproduct = byproduct;
         this.refineTime = refineTime;
         this.powerCost = powerCost;
+        this.dreamOnly = dreamOnly;
     }
 
     public Identifier getId() {
@@ -62,8 +65,8 @@ public class RefineryRecipe implements Recipe<Inventory> {
     public int jarsRequired(Inventory inventory) {
         int jars = 0;
 
-        if (output.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars++;
-        if (!byproduct.isEmpty() && byproduct.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars++;
+        if (output.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars += output.getCount();
+        if (!byproduct.isEmpty() && byproduct.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars += byproduct.getCount();
 
         for (int i = 0; i < inventory.size(); i++) {
             if (inventory.getStack(i).getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars--;
@@ -75,8 +78,8 @@ public class RefineryRecipe implements Recipe<Inventory> {
     public int jarsRequired() {
         int jars = 0;
 
-        if (output.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars++;
-        if (!byproduct.isEmpty() && byproduct.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars++;
+        if (output.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars += output.getCount();
+        if (!byproduct.isEmpty() && byproduct.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars += byproduct.getCount();
 
         main: for (Ingredient ingredient : input) {
             ItemStack[] stacks = ingredient.getMatchingStacks();
@@ -95,6 +98,8 @@ public class RefineryRecipe implements Recipe<Inventory> {
 
     @Override
     public boolean matches(Inventory inventory, World world) {
+        if (dreamOnly && world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) return false;
+
         int jars = jarsRequired(inventory);
         int jarsPresent = inventory.getStack(6).isOf(ModItems.AMETHYST_JAR) ? inventory.getStack(6).getCount() : 0;
 
@@ -151,8 +156,9 @@ public class RefineryRecipe implements Recipe<Inventory> {
 
                 int time = JsonHelper.getInt(jsonObject, "refine_time", 200);
                 int cost = Math.max(JsonHelper.getInt(jsonObject, "cost", 100), 25);
+                boolean dream = JsonHelper.getBoolean(jsonObject, "dream_only", false);
 
-                return new RefineryRecipe(identifier, string, itemStack, defaultedList, byproduct, time, cost);
+                return new RefineryRecipe(identifier, string, itemStack, defaultedList, byproduct, time, cost, dream);
             }
         }
 
@@ -182,7 +188,8 @@ public class RefineryRecipe implements Recipe<Inventory> {
             ItemStack byproduct = packetByteBuf.readItemStack();
             int time = packetByteBuf.readInt();
             int cost = packetByteBuf.readInt();
-            return new RefineryRecipe(identifier, string, itemStack, defaultedList, byproduct, time, cost);
+            boolean dream = packetByteBuf.readBoolean();
+            return new RefineryRecipe(identifier, string, itemStack, defaultedList, byproduct, time, cost, dream);
         }
 
         public void write(PacketByteBuf packetByteBuf, RefineryRecipe recipe) {
@@ -197,6 +204,7 @@ public class RefineryRecipe implements Recipe<Inventory> {
             packetByteBuf.writeItemStack(recipe.byproduct);
             packetByteBuf.writeInt(recipe.refineTime);
             packetByteBuf.writeInt(recipe.powerCost);
+            packetByteBuf.writeBoolean(recipe.dreamOnly);
         }
     }
 }

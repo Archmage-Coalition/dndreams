@@ -1,0 +1,25 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:flowing_spirit_bucket"
+    },
+	{
+      "item": "dndreams:mellifluous_hunger"
+    },
+	{
+      "item": "dndreams:dreamwood_fume"
+    }
+  ],
+  "result": {
+    "item": "dndreams:distilled_spirit",
+    "count": 6
+  },
+  "byproduct": {
+    "item": "minecraft:bucket",
+    "count": 1
+  },
+  "cost": 250,
+  "refine_time": 600,
+  "dream_only": true
+}

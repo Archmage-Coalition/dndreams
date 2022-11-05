@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.integration.rei.display;
 
+import com.google.common.collect.ImmutableList;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -11,8 +12,10 @@ import net.eman3600.dndreams.recipe.RefineryRecipe;
 import net.eman3600.dndreams.recipe.TransmutationRecipe;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class RefineryDisplay implements Display {
     private final List<EntryIngredient> input;
@@ -22,12 +25,15 @@ public class RefineryDisplay implements Display {
     public final RefineryRecipe RECIPE;
 
     public RefineryDisplay(RefineryRecipe recipe) {
-        this.input = EntryIngredients.ofIngredients(recipe.getIngredients());
+        List<EntryIngredient> input = new ArrayList<>(EntryIngredients.ofIngredients(recipe.getIngredients()));
+        this.jars = recipe.jarsRequired();
         this.output = Collections.singletonList(EntryIngredients.of(recipe.getOutput()));
         this.byproduct = EntryIngredients.of(recipe.byproduct);
         this.RECIPE = recipe;
 
-        this.jars = recipe.jarsRequired();
+        if (jars > 0) input.add(jars());
+
+        this.input = ImmutableList.copyOf(input);
     }
 
 

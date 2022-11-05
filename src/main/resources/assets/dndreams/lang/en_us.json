@@ -71,6 +71,8 @@
   "item.dndreams.nether_tuner": "Nether Tuner",
   "item.dndreams.end_tuner": "End Tuner",
   "item.dndreams.mutandis": "Mutandis",
+  "item.dndreams.mutandis_extremis": "Mutandis Extremis",
+  "item.dndreams.mutandis_oneiros": "Mutandis Oneiros",
   
   "item.dndreams.amethyst_jar": "Amethyst Jar",
   "item.dndreams.wood_ash": "Wood Ash",
@@ -82,6 +84,9 @@
   "item.dndreams.selene_fume": "Fragrance of Solitude",
   "item.dndreams.eos_fume": "Odour of Equilibrium",
   "item.dndreams.helios_fume": "Hint of Purity",
+  
+  "item.dndreams.mellifluous_hunger": "Mellifluous Hunger",
+  "item.dndreams.distilled_spirit": "Distilled Spirit",
   
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
   "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",
@@ -359,6 +364,7 @@
   "rei.dndreams.mutandis": "Mutation",
   "rei.dndreams.refinery": "Refining",
   "rei.dndreams.refinery.cost": "Cost: %s",
+  "rei.dndreams.refinery.dream_only": "Dream World Only",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"

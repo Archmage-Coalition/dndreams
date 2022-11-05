@@ -76,7 +76,10 @@ public class RefineryCategory implements DisplayCategory<RefineryDisplay> {
 
         widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 1, bounds.getCenterY() + 16)).entries(display.jars()));
 
-        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX() - 29, bounds.getCenterY() + 20), Text.translatable("rei.dndreams.refinery.cost", display.RECIPE.powerCost)).color(0x373737).noShadow());
+        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX() - 29 - 21, bounds.getCenterY() + 20), Text.translatable("rei.dndreams.refinery.cost", display.RECIPE.powerCost)).color(0x373737).noShadow().leftAligned());
+        if (display.RECIPE.dreamOnly) {
+            widgets.add(Widgets.createLabel(new Point(bounds.getCenterX() - 29 - 21, bounds.getCenterY() - 31), Text.translatable("rei.dndreams.refinery.dream_only")).color(0x373737).noShadow().leftAligned());
+        }
 
         return widgets;
     }

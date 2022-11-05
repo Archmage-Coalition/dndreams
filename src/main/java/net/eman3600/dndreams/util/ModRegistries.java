@@ -6,7 +6,9 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.ModAttributes;
 import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
+import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
 import net.eman3600.dndreams.mixin_interfaces.ComposterBlockAccess;
 import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -50,16 +52,68 @@ public class ModRegistries {
     }
 
     private static void registerMutables() {
-        MutandisItem.registerMutable(Blocks.GRASS);
-        MutandisItem.registerMutable(Blocks.OAK_SAPLING);
-        MutandisItem.registerMutable(Blocks.BIRCH_SAPLING);
-        MutandisItem.registerMutable(Blocks.SPRUCE_SAPLING);
-        MutandisItem.registerMutable(Blocks.ACACIA_SAPLING);
-        MutandisItem.registerMutable(Blocks.DARK_OAK_SAPLING);
-        MutandisItem.registerMutable(Blocks.JUNGLE_SAPLING);
-        MutandisItem.registerMutable(Blocks.MANGROVE_PROPAGULE);
-        MutandisItem.registerMutable(ModBlocks.SAKURA_SAPLING);
-        MutandisItem.registerMutable(ModBlocks.JAPANESE_MAPLE_SAPLING);
+        MutandisItem.registerMutable("foliage", Blocks.GRASS);
+        MutandisItem.registerMutable("foliage", Blocks.FERN);
+        MutandisItem.registerMutable("foliage", Blocks.RED_MUSHROOM);
+        MutandisItem.registerMutable("foliage", Blocks.BROWN_MUSHROOM);
+        MutandisItem.registerMutable("foliage", Blocks.DANDELION);
+        MutandisItem.registerMutable("foliage", Blocks.POPPY);
+        MutandisItem.registerMutable("foliage", Blocks.BLUE_ORCHID);
+        MutandisItem.registerMutable("foliage", Blocks.ALLIUM);
+        MutandisItem.registerMutable("foliage", Blocks.AZURE_BLUET);
+        MutandisItem.registerMutable("foliage", Blocks.RED_TULIP);
+        MutandisItem.registerMutable("foliage", Blocks.ORANGE_TULIP);
+        MutandisItem.registerMutable("foliage", Blocks.WHITE_TULIP);
+        MutandisItem.registerMutable("foliage", Blocks.PINK_TULIP);
+        MutandisItem.registerMutable("foliage", Blocks.OXEYE_DAISY);
+        MutandisItem.registerMutable("foliage", Blocks.CORNFLOWER);
+        MutandisItem.registerMutable("foliage", Blocks.LILY_OF_THE_VALLEY);
+
+        MutandisItem.registerMutable("sapling", Blocks.OAK_SAPLING);
+        MutandisItem.registerMutable("sapling", Blocks.BIRCH_SAPLING);
+        MutandisItem.registerMutable("sapling", Blocks.SPRUCE_SAPLING);
+        MutandisItem.registerMutable("sapling", Blocks.ACACIA_SAPLING);
+        MutandisItem.registerMutable("sapling", Blocks.DARK_OAK_SAPLING);
+        MutandisItem.registerMutable("sapling", Blocks.JUNGLE_SAPLING);
+        MutandisItem.registerMutable("sapling", Blocks.MANGROVE_PROPAGULE);
+        MutandisItem.registerMutable("sapling", ModBlocks.SAKURA_SAPLING);
+        MutandisItem.registerMutable("sapling", ModBlocks.JAPANESE_MAPLE_SAPLING);
+
+        MutandisItem.registerMutable("crop", Blocks.WHEAT);
+        MutandisItem.registerMutable("crop", Blocks.CARROTS);
+        MutandisItem.registerMutable("crop", Blocks.POTATOES);
+        MutandisItem.registerMutable("crop", Blocks.BEETROOTS);
+        MutandisItem.registerMutable("crop", Blocks.PUMPKIN_STEM);
+        MutandisItem.registerMutable("crop", Blocks.MELON_STEM);
+        MutandisItem.registerMutable("crop", ModBlocks.SNOWBELL_CROP);
+        MutandisItem.registerMutable("crop", ModBlocks.WATER_ARTICHOKE);
+
+
+        MutandisExtremisItem.registerMutable(ModBlocks.SCULK_WOOD_SAPLING);
+        MutandisExtremisItem.registerMutable(Blocks.SCULK_SENSOR);
+        MutandisExtremisItem.registerMutable(Blocks.SCULK_SHRIEKER);
+        MutandisExtremisItem.registerMutable(Blocks.SCULK_CATALYST);
+
+        MutandisExtremisItem.registerMutable(Blocks.CRIMSON_FUNGUS);
+        MutandisExtremisItem.registerMutable(Blocks.WARPED_FUNGUS);
+        MutandisExtremisItem.registerMutable(Blocks.CRIMSON_ROOTS);
+        MutandisExtremisItem.registerMutable(Blocks.WARPED_ROOTS);
+        MutandisExtremisItem.registerMutable(Blocks.NETHER_SPROUTS);
+        MutandisExtremisItem.registerMutable(Blocks.WITHER_ROSE);
+
+        MutandisExtremisItem.registerMutable(ModBlocks.EOS_GRASS);
+        MutandisExtremisItem.registerMutable(ModBlocks.SELENE_GRASS);
+        MutandisExtremisItem.registerMutable(ModBlocks.HELIOS_GRASS);
+        MutandisExtremisItem.registerMutable(ModBlocks.EOS_SAPLING);
+        MutandisExtremisItem.registerMutable(ModBlocks.SELENE_SAPLING);
+        MutandisExtremisItem.registerMutable(ModBlocks.HELIOS_SAPLING);
+
+        MutandisExtremisItem.registerMutable(Blocks.NETHER_WART);
+        MutandisExtremisItem.registerMutable(Blocks.SUGAR_CANE);
+        MutandisExtremisItem.registerMutable(Blocks.CACTUS);
+
+
+        MutandisOneirosItem.registerMutable(ModBlocks.DREAMWOOD_SAPLING);
     }
 
     private static void registerSculkTransform() {

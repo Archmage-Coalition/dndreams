@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.initializers;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectFunction;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.crop.*;
@@ -8,7 +7,7 @@ import net.eman3600.dndreams.blocks.energy.*;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
 import net.eman3600.dndreams.util.ModFoodComponents;
-import net.eman3600.dndreams.world.feature.tree.*;
+import net.eman3600.dndreams.world.feature.tree.sapling_generator.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -471,7 +470,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block SELENE_SAPLING = registerBlock("selene_sapling",
-            new ModSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.SELENE_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new EndSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.SELENE_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -543,7 +542,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block HELIOS_SAPLING = registerBlock("helios_sapling",
-            new ModSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new EndSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -616,7 +615,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block EOS_SAPLING = registerBlock("eos_sapling",
-            new ModSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.EOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new EndSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.EOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
