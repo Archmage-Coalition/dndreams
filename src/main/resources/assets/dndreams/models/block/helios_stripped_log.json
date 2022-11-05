@@ -1,1 +1,1 @@
-{"parent":"minecraft:block\/cube_column","textures":{"side":"dndreams:block\/helios_stripped_log","end":"dndreams:block\/helios_stripped_log_top"}}
+{"parent":"minecraft:block/cube_column","textures":{"side":"dndreams:block/helios_stripped_log","end":"dndreams:block/helios_stripped_log_top"}}
