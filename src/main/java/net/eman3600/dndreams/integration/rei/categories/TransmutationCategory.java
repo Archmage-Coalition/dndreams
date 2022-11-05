@@ -27,7 +27,7 @@ import java.util.List;
 
 public class TransmutationCategory implements DisplayCategory<TransmutationDisplay> {
     public static final Text TITLE = Text.translatable("rei.dndreams.transmutation");
-    public static final EntryStack<FluidStack> ICON = EntryStacks.of(ModFluids.STILL_FLOWING_SPIRIT);
+    public static final EntryStack<ItemStack> ICON = EntryStacks.of(ModFluids.FLOWING_SPIRIT_BUCKET);
 
     @Override
     public CategoryIdentifier<? extends TransmutationDisplay> getCategoryIdentifier() {

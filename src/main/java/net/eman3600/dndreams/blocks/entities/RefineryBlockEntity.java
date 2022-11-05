@@ -96,14 +96,6 @@ public class RefineryBlockEntity extends BlockEntity implements AbstractPowerRec
         return recipe != null;
     }
 
-    public int getRefineTicks() {
-        return refineTicks;
-    }
-
-    public int getRequiredTicks() {
-        return recipe != null ? recipe.refineTime : 0;
-    }
-
     public RefineryRecipe getRecipe() {
         return recipe;
     }
@@ -169,7 +161,7 @@ public class RefineryBlockEntity extends BlockEntity implements AbstractPowerRec
             recipe = null;
             refineTicks = 0;
             requiredTicks = 0;
-            power = 0;
+            power = Math.min(1, power);
             maxPower = 1;
 
             updateRefiningState();
@@ -188,7 +180,7 @@ public class RefineryBlockEntity extends BlockEntity implements AbstractPowerRec
 
                 if (reset) {
                     refineTicks = 0;
-                    power = 0;
+                    power = Math.min(1, power);
 
                     updateRefiningState();
                 }
@@ -199,7 +191,7 @@ public class RefineryBlockEntity extends BlockEntity implements AbstractPowerRec
                 recipe = null;
                 refineTicks = 0;
                 requiredTicks = 0;
-                power = 0;
+                power = Math.min(1, power);
                 maxPower = 1;
 
                 updateRefiningState();

@@ -21,8 +21,6 @@ public class RefineryScreenHandler extends ScreenHandler {
 
     public RefineryScreenHandler(int syncId, PlayerInventory inventory) {
         this(syncId, inventory, new SimpleInventory(7), new ArrayPropertyDelegate(4));
-
-        System.out.println("Called plain constructor.");
     }
 
     public RefineryScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
@@ -30,8 +28,6 @@ public class RefineryScreenHandler extends ScreenHandler {
         checkSize(inventory, 7);
         this.inventory = inventory;
         this.delegate = delegate;
-
-        System.out.println("Called main constructor.");
 
 
         addSlot(new Slot(inventory, 0, 32, 25));

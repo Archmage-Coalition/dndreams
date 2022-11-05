@@ -9,7 +9,7 @@
       "item": "dndreams:japanese_maple_fume"
     },
 	{
-      "item": "minecraft:blaze_powder"
+      "item": "minecraft:lava_bucket"
     }
   ],
   "result": {
@@ -17,7 +17,9 @@
     "count": 4
   },
   "byproduct": {
-    "item": "minecraft:netherrack",
+    "item": "minecraft:bucket",
     "count": 1
-  }
+  },
+  "cost": 50,
+  "refine_time": 100
 }

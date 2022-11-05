@@ -149,8 +149,8 @@ public class RefineryRecipe implements Recipe<Inventory> {
                 ItemStack itemStack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
                 ItemStack byproduct = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "byproduct", null));
 
-                int time = JsonHelper.getInt(jsonObject, "refine_time", 100);
-                int cost = JsonHelper.getInt(jsonObject, "cost", 100);
+                int time = JsonHelper.getInt(jsonObject, "refine_time", 200);
+                int cost = Math.max(JsonHelper.getInt(jsonObject, "cost", 100), 25);
 
                 return new RefineryRecipe(identifier, string, itemStack, defaultedList, byproduct, time, cost);
             }

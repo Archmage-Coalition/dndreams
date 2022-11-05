@@ -9,13 +9,11 @@ import me.shedaniel.rei.api.common.entry.type.EntryTypeRegistry;
 import me.shedaniel.rei.api.common.registry.ReloadStage;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.initializers.ModFluids;
 import net.eman3600.dndreams.integration.rei.categories.*;
 import net.eman3600.dndreams.integration.rei.display.*;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
-import net.eman3600.dndreams.recipe.SmokestackRecipe;
-import net.eman3600.dndreams.recipe.TransmutationRecipe;
-import net.eman3600.dndreams.recipe.WeavingShapedRecipe;
-import net.eman3600.dndreams.recipe.WeavingShapelessRecipe;
+import net.eman3600.dndreams.recipe.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
@@ -28,6 +26,7 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
     public static final CategoryIdentifier<TransmutationDisplay> TRANSMUTATION = CategoryIdentifier.of(new Identifier(Initializer.MODID, "transmutation"));
     public static final CategoryIdentifier<SmokestackDisplay> SMOKESTACK = CategoryIdentifier.of(new Identifier(Initializer.MODID, "smokestack"));
     public static final CategoryIdentifier<MutandisDisplay> MUTANDIS = CategoryIdentifier.of(new Identifier(Initializer.MODID, "mutandis"));
+    public static final CategoryIdentifier<RefineryDisplay> REFINERY = CategoryIdentifier.of(new Identifier(Initializer.MODID, "refinery"));
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
@@ -36,12 +35,14 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         registry.add(new WeavingShapelessCategory());
         registry.addWorkstations(WEAVING_SHAPELESS, WeavingShapelessCategory.ICON);
         registry.add(new TransmutationCategory());
-        registry.addWorkstations(TRANSMUTATION, TransmutationCategory.ICON);
+        registry.addWorkstations(TRANSMUTATION, EntryStacks.of(ModFluids.STILL_FLOWING_SPIRIT));
         registry.add(new SmokestackCategory());
         registry.addWorkstations(SMOKESTACK, SmokestackCategory.ICON);
         registry.addWorkstations(SMOKESTACK, EntryStacks.of(Blocks.SMOKER));
         registry.add(new MutandisCategory());
         registry.addWorkstations(MUTANDIS, MutandisCategory.ICON);
+        registry.add(new RefineryCategory());
+        registry.addWorkstations(REFINERY, RefineryCategory.ICON);
 
 
 
@@ -59,6 +60,7 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         registry.registerFiller(WeavingShapelessRecipe.class, WeavingShapelessDisplay::new);
         registry.registerFiller(TransmutationRecipe.class, TransmutationDisplay::new);
         registry.registerFiller(SmokestackRecipe.class, SmokestackDisplay::new);
+        registry.registerFiller(RefineryRecipe.class, RefineryDisplay::new);
 
         for (Block in: MutandisItem.mutables) {
             for (Block out: MutandisItem.mutables) {

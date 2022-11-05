@@ -1,0 +1,24 @@
+{
+  "type": "dndreams:refinery",
+  "group": "dndreams:tuner",
+  "ingredients": [
+    {
+      "item": "dndreams:charged_shard"
+    },
+	{
+      "item": "dndreams:sculk_wood_fume"
+    },
+	{
+      "item": "minecraft:blaze_powder"
+    },
+	{
+      "item": "minecraft:nether_wart"
+    }
+  ],
+  "result": {
+    "item": "dndreams:nether_tuner",
+    "count": 1
+  },
+  "refine_time": 600,
+  "cost": 750
+}

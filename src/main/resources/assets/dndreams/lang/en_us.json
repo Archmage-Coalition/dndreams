@@ -358,6 +358,7 @@
   "rei.dndreams.smokestack.smoker": "Burn in Smoker",
   "rei.dndreams.mutandis": "Mutation",
   "rei.dndreams.refinery": "Refining",
+  "rei.dndreams.refinery.cost": "Cost: %s",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"

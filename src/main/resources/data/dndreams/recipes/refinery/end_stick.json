@@ -1,0 +1,25 @@
+{
+  "type": "dndreams:refinery",
+  "group": "dndreams:end_stick",
+  "ingredients": [
+    {
+      "item": "minecraft:end_stone"
+    },
+	{
+      "item": "dndreams:helios_fume"
+    },
+	{
+      "item": "dndreams:liquid_void"
+    }
+  ],
+  "result": {
+    "item": "dndreams:end_stick",
+    "count": 4
+  },
+  "byproduct": {
+    "item": "minecraft:glass_bottle",
+    "count": 1
+  },
+  "cost": 50,
+  "refine_time": 100
+}

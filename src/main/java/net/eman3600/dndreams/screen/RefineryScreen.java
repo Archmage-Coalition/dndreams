@@ -30,8 +30,14 @@ public class RefineryScreen extends HandledScreen<RefineryScreenHandler> {
         if (handler.delegate.get(3) != 0) {
             float progress = (float)handler.delegate.get(2) / handler.delegate.get(3);
 
-            System.out.println("Reached");
             this.drawTexture(matrices, x + 79, y + 34, 176, 14, (int)(24 * progress), 16);
+
+            if (handler.delegate.get(1) > 1) {
+                progress = (float)handler.delegate.get(0) / handler.delegate.get(1);
+                int k = (int)(13 * progress);
+
+                this.drawTexture(matrices, x + 10, y + 47 - k, 176, 13 - k, 14, k + 1);
+            }
         }
     }
 
