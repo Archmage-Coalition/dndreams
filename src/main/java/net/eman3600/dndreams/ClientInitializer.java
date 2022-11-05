@@ -7,6 +7,7 @@ import net.eman3600.dndreams.entities.renderers.WardenRagdollEntityRenderer;
 import net.eman3600.dndreams.initializers.*;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.screen.AttunementScreen;
+import net.eman3600.dndreams.screen.RefineryScreen;
 import net.eman3600.dndreams.screen.SmokestackScreen;
 import net.eman3600.dndreams.screen.WeavingScreen;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
@@ -30,6 +31,7 @@ ClientInitializer implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlerTypes.WEAVING, WeavingScreen::new);
         HandledScreens.register(ModScreenHandlerTypes.ATTUNEMENT, AttunementScreen::new);
         HandledScreens.register(ModScreenHandlerTypes.SMOKESTACK, SmokestackScreen::new);
+        HandledScreens.register(ModScreenHandlerTypes.REFINERY, RefineryScreen::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DREAMWOOD_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SAKURA_LEAVES, RenderLayer.getCutout());

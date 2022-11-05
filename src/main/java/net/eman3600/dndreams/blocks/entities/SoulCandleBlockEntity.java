@@ -1,21 +1,17 @@
 package net.eman3600.dndreams.blocks.entities;
 
-import net.eman3600.dndreams.blocks.energy.AttunementChamberBlock;
 import net.eman3600.dndreams.initializers.ModBlockEntities;
-import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModRecipeTypes;
 import net.eman3600.dndreams.items.WaystoneItem;
-import net.eman3600.dndreams.items.charge.AbstractChargeItem;
+import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
 import net.eman3600.dndreams.recipe.RitualRecipe;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual.CandleTuning;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual.Ring;
 import net.eman3600.dndreams.rituals.setup.AbstractSustainedRitual;
 import net.eman3600.dndreams.rituals.setup.RitualRegistry;
-import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
@@ -23,7 +19,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -55,6 +50,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
     private final Box playerReach = new Box(-5, -1, -5, 5, 1, 5).offset(pos);
 
     private int ticks = 0;
+    private int ticksPowerless = 0;
 
     private boolean casting = false;
     private boolean sustained = false;
@@ -90,6 +86,10 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
                                 if (!ring.tuning().matches(world, candlePos, false)) world.spawnParticles(ring.tuning().particle(), vec.x, vec.y, vec.z, 5, 0.1d, 0.1d, .1d, 0);
                             }
                         }
+
+                        for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, playerReach)) {
+                            player.sendMessage(Text.translatable("ritual.dndreams.error.rings"), true);
+                        }
                     } else {
                         for (List<BlockPos> offsets: new List[] {Ring.INNER_RING, Ring.MIDDLE_RING, Ring.OUTER_RING}) {
                             for (BlockPos offset: offsets) {
@@ -99,23 +99,33 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
                                 if (!CandleTuning.NONE.matches(world, candlePos, false)) world.spawnParticles(CandleTuning.NONE.particle(), vec.x, vec.y, vec.z, 5, 0.1d, 0.1d, .1d, 0);
                             }
                         }
-                    }
 
-                    for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, playerReach)) {
-                        player.sendMessage(Text.translatable("ritual.dndreams.error.unknown"), true);
+                        for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, playerReach)) {
+                            player.sendMessage(Text.translatable("ritual.dndreams.error.unknown"), true);
+                        }
                     }
                     deactivate(true);
                 }
 
             } else if (casting) {
 
+
                 if (!ringsMatch(false)) {
                     failRitual();
                     break lit;
                 }
 
-                if (ringsMatch(true) && power >= getMaxPower()) {
+                if (power >= getMaxPower()) {
                     if (ticks++ > 60) castRitual(world);
+                } else {
+                    ticksPowerless++;
+
+                    if (ticksPowerless > 5) {
+                        for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, playerReach)) {
+                            player.sendMessage(Text.translatable("ritual.dndreams.error.powerless"), true);
+                        }
+                        failRitual();
+                    }
                 }
 
             } else if (ritual instanceof AbstractSustainedRitual susRite) {
@@ -125,7 +135,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
                 if (ticks++ >= 20) {
                     ticks = 0;
 
-                    if (!usePower(susRite.getSustainedCost())) {
+                    if (!usePower(susRite.getSustainedCost()) || !ringsMatch(true)) {
                         endRitual(world);
                     }
                 }
@@ -154,6 +164,8 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
             return false;
         }
         power = Math.min(getMaxPower(), power + amount);
+
+        ticksPowerless = 0;
         return true;
     }
 
@@ -241,19 +253,49 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
             ticks = 0;
 
             boundPos = pos;
+
+            world.setBlockState(pos, getCachedState().with(LIT, false));
         }
     }
 
+    public void scatterRemains(ServerWorld world) {
+        List<ItemStack> remains = new ArrayList<>();
+
+        for (ItemStack stack: items) {
+            if (stack.getItem() instanceof RitualRemainItem item) {
+                remains.add(item.getRitualRemains(ritual, this, stack));
+            } else if (stack.getItem().hasRecipeRemainder()) {
+                assert stack.getItem().getRecipeRemainder() != null;
+                remains.add(stack.getItem().getRecipeRemainder().getDefaultStack());
+            }
+        }
+
+        DefaultedList<ItemStack> finalList = DefaultedList.copyOf(ItemStack.EMPTY, remains.toArray(new ItemStack[0]));
+
+        ItemScatterer.spawn(world, pos, finalList);
+        clearItems();
+    }
+
     private void castRitual(ServerWorld world) {
-        ritual.onCast(world, boundPos, this);
+        boolean bl = ritual.onCast(world, boundPos, this);
+
+        if (!bl) {
+            world.setBlockState(pos, getCachedState().with(LIT, false));
+            deactivate(false);
+            for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, playerReach)) {
+                player.sendMessage(Text.translatable("ritual.dndreams.error.improper"), true);
+            }
+            return;
+        }
+
         casting = false;
         ticks = 0;
 
-        if (ritual instanceof AbstractSustainedRitual susRite) {
+        if (ritual instanceof AbstractSustainedRitual) {
             sustained = true;
         } else {
             ritual = null;
-            clearItems();
+            scatterRemains(world);
 
             world.setBlockState(pos, getCachedState().with(LIT, false));
         }
@@ -285,6 +327,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
         casting = true;
         ticks = 0;
+        ticksPowerless = -30;
 
         for (Ring ring: ritual.getRings()) {
             for (BlockPos offset: ring.ringOffsets()) {
@@ -298,6 +341,8 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
     public void endRitual(ServerWorld world) {
         if (sustained && ritual instanceof AbstractSustainedRitual susRite) {
             susRite.onCease(world, boundPos, this);
+
+            scatterRemains(world);
         }
 
         ritual = null;
@@ -305,6 +350,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         casting = false;
         power = 0;
         ticks = 0;
+        ticksPowerless = 0;
         boundPos = pos;
         clearItems();
     }
@@ -322,6 +368,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         nbt.putInt("power", power);
         Inventories.writeNbt(nbt, items);
         nbt.putInt("ticks", ticks);
+        nbt.putInt("ticks_powerless", ticksPowerless);
 
         try {
             nbt.putString("ritual", RitualRegistry.REGISTRY.getId(ritual).toString());
@@ -340,6 +387,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         power = nbt.getInt("power");
         Inventories.readNbt(nbt, items);
         ticks = nbt.getInt("ticks");
+        ticksPowerless = nbt.getInt("ticks_powerless");
 
         ritual = RitualRegistry.REGISTRY.get(Identifier.tryParse(nbt.getString("ritual")));
 

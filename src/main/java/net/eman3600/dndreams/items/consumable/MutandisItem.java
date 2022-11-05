@@ -23,6 +23,7 @@ public class MutandisItem extends Item {
     }
 
     public static void registerMutable(Block block) {
+        if (mutables.contains(block)) return;
         mutables.add(block);
     }
 

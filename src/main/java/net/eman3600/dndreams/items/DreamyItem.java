@@ -20,8 +20,8 @@ public class DreamyItem extends Item {
         dreamTooltip(world, tooltip);
     }
 
-    public static void dreamTooltip(World world, List<Text> tooltip) {
-        if (world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY) return;
+    public static void dreamTooltip(@Nullable World world, List<Text> tooltip) {
+        if (world != null && world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY) return;
         tooltip.add(Text.translatable("tooltip.dndreams.dream_origin"));
         tooltip.add(Text.translatable("tooltip.dndreams.dream_origin_2"));
     }

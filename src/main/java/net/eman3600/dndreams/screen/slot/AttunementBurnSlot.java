@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.eman3600.dndreams.initializers.ModFluids;
 import net.eman3600.dndreams.initializers.ModItems;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -32,5 +33,9 @@ public class AttunementBurnSlot extends Slot {
         ITEM_TO_ENERGY.put(ModItems.DREAM_POWDER, 25);
         ITEM_TO_ENERGY.put(ModItems.INFERNAL_RESIDUE, 20);
         ITEM_TO_ENERGY.put(ModItems.NIGHTMARE_FUEL, 40);
+    }
+
+    public static void putFuel(Item item, int energy) {
+        ITEM_TO_ENERGY.put(item, energy);
     }
 }

@@ -18,6 +18,8 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
     TORMITE(4, 128, 12.0F, 4.0F, 22,
             () -> Ingredient.ofItems(ModItems.TORMITE_INGOT)),
+    SLUMBERING_EDGE(4, 625, 12.0F, 1.0F, 10,
+            () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
     CROWNED_EDGE(4, 2500, 12.0F, 3.0F, 18,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
     LAMENT(4, 5000, 12.0F, 3.0F, 18,

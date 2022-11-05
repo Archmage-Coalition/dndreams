@@ -1,0 +1,22 @@
+{
+  "type": "dndreams:ritual",
+  "ingredients": [
+    {
+      "item": "dndreams:dream_powder"
+    },
+	{
+      "item": "dndreams:dreamwood_fume"
+    },
+	{
+      "item": "dndreams:eos_fume"
+    },
+	{
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "result": {
+    "item": "minecraft:budding_amethyst",
+    "count": 1
+  },
+  "ritual": "dndreams:amethyst_sprout"
+}

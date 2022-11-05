@@ -7,9 +7,7 @@ import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.creative.InfusionChangerItem;
-import net.eman3600.dndreams.items.magic_sword.CorruptSword;
-import net.eman3600.dndreams.items.magic_sword.CrownedEdgeItem;
-import net.eman3600.dndreams.items.magic_sword.TrueCrownedEdgeItem;
+import net.eman3600.dndreams.items.magic_sword.*;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
@@ -219,9 +217,13 @@ public class ModItems {
             new Excalibur(ModToolMaterials.ARTIFACT, 1, -2.6F,
             new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
+    // Shattered Sword
+    public static final Item SHATTERED_SWORD = registerItem("shattered_sword",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).rarity(Rarity.UNCOMMON).fireproof()));
+
     // Slumbering Sword
     public static final Item SLUMBERING_SWORD = registerItem("slumbering_sword",
-            new SwordItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F,
+            new SlumberingSwordItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON).fireproof()));
 
     // Crowned Edge

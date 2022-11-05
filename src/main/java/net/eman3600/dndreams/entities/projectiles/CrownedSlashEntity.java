@@ -131,7 +131,7 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
                                 livingEntity.timeUntilRegen = 1;
 
                                 livingEntity.takeKnockback(0.4f, MathHelper.sin(getOwner().getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getOwner().getYaw() * ((float) Math.PI / 180)));
-                                livingEntity.damage(DamageSource.magic(getOwner(), getOwner()), (float) this.getDamage());
+                                livingEntity.damage(DamageSource.magic(this, getOwner()), (float) this.getDamage());
                                 if (wicked) livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 80, 1), getOwner());
                             }
                         }

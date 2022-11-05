@@ -759,6 +759,13 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
+    // Refinery
+    public static final Block REFINERY = registerBlock("refinery",
+            new RefineryBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 6.0f)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
 
     // Ritual Candles
     public static final Block ECHO_CANDLE = registerBlock("echo_candle",

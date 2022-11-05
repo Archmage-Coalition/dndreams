@@ -1,10 +1,8 @@
 package net.eman3600.dndreams.screen;
 
 import net.eman3600.dndreams.initializers.ModScreenHandlerTypes;
-import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
-import net.eman3600.dndreams.screen.slot.AttunementSlot;
 import net.eman3600.dndreams.screen.slot.JarSlot;
-import net.eman3600.dndreams.screen.slot.SmokestackOutputSlot;
+import net.eman3600.dndreams.screen.slot.GenericOutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -27,7 +25,7 @@ public class SmokestackScreenHandler extends ScreenHandler {
 
 
         addSlot(new JarSlot(inventory, 0, 53, 36));
-        addSlot(new SmokestackOutputSlot(inventory, 1, 113, 36));
+        addSlot(new GenericOutputSlot(inventory, 1, 113, 36));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -48,11 +46,7 @@ public class SmokestackScreenHandler extends ScreenHandler {
                 if (!this.insertItem(itemStack2, 2, 38, true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.slots.get(0).hasStack() && this.slots.get(0).canInsert(itemStack2)) {
-                ItemStack itemStack3 = itemStack2.copy();
-                itemStack2.decrement(itemStack3.getCount());
-                this.slots.get(0).setStack(itemStack3);
-            } else {
+            } else if (!this.slots.get(0).canInsert(itemStack2) || !this.insertItem(itemStack2, 0, 1, false)) {
                 return ItemStack.EMPTY;
             }
             if (itemStack2.isEmpty()) {

@@ -16,11 +16,6 @@ public abstract class AbstractSustainedRitual extends AbstractRitual {
         this.sustainedCost = sustainedCost;
     }
 
-    @Override
-    public boolean isSustained() {
-        return true;
-    }
-
     public int getSustainedCost() {
         return sustainedCost;
     }

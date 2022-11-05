@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 import static net.eman3600.dndreams.blocks.energy.RitualCandleBlock.LIT;
 
 public class EchoCandleBlockEntity extends BlockEntity implements AbstractPowerReceiver {
-    private int power = 0;
     private SoulCandleBlockEntity entity = null;
     private BlockPos linkPos = pos;
 
@@ -28,52 +27,43 @@ public class EchoCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
     @Override
     public boolean addPower(int amount) {
-        if (power >= getMaxPower()) {
-            power = getMaxPower();
-            return false;
-        }
-        power = Math.min(getMaxPower(), power + amount);
-        return true;
+        return entity != null && entity.addPower(amount);
     }
 
     @Override
     public void setPower(int amount) {
-        power = MathHelper.clamp(amount, 0, getMaxPower());
+        if (entity == null) return;
+        entity.setPower(amount);
     }
 
     @Override
     public int getPower() {
-        return power;
+        return entity != null ? entity.getPower() : 0;
     }
 
     @Override
     public int getMaxPower() {
-        return 10;
+        return entity != null ? entity.getMaxPower() : 0;
     }
 
     @Override
     public boolean usePower(int amount) {
-        if (canAfford(amount)) {
-            power -= amount;
-            return true;
-        }
-        return false;
+        return entity != null && entity.usePower(amount);
     }
 
     @Override
     public boolean needsPower() {
-        return (getPower() < getMaxPower()) && entity != null && entity.isCasting();
+        return entity != null && entity.isCasting() && entity.needsPower();
     }
 
     @Override
     public int powerRequest() {
-        return 2;
+        return 1;
     }
 
     public void extinguish(ServerWorld world) {
         linkPos = pos;
         entity = null;
-        power = 0;
 
         for (ServerPlayerEntity player: world.getPlayers()) {
             world.playSound(player, pos, SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1, 1);
@@ -94,9 +84,9 @@ public class EchoCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
     private void tick(ServerWorld world) {
 
-        if (power >= getMaxPower() && entity != null && entity.isCasting() && world.getBlockEntity(linkPos) == entity) {
+        if (entity != null && (entity.isCasting() || entity.isSustained()) && world.getBlockEntity(linkPos) == entity) {
             if (!getCachedState().get(LIT)) world.setBlockState(pos, getCachedState().with(LIT, true));
-        } else if (getCachedState().get(LIT) || (entity != null && !entity.isCasting())) {
+        } else if (getCachedState().get(LIT) || (entity != null && !entity.isCasting() && !entity.isSustained())) {
             extinguish(world);
         }
     }
@@ -108,7 +98,6 @@ public class EchoCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
-        nbt.putInt("power", power);
         nbt.putInt("linkX", linkPos.getX());
         nbt.putInt("linkY", linkPos.getY());
         nbt.putInt("linkZ", linkPos.getZ());
@@ -116,8 +105,6 @@ public class EchoCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
     @Override
     public void readNbt(NbtCompound nbt) {
-        power = nbt.getInt("power");
-
         BlockPos test = new BlockPos(nbt.getInt("linkX"),nbt.getInt("linkY"),nbt.getInt("linkZ"));
 
         if (world != null && world.getBlockEntity(test) instanceof SoulCandleBlockEntity e) {

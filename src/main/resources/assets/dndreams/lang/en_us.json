@@ -28,6 +28,7 @@
   "item.dndreams.celestium_axe": "Celestium Axe",
   
   "item.dndreams.excalibur": "Excalibur",
+  "item.dndreams.shattered_sword": "Shattered Sword",
   "item.dndreams.slumbering_sword": "Slumbering Sword",
   "item.dndreams.crowned_edge": "Crowned Edge",
   "item.dndreams.true_crowned_edge": "True Crowned Edge",
@@ -127,6 +128,7 @@
   "effect.dndreams.restricted": "Restricted",
   "effect.dndreams.spotted": "Echolocated",
   "effect.dndreams.aether": "Starstruck",
+  "effect.dndreams.affliction": "Affliction",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",
@@ -312,9 +314,17 @@
   "block.dndreams.cosmic_fountain_pole": "Cosmic Pillar",
   "block.dndreams.attunement_chamber": "Attunement Chamber",
   "block.dndreams.smokestack": "Smokestack",
+  "block.dndreams.refinery": "Refinery",
   
   "ritual.dndreams.error.unknown": "Unknown Rite",
-  "ritual.dndreams.error.rings": "Incorrect Candle Rings",
+  "ritual.dndreams.error.improper": "Improper Casting Conditions",
+  "ritual.dndreams.error.rings": "Improper Candle Rings",
+  "ritual.dndreams.error.powerless": "Not Enough Power",
+  
+  "ritual.dndreams.waystone": "Bind Waystone",
+  "ritual.dndreams.waystone_simple": "Rebind Waystone",
+  "ritual.dndreams.amethyst_source": "Bud Amethyst",
+  "ritual.dndreams.amethyst_sprout": "Sprout Amethyst",
   
   "block.dndreams.flowing_spirit": "Flowing Spirit",
   "block.dndreams.flowing_flowing_spirit": "Flowing Spirit",
@@ -323,6 +333,7 @@
   "container.dndreams.dream_table": "Dream Weaving",
   "container.dndreams.attunement_chamber": "Attunement",
   "container.dndreams.smokestack": "Fume Collection",
+  "container.dndreams.refinery": "Refining",
   
   
   "entity.dndreams.crowned_slash": "Crowned Slash",
@@ -346,6 +357,7 @@
   "rei.dndreams.smokestack": "Fume Collection",
   "rei.dndreams.smokestack.smoker": "Burn in Smoker",
   "rei.dndreams.mutandis": "Mutation",
+  "rei.dndreams.refinery": "Refining",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"

@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.screen.AttunementScreenHandler;
+import net.eman3600.dndreams.screen.RefineryScreenHandler;
 import net.eman3600.dndreams.screen.SmokestackScreenHandler;
 import net.eman3600.dndreams.screen.WeavingScreenHandler;
 import net.minecraft.screen.ScreenHandler;
@@ -13,6 +14,7 @@ public class ModScreenHandlerTypes {
     public static final ScreenHandlerType<WeavingScreenHandler> WEAVING = register("weaving", WeavingScreenHandler::new);
     public static final ScreenHandlerType<AttunementScreenHandler> ATTUNEMENT = register("attunement", AttunementScreenHandler::new);
     public static final ScreenHandlerType<SmokestackScreenHandler> SMOKESTACK = register("smokestack", SmokestackScreenHandler::new);
+    public static final ScreenHandlerType<RefineryScreenHandler> REFINERY = register("refinery",RefineryScreenHandler::new);
 
     private static <T extends ScreenHandler> ScreenHandlerType<T> register(String id, ScreenHandlerType.Factory<T> factory) {
         return Registry.register(Registry.SCREEN_HANDLER, new Identifier(Initializer.MODID, id), new ScreenHandlerType<>(factory));

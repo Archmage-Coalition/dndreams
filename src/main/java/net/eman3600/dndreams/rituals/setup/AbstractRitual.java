@@ -7,7 +7,9 @@ import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 
@@ -49,13 +51,16 @@ public abstract class AbstractRitual {
         return true;
     }
 
-    public boolean isSustained() {
-        return false;
+    public String getTranslationKey() {
+        return Util.createTranslationKey("ritual", RitualRegistry.REGISTRY.getId(this));
     }
 
 
-
-    public abstract void onCast(World world, BlockPos pos, SoulCandleBlockEntity blockEntity);
+    /**
+     * Called when the ritual is cast by the Soul Candle.
+     * @return Whether the casting succeeded and should consume the materials.
+     * */
+    public abstract boolean onCast(World world, BlockPos pos, SoulCandleBlockEntity blockEntity);
 
 
     public static class Ring {

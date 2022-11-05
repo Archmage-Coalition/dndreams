@@ -2,13 +2,22 @@
   "type": "dndreams:ritual",
   "ingredients": [
     {
-      "item": "minecraft:echo_shard"
+      "item": "dndreams:sculk_powder"
     },
 	{
-      "item": "minecraft:amethyst_block"
+      "item": "dndreams:dreamwood_fume"
     },
 	{
-      "item": "dndreams:sakura_sapling"
+      "item": "dndreams:helios_fume"
+    },
+	{
+      "item": "dndreams:eos_fume"
+    },
+	{
+      "item": "minecraft:egg"
+    },
+	{
+      "item": "minecraft:amethyst_shard"
     }
   ],
   "result": {

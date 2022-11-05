@@ -1,0 +1,23 @@
+{
+  "type": "dndreams:refinery",
+  "group": "dndreams:obsidian_stick",
+  "ingredients": [
+    {
+      "item": "minecraft:obsidian"
+    },
+	{
+      "item": "dndreams:japanese_maple_fume"
+    },
+	{
+      "item": "minecraft:blaze_powder"
+    }
+  ],
+  "result": {
+    "item": "dndreams:obsidian_stick",
+    "count": 4
+  },
+  "byproduct": {
+    "item": "minecraft:netherrack",
+    "count": 1
+  }
+}

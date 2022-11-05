@@ -8,6 +8,7 @@ import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.mixin_interfaces.ComposterBlockAccess;
+import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -16,6 +17,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Items;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
 
@@ -30,8 +32,21 @@ public class ModRegistries {
         registerFlammableBlocks();
         registerStrippables();
         registerCompostables();
-        registerAttributes();
         registerMutables();
+        registerEnergyFuels();
+    }
+
+    public static void registerEnergyFuels() {
+        AttunementBurnSlot.putFuel(Items.REDSTONE, 5);
+        AttunementBurnSlot.putFuel(Items.GLOWSTONE_DUST, 8);
+        AttunementBurnSlot.putFuel(Items.SUGAR, 2);
+        AttunementBurnSlot.putFuel(Items.GUNPOWDER, 5);
+
+        AttunementBurnSlot.putFuel(ModItems.SCULK_POWDER, 25);
+        AttunementBurnSlot.putFuel(ModItems.DREAM_POWDER, 25);
+        AttunementBurnSlot.putFuel(ModItems.INFERNAL_RESIDUE, 20);
+        AttunementBurnSlot.putFuel(ModItems.NIGHTMARE_FUEL, 40);
+        AttunementBurnSlot.putFuel(ModItems.WOOD_ASH, 5);
     }
 
     private static void registerMutables() {
@@ -159,7 +174,4 @@ public class ModRegistries {
         access.registerCompostable(.65f, ModBlocks.SCULK_WOOD_SAPLING);
     }
 
-    private static void registerAttributes() {
-
-    }
 }

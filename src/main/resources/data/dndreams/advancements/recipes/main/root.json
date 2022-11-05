@@ -1,0 +1,37 @@
+{
+  "criteria": {
+    "book": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "dndreams:book_of_dreams"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "dndreams:textures/gui/advancements/sculk.png",
+    "description": {
+      "translate": "advancements.dndreams.main.root.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "dndreams:book_of_dreams"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.dndreams.main.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "book"
+    ]
+  ]
+}

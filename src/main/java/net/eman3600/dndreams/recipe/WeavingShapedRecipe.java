@@ -261,6 +261,8 @@ public class WeavingShapedRecipe implements WeavingRecipe {
     }
 
     public static ItemStack outputFromJson(JsonObject json) {
+        if (json == null) return ItemStack.EMPTY;
+
         Item item = getItem(json);
         if (json.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
@@ -314,11 +316,12 @@ public class WeavingShapedRecipe implements WeavingRecipe {
             int j = packetByteBuf.readVarInt();
             String string = packetByteBuf.readString();
             DefaultedList<Ingredient> defaultedList = DefaultedList.ofSize(i * j, Ingredient.EMPTY);
-            Ingredient extra_input = Ingredient.EMPTY;
 
             for(int k = 0; k < defaultedList.size(); ++k) {
                 defaultedList.set(k, Ingredient.fromPacket(packetByteBuf));
             }
+
+            Ingredient extra_input = Ingredient.fromPacket(packetByteBuf);
 
             ItemStack itemStack = packetByteBuf.readItemStack();
             return new WeavingShapedRecipe(identifier, string, i, j, defaultedList, extra_input, itemStack);
@@ -328,13 +331,12 @@ public class WeavingShapedRecipe implements WeavingRecipe {
             packetByteBuf.writeVarInt(shapedRecipe.width);
             packetByteBuf.writeVarInt(shapedRecipe.height);
             packetByteBuf.writeString(shapedRecipe.group);
-            Iterator var3 = shapedRecipe.input.iterator();
 
-            while(var3.hasNext()) {
-                Ingredient ingredient = (Ingredient)var3.next();
+            for (Ingredient ingredient : shapedRecipe.input) {
                 ingredient.write(packetByteBuf);
             }
 
+            shapedRecipe.weave_input.write(packetByteBuf);
             packetByteBuf.writeItemStack(shapedRecipe.output);
         }
     }

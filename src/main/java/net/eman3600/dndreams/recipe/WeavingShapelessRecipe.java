@@ -144,7 +144,7 @@ public class WeavingShapelessRecipe implements WeavingRecipe {
                 defaultedList.set(j, Ingredient.fromPacket(packetByteBuf));
             }
 
-            Ingredient extra_input = Ingredient.EMPTY;
+            Ingredient extra_input = Ingredient.fromPacket(packetByteBuf);
 
             ItemStack itemStack = packetByteBuf.readItemStack();
             return new WeavingShapelessRecipe(identifier, string, itemStack, defaultedList, extra_input);
@@ -153,13 +153,12 @@ public class WeavingShapelessRecipe implements WeavingRecipe {
         public void write(PacketByteBuf packetByteBuf, WeavingShapelessRecipe shapelessRecipe) {
             packetByteBuf.writeString(shapelessRecipe.group);
             packetByteBuf.writeVarInt(shapelessRecipe.input.size());
-            Iterator var3 = shapelessRecipe.input.iterator();
 
-            while(var3.hasNext()) {
-                Ingredient ingredient = (Ingredient)var3.next();
+            for (Ingredient ingredient : shapelessRecipe.input) {
                 ingredient.write(packetByteBuf);
             }
 
+            shapelessRecipe.weave_input.write(packetByteBuf);
             packetByteBuf.writeItemStack(shapelessRecipe.output);
         }
     }

@@ -19,7 +19,7 @@ public class WaystoneRitual extends AbstractRitual {
     }
 
     @Override
-    public void onCast(World world, BlockPos pos, SoulCandleBlockEntity blockEntity) {
+    public boolean onCast(World world, BlockPos pos, SoulCandleBlockEntity blockEntity) {
         Vec3d vec = Vec3d.ofCenter(pos);
 
         ItemStack stack = WaystoneItem.boundAt(pos);
@@ -33,5 +33,7 @@ public class WaystoneRitual extends AbstractRitual {
         ItemEntity entity = new ItemEntity(world, vec.x, vec.y + 1, vec.z, stack);
 
         world.spawnEntity(entity);
+
+        return true;
     }
 }

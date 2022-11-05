@@ -9,6 +9,7 @@ import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -53,6 +54,19 @@ public abstract class SculkVeinBlockMixin extends MultifaceGrowthBlock implement
         }
     }
 
+    @Mixin(targets = "net.minecraft.block.SculkVeinBlock$SculkVeinGrowChecker")
+    private abstract static class SculkVeinGrowCheckerMixin {
+        @Inject(method = "canGrow(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;Lnet/minecraft/block/BlockState;)Z", at = @At("HEAD"), cancellable = true)
+        private void dndreams$canGrow(BlockView world, BlockPos pos, BlockPos growPos, Direction direction, BlockState state, CallbackInfoReturnable<Boolean> cir) {
+            List<TagKey<Block>> tags = state.streamTags().toList();
 
+            for (TagKey<Block> tag: tags) {
+                if (ModRegistries.SCULK_TRANSFORM.containsKey(tag)) {
+                    cir.setReturnValue(false);
+                    break;
+                }
+            }
+        }
+    }
 
 }

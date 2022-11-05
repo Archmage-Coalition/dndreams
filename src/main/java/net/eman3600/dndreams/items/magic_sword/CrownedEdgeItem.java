@@ -1,15 +1,12 @@
 package net.eman3600.dndreams.items.magic_sword;
 
 import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
-import net.eman3600.dndreams.initializers.ModEnchantments;
+import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.items.enchantments.AliasedEnchantment;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;

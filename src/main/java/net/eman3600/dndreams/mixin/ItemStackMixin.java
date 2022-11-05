@@ -4,11 +4,13 @@ import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
+import net.eman3600.dndreams.items.interfaces.UnbreakableItem;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.UnbreakingEnchantment;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -26,12 +28,20 @@ public abstract class ItemStackMixin {
     @Shadow
     public abstract boolean isDamageable();
 
+    @Shadow public abstract Item getItem();
+
     @Unique
     private static final float POWER_DIVISOR = 20f;
 
     @Inject(at = @At("HEAD"), cancellable = true, method = "damage(ILnet/minecraft/util/math/random/Random;Lnet/minecraft/server/network/ServerPlayerEntity;)Z")
-    public void injectDamage(int amount, Random random, ServerPlayerEntity player, CallbackInfoReturnable<Boolean> info) {
+    public void dndreams$damage$boolean(int amount, Random random, ServerPlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         ItemStack stack = (ItemStack)(Object)this;
+
+        if (stack.getItem() instanceof UnbreakableItem) {
+            cir.setReturnValue(false);
+            return;
+        }
+
         if (isDamageable() && stack.isIn(ModTags.POWER_USING_TOOLS)) {
             InfusionComponent infusion = EntityComponents.INFUSION.get(player);
             if (infusion.getPower() >= amount / POWER_DIVISOR) {
@@ -50,7 +60,7 @@ public abstract class ItemStackMixin {
                     }
                 }
 
-                info.setReturnValue(false);
+                cir.setReturnValue(false);
                 return;
             }
         }
@@ -72,7 +82,7 @@ public abstract class ItemStackMixin {
                     }
                 }
 
-                info.setReturnValue(false);
+                cir.setReturnValue(false);
             }
         }
     }
