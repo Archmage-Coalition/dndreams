@@ -2,7 +2,7 @@
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
     "bottom": "minecraft:block/deepslate_top",
-    "side": "dndreams:block/attunement_chamber_on",
-    "top": "dndreams:block/attunement_chamber_top"
+    "side": "dndreams:block/attunement_chamber_filled_on",
+    "top": "dndreams:block/attunement_chamber_top_filled"
   }
 }

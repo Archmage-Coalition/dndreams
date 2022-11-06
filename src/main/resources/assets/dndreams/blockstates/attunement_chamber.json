@@ -1,34 +1,16 @@
 {
   "variants": {
-    "facing=east,powered=false": {
-      "model": "dndreams:block/attunement_chamber",
-      "y": 90
-    },
-    "facing=east,powered=true": {
-      "model": "dndreams:block/attunement_chamber_on",
-      "y": 90
-    },
-    "facing=north,powered=false": {
+    "filled=false,powered=false": {
       "model": "dndreams:block/attunement_chamber"
     },
-    "facing=north,powered=true": {
+    "filled=true,powered=false": {
+      "model": "dndreams:block/attunement_chamber_filled"
+    },
+    "filled=false,powered=true": {
       "model": "dndreams:block/attunement_chamber_on"
     },
-    "facing=south,powered=false": {
-      "model": "dndreams:block/attunement_chamber",
-      "y": 180
-    },
-    "facing=south,powered=true": {
-      "model": "dndreams:block/attunement_chamber_on",
-      "y": 180
-    },
-    "facing=west,powered=false": {
-      "model": "dndreams:block/attunement_chamber",
-      "y": 270
-    },
-    "facing=west,powered=true": {
-      "model": "dndreams:block/attunement_chamber_on",
-      "y": 270
+    "filled=true,powered=true": {
+      "model": "dndreams:block/attunement_chamber_filled_on"
     }
   }
 }

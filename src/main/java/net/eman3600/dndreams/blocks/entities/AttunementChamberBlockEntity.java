@@ -154,6 +154,17 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
     }
 
     private void tick(ServerWorld world) {
+        ItemStack amethyst = inventory.get(0);
+
+        if(getCachedState().get(AttunementChamberBlock.FILLED) && amethyst.isEmpty())
+        {
+            world.setBlockState(pos, getCachedState().with(AttunementChamberBlock.FILLED, false));
+        }
+        else if(!getCachedState().get(AttunementChamberBlock.FILLED) && !amethyst.isEmpty())
+        {
+            world.setBlockState(pos, getCachedState().with(AttunementChamberBlock.FILLED, true));
+        }
+
         ItemStack burn = inventory.get(1);
 
         if (getPower() < getMaxPower() && cooldownTicks <= 0 && AttunementBurnSlot.ITEM_TO_ENERGY.containsKey(burn.getItem())) {
