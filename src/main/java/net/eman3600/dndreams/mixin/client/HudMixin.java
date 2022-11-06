@@ -192,7 +192,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
         int tormentV;
 
-        if (EntityComponents.TORMENT.get(player).isTormentForced()) {
+        if (EntityComponents.TORMENT.get(player).isRushed()) {
             tormentV = 26;
         } else {
             tormentV = 13;

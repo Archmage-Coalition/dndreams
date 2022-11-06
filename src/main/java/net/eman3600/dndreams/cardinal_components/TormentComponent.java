@@ -26,31 +26,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public float getTorment() {
-        if (isTormentForced()) {
-            return getForcedTorment();
-        }
-
         return torment;
-    }
-
-    @Override
-    public float getTrueTorment() {
-        return torment;
-    }
-
-    private int getForcedTorment() {
-        if (player.hasStatusEffect(ModStatusEffects.LOOMING)) {
-            return 100;
-        } else if (player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD)) {
-            return 0;
-        }
-
-        return -1;
-    }
-
-    @Override
-    public boolean isTormentForced() {
-        return getForcedTorment() != -1;
     }
 
     @Override
@@ -76,9 +52,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     private void normalize() {
-        if (!WorldComponents.BOSS_STATE.get(player.getWorld().getScoreboard()).dragonSlain()
+        if (player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD) || (!WorldComponents.BOSS_STATE.get(player.getWorld().getScoreboard()).dragonSlain()
                 && !player.getWorld().isClient()
-                && player.getWorld().getDimensionKey() != ModDimensions.DREAM_TYPE_KEY) {
+                && player.getWorld().getDimensionKey() != ModDimensions.DREAM_TYPE_KEY)) {
             torment = 0;
         } else {
             torment = Math.max(torment, 0);
@@ -110,13 +86,19 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         if (torment >= 90 && !tormentRush) {
             tormentRush = true;
 
-            player.sendMessage(Text.translatable("message.dndreams.torment_rush"));
-        } else if (torment < 10 && tormentRush) {
+            player.sendMessage(Text.translatable("message.dndreams.torment_rush"), true);
+        } else if (tormentRush && torment < 10) {
             tormentRush = false;
         }
     }
 
+    @Override
     public boolean terrorized() {
-        return player.world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY || tormentRush;
+        return player.hasStatusEffect(ModStatusEffects.LOOMING) || player.world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY;
+    }
+
+    @Override
+    public boolean isRushed() {
+        return tormentRush;
     }
 }

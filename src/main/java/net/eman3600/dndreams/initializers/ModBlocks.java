@@ -16,6 +16,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -761,7 +762,7 @@ public class ModBlocks {
     // Refinery
     public static final Block REFINERY = registerBlock("refinery",
             new RefineryBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 6.0f)
-                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)),
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never).luminance(state -> state.get(Properties.LIT) ? 15 : 0)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 

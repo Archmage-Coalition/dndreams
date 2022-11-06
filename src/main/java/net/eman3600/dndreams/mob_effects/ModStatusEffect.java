@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.mob_effects;
 
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.minecraft.entity.LivingEntity;
@@ -21,7 +22,11 @@ public class ModStatusEffect extends StatusEffect {
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         super.onApplied(entity, attributes, amplifier);
 
+        if (this == ModStatusEffects.SPIRIT_WARD && entity instanceof PlayerEntity player) {
+            TormentComponent component = EntityComponents.TORMENT.get(player);
 
+            component.setTorment(0);
+        }
     }
 
     @Override

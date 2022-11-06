@@ -11,6 +11,7 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 0), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 300, 0), 1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 130, 0), 1.0F)
+            .statusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 600, 0), 1.0F)
             .alwaysEdible().build();
     public static final FoodComponent DREAM_POWDER = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.0F)
             .snack()
