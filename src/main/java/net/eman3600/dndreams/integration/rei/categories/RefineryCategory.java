@@ -62,10 +62,6 @@ public class RefineryCategory implements DisplayCategory<RefineryDisplay> {
         List<EntryIngredient> output = display.getOutputEntries();
         List<EntryIngredient> inputs = new ArrayList<>(display.getInputEntries());
 
-        while (inputs.size() < 4) {
-            inputs.add(EntryIngredient.empty());
-        }
-
         widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 29 - 18, bounds.getCenterY() - 19)).entries(inputs.get(0)));
         widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 29, bounds.getCenterY() - 19)).entries(inputs.get(1)));
         widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 29 - 18, bounds.getCenterY() - 19 + 18)).entries(inputs.get(2)));

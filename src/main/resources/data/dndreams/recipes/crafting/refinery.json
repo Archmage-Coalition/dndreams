@@ -1,19 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "X#X",
+    "BXB",
     "#R#",
-    "X#X"
+    "B#B"
   ],
   "key": {
     "#": {
-      "item": "minecraft:cobbled_deepslate"
+      "item": "minecraft:terracotta"
     },
 	"X": {
-      "item": "minecraft:lapis_lazuli"
+      "item": "dndreams:foul_fume"
     },
 	"R": {
       "item": "dndreams:charged_shard"
+    },
+	"B": {
+      "item": "minecraft:brick"
     }
   },
   "result": {
