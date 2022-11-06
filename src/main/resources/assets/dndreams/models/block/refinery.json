@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
+    "bottom": "dndreams:block/refinery_bottom",
     "front": "dndreams:block/refinery_front",
     "side": "dndreams:block/refinery_side",
     "top": "dndreams:block/refinery_top"
