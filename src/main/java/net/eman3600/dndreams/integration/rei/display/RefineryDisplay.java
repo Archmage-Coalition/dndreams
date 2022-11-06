@@ -31,6 +31,10 @@ public class RefineryDisplay implements Display {
         this.byproduct = EntryIngredients.of(recipe.byproduct);
         this.RECIPE = recipe;
 
+        while (input.size() < 4) {
+            input.add(EntryIngredient.empty());
+        }
+
         if (jars > 0) input.add(jars());
 
         this.input = ImmutableList.copyOf(input);

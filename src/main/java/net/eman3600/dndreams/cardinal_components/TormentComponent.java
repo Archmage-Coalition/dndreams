@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.cardinal_components;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
+import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModDimensions;
@@ -8,10 +9,12 @@ import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.eman3600.dndreams.initializers.WorldComponents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 
-public class TormentComponent implements TormentComponentI, AutoSyncedComponent {
+public class TormentComponent implements TormentComponentI, AutoSyncedComponent, ServerTickingComponent {
     private float torment = 0;
     private int dragonFlashTicks = 0;
+    private boolean tormentRush = false;
 
     private final PlayerEntity player;
 
@@ -73,12 +76,13 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent 
     }
 
     private void normalize() {
-        torment = Math.max(torment, 0);
-        torment = Math.min(torment, MAX_TORMENT);
         if (!WorldComponents.BOSS_STATE.get(player.getWorld().getScoreboard()).dragonSlain()
                 && !player.getWorld().isClient()
                 && player.getWorld().getDimensionKey() != ModDimensions.DREAM_TYPE_KEY) {
-            torment = Math.min(torment, MAX_TORMENT * .25f);
+            torment = 0;
+        } else {
+            torment = Math.max(torment, 0);
+            torment = Math.min(torment, MAX_TORMENT);
         }
         EntityComponents.TORMENT.sync(player);
     }
@@ -87,11 +91,32 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent 
     public void readFromNbt(NbtCompound tag) {
         torment = tag.getFloat("torment");
         dragonFlashTicks = tag.getInt("dragon_flash_ticks");
+        tormentRush = tag.getBoolean("torment_rush");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putFloat("torment", torment);
         tag.putInt("dragon_flash_ticks", dragonFlashTicks);
+        tag.putBoolean("torment_rush", tormentRush);
+    }
+
+    @Override
+    public void serverTick() {
+        if (!terrorized() && torment > 0) {
+            addPerMinute(-7.5f);
+        }
+
+        if (torment >= 90 && !tormentRush) {
+            tormentRush = true;
+
+            player.sendMessage(Text.translatable("message.dndreams.torment_rush"));
+        } else if (torment < 10 && tormentRush) {
+            tormentRush = false;
+        }
+    }
+
+    public boolean terrorized() {
+        return player.world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY || tormentRush;
     }
 }

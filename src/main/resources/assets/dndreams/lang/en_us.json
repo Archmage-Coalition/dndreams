@@ -102,12 +102,16 @@
 
   "item.dndreams.satiation_staff": "Satiation Staff",
   
+  
   "tooltip.dndreams.mana_cost": "§dMana Cost: %s",
   "tooltip.dndreams.power_cost": "§dPower Cost: %s",
   "tooltip.dndreams.power_required": "§cRequires Infusion Power",
   "tooltip.dndreams.magic_damage": "§2Magic Damage: %s",
   "tooltip.dndreams.dream_origin": "§3They said this didn't exist,",
   "tooltip.dndreams.dream_origin_2": "§3and they were probably right.",
+  
+  
+  "message.dndreams.torment_rush": "This is going to be a terrible night...",
   
   
   "enchantment.dndreams.potency": "Potency",
@@ -351,8 +355,8 @@
   "entity.dndreams.warden_ragdoll": "Warden",
   
   
-  "advancement.dndreams.main.root.title": "Demons and Dreams",
-  "advancement.dndreams.main.root.description": "The Heart of the Past",
+  "advancements.dndreams.main.root.title": "Demons and Dreams",
+  "advancements.dndreams.main.root.description": "The Heart of the Past",
   
   
   "rei.dndreams.weaving": "Dream Weaving",

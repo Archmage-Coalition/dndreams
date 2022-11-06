@@ -37,8 +37,8 @@ import java.util.Optional;
 
 public class RefineryBlockEntity extends BlockEntity implements AbstractPowerReceiver, NamedScreenHandlerFactory, ImplementedInventory {
 
-    private int power = 0;
-    private int maxPower = 0;
+    private int power = 1;
+    private int maxPower = 1;
     private int refineTicks = 0;
     private int updateTicks = 0;
     private int requiredTicks = 0;
@@ -84,7 +84,7 @@ public class RefineryBlockEntity extends BlockEntity implements AbstractPowerRec
 
     @Override
     public int powerRequest() {
-        return recipe != null ? 5 : 1;
+        return recipe != null ? 10 : 1;
     }
 
     @Override
