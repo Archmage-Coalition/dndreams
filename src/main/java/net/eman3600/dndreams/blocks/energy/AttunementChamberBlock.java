@@ -27,12 +27,12 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class AttunementChamberBlock extends BlockWithEntity {
-    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
+    public static final BooleanProperty FILLED = BooleanProperty.of("filled");
 
     public AttunementChamberBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false));
+        this.setDefaultState(getDefaultState().with(FILLED, false).with(POWERED, false));
     }
 
     @Nullable
@@ -55,7 +55,7 @@ public class AttunementChamberBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite()).with(POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
+        return this.getDefaultState().with(POWERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
     }
 
     @Override
@@ -120,6 +120,6 @@ public class AttunementChamberBlock extends BlockWithEntity {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
 
-        builder.add(FACING, POWERED);
+        builder.add(POWERED, FILLED);
     }
 }
