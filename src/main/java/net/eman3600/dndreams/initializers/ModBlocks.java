@@ -762,7 +762,14 @@ public class ModBlocks {
     // Refinery
     public static final Block REFINERY = registerBlock("refinery",
             new RefineryBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 6.0f)
-                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never).luminance(state -> state.get(Properties.LIT) ? 15 : 0)),
+                    .luminance(state -> state.get(Properties.LIT) ? 15 : 0)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // Refined Cauldron
+    public static final Block REFINED_CAULDRON = registerBlock("refined_cauldron",
+            new RefinedCauldronBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 6.0f)
+                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 

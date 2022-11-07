@@ -112,6 +112,7 @@
   
   
   "message.dndreams.torment_rush": "§cSomething is coming...",
+  "message.dndreams.torment_calm": "§bThe terrors recede...",
   
   
   "enchantment.dndreams.potency": "Potency",
@@ -324,6 +325,7 @@
   "block.dndreams.attunement_chamber": "Attunement Chamber",
   "block.dndreams.smokestack": "Smokestack",
   "block.dndreams.refinery": "Refinery",
+  "block.dndreams.refined_cauldron": "Refined Cauldron",
   
   "ritual.dndreams.error.unknown": "Unknown Rite",
   "ritual.dndreams.error.improper": "Improper Casting Conditions",

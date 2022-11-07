@@ -1,6 +1,7 @@
 package net.eman3600.dndreams;
 
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
+import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.BloodSkeletonEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.BloodZombieEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.WardenRagdollEntityRenderer;
@@ -20,6 +21,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -32,6 +34,8 @@ ClientInitializer implements ClientModInitializer {
         HandledScreens.register(ModScreenHandlerTypes.ATTUNEMENT, AttunementScreen::new);
         HandledScreens.register(ModScreenHandlerTypes.SMOKESTACK, SmokestackScreen::new);
         HandledScreens.register(ModScreenHandlerTypes.REFINERY, RefineryScreen::new);
+
+        BlockEntityRendererRegistry.register(ModBlockEntities.REFINED_CAULDRON_ENTITY, ctx -> new RefinedCauldronBlockEntityRenderer());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DREAMWOOD_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SAKURA_LEAVES, RenderLayer.getCutout());

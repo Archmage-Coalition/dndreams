@@ -20,6 +20,7 @@ public class ModBlockEntities {
     public static BlockEntityType<EchoCandleBlockEntity> ECHO_CANDLE_ENTITY;
     public static BlockEntityType<SmokestackBlockEntity> SMOKESTACK_ENTITY;
     public static BlockEntityType<RefineryBlockEntity> REFINERY_ENTITY;
+    public static BlockEntityType<RefinedCauldronBlockEntity> REFINED_CAULDRON_ENTITY;
 
     public static void registerBlockEntities() {
 
@@ -50,5 +51,7 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(SmokestackBlockEntity::new, ModBlocks.SMOKESTACK).build());
         REFINERY_ENTITY = registerEntity("refinery",
                 FabricBlockEntityTypeBuilder.create(RefineryBlockEntity::new, ModBlocks.REFINERY).build());
+        REFINED_CAULDRON_ENTITY = registerEntity("refined_cauldron",
+                FabricBlockEntityTypeBuilder.create(RefinedCauldronBlockEntity::new, ModBlocks.REFINED_CAULDRON).build());
     }
 }

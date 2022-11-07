@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "#",
+    "A"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:cauldron"
+    },
+	"A": {
+      "item": "dndreams:wood_ash"
+    },
+	"X": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "item": "dndreams:refined_cauldron"
+  }
+}
