@@ -1,6 +1,8 @@
 package net.eman3600.dndreams.blocks.renderer;
 
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
+import net.eman3600.dndreams.blocks.properties.CauldronState;
+import net.eman3600.dndreams.initializers.ModParticles;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -9,9 +11,14 @@ import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 public class RefinedCauldronBlockEntityRenderer implements BlockEntityRenderer<RefinedCauldronBlockEntity> {
@@ -31,6 +38,18 @@ public class RefinedCauldronBlockEntityRenderer implements BlockEntityRenderer<R
                 matrices.translate(0, HEIGHT[level], 0);
                 renderWater(entity.getColor(), matrices, vertexConsumers, light, overlay, WATER.getSprite());
                 matrices.pop();
+
+                if (entity.isBoiling()) {
+                    float fluidHeight = HEIGHT[level];
+                    float width = 0.35f;
+
+                    if (entity.getCauldronState() == CauldronState.CRAFTING) {
+
+                        world.addParticle(new DustParticleEffect(new Vec3f(((entity.getColor() >> 16) & 0xff) / 255f, ((entity.getColor() >> 8) & 0xff) / 255f, (entity.getColor() & 0xff) / 255f), 1), pos.getX() + 0.5 + MathHelper.nextDouble(world.random, -width, width), pos.getY() + fluidHeight, pos.getZ() + 0.5 + MathHelper.nextDouble(world.random, -width, width), 0, 0, 0);
+                    }
+
+                    world.addParticle(ModParticles.CAULDRON_BUBBLE, pos.getX() + 0.5 + MathHelper.nextDouble(world.random, -width, width), pos.getY() + fluidHeight, pos.getZ() + 0.5 + MathHelper.nextDouble(world.random, -width, width), ((entity.getColor() >> 16) & 0xff) / 255f, ((entity.getColor() >> 8) & 0xff) / 255f, (entity.getColor() & 0xff) / 255f);
+                }
             }
         }
     }

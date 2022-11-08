@@ -4,6 +4,8 @@ import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.blocks.entities.RefineryBlockEntity;
 import net.eman3600.dndreams.blocks.properties.BrewType;
 import net.eman3600.dndreams.initializers.ModBlockEntities;
+import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.recipe.CauldronRecipe;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -12,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -20,6 +23,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class RefinedCauldronBlock extends BlockWithEntity {
     private static final VoxelShape CAULDRON_SHAPE = Block.createCuboidShape(1, 0.0, 1, 15, 11.0, 15);
@@ -64,6 +69,16 @@ public class RefinedCauldronBlock extends BlockWithEntity {
 
                     return ActionResult.SUCCESS;
                 }
+            } else if (entity.getBrewType() == BrewType.CRAFT) {
+                if (world instanceof ServerWorld serverWorld) {
+                    ItemStack result = entity.take(stack, serverWorld);
+
+                    if (!result.isEmpty()) {
+                        player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, result));
+                    }
+                }
+
+                return ActionResult.SUCCESS;
             }
         }
 

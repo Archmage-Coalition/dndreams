@@ -3,7 +3,12 @@ package net.eman3600.dndreams.blocks.entities;
 import net.eman3600.dndreams.blocks.properties.BrewType;
 import net.eman3600.dndreams.blocks.properties.CauldronState;
 import net.eman3600.dndreams.initializers.ModBlockEntities;
+import net.eman3600.dndreams.initializers.ModBlocks;
 import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
+import net.eman3600.dndreams.recipe.CauldronRecipe;
+import net.eman3600.dndreams.recipe.ExtractionMethod;
 import net.eman3600.dndreams.util.ModTags;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.minecraft.block.Block;
@@ -11,6 +16,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -19,18 +26,22 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractPowerReceiver, ImplementedInventory {
     public static int WATER_COLOR = 0x385DC6;
+    public static int RUINED_COLOR = 0xF800F8;
 
     private DefaultedList<ItemStack> inventory =
             DefaultedList.ofSize(20, ItemStack.EMPTY);
@@ -68,12 +79,35 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         }
 
         if (level > 1) {
+            if (cauldronState == CauldronState.CRAFTING && brewTicks++ > 100) {
+                Optional<CauldronRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.CAULDRON, this, world);
+
+                if (optional.isPresent() && optional.get().fullyMatches(this, world)) {
+                    CauldronRecipe recipe = optional.get();
+
+                    Vec3d vec = Vec3d.ofCenter(pos.up());
+
+                    ItemStack output = recipe.craft(this);
+                    ItemEntity item = new ItemEntity(world, vec.x, vec.y, vec.z, output);
+                    if (item instanceof ItemEntityInterface access) {
+                        access.markUnbrewable();
+                    }
+
+                    world.spawnEntity(item);
+
+                    reset(world);
+                } else {
+                    brewTicks = 0;
+                }
+            }
+
+
             List<ItemEntity> entities = world.getNonSpectatingEntities(ItemEntity.class, dropArea);
 
             for (ItemEntity itemEntity: entities) {
                 ItemStack stack = itemEntity.getStack();
 
-                if ((boilingTime >= 80 && cauldronState == CauldronState.IDLE) || stack.isOf(ModItems.WOOD_ASH)) {
+                if ((boilingTime >= 80 && cauldronState == CauldronState.IDLE) || stack.isOf(ModItems.WOOD_ASH) || stack.isOf(ModItems.ARCHFUEL)) {
                     attemptAdd(stack, itemEntity, world);
                     markDirty();
                     world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
@@ -88,9 +122,32 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         return items;
     }
 
+    private Inventory explodeable() {
+        DefaultedList<ItemStack> stacks = DefaultedList.copyOf(ItemStack.EMPTY, inventory.toArray(new ItemStack[0]));
+
+        for (int i = 0; i < stacks.size(); i++) {
+            if (stacks.get(i).getItem().hasRecipeRemainder()) {
+                stacks.set(i, ItemStack.EMPTY);
+            }
+        }
+
+        return ImplementedInventory.of(stacks);
+    }
+
     private void attemptAdd(ItemStack stack, ItemEntity itemEntity, ServerWorld world) {
+        if (inventory.get(0).isOf(ModItems.WOOD_ASH)) inventory.clear();
+        if (itemEntity instanceof ItemEntityInterface access && access.isUnbrewable()) return;
+
         if (stack.isOf(ModItems.WOOD_ASH)) {
-            reset();
+            reset(world);
+
+            stack.decrement(1);
+            if (stack.getCount() <= 0) itemEntity.kill();
+
+            return;
+        } else if (stack.isOf(ModItems.ARCHFUEL)) {
+            ItemScatterer.spawn(world, pos.up(), explodeable());
+            reset(world);
 
             stack.decrement(1);
             if (stack.getCount() <= 0) itemEntity.kill();
@@ -98,10 +155,20 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
             return;
         }
 
-        if (itemList().contains(stack.getItem()) || ingredients >= inventory.size()) return;
+        if (itemList().contains(stack.getItem()) || ingredients >= inventory.size() || stack.getItem() instanceof BucketItem) return;
 
         ItemStack addition = stack.copy();
         addition.setCount(1);
+
+        if (addition.getItem().hasRecipeRemainder()) {
+            ItemEntity remains = new ItemEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), addition.getItem().getRecipeRemainder().getDefaultStack());
+
+            if (remains instanceof ItemEntityInterface access) {
+                access.markUnbrewable();
+            }
+
+            world.spawnEntity(remains);
+        }
 
         inventory.set(ingredients, addition);
         ingredients++;
@@ -110,6 +177,25 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         if (stack.getCount() <= 0) itemEntity.kill();
 
         randomizeColor(world);
+        if (getBrewType() == BrewType.CRAFT) {
+            Optional<CauldronRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.CAULDRON, this, world);
+
+            if (optional.isPresent()) {
+                CauldronRecipe recipe = optional.get();
+
+                if (recipe.fullyMatches(this, world)) {
+                    color = recipe.color;
+
+                    if (recipe.method == ExtractionMethod.NONE) {
+                        cauldronState = CauldronState.CRAFTING;
+                        brewTicks = 0;
+                    }
+                }
+            } else {
+                cauldronState = CauldronState.RUINED;
+                color = RUINED_COLOR;
+            }
+        }
     }
 
     private void randomizeColor(ServerWorld world) {
@@ -173,7 +259,13 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         return 5;
     }
 
-    public void reset() {
+    public void reset(ServerWorld world) {
+        for (int i = 0; i < ingredients; i++) {
+            inventory.set(i, ModItems.WOOD_ASH.getDefaultStack());
+            markDirty();
+            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
+        }
+
         ingredients = 0;
         power = 0;
         level = 0;
@@ -182,14 +274,31 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         cauldronState = CauldronState.IDLE;
         spoilTicks = 0;
         brewTicks = 0;
-        inventory = DefaultedList.ofSize(20, ItemStack.EMPTY);
 
         markDirty();
-        world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
     }
 
-    public ItemStack take() {
+    public ItemStack take(ItemStack bottler, ServerWorld world) {
         markDirty();
+
+        if (getBrewType() == BrewType.CRAFT) {
+            Optional<CauldronRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.CAULDRON, this, world);
+
+            if (optional.isPresent() && optional.get().fullyMatches(this, world)) {
+                CauldronRecipe recipe = optional.get();
+
+                if (!recipe.method.correctExtractor(bottler)) return ItemStack.EMPTY;
+
+                ItemStack result = recipe.craft(this);
+                int drainage = MathHelper.clamp(4 - result.getCount(), 1, 3);
+                result.setCount(1);
+
+                level -= drainage;
+                if (level <= 0) reset(world);
+
+                return result;
+            }
+        }
 
 
         return ItemStack.EMPTY;
@@ -250,7 +359,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         return cauldronState;
     }
     public BrewType getBrewType() {
-        System.out.println(inventory);
+        if (inventory.get(0).isOf(ModItems.WOOD_ASH)) inventory.clear();
 
         if (inventory.get(0).isEmpty()) return BrewType.WATER;
         else if (cauldronState == CauldronState.RUINED) return BrewType.RUINED;

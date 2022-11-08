@@ -129,7 +129,8 @@ public class ModRegistries {
 
         FuelRegistry registry = FuelRegistry.INSTANCE;
 
-        registry.add(ModItems.NIGHTMARE_FUEL, 3200);
+        registry.add(ModItems.NIGHTMARE_FUEL, 2400);
+        registry.add(ModItems.ARCHFUEL, 3200);
     }
 
     private static void registerStrippables() {

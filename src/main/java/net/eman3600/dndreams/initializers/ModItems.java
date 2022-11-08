@@ -65,8 +65,11 @@ public class ModItems {
     public static final Item CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Baleful Residue
+    // Infernal Residue
     public static final Item INFERNAL_RESIDUE = registerItem("infernal_residue", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
+    // Archfuel
+    public static final Item ARCHFUEL = registerItem("archfuel", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Mutandis
     public static final Item MUTANDIS = registerItem("mutandis", new MutandisItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));

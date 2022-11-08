@@ -1,0 +1,22 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat_seeds"
+    },
+	{
+      "item": "dndreams:infernal_residue"
+    },
+	{
+      "item": "dndreams:dream_powder"
+    },
+	{
+      "item": "dndreams:dreamwood_fume"
+    }
+  ],
+  "result": {
+    "item": "minecraft:nether_wart",
+    "count": 1
+  },
+  "color": 4337959
+}

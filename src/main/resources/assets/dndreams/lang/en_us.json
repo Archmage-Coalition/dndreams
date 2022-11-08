@@ -15,6 +15,7 @@
   "item.dndreams.infernal_residue":  "Infernal Residue",
   "item.dndreams.tainted_pearl":  "Tainted Pearl",
   "item.dndreams.water_artichoke_globe": "Water Artichoke Globe",
+  "item.dndreams.archfuel": "Refined Fuel",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
@@ -371,6 +372,7 @@
   "rei.dndreams.refinery": "Refining",
   "rei.dndreams.refinery.cost": "Cost: %s",
   "rei.dndreams.refinery.dream_only": "Dream World Only",
+  "rei.dndreams.cauldron": "Cauldron Brewing",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"
