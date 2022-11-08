@@ -38,7 +38,7 @@ public class IcyNeedle extends Item {
 
             FabricDimensions.teleport(user, serverWorld, new TeleportTarget(component.returnPos(), Vec3d.ZERO, user.getYaw(), user.getPitch()));
 
-            user.getItemCooldownManager().set(ModItems.DREAM_EYE, 200);
+            user.getItemCooldownManager().set(ModItems.SLEEPING_BREW, 200);
         } else {
             user.damage(DamageSource.FREEZE, 1);
         }

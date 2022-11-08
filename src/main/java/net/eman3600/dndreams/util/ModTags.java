@@ -26,6 +26,7 @@ public class ModTags {
     public static final TagKey<Block> HEAT_BLOCKS = ofBlock("heat_blocks");
 
     public static final TagKey<Fluid> FLOWING_SPIRIT = ofFluid("flowing_spirit");
+    public static final TagKey<Fluid> SORROW = ofFluid("sorrow");
 
     public static final TagKey<Biome> GEN_HELLSLATE = ofBiome("gen_hellslate");
     public static final TagKey<Biome> GEN_HELLSLATE_COMMON = ofBiome("gen_hellslate_common");
@@ -35,6 +36,7 @@ public class ModTags {
     public static final TagKey<Item> WEAVING_ITEMS = ofItem("weaving_items");
     public static final TagKey<Item> MANA_USING_TOOLS = ofItem("mana_using_tools");
     public static final TagKey<Item> POWER_USING_TOOLS = ofItem("power_using_tools");
+    public static final TagKey<Item> DREAM_EXCLUSIVE = ofItem("dream_exclusive");
 
     public static final TagKey<EntityType<?>> SUBSTANTIAL_ENTITIES = ofEntity("substantial");
 

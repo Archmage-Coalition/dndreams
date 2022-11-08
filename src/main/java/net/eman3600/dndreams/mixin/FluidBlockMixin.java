@@ -44,6 +44,11 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
+                } else if (world.getFluidState(blockPos).isIn(ModTags.SORROW)) {
+                    Block block = Blocks.ICE;
+                    world.setBlockState(pos, block.getDefaultState());
+                    this.playExtinguishSound(world, pos);
+                    cir.setReturnValue(false);
                 }
             }
         } else if (this.fluid.isIn(FluidTags.LAVA)) {
@@ -54,6 +59,11 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                 BlockPos blockPos = pos.offset(direction.getOpposite());
                 if (world.getFluidState(blockPos).isIn(ModTags.FLOWING_SPIRIT)) {
                     Block block = ModBlocks.SHIMMERING_STONE;
+                    world.setBlockState(pos, block.getDefaultState());
+                    this.playExtinguishSound(world, pos);
+                    cir.setReturnValue(false);
+                } else if (world.getFluidState(blockPos).isIn(ModTags.SORROW)) {
+                    Block block = Blocks.BLACKSTONE;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
@@ -72,6 +82,34 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                     cir.setReturnValue(false);
                 } else if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
                     Block block = ModBlocks.SHIMMERING_STONE;
+                    world.setBlockState(pos, block.getDefaultState());
+                    this.playExtinguishSound(world, pos);
+                    cir.setReturnValue(false);
+                } else if (world.getFluidState(blockPos).isIn(ModTags.SORROW)) {
+                    Block block = ModBlocks.SHIMMERING_ICE;
+                    world.setBlockState(pos, block.getDefaultState());
+                    this.playExtinguishSound(world, pos);
+                    cir.setReturnValue(false);
+                }
+            }
+        } else if (this.fluid.isIn(ModTags.SORROW)) {
+            UnmodifiableIterator var5 = FLOW_DIRECTIONS.iterator();
+
+            while(var5.hasNext()) {
+                Direction direction = (Direction)var5.next();
+                BlockPos blockPos = pos.offset(direction.getOpposite());
+                if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
+                    Block block = Blocks.ICE;
+                    world.setBlockState(pos, block.getDefaultState());
+                    this.playExtinguishSound(world, pos);
+                    cir.setReturnValue(false);
+                } else if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
+                    Block block = Blocks.BLACKSTONE;
+                    world.setBlockState(pos, block.getDefaultState());
+                    this.playExtinguishSound(world, pos);
+                    cir.setReturnValue(false);
+                } else if (world.getFluidState(blockPos).isIn(ModTags.FLOWING_SPIRIT)) {
+                    Block block = ModBlocks.SHIMMERING_ICE;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);

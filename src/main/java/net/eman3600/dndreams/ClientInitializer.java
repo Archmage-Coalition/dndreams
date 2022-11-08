@@ -77,9 +77,19 @@ ClientInitializer implements ClientModInitializer {
                         new Identifier("minecraft:block/water_flow"),
                         0xA100F0F0
                 ));
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_SORROW, ModFluids.FLOWING_SORROW,
+                new SimpleFluidRenderHandler(
+                        new Identifier("minecraft:block/water_still"),
+                        new Identifier("minecraft:block/water_flow"),
+                        0xDF1E1C32
+                ));
 
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluids.STILL_FLOWING_SPIRIT, ModFluids.FLOWING_FLOWING_SPIRIT);
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+                ModFluids.STILL_SORROW, ModFluids.FLOWING_SORROW);
+
+        //1e1c32
 
         ModModelPredicateProvider.registerModModels();
 

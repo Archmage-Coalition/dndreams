@@ -13,10 +13,10 @@
   ],
   "result": {
     "item": "dndreams:distilled_spirit",
-    "count": 6
+    "count": 4
   },
   "byproduct": {
-    "item": "minecraft:bucket",
+    "item": "dndreams:sorrow_bucket",
     "count": 1
   },
   "cost": 250,

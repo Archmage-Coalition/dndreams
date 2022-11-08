@@ -1,0 +1,29 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:dream_powder"
+    },
+	{
+      "item": "dndreams:water_artichoke_globe"
+    },
+	{
+      "item": "dndreams:icy_needle"
+    },
+	{
+      "item": "minecraft:chorus_fruit"
+    },
+	{
+      "item": "minecraft:feather"
+    },
+	{
+      "item": "dndreams:selene_fume"
+    }
+  ],
+  "result": {
+    "item": "dndreams:sleeping_brew",
+    "count": 3
+  },
+  "color": 15959280,
+  "method": "bottle"
+}

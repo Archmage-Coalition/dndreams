@@ -92,6 +92,7 @@ public class ModItems {
 
     public static final Item MELLIFLUOUS_HUNGER = registerItem("mellifluous_hunger", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item DISTILLED_SPIRIT = registerItem("distilled_spirit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item HOLLOW_TEAR = registerItem("hollow_tear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
     // Water Artichoke Globe
     public static final Item WATER_ARTICHOKE_GLOBE = registerItem("water_artichoke_globe",
@@ -246,7 +247,13 @@ public class ModItems {
 
 
 
-    // Eye reference Oneiros
+    // Brews of Lofty Dreams & Congealed Mind
+    public static final Item SLEEPING_BREW = registerItem("sleeping_brew",
+            new SleepingBrewItem(new FabricItemSettings().group(ItemGroup.MISC)));
+
+    public static final Item MANIFEST_BREW = registerItem("manifest_brew",
+            new ManifestBrewItem(new FabricItemSettings().group(ItemGroup.MISC)));
+
     public static final Item DREAM_EYE = registerItem("dream_eye",
             new DreamEye(new FabricItemSettings().group(ItemGroup.MISC)));
 

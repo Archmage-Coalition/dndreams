@@ -26,9 +26,11 @@ public class RefineryDisplay implements Display {
 
     public RefineryDisplay(RefineryRecipe recipe) {
         List<EntryIngredient> input = new ArrayList<>(EntryIngredients.ofIngredients(recipe.getIngredients()));
+        List<EntryIngredient> output = new ArrayList<>();
+        output.add(EntryIngredients.of(recipe.getOutput()));
         this.jars = recipe.jarsRequired();
-        this.output = Collections.singletonList(EntryIngredients.of(recipe.getOutput()));
         this.byproduct = EntryIngredients.of(recipe.byproduct);
+        output.add(byproduct);
         this.RECIPE = recipe;
 
         while (input.size() < 4) {
@@ -38,6 +40,7 @@ public class RefineryDisplay implements Display {
         if (jars > 0) input.add(jars());
 
         this.input = ImmutableList.copyOf(input);
+        this.output = ImmutableList.copyOf(output);
     }
 
 

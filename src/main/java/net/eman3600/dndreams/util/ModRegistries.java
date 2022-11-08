@@ -100,7 +100,6 @@ public class ModRegistries {
         MutandisExtremisItem.registerMutable(Blocks.CRIMSON_ROOTS);
         MutandisExtremisItem.registerMutable(Blocks.WARPED_ROOTS);
         MutandisExtremisItem.registerMutable(Blocks.NETHER_SPROUTS);
-        MutandisExtremisItem.registerMutable(Blocks.WITHER_ROSE);
 
         MutandisExtremisItem.registerMutable(ModBlocks.EOS_GRASS);
         MutandisExtremisItem.registerMutable(ModBlocks.SELENE_GRASS);
@@ -115,6 +114,7 @@ public class ModRegistries {
 
 
         MutandisOneirosItem.registerMutable(ModBlocks.DREAMWOOD_SAPLING);
+        MutandisOneirosItem.registerMutable(Blocks.WITHER_ROSE);
     }
 
     private static void registerSculkTransform() {

@@ -77,6 +77,10 @@ public class CauldronCategory implements DisplayCategory<CauldronDisplay> {
 
         widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 3 + 30, bounds.getCenterY() - 7)).entries(output.get(0)));
 
+        if (display.RECIPE.dreamOnly) {
+            widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 33), Text.translatable("rei.dndreams.cauldron.dream_only")).color(0x373737).noShadow());
+        }
+
         return widgets;
     }
 }

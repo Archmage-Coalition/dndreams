@@ -6,7 +6,6 @@ import net.eman3600.dndreams.initializers.ModDimensions;
 import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -37,7 +36,7 @@ public class MaterializeTome extends Item {
             }
 
             DreamingComponent component = EntityComponents.DREAMING.get(user);
-            component.flagTransference();
+            component.congeal();
 
             FabricDimensions.teleport(user, serverWorld, new TeleportTarget(component.returnPos(), Vec3d.ZERO, user.getYaw(), user.getPitch()));
 

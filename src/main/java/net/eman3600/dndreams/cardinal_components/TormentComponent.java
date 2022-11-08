@@ -10,6 +10,7 @@ import net.eman3600.dndreams.initializers.WorldComponents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.MathHelper;
 
 public class TormentComponent implements TormentComponentI, AutoSyncedComponent, ServerTickingComponent {
     private float torment = 0;
@@ -57,8 +58,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
                 && player.getWorld().getDimensionKey() != ModDimensions.DREAM_TYPE_KEY)) {
             torment = 0;
         } else {
-            torment = Math.max(torment, 0);
-            torment = Math.min(torment, MAX_TORMENT);
+            torment = MathHelper.clamp(torment, 0, MAX_TORMENT);
         }
         EntityComponents.TORMENT.sync(player);
     }

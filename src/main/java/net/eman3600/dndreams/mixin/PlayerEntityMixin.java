@@ -31,17 +31,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         super(entityType, world);
     }
 
-    @Inject(method = "tick()V", at = @At("TAIL"))
-    public void injectTick(CallbackInfo info) {
-        if (getEntityWorld().getDimensionKey() == DimensionTypes.THE_END) {
-            EntityComponents.TORMENT.get(this).addPerMinute(-5f);
-        }
-
-        if (WorldComponents.BLOOD_MOON.get(getEntityWorld()).isBloodMoon()) {
-            EntityComponents.TORMENT.get(this).addPerMinute(2f);
-        }
-    }
-
     @Inject(method = "createPlayerAttributes", at = @At("RETURN"), cancellable = true)
     private static void injectAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
         info.setReturnValue((info.getReturnValue())
