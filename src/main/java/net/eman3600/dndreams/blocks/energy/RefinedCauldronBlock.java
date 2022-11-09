@@ -88,6 +88,7 @@ public class RefinedCauldronBlock extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : checkType(type, ModBlockEntities.REFINED_CAULDRON_ENTITY, RefinedCauldronBlockEntity::tick);
+        return world.isClient ? checkType(type, ModBlockEntities.REFINED_CAULDRON_ENTITY, RefinedCauldronBlockEntity::tickClient) :
+                checkType(type, ModBlockEntities.REFINED_CAULDRON_ENTITY, RefinedCauldronBlockEntity::tick);
     }
 }

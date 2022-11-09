@@ -96,9 +96,12 @@
   "item.dndreams.manifest_brew.tooltip_before2": "§3Bring the dream to life.",
   "item.dndreams.manifest_brew.tooltip_after": "§3Its power courses through your",
   "item.dndreams.manifest_brew.tooltip_after2": "§3veins, its power unending.",
-  "item.dndreams.manifest_brew.tooltip_obscure": "§kThe end is never the end is never",
-  "item.dndreams.manifest_brew.tooltip_obscure2": "§kTo cease to continue to cease",
   "item.dndreams.manifest_brew.use": "§dYou feel surreal...",
+  
+  "item.dndreams.panacea": "The Panacea",
+  "item.dndreams.panacea.tooltip_before": "§4It has a familiar scent.",
+  "item.dndreams.panacea.tooltip_after": "§4It remains within you yet...",
+  "item.dndreams.panacea.use": "§4Until you die once more...",
   
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
   "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",

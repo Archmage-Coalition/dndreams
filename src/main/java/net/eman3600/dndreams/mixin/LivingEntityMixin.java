@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.cardinal_components.DreamingComponent;
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.initializers.ModFluids;
 import net.eman3600.dndreams.initializers.ModStatusEffects;
@@ -14,6 +15,7 @@ import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.server.world.ServerWorld;
@@ -24,14 +26,20 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements LivingEntityAccess {
@@ -54,6 +62,14 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect, @Nullable Entity source);
 
+    @Shadow public abstract boolean isUndead();
+
+    @Shadow public abstract @Nullable StatusEffectInstance getStatusEffect(StatusEffect effect);
+
+    @Shadow protected abstract int computeFallDamage(float fallDistance, float damageMultiplier);
+
+    @Shadow private boolean effectsChanged;
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -64,6 +80,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
             WorldComponents.BOSS_STATE.get(world.getScoreboard()).flagWitherSlain(true);
         }
     }
+
+
 
     @Inject(method = "baseTick", at = @At("HEAD"))
     public void dndreams$baseTick(CallbackInfo ci) {
@@ -80,14 +98,20 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
 
         if (fluidHeight.getOrDefault(ModTags.SORROW, 0) > 0.1f) {
-            if (!hasStatusEffect(ModStatusEffects.AFFLICTION)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
-
-            if (!hasStatusEffect(ModStatusEffects.SUPPRESSED)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 80, 0, true, true));
-
             if ((Object)this instanceof PlayerEntity player) {
-                if (!hasStatusEffect(ModStatusEffects.LOOMING)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 80, 0, true, true));
+                TormentComponent component = EntityComponents.TORMENT.get(player);
 
-                EntityComponents.TORMENT.get(player).addPerSecond(3f);
+                addStatusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 30, 0, true, true));
+
+                component.addPerMinute(component.isShielded() ? 5f : 75f);
+
+                if (!component.isShielded()) {
+                    if (!hasStatusEffect(ModStatusEffects.AFFLICTION)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
+                    if (!hasStatusEffect(ModStatusEffects.SUPPRESSED)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 80, 0, true, true));
+                }
+            } else {
+                if (!hasStatusEffect(ModStatusEffects.AFFLICTION)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
+                if (!hasStatusEffect(ModStatusEffects.SUPPRESSED)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 80, 0, true, true));
             }
         }
 
@@ -115,6 +139,37 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
             return instance.isSubmergedIn(tagKey) | instance.isSubmergedIn(ModTags.SORROW);
         } else {
             return instance.isSubmergedIn(tagKey);
+        }
+    }
+
+    @ModifyVariable(method = "damage", at = @At("HEAD"))
+    private float dndreams$damage$affliction(float amount) {
+        if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead()) {
+            return (float) (amount * Math.pow(1.4f, this.getStatusEffect(ModStatusEffects.AFFLICTION).getAmplifier() + 1));
+        } else return amount;
+    }
+
+    @Redirect(method = "damage", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/LivingEntity;timeUntilRegen:I", opcode = Opcodes.PUTFIELD))
+    private void dndreams$damage$shortenIFrames(LivingEntity instance, int value) {
+        if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead()) {
+            instance.timeUntilRegen = 12;
+        } else {
+            instance.timeUntilRegen = value;
+        }
+    }
+
+    @Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"), cancellable = true)
+    private void dndreams$addStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+        StatusEffect status = effect.getEffectType();
+        EntityComponents.TORMENT.maybeGet(this).ifPresent(component -> {
+
+            if (component.isShielded() && (status == ModStatusEffects.AFFLICTION || status == StatusEffects.WITHER || status == StatusEffects.DARKNESS)) {
+                cir.setReturnValue(false);
+            }
+        });
+
+        if (getType() == EntityType.WARDEN && status == ModStatusEffects.AFFLICTION) {
+            cir.setReturnValue(false);
         }
     }
 }

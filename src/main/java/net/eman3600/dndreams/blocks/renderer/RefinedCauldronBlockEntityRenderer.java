@@ -22,7 +22,7 @@ import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 public class RefinedCauldronBlockEntityRenderer implements BlockEntityRenderer<RefinedCauldronBlockEntity> {
-    private static final float[] HEIGHT = {0, 0.25f, 0.4375f, 0.63f};
+    public static final float[] HEIGHT = {0, 0.25f, 0.4375f, 0.63f};
     public static final SpriteIdentifier WATER = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("block/water_still"));
 
     @Override
@@ -38,18 +38,6 @@ public class RefinedCauldronBlockEntityRenderer implements BlockEntityRenderer<R
                 matrices.translate(0, HEIGHT[level], 0);
                 renderWater(entity.getColor(), matrices, vertexConsumers, light, overlay, WATER.getSprite());
                 matrices.pop();
-
-                if (entity.isBoiling()) {
-                    float fluidHeight = HEIGHT[level];
-                    float width = 0.35f;
-
-                    if (entity.getCauldronState() == CauldronState.CRAFTING) {
-
-                        world.addParticle(new DustParticleEffect(new Vec3f(((entity.getColor() >> 16) & 0xff) / 255f, ((entity.getColor() >> 8) & 0xff) / 255f, (entity.getColor() & 0xff) / 255f), 1), pos.getX() + 0.5 + MathHelper.nextDouble(world.random, -width, width), pos.getY() + fluidHeight, pos.getZ() + 0.5 + MathHelper.nextDouble(world.random, -width, width), 0, 0, 0);
-                    }
-
-                    world.addParticle(ModParticles.CAULDRON_BUBBLE, pos.getX() + 0.5 + MathHelper.nextDouble(world.random, -width, width), pos.getY() + fluidHeight, pos.getZ() + 0.5 + MathHelper.nextDouble(world.random, -width, width), ((entity.getColor() >> 16) & 0xff) / 255f, ((entity.getColor() >> 8) & 0xff) / 255f, (entity.getColor() & 0xff) / 255f);
-                }
             }
         }
     }

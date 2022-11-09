@@ -247,12 +247,15 @@ public class ModItems {
 
 
 
-    // Brews of Lofty Dreams & Congealed Mind
+    // Brews of Lofty Dreams, Congealed Mind, & the Panacea
     public static final Item SLEEPING_BREW = registerItem("sleeping_brew",
-            new SleepingBrewItem(new FabricItemSettings().group(ItemGroup.MISC)));
+            new SleepingBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.UNCOMMON)));
 
     public static final Item MANIFEST_BREW = registerItem("manifest_brew",
-            new ManifestBrewItem(new FabricItemSettings().group(ItemGroup.MISC)));
+            new ManifestBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.EPIC)));
+
+    public static final Item PANACEA = registerItem("panacea",
+            new PanaceaItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.EPIC)));
 
     public static final Item DREAM_EYE = registerItem("dream_eye",
             new DreamEye(new FabricItemSettings().group(ItemGroup.MISC)));

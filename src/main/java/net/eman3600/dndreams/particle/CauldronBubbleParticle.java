@@ -19,7 +19,7 @@ public class CauldronBubbleParticle extends SpriteBillboardParticle {
         this.z = 0;
 
         this.velocityX = 0;
-        this.velocityY = 0.1;
+        this.velocityY = 0.01;
         this.velocityZ = 0;
 
         this.velocityMultiplier = 0.7F;

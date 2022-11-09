@@ -2,10 +2,9 @@ package net.eman3600.dndreams.blocks.entities;
 
 import net.eman3600.dndreams.blocks.properties.BrewType;
 import net.eman3600.dndreams.blocks.properties.CauldronState;
-import net.eman3600.dndreams.initializers.ModBlockEntities;
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModItems;
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
+import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
 import net.eman3600.dndreams.recipe.CauldronRecipe;
 import net.eman3600.dndreams.recipe.ExtractionMethod;
@@ -14,6 +13,7 @@ import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
@@ -25,13 +25,11 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -113,6 +111,29 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                     world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
                 }
             }
+        }
+    }
+
+    public static void tickClient(World world, BlockPos blockPos, BlockState blockState, RefinedCauldronBlockEntity entity) {
+        try {
+            ClientWorld client = (ClientWorld) world;
+            if (world == null) throw new ClassCastException();
+
+            entity.tickClient(client);
+        } catch (ClassCastException ignored) {}
+    }
+
+    private void tickClient(ClientWorld client) {
+        if (isBoiling()) {
+            float fluidHeight = RefinedCauldronBlockEntityRenderer.HEIGHT[level];
+            float width = 0.35f;
+
+            if (getCauldronState() == CauldronState.CRAFTING) {
+
+                world.addParticle(new DustParticleEffect(new Vec3f(((getColor() >> 16) & 0xff) / 255f, ((getColor() >> 8) & 0xff) / 255f, (getColor() & 0xff) / 255f), 1), pos.getX() + 0.5 + MathHelper.nextDouble(world.random, -width, width), pos.getY() + fluidHeight, pos.getZ() + 0.5 + MathHelper.nextDouble(world.random, -width, width), 0, 0, 0);
+            }
+
+            world.addParticle(ModParticles.CAULDRON_BUBBLE, pos.getX() + 0.5 + MathHelper.nextDouble(world.random, -width, width), pos.getY() + fluidHeight, pos.getZ() + 0.5 + MathHelper.nextDouble(world.random, -width, width), ((getColor() >> 16) & 0xff) / 255f, ((getColor() >> 8) & 0xff) / 255f, (getColor() & 0xff) / 255f);
         }
     }
 
@@ -348,7 +369,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         return boilingTime;
     }
     public boolean isBoiling() {
-        return boilingTime >= 80;
+        return boilingTime >= 80 && level > 0;
     }
     public int getColor() {
         return color;

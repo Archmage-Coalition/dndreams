@@ -75,13 +75,11 @@ public class DreamingComponent implements DreamingComponentI {
             player.setHealth((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
             player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.GRACE, 60, 0), player);
-            torment().setTorment(0);
         } else {
             player.setPosition(returnPos);
             player.setHealth((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
             player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.GRACE, 60, 0), player);
-            torment().setTorment(0);
 
             if (congealed) {
                 List<ItemStack> stacks = new ArrayList<>();
@@ -103,6 +101,8 @@ public class DreamingComponent implements DreamingComponentI {
                         break;
                     }
                 }
+            } else {
+                torment().setTorment(0);
             }
         }
     }

@@ -16,6 +16,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private float torment = 0;
     private int dragonFlashTicks = 0;
     private boolean tormentRush = false;
+    private boolean shielded = false;
 
     private final PlayerEntity player;
 
@@ -28,6 +29,16 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public float getTorment() {
         return torment;
+    }
+
+    @Override
+    public boolean isShielded() {
+        return shielded;
+    }
+
+    public void shield(boolean shielded) {
+        this.shielded = shielded;
+        EntityComponents.TORMENT.sync(player);
     }
 
     @Override
@@ -68,6 +79,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         torment = tag.getFloat("torment");
         dragonFlashTicks = tag.getInt("dragon_flash_ticks");
         tormentRush = tag.getBoolean("torment_rush");
+        shielded = tag.getBoolean("shielded");
     }
 
     @Override
@@ -75,6 +87,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putFloat("torment", torment);
         tag.putInt("dragon_flash_ticks", dragonFlashTicks);
         tag.putBoolean("torment_rush", tormentRush);
+        tag.putBoolean("shielded", shielded);
     }
 
     @Override
