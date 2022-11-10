@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.initializers.ModStatusEffects;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.HostileEntity;

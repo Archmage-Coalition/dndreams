@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.items.magic_sword;
 
 import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
-import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.items.enchantments.AliasedEnchantment;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;

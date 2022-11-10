@@ -1,29 +1,25 @@
 package net.eman3600.dndreams.blocks.renderer;
 
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
-import net.eman3600.dndreams.blocks.properties.CauldronState;
-import net.eman3600.dndreams.initializers.ModParticles;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 public class RefinedCauldronBlockEntityRenderer implements BlockEntityRenderer<RefinedCauldronBlockEntity> {
     public static final float[] HEIGHT = {0, 0.25f, 0.4375f, 0.63f};
     public static final SpriteIdentifier WATER = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("block/water_still"));
+
+    public RefinedCauldronBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {}
 
     @Override
     public void render(RefinedCauldronBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {

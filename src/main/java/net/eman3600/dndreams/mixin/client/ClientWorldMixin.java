@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.mixin.client;
 
 import net.eman3600.dndreams.ClientInitializer;
-import net.eman3600.dndreams.initializers.ModDimensions;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
 import net.fabricmc.api.EnvType;

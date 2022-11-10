@@ -1,11 +1,9 @@
 package net.eman3600.dndreams.recipe;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
@@ -14,9 +12,6 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-
-import java.util.Arrays;
-import java.util.Optional;
 
 public class SmokestackRecipe implements Recipe<Inventory> {
 

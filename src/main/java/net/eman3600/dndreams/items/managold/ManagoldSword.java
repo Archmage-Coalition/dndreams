@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.items.managold;
 
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;

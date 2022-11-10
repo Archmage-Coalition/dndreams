@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.mixin.client;
 
-import net.eman3600.dndreams.initializers.ModParticles;
+import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.ClientPlayNetworkHandler;

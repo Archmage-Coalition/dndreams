@@ -1,20 +1,18 @@
 package net.eman3600.dndreams.items;
 
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SculkShriekerBlock;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;

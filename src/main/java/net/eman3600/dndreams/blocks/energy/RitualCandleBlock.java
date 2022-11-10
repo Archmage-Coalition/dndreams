@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.blocks.energy;
 
-import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemPlacementContext;

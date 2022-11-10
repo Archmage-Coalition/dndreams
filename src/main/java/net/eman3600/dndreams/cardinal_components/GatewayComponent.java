@@ -2,9 +2,9 @@ package net.eman3600.dndreams.cardinal_components;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.interfaces.GatewayComponentI;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.initializers.WorldComponents;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.block.entity.StructureBlockBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;

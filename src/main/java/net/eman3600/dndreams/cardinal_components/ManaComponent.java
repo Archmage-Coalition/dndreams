@@ -2,11 +2,10 @@ package net.eman3600.dndreams.cardinal_components;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.ManaComponentI;
-import net.eman3600.dndreams.infusions.Infusion;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModAttributes;
-import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.initializers.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.entity.ModAttributes;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -129,6 +128,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     @Override
     public void useMana(int cost) {
         if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {
+            player.timeUntilRegen = 1;
             player.damage(DamageSource.MAGIC, (float)cost/2);
             return;
         }

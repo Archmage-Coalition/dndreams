@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.screen;
 
-import net.eman3600.dndreams.blocks.entities.RefineryBlockEntity;
-import net.eman3600.dndreams.initializers.ModScreenHandlerTypes;
+import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
 import net.eman3600.dndreams.screen.slot.JarSlot;
 import net.eman3600.dndreams.screen.slot.GenericOutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,7 +12,6 @@ import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import org.jetbrains.annotations.Nullable;
 
 public class RefineryScreenHandler extends ScreenHandler {
     private final Inventory inventory;

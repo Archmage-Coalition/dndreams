@@ -28,8 +28,8 @@
       "net.eman3600.dndreams.ClientInitializer"
     ],
     "cardinal-components": [
-      "net.eman3600.dndreams.initializers.WorldComponents",
-      "net.eman3600.dndreams.initializers.EntityComponents"
+      "net.eman3600.dndreams.initializers.cca.WorldComponents",
+      "net.eman3600.dndreams.initializers.cca.EntityComponents"
     ],
     "rei_client": [
       "net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin"

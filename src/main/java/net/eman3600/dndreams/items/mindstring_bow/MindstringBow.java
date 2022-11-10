@@ -1,7 +1,5 @@
 package net.eman3600.dndreams.items.mindstring_bow;
 
-import net.eman3600.dndreams.cardinal_components.ManaComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;

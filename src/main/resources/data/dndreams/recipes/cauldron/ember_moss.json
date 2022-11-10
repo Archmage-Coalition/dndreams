@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "minecraft:grass"
+    },
+	{
+      "item": "minecraft:blaze_powder"
+    },
+	{
+      "item": "dndreams:infernal_residue"
+    }
+  ],
+  "result": {
+    "item": "dndreams:ember_moss",
+    "count": 1
+  },
+  "color": 14110976
+}

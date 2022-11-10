@@ -2,10 +2,9 @@ package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.cardinal_components.DreamingComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModFluids;
-import net.eman3600.dndreams.initializers.ModStatusEffects;
-import net.eman3600.dndreams.initializers.WorldComponents;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
@@ -15,6 +14,7 @@ import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -30,16 +30,12 @@ import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements LivingEntityAccess {
@@ -69,6 +65,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Shadow protected abstract int computeFallDamage(float fallDistance, float damageMultiplier);
 
     @Shadow private boolean effectsChanged;
+
+    @Shadow public abstract boolean canTakeDamage();
 
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -101,9 +99,9 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
             if ((Object)this instanceof PlayerEntity player) {
                 TormentComponent component = EntityComponents.TORMENT.get(player);
 
-                addStatusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 30, 0, true, true));
+                addStatusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 80, 0, true, true));
 
-                component.addPerMinute(component.isShielded() ? 5f : 75f);
+                component.addPerMinute(component.isShielded() ? 10f : 150f);
 
                 if (!component.isShielded()) {
                     if (!hasStatusEffect(ModStatusEffects.AFFLICTION)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
@@ -142,6 +140,32 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
     }
 
+    @Redirect(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/effect/StatusEffectUtil;hasWaterBreathing(Lnet/minecraft/entity/LivingEntity;)Z"))
+    private boolean dndreams$baseTick$waterBreathing(LivingEntity entity) {
+        if (entity instanceof PlayerEntity player) {
+            TormentComponent component = EntityComponents.TORMENT.get(player);
+
+            if (StatusEffectUtil.hasWaterBreathing(entity) && component.isShielded()) return true;
+        }
+
+        return StatusEffectUtil.hasWaterBreathing(entity) && !entity.isSubmergedIn(ModTags.SORROW);
+    }
+
+    @Inject(method = "getNextAirUnderwater", at = @At("HEAD"), cancellable = true)
+    private void dndreams$getNextAirUnderwater(int air, CallbackInfoReturnable<Integer> cir) {
+        try {
+            LivingEntity entity = (LivingEntity) (Object) this;
+
+            if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).isShielded()) {
+                return;
+            }
+
+            if (entity.isSubmergedIn(ModTags.SORROW)) {
+                cir.setReturnValue(Math.max(air > 0 ? air - 5 : air - 2, -20));
+            }
+        } catch (ClassCastException ignored) {}
+    }
+
     @ModifyVariable(method = "damage", at = @At("HEAD"))
     private float dndreams$damage$affliction(float amount) {
         if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead()) {
@@ -152,7 +176,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Redirect(method = "damage", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/LivingEntity;timeUntilRegen:I", opcode = Opcodes.PUTFIELD))
     private void dndreams$damage$shortenIFrames(LivingEntity instance, int value) {
         if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead()) {
-            instance.timeUntilRegen = 12;
+            instance.timeUntilRegen = 14;
         } else {
             instance.timeUntilRegen = value;
         }

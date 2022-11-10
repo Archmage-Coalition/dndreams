@@ -1,7 +1,11 @@
 package net.eman3600.dndreams.cardinal_components;
 
 import net.eman3600.dndreams.cardinal_components.interfaces.DreamingComponentI;
-import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.event.ModStats;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;

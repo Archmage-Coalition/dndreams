@@ -3,22 +3,18 @@ package net.eman3600.dndreams.util;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.initializers.ModAttributes;
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
 import net.eman3600.dndreams.mixin_interfaces.ComposterBlockAccess;
 import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.ComposterBlock;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
@@ -69,6 +65,7 @@ public class ModRegistries {
         MutandisItem.registerMutable("foliage", Blocks.OXEYE_DAISY);
         MutandisItem.registerMutable("foliage", Blocks.CORNFLOWER);
         MutandisItem.registerMutable("foliage", Blocks.LILY_OF_THE_VALLEY);
+        MutandisItem.registerMutable("foliage", ModBlocks.EMBER_MOSS);
 
         MutandisItem.registerMutable("sapling", Blocks.OAK_SAPLING);
         MutandisItem.registerMutable("sapling", Blocks.BIRCH_SAPLING);
@@ -77,6 +74,8 @@ public class ModRegistries {
         MutandisItem.registerMutable("sapling", Blocks.DARK_OAK_SAPLING);
         MutandisItem.registerMutable("sapling", Blocks.JUNGLE_SAPLING);
         MutandisItem.registerMutable("sapling", Blocks.MANGROVE_PROPAGULE);
+        MutandisItem.registerMutable("sapling", Blocks.AZALEA);
+        MutandisItem.registerMutable("sapling", Blocks.FLOWERING_AZALEA);
         MutandisItem.registerMutable("sapling", ModBlocks.SAKURA_SAPLING);
         MutandisItem.registerMutable("sapling", ModBlocks.JAPANESE_MAPLE_SAPLING);
 
@@ -86,7 +85,7 @@ public class ModRegistries {
         MutandisItem.registerMutable("crop", Blocks.BEETROOTS);
         MutandisItem.registerMutable("crop", Blocks.PUMPKIN_STEM);
         MutandisItem.registerMutable("crop", Blocks.MELON_STEM);
-        MutandisItem.registerMutable("crop", ModBlocks.SNOWBELL_CROP);
+        MutandisItem.registerMutable("crop", ModBlocks.SNOWBELL);
         MutandisItem.registerMutable("crop", ModBlocks.WATER_ARTICHOKE);
 
 
@@ -115,6 +114,7 @@ public class ModRegistries {
 
         MutandisOneirosItem.registerMutable(ModBlocks.DREAMWOOD_SAPLING);
         MutandisOneirosItem.registerMutable(Blocks.WITHER_ROSE);
+        MutandisOneirosItem.registerMutable(ModBlocks.APPLETHORN);
     }
 
     private static void registerSculkTransform() {
@@ -228,6 +228,10 @@ public class ModRegistries {
         access.registerCompostable(.65f, ModBlocks.DREAMWOOD_SAPLING);
         access.registerCompostable(.3f, ModBlocks.JAPANESE_MAPLE_SAPLING);
         access.registerCompostable(.65f, ModBlocks.SCULK_WOOD_SAPLING);
+
+        access.registerCompostable(.3f, ModItems.APPLETHORN_SEEDS);
+        access.registerCompostable(.65f, ModItems.SUCCULENT_APPLE);
+        access.registerCompostable(.65f, ModItems.POISON_APPLE);
     }
 
 }

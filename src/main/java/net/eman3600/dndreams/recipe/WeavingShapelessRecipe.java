@@ -1,26 +1,16 @@
 package net.eman3600.dndreams.recipe;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.google.gson.*;
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.util.inventory.WeavingInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 public class WeavingShapelessRecipe implements WeavingRecipe {
     private final Identifier id;

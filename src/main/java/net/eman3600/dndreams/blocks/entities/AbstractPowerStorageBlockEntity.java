@@ -1,8 +1,8 @@
 package net.eman3600.dndreams.blocks.entities;
 
 import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModParticles;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -11,7 +11,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractPowerStorageBlockEntity extends BlockEntity {

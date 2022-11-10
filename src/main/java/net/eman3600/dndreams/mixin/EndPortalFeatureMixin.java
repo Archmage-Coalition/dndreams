@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
 import com.mojang.serialization.Codec;
-import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.WallTorchBlock;
 import net.minecraft.util.math.BlockPos;

@@ -2,8 +2,8 @@ package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModDimensions;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;

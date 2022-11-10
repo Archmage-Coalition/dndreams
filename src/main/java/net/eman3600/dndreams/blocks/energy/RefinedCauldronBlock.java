@@ -1,11 +1,8 @@
 package net.eman3600.dndreams.blocks.energy;
 
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
-import net.eman3600.dndreams.blocks.entities.RefineryBlockEntity;
 import net.eman3600.dndreams.blocks.properties.BrewType;
-import net.eman3600.dndreams.initializers.ModBlockEntities;
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
-import net.eman3600.dndreams.recipe.CauldronRecipe;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -23,8 +20,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 public class RefinedCauldronBlock extends BlockWithEntity {
     private static final VoxelShape CAULDRON_SHAPE = Block.createCuboidShape(1, 0.0, 1, 15, 11.0, 15);

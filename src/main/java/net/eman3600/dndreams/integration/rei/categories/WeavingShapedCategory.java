@@ -11,12 +11,10 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
 import net.eman3600.dndreams.integration.rei.display.WeavingShapedDisplay;
-import net.eman3600.dndreams.integration.rei.display.WeavingShapelessDisplay;
 import net.eman3600.dndreams.recipe.WeavingShapedRecipe;
-import net.eman3600.dndreams.recipe.WeavingShapelessRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 

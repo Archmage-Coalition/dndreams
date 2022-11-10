@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.blocks.entities;
 
-import net.eman3600.dndreams.initializers.ModBlockEntities;
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.items.WaystoneItem;
 import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
 import net.eman3600.dndreams.recipe.RitualRecipe;

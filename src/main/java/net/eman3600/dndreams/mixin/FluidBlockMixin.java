@@ -2,7 +2,7 @@ package net.eman3600.dndreams.mixin;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.UnmodifiableIterator;
-import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FlowableFluid;

@@ -15,6 +15,8 @@
   "item.dndreams.infernal_residue":  "Infernal Residue",
   "item.dndreams.tainted_pearl":  "Tainted Pearl",
   "item.dndreams.water_artichoke_globe": "Water Artichoke Globe",
+  "item.dndreams.succulent_apple": "Succulent Apple",
+  "item.dndreams.poison_apple": "Rotten Apple",
   "item.dndreams.archfuel": "Refined Fuel",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
@@ -105,6 +107,7 @@
   
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
   "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",
+  "item.dndreams.applethorn_seeds": "Applethorn Seeds",
   
   "item.dndreams.mindstring_bow": "Mindstrung Bow",
   "item.dndreams.lightstring_bow": "Lightstrung Bow",
@@ -326,8 +329,11 @@
   "block.dndreams.flowing_bedrock": "Flowing Bedrock",
   "block.dndreams.world_fountain": "World Fountain",
   
-  "block.dndreams.snowbell_crop": "Snowbell",
+  "block.dndreams.snowbell": "Snowbell",
   "block.dndreams.water_artichoke": "Water Artichoke",
+  "block.dndreams.ember_moss": "Ember Moss",
+  "block.dndreams.wither_blossom": "Wither Blossom",
+  "block.dndreams.applethorn": "Applethorn",
   
   "block.dndreams.soul_candle": "Soul Candle",
   "block.dndreams.echo_candle": "Echo Candle",
@@ -343,6 +349,7 @@
   "block.dndreams.refinery": "Refinery",
   "block.dndreams.refined_cauldron": "Refined Cauldron",
   
+  
   "ritual.dndreams.error.unknown": "Unknown Rite",
   "ritual.dndreams.error.improper": "Improper Casting Conditions",
   "ritual.dndreams.error.rings": "Improper Candle Rings",
@@ -352,6 +359,7 @@
   "ritual.dndreams.waystone_simple": "Rebind Waystone",
   "ritual.dndreams.amethyst_source": "Bud Amethyst",
   "ritual.dndreams.amethyst_sprout": "Sprout Amethyst",
+  
   
   "block.dndreams.flowing_spirit": "Flowing Spirit",
   "block.dndreams.flowing_flowing_spirit": "Flowing Spirit",

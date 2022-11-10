@@ -2,7 +2,7 @@ package net.eman3600.dndreams.items.creative;
 
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.infusions.Infusion;
-import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

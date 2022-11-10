@@ -1,8 +1,5 @@
 package net.eman3600.dndreams.items.tool_mirror;
 
-import com.mojang.datafixers.util.Pair;
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ToolMaterial;
 

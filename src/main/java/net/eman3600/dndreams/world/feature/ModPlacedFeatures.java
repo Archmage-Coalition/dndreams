@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.world.feature;
 
-import net.eman3600.dndreams.initializers.ModConfiguredFeatures;
-import net.eman3600.dndreams.initializers.ModFeatures;
+import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
+import net.eman3600.dndreams.initializers.world.ModFeatures;
 import net.eman3600.dndreams.world.OreFeatures;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.YOffset;

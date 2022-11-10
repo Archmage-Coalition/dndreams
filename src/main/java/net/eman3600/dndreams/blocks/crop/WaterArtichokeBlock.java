@@ -1,8 +1,7 @@
 package net.eman3600.dndreams.blocks.crop;
 
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModFluids;
-import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModFluids;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;

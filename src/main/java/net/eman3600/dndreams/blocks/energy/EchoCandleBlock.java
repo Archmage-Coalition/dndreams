@@ -1,15 +1,10 @@
 package net.eman3600.dndreams.blocks.energy;
 
-import net.eman3600.dndreams.blocks.entities.AttunementChamberBlockEntity;
 import net.eman3600.dndreams.blocks.entities.EchoCandleBlockEntity;
-import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
-import net.eman3600.dndreams.initializers.ModBlockEntities;
-import net.eman3600.dndreams.items.charge.AbstractChargeItem;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual.CandleTuning;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
