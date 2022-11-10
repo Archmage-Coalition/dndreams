@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.world.biome.EndBiome;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

@@ -1,6 +1,7 @@
 package net.eman3600.dndreams;
 
 import net.eman3600.dndreams.initializers.basics.*;
+import net.eman3600.dndreams.initializers.bclib.ModBiomes;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.event.*;
@@ -69,6 +70,7 @@ public class Initializer implements ModInitializer {
 		ModEntities.registerEntities();
 
 		ModDimensions.registerDimensions();
+		ModBiomes.registerBiomes();
 
 		ModMessages.registerC2SPackets();
 		ModCallbacks.registerCallbacks();
