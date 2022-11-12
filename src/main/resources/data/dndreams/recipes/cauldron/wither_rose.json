@@ -1,0 +1,16 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "minecraft:rose_bush"
+    },
+	{
+      "item": "dndreams:wither_bud"
+    }
+  ],
+  "result": {
+    "item": "minecraft:wither_rose",
+    "count": 8
+  },
+  "color": 2760473
+}

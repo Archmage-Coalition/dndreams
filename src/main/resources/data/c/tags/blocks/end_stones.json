@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "minecraft:end_stone",
+	"minecraft:end_stone_bricks",
 	"dndreams:selene_grass_block",
 	"dndreams:helios_grass_block",
 	"dndreams:eos_grass_block"

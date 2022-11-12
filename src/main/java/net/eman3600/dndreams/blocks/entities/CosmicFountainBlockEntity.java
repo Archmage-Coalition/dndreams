@@ -10,6 +10,7 @@ import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.event.ModParticles;
+import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -79,9 +80,11 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
 
                 BlockPos test = pos.down(l + 1).add(i, 0, j);
 
-                if (world.getBlockState(test).getBlock() != Blocks.END_STONE) return false;
+                if (!world.getBlockState(test).isIn(ModTags.END_STONES)) return false;
             }
         }
+
+
 
         for (int i = -3; i < 4; i++) {
             for (int j = -3; j < 4; j++) {
@@ -89,12 +92,12 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
 
                 if (i == 0 && j == 0) continue;
                 if ((Math.abs(i) >= 2) && (Math.abs(j) >= 2)) {
-                    if (Math.abs(i) == 2 && Math.abs(i) == Math.abs(j) && world.getBlockState(test).getBlock() != Blocks.END_STONE) return false;
+                    if (Math.abs(i) == 2 && Math.abs(i) == Math.abs(j) && !world.getBlockState(test).isIn(ModTags.END_STONES)) return false;
                     continue;
                 }
 
                 if (Math.abs(i) > 2 || Math.abs(j) > 2) {
-                    if (world.getBlockState(test).getBlock() != Blocks.END_STONE) return false;
+                    if (!world.getBlockState(test).isIn(ModTags.END_STONES)) return false;
                     continue;
                 }
 

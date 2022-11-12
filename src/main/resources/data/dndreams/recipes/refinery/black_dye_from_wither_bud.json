@@ -1,0 +1,14 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:wither_bud"
+    }
+  ],
+  "result": {
+    "item": "minecraft:black_dye",
+    "count": 4
+  },
+  "cost": 50,
+  "refine_time": 50
+}

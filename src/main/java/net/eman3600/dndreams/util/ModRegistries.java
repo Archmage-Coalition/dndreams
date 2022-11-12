@@ -113,6 +113,7 @@ public class ModRegistries {
 
 
         MutandisOneirosItem.registerMutable(ModBlocks.DREAMWOOD_SAPLING);
+        MutandisOneirosItem.registerMutable(ModBlocks.WITHER_BLOSSOM);
         MutandisOneirosItem.registerMutable(Blocks.WITHER_ROSE);
         MutandisOneirosItem.registerMutable(ModBlocks.APPLETHORN);
     }

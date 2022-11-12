@@ -1,11 +1,13 @@
 package net.eman3600.dndreams.blocks.crop;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -79,6 +81,7 @@ public class WitherBlossomBlock extends PlantBlock implements Fertilizable {
             double d = Math.abs(entity.getX() - entity.lastRenderX);
             double e = Math.abs(entity.getZ() - entity.lastRenderZ);
             if (d >= (double)0.003f || e >= (double)0.003f) {
+                ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 40));
                 entity.damage(DamageSource.SWEET_BERRY_BUSH, 1.0f);
             }
         }

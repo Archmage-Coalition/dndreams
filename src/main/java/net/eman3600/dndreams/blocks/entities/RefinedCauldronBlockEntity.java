@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.blocks.entities;
 
+import net.eman3600.dndreams.blocks.properties.BrewStage;
 import net.eman3600.dndreams.blocks.properties.BrewType;
 import net.eman3600.dndreams.blocks.properties.CauldronState;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
@@ -11,7 +12,10 @@ import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
 import net.eman3600.dndreams.recipe.CauldronRecipe;
 import net.eman3600.dndreams.recipe.ExtractionMethod;
 import net.eman3600.dndreams.util.ModTags;
+import net.eman3600.dndreams.util.data.EnhancementEntry;
+import net.eman3600.dndreams.util.data.EnhancementType;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
+import net.eman3600.dndreams.util.data.CapacityEntry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -36,12 +40,16 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractPowerReceiver, ImplementedInventory {
-    public static int WATER_COLOR = 0x385DC6;
-    public static int RUINED_COLOR = 0xF800F8;
+    public static final int WATER_COLOR = 0x385DC6;
+    public static final int RUINED_COLOR = 0xF800F8;
+
+    public static final HashMap<Item, CapacityEntry> CAPACITIES = new HashMap<>();
+    public static final HashMap<Item, EnhancementEntry> ENHANCEMENTS = new HashMap<>();
 
     private DefaultedList<ItemStack> inventory =
             DefaultedList.ofSize(20, ItemStack.EMPTY);
@@ -218,6 +226,14 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                 cauldronState = CauldronState.RUINED;
                 color = RUINED_COLOR;
             }
+        } else if (getBrewType() == BrewType.BREW) {
+            if (BrewStage.fromStack(addition, world) == BrewStage.BASE && getBrewStage() == BrewStage.BASE) {
+                color = 0x133bad;
+                return;
+            }
+
+            cauldronState = CauldronState.RUINED;
+            color = RUINED_COLOR;
         }
     }
 
@@ -382,6 +398,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
     public CauldronState getCauldronState() {
         return cauldronState;
     }
+
     public BrewType getBrewType() {
         if (inventory.get(0).isOf(ModItems.WOOD_ASH)) inventory.clear();
 
@@ -390,6 +407,30 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         else if (inventory.get(0).isOf(Items.NETHER_WART)) return BrewType.BREW;
         else return BrewType.CRAFT;
     }
+
+    public BrewStage getBrewStage() {
+        if (getBrewType() == BrewType.BREW) {
+            if (ingredients == 1) return BrewStage.BASE;
+
+        }
+
+        return null;
+    }
+
+
+    public static void registerCapacityModifier(Item item, int capacity, int power) {
+        if (CAPACITIES.containsKey(item)) return;
+
+        CAPACITIES.put(item, new CapacityEntry(capacity, power));
+    }
+
+    public static void registerEnhancement(Item item, EnhancementType type, int power) {
+        if (ENHANCEMENTS.containsKey(item)) return;
+
+        ENHANCEMENTS.put(item, new EnhancementEntry(type, power));
+    }
+
+
 
     @Override
     public DefaultedList<ItemStack> getItems() {

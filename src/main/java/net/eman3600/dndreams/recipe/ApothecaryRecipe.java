@@ -1,0 +1,136 @@
+package net.eman3600.dndreams.recipe;
+
+import com.google.gson.JsonObject;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
+import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
+
+public class ApothecaryRecipe implements Recipe<Inventory> {
+
+    private final Identifier id;
+    public final String group;
+    public final ItemStack input;
+    public final boolean corrupted;
+    public final int capacity;
+    public final int power;
+    public final StatusEffect effect;
+
+    public ApothecaryRecipe(Identifier id, String group, ItemStack input, boolean corrupted, int capacity, int power, StatusEffect effect) {
+        this.id = id;
+        this.group = group;
+        this.input = input;
+        this.corrupted = corrupted;
+        this.capacity = capacity;
+        this.power = power;
+        this.effect = effect;
+    }
+
+    public Identifier getId() {
+        return this.id;
+    }
+
+    public RecipeSerializer<ApothecaryRecipe> getSerializer() {
+        return ModRecipeTypes.APOTHECARY_SERIALIZER;
+    }
+
+    @Override
+    public RecipeType<?> getType() {
+        return ModRecipeTypes.APOTHECARY;
+    }
+
+    public String getGroup() {
+        return this.group;
+    }
+
+    public boolean matches(Inventory inventory, World world) {
+        try {
+            boolean match = inventory.getStack(0).isItemEqualIgnoreDamage(input);
+
+            return match && (!corrupted || inventory.getStack(1).isOf(Items.FERMENTED_SPIDER_EYE));
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+    }
+
+    public ItemStack craft(Inventory inventory) {
+        return this.input.copy();
+    }
+
+    public boolean fits(int width, int height) {
+        return width > 0 && height > 0;
+    }
+
+    public ItemStack getOutput() {
+        return this.input;
+    }
+
+    public DefaultedList<Ingredient> getIngredients() {
+        return DefaultedList.ofSize(1, Ingredient.ofStacks(input));
+    }
+
+    public static class Serializer implements RecipeSerializer<ApothecaryRecipe> {
+
+        public static final ApothecaryRecipe.Serializer INSTANCE = new ApothecaryRecipe.Serializer();
+        public static final String ID = "transmutation";
+
+        public Serializer() {
+        }
+
+        public ApothecaryRecipe read(Identifier identifier, JsonObject jsonObject) {
+            String string = JsonHelper.getString(jsonObject, "group", "");
+            ItemStack stack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "ingredient"));
+            boolean corrupted = JsonHelper.getBoolean(jsonObject, "corrupted", false);
+            int capacity = JsonHelper.getInt(jsonObject, "capacity", 2);
+            int power = JsonHelper.getInt(jsonObject, "power", 250);
+
+            String potion = JsonHelper.getString(jsonObject, "effect", "minecraft:strength");
+            Identifier id = Identifier.tryParse(potion);
+
+            StatusEffect effect = Registry.STATUS_EFFECT.get(id);
+            if (effect == null) {
+                effect = StatusEffects.STRENGTH;
+            }
+
+            return new ApothecaryRecipe(identifier, string, stack, corrupted, capacity, power, effect);
+
+        }
+
+        public ApothecaryRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
+            String group = packetByteBuf.readString();
+            ItemStack stack = packetByteBuf.readItemStack();
+            boolean corrupted = packetByteBuf.readBoolean();
+            int capacity = packetByteBuf.readInt();
+            int power = packetByteBuf.readInt();
+
+            StatusEffect effect = Registry.STATUS_EFFECT.get(Identifier.tryParse(packetByteBuf.readString()));
+            if (effect == null) {
+                effect = StatusEffects.STRENGTH;
+            }
+
+            return new ApothecaryRecipe(identifier, group, stack, corrupted, capacity, power, effect);
+        }
+
+        public void write(PacketByteBuf packetByteBuf, ApothecaryRecipe recipe) {
+            packetByteBuf.writeString(recipe.group);
+            packetByteBuf.writeItemStack(recipe.input);
+            packetByteBuf.writeBoolean(recipe.corrupted);
+            packetByteBuf.writeInt(recipe.capacity);
+            packetByteBuf.writeInt(recipe.power);
+            packetByteBuf.writeString(Registry.STATUS_EFFECT.getId(recipe.effect).toString());
+        }
+    }
+
+}
