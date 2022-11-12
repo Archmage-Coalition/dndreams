@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dndreams:wither_lotus_seeds",
+          "name": "dndreams:wither_blossom_seeds",
           "functions": [
             {
               "function": "set_count",
