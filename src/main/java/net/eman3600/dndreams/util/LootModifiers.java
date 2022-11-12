@@ -1,19 +1,9 @@
 package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.initializers.ModItems;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.loot.LootManager;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.*;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.util.Identifier;
 
 public class LootModifiers {

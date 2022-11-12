@@ -3,18 +3,20 @@ package net.eman3600.dndreams.cardinal_components;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.initializers.ModStatusEffects;
-import net.eman3600.dndreams.initializers.WorldComponents;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.MathHelper;
 
 public class TormentComponent implements TormentComponentI, AutoSyncedComponent, ServerTickingComponent {
     private float torment = 0;
     private int dragonFlashTicks = 0;
     private boolean tormentRush = false;
+    private boolean shielded = false;
 
     private final PlayerEntity player;
 
@@ -27,6 +29,16 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public float getTorment() {
         return torment;
+    }
+
+    @Override
+    public boolean isShielded() {
+        return shielded;
+    }
+
+    public void shield(boolean shielded) {
+        this.shielded = shielded;
+        EntityComponents.TORMENT.sync(player);
     }
 
     @Override
@@ -57,8 +69,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
                 && player.getWorld().getDimensionKey() != ModDimensions.DREAM_TYPE_KEY)) {
             torment = 0;
         } else {
-            torment = Math.max(torment, 0);
-            torment = Math.min(torment, MAX_TORMENT);
+            torment = MathHelper.clamp(torment, 0, MAX_TORMENT);
         }
         EntityComponents.TORMENT.sync(player);
     }
@@ -68,6 +79,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         torment = tag.getFloat("torment");
         dragonFlashTicks = tag.getInt("dragon_flash_ticks");
         tormentRush = tag.getBoolean("torment_rush");
+        shielded = tag.getBoolean("shielded");
     }
 
     @Override
@@ -75,15 +87,16 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putFloat("torment", torment);
         tag.putInt("dragon_flash_ticks", dragonFlashTicks);
         tag.putBoolean("torment_rush", tormentRush);
+        tag.putBoolean("shielded", shielded);
     }
 
     @Override
     public void serverTick() {
         if (!terrorized() && torment > 0) {
-            addPerMinute(-7.5f);
+            addPerMinute(shielded ? -20f : -7.5f);
         }
 
-        if (torment >= 90 && !tormentRush) {
+        if (torment >= 99 && !tormentRush) {
             tormentRush = true;
 
             player.sendMessage(Text.translatable("message.dndreams.torment_rush"), true);

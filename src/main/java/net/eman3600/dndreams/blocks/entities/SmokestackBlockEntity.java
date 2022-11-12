@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.blocks.entities;
 
-import net.eman3600.dndreams.initializers.ModBlockEntities;
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.recipe.SmokestackRecipe;
 import net.eman3600.dndreams.screen.SmokestackScreenHandler;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;

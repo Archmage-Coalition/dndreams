@@ -15,6 +15,9 @@
   "item.dndreams.infernal_residue":  "Infernal Residue",
   "item.dndreams.tainted_pearl":  "Tainted Pearl",
   "item.dndreams.water_artichoke_globe": "Water Artichoke Globe",
+  "item.dndreams.succulent_apple": "Succulent Apple",
+  "item.dndreams.poison_apple": "Rotten Apple",
+  "item.dndreams.archfuel": "Refined Fuel",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
@@ -87,14 +90,30 @@
   
   "item.dndreams.mellifluous_hunger": "Mellifluous Hunger",
   "item.dndreams.distilled_spirit": "Distilled Spirit",
+  "item.dndreams.hollow_tear": "Hollow Tear",
+  
+  "item.dndreams.sleeping_brew": "Brew of Lofty Dreams",
+  "item.dndreams.manifest_brew": "Brew of Congealed Mind",
+  "item.dndreams.manifest_brew.tooltip_before": "§3To twist your imagination to reality.",
+  "item.dndreams.manifest_brew.tooltip_before2": "§3Bring the dream to life.",
+  "item.dndreams.manifest_brew.tooltip_after": "§3Its power courses through your",
+  "item.dndreams.manifest_brew.tooltip_after2": "§3veins, its power unending.",
+  "item.dndreams.manifest_brew.use": "§dYou feel surreal...",
+  
+  "item.dndreams.panacea": "The Panacea",
+  "item.dndreams.panacea.tooltip_before": "§4It has a familiar scent.",
+  "item.dndreams.panacea.tooltip_after": "§4It remains within you yet...",
+  "item.dndreams.panacea.use": "§4Until you die once more...",
   
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
   "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",
+  "item.dndreams.applethorn_seeds": "Applethorn Seeds",
   
   "item.dndreams.mindstring_bow": "Mindstrung Bow",
   "item.dndreams.lightstring_bow": "Lightstrung Bow",
   
   "item.dndreams.flowing_spirit_bucket": "Bucket of Flowing Spirit",
+  "item.dndreams.sorrow_bucket": "Bucket of Torrential Sorrow",
   
   "item.dndreams.phantom_necklace": "Phantom Necklace",
   
@@ -112,6 +131,7 @@
   
   
   "message.dndreams.torment_rush": "§cSomething is coming...",
+  "message.dndreams.torment_calm": "§bThe terrors recede...",
   
   
   "enchantment.dndreams.potency": "Potency",
@@ -227,17 +247,17 @@
   "block.dndreams.sculk_wood_fence_gate": "Echo Fence Gate",
   "block.dndreams.sculk_light": "Echo Lamp",
 
-  "block.dndreams.japanese_maple_log": "Maple Log",
-  "block.dndreams.japanese_maple_wood": "Maple Wood",
-  "block.dndreams.stripped_japanese_maple_log": "Stripped Maple Log",
-  "block.dndreams.stripped_japanese_maple_wood": "Stripped Maple Wood",
-  "block.dndreams.japanese_maple_planks": "Maple Planks",
-  "block.dndreams.japanese_maple_leaves": "Maple Leaves",
-  "block.dndreams.japanese_maple_sapling": "Maple Sapling",
-  "block.dndreams.japanese_maple_stairs": "Maple Stairs",
-  "block.dndreams.japanese_maple_slab": "Maple Slab",
-  "block.dndreams.japanese_maple_fence": "Maple Fence",
-  "block.dndreams.japanese_maple_fence_gate": "Maple Fence Gate",
+  "block.dndreams.japanese_maple_log": "Palmate Maple Log",
+  "block.dndreams.japanese_maple_wood": "Palmate Maple Wood",
+  "block.dndreams.stripped_japanese_maple_log": "Stripped Palmate Maple Log",
+  "block.dndreams.stripped_japanese_maple_wood": "Stripped Palmate Maple Wood",
+  "block.dndreams.japanese_maple_planks": "Palmate Maple Planks",
+  "block.dndreams.japanese_maple_leaves": "Palmate Maple Leaves",
+  "block.dndreams.japanese_maple_sapling": "Palmate Maple Sapling",
+  "block.dndreams.japanese_maple_stairs": "Palmate Maple Stairs",
+  "block.dndreams.japanese_maple_slab": "Palmate Maple Slab",
+  "block.dndreams.japanese_maple_fence": "Palmate Maple Fence",
+  "block.dndreams.japanese_maple_fence_gate": "Palmate Maple Fence Gate",
   
   "block.dndreams.selene_log": "Selene Log",
   "block.dndreams.selene_wood": "Selene Wood",
@@ -309,8 +329,11 @@
   "block.dndreams.flowing_bedrock": "Flowing Bedrock",
   "block.dndreams.world_fountain": "World Fountain",
   
-  "block.dndreams.snowbell_crop": "Snowbell",
+  "block.dndreams.snowbell": "Snowbell",
   "block.dndreams.water_artichoke": "Water Artichoke",
+  "block.dndreams.ember_moss": "Ember Moss",
+  "block.dndreams.wither_blossom": "Wither Blossom",
+  "block.dndreams.applethorn": "Applethorn",
   
   "block.dndreams.soul_candle": "Soul Candle",
   "block.dndreams.echo_candle": "Echo Candle",
@@ -324,6 +347,8 @@
   "block.dndreams.attunement_chamber": "Attunement Chamber",
   "block.dndreams.smokestack": "Smokestack",
   "block.dndreams.refinery": "Refinery",
+  "block.dndreams.refined_cauldron": "Refined Cauldron",
+  
   
   "ritual.dndreams.error.unknown": "Unknown Rite",
   "ritual.dndreams.error.improper": "Improper Casting Conditions",
@@ -335,8 +360,11 @@
   "ritual.dndreams.amethyst_source": "Bud Amethyst",
   "ritual.dndreams.amethyst_sprout": "Sprout Amethyst",
   
+  
   "block.dndreams.flowing_spirit": "Flowing Spirit",
   "block.dndreams.flowing_flowing_spirit": "Flowing Spirit",
+  "block.dndreams.sorrow": "Torrential Sorrow",
+  "block.dndreams.flowing_sorrow": "Torrential Sorrow",
   
   
   "container.dndreams.dream_table": "Dream Weaving",
@@ -369,6 +397,8 @@
   "rei.dndreams.refinery": "Refining",
   "rei.dndreams.refinery.cost": "Cost: %s",
   "rei.dndreams.refinery.dream_only": "Dream World Only",
+  "rei.dndreams.cauldron": "Cauldron Brewing",
+  "rei.dndreams.cauldron.dream_only": "Dream World Only",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"

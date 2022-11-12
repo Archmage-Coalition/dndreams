@@ -1,11 +1,10 @@
 package net.eman3600.dndreams.entities.projectiles;
 
-import net.eman3600.dndreams.initializers.ModEnchantments;
-import net.eman3600.dndreams.initializers.ModEntities;
-import net.eman3600.dndreams.initializers.ModMessages;
+import net.eman3600.dndreams.initializers.basics.ModEnchantments;
+import net.eman3600.dndreams.initializers.entity.ModEntities;
+import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
-import net.eman3600.dndreams.items.magic_sword.CrownedEdgeItem;
 import net.eman3600.dndreams.util.matrices.RotatedBox;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;

@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.fluids;
 
-import net.eman3600.dndreams.initializers.ModFluids;
+import net.eman3600.dndreams.initializers.basics.ModFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

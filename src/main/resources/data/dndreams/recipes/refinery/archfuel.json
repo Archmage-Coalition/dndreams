@@ -1,0 +1,20 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "minecraft:charcoal"
+    },
+	{
+      "item": "dndreams:wood_ash"
+    },
+	{
+      "item": "dndreams:foul_fume"
+    }
+  ],
+  "result": {
+    "item": "dndreams:archfuel",
+    "count": 2
+  },
+  "cost": 50,
+  "refine_time": 100
+}

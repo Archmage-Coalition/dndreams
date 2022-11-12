@@ -2,10 +2,8 @@ package net.eman3600.dndreams.items.managold;
 
 import com.mojang.datafixers.util.Pair;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

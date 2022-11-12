@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.items.charge;
 
-import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;

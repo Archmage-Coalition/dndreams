@@ -1,7 +1,5 @@
 package net.eman3600.dndreams.items.tool_mirror;
 
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.ToolMaterial;
 

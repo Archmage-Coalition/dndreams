@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.integration.rei.categories;
 
-import dev.architectury.fluid.FluidStack;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -10,14 +9,10 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModFluids;
+import net.eman3600.dndreams.initializers.basics.ModFluids;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
 import net.eman3600.dndreams.integration.rei.display.TransmutationDisplay;
-import net.eman3600.dndreams.integration.rei.display.WeavingShapelessDisplay;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;

@@ -2,7 +2,11 @@ package net.eman3600.dndreams.blocks.energy;
 
 import net.eman3600.dndreams.blocks.entities.AbstractPowerReceiver;
 import net.eman3600.dndreams.blocks.entities.CosmicFountainBlockEntity;
-import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;

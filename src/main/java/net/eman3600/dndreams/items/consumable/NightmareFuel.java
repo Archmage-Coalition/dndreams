@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.items.consumable;
 
-import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.DreamyItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;

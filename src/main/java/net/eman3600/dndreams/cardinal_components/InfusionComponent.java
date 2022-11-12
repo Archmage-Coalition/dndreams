@@ -2,7 +2,7 @@ package net.eman3600.dndreams.cardinal_components;
 
 import net.eman3600.dndreams.cardinal_components.interfaces.InfusionComponentI;
 import net.eman3600.dndreams.infusions.Infusion;
-import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.MathHelper;

@@ -11,6 +11,18 @@
         {
           "type": "minecraft:item",
           "name": "dndreams:water_artichoke_seeds"
+        },
+		{
+          "type": "minecraft:item",
+          "name": "dndreams:applethorn_seeds",
+          "conditions": [
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "dimension": "dndreams:dream"
+              }
+            }
+          ]
         }
       ],
       "conditions": [

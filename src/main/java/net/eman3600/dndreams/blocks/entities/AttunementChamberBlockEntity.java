@@ -1,14 +1,13 @@
 package net.eman3600.dndreams.blocks.entities;
 
 import net.eman3600.dndreams.blocks.energy.AttunementChamberBlock;
-import net.eman3600.dndreams.initializers.ModBlockEntities;
-import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.items.charge.AbstractChargeItem;
 import net.eman3600.dndreams.screen.AttunementScreenHandler;
 import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;

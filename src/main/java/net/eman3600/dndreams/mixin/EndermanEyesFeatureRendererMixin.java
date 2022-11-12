@@ -2,7 +2,7 @@ package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.BossStateComponent;
-import net.eman3600.dndreams.initializers.WorldComponents;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.feature.EndermanEyesFeatureRenderer;

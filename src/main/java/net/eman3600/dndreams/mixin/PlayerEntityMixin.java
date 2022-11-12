@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -13,7 +14,6 @@ import net.minecraft.util.Arm;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionTypes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,17 +29,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
-    }
-
-    @Inject(method = "tick()V", at = @At("TAIL"))
-    public void injectTick(CallbackInfo info) {
-        if (getEntityWorld().getDimensionKey() == DimensionTypes.THE_END) {
-            EntityComponents.TORMENT.get(this).addPerMinute(-5f);
-        }
-
-        if (WorldComponents.BLOOD_MOON.get(getEntityWorld()).isBloodMoon()) {
-            EntityComponents.TORMENT.get(this).addPerMinute(2f);
-        }
     }
 
     @Inject(method = "createPlayerAttributes", at = @At("RETURN"), cancellable = true)

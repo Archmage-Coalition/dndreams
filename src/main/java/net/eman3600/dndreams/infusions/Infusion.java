@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.infusions;
 
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.initializers.ModDimensions;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;

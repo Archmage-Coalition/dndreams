@@ -2,15 +2,14 @@ package net.eman3600.dndreams.cardinal_components;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.BloodMoonComponentI;
-import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.initializers.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
 
-import java.awt.*;
 import java.util.Random;
 
 public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedComponent {

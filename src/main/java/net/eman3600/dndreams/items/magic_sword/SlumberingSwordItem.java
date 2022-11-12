@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.items.magic_sword;
 
-import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;

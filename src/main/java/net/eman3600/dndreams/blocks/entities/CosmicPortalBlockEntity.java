@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.blocks.entities;
 
-import net.eman3600.dndreams.initializers.ModBlockEntities;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;

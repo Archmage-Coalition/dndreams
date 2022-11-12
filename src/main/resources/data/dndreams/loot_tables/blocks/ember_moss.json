@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "dndreams:ember_moss",
+					"conditions": [
+						{
+							"condition": "minecraft:match_tool",
+							"predicate": {
+								"items": [
+									"minecraft:shears"
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

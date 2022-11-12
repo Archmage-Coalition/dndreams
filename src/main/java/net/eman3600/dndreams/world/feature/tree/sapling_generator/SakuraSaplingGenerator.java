@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.world.feature.tree.sapling_generator;
 
-import net.eman3600.dndreams.initializers.ModConfiguredFeatures;
+import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryEntry;

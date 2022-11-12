@@ -1,18 +1,11 @@
 package net.eman3600.dndreams.integration.rei.display;
 
-import com.google.common.collect.ImmutableList;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
-import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.eman3600.dndreams.initializers.ModItems;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
-import net.eman3600.dndreams.integration.rei.categories.MutandisCategory;
-import net.minecraft.block.Block;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

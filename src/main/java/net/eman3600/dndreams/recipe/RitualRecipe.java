@@ -2,8 +2,7 @@ package net.eman3600.dndreams.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import it.unimi.dsi.fastutil.ints.IntList;
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual;
 import net.eman3600.dndreams.rituals.setup.RitualRegistry;
 import net.minecraft.inventory.Inventory;
@@ -14,8 +13,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-
-import java.util.Iterator;
 
 public class RitualRecipe implements Recipe<Inventory> {
 

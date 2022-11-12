@@ -1,21 +1,18 @@
 package net.eman3600.dndreams.items.consumable;
 
-import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
-import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 

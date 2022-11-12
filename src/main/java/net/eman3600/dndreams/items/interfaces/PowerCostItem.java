@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.items.interfaces;
 
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

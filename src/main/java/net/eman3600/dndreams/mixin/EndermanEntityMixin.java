@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.initializers.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.RevengeGoal;

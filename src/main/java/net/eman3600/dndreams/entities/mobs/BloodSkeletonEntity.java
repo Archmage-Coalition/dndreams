@@ -1,14 +1,16 @@
 package net.eman3600.dndreams.entities.mobs;
 
-import net.eman3600.dndreams.initializers.ModEntities;
+import net.eman3600.dndreams.initializers.entity.ModEntities;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.StrayEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
@@ -56,12 +58,22 @@ public class BloodSkeletonEntity extends SkeletonEntity {
     protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
         PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
         if (persistentProjectileEntity instanceof ArrowEntity) {
-            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(StatusEffects.POISON, 200));
+            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 200));
         }
         return persistentProjectileEntity;
+    }
+
+    @Override
+    public boolean tryAttack(Entity target) {
+        boolean bl = super.tryAttack(target);
+        if (bl && this.getMainHandStack().isEmpty() && target instanceof LivingEntity) {
+            ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 200), this);
+        }
+        return bl;
     }
 
     public static DefaultAttributeContainer.Builder createBloodSkeletonAttributes() {
         return createAbstractSkeletonAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 30).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 50.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3f).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0);
     }
+
 }

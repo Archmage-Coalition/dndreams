@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.blocks.crop;
 
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModDimensions;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.sapling.SaplingGenerator;

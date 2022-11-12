@@ -4,18 +4,14 @@ import com.google.common.collect.ImmutableList;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
 import net.eman3600.dndreams.recipe.RefineryRecipe;
-import net.eman3600.dndreams.recipe.TransmutationRecipe;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class RefineryDisplay implements Display {
     private final List<EntryIngredient> input;
@@ -26,9 +22,11 @@ public class RefineryDisplay implements Display {
 
     public RefineryDisplay(RefineryRecipe recipe) {
         List<EntryIngredient> input = new ArrayList<>(EntryIngredients.ofIngredients(recipe.getIngredients()));
+        List<EntryIngredient> output = new ArrayList<>();
+        output.add(EntryIngredients.of(recipe.getOutput()));
         this.jars = recipe.jarsRequired();
-        this.output = Collections.singletonList(EntryIngredients.of(recipe.getOutput()));
         this.byproduct = EntryIngredients.of(recipe.byproduct);
+        output.add(byproduct);
         this.RECIPE = recipe;
 
         while (input.size() < 4) {
@@ -38,6 +36,7 @@ public class RefineryDisplay implements Display {
         if (jars > 0) input.add(jars());
 
         this.input = ImmutableList.copyOf(input);
+        this.output = ImmutableList.copyOf(output);
     }
 
 

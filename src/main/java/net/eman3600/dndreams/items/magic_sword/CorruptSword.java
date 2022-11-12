@@ -1,19 +1,14 @@
 package net.eman3600.dndreams.items.magic_sword;
 
-import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
-import net.eman3600.dndreams.initializers.ModStatusEffects;
-import net.eman3600.dndreams.initializers.WorldComponents;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
 
 public class CorruptSword extends SwordItem {
     private static final int LUST_DURATION = 30;

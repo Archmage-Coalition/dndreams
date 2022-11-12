@@ -1,10 +1,18 @@
 package net.eman3600.dndreams;
 
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
+import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.BloodSkeletonEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.BloodZombieEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.WardenRagdollEntityRenderer;
-import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModFluids;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.entity.ModEntities;
+import net.eman3600.dndreams.initializers.event.ModMessages;
+import net.eman3600.dndreams.initializers.event.ModParticles;
+import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.screen.AttunementScreen;
 import net.eman3600.dndreams.screen.RefineryScreen;
@@ -17,7 +25,6 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
@@ -62,10 +69,13 @@ ClientInitializer implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MORTAL_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.COSMIC_PORTAL, RenderLayer.getEndPortal());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SNOWBELL_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SNOWBELL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WATER_ARTICHOKE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.EMBER_MOSS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.APPLETHORN, RenderLayer.getCutout());
 
         BlockEntityRendererRegistry.register(ModBlockEntities.COSMIC_PORTAL_ENTITY, CosmicPortalBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(ModBlockEntities.REFINED_CAULDRON_ENTITY, RefinedCauldronBlockEntityRenderer::new);
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_FLOWING_SPIRIT, ModFluids.FLOWING_FLOWING_SPIRIT,
                 new SimpleFluidRenderHandler(
@@ -73,9 +83,19 @@ ClientInitializer implements ClientModInitializer {
                         new Identifier("minecraft:block/water_flow"),
                         0xA100F0F0
                 ));
+        FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_SORROW, ModFluids.FLOWING_SORROW,
+                new SimpleFluidRenderHandler(
+                        new Identifier("minecraft:block/water_still"),
+                        new Identifier("minecraft:block/water_flow"),
+                        0xDF1E1C32
+                ));
 
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluids.STILL_FLOWING_SPIRIT, ModFluids.FLOWING_FLOWING_SPIRIT);
+        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
+                ModFluids.STILL_SORROW, ModFluids.FLOWING_SORROW);
+
+        //1e1c32
 
         ModModelPredicateProvider.registerModModels();
 

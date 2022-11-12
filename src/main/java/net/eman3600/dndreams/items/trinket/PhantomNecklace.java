@@ -3,7 +3,7 @@ package net.eman3600.dndreams.items.trinket;
 import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
-import net.eman3600.dndreams.initializers.ModAttributes;
+import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;

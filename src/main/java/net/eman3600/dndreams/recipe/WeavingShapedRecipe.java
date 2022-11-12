@@ -4,7 +4,7 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.*;
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.util.inventory.WeavingInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -3,8 +3,8 @@ package net.eman3600.dndreams.mixin.client;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.mixin_interfaces.HudAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -203,12 +203,12 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         EntityComponents.TORMENT.maybeGet(player).ifPresent(tormentComponent -> {
             float tormentPercent = (tormentComponent.getTorment() / TormentComponent.MAX_TORMENT);
             if (tormentPercent <= 0) return;
-            int skipV = (int)(TORMENT_HEIGHT * (1f - tormentPercent));
+            int skipV = (int)((TORMENT_HEIGHT + 1) * (1f - tormentPercent));
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
             drawTexture(matrices, tormentXPos, tormentYPos, 80, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV, 80, tormentV + skipV, TORMENT_WIDTH, (int)(TORMENT_HEIGHT * tormentPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos + skipV, 80, tormentV + skipV, TORMENT_WIDTH, (int)((TORMENT_HEIGHT + 1) * tormentPercent));
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });

@@ -1,11 +1,10 @@
 package net.eman3600.dndreams.mixin.client;
 
-import net.eman3600.dndreams.initializers.ModMessages;
+import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

@@ -5,18 +5,18 @@
       "item": "dndreams:flowing_spirit_bucket"
     },
 	{
-      "item": "dndreams:mellifluous_hunger"
+      "item": "dndreams:dreamwood_fume"
     },
 	{
-      "item": "dndreams:dreamwood_fume"
+      "item": "dndreams:poison_apple"
     }
   ],
   "result": {
     "item": "dndreams:distilled_spirit",
-    "count": 6
+    "count": 4
   },
   "byproduct": {
-    "item": "minecraft:bucket",
+    "item": "dndreams:sorrow_bucket",
     "count": 1
   },
   "cost": 250,

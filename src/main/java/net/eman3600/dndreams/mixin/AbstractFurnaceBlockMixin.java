@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.initializers.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;

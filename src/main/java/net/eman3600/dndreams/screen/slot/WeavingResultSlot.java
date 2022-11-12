@@ -1,12 +1,10 @@
 package net.eman3600.dndreams.screen.slot;
 
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.util.inventory.WeavingInventory;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.RecipeUnlocker;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.collection.DefaultedList;

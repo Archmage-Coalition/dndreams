@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.items.mindstring_bow;
 
-import net.eman3600.dndreams.initializers.EntityComponents;
 import net.eman3600.dndreams.items.interfaces.PowerCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;

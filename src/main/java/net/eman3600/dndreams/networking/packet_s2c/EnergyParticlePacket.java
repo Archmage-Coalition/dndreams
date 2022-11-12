@@ -1,9 +1,9 @@
 package net.eman3600.dndreams.networking.packet_s2c;
 
 import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModMessages;
-import net.eman3600.dndreams.initializers.ModParticles;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.event.ModMessages;
+import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;

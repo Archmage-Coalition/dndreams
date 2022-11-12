@@ -1,12 +1,8 @@
 package net.eman3600.dndreams.blocks.energy;
 
-import net.eman3600.dndreams.blocks.entities.AttunementChamberBlockEntity;
-import net.eman3600.dndreams.blocks.entities.EchoCandleBlockEntity;
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
-import net.eman3600.dndreams.initializers.ModBlockEntities;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.items.WaystoneItem;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -14,8 +10,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;

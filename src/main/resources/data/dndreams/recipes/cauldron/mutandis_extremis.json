@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:mutandis"
+    },
+	{
+      "item": "minecraft:nether_wart"
+    },
+	{
+      "item": "minecraft:chorus_fruit"
+    }
+  ],
+  "result": {
+    "item": "dndreams:mutandis_extremis",
+    "count": 3
+  },
+  "color": 15601920
+}

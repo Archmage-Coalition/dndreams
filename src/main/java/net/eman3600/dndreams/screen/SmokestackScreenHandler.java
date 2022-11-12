@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.screen;
 
-import net.eman3600.dndreams.initializers.ModScreenHandlerTypes;
+import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
 import net.eman3600.dndreams.screen.slot.JarSlot;
 import net.eman3600.dndreams.screen.slot.GenericOutputSlot;
 import net.minecraft.entity.player.PlayerEntity;

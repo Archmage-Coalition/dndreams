@@ -1,8 +1,7 @@
 package net.eman3600.dndreams.blocks.energy;
 
-import net.eman3600.dndreams.blocks.entities.AttunementChamberBlockEntity;
 import net.eman3600.dndreams.blocks.entities.RefineryBlockEntity;
-import net.eman3600.dndreams.initializers.ModBlockEntities;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -11,7 +10,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -22,7 +20,6 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 

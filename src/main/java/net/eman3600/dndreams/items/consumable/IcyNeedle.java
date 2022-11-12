@@ -1,9 +1,9 @@
 package net.eman3600.dndreams.items.consumable;
 
 import net.eman3600.dndreams.cardinal_components.DreamingComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModDimensions;
-import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,7 +38,7 @@ public class IcyNeedle extends Item {
 
             FabricDimensions.teleport(user, serverWorld, new TeleportTarget(component.returnPos(), Vec3d.ZERO, user.getYaw(), user.getPitch()));
 
-            user.getItemCooldownManager().set(ModItems.DREAM_EYE, 200);
+            user.getItemCooldownManager().set(ModItems.SLEEPING_BREW, 200);
         } else {
             user.damage(DamageSource.FREEZE, 1);
         }

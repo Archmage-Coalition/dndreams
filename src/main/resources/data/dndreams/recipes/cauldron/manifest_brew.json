@@ -1,0 +1,30 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:distilled_spirit"
+    },
+	{
+      "item": "dndreams:hollow_tear"
+    },
+	{
+      "item": "dndreams:nightmare_fuel"
+    },
+	{
+      "item": "dndreams:water_artichoke_globe"
+    },
+	{
+      "item": "dndreams:icy_needle"
+    },
+	{
+      "item": "dndreams:dream_powder"
+    }
+  ],
+  "result": {
+    "item": "dndreams:manifest_brew",
+    "count": 1
+  },
+  "color": 3393465,
+  "method": "bottle",
+  "dream_only": true
+}

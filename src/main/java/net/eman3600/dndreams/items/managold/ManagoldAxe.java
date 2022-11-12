@@ -2,7 +2,7 @@ package net.eman3600.dndreams.items.managold;
 
 import com.google.common.collect.BiMap;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,8 +1,8 @@
 package net.eman3600.dndreams.screen;
 
-import net.eman3600.dndreams.initializers.ModBlocks;
-import net.eman3600.dndreams.initializers.ModRecipeTypes;
-import net.eman3600.dndreams.initializers.ModScreenHandlerTypes;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
+import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
 import net.eman3600.dndreams.recipe.WeavingRecipe;
 import net.eman3600.dndreams.screen.slot.WeavingResultSlot;
 import net.eman3600.dndreams.screen.slot.WeavingSlot;

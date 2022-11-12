@@ -1,11 +1,10 @@
 package net.eman3600.dndreams.items;
 
-import net.eman3600.dndreams.initializers.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtDouble;
 import net.minecraft.nbt.NbtInt;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.text.Text;

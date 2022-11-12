@@ -1,8 +1,7 @@
 package net.eman3600.dndreams.mob_effects;
 
-import net.eman3600.dndreams.cardinal_components.ManaComponent;
-import net.eman3600.dndreams.initializers.EntityComponents;
-import net.eman3600.dndreams.initializers.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.InstantStatusEffect;

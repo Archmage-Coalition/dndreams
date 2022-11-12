@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "minecraft:bone_meal"
+    },
+	{
+      "item": "dndreams:foul_fume"
+    },
+	{
+      "item": "minecraft:egg"
+    }
+  ],
+  "result": {
+    "item": "dndreams:mutandis",
+    "count": 6
+  },
+  "color": 60979
+}

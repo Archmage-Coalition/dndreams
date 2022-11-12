@@ -5,6 +5,8 @@ import dev.onyxstudios.cca.api.v3.component.Component;
 public interface TormentComponentI extends Component {
     float getTorment();
 
+    boolean isShielded();
+
     void setTorment(float value);
     void addTorment(float value);
 

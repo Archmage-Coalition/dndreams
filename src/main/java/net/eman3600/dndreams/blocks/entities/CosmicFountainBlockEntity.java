@@ -5,7 +5,11 @@ import net.eman3600.dndreams.blocks.energy.CosmicFountainPoleBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicPortalBlock;
 import net.eman3600.dndreams.blocks.energy.RitualCandleBlock;
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
-import net.eman3600.dndreams.initializers.*;
+import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -22,7 +26,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import static net.eman3600.dndreams.blocks.energy.CosmicFountainBlock.FUNCTIONAL;
 import static net.eman3600.dndreams.blocks.energy.CosmicFountainBlock.GIVE_RANGE;
 
 public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
