@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "dndreams:block/lotus_stage0"
+    },
+    "age=1": {
+      "model": "dndreams:block/lotus_stage1"
+    },
+    "age=2": {
+      "model": "dndreams:block/lotus_stage2"
+    },
+    "age=3": {
+      "model": "dndreams:block/lotus_stage3"
+    },
+    "age=4": {
+      "model": "dndreams:block/lotus_stage4"
+    },
+    "age=5": {
+      "model": "dndreams:block/lotus_stage5"
+    },
+    "age=6": {
+      "model": "dndreams:block/lotus_stage6"
+    }
+  }
+}

@@ -86,7 +86,7 @@ public class ModRegistries {
         MutandisItem.registerMutable("crop", Blocks.PUMPKIN_STEM);
         MutandisItem.registerMutable("crop", Blocks.MELON_STEM);
         MutandisItem.registerMutable("crop", ModBlocks.SNOWBELL);
-        MutandisItem.registerMutable("crop", ModBlocks.WATER_ARTICHOKE);
+        MutandisItem.registerMutable("crop", ModBlocks.LOTUS);
 
 
         MutandisExtremisItem.registerMutable(ModBlocks.SCULK_WOOD_SAPLING);
@@ -223,8 +223,8 @@ public class ModRegistries {
     private static void registerCompostables() {
         ComposterBlockAccess access = (ComposterBlockAccess) Blocks.COMPOSTER;
         access.registerCompostable(.3f, ModItems.SNOWBELL_SEEDS);
-        access.registerCompostable(.3f, ModItems.WATER_ARTICHOKE_SEEDS);
-        access.registerCompostable(.65f, ModItems.WATER_ARTICHOKE_GLOBE);
+        access.registerCompostable(.3f, ModItems.LOTUS_SEEDS);
+        access.registerCompostable(.65f, ModItems.LOTUS_FLOWER);
         access.registerCompostable(.3f, ModBlocks.SAKURA_SAPLING);
         access.registerCompostable(.65f, ModBlocks.DREAMWOOD_SAPLING);
         access.registerCompostable(.3f, ModBlocks.JAPANESE_MAPLE_SAPLING);

@@ -96,7 +96,7 @@ public class ModItems {
     public static final Item HOLLOW_TEAR = registerItem("hollow_tear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
     // Water Artichoke Globe
-    public static final Item WATER_ARTICHOKE_GLOBE = registerItem("water_artichoke_globe",
+    public static final Item LOTUS_FLOWER = registerItem("lotus_flower",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     public static final Item WITHER_BUD = registerItem("wither_bud",
@@ -292,8 +292,8 @@ public class ModItems {
             new AliasedBlockItem(ModBlocks.SNOWBELL, new FabricItemSettings().group(ItemGroup.MISC)));
 
     // Water Artichoke Seeds
-    public static final Item WATER_ARTICHOKE_SEEDS = registerItem("water_artichoke_seeds",
-            new AliasedPlaceableOnWaterItem(ModBlocks.WATER_ARTICHOKE, new FabricItemSettings().group(ItemGroup.MISC)));
+    public static final Item LOTUS_SEEDS = registerItem("lotus_seeds",
+            new AliasedPlaceableOnWaterItem(ModBlocks.LOTUS, new FabricItemSettings().group(ItemGroup.MISC)));
 
     // Applethorn Seeds
     public static final Item APPLETHORN_SEEDS = registerItem("applethorn_seeds",

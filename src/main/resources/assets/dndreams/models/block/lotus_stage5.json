@@ -1,0 +1,6 @@
+{
+  "parent": "dndreams:block/lotus_stage4",
+  "textures": {
+    "cross": "dndreams:block/lotus_stage5"
+  }
+}

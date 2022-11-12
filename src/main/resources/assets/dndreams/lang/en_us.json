@@ -14,7 +14,7 @@
   "item.dndreams.shade_cloth":  "Shade Veil",
   "item.dndreams.infernal_residue":  "Infernal Residue",
   "item.dndreams.tainted_pearl":  "Tainted Pearl",
-  "item.dndreams.water_artichoke_globe": "Water Artichoke Globe",
+  "item.dndreams.lotus_flower": "Lotus Flower",
   "item.dndreams.succulent_apple": "Succulent Apple",
   "item.dndreams.poison_apple": "Rotten Apple",
   "item.dndreams.wither_bud": "Wither Blossom",
@@ -107,7 +107,7 @@
   "item.dndreams.panacea.use": "§4Until you die once more...",
   
   "item.dndreams.snowbell_seeds": "Snowbell Seeds",
-  "item.dndreams.water_artichoke_seeds": "Water Artichoke Seeds",
+  "item.dndreams.lotus_seeds": "Lotus Seeds",
   "item.dndreams.applethorn_seeds": "Applethorn Seeds",
   "item.dndreams.wither_blossom_seeds": "Wither Blossom Seeds",
   
@@ -332,7 +332,7 @@
   "block.dndreams.world_fountain": "World Fountain",
   
   "block.dndreams.snowbell": "Snowbell",
-  "block.dndreams.water_artichoke": "Water Artichoke",
+  "block.dndreams.lotus": "Lotus",
   "block.dndreams.ember_moss": "Ember Moss",
   "block.dndreams.wither_blossom": "Wither Blossom",
   "block.dndreams.applethorn": "Applethorn",
