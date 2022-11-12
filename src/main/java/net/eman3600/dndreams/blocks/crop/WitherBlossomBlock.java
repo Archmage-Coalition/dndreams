@@ -124,4 +124,9 @@ public class WitherBlossomBlock extends PlantBlock implements Fertilizable {
         int i = Math.min(3, state.get(AGE) + 1);
         world.setBlockState(pos, state.with(AGE, i), Block.NOTIFY_LISTENERS);
     }
+
+    @Override
+    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+        return floor.isOf(Blocks.SOUL_SOIL) || floor.isOf(Blocks.SOUL_SAND);
+    }
 }
