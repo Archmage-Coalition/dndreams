@@ -18,6 +18,7 @@ public class EosBiome extends EndBiome.Config {
     protected void addCustomBuildData(BCLBiomeBuilder builder) {
         builder
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.EOS_PLACED)
+                .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.EOS_GRASS)
                 .spawn(EntityType.ENDERMAN, 10, 1, 2);
     }
 

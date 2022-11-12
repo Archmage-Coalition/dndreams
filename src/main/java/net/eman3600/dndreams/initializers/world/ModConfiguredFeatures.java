@@ -81,6 +81,24 @@ public class ModConfiguredFeatures {
 
 
 
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> HELIOS_GRASS =
+            ConfiguredFeatures.register("helios_grass", Feature.RANDOM_PATCH,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(32, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.HELIOS_GRASS)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> EOS_GRASS =
+            ConfiguredFeatures.register("eos_grass", Feature.RANDOM_PATCH,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(32, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.EOS_GRASS)))));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> SELENE_GRASS =
+            ConfiguredFeatures.register("selene_grass", Feature.RANDOM_PATCH,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(32, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.SELENE_GRASS)))));
+
+
+
+
 
 
 

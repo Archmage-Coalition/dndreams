@@ -18,6 +18,7 @@ public class HeliosBiome extends EndBiome.Config {
     protected void addCustomBuildData(BCLBiomeBuilder builder) {
         builder
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.HELIOS_PLACED)
+                .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.HELIOS_GRASS)
                 .spawn(EntityType.ENDERMAN, 10, 1, 2);
     }
 

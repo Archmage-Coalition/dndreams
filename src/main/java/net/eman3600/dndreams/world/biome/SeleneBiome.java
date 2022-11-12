@@ -24,6 +24,7 @@ public class SeleneBiome extends EndBiome.Config {
     protected void addCustomBuildData(BCLBiomeBuilder builder) {
         builder
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.SELENE_PLACED)
+                .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.SELENE_GRASS)
                 .spawn(EntityType.ENDERMAN, 10, 1, 2);
     }
 

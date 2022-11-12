@@ -8,8 +8,12 @@ import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
+import net.minecraft.world.gen.feature.VegetationConfiguredFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 
 public class ModPlacedFeatures {
 
@@ -29,6 +33,14 @@ public class ModPlacedFeatures {
     public static final RegistryEntry<PlacedFeature> SELENE_PLACED = PlacedFeatures.register("selene_placed",
             ModConfiguredFeatures.SELENE_SPAWN, VegetationPlacedFeatures.modifiers(
                     PlacedFeatures.createCountExtraModifier(2, 0.25f, 1)));
+
+
+
+    public static final RegistryEntry<PlacedFeature> HELIOS_GRASS = PlacedFeatures.register("patch_helios_grass", ModConfiguredFeatures.HELIOS_GRASS, VegetationPlacedFeatures.modifiers(2));
+
+    public static final RegistryEntry<PlacedFeature> EOS_GRASS = PlacedFeatures.register("patch_eos_grass", ModConfiguredFeatures.EOS_GRASS, VegetationPlacedFeatures.modifiers(2));
+
+    public static final RegistryEntry<PlacedFeature> SELENE_GRASS = PlacedFeatures.register("patch_selene_grass", ModConfiguredFeatures.SELENE_GRASS, VegetationPlacedFeatures.modifiers(2));
 
 
 
