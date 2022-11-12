@@ -6,19 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dndreams:snowbell_seeds"
-        },
-		{
-          "type": "minecraft:item",
-          "name": "dndreams:applethorn_seeds",
-          "conditions": [
-            {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "dimension": "dndreams:dream"
-              }
-            }
-          ]
+          "name": "dndreams:lotus_seeds"
         }
       ],
       "conditions": [
