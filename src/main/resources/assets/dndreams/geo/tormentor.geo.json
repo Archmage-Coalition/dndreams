@@ -1,0 +1,60 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.tormentor",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "top_body",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-3.75, 8, -2.25], "size": [7.5, 8.5, 4.5], "uv": [42, 0]},
+						{"origin": [-3.5, 9, -2], "size": [7, 8, 4], "uv": [28, 42]}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "top_body",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-3, 4.225, 0.4], "size": [6, 5, 4], "pivot": [0, 0, 0], "rotation": [15, 0, 0], "uv": [0, 48]}
+					]
+				},
+				{
+					"name": "head",
+					"parent": "top_body",
+					"pivot": [0, 17, 0],
+					"cubes": [
+						{"origin": [-4.5, 16.5, -4.5], "size": [9, 9, 9], "uv": [0, 0]},
+						{"origin": [-4, 17, -4], "size": [8, 8, 8], "uv": [0, 18]}
+					]
+				},
+				{
+					"name": "arm_left",
+					"parent": "top_body",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [3.5, 13, -9.25], "size": [3, 3, 11], "uv": [38, 28]},
+						{"origin": [3.25, 11.25, -9.5], "size": [3.5, 5, 11.5], "uv": [25, 7]}
+					]
+				},
+				{
+					"name": "arm_right",
+					"parent": "top_body",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-6.5, 13, -9.25], "size": [3, 3, 11], "uv": [0, 34]},
+						{"origin": [-6.75, 11.25, -9.5], "size": [3.5, 5, 11.5], "uv": [21, 23]}
+					]
+				}
+			]
+		}
+	]
+}

@@ -15,6 +15,8 @@ public class LootModifiers {
             = new Identifier("minecraft", "blocks/sculk_shrieker");
     private static final Identifier GRASS_ID
             = new Identifier("minecraft", "blocks/grass");
+    private static final Identifier WITHER_ID
+            = new Identifier("minecraft", "entities/wither");
 
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((resourceManager, manager, id, supplier, setter) -> {
@@ -51,6 +53,13 @@ public class LootModifiers {
 
             if(GRASS_ID.equals(id)) {
                 LootPool[] pools = manager.getTable(new Identifier(Initializer.MODID, "injections/grass")).pools;
+
+                if (pools != null)
+                    supplyPools(supplier, pools);
+            }
+
+            if(WITHER_ID.equals(id)) {
+                LootPool[] pools = manager.getTable(new Identifier(Initializer.MODID, "injections/wither")).pools;
 
                 if (pools != null)
                     supplyPools(supplier, pools);

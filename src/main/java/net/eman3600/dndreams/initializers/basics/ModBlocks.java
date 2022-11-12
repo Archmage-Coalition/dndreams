@@ -715,6 +715,10 @@ public class ModBlocks {
     public static final Block APPLETHORN = registerBlock("applethorn",
             new ApplethornBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
 
+    // Wither Blossom Crop
+    public static final Block WITHER_BLOSSOM = registerBlock("wither_blossom",
+            new WitherBlossomBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
+
 
     // Ancient Portal
     public static final Block CHARGED_DEEPSLATE = registerBlock("charged_deepslate",

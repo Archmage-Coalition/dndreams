@@ -99,6 +99,9 @@ public class ModItems {
     public static final Item WATER_ARTICHOKE_GLOBE = registerItem("water_artichoke_globe",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    public static final Item WITHER_LOTUS = registerItem("wither_lotus",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
     // Ingots
     public static final Item CORRUPT_INGOT = registerItem("corrupt_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
@@ -295,6 +298,10 @@ public class ModItems {
     // Applethorn Seeds
     public static final Item APPLETHORN_SEEDS = registerItem("applethorn_seeds",
             new AliasedDreamyBlockItem(ModBlocks.APPLETHORN, new FabricItemSettings().group(ItemGroup.MISC)));
+
+    // Wither Blossom Seeds
+    public static final Item WITHER_BLOSSOM_SEEDS = registerItem("wither_blossom_seeds",
+            new AliasedBlockItem(ModBlocks.WITHER_BLOSSOM, new FabricItemSettings().group(ItemGroup.MISC)));
 
 
 
