@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:wither_blossom_seeds",
+  "ingredients": [
+    {
+      "item": "dndreams:wither_bud"
+    }
+  ],
+  "result": {
+    "item": "dndreams:wither_blossom_seeds",
+    "count": 4
+  }
+}

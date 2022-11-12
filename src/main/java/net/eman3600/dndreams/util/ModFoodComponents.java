@@ -22,6 +22,10 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(ModStatusEffects.AETHER, 600, 0), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 1), 1.0F)
             .alwaysEdible().build();
+    public static final FoodComponent WITHER_BUD = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.0F)
+            .statusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 600, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.WITHER, 300, 1), 1.0F)
+            .alwaysEdible().build();
     public static FoodComponent cakewood(float planks) {
         return (new FoodComponent.Builder()).hunger((int)(3 * planks)).saturationModifier(0.6f)
                 .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, (int)(80 * planks)), 1.0f)

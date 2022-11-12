@@ -717,7 +717,7 @@ public class ModBlocks {
 
     // Wither Blossom Crop
     public static final Block WITHER_BLOSSOM = registerBlock("wither_blossom",
-            new WitherBlossomBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
+            new WitherBlossomBlock(FabricBlockSettings.copy(Blocks.SWEET_BERRY_BUSH).nonOpaque()));
 
 
     // Ancient Portal

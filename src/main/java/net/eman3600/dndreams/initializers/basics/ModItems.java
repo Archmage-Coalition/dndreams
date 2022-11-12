@@ -99,8 +99,8 @@ public class ModItems {
     public static final Item WATER_ARTICHOKE_GLOBE = registerItem("water_artichoke_globe",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    public static final Item WITHER_LOTUS = registerItem("wither_lotus",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item WITHER_BUD = registerItem("wither_bud",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.WITHER_BUD)));
 
     // Ingots
     public static final Item CORRUPT_INGOT = registerItem("corrupt_ingot",
