@@ -7,20 +7,23 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class WaterArtichokeBlock extends BeetrootsBlock {
-    public WaterArtichokeBlock(Settings settings) {
+public class LotusBlock extends CropBlock {
+    public static final IntProperty AGE = new IntProperty("age", 0, 6);
+    public LotusBlock(Settings settings) {
         super(settings);
     }
 
     @Override
     protected ItemConvertible getSeedsItem() {
-        return ModItems.WATER_ARTICHOKE_SEEDS;
+        return ModItems.LOTUS_SEEDS;
     }
 
     @Override

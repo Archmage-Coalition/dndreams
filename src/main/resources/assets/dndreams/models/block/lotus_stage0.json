@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/lily_pad",
+  "textures": {
+    "texture": "dndreams:block/lotus_stage0",
+    "particle": "dndreams:block/lotus_stage0"
+  }
+}
+

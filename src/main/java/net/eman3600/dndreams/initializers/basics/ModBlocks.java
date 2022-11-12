@@ -702,8 +702,8 @@ public class ModBlocks {
             new SnowbellBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
 
     // Water Artichoke Crop
-    public static final Block WATER_ARTICHOKE = registerBlock("water_artichoke",
-            new WaterArtichokeBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
+    public static final Block LOTUS = registerBlock("lotus",
+            new LotusBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
 
     // Ember Moss
     public static final Block EMBER_MOSS = registerBlock("ember_moss",

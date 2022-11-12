@@ -16,18 +16,18 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "block": "dndreams:water_artichoke",
+                  "block": "dndreams:lotus",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "age": "3"
                   }
                 }
               ],
-              "name": "dndreams:water_artichoke_globe"
+              "name": "dndreams:lotus_flower"
             },
             {
               "type": "minecraft:item",
-              "name": "dndreams:water_artichoke_seeds"
+              "name": "dndreams:lotus_seeds"
             }
           ]
         }
@@ -38,7 +38,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "dndreams:water_artichoke",
+          "block": "dndreams:lotus",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "3"
@@ -59,7 +59,7 @@
               }
             }
           ],
-          "name": "dndreams:water_artichoke_seeds"
+          "name": "dndreams:lotus_seeds"
         }
       ],
       "rolls": 1.0
