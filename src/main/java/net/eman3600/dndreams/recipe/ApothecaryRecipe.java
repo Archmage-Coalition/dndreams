@@ -84,7 +84,7 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
     public static class Serializer implements RecipeSerializer<ApothecaryRecipe> {
 
         public static final ApothecaryRecipe.Serializer INSTANCE = new ApothecaryRecipe.Serializer();
-        public static final String ID = "transmutation";
+        public static final String ID = "apothecary";
 
         public Serializer() {
         }

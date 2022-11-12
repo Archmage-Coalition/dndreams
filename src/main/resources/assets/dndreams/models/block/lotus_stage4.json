@@ -13,8 +13,8 @@
         "up":  { "uv": [  0,  0, 16, 16 ], "texture": "#texture", "tintindex": 0 }
       }
     },
-    {   "from": [ 0.8, 0, 8 ],
-      "to": [ 15.2, 16, 8 ],
+    {   "from": [ 0.8, 0.25, 8 ],
+      "to": [ 15.2, 16.25, 8 ],
       "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
       "shade": false,
       "faces": {
@@ -22,8 +22,8 @@
         "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#cross" }
       }
     },
-    {   "from": [ 8, 0, 0.8 ],
-      "to": [ 8, 16, 15.2 ],
+    {   "from": [ 8, 0.25, 0.8 ],
+      "to": [ 8, 16.25, 15.2 ],
       "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
       "shade": false,
       "faces": {

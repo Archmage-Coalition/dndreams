@@ -1,25 +1,123 @@
 {
   "variants": {
-    "age=0": {
-      "model": "dndreams:block/lotus_stage0"
-    },
-    "age=1": {
-      "model": "dndreams:block/lotus_stage1"
-    },
-    "age=2": {
-      "model": "dndreams:block/lotus_stage2"
-    },
-    "age=3": {
-      "model": "dndreams:block/lotus_stage3"
-    },
-    "age=4": {
-      "model": "dndreams:block/lotus_stage4"
-    },
-    "age=5": {
-      "model": "dndreams:block/lotus_stage5"
-    },
-    "age=6": {
-      "model": "dndreams:block/lotus_stage6"
-    }
+    "age=0": [
+      {
+        "model": "dndreams:block/lotus_stage0"
+      },
+      {
+        "model": "dndreams:block/lotus_stage0",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/lotus_stage0",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/lotus_stage0",
+        "y": 270
+      }
+    ],
+    "age=1": [
+      {
+        "model": "dndreams:block/lotus_stage1"
+      },
+      {
+        "model": "dndreams:block/lotus_stage1",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/lotus_stage1",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/lotus_stage1",
+        "y": 270
+      }
+    ],
+    "age=2": [
+      {
+        "model": "dndreams:block/lotus_stage2"
+      },
+      {
+        "model": "dndreams:block/lotus_stage2",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/lotus_stage2",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/lotus_stage2",
+        "y": 270
+      }
+    ],
+    "age=3": [
+      {
+        "model": "dndreams:block/lotus_stage3"
+      },
+      {
+        "model": "dndreams:block/lotus_stage3",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/lotus_stage3",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/lotus_stage3",
+        "y": 270
+      }
+    ],
+    "age=4": [
+      {
+        "model": "dndreams:block/lotus_stage4"
+      },
+      {
+        "model": "dndreams:block/lotus_stage4",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/lotus_stage4",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/lotus_stage4",
+        "y": 270
+      }
+    ],
+    "age=5": [
+      {
+        "model": "dndreams:block/lotus_stage5"
+      },
+      {
+        "model": "dndreams:block/lotus_stage5",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/lotus_stage5",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/lotus_stage5",
+        "y": 270
+      }
+    ],
+    "age=6": [
+      {
+        "model": "dndreams:block/lotus_stage6"
+      },
+      {
+        "model": "dndreams:block/lotus_stage6",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/lotus_stage6",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/lotus_stage6",
+        "y": 270
+      }
+    ]
   }
 }

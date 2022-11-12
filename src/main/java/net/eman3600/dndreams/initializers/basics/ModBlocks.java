@@ -701,9 +701,10 @@ public class ModBlocks {
     public static final Block SNOWBELL = registerBlock("snowbell",
             new SnowbellBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
 
-    // Water Artichoke Crop
+    // Lotus Crop
     public static final Block LOTUS = registerBlock("lotus",
-            new LotusBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
+            new LotusBlock(FabricBlockSettings.copy(Blocks.LILY_PAD).ticksRandomly()
+                    .suffocates(ModBlocks::never).blockVision(ModBlocks::never)));
 
     // Ember Moss
     public static final Block EMBER_MOSS = registerBlock("ember_moss",

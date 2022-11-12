@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public enum DistributionType {
     INGESTED(),
-    SPLASH(Items.GUNPOWDER, ModItems.WATER_ARTICHOKE_GLOBE),
+    SPLASH(Items.GUNPOWDER, ModItems.LOTUS_FLOWER),
     LINGERING(Items.DRAGON_BREATH),
     LIQUID(Items.HONEY_BOTTLE),
     GAS(ModItems.EOS_FUME);
