@@ -1,8 +1,10 @@
 package net.eman3600.dndreams.world.biome;
 
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.world.ModPlacedFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.world.gen.GenerationStep;
 import org.betterx.bclib.api.v2.generator.BiomeType;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
@@ -21,6 +23,7 @@ public class SeleneBiome extends EndBiome.Config {
     @Override
     protected void addCustomBuildData(BCLBiomeBuilder builder) {
         builder
+                .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.SELENE_PLACED)
                 .spawn(EntityType.ENDERMAN, 10, 1, 2);
     }
 

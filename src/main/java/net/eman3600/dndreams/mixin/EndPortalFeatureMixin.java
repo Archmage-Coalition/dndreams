@@ -13,11 +13,15 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Iterator;
 
-@Mixin(EndPortalFeature.class)
+@Mixin(value = EndPortalFeature.class, priority = Integer.MAX_VALUE)
 public abstract class EndPortalFeatureMixin extends Feature<DefaultFeatureConfig> {
     @Shadow
     @Final
@@ -27,8 +31,11 @@ public abstract class EndPortalFeatureMixin extends Feature<DefaultFeatureConfig
         super(configCodec);
     }
 
-    @Override
-    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
+    /**
+     * @author Eman3600
+     */
+    @Inject(method = "generate", at = @At("HEAD"), cancellable = true)
+    public void generate(FeatureContext<DefaultFeatureConfig> context, CallbackInfoReturnable<Boolean> cir) {
         BlockPos blockPos = context.getOrigin();
         StructureWorldAccess structureWorldAccess = context.getWorld();
         Iterator<BlockPos> var4 = BlockPos.iterate(new BlockPos(blockPos.getX() - 4, blockPos.getY() - 1, blockPos.getZ() - 4), new BlockPos(blockPos.getX() + 4, blockPos.getY() + 32, blockPos.getZ() + 4)).iterator();
@@ -56,7 +63,8 @@ public abstract class EndPortalFeatureMixin extends Feature<DefaultFeatureConfig
                         this.setBlockState(structureWorldAccess, blockPos3.offset(direction), Blocks.WALL_TORCH.getDefaultState().with(WallTorchBlock.FACING, direction));
                     }
 
-                    return true;
+                    cir.setReturnValue(true);
+                    return;
                 }
 
                 blockPos2 = var4.next();

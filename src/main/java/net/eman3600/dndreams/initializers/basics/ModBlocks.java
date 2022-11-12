@@ -707,7 +707,7 @@ public class ModBlocks {
 
     // Ember Moss
     public static final Block EMBER_MOSS = registerBlock("ember_moss",
-            new EmberMossBlock(FabricBlockSettings.copy(Blocks.RED_MUSHROOM).nonOpaque().luminance(state -> 5)),
+            new EmberMossBlock(FabricBlockSettings.copy(Blocks.RED_MUSHROOM).nonOpaque().luminance(state -> 15)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 

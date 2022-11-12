@@ -1,17 +1,12 @@
 package net.eman3600.dndreams.initializers.world;
 
 import net.eman3600.dndreams.Initializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.dimension.DimensionType;
-
-import java.awt.*;
-import java.util.function.Predicate;
 
 public class ModDimensions {
     public static final Identifier DREAM_ID = new Identifier(Initializer.MODID, "dream");

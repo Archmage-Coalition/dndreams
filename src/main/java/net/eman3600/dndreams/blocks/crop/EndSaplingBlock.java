@@ -14,6 +14,6 @@ public class EndSaplingBlock extends SaplingBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(ModTags.END_GRASSES);
+        return floor.isIn(ModTags.END_STONES);
     }
 }

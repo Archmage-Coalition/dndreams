@@ -84,17 +84,46 @@ public class ModConfiguredFeatures {
 
 
 
-
-
-
     public static final RegistryEntry<PlacedFeature> DREAMWOOD_CHECKED =
             PlacedFeatures.register("dreamwood_checked", DREAMWOOD_TREE,
                     PlacedFeatures.wouldSurvive(ModBlocks.DREAMWOOD_SAPLING));
+
+    public static final RegistryEntry<PlacedFeature> EOS_CHECKED =
+            PlacedFeatures.register("eos_checked", EOS_TREE,
+                    PlacedFeatures.wouldSurvive(ModBlocks.EOS_SAPLING));
+
+    public static final RegistryEntry<PlacedFeature> HELIOS_CHECKED =
+            PlacedFeatures.register("helios_checked", HELIOS_TREE,
+                    PlacedFeatures.wouldSurvive(ModBlocks.HELIOS_SAPLING));
+
+    public static final RegistryEntry<PlacedFeature> SELENE_CHECKED =
+            PlacedFeatures.register("selene_checked", SELENE_TREE,
+                    PlacedFeatures.wouldSurvive(ModBlocks.SELENE_SAPLING));
+
+
+
+
+
 
     public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> DREAMWOOD_SPAWN =
             ConfiguredFeatures.register("dreamwood_spawn", Feature.RANDOM_SELECTOR,
                     new RandomFeatureConfig(List.of(new RandomFeatureEntry(DREAMWOOD_CHECKED, 0.5f)),
                             DREAMWOOD_CHECKED));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> EOS_SPAWN =
+            ConfiguredFeatures.register("eos_spawn", Feature.RANDOM_SELECTOR,
+                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(EOS_CHECKED, 0.5f)),
+                            EOS_CHECKED));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> HELIOS_SPAWN =
+            ConfiguredFeatures.register("helios_spawn", Feature.RANDOM_SELECTOR,
+                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(HELIOS_CHECKED, 0.5f)),
+                            HELIOS_CHECKED));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> SELENE_SPAWN =
+            ConfiguredFeatures.register("selene_spawn", Feature.RANDOM_SELECTOR,
+                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(SELENE_CHECKED, 0.5f)),
+                            SELENE_CHECKED));
 
 
 

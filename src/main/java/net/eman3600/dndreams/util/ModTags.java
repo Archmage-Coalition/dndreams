@@ -1,13 +1,10 @@
 package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.world.biome.EndBiome;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
-import net.minecraft.tag.EntityTypeTags;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -23,7 +20,7 @@ public class ModTags {
     public static final TagKey<Block> DEEPSLATE_FRAME = ofBlock("deepslate_frame");
     public static final TagKey<Block> SOUL_POWER = ofBlock("soul_power");
     public static final TagKey<Block> COSMIC_AUGMENTS = ofBlock("cosmic_augments");
-    public static final TagKey<Block> END_GRASSES = TagKey.of(Registry.BLOCK_KEY, new Identifier("c", "end_grasses"));
+    public static final TagKey<Block> END_STONES = TagKey.of(Registry.BLOCK_KEY, new Identifier("c", "end_stones"));
     public static final TagKey<Block> HEAT_BLOCKS = ofBlock("heat_blocks");
 
     public static final TagKey<Fluid> FLOWING_SPIRIT = ofFluid("flowing_spirit");
@@ -31,6 +28,7 @@ public class ModTags {
 
     public static final TagKey<Biome> GEN_HELLSLATE = ofBiome("gen_hellslate");
     public static final TagKey<Biome> GEN_HELLSLATE_COMMON = ofBiome("gen_hellslate_common");
+    public static final TagKey<Biome> EOS = ofBiome("eos");
 
     public static final TagKey<Structure> TAINTED_PEARL_LOCATED = ofStructure("tainted_pearl_located");
 

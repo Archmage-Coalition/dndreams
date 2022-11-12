@@ -96,7 +96,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             addPerMinute(shielded ? -20f : -7.5f);
         }
 
-        if (torment >= 90 && !tormentRush) {
+        if (torment >= 99 && !tormentRush) {
             tormentRush = true;
 
             player.sendMessage(Text.translatable("message.dndreams.torment_rush"), true);
