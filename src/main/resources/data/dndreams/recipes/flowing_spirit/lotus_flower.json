@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "minecraft:lily_pad"
+  },
+  "result": {
+    "item": "dndreams:lotus_flower"
+  }
+}

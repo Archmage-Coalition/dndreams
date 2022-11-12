@@ -15,6 +15,10 @@ public class LootModifiers {
             = new Identifier("minecraft", "blocks/sculk_shrieker");
     private static final Identifier GRASS_ID
             = new Identifier("minecraft", "blocks/grass");
+    private static final Identifier SEAGRASS_ID
+            = new Identifier("minecraft", "blocks/seagrass");
+    private static final Identifier TALL_SEAGRASS_ID
+            = new Identifier("minecraft", "blocks/tall_seagrass");
     private static final Identifier WITHER_ID
             = new Identifier("minecraft", "entities/wither");
 
@@ -53,6 +57,13 @@ public class LootModifiers {
 
             if(GRASS_ID.equals(id)) {
                 LootPool[] pools = manager.getTable(new Identifier(Initializer.MODID, "injections/grass")).pools;
+
+                if (pools != null)
+                    supplyPools(supplier, pools);
+            }
+
+            if(SEAGRASS_ID.equals(id) || TALL_SEAGRASS_ID.equals(id)) {
+                LootPool[] pools = manager.getTable(new Identifier(Initializer.MODID, "injections/seagrass")).pools;
 
                 if (pools != null)
                     supplyPools(supplier, pools);
