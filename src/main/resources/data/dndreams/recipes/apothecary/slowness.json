@@ -6,6 +6,6 @@
   "corrupted": true,
   "capacity": 2,
   "cost": 250,
-  "effect": "minecraft:slowless",
+  "effect": "minecraft:slowness",
   "duration": 600
 }

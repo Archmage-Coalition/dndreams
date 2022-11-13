@@ -458,7 +458,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                 int tier = nbt.getInt("amplifier") + nbt.getInt("length");
                 int rank = PotionUtil.getCustomPotionEffects(nbt).size();
 
-                if ((tier > 3 && rank > 1) || tier > 5) drainage++;
+                if ((tier > 3 && rank > 1)) drainage++;
 
 
                 level -= drainage;
