@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 public class BrewLingeringItem extends AbstractBrewItem {
     public BrewLingeringItem(Settings settings) {
-        super(settings, 0.3f);
+        super(settings, 0.25f);
     }
 
     @Override
