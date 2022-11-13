@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "minecraft:magma_cream"
+    "item": "minecraft:phantom_membrane"
   },
   "corrupted": false,
   "capacity": 2,
   "cost": 250,
-  "effect": "minecraft:fire_resistance",
-  "duration": 3600
+  "effect": "minecraft:slow_falling",
+  "duration": 1000
 }

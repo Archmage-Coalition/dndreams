@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "dndreams:mellifluous_hunger"
+  },
+  "corrupted": true,
+  "capacity": 4,
+  "cost": 400,
+  "effect": "dndreams:suppressed",
+  "duration": 900
+}

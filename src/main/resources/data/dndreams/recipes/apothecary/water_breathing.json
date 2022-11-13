@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "minecraft:magma_cream"
+    "item": "minecraft:pufferfish"
   },
   "corrupted": false,
   "capacity": 2,
   "cost": 250,
-  "effect": "minecraft:fire_resistance",
+  "effect": "minecraft:water_breathing",
   "duration": 3600
 }

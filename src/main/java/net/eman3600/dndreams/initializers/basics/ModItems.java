@@ -7,6 +7,7 @@ import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.items.consumable.*;
+import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.creative.InfusionChangerItem;
 import net.eman3600.dndreams.items.magic_sword.*;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
@@ -97,7 +98,7 @@ public class ModItems {
 
     // Water Artichoke Globe
     public static final Item LOTUS_FLOWER = registerItem("lotus_flower",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.LOTUS_FLOWER)));
 
     public static final Item WITHER_BUD = registerItem("wither_bud",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.WITHER_BUD)));
@@ -331,15 +332,21 @@ public class ModItems {
 
 
 
-    // Pearl reference Limitless Infusion
+    // Pearl of Limitless Infusion
     public static final Item INFUSION_CHANGER = registerItem("infusion_changer",
             new InfusionChangerItem(new FabricItemSettings().group(ItemGroup.MISC)));
 
 
     
-    // Staff reference Satiation
+    // Staff of Satiation
     public static final Item SATIATION_STAFF = registerItem("satiation_staff",
             new SatiationStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+
+
+
+    // Brews
+    public static final Item BREW_INGESTED = registerItem("brew_ingested",
+            new BrewIngestedItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
 
     /*
      * Item Registration

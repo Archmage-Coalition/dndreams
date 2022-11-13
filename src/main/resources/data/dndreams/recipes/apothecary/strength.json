@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "minecraft:magma_cream"
+    "item": "minecraft:blaze_powder"
   },
   "corrupted": false,
   "capacity": 2,
   "cost": 250,
-  "effect": "minecraft:fire_resistance",
+  "effect": "minecraft:strength",
   "duration": 3600
 }

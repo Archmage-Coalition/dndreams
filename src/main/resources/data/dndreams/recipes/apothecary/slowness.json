@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "minecraft:sugar"
+  },
+  "corrupted": true,
+  "capacity": 2,
+  "cost": 250,
+  "effect": "minecraft:slowless",
+  "duration": 600
+}

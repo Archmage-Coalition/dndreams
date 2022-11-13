@@ -19,6 +19,18 @@
               }
             }
           ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "dndreams:lotus_seeds",
+          "conditions": [
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "dimension": "dndreams:dream"
+              }
+            }
+          ]
         }
       ],
       "conditions": [

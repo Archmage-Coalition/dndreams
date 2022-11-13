@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "minecraft:glistering_melon"
+  },
+  "corrupted": true,
+  "capacity": 2,
+  "cost": 250,
+  "effect": "minecraft:instant_damage",
+  "duration": 1
+}

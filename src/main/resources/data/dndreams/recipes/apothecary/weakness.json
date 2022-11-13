@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "minecraft:blaze_powder"
+  },
+  "corrupted": true,
+  "capacity": 2,
+  "cost": 250,
+  "effect": "minecraft:weakness",
+  "duration": 600
+}

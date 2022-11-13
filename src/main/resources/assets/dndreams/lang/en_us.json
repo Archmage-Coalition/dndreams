@@ -88,10 +88,23 @@
   "item.dndreams.selene_fume": "Fragrance of Solitude",
   "item.dndreams.eos_fume": "Odour of Equilibrium",
   "item.dndreams.helios_fume": "Hint of Purity",
+  "item.dndreams.star_fume": "Breath of Divinity",
   
   "item.dndreams.mellifluous_hunger": "Mellifluous Hunger",
   "item.dndreams.distilled_spirit": "Distilled Spirit",
   "item.dndreams.hollow_tear": "Hollow Tear",
+  
+  "item.dndreams.brew.overloaded": "Amalgamation",
+  "item.dndreams.brew_ingested": "Brew of %s",
+  "item.dndreams.brew_splash": "Splash Brew of %s",
+  "item.dndreams.brew_lingering": "Lingering Brew of %s",
+  "item.dndreams.brew_liquid": "Liquid Brew of %s",
+  "item.dndreams.brew_gas": "Gas Brew of %s",
+  "item.dndreams.brew_ingested.double": "Brew of %s & %s",
+  "item.dndreams.brew_splash.double": "Splash Brew of %s & %s",
+  "item.dndreams.brew_lingering.double": "Lingering Brew of %s & %s",
+  "item.dndreams.brew_liquid.double": "Liquid Brew of %s & %s",
+  "item.dndreams.brew_gas.double": "Gas Brew of %s & %s",
   
   "item.dndreams.sleeping_brew": "Brew of Lofty Dreams",
   "item.dndreams.manifest_brew": "Brew of Congealed Mind",

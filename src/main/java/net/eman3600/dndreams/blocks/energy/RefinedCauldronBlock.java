@@ -2,6 +2,7 @@ package net.eman3600.dndreams.blocks.energy;
 
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.blocks.properties.BrewType;
+import net.eman3600.dndreams.blocks.properties.CauldronState;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -65,6 +66,22 @@ public class RefinedCauldronBlock extends BlockWithEntity {
                     return ActionResult.SUCCESS;
                 }
             } else if (entity.getBrewType() == BrewType.CRAFT) {
+                if (world instanceof ServerWorld serverWorld) {
+                    ItemStack result = entity.take(stack, serverWorld);
+
+                    if (!result.isEmpty()) {
+                        player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, result));
+                    }
+                }
+
+                return ActionResult.SUCCESS;
+            } else if (entity.getBrewType() == BrewType.BREW && entity.getCauldronState() == CauldronState.IDLE && entity.isBrewDone()) {
+                if (world instanceof ServerWorld serverWorld) {
+                    entity.beginStir(serverWorld);
+                }
+
+                return ActionResult.SUCCESS;
+            } else if (entity.getBrewType() == BrewType.BREW && entity.getCauldronState() == CauldronState.FINISHED) {
                 if (world instanceof ServerWorld serverWorld) {
                     ItemStack result = entity.take(stack, serverWorld);
 

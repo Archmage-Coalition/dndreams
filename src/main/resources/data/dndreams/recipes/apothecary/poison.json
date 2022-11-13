@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "minecraft:magma_cream"
+    "item": "minecraft:spider_eye"
   },
   "corrupted": false,
   "capacity": 2,
   "cost": 250,
-  "effect": "minecraft:fire_resistance",
-  "duration": 3600
+  "effect": "minecraft:poison",
+  "duration": 600
 }
