@@ -20,7 +20,7 @@ import java.util.List;
 
 public class BrewIngestedItem extends AbstractBrewItem {
     public BrewIngestedItem(Settings settings) {
-        super(settings);
+        super(settings, 1f);
     }
 
     @Override

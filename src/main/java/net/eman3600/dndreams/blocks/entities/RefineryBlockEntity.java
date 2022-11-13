@@ -23,6 +23,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -351,5 +352,19 @@ public class RefineryBlockEntity extends BlockEntity implements AbstractPowerRec
         result.setCount(stack.getCount() + merger.getCount());
 
         return result;
+    }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
+        if (slot == 6 && side != Direction.UP) {
+            return stack.isOf(ModItems.AMETHYST_JAR);
+        }
+
+        return slot < 4 && side == Direction.UP;
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction side) {
+        return slot == 4 || slot == 5;
     }
 }

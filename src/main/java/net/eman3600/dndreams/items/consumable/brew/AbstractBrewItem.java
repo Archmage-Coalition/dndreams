@@ -4,13 +4,11 @@ import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.blocks.properties.BrewStage;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.recipe.ApothecaryRecipe;
-import net.eman3600.dndreams.util.data.EnhancementEntry;
 import net.eman3600.dndreams.util.data.EnhancementType;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -31,8 +29,11 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractBrewItem extends Item {
-    public AbstractBrewItem(Settings settings) {
+    public final float durationMod;
+
+    public AbstractBrewItem(Settings settings, float durationMod) {
         super(settings);
+        this.durationMod = durationMod;
     }
 
     @Override
@@ -93,7 +94,7 @@ public abstract class AbstractBrewItem extends Item {
                     ApothecaryRecipe recipe = optional.get();
 
                     StatusEffect effect = recipe.effect;
-                    int duration = recipe.duration;
+                    int duration = (int)(recipe.duration * durationMod);
 
                     if (effect.isInstant()) duration = 1;
                     else if (effect.isBeneficial()) {

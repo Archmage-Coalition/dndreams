@@ -458,12 +458,10 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                 ItemStack result = item.fromBrewing(inventory, world);
                 NbtCompound nbt = result.getNbt();
 
-                int tier = nbt.getInt("amplifier");
-                tier += nbt.getInt("length");
-                tier *= PotionUtil.getCustomPotionEffects(nbt).size();
+                int tier = nbt.getInt("amplifier") + nbt.getInt("length");
+                int rank = PotionUtil.getCustomPotionEffects(nbt).size();
 
-                if (tier > 2) drainage++;
-                if (tier > 4) drainage++;
+                if (tier > 3 && rank > 1) drainage++;
 
 
                 level -= drainage;
@@ -665,5 +663,15 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
     @Override
     public DefaultedList<ItemStack> getItems() {
         return inventory;
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction side) {
+        return false;
+    }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
+        return false;
     }
 }

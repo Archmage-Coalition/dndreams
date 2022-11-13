@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.blocks.entities;
 
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.recipe.SmokestackRecipe;
 import net.eman3600.dndreams.screen.SmokestackScreenHandler;
@@ -20,6 +21,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import org.jetbrains.annotations.Nullable;
 
@@ -110,5 +112,15 @@ public class SmokestackBlockEntity extends BlockEntity implements NamedScreenHan
     @Override
     public void readNbt(NbtCompound nbt) {
         Inventories.readNbt(nbt, inventory);
+    }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
+        return slot == 0 && stack.isOf(ModItems.AMETHYST_JAR);
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction side) {
+        return slot == 1;
     }
 }
