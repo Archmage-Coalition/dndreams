@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 public enum DistributionType {
     INGESTED(ModItems.BREW_INGESTED, 0, 1),
-    SPLASH(null, 0, 1, Items.GUNPOWDER, ModItems.LOTUS_FLOWER),
-    LINGERING(null, 0, 1, Items.DRAGON_BREATH),
-    LIQUID(null, 1, 2, Items.HONEY_BOTTLE),
+    SPLASH(ModItems.BREW_SPLASH, 0, 1, Items.GUNPOWDER, ModItems.LOTUS_FLOWER),
+    LINGERING(null, 0, 1, Items.DRAGON_BREATH, Items.HONEY_BOTTLE),
+    LIQUID(null, 1, 2, ModItems.SUCCULENT_APPLE),
     GAS(null, 1, 2, ModItems.EOS_FUME);
 
 

@@ -76,8 +76,8 @@ public class RefinedCauldronBlock extends BlockWithEntity {
 
                 return ActionResult.SUCCESS;
             } else if (entity.getBrewType() == BrewType.BREW && entity.getCauldronState() == CauldronState.IDLE && entity.isBrewDone()) {
-                if (world instanceof ServerWorld serverWorld) {
-                    entity.beginStir(serverWorld);
+                if (!world.isClient) {
+                    entity.beginStir();
                 }
 
                 return ActionResult.SUCCESS;

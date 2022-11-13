@@ -103,7 +103,7 @@ public abstract class AbstractBrewItem extends Item {
                         duration *= (Math.pow(1.5, length));
                     }
 
-                    effects.add(new StatusEffectInstance(effect, duration, amplifier));
+                    effects.add(new StatusEffectInstance(effect, duration, Math.min(amplifier, recipe.maxAmplifier)));
                 }
             }
         }
@@ -115,5 +115,10 @@ public abstract class AbstractBrewItem extends Item {
 
         PotionUtil.setCustomPotionEffects(potion, effects);
         return potion;
+    }
+
+    @Override
+    public boolean hasGlint(ItemStack stack) {
+        return PotionUtil.getCustomPotionEffects(stack).size() > 0;
     }
 }

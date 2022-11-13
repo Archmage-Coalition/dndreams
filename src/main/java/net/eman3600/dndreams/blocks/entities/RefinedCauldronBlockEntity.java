@@ -32,13 +32,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.potion.PotionUtil;
-import net.minecraft.potion.Potions;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
@@ -46,7 +44,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
 import java.util.*;
 
 public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractPowerReceiver, ImplementedInventory {
@@ -117,8 +114,10 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                 if (canAfford(powerRequirement)) {
                     if (brewTicks++ > 30) cauldronState = CauldronState.FINISHED;
                 } else if (spoilTicks++ > 5) {
-                    cauldronState = CauldronState.RUINED;
-                    color = RUINED_COLOR;
+                    cauldronState = CauldronState.IDLE;
+                    power = 0;
+                    powerRequirement = 0;
+                    spoilTicks = 0;
                 }
 
                 markDirty();
@@ -205,7 +204,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
             return;
         }
 
-        if (itemList().contains(stack.getItem()) || ingredients >= inventory.size() || stack.getItem() instanceof BucketItem) return;
+        if ((itemList().contains(stack.getItem()) && !stack.isOf(Items.FERMENTED_SPIDER_EYE)) || ingredients >= inventory.size() || stack.getItem() instanceof BucketItem) return;
 
         ItemStack addition = stack.copy();
         addition.setCount(1);
@@ -279,8 +278,6 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                     color = RUINED_COLOR;
                     return;
                 }
-
-                System.out.println(distributionType);
 
                 if (distributionType == DistributionType.SPLASH) {
                     alterColor(-20, -20, -20);
@@ -461,7 +458,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                 int tier = nbt.getInt("amplifier") + nbt.getInt("length");
                 int rank = PotionUtil.getCustomPotionEffects(nbt).size();
 
-                if (tier > 3 && rank > 1) drainage++;
+                if ((tier > 3 && rank > 1) || tier > 5) drainage++;
 
 
                 level -= drainage;
@@ -476,7 +473,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         return ItemStack.EMPTY;
     }
 
-    public void beginStir(ServerWorld world) {
+    public void beginStir() {
         cauldronState = CauldronState.BREWING;
 
         spoilTicks = -30;

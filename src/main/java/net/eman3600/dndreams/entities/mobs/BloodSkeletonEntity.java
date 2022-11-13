@@ -29,7 +29,7 @@ public class BloodSkeletonEntity extends SkeletonEntity {
     }
 
     public BloodSkeletonEntity(World world) {
-        super(ModEntities.BLOOD_SKELETON_ENTITY_TYPE, world);
+        super(ModEntities.BLOOD_SKELETON, world);
     }
 
     public static boolean canSpawn(EntityType<StrayEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {

@@ -7,5 +7,6 @@
   "capacity": 2,
   "cost": 250,
   "effect": "minecraft:slow_falling",
-  "duration": 1000
+  "duration": 1000,
+  "max_amplifier": 0
 }

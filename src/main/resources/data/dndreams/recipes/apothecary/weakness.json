@@ -4,8 +4,9 @@
     "item": "minecraft:blaze_powder"
   },
   "corrupted": true,
-  "capacity": 2,
+  "capacity": 3,
   "cost": 250,
   "effect": "minecraft:weakness",
-  "duration": 600
+  "duration": 600,
+  "max_amplifier": 1
 }

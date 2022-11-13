@@ -72,9 +72,4 @@ public class BrewIngestedItem extends AbstractBrewItem {
     public int getMaxUseTime(ItemStack stack) {
         return 32;
     }
-
-    @Override
-    public boolean hasGlint(ItemStack stack) {
-        return true;
-    }
 }

@@ -23,7 +23,7 @@ public class BloodZombieEntity extends ZombieEntity {
     }
 
     public BloodZombieEntity(World world) {
-        super(ModEntities.BLOOD_ZOMBIE_ENTITY_TYPE, world);
+        super(ModEntities.BLOOD_ZOMBIE, world);
     }
 
 

@@ -7,5 +7,6 @@
   "capacity": 2,
   "cost": 250,
   "effect": "minecraft:invisibility",
-  "duration": 3600
+  "duration": 3600,
+  "max_amplifier": 0
 }

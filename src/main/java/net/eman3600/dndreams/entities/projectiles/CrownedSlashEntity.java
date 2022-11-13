@@ -52,11 +52,11 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
     }
 
     public CrownedSlashEntity(double x, double y, double z, World world) {
-        super(ModEntities.CROWNED_SLASH_ENTITY_TYPE, x, y, z, world);
+        super(ModEntities.CROWNED_SLASH, x, y, z, world);
     }
 
     public CrownedSlashEntity(LivingEntity owner, World world) {
-        super(ModEntities.CROWNED_SLASH_ENTITY_TYPE, owner, world);
+        super(ModEntities.CROWNED_SLASH, owner, world);
     }
 
     @Override
