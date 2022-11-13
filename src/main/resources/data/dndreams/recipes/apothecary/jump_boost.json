@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "minecraft:rabbit_foot"
+  },
+  "corrupted": false,
+  "capacity": 2,
+  "cost": 250,
+  "effect": "minecraft:jump_boost",
+  "duration": 3600
+}

@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "minecraft:ghast_tear"
+  },
+  "corrupted": false,
+  "capacity": 2,
+  "cost": 250,
+  "effect": "minecraft:regeneration",
+  "duration": 1000
+}

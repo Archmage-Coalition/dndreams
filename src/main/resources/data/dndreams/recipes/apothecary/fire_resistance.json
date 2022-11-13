@@ -6,5 +6,7 @@
   "corrupted": false,
   "capacity": 2,
   "cost": 250,
-  "effect": "minecraft:fire_resistance"
+  "effect": "minecraft:fire_resistance",
+  "duration": 3600,
+  "max_amplifier": 0
 }

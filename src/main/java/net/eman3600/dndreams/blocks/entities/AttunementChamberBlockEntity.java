@@ -20,6 +20,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -178,6 +179,28 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
 
         if (inventory.get(0).getItem() instanceof AbstractChargeItem && !getCachedState().get(AttunementChamberBlock.POWERED)) {
             donate(world);
+        }
+    }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
+        if (slot == 0 && side == Direction.UP) {
+            return stack.getItem() instanceof AbstractChargeItem || stack.isOf(Items.AMETHYST_SHARD);
+        } else if (slot == 1 && side != Direction.UP) {
+            return AttunementBurnSlot.ITEM_TO_ENERGY.containsKey(stack.getItem());
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction side) {
+        if (slot != 0) return false;
+
+        if (getCachedState().get(AttunementChamberBlock.POWERED)) {
+            return stack.isOf(ModItems.CHARGED_SHARD);
+        } else {
+            return stack.isOf(Items.AMETHYST_SHARD);
         }
     }
 }

@@ -3,6 +3,7 @@ package net.eman3600.dndreams.util;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
@@ -10,6 +11,7 @@ import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
 import net.eman3600.dndreams.mixin_interfaces.ComposterBlockAccess;
 import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
+import net.eman3600.dndreams.util.data.EnhancementType;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
@@ -32,6 +34,7 @@ public class ModRegistries {
         registerCompostables();
         registerMutables();
         registerEnergyFuels();
+        registerApothecary();
     }
 
     public static void registerEnergyFuels() {
@@ -116,6 +119,20 @@ public class ModRegistries {
         MutandisOneirosItem.registerMutable(ModBlocks.WITHER_BLOSSOM);
         MutandisOneirosItem.registerMutable(Blocks.WITHER_ROSE);
         MutandisOneirosItem.registerMutable(ModBlocks.APPLETHORN);
+    }
+
+    private static void registerApothecary() {
+        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.LIQUID_VOID, 2, 100);
+        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.WITHER_BUD, 2, 100);
+        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.DISTILLED_SPIRIT, 3, 150);
+
+        RefinedCauldronBlockEntity.registerEnhancement(Items.REDSTONE, EnhancementType.LENGTH, 100);
+        RefinedCauldronBlockEntity.registerEnhancement(Items.OBSIDIAN, EnhancementType.LENGTH, 100);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.SAKURA_FUME, EnhancementType.LENGTH, 100);
+
+        RefinedCauldronBlockEntity.registerEnhancement(Items.GLOWSTONE_DUST, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(Items.BLAZE_ROD, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.JAPANESE_MAPLE_FUME, EnhancementType.AMPLIFIER, 200);
     }
 
     private static void registerSculkTransform() {

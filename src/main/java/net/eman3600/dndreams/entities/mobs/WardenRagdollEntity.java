@@ -43,7 +43,7 @@ public class WardenRagdollEntity extends MobEntity implements IAnimatable {
     }
 
     public WardenRagdollEntity(World world) {
-        super(ModEntities.WARDEN_RAGDOLL_ENTITY_TYPE, world);
+        super(ModEntities.WARDEN_RAGDOLL, world);
 
         setInvulnerable(true);
     }

@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "dndreams:mellifluous_hunger"
+  },
+  "corrupted": false,
+  "capacity": 4,
+  "cost": 400,
+  "effect": "minecraft:hunger",
+  "duration": 1200
+}

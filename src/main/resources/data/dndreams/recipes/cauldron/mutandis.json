@@ -2,7 +2,7 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
-      "item": "minecraft:bone_meal"
+      "item": "dndreams:lotus_flower"
     },
 	{
       "item": "dndreams:foul_fume"

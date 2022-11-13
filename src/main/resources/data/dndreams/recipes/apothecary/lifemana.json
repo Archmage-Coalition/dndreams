@@ -1,0 +1,12 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "dndreams:liquid_soul"
+  },
+  "corrupted": false,
+  "capacity": 6,
+  "cost": 600,
+  "effect": "dndreams:lifemana",
+  "duration": 1200,
+  "max_amplifier": 0
+}

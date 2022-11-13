@@ -1,10 +1,7 @@
 package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.particle.CauldronBubbleParticle;
-import net.eman3600.dndreams.particle.CrownedBeamParticle;
-import net.eman3600.dndreams.particle.CrownedSlashParticle;
-import net.eman3600.dndreams.particle.CrownedWickedParticle;
+import net.eman3600.dndreams.particle.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
@@ -27,6 +24,7 @@ public class ModParticles {
     public static final DefaultParticleType SOUL_ENERGY = FabricParticleTypes.simple();
 
     public static final DefaultParticleType CAULDRON_BUBBLE = FabricParticleTypes.simple();
+    public static final DefaultParticleType CAULDRON_SPARKLE = FabricParticleTypes.simple();
 
 
 
@@ -43,6 +41,7 @@ public class ModParticles {
         registerParticle("soul_energy", SOUL_ENERGY);
 
         registerParticle("cauldron_bubble", CAULDRON_BUBBLE);
+        registerParticle("cauldron_sparkle", CAULDRON_SPARKLE);
     }
 
 
@@ -60,6 +59,7 @@ public class ModParticles {
         ParticleFactoryRegistry.getInstance().register(SOUL_ENERGY, EnchantGlyphParticle.EnchantFactory::new);
 
         ParticleFactoryRegistry.getInstance().register(CAULDRON_BUBBLE, CauldronBubbleParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(CAULDRON_SPARKLE, CauldronSparkleParticle.Factory::new);
     }
 
 

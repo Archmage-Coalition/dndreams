@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "dndreams:sculk_powder"
+  },
+  "corrupted": false,
+  "capacity": 3,
+  "cost": 300,
+  "effect": "dndreams:memory",
+  "duration": 3600
+}

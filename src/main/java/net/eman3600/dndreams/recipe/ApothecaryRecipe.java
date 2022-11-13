@@ -27,8 +27,10 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
     public final int capacity;
     public final int power;
     public final StatusEffect effect;
+    public final int duration;
+    public final int maxAmplifier;
 
-    public ApothecaryRecipe(Identifier id, String group, ItemStack input, boolean corrupted, int capacity, int power, StatusEffect effect) {
+    public ApothecaryRecipe(Identifier id, String group, ItemStack input, boolean corrupted, int capacity, int power, StatusEffect effect, int duration, int maxAmplifier) {
         this.id = id;
         this.group = group;
         this.input = input;
@@ -36,6 +38,8 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
         this.capacity = capacity;
         this.power = power;
         this.effect = effect;
+        this.duration = duration;
+        this.maxAmplifier = maxAmplifier;
     }
 
     public Identifier getId() {
@@ -59,9 +63,9 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
         try {
             boolean match = inventory.getStack(0).isItemEqualIgnoreDamage(input);
 
-            return match && (!corrupted || inventory.getStack(1).isOf(Items.FERMENTED_SPIDER_EYE));
+            return match && (corrupted == inventory.getStack(1).isOf(Items.FERMENTED_SPIDER_EYE));
         } catch (IndexOutOfBoundsException e) {
-            return false;
+            return !corrupted && inventory.getStack(0).isItemEqualIgnoreDamage(input);
         }
     }
 
@@ -104,7 +108,10 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
                 effect = StatusEffects.STRENGTH;
             }
 
-            return new ApothecaryRecipe(identifier, string, stack, corrupted, capacity, power, effect);
+            int duration = JsonHelper.getInt(jsonObject, "duration", 3600);
+            int maxAmplifier = JsonHelper.getInt(jsonObject, "max_amplifier", 4);
+
+            return new ApothecaryRecipe(identifier, string, stack, corrupted, capacity, power, effect, duration, maxAmplifier);
 
         }
 
@@ -120,7 +127,10 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
                 effect = StatusEffects.STRENGTH;
             }
 
-            return new ApothecaryRecipe(identifier, group, stack, corrupted, capacity, power, effect);
+            int duration = packetByteBuf.readInt();
+            int maxAmplifier = packetByteBuf.readInt();
+
+            return new ApothecaryRecipe(identifier, group, stack, corrupted, capacity, power, effect, duration, maxAmplifier);
         }
 
         public void write(PacketByteBuf packetByteBuf, ApothecaryRecipe recipe) {
@@ -130,6 +140,8 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
             packetByteBuf.writeInt(recipe.capacity);
             packetByteBuf.writeInt(recipe.power);
             packetByteBuf.writeString(Registry.STATUS_EFFECT.getId(recipe.effect).toString());
+            packetByteBuf.writeInt(recipe.duration);
+            packetByteBuf.writeInt(recipe.maxAmplifier);
         }
     }
 

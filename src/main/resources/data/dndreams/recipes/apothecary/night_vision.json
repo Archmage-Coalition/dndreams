@@ -1,0 +1,12 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "minecraft:golden_carrot"
+  },
+  "corrupted": false,
+  "capacity": 2,
+  "cost": 250,
+  "effect": "minecraft:night_vision",
+  "duration": 3600,
+  "max_amplifier": 0
+}

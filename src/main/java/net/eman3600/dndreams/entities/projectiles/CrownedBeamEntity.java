@@ -48,11 +48,11 @@ public class CrownedBeamEntity extends PersistentProjectileEntity implements Pro
     }
 
     public CrownedBeamEntity(double x, double y, double z, World world) {
-        super(ModEntities.CROWNED_BEAM_ENTITY_TYPE, x, y, z, world);
+        super(ModEntities.CROWNED_BEAM, x, y, z, world);
     }
 
     public CrownedBeamEntity(LivingEntity owner, World world) {
-        super(ModEntities.CROWNED_BEAM_ENTITY_TYPE, owner, world);
+        super(ModEntities.CROWNED_BEAM, owner, world);
     }
 
     @Override

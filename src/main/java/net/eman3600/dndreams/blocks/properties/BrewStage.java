@@ -29,7 +29,8 @@ public enum BrewStage {
 
         try {
             RecipeManager manager = world.getRecipeManager();
-            Inventory inv = ImplementedInventory.of(DefaultedList.ofSize(1, stack));
+            Inventory inv = ImplementedInventory.of(DefaultedList.ofSize(2, stack));
+            inv.setStack(1, ItemStack.EMPTY);
 
             if (manager.getFirstMatch(ModRecipeTypes.APOTHECARY, inv, world).isPresent()) return EFFECT;
         } catch (NullPointerException ignored) {}
@@ -39,5 +40,15 @@ public enum BrewStage {
 
 
         return null;
+    }
+
+    public static HashMap<BrewStage, Integer> toStepMap() {
+        HashMap<BrewStage, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < values().length; i++) {
+            map.put(values()[i], i);
+        }
+
+        return map;
     }
 }

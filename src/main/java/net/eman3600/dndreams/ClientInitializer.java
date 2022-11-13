@@ -28,6 +28,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
+import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.client.render.entity.ItemEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -106,13 +108,16 @@ ClientInitializer implements ClientModInitializer {
         ModParticles.registerParticleFactories();
 
 
-        EntityRendererRegistry.register(ModEntities.CROWNED_SLASH_ENTITY_TYPE, EmptyEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.CROWNED_BEAM_ENTITY_TYPE, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.CROWNED_SLASH, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.CROWNED_BEAM, EmptyEntityRenderer::new);
 
-        EntityRendererRegistry.register(ModEntities.BLOOD_ZOMBIE_ENTITY_TYPE, BloodZombieEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.BLOOD_SKELETON_ENTITY_TYPE, BloodSkeletonEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BREW_SPLASH, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BREW_LINGERING, FlyingItemEntityRenderer::new);
 
-        EntityRendererRegistry.register(ModEntities.WARDEN_RAGDOLL_ENTITY_TYPE, WardenRagdollEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BLOOD_ZOMBIE, BloodZombieEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BLOOD_SKELETON, BloodSkeletonEntityRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.WARDEN_RAGDOLL, WardenRagdollEntityRenderer::new);
     }
 
 
