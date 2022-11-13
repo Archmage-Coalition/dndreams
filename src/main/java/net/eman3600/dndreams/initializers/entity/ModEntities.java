@@ -3,6 +3,7 @@ package net.eman3600.dndreams.initializers.entity;
 import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
 import net.eman3600.dndreams.entities.mobs.WardenRagdollEntity;
+import net.eman3600.dndreams.entities.projectiles.BrewLingeringEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.entities.projectiles.CrownedBeamEntity;
 import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
@@ -43,6 +44,14 @@ public class ModEntities {
     public static final EntityType<BrewSplashEntity> BREW_SPLASH = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "brew_splash"),
             FabricEntityTypeBuilder.<BrewSplashEntity>create(SpawnGroup.MISC, BrewSplashEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build()
+    );
+
+    public static final EntityType<BrewLingeringEntity> BREW_LINGERING = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "brew_lingering"),
+            FabricEntityTypeBuilder.<BrewLingeringEntity>create(SpawnGroup.MISC, BrewLingeringEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build()

@@ -103,7 +103,13 @@ public abstract class AbstractBrewItem extends Item {
                         duration *= (Math.pow(1.5, length));
                     }
 
-                    effects.add(new StatusEffectInstance(effect, duration, Math.min(amplifier, recipe.maxAmplifier)));
+                    int amp = Math.min(amplifier, recipe.maxAmplifier);
+                    if (!effect.isInstant() && amp > 0) {
+                        duration *= (Math.pow(0.75, amp));
+                    }
+
+
+                    effects.add(new StatusEffectInstance(effect, duration, amp));
                 }
             }
         }

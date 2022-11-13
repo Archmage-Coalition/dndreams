@@ -8,6 +8,7 @@ import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
+import net.eman3600.dndreams.items.consumable.brew.BrewLingeringItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewSplashItem;
 import net.eman3600.dndreams.items.creative.InfusionChangerItem;
 import net.eman3600.dndreams.items.magic_sword.*;
@@ -350,6 +351,8 @@ public class ModItems {
             new BrewIngestedItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
     public static final Item BREW_SPLASH = registerItem("brew_splash",
             new BrewSplashItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
+    public static final Item BREW_LINGERING = registerItem("brew_lingering",
+            new BrewLingeringItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
 
     /*
      * Item Registration
