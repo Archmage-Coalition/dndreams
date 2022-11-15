@@ -697,6 +697,289 @@ public class ModBlocks {
 
 
 
+
+
+    // haven Wood Logs
+    public static final Block HAVEN_LOG = registerBlock("haven_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_WOOD = registerBlock("haven_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_STRIPPED_LOG = registerBlock("haven_stripped_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_STRIPPED_WOOD = registerBlock("haven_stripped_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // haven Wood Planks
+    public static final Block HAVEN_PLANKS = registerBlock("haven_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // haven Wood Leaves & Sapling
+    public static final Block HAVEN_LEAVES = registerBlock("haven_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block HAVEN_SAPLING = registerBlock("haven_sapling",
+            new EndSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // haven Wood Stairs
+    public static final Block HAVEN_STAIRS = registerBlock("haven_stairs",
+            new ModStairsBlock(HELIOS_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // haven Wood Slab
+    public static final Block HAVEN_SLAB = registerBlock("haven_slab",
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // haven Wood Fence
+    public static final Block HAVEN_FENCE = registerBlock("haven_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // haven Wood Fence Gate
+    public static final Block HAVEN_FENCE_GATE = registerBlock("haven_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+
+
+    // pine Wood Logs
+    public static final Block PINE_LOG = registerBlock("pine_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block PINE_WOOD = registerBlock("pine_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block PINE_STRIPPED_LOG = registerBlock("pine_stripped_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block PINE_STRIPPED_WOOD = registerBlock("pine_stripped_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // pine Wood Planks
+    public static final Block PINE_PLANKS = registerBlock("pine_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // pine Wood Leaves & Sapling
+    public static final Block PINE_LEAVES = registerBlock("pine_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block PINE_SAPLING = registerBlock("pine_sapling",
+            new EndSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // pine Wood Stairs
+    public static final Block PINE_STAIRS = registerBlock("pine_stairs",
+            new ModStairsBlock(HELIOS_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // pine Wood Slab
+    public static final Block PINE_SLAB = registerBlock("pine_slab",
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // pine Wood Fence
+    public static final Block PINE_FENCE = registerBlock("pine_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // pine Wood Fence Gate
+    public static final Block PINE_FENCE_GATE = registerBlock("pine_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+
+
+
+
+
+    // star Wood Logs
+    public static final Block STAR_LOG = registerBlock("star_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STAR_WOOD = registerBlock("star_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STAR_STRIPPED_LOG = registerBlock("star_stripped_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STAR_STRIPPED_WOOD = registerBlock("star_stripped_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // star Wood Planks
+    public static final Block STAR_PLANKS = registerBlock("star_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // star Wood Leaves & Sapling
+    public static final Block STAR_LEAVES = registerBlock("star_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block STAR_SAPLING = registerBlock("star_sapling",
+            new EndSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    // star Wood Stairs
+    public static final Block STAR_STAIRS = registerBlock("star_stairs",
+            new ModStairsBlock(HELIOS_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // star Wood Slab
+    public static final Block STAR_SLAB = registerBlock("star_slab",
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // star Wood Fence
+    public static final Block STAR_FENCE = registerBlock("star_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // star Wood Fence Gate
+    public static final Block STAR_FENCE_GATE = registerBlock("star_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+
+
+    public static final Block HAVEN_GRASS_BLOCK = registerBlock("haven_grass_block",
+            new Block(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block HAVEN_GRASS = registerBlock("haven_grass",
+            new EndFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+
+    public static final Block STAR_GRASS_BLOCK = registerBlock("star_grass_block",
+            new Block(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block STAR_GRASS = registerBlock("star_grass",
+            new EndFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+
+    public static final Block HAVEN_DIRT = registerBlock("haven_dirt",
+            new Block(FabricBlockSettings.copy(Blocks.DIRT)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+    public static final Block HAVEN_STONE = registerBlock("haven_stone",
+            new Block(FabricBlockSettings.copy(Blocks.STONE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block PERICHARITE_ORE = registerBlock("pericharite_ore",
+            new Block(FabricBlockSettings.copy(Blocks.DIAMOND_ORE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block HAVEN_COAL_ORE = registerBlock("haven_coal_ore",
+            new Block(FabricBlockSettings.copy(Blocks.COAL_ORE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block MANAGOLD_ORE = registerBlock("managold_ore",
+            new Block(FabricBlockSettings.copy(Blocks.GOLD_ORE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block HAVEN_COBBLESTONE = registerBlock("haven_cobblestone",
+            new Block(FabricBlockSettings.copy(Blocks.COBBLESTONE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+
+
     // Snowbell Crop
     public static final Block SNOWBELL = registerBlock("snowbell",
             new SnowbellBlock(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque()));
