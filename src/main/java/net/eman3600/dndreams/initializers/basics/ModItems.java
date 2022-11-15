@@ -103,6 +103,7 @@ public class ModItems {
     public static final Item SELENE_FUME = registerItem("selene_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item HELIOS_FUME = registerItem("helios_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item EOS_FUME = registerItem("eos_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item STAR_FUME = registerItem("star_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
     public static final Item DROP_OF_LUCK = registerItem("drop_of_luck", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item MELLIFLUOUS_HUNGER = registerItem("mellifluous_hunger", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));

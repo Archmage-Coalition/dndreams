@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "dndreams:haven_stone",
+	"dndreams:haven_cobblestone",
+	"dndreams:pericharite_ore",
+	"dndreams:managold_ore",
+	"dndreams:haven_coal_ore"
+  ]
+}
