@@ -45,6 +45,14 @@ public class ModItems {
     public static final Item SCULK_POWDER = registerItem("sculk_powder",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    // Refined Evil
+    public static final Item REFINED_EVIL = registerItem("refined_evil",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
+    // Crystal Mix
+    public static final Item CRYSTAL_MIX = registerItem("crystal_mix",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
     // Shade Veil
     public static final Item SHADE_CLOTH = registerItem("shade_cloth", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
@@ -66,6 +74,8 @@ public class ModItems {
     // Corrupt Scrap & Raw Celestium
     public static final Item CORRUPT_SCRAP = registerItem("corrupt_scrap", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)
             .fireproof()));
+    public static final Item RAW_MANAGOLD = registerItem("raw_managold",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
@@ -94,16 +104,21 @@ public class ModItems {
     public static final Item HELIOS_FUME = registerItem("helios_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item EOS_FUME = registerItem("eos_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
+    public static final Item DROP_OF_LUCK = registerItem("drop_of_luck", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item MELLIFLUOUS_HUNGER = registerItem("mellifluous_hunger", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item DISTILLED_SPIRIT = registerItem("distilled_spirit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item HOLLOW_TEAR = registerItem("hollow_tear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
-    // Water Artichoke Globe
+    // Lotus & Wither Bud
     public static final Item LOTUS_FLOWER = registerItem("lotus_flower",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.LOTUS_FLOWER)));
 
     public static final Item WITHER_BUD = registerItem("wither_bud",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.WITHER_BUD)));
+
+    // Bottled Stuff
+    public static final Item SOUL_SOUP = registerItem("soul_soup",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
 
     // Ingots
     public static final Item CORRUPT_INGOT = registerItem("corrupt_ingot",
@@ -116,6 +131,8 @@ public class ModItems {
     // Obsidian Stick
     public static final Item OBSIDIAN_STICK = registerItem("obsidian_stick",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
+
+
 
     // Hellsteel Sword & Tools
     public static final Item CORRUPT_SWORD = registerItem("corrupt_sword",

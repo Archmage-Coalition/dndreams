@@ -1,0 +1,23 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:wither_bud"
+    },
+	{
+      "item": "minecraft:blaze_powder"
+    },
+	{
+      "item": "minecraft:nether_wart"
+    },
+	{
+      "item": "dndreams:eos_fume"
+    }
+  ],
+  "result": {
+    "item": "dndreams:refined_evil",
+    "count": 1
+  },
+  "cost": 250,
+  "refine_time": 100
+}

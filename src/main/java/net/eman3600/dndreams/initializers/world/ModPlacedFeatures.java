@@ -4,16 +4,22 @@ import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.initializers.world.ModFeatures;
 import net.eman3600.dndreams.world.OreFeatures;
+import net.eman3600.dndreams.world.feature.haven.SmallIslandFeature;
+import net.minecraft.text.Decoration;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.feature.VegetationConfiguredFeatures;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
+import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
+import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
+
+import static net.eman3600.dndreams.Initializer.MODID;
 
 public class ModPlacedFeatures {
 
@@ -58,5 +64,60 @@ public class ModPlacedFeatures {
 
 
 
+    public static final BCLFeature<SmallIslandFeature, DefaultFeatureConfig> SMALL_ISLAND = registerRawGen("small_island", inlineBuild("small_island", new SmallIslandFeature()), 50);
 
+
+
+
+
+
+
+
+    private static <F extends Feature<DefaultFeatureConfig>> BCLFeature<F, DefaultFeatureConfig> registerRawGen(
+            String name,
+            F feature,
+            int density
+    ) {
+        return registerRawGen(name, feature, DefaultFeatureConfig.INSTANCE, density);
+    }
+
+    private static <F extends Feature<FC>, FC extends FeatureConfig> BCLFeature<F, FC> registerRawGen(
+            String name,
+            F feature,
+            FC config,
+            int chance
+    ) {
+        return registerChanced(name, GenerationStep.Feature.RAW_GENERATION, feature, config, chance);
+    }
+
+    private static <F extends Feature<FC>, FC extends FeatureConfig> BCLFeature<F, FC> registerChanced(
+            String name,
+            GenerationStep.Feature decoration,
+            F feature,
+            FC config,
+            int chance
+    ) {
+        return
+                BCLFeatureBuilder
+                        .start(new Identifier(MODID, name), feature)
+                        .configuration(config)
+                        .buildAndRegister()
+                        .place()
+                        .decoration(decoration)
+                        .onceEvery(chance)
+                        .squarePlacement()
+                        .onlyInBiome()
+                        .buildAndRegister();
+    }
+
+
+
+
+    public static <F extends Feature<FC>, FC extends FeatureConfig> F inlineBuild(String name, F feature) {
+        Identifier l = new Identifier(MODID, name);
+        if (Registry.FEATURE.containsId(l)) {
+            return (F) Registry.FEATURE.get(l);
+        }
+        return BCLFeature.register(l, feature);
+    }
 }

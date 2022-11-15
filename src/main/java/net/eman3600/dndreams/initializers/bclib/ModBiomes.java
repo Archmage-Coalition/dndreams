@@ -1,17 +1,15 @@
 package net.eman3600.dndreams.initializers.bclib;
 
-import net.eman3600.dndreams.world.biome.EndBiome;
-import net.eman3600.dndreams.world.biome.EosBiome;
-import net.eman3600.dndreams.world.biome.HeliosBiome;
-import net.eman3600.dndreams.world.biome.SeleneBiome;
+import net.eman3600.dndreams.world.biome.end.EndBiome;
+import net.eman3600.dndreams.world.biome.end.EosBiome;
+import net.eman3600.dndreams.world.biome.end.HeliosBiome;
+import net.eman3600.dndreams.world.biome.end.SeleneBiome;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import org.betterx.bclib.api.v2.LifeCycleAPI;
-import org.betterx.bclib.api.v2.generator.BiomePicker;
 import org.betterx.bclib.api.v2.generator.BiomeType;
-import org.betterx.bclib.api.v2.generator.map.hex.HexBiomeMap;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.config.Configs;

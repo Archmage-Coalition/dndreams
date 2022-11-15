@@ -139,7 +139,7 @@ public abstract class AbstractRitual {
     }
 
     public enum CandleTuning implements StringIdentifiable {
-        NONE("none", ParticleTypes.END_ROD),
+        NONE("none", ParticleTypes.SMOKE),
         OVERWORLD("overworld", ParticleTypes.HAPPY_VILLAGER),
         NETHER("nether", ParticleTypes.FLAME),
         END("end", ParticleTypes.DRAGON_BREATH);

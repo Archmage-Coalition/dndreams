@@ -1,0 +1,23 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "tag": "dndreams:amethyst_shard"
+    },
+	{
+      "item": "minecraft:diamond"
+    },
+	{
+      "item": "minecraft:emerald"
+    },
+	{
+      "item": "minecraft:lapis_lazuli"
+    }
+  ],
+  "result": {
+    "item": "dndreams:crystal_mix",
+    "count": 6
+  },
+  "cost": 1000,
+  "refine_time": 900
+}

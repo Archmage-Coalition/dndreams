@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "dndreams:charged_shard",
+	"dndreams:attuned_shard",
+	"minecraft:amethyst_shard"
+  ]
+}

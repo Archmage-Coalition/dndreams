@@ -12,6 +12,8 @@ public class ModRituals {
     public static final AbstractRitual AMETHYST_SOURCE = register("amethyst_source", new AmethystSourceRitual());
     public static final AbstractRitual AMETHYST_SPROUT = register("amethyst_sprout", new AmethystSproutRitual());
 
+    public static final AbstractRitual SUMMON_STORM = register("summon_storm", new SummonStormRitual());
+
     public static void registerRituals() {}
 
     private static AbstractRitual register(String id, AbstractRitual ritual) {

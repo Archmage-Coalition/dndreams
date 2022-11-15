@@ -49,8 +49,9 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
     private final Box itemReach = new Box(-3, -1, -3, 3, 1, 3).offset(pos);
     private final Box playerReach = new Box(-5, -1, -5, 5, 1, 5).offset(pos);
 
-    private int ticks = 0;
-    private int ticksPowerless = 0;
+    public int ticks = 0;
+    public int ticksPowerless = 0;
+    public int duration = 0;
 
     private boolean casting = false;
     private boolean sustained = false;
@@ -130,13 +131,14 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
             } else if (ritual instanceof AbstractSustainedRitual susRite) {
 
+                if (duration < Short.MAX_VALUE) duration++;
                 susRite.tickSustained(world, boundPos, this);
 
                 if (ticks++ >= 20) {
                     ticks = 0;
 
-                    if (!usePower(susRite.getSustainedCost()) || !ringsMatch(true)) {
-                        endRitual(world);
+                    if (!usePower(susRite.getSustainedCost()) || !ringsMatch(true) || !susRite.canSustain(world, pos, this)) {
+                        deactivate(true);
                     }
                 }
             }
@@ -352,6 +354,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         ticks = 0;
         ticksPowerless = 0;
         boundPos = pos;
+        duration = 0;
         clearItems();
     }
 
@@ -369,6 +372,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         Inventories.writeNbt(nbt, items);
         nbt.putInt("ticks", ticks);
         nbt.putInt("ticks_powerless", ticksPowerless);
+        nbt.putInt("duration", duration);
 
         try {
             nbt.putString("ritual", RitualRegistry.REGISTRY.getId(ritual).toString());
@@ -388,6 +392,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         Inventories.readNbt(nbt, items);
         ticks = nbt.getInt("ticks");
         ticksPowerless = nbt.getInt("ticks_powerless");
+        duration = nbt.getInt("duration");
 
         ritual = RitualRegistry.REGISTRY.get(Identifier.tryParse(nbt.getString("ritual")));
 

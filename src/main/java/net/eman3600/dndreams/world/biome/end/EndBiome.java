@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.world.biome;
+package net.eman3600.dndreams.world.biome.end;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

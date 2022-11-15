@@ -19,6 +19,9 @@
   "item.dndreams.poison_apple": "Rotten Apple",
   "item.dndreams.wither_bud": "Wither Blossom",
   "item.dndreams.archfuel": "Refined Fuel",
+  "item.dndreams.refined_evil": "Refined Evil",
+  "item.dndreams.crystal_mix": "Crystal Mix",
+  "item.dndreams.soul_soup": "Spectral Soup",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
@@ -41,6 +44,7 @@
   "item.dndreams.book_of_dreams.landing_text": "Why, what dreams you'll have.",
   
   "item.dndreams.managold_ingot": "Managold Ingot",
+  "item.dndreams.raw_managold": "Raw Managold",
   "item.dndreams.managold_sword": "Managold Sword",
   "item.dndreams.managold_pickaxe": "Managold Pickaxe",
   "item.dndreams.managold_axe": "Managold Axe",
@@ -90,6 +94,7 @@
   "item.dndreams.helios_fume": "Hint of Purity",
   "item.dndreams.star_fume": "Breath of Divinity",
   
+  "item.dndreams.drop_of_luck": "Drop of Luck",
   "item.dndreams.mellifluous_hunger": "Mellifluous Hunger",
   "item.dndreams.distilled_spirit": "Distilled Spirit",
   "item.dndreams.hollow_tear": "Hollow Tear",

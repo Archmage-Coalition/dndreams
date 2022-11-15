@@ -4,8 +4,8 @@
     "item": "dndreams:dream_powder"
   },
   "corrupted": false,
-  "capacity": 3,
-  "cost": 300,
+  "capacity": 2,
+  "cost": 250,
   "effect": "dndreams:dreamy",
   "duration": 3600
 }
