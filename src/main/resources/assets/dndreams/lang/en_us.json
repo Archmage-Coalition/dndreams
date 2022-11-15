@@ -23,6 +23,7 @@
   "item.dndreams.refined_evil": "Refined Evil",
   "item.dndreams.crystal_mix": "Crystal Mix",
   "item.dndreams.soul_soup": "Spectral Soup",
+  "item.dndreams.star_fruit": "Starfruit",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
@@ -99,6 +100,7 @@
   "item.dndreams.mellifluous_hunger": "Mellifluous Hunger",
   "item.dndreams.distilled_spirit": "Distilled Spirit",
   "item.dndreams.hollow_tear": "Hollow Tear",
+  
   
   "item.dndreams.brew.overloaded": "Amalgamation",
   "item.dndreams.brew_ingested": "Brew of %s",

@@ -18,7 +18,7 @@
       }
     ],
     "snowy=true": {
-      "model": "minecraft:block/grass_block_snow"
+      "model": "dndreams:block/haven_grass_block_snow"
     }
   }
 }

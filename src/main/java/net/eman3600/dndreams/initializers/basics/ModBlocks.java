@@ -957,17 +957,17 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     public static final Block PERICHARITE_ORE = registerBlock("pericharite_ore",
-            new Block(FabricBlockSettings.copy(Blocks.DIAMOND_ORE)),
+            new OreBlock(FabricBlockSettings.copy(Blocks.DIAMOND_ORE), UniformIntProvider.create(3, 6)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     public static final Block HAVEN_COAL_ORE = registerBlock("haven_coal_ore",
-            new Block(FabricBlockSettings.copy(Blocks.COAL_ORE)),
+            new OreBlock(FabricBlockSettings.copy(Blocks.COAL_ORE), UniformIntProvider.create(0, 2)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     public static final Block MANAGOLD_ORE = registerBlock("managold_ore",
-            new Block(FabricBlockSettings.copy(Blocks.GOLD_ORE)),
+            new OreBlock(FabricBlockSettings.copy(Blocks.GOLD_ORE)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 

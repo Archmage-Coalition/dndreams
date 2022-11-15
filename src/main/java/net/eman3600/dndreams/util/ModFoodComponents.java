@@ -28,6 +28,8 @@ public class ModFoodComponents {
             .alwaysEdible().build();
     public static final FoodComponent LOTUS_FLOWER = (new FoodComponent.Builder()).hunger(5).saturationModifier(0.8F)
             .build();
+    public static final FoodComponent STAR_FRUIT = (new FoodComponent.Builder()).hunger(6).saturationModifier(1.0F)
+            .build();
     public static FoodComponent cakewood(float planks) {
         return (new FoodComponent.Builder()).hunger((int)(3 * planks)).saturationModifier(0.6f)
                 .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, (int)(80 * planks)), 1.0f)

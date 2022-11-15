@@ -68,6 +68,10 @@ public class ModItems {
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
             new NightmareFuelItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL).fireproof()));
 
+    // Starfruit
+    public static final Item STAR_FRUIT = registerItem("star_fruit",
+            new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.STAR_FRUIT)));
+
     // End Sticks
     public static final Item END_STICK = registerItem("end_stick", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
@@ -77,6 +81,8 @@ public class ModItems {
     public static final Item RAW_MANAGOLD = registerItem("raw_managold",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item CELESTIUM = registerItem("celestium",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item PERICHARITE = registerItem("pericharite",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Infernal Residue
