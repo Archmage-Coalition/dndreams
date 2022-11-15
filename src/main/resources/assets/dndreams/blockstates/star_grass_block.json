@@ -1,9 +1,24 @@
 {
-    "variants":
-    {
-        "":
-        {
-            "model":"dndreams:block/star_grass_block"
-        }
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "dndreams:block/star_grass_block"
+      },
+      {
+        "model": "dndreams:block/star_grass_block",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/star_grass_block",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/star_grass_block",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "minecraft:block/grass_block_snow"
     }
+  }
 }

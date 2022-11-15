@@ -922,7 +922,7 @@ public class ModBlocks {
 
 
     public static final Block HAVEN_GRASS_BLOCK = registerBlock("haven_grass_block",
-            new Block(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)),
+            new HavenSpreadableBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
@@ -934,7 +934,7 @@ public class ModBlocks {
 
 
     public static final Block STAR_GRASS_BLOCK = registerBlock("star_grass_block",
-            new Block(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)),
+            new HavenSpreadableBlock(FabricBlockSettings.copy(Blocks.GRASS_BLOCK)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 

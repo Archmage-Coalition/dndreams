@@ -91,9 +91,9 @@ public class ModConfiguredFeatures {
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> PINE_TREE =
             ConfiguredFeatures.register("pine_tree", Feature.TREE, new TreeFeatureConfig.Builder(
                     BlockStateProvider.of(ModBlocks.PINE_LOG),
-                    new StraightTrunkPlacer(3, 4, 3),
+                    new StraightTrunkPlacer(5, 6, 3),
                     BlockStateProvider.of(ModBlocks.PINE_LEAVES),
-                    new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
+                    new SpruceFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), ConstantIntProvider.create(4)),
                     new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(ModBlocks.HAVEN_DIRT)).build());
 
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> STAR_TREE =
