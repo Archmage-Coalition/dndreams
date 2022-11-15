@@ -1,9 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dndreams:hellsand",
-	"dndreams:hellsoil",
-	"dndreams:haven_dirt",
+    "dndreams:haven_dirt",
 	"dndreams:haven_grass_block",
 	"dndreams:star_grass_block"
   ]

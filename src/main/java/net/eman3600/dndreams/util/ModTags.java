@@ -22,6 +22,7 @@ public class ModTags {
     public static final TagKey<Block> COSMIC_AUGMENTS = ofBlock("cosmic_augments");
     public static final TagKey<Block> END_STONES = TagKey.of(Registry.BLOCK_KEY, new Identifier("c", "end_stones"));
     public static final TagKey<Block> HEAT_BLOCKS = ofBlock("heat_blocks");
+    public static final TagKey<Block> HAVEN_DIRT = ofBlock("haven_dirt");
 
     public static final TagKey<Fluid> FLOWING_SPIRIT = ofFluid("flowing_spirit");
     public static final TagKey<Fluid> SORROW = ofFluid("sorrow");

@@ -735,7 +735,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block HAVEN_SAPLING = registerBlock("haven_sapling",
-            new EndSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new HavenSaplingBlock(new GenericSaplingGenerator(random -> ModConfiguredFeatures.HAVEN_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -772,7 +772,7 @@ public class ModBlocks {
 
 
 
-    // pine Wood Logs
+    // Pine Wood Logs
     public static final Block PINE_LOG = registerBlock("pine_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
@@ -808,7 +808,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block PINE_SAPLING = registerBlock("pine_sapling",
-            new EndSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new HavenSaplingBlock(new GenericSaplingGenerator(random -> ModConfiguredFeatures.PINE_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -884,7 +884,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
     public static final Block STAR_SAPLING = registerBlock("star_sapling",
-            new EndSaplingBlock(new GenericLargeSaplingGenerator(random -> ModConfiguredFeatures.HELIOS_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+            new HavenSaplingBlock(new GenericSaplingGenerator(random -> ModConfiguredFeatures.STAR_TREE), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -927,7 +927,7 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     public static final Block HAVEN_GRASS = registerBlock("haven_grass",
-            new EndFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
+            new HavenFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -939,7 +939,7 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     public static final Block STAR_GRASS = registerBlock("star_grass",
-            new EndFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
+            new HavenFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
