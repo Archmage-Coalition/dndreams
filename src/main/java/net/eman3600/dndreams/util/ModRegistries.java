@@ -119,6 +119,11 @@ public class ModRegistries {
         MutandisOneirosItem.registerMutable(ModBlocks.WITHER_BLOSSOM);
         MutandisOneirosItem.registerMutable(Blocks.WITHER_ROSE);
         MutandisOneirosItem.registerMutable(ModBlocks.APPLETHORN);
+        MutandisOneirosItem.registerMutable(ModBlocks.HAVEN_GRASS);
+        MutandisOneirosItem.registerMutable(ModBlocks.STAR_GRASS);
+        MutandisOneirosItem.registerMutable(ModBlocks.HAVEN_SAPLING);
+        MutandisOneirosItem.registerMutable(ModBlocks.PINE_SAPLING);
+        MutandisOneirosItem.registerMutable(ModBlocks.STAR_SAPLING);
     }
 
     private static void registerApothecary() {
@@ -172,6 +177,15 @@ public class ModRegistries {
 
         StrippableBlockRegistry.register(ModBlocks.EOS_WOOD, ModBlocks.EOS_STRIPPED_WOOD);
         StrippableBlockRegistry.register(ModBlocks.EOS_LOG, ModBlocks.EOS_STRIPPED_LOG);
+
+        StrippableBlockRegistry.register(ModBlocks.HAVEN_WOOD, ModBlocks.HAVEN_STRIPPED_WOOD);
+        StrippableBlockRegistry.register(ModBlocks.HAVEN_LOG, ModBlocks.HAVEN_STRIPPED_LOG);
+
+        StrippableBlockRegistry.register(ModBlocks.PINE_WOOD, ModBlocks.PINE_STRIPPED_WOOD);
+        StrippableBlockRegistry.register(ModBlocks.PINE_LOG, ModBlocks.PINE_STRIPPED_LOG);
+
+        StrippableBlockRegistry.register(ModBlocks.STAR_WOOD, ModBlocks.STAR_STRIPPED_WOOD);
+        StrippableBlockRegistry.register(ModBlocks.STAR_LOG, ModBlocks.STAR_STRIPPED_LOG);
     }
 
     private static void registerFlammableBlocks() {

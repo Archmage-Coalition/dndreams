@@ -1,1 +1,1 @@
-{"parent":"minecraft:block/cube_bottom_top","textures":{"side":"dndreams:block/star_grass_side","top":"dndreams:block/star_grass_top","bottom":"dndreams:block/haven_dirt"}}
+{"parent":"minecraft:block/cube_bottom_top","textures":{"side":"dndreams:block/star_grass_block","top":"dndreams:block/star_grass_block_top","bottom":"dndreams:block/haven_dirt"}}

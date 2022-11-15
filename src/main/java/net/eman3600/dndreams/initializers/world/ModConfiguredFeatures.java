@@ -80,6 +80,32 @@ public class ModConfiguredFeatures {
 
 
 
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> HAVEN_TREE =
+            ConfiguredFeatures.register("haven_tree", Feature.TREE, new TreeFeatureConfig.Builder(
+                    BlockStateProvider.of(ModBlocks.HAVEN_LOG),
+                    new StraightTrunkPlacer(3, 4, 3),
+                    BlockStateProvider.of(ModBlocks.HAVEN_LEAVES),
+                    new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
+                    new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(ModBlocks.HAVEN_DIRT)).build());
+
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> PINE_TREE =
+            ConfiguredFeatures.register("pine_tree", Feature.TREE, new TreeFeatureConfig.Builder(
+                    BlockStateProvider.of(ModBlocks.PINE_LOG),
+                    new StraightTrunkPlacer(3, 4, 3),
+                    BlockStateProvider.of(ModBlocks.PINE_LEAVES),
+                    new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
+                    new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(ModBlocks.HAVEN_DIRT)).build());
+
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> STAR_TREE =
+            ConfiguredFeatures.register("star_tree", Feature.TREE, new TreeFeatureConfig.Builder(
+                    BlockStateProvider.of(ModBlocks.STAR_LOG),
+                    new StraightTrunkPlacer(3, 4, 3),
+                    BlockStateProvider.of(ModBlocks.STAR_LEAVES),
+                    new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
+                    new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(ModBlocks.HAVEN_DIRT)).build());
+
+
+
 
     public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> HELIOS_GRASS =
             ConfiguredFeatures.register("helios_grass", Feature.RANDOM_PATCH,
