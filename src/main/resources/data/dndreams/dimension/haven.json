@@ -1,0 +1,11 @@
+{
+	"type": "dndreams:haven",
+	"generator": {
+		"type": "minecraft:noise",
+		"settings": "minecraft:floating_islands",
+		"seed": 0,
+		"biome_source": {
+			"type": "dndreams:haven_biome_source"
+		}
+	}
+}

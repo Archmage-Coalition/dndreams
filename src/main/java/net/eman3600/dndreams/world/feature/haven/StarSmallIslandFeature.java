@@ -2,10 +2,8 @@ package net.eman3600.dndreams.world.feature.haven;
 
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.ChunkRegion;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -14,7 +12,7 @@ import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 
-public class SmallIslandFeature extends DefaultFeature {
+public class StarSmallIslandFeature extends DefaultFeature {
 	@Override
 	public boolean generate(FeatureContext<DefaultFeatureConfig> featurePlaceContext) {
 		StructureWorldAccess generator = featurePlaceContext.getWorld();
@@ -31,20 +29,20 @@ public class SmallIslandFeature extends DefaultFeature {
 		if (center.getY() == 0) {
 			pos.setY(MHelper.randRange(64, 192, random));
 		}
-		makeCircle((StructureWorldAccess) generator, pos, ModBlocks.HAVEN_GRASS_BLOCK.getDefaultState(), size - 1, random);
+		makeCircle(generator, pos, ModBlocks.STAR_GRASS_BLOCK.getDefaultState(), size - 1, random);
 		
 		pos.setY(pos.getY() - 1);
-		makeCircle((StructureWorldAccess) generator, pos, ModBlocks.HAVEN_GRASS_BLOCK.getDefaultState(), size, random);
+		makeCircle(generator, pos, ModBlocks.STAR_GRASS_BLOCK.getDefaultState(), size, random);
 		
 		pos.setY(pos.getY() - 1);
-		makeCircle((StructureWorldAccess) generator, pos, ModBlocks.HAVEN_DIRT.getDefaultState(), size - 1, random);
+		makeCircle(generator, pos, ModBlocks.HAVEN_DIRT.getDefaultState(), size - 1, random);
 		
 		pos.setY(pos.getY() - 1);
-		makeCircle((StructureWorldAccess) generator, pos, ModBlocks.HAVEN_STONE.getDefaultState(), size - 2, random);
+		makeCircle(generator, pos, ModBlocks.HAVEN_STONE.getDefaultState(), size - 2, random);
 		
 		if (size > 5) {
 			pos.setY(pos.getY() - 1);
-			makeCircle((StructureWorldAccess) generator, pos, ModBlocks.HAVEN_STONE.getDefaultState(), size - 4, random);
+			makeCircle(generator, pos, ModBlocks.HAVEN_STONE.getDefaultState(), size - 4, random);
 		}
 		
 		return true;
@@ -63,7 +61,7 @@ public class SmallIslandFeature extends DefaultFeature {
 				if (x2 + z2 <= r2 - random.nextInt(radius)) {
 					if (worldState.isAir() || worldState.getMaterial().isReplaceable()) {
 						BlockState setState = state;
-						if (state.isOf(ModBlocks.HAVEN_GRASS_BLOCK) && !level.getBlockState(mut.up()).isAir()) {
+						if (state.isOf(ModBlocks.STAR_GRASS_BLOCK) && !level.getBlockState(mut.up()).isAir()) {
 							setState = ModBlocks.HAVEN_DIRT.getDefaultState();
 						}
 						BlocksHelper.setWithoutUpdate(level, mut, setState);

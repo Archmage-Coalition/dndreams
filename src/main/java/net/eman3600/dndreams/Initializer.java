@@ -8,15 +8,17 @@ import net.eman3600.dndreams.initializers.event.*;
 import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.world.ModFeatures;
-import net.eman3600.dndreams.initializers.world.ModPlacedFeatures;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
-import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
 import net.eman3600.dndreams.util.LootModifiers;
 import net.eman3600.dndreams.util.ModRegistries;
 import net.eman3600.dndreams.util.ModTags;
+import net.eman3600.dndreams.world.biome.GeneratorOptions;
+import net.eman3600.dndreams.world.biome.HavenBiomeSource;
 import net.eman3600.dndreams.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.bernie.geckolib3.GeckoLib;
@@ -36,6 +38,7 @@ public class Initializer implements ModInitializer {
 
 		LOGGER.info("Hello Fabric world!");
 
+		GeneratorOptions.registerGeneratorOptions();
 		ModConfiguredFeatures.registerConfiguredFeatures();
 
 		ModAttributes.registerAttributes();
@@ -70,6 +73,7 @@ public class Initializer implements ModInitializer {
 
 		ModDimensions.registerDimensions();
 		ModBiomes.registerBiomes();
+		Registry.register(Registry.BIOME_SOURCE, new Identifier(MODID, "haven_biome_source"), HavenBiomeSource.CODEC);
 
 		ModMessages.registerC2SPackets();
 		ModCallbacks.registerCallbacks();

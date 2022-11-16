@@ -1,21 +1,15 @@
 package net.eman3600.dndreams.initializers.world;
 
-import net.eman3600.dndreams.initializers.basics.ModBlocks;
-import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
-import net.eman3600.dndreams.initializers.world.ModFeatures;
 import net.eman3600.dndreams.world.OreFeatures;
 import net.eman3600.dndreams.world.feature.haven.SmallIslandFeature;
-import net.minecraft.text.Decoration;
+import net.eman3600.dndreams.world.feature.haven.StarSmallIslandFeature;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
 
@@ -48,6 +42,10 @@ public class ModPlacedFeatures {
 
     public static final RegistryEntry<PlacedFeature> SELENE_GRASS = PlacedFeatures.register("patch_selene_grass", ModConfiguredFeatures.SELENE_GRASS, VegetationPlacedFeatures.modifiers(2));
 
+    public static final RegistryEntry<PlacedFeature> HAVEN_GRASS = PlacedFeatures.register("patch_haven_grass", ModConfiguredFeatures.HAVEN_GRASS, VegetationPlacedFeatures.modifiers(2));
+
+    public static final RegistryEntry<PlacedFeature> STAR_GRASS = PlacedFeatures.register("patch_star_grass", ModConfiguredFeatures.STAR_GRASS, VegetationPlacedFeatures.modifiers(2));
+
 
 
 
@@ -65,6 +63,8 @@ public class ModPlacedFeatures {
 
 
     public static final BCLFeature<SmallIslandFeature, DefaultFeatureConfig> SMALL_ISLAND = registerRawGen("small_island", inlineBuild("small_island", new SmallIslandFeature()), 50);
+
+    public static final BCLFeature<StarSmallIslandFeature, DefaultFeatureConfig> STAR_SMALL_ISLAND = registerRawGen("star_small_island", inlineBuild("star_small_island", new StarSmallIslandFeature()), 50);
 
 
 
