@@ -1,0 +1,18 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:stardust"
+    }
+  ],
+  "result": {
+    "item": "dndreams:dream_powder",
+    "count": 1
+  },
+  "byproduct": {
+    "item": "dndreams:sculk_powder",
+    "count": 1
+  },
+  "cost": 100,
+  "refine_time": 200
+}

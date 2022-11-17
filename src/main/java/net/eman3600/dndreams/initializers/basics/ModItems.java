@@ -45,6 +45,10 @@ public class ModItems {
     public static final Item SCULK_POWDER = registerItem("sculk_powder",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    // Stardust
+    public static final Item STARDUST = registerItem("stardust",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
     // Refined Evil
     public static final Item REFINED_EVIL = registerItem("refined_evil",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));

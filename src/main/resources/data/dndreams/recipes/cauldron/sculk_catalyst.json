@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:liquid_soul"
+    },
+	{
+      "item": "dndreams:mellifluous_hunger"
+    },
+	{
+      "item": "minecraft:bone_block"
+    }
+  ],
+  "result": {
+    "item": "minecraft:sculk_catalyst",
+    "count": 1
+  },
+  "color": 30840
+}

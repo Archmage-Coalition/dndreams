@@ -1,0 +1,14 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "result": {
+    "item": "minecraft:gravel",
+    "count": 1
+  },
+  "cost": 50,
+  "refine_time": 50
+}

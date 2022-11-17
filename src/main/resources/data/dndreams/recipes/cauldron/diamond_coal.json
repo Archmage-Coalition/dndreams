@@ -1,0 +1,22 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "minecraft:coal"
+    },
+	{
+      "item": "dndreams:dreamwood_fume"
+    },
+	{
+      "item": "dndreams:distilled_spirit"
+    },
+	{
+      "item": "dndreams:mutandis_extremis"
+    }
+  ],
+  "result": {
+    "item": "minecraft:diamond",
+    "count": 1
+  },
+  "color": 10615784
+}
