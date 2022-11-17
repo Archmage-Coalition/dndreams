@@ -1,0 +1,23 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:ravaged_flesh"
+    },
+	{
+      "item": "dndreams:japanese_maple_fume"
+    },
+	{
+      "item": "minecraft:soul_sand"
+    },
+	{
+      "item": "dndreams:infernal_residue"
+    }
+  ],
+  "result": {
+    "item": "dndreams:withheld_agony",
+    "count": 1
+  },
+  "cost": 250,
+  "refine_time": 300
+}

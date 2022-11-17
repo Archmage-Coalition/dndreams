@@ -1,0 +1,23 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:shade_cloth"
+    },
+	{
+      "item": "dndreams:helios_fume"
+    },
+	{
+      "item": "dndreams:distilled_spirit"
+    },
+	{
+      "item": "minecraft:glowstone_dust"
+    }
+  ],
+  "result": {
+    "item": "dndreams:restrained_light",
+    "count": 1
+  },
+  "cost": 250,
+  "refine_time": 300
+}

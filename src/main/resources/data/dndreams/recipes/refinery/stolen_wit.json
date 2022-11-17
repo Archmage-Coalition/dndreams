@@ -1,0 +1,27 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "minecraft:dragon_breath"
+    },
+	{
+      "item": "dndreams:liquid_void"
+    },
+	{
+      "item": "dndreams:eos_fume"
+    },
+	{
+      "item": "dndreams:sculk_powder"
+    }
+  ],
+  "result": {
+    "item": "dndreams:stolen_wit",
+    "count": 1
+  },
+  "byproduct": {
+    "item": "minecraft:glass_bottle",
+    "count": 2
+  },
+  "cost": 250,
+  "refine_time": 300
+}

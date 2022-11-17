@@ -56,6 +56,10 @@ public class ModItems {
     // Shade Veil
     public static final Item SHADE_CLOTH = registerItem("shade_cloth", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
+    // Ravaged Flesh
+    public static final Item RAVAGED_FLESH = registerItem("ravaged_flesh", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)
+            .food(ModFoodComponents.RAVAGED_FLESH)));
+
     // World Flow
     public static final Item LIQUID_VOID = registerItem("liquid_void",
             new Item(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON)));
@@ -116,6 +120,12 @@ public class ModItems {
     public static final Item DISTILLED_SPIRIT = registerItem("distilled_spirit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item HOLLOW_TEAR = registerItem("hollow_tear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
+    public static final Item ENTANGLED_EARTH = registerItem("entangled_earth", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item IMPRISONED_FEAR = registerItem("imprisoned_fear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item STOLEN_WIT = registerItem("stolen_wit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item RESTRAINED_LIGHT = registerItem("restrained_light", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item WITHHELD_AGONY = registerItem("withheld_agony", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+
     // Lotus & Wither Bud
     public static final Item LOTUS_FLOWER = registerItem("lotus_flower",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.LOTUS_FLOWER)));
@@ -125,6 +135,14 @@ public class ModItems {
 
     // Bottled Stuff
     public static final Item SOUL_SOUP = registerItem("soul_soup",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+    public static final Item NATURES_GOSPEL = registerItem("natures_gospel",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+    public static final Item INFERNAL_ANIMUS = registerItem("infernal_animus",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+    public static final Item TRACE_OF_OTHERWHERE = registerItem("trace_of_otherwhere",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+    public static final Item GHOST_OF_LIGHT = registerItem("ghost_of_light",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
 
     // Ingots

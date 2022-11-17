@@ -1,0 +1,29 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:soul_soup"
+    },
+	{
+      "item": "dndreams:lotus_flower"
+    },
+	{
+      "item": "dndreams:hollow_tear"
+    },
+	{
+      "item": "dndreams:dream_powder"
+    },
+	{
+      "item": "dndreams:sculk_powder"
+    },
+	{
+      "item": "dndreams:restrained_light"
+    }
+  ],
+  "result": {
+    "item": "dndreams:ghost_of_light",
+    "count": 2
+  },
+  "color": 61423,
+  "method": "bottle"
+}

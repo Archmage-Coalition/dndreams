@@ -18,9 +18,6 @@ public class BiomesCommonMethods {
         builder
                 .type(BiomeAPI.BiomeType.NONE)
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, UndergroundPlacedFeatures.AMETHYST_GEODE)
-                .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_GRANITE_UPPER)
-                .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_ANDESITE_UPPER)
-                .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, OrePlacedFeatures.ORE_DIORITE_UPPER)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.HAVEN_GRASS)
                 .feature(ModPlacedFeatures.SMALL_ISLAND);
     }

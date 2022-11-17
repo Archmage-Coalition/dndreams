@@ -2,6 +2,7 @@ package net.eman3600.dndreams;
 
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
+import net.eman3600.dndreams.cardinal_components.BossStateComponent;
 import net.eman3600.dndreams.entities.renderers.BloodSkeletonEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.BloodZombieEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.WardenRagdollEntityRenderer;
@@ -9,10 +10,12 @@ import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModFluids;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.screen.AttunementScreen;
 import net.eman3600.dndreams.screen.RefineryScreen;
@@ -131,7 +134,16 @@ ClientInitializer implements ClientModInitializer {
 
     public static boolean drawAether(World world) {
         try {
-            return (world instanceof ClientWorldAccess accessedWorld) && (accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER)/* || world.getBiome(accessedWorld.getClient().player.getBlockPos()).matchesKey(BiomeKeys.DEEP_DARK)*/);
+            if ((world instanceof ClientWorldAccess accessedWorld)) {
+                try {
+                    BossStateComponent bossState = WorldComponents.BOSS_STATE.get(world.getScoreboard());
+
+                    //if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY && !bossState.elrunezSlain()) return true;
+                } catch (Exception ignored) {}
+
+                return accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER);
+            }
+            return false;
         } catch (NullPointerException e) {
             return false;
         }

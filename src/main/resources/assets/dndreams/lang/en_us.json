@@ -13,6 +13,7 @@
   "item.dndreams.nightmare_fuel": "Nightmare Fuel",
   "item.dndreams.corrupt_scrap":  "Hellslate",
   "item.dndreams.shade_cloth":  "Shade Veil",
+  "item.dndreams.ravaged_flesh":  "Ravaged Flesh",
   "item.dndreams.infernal_residue":  "Infernal Residue",
   "item.dndreams.tainted_pearl":  "Tainted Pearl",
   "item.dndreams.lotus_flower": "Lotus Flower",
@@ -23,6 +24,10 @@
   "item.dndreams.refined_evil": "Refined Evil",
   "item.dndreams.crystal_mix": "Crystal Mix",
   "item.dndreams.soul_soup": "Spectral Soup",
+  "item.dndreams.natures_gospel": "Nature's Gospel",
+  "item.dndreams.infernal_animus": "Infernal Animus",
+  "item.dndreams.trace_of_otherwhere": "Trace of Otherwhere",
+  "item.dndreams.ghost_of_light": "Ghost of the Light",
   "item.dndreams.star_fruit": "Starfruit",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
@@ -100,6 +105,12 @@
   "item.dndreams.mellifluous_hunger": "Mellifluous Hunger",
   "item.dndreams.distilled_spirit": "Distilled Spirit",
   "item.dndreams.hollow_tear": "Hollow Tear",
+  
+  "item.dndreams.entangled_earth": "Entangled Earth",
+  "item.dndreams.imprisoned_fear": "Imprisoned Fear",
+  "item.dndreams.stolen_wit": "Stolen Wit",
+  "item.dndreams.restrained_light": "Restrained Light",
+  "item.dndreams.withheld_agony": "Withheld Agony",
   
   
   "item.dndreams.brew.overloaded": "Amalgamation",

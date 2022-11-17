@@ -1,11 +1,14 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.ClientInitializer;
+import net.eman3600.dndreams.cardinal_components.BossStateComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
@@ -41,42 +44,58 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
     @Shadow @Final public boolean isClient;
 
+    @Shadow public abstract RegistryKey<World> getRegistryKey();
+
+    @Shadow public abstract Scoreboard getScoreboard();
+
     @Inject(method = "getTimeOfDay", at = @At("HEAD"), cancellable = true)
     public void injectTimeOfDay(CallbackInfoReturnable<Long> info) {
         if (drawAether()) {
             info.setReturnValue(18000L);
-        } else if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+        } else if (getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY) {
             List<? extends PlayerEntity> players = getPlayers();
             float highestTorment = highestTorment(players);
 
             info.setReturnValue((long)(6000 + (highestTorment * 120)));
+        } else if (getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
+            try {
+                BossStateComponent component = WorldComponents.BOSS_STATE.get(getScoreboard());
+
+                if (component.elrunezSlain()) {
+                    info.setReturnValue(6000L);
+                } else {
+                    info.setReturnValue(18000L);
+                }
+            } catch (Exception e) {
+                info.setReturnValue(18000L);
+            }
         }
     }
 
     @Inject(method = "initWeatherGradients", at = @At("HEAD"), cancellable = true)
     private void injectInitWeatherGardients(CallbackInfo info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || getDimensionKey() == ModDimensions.HAVEN_TYPE_KEY || drawAether()) {
             info.cancel();
         }
     }
 
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
     private void injectRainGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || getDimensionKey() == ModDimensions.HAVEN_TYPE_KEY || drawAether()) {
             info.setReturnValue(0f);
         }
     }
 
     @Inject(method = "getThunderGradient", at = @At("HEAD"), cancellable = true)
     private void injectThunderGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || getDimensionKey() == ModDimensions.HAVEN_TYPE_KEY || drawAether()) {
             info.setReturnValue(0f);
         }
     }
 
     @Inject(method = "calculateAmbientDarkness", at = @At("HEAD"), cancellable = true)
     private void injectAmbientDarkness(CallbackInfo info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.HAVEN_TYPE_KEY) {
             double d = 1.0D - (double)(this.getRainGradient(1.0F) * 5.0F) / 16.0D;
             double e = 1.0D - (double)(this.getThunderGradient(1.0F) * 5.0F) / 16.0D;
             double f = 0.5D + 2.0D * MathHelper.clamp(MathHelper.cos(this.getDimension().getSkyAngle(this.getTimeOfDay()) * 6.2831855F), -0.25D, 0.25D);

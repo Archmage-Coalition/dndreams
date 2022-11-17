@@ -20,11 +20,19 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 400, 0), 1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 600, 1), 1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.AETHER, 600, 0), 1.0F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.WITHER, 200, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)
             .alwaysEdible().build();
     public static final FoodComponent WITHER_BUD = (new FoodComponent.Builder()).hunger(2).saturationModifier(1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 600, 1), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.WITHER, 300, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)
+            .alwaysEdible().build();
+    public static final FoodComponent RAVAGED_FLESH = (new FoodComponent.Builder()).hunger(4).saturationModifier(0.0F)
+            .statusEffect(new StatusEffectInstance(ModStatusEffects.IMPENDING, 3600, 3), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 600, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)
             .alwaysEdible().build();
     public static final FoodComponent LOTUS_FLOWER = (new FoodComponent.Builder()).hunger(5).saturationModifier(0.8F)
             .build();

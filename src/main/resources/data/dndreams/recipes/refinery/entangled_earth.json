@@ -1,0 +1,23 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "minecraft:dirt"
+    },
+	{
+      "item": "minecraft:vine"
+    },
+	{
+      "item": "dndreams:sakura_fume"
+    },
+	{
+      "item": "dndreams:wood_ash"
+    }
+  ],
+  "result": {
+    "item": "dndreams:entangled_earth",
+    "count": 1
+  },
+  "cost": 250,
+  "refine_time": 300
+}

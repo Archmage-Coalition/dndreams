@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 public class BossStateComponent implements BossStateComponentI, AutoSyncedComponent {
     private boolean dragonSlain = false;
     private boolean witherSlain = false;
+    private boolean elrunezSlain = false;
 
     private final Scoreboard scoreboard;
     @Nullable private final MinecraftServer server;
@@ -41,6 +42,17 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     @Override
     public void flagWitherSlain(boolean flag) {
         witherSlain = flag;
+        WorldComponents.BOSS_STATE.sync(scoreboard);
+    }
+
+    @Override
+    public boolean elrunezSlain() {
+        return elrunezSlain;
+    }
+
+    @Override
+    public void flagElrunezSlain(boolean flag) {
+        elrunezSlain = flag;
         WorldComponents.BOSS_STATE.sync(scoreboard);
     }
 
@@ -76,6 +88,7 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     public void readFromNbt(NbtCompound tag) {
         dragonSlain = tag.getBoolean("dragon_slain");
         witherSlain = tag.getBoolean("wither_slain");
+        elrunezSlain = tag.getBoolean("elrunez_slain");
 
         setDifficulty();
         WorldComponents.BOSS_STATE.sync(scoreboard);
@@ -85,5 +98,6 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
     public void writeToNbt(NbtCompound tag) {
         tag.putBoolean("dragon_slain", dragonSlain);
         tag.putBoolean("wither_slain", witherSlain);
+        tag.putBoolean("elrunez_slain", elrunezSlain);
     }
 }

@@ -1,0 +1,23 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:wither_bud"
+    },
+	{
+      "item": "dndreams:sculk_wood_fume"
+    },
+	{
+      "item": "dndreams:hollow_tear"
+    },
+	{
+      "item": "minecraft:redstone"
+    }
+  ],
+  "result": {
+    "item": "dndreams:imprisoned_fear",
+    "count": 1
+  },
+  "cost": 250,
+  "refine_time": 300
+}

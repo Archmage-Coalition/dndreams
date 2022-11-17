@@ -3,6 +3,8 @@
   "values": [
     "#minecraft:planks",
 	"#minecraft:logs",
-	"#minecraft:leaves"
+	"#minecraft:leaves",
+	"dndreams:haven_stone",
+	"#dndreams:haven_dirt"
   ]
 }

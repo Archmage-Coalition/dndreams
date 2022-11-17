@@ -1,0 +1,29 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:soul_soup"
+    },
+	{
+      "item": "dndreams:lotus_flower"
+    },
+	{
+      "item": "minecraft:chorus_fruit"
+    },
+	{
+      "tag": "dndreams:amethyst_shard"
+    },
+	{
+      "item": "dndreams:selene_fume"
+    },
+	{
+      "item": "dndreams:stolen_wit"
+    }
+  ],
+  "result": {
+    "item": "dndreams:trace_of_otherwhere",
+    "count": 2
+  },
+  "color": 8978571,
+  "method": "bottle"
+}

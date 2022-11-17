@@ -1,0 +1,29 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:soul_soup"
+    },
+	{
+      "item": "dndreams:lotus_flower"
+    },
+	{
+      "item": "minecraft:honey_bottle"
+    },
+	{
+      "item": "dndreams:icy_needle"
+    },
+	{
+      "tag": "minecraft:saplings"
+    },
+	{
+      "item": "dndreams:entangled_earth"
+    }
+  ],
+  "result": {
+    "item": "dndreams:natures_gospel",
+    "count": 2
+  },
+  "color": 60936,
+  "method": "bottle"
+}

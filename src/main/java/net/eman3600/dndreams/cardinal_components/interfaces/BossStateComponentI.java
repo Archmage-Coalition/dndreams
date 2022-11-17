@@ -10,6 +10,10 @@ public interface BossStateComponentI extends Component {
     void flagWitherSlain(boolean flag);
 
 
+    boolean elrunezSlain();
+
+    void flagElrunezSlain(boolean flag);
+
     boolean gatewaysSlain();
     int totalGatewaysSlain();
     void setDifficulty();
