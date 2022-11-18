@@ -159,6 +159,8 @@
   "tooltip.dndreams.mana_cost": "§dMana Cost: %s",
   "tooltip.dndreams.power_cost": "§dPower Cost: %s",
   "tooltip.dndreams.power_required": "§cRequires Infusion Power",
+  "tooltip.dndreams.bloodlust": "§cRequires Your Blood!",
+  "tooltip.dndreams.bloodlust.active": "§4Stained with crimson...",
   "tooltip.dndreams.magic_damage": "§2Magic Damage: %s",
   "tooltip.dndreams.dream_origin": "§3They said this didn't exist,",
   "tooltip.dndreams.dream_origin_2": "§3and they were probably right.",
@@ -166,6 +168,13 @@
   
   "message.dndreams.torment_rush": "§cSomething is coming...",
   "message.dndreams.torment_calm": "§bThe terrors recede...",
+  
+  
+  "death.attack.crimson_sacrifice": "%s let their blood spill",
+  "death.attack.crimson_sacrifice.player": "%1$s let their blood spill whilst fighting %2$s",
+  "death.attack.crimson_sacrifice.item": "%1$s let their blood spill whilst fighting %2$s weilding %3$s",
+  "death.attack.wither_blossom_bush": "%1$s was poked to death by a wither blossom bush",
+  "death.attack.wither_blossom_bush.player": "%1$s was poked to death by a wither blossom bush whilst trying to escape %2$s",
   
   
   "enchantment.dndreams.potency": "Potency",

@@ -8,7 +8,7 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    CORRUPT(3, 1785, 8.0F, 3.0F, 15,
+    CORRUPT(3, 1785, 8.0F, 2.0F, 15,
             () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
     CELESTIUM(4, 1824, 12.0F, 5.0F, 18,
             () -> Ingredient.ofItems(ModItems.CELESTIUM)),

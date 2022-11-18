@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items.magic_sword;
+package net.eman3600.dndreams.items.edge_series;
 
 import net.eman3600.dndreams.entities.projectiles.CrownedBeamEntity;
 import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;

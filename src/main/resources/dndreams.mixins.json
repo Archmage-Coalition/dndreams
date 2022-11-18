@@ -25,6 +25,7 @@
     "EnderPearlItemMixin",
     "EndPortalFeatureMixin",
     "EntityMixin",
+    "ExplosionMixin",
     "FarmlandBlockMixin",
     "FlintAndSteelItemMixin",
     "FluidBlockMixin",

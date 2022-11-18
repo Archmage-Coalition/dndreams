@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items.magic_sword;
+package net.eman3600.dndreams.items.edge_series;
 
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;

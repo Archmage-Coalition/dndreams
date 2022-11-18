@@ -3,7 +3,7 @@ package net.eman3600.dndreams.initializers.basics;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.items.enchantments.ManaCostEnchantment;
 import net.eman3600.dndreams.items.enchantments.PotencyEnchantment;
-import net.eman3600.dndreams.items.magic_sword.CrownedEdgeItem.CrownedEnchantment;
+import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem.CrownedEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Identifier;

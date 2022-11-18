@@ -2,6 +2,7 @@ package net.eman3600.dndreams.blocks.crop;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.util.ModDamageSource;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -34,6 +35,8 @@ public class WitherBlossomBlock extends PlantBlock implements Fertilizable {
     public static final IntProperty AGE = Properties.AGE_3;
     private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 8.0, 13.0);
     private static final VoxelShape LARGE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
+
+    public static final DamageSource WITHER_BLOSSOM_BUSH = new ModDamageSource("wither_blossom_bush");
 
     public WitherBlossomBlock(AbstractBlock.Settings settings) {
         super(settings);
