@@ -47,7 +47,8 @@
     "cardinal-components-base": "*",
     "patchouli": "*",
     "trinkets": "*",
-    "bclib": "2.0.x"
+    "bclib": "2.0.x",
+    "geckolib3": "*"
   },
   "breaks": {
     "bclib": "<2.0.6"

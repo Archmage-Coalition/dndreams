@@ -42,6 +42,11 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
     }
 
     @Override
+    public void setDamnedNight(boolean damnedNight) {
+        this.damnedNight = damnedNight;
+    }
+
+    @Override
     public boolean damnedNight() {
         if (getDimensionKey() == DimensionTypes.OVERWORLD) {
             return damnedNight;

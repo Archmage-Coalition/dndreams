@@ -8,6 +8,8 @@ import net.minecraft.world.World;
 public interface BloodMoonComponentI extends ServerTickingComponent {
     int getChance();
     long getKnownDay();
+
+    void setDamnedNight(boolean damnedNight);
     boolean damnedNight();
     boolean manualStart();
 }

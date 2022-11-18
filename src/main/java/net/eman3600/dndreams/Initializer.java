@@ -8,6 +8,7 @@ import net.eman3600.dndreams.initializers.event.*;
 import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.world.ModFeatures;
+import net.eman3600.dndreams.integration.commands.ModCommands;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.util.LootModifiers;
@@ -77,6 +78,8 @@ public class Initializer implements ModInitializer {
 
 		ModMessages.registerC2SPackets();
 		ModCallbacks.registerCallbacks();
+
+		ModCommands.registerCommands();
 
 		GeckoLib.initialize();
 	}
