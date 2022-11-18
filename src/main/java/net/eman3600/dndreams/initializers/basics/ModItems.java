@@ -10,7 +10,7 @@ import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewLingeringItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewSplashItem;
-import net.eman3600.dndreams.items.creative.InfusionChangerItem;
+import net.eman3600.dndreams.items.creative.InfusionPearlItem;
 import net.eman3600.dndreams.items.magic_sword.*;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
@@ -378,13 +378,6 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
 
 
-
-
-    // Pearl of Limitless Infusion
-    public static final Item INFUSION_CHANGER = registerItem("infusion_changer",
-            new InfusionChangerItem(new FabricItemSettings().group(ItemGroup.MISC)));
-
-
     
     // Staff of Satiation
     public static final Item SATIATION_STAFF = registerItem("satiation_staff",
@@ -399,6 +392,13 @@ public class ModItems {
             new BrewSplashItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
     public static final Item BREW_LINGERING = registerItem("brew_lingering",
             new BrewLingeringItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
+
+
+
+
+    // CREATIVE ONLY
+    public static final Item INFUSION_CHANGER = registerItem("infusion_changer",
+            new InfusionPearlItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
     /*
      * Item Registration

@@ -1,0 +1,12 @@
+{
+  "type": "dndreams:ritual",
+  "ingredients": [
+    {
+      "item": "dndreams:infernal_animus"
+    }
+  ],
+  "result": {
+    "item": "dndreams:soul_candle"
+  },
+  "ritual": "dndreams:infernal_infusion"
+}

@@ -91,6 +91,7 @@ public class EchoCandleBlockEntity extends BlockEntity implements AbstractPowerR
     public void link(SoulCandleBlockEntity link) {
         entity = link;
         linkPos = link.getPos();
+        markDirty();
     }
 
     @Override

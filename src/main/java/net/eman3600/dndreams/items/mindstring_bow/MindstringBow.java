@@ -31,6 +31,7 @@ public class MindstringBow extends BowItem implements ManaCostItem {
         return new ItemStack(Items.ARROW);
     }
 
+    @Override
     public int getBaseManaCost() {
         return 7;
     }

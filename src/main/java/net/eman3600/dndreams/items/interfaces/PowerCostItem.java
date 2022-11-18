@@ -30,7 +30,7 @@ public interface PowerCostItem extends Vanishable {
                 InfusionComponent component = EntityComponents.INFUSION.get(access.getClient().player);
 
                 if (component.infused()) {
-                    return Text.translatable("tooltip.dndreams.power_cost", "§d" + getPowerCost(stack)).formatted(Formatting.byColorIndex(component.getInfusion().getColor().hashCode()));
+                    return Text.translatable("tooltip.dndreams.power_cost", "§d" + getPowerCost(stack)).formatted(Formatting.byColorIndex(component.getInfusion().color.hashCode()));
                 } else {
                     return Text.translatable("tooltip.dndreams.power_required");
                 }

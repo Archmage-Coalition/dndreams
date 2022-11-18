@@ -1,0 +1,12 @@
+{
+  "type": "dndreams:ritual",
+  "ingredients": [
+    {
+      "item": "dndreams:ghost_of_light"
+    }
+  ],
+  "result": {
+    "item": "dndreams:soul_candle"
+  },
+  "ritual": "dndreams:spirit_infusion"
+}

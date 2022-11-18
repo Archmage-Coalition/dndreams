@@ -147,7 +147,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                 this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, infusionComponent.getInfusion().getColor().getRGB());
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, infusionComponent.getInfusion().color.getRGB());
             }
         });
     }
@@ -221,7 +221,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             if (!infusionComponent.infused()) return;
             int skipV = (int)(POWER_HEIGHT * (1f - powerPercent));
 
-            Color color = infusionComponent.getInfusion().getColor();
+            Color color = infusionComponent.getInfusion().color;
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
             RenderSystem.setShaderColor(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, 1.0f);

@@ -8,12 +8,12 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    CORRUPT(3, 1785, 4.0F, 3.0F, 18,
+    CORRUPT(3, 1785, 8.0F, 3.0F, 15,
             () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
     CELESTIUM(4, 1824, 12.0F, 5.0F, 18,
             () -> Ingredient.ofItems(ModItems.CELESTIUM)),
     ARTIFACT(4, 3002, 12.0F, 4.0F, 22,
-            () -> Ingredient.ofItems(ModItems.DREAM_POWDER)),
+            () -> Ingredient.ofItems(ModItems.DREAM_POWDER, ModItems.SCULK_POWDER)),
     MANAGOLD(2, 32, 12.0F, 2.0F, 22,
             () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
     TORMITE(4, 128, 12.0F, 4.0F, 22,
@@ -62,6 +62,6 @@ public enum ModToolMaterials implements ToolMaterial {
     }
 
     public Ingredient getRepairIngredient() {
-        return (Ingredient)this.repairIngredient.get();
+        return this.repairIngredient.get();
     }
 }

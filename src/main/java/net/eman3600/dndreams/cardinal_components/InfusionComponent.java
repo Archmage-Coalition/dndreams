@@ -1,19 +1,23 @@
 package net.eman3600.dndreams.cardinal_components;
 
 import net.eman3600.dndreams.cardinal_components.interfaces.InfusionComponentI;
-import net.eman3600.dndreams.infusions.Infusion;
+import net.eman3600.dndreams.infusions.setup.Infusion;
+import net.eman3600.dndreams.infusions.setup.InfusionRegistry;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.entity.ModInfusions;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 public class InfusionComponent implements InfusionComponentI {
     private static final float MAX_POWER = 100f;
-    private static final float DIMENSIONAL_REGEN_RATE = 2f;
 
     private final PlayerEntity player;
 
-    private Infusion infusion = Infusion.NONE;
+    private Infusion infusion = ModInfusions.NONE;
     private float power = 0f;
 
     public InfusionComponent(PlayerEntity player) {
@@ -27,7 +31,7 @@ public class InfusionComponent implements InfusionComponentI {
 
     @Override
     public boolean infused() {
-        return infusion.isInfused();
+        return infusion.hasPower;
     }
 
     @Override
@@ -75,21 +79,33 @@ public class InfusionComponent implements InfusionComponentI {
     }
 
     @Override
+    public boolean tryResist(DamageSource source, float amount) {
+        float cost = amount * .2f;
+
+        if (power >= cost && infusion.resistantTo(amount, source, player)) {
+            usePower(cost);
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
     public void readFromNbt(NbtCompound tag) {
-        infusion = Infusion.getFromNum(tag.getInt("infusion"));
+        infusion = Infusion.ofID(Identifier.tryParse(tag.getString("infusion")));
         power = tag.getFloat("power");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
-        tag.putInt("infusion", infusion.getNum());
+        tag.putString("infusion", InfusionRegistry.REGISTRY.getId(infusion).toString());
         tag.putFloat("power", power);
     }
 
     @Override
     public void serverTick() {
-        /*if (player.getWorld().getRegistryKey() == infusion.getWorld() && power < MAX_POWER) {
-            chargePower(DIMENSIONAL_REGEN_RATE/1200);
-        }*/
+        if (player.world instanceof ServerWorld serverWorld) {
+            infusion.serverTick(serverWorld, this, player);
+        }
     }
 }

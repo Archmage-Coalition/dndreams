@@ -23,7 +23,7 @@ public class LightstringBow extends MindstringBow implements PowerCostItem {
 
     @Override
     public int getBaseManaCost() {
-        return 7;
+        return 5;
     }
 
     public float pullProgressDivisor() {
@@ -34,6 +34,8 @@ public class LightstringBow extends MindstringBow implements PowerCostItem {
     public float getBasePowerCost() {
         return 0.5f;
     }
+
+
 
     @Override
     protected boolean canAfford(PlayerEntity player, ItemStack stack) {

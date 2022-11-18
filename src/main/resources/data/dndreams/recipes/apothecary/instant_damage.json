@@ -1,7 +1,7 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "minecraft:glistering_melon"
+    "item": "minecraft:glistering_melon_slice"
   },
   "corrupted": true,
   "capacity": 2,

@@ -12,6 +12,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTracker;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectUtil;
@@ -30,6 +31,7 @@ import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -67,6 +69,28 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Shadow private boolean effectsChanged;
 
     @Shadow public abstract boolean canTakeDamage();
+
+    @Shadow public abstract Vec3d applyMovementInput(Vec3d movementInput, float slipperiness);
+
+    @Shadow protected abstract void applyDamage(DamageSource source, float amount);
+
+    @Shadow protected abstract float applyArmorToDamage(DamageSource source, float amount);
+
+    @Shadow protected abstract float modifyAppliedDamage(DamageSource source, float amount);
+
+    @Shadow public abstract float getAbsorptionAmount();
+
+    @Shadow public abstract void setAbsorptionAmount(float amount);
+
+    @Shadow public abstract float getHealth();
+
+    @Shadow public abstract void setHealth(float health);
+
+    @Shadow public abstract DamageTracker getDamageTracker();
+
+    @Shadow public abstract float getMaxHealth();
+
+    @Shadow public abstract boolean damage(DamageSource source, float amount);
 
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -166,6 +190,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         } catch (ClassCastException ignored) {}
     }
 
+
+
     @ModifyVariable(method = "damage", at = @At("HEAD"))
     private float dndreams$damage$affliction(float amount) {
         if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead()) {
@@ -173,8 +199,38 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         } else return amount;
     }
 
+    @Inject(method = "modifyAppliedDamage", at = @At("RETURN"), cancellable = true)
+    private void dndreams$modifyAppliedDamage(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
+        if (shouldResist(amount, source)) {
+            float hp = getHealth() + getAbsorptionAmount();
+            float wouldRemain = hp - amount;
+            float cap = getMaxHealth();
+
+            if (wouldRemain < cap) {
+                float extraDmg = 0;
+                if (hp > cap) {
+                    extraDmg = hp - cap;
+                    amount -= extraDmg;
+                    hp = cap;
+                }
+
+                amount = Math.min((float) (hp - (hp * Math.pow(1 / Math.pow(Math.E, 1 / cap), amount))), hp - .2f);
+
+                cir.setReturnValue(amount + extraDmg);
+            }
+        }
+    }
+
+    @Override
+    public boolean shouldResist(float damage, DamageSource source) {
+        if ((Object)this instanceof PlayerEntity player) {
+            return EntityComponents.INFUSION.get(player).tryResist(source, damage);
+        }
+        return false;
+    }
+
     @Redirect(method = "damage", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/LivingEntity;timeUntilRegen:I", opcode = Opcodes.PUTFIELD))
-    private void dndreams$damage$shortenIFrames(LivingEntity instance, int value) {
+    public void dndreams$damage$shortenIFrames(LivingEntity instance, int value) {
         if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead()) {
             instance.timeUntilRegen = 14;
         } else {

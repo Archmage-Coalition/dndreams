@@ -46,8 +46,8 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
     private BlockPos boundPos = pos;
 
-    private final Box itemReach = new Box(-3, -1, -3, 3, 1, 3).offset(pos);
-    private final Box playerReach = new Box(-5, -1, -5, 5, 1, 5).offset(pos);
+    public final Box itemReach = new Box(-3, -1, -3, 3, 1, 3).offset(pos);
+    public final Box playerReach = new Box(-5, -1, -5, 5, 1, 5).offset(pos);
 
     public int ticks = 0;
     public int ticksPowerless = 0;
@@ -258,6 +258,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
             world.setBlockState(pos, getCachedState().with(LIT, false));
         }
+        markDirty();
     }
 
     public void scatterRemains(ServerWorld world) {
@@ -303,6 +304,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         }
 
         power = getMaxPower();
+        markDirty();
     }
 
     public void beginRitual(ServerWorld world) {
@@ -338,6 +340,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
                 }
             }
         }
+        markDirty();
     }
 
     public void endRitual(ServerWorld world) {
@@ -356,6 +359,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         boundPos = pos;
         duration = 0;
         clearItems();
+        markDirty();
     }
 
     public boolean ringsMatch(boolean lit) {

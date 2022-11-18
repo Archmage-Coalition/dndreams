@@ -127,7 +127,7 @@ public class CosmicFountainBlock extends BlockWithEntity {
             BlockPos portal = pos.down(entity.getLength());
 
             for (BlockPos blockPos: SEARCH_OFFSETS) {
-                if (random.nextInt(16) != 0 || !isSoulPower(world, portal, blockPos)) continue;
+                if (random.nextInt(48) != 0 || !isSoulPower(world, portal, blockPos)) continue;
                 displayEnchantParticle(world, pos, blockPos.down(entity.getLength()), ModParticles.SOUL_ENERGY);
             }
 
