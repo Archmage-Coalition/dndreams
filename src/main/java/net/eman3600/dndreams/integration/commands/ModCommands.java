@@ -41,36 +41,41 @@ public class ModCommands {
     public static CommandSuggestions bossSuggestions = new CommandSuggestions(List.of("wither", "ender_dragon", "elrunez"));
 
 
-    public static void displayFeedback(CommandContext<ServerCommandSource> context, String string, boolean sendToOps) {
-        context.getSource().sendFeedback(Text.literal(string), sendToOps);
-    }
-
-    public static void displayFeedback(CommandContext<ServerCommandSource> context, String string) {
-        displayFeedback(context, string, false);
+    public static void displayFeedback(CommandContext<ServerCommandSource> context, String string, boolean sendToOps, Object... args) {
+        context.getSource().sendFeedback(Text.translatable("command.dndreams." + string, args), sendToOps);
     }
 
     protected static String displayBloodMoonTime(CommandContext<ServerCommandSource> context) {
         ServerWorld world = context.getSource().getWorld();
         BloodMoonComponent bloodComponent = WorldComponents.BLOOD_MOON.get(world);
 
-        String isBloodMoon = "There is no blood moon tonight";
-        if (bloodComponent.damnedNight()) {
-            isBloodMoon = "There is a blood moon tonight";
-        }
+        return "bloodmoon.get." + bloodComponent.damnedNight();
+    }
 
-        return isBloodMoon;
+    protected static String displayBloodMoonTimeSet(CommandContext<ServerCommandSource> context) {
+        ServerWorld world = context.getSource().getWorld();
+        BloodMoonComponent bloodComponent = WorldComponents.BLOOD_MOON.get(world);
+
+        return "bloodmoon.set." + bloodComponent.damnedNight();
     }
 
     protected static String displayBossSlain(CommandContext<ServerCommandSource> context, String slain) {
         ServerWorld world = context.getSource().getWorld();
         BossStateComponent boss = WorldComponents.BOSS_STATE.get(world.getScoreboard());
 
-        return switch(slain) {
+        return "slain." + slain + "." + switch (slain) {
+            case "wither" -> boss.witherSlain();
+            case "ender_dragon" -> boss.dragonSlain();
+            case "elrunez" -> boss.elrunezSlain();
+            default -> false;
+        };
+
+        /*return switch(slain) {
              case "wither" -> "Wither slain: " + boss.witherSlain();
              case "ender_dragon" -> "Ender Dragon slain: " + boss.dragonSlain();
              case "elrunez" -> "Elrunez slain: " + boss.elrunezSlain();
              default -> "Invalid boss!";
-        };
+        };*/
     }
 
     protected static void setBossSlain(CommandContext<ServerCommandSource> context, String boss, boolean slain) {
@@ -83,15 +88,9 @@ public class ModCommands {
         };
 
         switch (boss) {
-            case "wither" -> {
-                state.flagWitherSlain(slain);
-            }
-            case "ender_dragon" -> {
-                state.flagDragonSlain(slain);
-            }
-            case "elrunez" -> {
-                state.flagElrunezSlain(slain);
-            }
+            case "wither" -> state.flagWitherSlain(slain);
+            case "ender_dragon" -> state.flagDragonSlain(slain);
+            case "elrunez" -> state.flagElrunezSlain(slain);
         }
 
         displayFeedback(context, displayBossSlain(context, boss), setSomething);
@@ -105,7 +104,7 @@ public class ModCommands {
             LiteralArgumentBuilder<ServerCommandSource> bloodMoon = CommandManager.literal("bloodmoon").requires((context) -> context.hasPermissionLevel(2));
 
             bloodMoon.then(CommandManager.literal("get").executes((context -> {
-                displayFeedback(context, displayBloodMoonTime(context));
+                displayFeedback(context, displayBloodMoonTime(context), false);
 
                 return 0;
             })));
@@ -117,7 +116,7 @@ public class ModCommands {
                 BloodMoonComponent bloodComponent = WorldComponents.BLOOD_MOON.get(world);
 
                 bloodComponent.setDamnedNight(setBloodMoon);
-                displayFeedback(context, "Bloodmoon set: " + displayBloodMoonTime(context), true);
+                displayFeedback(context, displayBloodMoonTimeSet(context), true);
                 return 0;
             }))));
 
@@ -125,7 +124,7 @@ public class ModCommands {
 
             slain.then(CommandManager.literal("get").then(CommandManager.argument("boss", StringArgumentType.word()).executes(((context) -> {
                 String boss = context.getArgument("boss", String.class);
-                displayFeedback(context, displayBossSlain(context, boss));
+                displayFeedback(context, displayBossSlain(context, boss), false);
 
                 return 0;
             })).suggests(bossSuggestions)));

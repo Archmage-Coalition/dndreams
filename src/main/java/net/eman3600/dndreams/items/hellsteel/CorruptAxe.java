@@ -54,7 +54,7 @@ public class CorruptAxe extends AxeItem implements BloodlustItem {
                     BlockPos attempt = pos.offset(dir);
 
                     BlockState fire = FireBlock.getState(world, attempt);
-                    if (fire.canPlaceAt(world, attempt) && world.isAir(pos)) {
+                    if (fire.canPlaceAt(world, attempt) && world.isAir(attempt)) {
                         world.setBlockState(attempt, fire, FireBlock.NOTIFY_LISTENERS);
                     }
                 }

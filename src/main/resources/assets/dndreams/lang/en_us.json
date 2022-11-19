@@ -170,11 +170,24 @@
   "message.dndreams.torment_calm": "§bThe terrors recede...",
   
   
-  "death.attack.crimson_sacrifice": "%s let their blood spill",
-  "death.attack.crimson_sacrifice.player": "%1$s let their blood spill whilst fighting %2$s",
+  "death.attack.crimson_sacrifice": "%s was overtaken by the crimson",
+  "death.attack.crimson_sacrifice.player": "%1$s was overtaken by the crimson whilst fighting %2$s",
   "death.attack.crimson_sacrifice.item": "%1$s let their blood spill whilst fighting %2$s weilding %3$s",
   "death.attack.wither_blossom_bush": "%1$s was poked to death by a wither blossom bush",
   "death.attack.wither_blossom_bush.player": "%1$s was poked to death by a wither blossom bush whilst trying to escape %2$s",
+  
+  
+  "command.dndreams.bloodmoon.get.true": "Tonight will have a blood moon.",
+  "command.dndreams.bloodmoon.get.false": "The moon is normal tonight.",
+  "command.dndreams.bloodmoon.set.true": "It is now ordained the blood moon shall rise tonight.",
+  "command.dndreams.bloodmoon.set.false": "It is now ordained the moon shall be unstained.",
+  
+  "command.dndreams.slain.dragon.true": "The dragon is dead.",
+  "command.dndreams.slain.dragon.false": "The dragon lives.",
+  "command.dndreams.slain.wither.true": "The wither is dead.",
+  "command.dndreams.slain.wither.false": "The wither lives.",
+  "command.dndreams.slain.elrunez.true": "Elrunez is dead.",
+  "command.dndreams.slain.elrunez.false": "Elrunez lives.",
   
   
   "enchantment.dndreams.potency": "Potency",
