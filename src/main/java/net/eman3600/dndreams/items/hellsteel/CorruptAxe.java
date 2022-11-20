@@ -37,18 +37,25 @@ public class CorruptAxe extends AxeItem implements BloodlustItem {
     @Override
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
         if (hasBloodlust(miner) && state.isIn(BlockTags.LOGS)) {
-            tryBurn(stack, world, pos, miner);
-            tryBurn(stack, world, pos.up(), miner);
-            tryBurn(stack, world, pos.down(), miner);
+            tryBurn(stack, world, pos, miner, true);
+            tryBurn(stack, world, pos.up(), miner, false);
+            tryBurn(stack, world, pos.down(), miner, false);
         }
 
         return super.postMine(stack, world, state, pos, miner);
     }
 
-    public void tryBurn(ItemStack stack, World world, BlockPos pos, LivingEntity miner) {
+    public void tryBurn(ItemStack stack, World world, BlockPos pos, LivingEntity miner, boolean middle) {
         if (world.isInBuildLimit(pos)) {
             BlockState state = world.getBlockState(pos);
-            if (state.isIn(BlockTags.LOGS)) {
+            if (state.isIn(BlockTags.LOGS) || middle) {
+                if (middle) {
+
+                    BlockState fire = FireBlock.getState(world, pos);
+                    if (fire.canPlaceAt(world, pos) && world.isAir(pos)) {
+                        world.setBlockState(pos, fire, FireBlock.NOTIFY_LISTENERS);
+                    }
+                }
                 for (Direction dir: Direction.values()) {
                     if (dir == Direction.UP || dir == Direction.DOWN) continue;
                     BlockPos attempt = pos.offset(dir);

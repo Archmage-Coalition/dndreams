@@ -1,0 +1,28 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:shattered_sword"
+    },
+	{
+      "item": "dndreams:stolen_wit"
+    },
+	{
+      "item": "dndreams:selene_fume"
+    },
+	{
+      "item": "dndreams:celestium"
+    },
+	{
+      "item": "dndreams:sculk_powder"
+    },
+	{
+      "item": "dndreams:crystal_mix"
+    }
+  ],
+  "result": {
+    "item": "dndreams:slumbering_sword",
+    "count": 1
+  },
+  "color": 61680
+}

@@ -37,7 +37,7 @@ public class CorruptSword extends SwordItem implements BloodlustItem, MagicDamag
         if (hasBloodlust(attacker)) {
             target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 140), attacker);
             target.timeUntilRegen = 8;
-            target.damage(DamageSource.magic(attacker, attacker), getMagicDamage(stack));
+            target.damage(BloodlustItem.hemorrhage(attacker), getMagicDamage(stack));
             target.takeKnockback(0.4f, MathHelper.sin(attacker.getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(attacker.getYaw() * ((float) Math.PI / 180)));
         }
 

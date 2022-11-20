@@ -10,6 +10,8 @@ import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewLingeringItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewSplashItem;
+import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
+import net.eman3600.dndreams.items.consumable.permanent.PanaceaItem;
 import net.eman3600.dndreams.items.creative.InfusionPearlItem;
 import net.eman3600.dndreams.items.hellsteel.*;
 import net.eman3600.dndreams.items.edge_series.*;
@@ -178,7 +180,7 @@ public class ModItems {
             new CorruptShovel(ModToolMaterials.CORRUPT, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item CORRUPT_HOE = registerItem("corrupt_hoe",
-            new CorruptHoe(ModToolMaterials.CORRUPT, -3, 0F,
+            new CorruptHoe(ModToolMaterials.CORRUPT, -2, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
     // Flint and Hellsteel

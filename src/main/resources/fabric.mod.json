@@ -64,7 +64,9 @@
       "dndreams:torment",
       "dndreams:dreaming",
       "dndreams:infusion",
-      "dndreams:gateway"
+      "dndreams:gateway",
+      "dndreams:stat_boon",
+      "dndreams:perm_item"
     ]
   }
 }

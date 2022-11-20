@@ -14,6 +14,8 @@ public class EntityComponents implements EntityComponentInitializer {
     public static final ComponentKey<TormentComponent> TORMENT = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "torment"), TormentComponent.class);
     public static final ComponentKey<DreamingComponent> DREAMING = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "dreaming"), DreamingComponent.class);
     public static final ComponentKey<InfusionComponent> INFUSION = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "infusion"), InfusionComponent.class);
+    public static final ComponentKey<StatBoonComponent> STAT_BOON = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "stat_boon"), StatBoonComponent.class);
+    public static final ComponentKey<PermItemComponent> PERM_ITEM = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "perm_item"), PermItemComponent.class);
     public static final ComponentKey<GatewayComponent> GATEWAY = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "gateway"), GatewayComponent.class);
 
 
@@ -23,10 +25,12 @@ public class EntityComponents implements EntityComponentInitializer {
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-        registry.registerForPlayers(MANA, player -> new ManaComponent(player), RespawnCopyStrategy.INVENTORY);
-        registry.registerForPlayers(TORMENT, player -> new TormentComponent(player), RespawnCopyStrategy.LOSSLESS_ONLY);
-        registry.registerForPlayers(DREAMING, player -> new DreamingComponent(player), RespawnCopyStrategy.ALWAYS_COPY);
-        registry.registerForPlayers(INFUSION, player -> new InfusionComponent(player), RespawnCopyStrategy.ALWAYS_COPY);
-        registry.registerForPlayers(GATEWAY, player -> new GatewayComponent(player), RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(MANA, ManaComponent::new, RespawnCopyStrategy.INVENTORY);
+        registry.registerForPlayers(TORMENT, TormentComponent::new, RespawnCopyStrategy.LOSSLESS_ONLY);
+        registry.registerForPlayers(DREAMING, DreamingComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(INFUSION, InfusionComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(GATEWAY, GatewayComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(STAT_BOON, StatBoonComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(PERM_ITEM, PermItemComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
     }
 }

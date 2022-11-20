@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items.consumable;
+package net.eman3600.dndreams.items.consumable.permanent;
 
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;

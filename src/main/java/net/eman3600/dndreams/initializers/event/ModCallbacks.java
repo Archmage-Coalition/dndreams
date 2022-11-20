@@ -1,17 +1,29 @@
 package net.eman3600.dndreams.initializers.event;
 
+import com.google.common.collect.Multimap;
+import com.google.common.collect.MultimapBuilder;
+import net.eman3600.dndreams.cardinal_components.PermItemComponent;
+import net.eman3600.dndreams.cardinal_components.StatBoonComponent;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
 import net.eman3600.dndreams.recipe.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class ModCallbacks {
@@ -65,6 +77,31 @@ public class ModCallbacks {
                 }
 
             }
+        });
+
+        ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+            Map<EntityAttribute, EntityAttributeModifier> map = EntityComponents.STAT_BOON.get(oldPlayer).getAttributes();
+
+            for (EntityAttribute attribute: map.keySet()) {
+                EntityAttributeInstance instance = newPlayer.getAttributeInstance(attribute);
+                instance.addTemporaryModifier(map.get(attribute));
+            }
+
+            newPlayer.setHealth(newPlayer.getMaxHealth());
+
+            PermItemComponent perms = EntityComponents.PERM_ITEM.get(oldPlayer);
+            for (Item toRepair: PermItemComponent.resettables) {
+                perms.pair(toRepair);
+            }
+        });
+
+        ServerPlayConnectionEvents.INIT.register((handler, server) -> EntityComponents.STAT_BOON.get(handler.player).reloadAttributes());
+
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            StatBoonComponent boons = EntityComponents.STAT_BOON.get(handler.player);
+
+            boons.reloadAttributes();
+            if (handler.player.getMaxHealth() > 20) handler.player.setHealth(boons.hp);
         });
     }
 
