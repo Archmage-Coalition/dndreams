@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.cardinal_components;
 
 import net.eman3600.dndreams.cardinal_components.interfaces.PermItemComponentI;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
@@ -25,15 +26,13 @@ public class PermItemComponent implements PermItemComponentI {
 
     private void pair(Item item, int maxUses) {
         permanents.put(item, maxUses);
+        EntityComponents.PERM_ITEM.sync(player);
     }
 
     @Override
     public boolean pair(Item item) {
-        if (defaults.containsKey(item)) {
-            pair(item, defaults.get(item));
-            return true;
-        }
-        return false;
+        pair(item, useLimit(item));
+        return true;
     }
 
     public static void pairDefault(Item item, int maxUses) {
@@ -47,13 +46,32 @@ public class PermItemComponent implements PermItemComponentI {
         }
     }
 
+    public static int useLimit(Item item) {
+        return defaults.getOrDefault(item, 1);
+    }
+
     @Override
     public void decrement(Item item, @Nonnegative int amount) {
         if (permanents.containsKey(item)) {
             permanents.put(item, permanents.get(item) - amount);
+            EntityComponents.PERM_ITEM.sync(player);
         } else {
             pair(item);
+            decrement(item, amount);
         }
+    }
+
+    @Override
+    public int timesUsed(Item item) {
+        if (permanents.containsKey(item)) {
+            return useLimit(item) - permanents.get(item);
+        }
+        return 0;
+    }
+
+    @Override
+    public int remainingUses(Item item) {
+        return permanents.getOrDefault(item, useLimit(item));
     }
 
     @Override

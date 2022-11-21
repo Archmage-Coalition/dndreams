@@ -109,7 +109,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             manaFactors += 15 * (player.getStatusEffect(ModStatusEffects.MEMORY).getAmplifier() + 1);
         }
 
-        return Math.max(getBaseManaMax() + getXPBonus() + manaFactors, 1);
+        return Math.max(getBaseManaMax() + getXPBonus() + manaFactors, 0);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     }
 
     public boolean shouldRender() {
-        return renderTime > 0;
+        return renderTime > 0 && getManaMax() > 0;
     }
 
     public void reRender() {

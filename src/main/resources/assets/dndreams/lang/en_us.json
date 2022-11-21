@@ -2,8 +2,9 @@
   "item.dndreams.dream_powder": "Dream Powder",
   "item.dndreams.stardust": "Stardust",
   "item.dndreams.corrupt_ingot": "Hellsteel Ingot",
+  "item.dndreams.vital_shard": "Life Quartz",
   "item.dndreams.celestium": "Celestium",
-  "item.dndreams.pericharite": "Pericharite Crystals",
+  "item.dndreams.pericharite": "Pericharite",
   "item.dndreams.end_stick":  "End Stick",
   "item.dndreams.obsidian_stick":  "Obsidian Stick",
   "item.dndreams.sculk_powder":  "Memory Dust",
@@ -23,6 +24,7 @@
   "item.dndreams.archfuel": "Refined Fuel",
   "item.dndreams.refined_evil": "Refined Evil",
   "item.dndreams.crystal_mix": "Crystal Mix",
+  "item.dndreams.vital_oil": "Oil of Vitality",
   "item.dndreams.soul_soup": "Spectral Soup",
   "item.dndreams.natures_gospel": "Nature's Gospel",
   "item.dndreams.infernal_animus": "Infernal Animus",
@@ -42,6 +44,7 @@
   "item.dndreams.celestium_axe": "Celestium Axe",
   
   "item.dndreams.excalibur": "Excalibur",
+  "item.dndreams.vital_sword": "Lifecoil",
   "item.dndreams.shattered_sword": "Shattered Sword",
   "item.dndreams.slumbering_sword": "Slumbering Sword",
   "item.dndreams.crowned_edge": "Crowned Edge",
@@ -112,7 +115,6 @@
   "item.dndreams.restrained_light": "Restrained Light",
   "item.dndreams.withheld_agony": "Withheld Agony",
   
-  
   "item.dndreams.brew.overloaded": "Amalgamation",
   "item.dndreams.brew_ingested": "Brew of %s",
   "item.dndreams.brew_splash": "Splash Brew of %s",
@@ -146,6 +148,13 @@
   "item.dndreams.mindstring_bow": "Mindstrung Bow",
   "item.dndreams.lightstring_bow": "Lightstrung Bow",
   
+  "item.dndreams.vital_heart": "Life Crystal",
+  "item.dndreams.vital_heart.tooltip": "You can feel it beating.",
+  "item.dndreams.vital_heart.tooltip.spent": "It lies still in your hand.",
+  "item.dndreams.echo_star": "Mana Crystal",
+  "item.dndreams.echo_star.tooltip": "It calls out to you...",
+  "item.dndreams.echo_star.tooltip.spent": "It is silent.",
+  
   "item.dndreams.flowing_spirit_bucket": "Bucket of Flowing Spirit",
   "item.dndreams.sorrow_bucket": "Bucket of Torrential Sorrow",
   
@@ -159,8 +168,8 @@
   "tooltip.dndreams.mana_cost": "§dMana Cost: %s",
   "tooltip.dndreams.power_cost": "§dPower Cost: %s",
   "tooltip.dndreams.power_required": "§cRequires Infusion Power",
-  "tooltip.dndreams.bloodlust": "§cRequires Your Blood!",
-  "tooltip.dndreams.bloodlust.active": "§4Stained with crimson...",
+  "tooltip.dndreams.bloodlust": "§cIn exchange for blood!",
+  "tooltip.dndreams.bloodlust.active": "§4Fueled by crimson.",
   "tooltip.dndreams.magic_damage": "§2Magic Damage: %s",
   "tooltip.dndreams.dream_origin": "§3They said this didn't exist,",
   "tooltip.dndreams.dream_origin_2": "§3and they were probably right.",
@@ -170,12 +179,12 @@
   "message.dndreams.torment_calm": "§bThe terrors recede...",
   
   
-  "death.attack.crimson_sacrifice": "%s spilled their blood",
-  "death.attack.crimson_sacrifice.player": "%1$s spilled their blood whilst fighting %2$s",
-  "death.attack.crimson_sacrifice.item": "%1$s spilled their blood whilst fighting %2$s weilding %3$s",
-  "death.attack.crimson_hemorrhage": "%s was hemorrhaged",
-  "death.attack.crimson_hemorrhage.player": "%1$s was hemorrhaged whilst fighting %2$s",
-  "death.attack.crimson_hemorrhage.item": "%1$s was hemorrhaged whilst fighting %2$s weilding %3$s",
+  "death.attack.crimson_sacrifice": "%s snuffed out their lifeforce",
+  "death.attack.crimson_sacrifice.player": "%1$s snuffed out their lifeforce whilst fighting %2$s",
+  "death.attack.crimson_sacrifice.item": "%1$s snuffed out their lifeforce whilst fighting %2$s weilding %3$s",
+  "death.attack.crimson_hemorrhage": "%s's life was gutted",
+  "death.attack.crimson_hemorrhage.player": "%1$s's life was gutted by %2$s",
+  "death.attack.crimson_hemorrhage.item": "%1$s's life was gutted by %2$s weilding %3$s",
   "death.attack.wither_blossom_bush": "%1$s was poked to death by a wither blossom bush",
   "death.attack.wither_blossom_bush.player": "%1$s was poked to death by a wither blossom bush whilst trying to escape %2$s",
   
@@ -264,6 +273,8 @@
   "block.dndreams.hellsand": "Hellslate Sand",
   "block.dndreams.hellsoil": "Hellslate Soil",
   
+  "block.dndreams.vital_ore": "Life Quartz Ore",
+  "block.dndreams.deepslate_vital_ore": "Deepslate Life Quartz Ore",
   "block.dndreams.celestium_ore": "Celestium Ore",
   "block.dndreams.celestium_block": "Celestium Block",
   
@@ -437,6 +448,7 @@
   
   "block.dndreams.flowing_bedrock": "Flowing Bedrock",
   "block.dndreams.world_fountain": "World Fountain",
+  "block.dndreams.bonfire": "Coiled Campfire",
   
   "block.dndreams.snowbell": "Snowbell",
   "block.dndreams.lotus": "Lotus",
@@ -515,6 +527,7 @@
   "rei.dndreams.refinery.dream_only": "Dream World Only",
   "rei.dndreams.cauldron": "Cauldron Brewing",
   "rei.dndreams.cauldron.dream_only": "Dream World Only",
+  "rei.dndreams.cauldron.real_only": "Real World Only",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"

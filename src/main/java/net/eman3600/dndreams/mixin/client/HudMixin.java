@@ -177,7 +177,6 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
                 drawTexture(matrices, xPos, (yPos), 0, 0, MANA_WIDTH, MANA_HEIGHT);
                 drawTexture(matrices, xPos, yPos, 0, vPos, (int)((MANA_WIDTH) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT);
-                //drawCenteredText(matrices, client.textRenderer, mana + "/" + maxMana, (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
             });

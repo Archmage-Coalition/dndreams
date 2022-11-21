@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "revealed=true": {"model": "dndreams:block/deepslate_vital_ore"},
+	"revealed=false": {"model": "minecraft:block/deepslate"}
+  }
+}

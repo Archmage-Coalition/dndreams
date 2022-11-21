@@ -35,8 +35,6 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
     private int maxPower = 0;
     private int rate = 5;
 
-    private static final Box eRange = new Box(-GIVE_RANGE,-GIVE_RANGE,-GIVE_RANGE,GIVE_RANGE,GIVE_RANGE,GIVE_RANGE);
-
     public static int MINIMUM_POWER = 50;
     public static int VERY_MAX_POWER = 10000;
 
@@ -45,10 +43,6 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
 
     public CosmicFountainBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.COSMIC_FOUNTAIN_ENTITY, pos, state, CosmicFountainBlock.GIVE_OFFSETS);
-    }
-
-    public Box boxRange() {
-        return eRange.offset(pos);
     }
 
     public int getLength() {
@@ -231,18 +225,6 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
                 if (!isValid(world, true) || maxPower < MINIMUM_POWER) {
                     disable(world);
                     break main;
-                }
-            }
-
-            if (ticks % 5 == 0) {
-                for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, boxRange())) {
-                    InfusionComponent infusion = EntityComponents.INFUSION.get(player);
-
-                    if (infusion.infused() && infusion.getPower() < infusion.getPowerMax() && usePower(10)) {
-                        infusion.chargePower(.4f);
-
-                        ((CosmicFountainBlock) ModBlocks.COSMIC_FOUNTAIN).displayEnchantParticle(world, pos, player, ModParticles.COSMIC_ENERGY, 3);
-                    }
                 }
             }
 

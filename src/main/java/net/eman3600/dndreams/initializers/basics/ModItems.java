@@ -1,5 +1,8 @@
 package net.eman3600.dndreams.initializers.basics;
 
+import net.eman3600.dndreams.entities.projectiles.BrewLingeringEntity;
+import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
+import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.block_item.AliasedDreamyBlockItem;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
@@ -8,13 +11,15 @@ import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
-import net.eman3600.dndreams.items.consumable.brew.BrewLingeringItem;
-import net.eman3600.dndreams.items.consumable.brew.BrewSplashItem;
+import net.eman3600.dndreams.items.consumable.brew.BrewThrownItem;
+import net.eman3600.dndreams.items.consumable.permanent.AttributePermItem;
 import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
 import net.eman3600.dndreams.items.consumable.permanent.PanaceaItem;
 import net.eman3600.dndreams.items.creative.InfusionPearlItem;
+import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
+import net.eman3600.dndreams.items.edge_series.SlumberingSwordItem;
+import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.hellsteel.*;
-import net.eman3600.dndreams.items.edge_series.*;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
@@ -26,9 +31,10 @@ import net.eman3600.dndreams.rituals.setup.AbstractRitual;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModToolMaterials;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
@@ -86,10 +92,8 @@ public class ModItems {
     // End Sticks
     public static final Item END_STICK = registerItem("end_stick", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Corrupt Scrap & Raw Celestium
-    public static final Item CORRUPT_SCRAP = registerItem("corrupt_scrap", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)
-            .fireproof()));
-    public static final Item RAW_MANAGOLD = registerItem("raw_managold",
+    // Gemstones
+    public static final Item VITAL_SHARD = registerItem("vital_shard",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
@@ -141,6 +145,8 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.WITHER_BUD)));
 
     // Bottled Stuff
+    public static final Item VITAL_OIL = registerItem("vital_oil",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
     public static final Item SOUL_SOUP = registerItem("soul_soup",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
     public static final Item NATURES_GOSPEL = registerItem("natures_gospel",
@@ -153,8 +159,12 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
 
     // Ingots
+    public static final Item CORRUPT_SCRAP = registerItem("corrupt_scrap",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
     public static final Item CORRUPT_INGOT = registerItem("corrupt_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
+    public static final Item RAW_MANAGOLD = registerItem("raw_managold",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item MANAGOLD_INGOT = registerItem("managold_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item TORMITE_INGOT = registerItem("tormite_ingot",
@@ -279,8 +289,13 @@ public class ModItems {
 
     // Excalibur
     public static final Item EXCALIBUR = registerItem("excalibur",
-            new Excalibur(ModToolMaterials.ARTIFACT, 1, -2.6F,
+            new ExcaliburItem(ModToolMaterials.ARTIFACT, 1, -2.6F,
             new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+
+    // Vital Sword
+    public static final Item VITAL_SWORD = registerItem("vital_sword",
+            new VitalSwordItem(ModToolMaterials.VITAL, 3, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
     // Shattered Sword
     public static final Item SHATTERED_SWORD = registerItem("shattered_sword",
@@ -337,6 +352,15 @@ public class ModItems {
     public static final Item POISON_APPLE = registerItem("poison_apple",
             new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.POISON_APPLE)));
 
+    // Attribute Crystals
+    public static final Item VITAL_HEART = registerItem("vital_heart",
+            new AttributePermItem(new FabricItemSettings().group(ItemGroup.MISC),
+                    5, EntityAttributes.GENERIC_MAX_HEALTH, 2d));
+
+    public static final Item ECHO_STAR = registerItem("echo_star",
+            new AttributePermItem(new FabricItemSettings().group(ItemGroup.MISC),
+                    5, ModAttributes.PLAYER_MAX_MANA, 5d));
+
 
 
     // Snowbell Seeds
@@ -392,9 +416,9 @@ public class ModItems {
     public static final Item BREW_INGESTED = registerItem("brew_ingested",
             new BrewIngestedItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
     public static final Item BREW_SPLASH = registerItem("brew_splash",
-            new BrewSplashItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
+            new BrewThrownItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16), BrewSplashEntity::new));
     public static final Item BREW_LINGERING = registerItem("brew_lingering",
-            new BrewLingeringItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
+            new BrewThrownItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16), BrewLingeringEntity::new));
 
 
 

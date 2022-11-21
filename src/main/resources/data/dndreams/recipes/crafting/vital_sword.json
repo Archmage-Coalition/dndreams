@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "O#L",
+    " # ",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:vital_shard"
+    },
+    "X": {
+      "item": "dndreams:obsidian_stick"
+    },
+    "O": {
+      "item": "dndreams:vital_oil"
+    },
+    "L": {
+      "item": "dndreams:drop_of_luck"
+    }
+  },
+  "result": {
+    "item": "dndreams:vital_sword"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:vital_heart"
+    },
+	{
+      "item": "minecraft:redstone"
+    },
+	{
+      "item": "dndreams:lotus_flower"
+    },
+	{
+      "item": "minecraft:melon_slice"
+    },
+	{
+      "item": "minecraft:gold_nugget"
+    },
+	{
+      "item": "dndreams:sakura_fume"
+    }
+  ],
+  "result": {
+    "item": "dndreams:vital_oil",
+    "count": 2
+  },
+  "color": 16716563,
+  "real_only": true,
+  "method": "bottle"
+}

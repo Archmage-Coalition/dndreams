@@ -21,16 +21,18 @@ public class CauldronRecipe implements Recipe<Inventory> {
     public final ItemStack output;
     public final DefaultedList<Ingredient> input;
     public final boolean dreamOnly;
+    public final boolean realOnly;
     public final ExtractionMethod method;
     public final int color;
 
-    public CauldronRecipe(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input, ExtractionMethod method, boolean dreamOnly, int color) {
+    public CauldronRecipe(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input, ExtractionMethod method, boolean dreamOnly, boolean realOnly, int color) {
         this.id = id;
         this.group = group;
         this.output = output;
         this.input = input;
         this.method = method;
         this.dreamOnly = dreamOnly;
+        this.realOnly = realOnly;
         this.color = color;
     }
 
@@ -70,7 +72,7 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
     @Override
     public boolean matches(Inventory inventory, World world) {
-        if (dreamOnly && world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) return false;
+        if ((dreamOnly && world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) || (realOnly && world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY)) return false;
 
         for (int i = 0; i < itemsInside(inventory); i++) {
             try {
@@ -119,9 +121,13 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
 
                 boolean dream = JsonHelper.getBoolean(jsonObject, "dream_only", false);
+                boolean real = JsonHelper.getBoolean(jsonObject, "real_only", false);
+                if (dream && real) {
+                    throw new JsonParseException("Cannot be both dream only AND real only");
+                }
                 ExtractionMethod method = ExtractionMethod.fromString(JsonHelper.getString(jsonObject, "method", "none"));
                 int color = JsonHelper.getInt(jsonObject, "color", RefinedCauldronBlockEntity.WATER_COLOR);
-                return new CauldronRecipe(identifier, string, itemStack, defaultedList, method, dream, color);
+                return new CauldronRecipe(identifier, string, itemStack, defaultedList, method, dream, real, color);
             }
         }
 
@@ -150,8 +156,9 @@ public class CauldronRecipe implements Recipe<Inventory> {
             ItemStack itemStack = packetByteBuf.readItemStack();
             ExtractionMethod method = ExtractionMethod.fromString(packetByteBuf.readString());
             boolean dream = packetByteBuf.readBoolean();
+            boolean real = packetByteBuf.readBoolean();
             int color = packetByteBuf.readInt();
-            return new CauldronRecipe(identifier, string, itemStack, defaultedList, method, dream, color);
+            return new CauldronRecipe(identifier, string, itemStack, defaultedList, method, dream, real, color);
         }
 
         public void write(PacketByteBuf packetByteBuf, CauldronRecipe recipe) {
@@ -165,6 +172,7 @@ public class CauldronRecipe implements Recipe<Inventory> {
             packetByteBuf.writeItemStack(recipe.output);
             packetByteBuf.writeString(recipe.method.asString());
             packetByteBuf.writeBoolean(recipe.dreamOnly);
+            packetByteBuf.writeBoolean(recipe.realOnly);
             packetByteBuf.writeInt(recipe.color);
         }
     }

@@ -16,5 +16,9 @@ public interface InfusionComponentI extends AutoSyncedComponent, ServerTickingCo
     void usePower(float cost);
     float getRoundedPower();
 
+    void setLinkTicks(int amount);
+
+    boolean linkedToBonfire();
+
     boolean tryResist(DamageSource source, float amount);
 }

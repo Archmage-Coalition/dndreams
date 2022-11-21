@@ -14,11 +14,22 @@ import net.minecraft.util.math.MathHelper;
 
 public class InfusionComponent implements InfusionComponentI {
     private static final float MAX_POWER = 100f;
+    public static final int LINK_LENGTH = 100;
 
     private final PlayerEntity player;
 
+    /**
+     * The player's current infusion.
+     */
     private Infusion infusion = ModInfusions.NONE;
+    /**
+     * The player's infusion power.
+     */
     private float power = 0f;
+    /**
+     * How long the player has left being linked to their bonfire.
+     */
+    private int linkTicks = 0;
 
     public InfusionComponent(PlayerEntity player) {
         this.player = player;
@@ -79,6 +90,18 @@ public class InfusionComponent implements InfusionComponentI {
     }
 
     @Override
+    public void setLinkTicks(int amount) {
+        linkTicks = amount;
+
+        EntityComponents.INFUSION.sync(player);
+    }
+
+    @Override
+    public boolean linkedToBonfire() {
+        return linkTicks > 0;
+    }
+
+    @Override
     public boolean tryResist(DamageSource source, float amount) {
         float cost = amount * .2f;
 
@@ -94,18 +117,25 @@ public class InfusionComponent implements InfusionComponentI {
     public void readFromNbt(NbtCompound tag) {
         infusion = Infusion.ofID(Identifier.tryParse(tag.getString("infusion")));
         power = tag.getFloat("power");
+        linkTicks = tag.getInt("link_ticks");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putString("infusion", InfusionRegistry.REGISTRY.getId(infusion).toString());
         tag.putFloat("power", power);
+        tag.putInt("link_ticks", linkTicks);
     }
 
     @Override
     public void serverTick() {
         if (player.world instanceof ServerWorld serverWorld) {
             infusion.serverTick(serverWorld, this, player);
+        }
+
+        if (linkTicks > 0) {
+            linkTicks--;
+            EntityComponents.INFUSION.sync(player);
         }
     }
 }

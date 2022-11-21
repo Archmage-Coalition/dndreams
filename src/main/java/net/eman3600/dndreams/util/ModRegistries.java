@@ -38,16 +38,18 @@ public class ModRegistries {
     }
 
     public static void registerEnergyFuels() {
-        AttunementBurnSlot.putFuel(Items.REDSTONE, 5);
-        AttunementBurnSlot.putFuel(Items.GLOWSTONE_DUST, 8);
-        AttunementBurnSlot.putFuel(Items.SUGAR, 2);
-        AttunementBurnSlot.putFuel(Items.GUNPOWDER, 5);
-        AttunementBurnSlot.putFuel(Items.BLAZE_POWDER, 20);
+        AttunementBurnSlot.putFuel(Items.REDSTONE, 10);
+        AttunementBurnSlot.putFuel(Items.GLOWSTONE_DUST, 15);
+        AttunementBurnSlot.putFuel(Items.SUGAR, 3);
+        AttunementBurnSlot.putFuel(Items.GUNPOWDER, 7);
+        AttunementBurnSlot.putFuel(Items.BLAZE_POWDER, 50);
 
-        AttunementBurnSlot.putFuel(ModItems.SCULK_POWDER, 30);
-        AttunementBurnSlot.putFuel(ModItems.DREAM_POWDER, 30);
+        AttunementBurnSlot.putFuel(ModItems.SCULK_POWDER, 50);
+        AttunementBurnSlot.putFuel(ModItems.DREAM_POWDER, 90);
+        AttunementBurnSlot.putFuel(ModItems.STARDUST, 120);
         AttunementBurnSlot.putFuel(ModItems.INFERNAL_RESIDUE, 20);
-        AttunementBurnSlot.putFuel(ModItems.NIGHTMARE_FUEL, 40);
+        AttunementBurnSlot.putFuel(ModItems.NIGHTMARE_FUEL, 100);
+        AttunementBurnSlot.putFuel(ModItems.CRYSTAL_MIX, 150);
         AttunementBurnSlot.putFuel(ModItems.WOOD_ASH, 5);
     }
 

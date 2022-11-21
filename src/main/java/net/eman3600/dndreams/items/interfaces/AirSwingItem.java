@@ -7,8 +7,10 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 
+import javax.annotation.Nullable;
+
 public interface AirSwingItem {
-    void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, Entity hit);
+    void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit);
 
     static Vec3d rayZVector(float yaw, float pitch) {
         Vec3d rot = new Vec3d(0, 0, 0.1d);

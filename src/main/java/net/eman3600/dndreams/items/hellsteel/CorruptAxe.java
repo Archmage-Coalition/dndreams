@@ -1,17 +1,21 @@
 package net.eman3600.dndreams.items.hellsteel;
 
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
@@ -24,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CorruptAxe extends AxeItem implements BloodlustItem {
+public class CorruptAxe extends AxeItem implements BloodlustItem, AirSwingItem {
     public CorruptAxe(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
     }
@@ -72,7 +76,7 @@ public class CorruptAxe extends AxeItem implements BloodlustItem {
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (hasBloodlust(attacker)) {
+        if (hasBloodlust(attacker) && !(attacker instanceof PlayerEntity)) {
             target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 220), attacker);
             target.takeKnockback(0.7f, MathHelper.sin(attacker.getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(attacker.getYaw() * ((float) Math.PI / 180)));
         }
@@ -83,5 +87,13 @@ public class CorruptAxe extends AxeItem implements BloodlustItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(getTooltipBloodlust(world));
+    }
+
+    @Override
+    public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit) {
+        if (user.getAttackCooldownProgress(0.5f) > 0.9f && hit instanceof LivingEntity target) {
+            target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 220), user);
+            target.takeKnockback(0.7f, MathHelper.sin(user.getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(user.getYaw() * ((float) Math.PI / 180)));
+        }
     }
 }

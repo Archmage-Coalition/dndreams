@@ -22,6 +22,11 @@ public class ModFeatures {
             OreFeatureConfig.createTarget(OreFeatures.BASE_SOIL_NETHER, ModBlocks.HELLSOIL.getDefaultState())
     );
 
+    public static final List<OreFeatureConfig.Target> VITAL_ORES = List.of(
+            OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, ModBlocks.VITAL_ORE.getDefaultState()),
+            OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_VITAL_ORE.getDefaultState())
+    );
+
     public static final List<OreFeatureConfig.Target> CELESTIUM_ORES = List.of(
             OreFeatureConfig.createTarget(OreFeatures.BASE_END_STONE, ModBlocks.CELESTIUM_ORE.getDefaultState())
     );
@@ -32,6 +37,13 @@ public class ModFeatures {
 
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> HELLSLATE_ORE_COMMON =
             ConfiguredFeatures.register("hellslate_ore_common",Feature.ORE, new OreFeatureConfig(HELLSLATE_ORES_COMMON, 7));
+
+    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> VITAL_ORE =
+            ConfiguredFeatures.register("vital_ore",Feature.ORE, new OreFeatureConfig(VITAL_ORES, 8));
+    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> VITAL_ORE_SPARSE =
+            ConfiguredFeatures.register("vital_ore_sparse",Feature.ORE, new OreFeatureConfig(VITAL_ORES, 6));
+    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> VITAL_ORE_BURIED =
+            ConfiguredFeatures.register("vital_ore_buried",Feature.ORE, new OreFeatureConfig(VITAL_ORES, 12, .8f));
 
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> CELESTIUM_ORE =
             ConfiguredFeatures.register("celestium_ore",Feature.ORE, new OreFeatureConfig(CELESTIUM_ORES, 4));

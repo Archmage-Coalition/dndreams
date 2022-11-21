@@ -11,6 +11,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 
+import javax.annotation.Nullable;
+
 public class TrueCrownedEdgeItem extends CrownedEdgeItem {
     public TrueCrownedEdgeItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, int magicDamage, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, magicDamage, settings);
@@ -28,7 +30,7 @@ public class TrueCrownedEdgeItem extends CrownedEdgeItem {
     }
 
     @Override
-    public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, Entity hit) {
+    public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit) {
         if (user.getAttackCooldownProgress(0.5f) > 0.9f) {
             if (hit == null) {
                 stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));

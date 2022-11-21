@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "revealed=true": {"model": "dndreams:block/vital_ore"},
+	"revealed=false": {"model": "minecraft:block/stone"}
+  }
+}

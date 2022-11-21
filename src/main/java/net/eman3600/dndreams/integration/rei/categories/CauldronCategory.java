@@ -79,6 +79,8 @@ public class CauldronCategory implements DisplayCategory<CauldronDisplay> {
 
         if (display.RECIPE.dreamOnly) {
             widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 33), Text.translatable("rei.dndreams.cauldron.dream_only")).color(0x373737).noShadow());
+        } else if (display.RECIPE.realOnly) {
+            widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 33), Text.translatable("rei.dndreams.cauldron.real_only")).color(0x373737).noShadow());
         }
 
         return widgets;

@@ -39,23 +39,35 @@ public class ModBlocks {
     public static final Block HELLSLATE = registerBlock("hellslate",
             new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.BRIGHT_RED).strength(4.0f).resistance(5.0f)
                     .sounds(BlockSoundGroup.NETHERRACK)
-                    .requiresTool(), UniformIntProvider.create(2, 5)),
+                    .requiresTool(), UniformIntProvider.create(3, 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
 
     public static final Block HELLSAND = registerBlock("hellsand",
             new HellsandBlock(FabricBlockSettings.of(Material.AGGREGATE, MapColor.BRIGHT_RED).strength(2.0f).resistance(5.0f)
                     .sounds(BlockSoundGroup.SOUL_SAND)
-                    .requiresTool(), UniformIntProvider.create(2, 5)),
+                    .requiresTool(), UniformIntProvider.create(3, 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
 
     public static final Block HELLSOIL = registerBlock("hellsoil",
             new OreBlock(FabricBlockSettings.of(Material.SOIL, MapColor.BRIGHT_RED).strength(2.0f).resistance(5.0f)
                     .sounds(BlockSoundGroup.SOUL_SOIL)
-                    .requiresTool(), UniformIntProvider.create(2, 5)),
+                    .requiresTool(), UniformIntProvider.create(3, 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
+
+    // Vital Ore
+    public static final Block VITAL_ORE = registerBlock("vital_ore",
+            new VitalOreBlock(FabricBlockSettings.copy(Blocks.STONE)
+                    .requiresTool().ticksRandomly(), UniformIntProvider.create(2, 6)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block DEEPSLATE_VITAL_ORE = registerBlock("deepslate_vital_ore",
+            new VitalOreBlock(FabricBlockSettings.copy(Blocks.DEEPSLATE)
+                    .requiresTool().ticksRandomly(), UniformIntProvider.create(2, 6)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Celestium Block
     public static final Block CELESTIUM_BLOCK = registerBlock("celestium_block",
@@ -98,6 +110,10 @@ public class ModBlocks {
             new FlowingBedrockBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Bonfire
+    public static final Block BONFIRE = registerBlock("bonfire",
+            new BonfireBlock(FabricBlockSettings.copyOf(Blocks.CAMPFIRE)));
 
     // Shimmering blocks
     public static final Block SHIMMERING_STONE = registerBlock("shimmering_stone",
@@ -1022,7 +1038,7 @@ public class ModBlocks {
     public static final Block HORDE_PORTAL = registerBlock("horde_portal",
             new GenericPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), CHARGED_DEEPSLATE));
 
-    public static final Block OVERHELL_PORTAL = registerBlock("overhell_portal",
+    public static final Block HAVEN_PORTAL = registerBlock("haven_portal",
             new GenericPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), CHARGED_DEEPSLATE));
 
     public static final Block MORTAL_PORTAL = registerBlock("mortal_portal",

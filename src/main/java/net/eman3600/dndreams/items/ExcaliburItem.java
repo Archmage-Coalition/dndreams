@@ -1,18 +1,15 @@
 package net.eman3600.dndreams.items;
 
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
-import org.jetbrains.annotations.NotNull;
 
-public class Excalibur extends SwordItem {
+public class ExcaliburItem extends SwordItem {
     private static final float HEAL_AMOUNT = 1.0F;
 
-    public Excalibur(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
+    public ExcaliburItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
     }
 

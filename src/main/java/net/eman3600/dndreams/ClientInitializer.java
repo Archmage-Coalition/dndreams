@@ -1,6 +1,7 @@
 package net.eman3600.dndreams;
 
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
+import net.eman3600.dndreams.blocks.renderer.BonfireBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
 import net.eman3600.dndreams.cardinal_components.BossStateComponent;
 import net.eman3600.dndreams.entities.renderers.BloodSkeletonEntityRenderer;
@@ -15,7 +16,6 @@ import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
-import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.screen.AttunementScreen;
 import net.eman3600.dndreams.screen.RefineryScreen;
@@ -32,7 +32,6 @@ import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.client.render.entity.ItemEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -78,9 +77,11 @@ ClientInitializer implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHIMMERING_GLASS_PANE, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WEAK_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HORDE_PORTAL, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.OVERHELL_PORTAL, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HAVEN_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MORTAL_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.COSMIC_PORTAL, RenderLayer.getEndPortal());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BONFIRE, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SNOWBELL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LOTUS, RenderLayer.getCutout());
@@ -90,6 +91,7 @@ ClientInitializer implements ClientModInitializer {
 
         BlockEntityRendererRegistry.register(ModBlockEntities.COSMIC_PORTAL_ENTITY, CosmicPortalBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(ModBlockEntities.REFINED_CAULDRON_ENTITY, RefinedCauldronBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(ModBlockEntities.BONFIRE_ENTITY, BonfireBlockEntityRenderer::new);
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_FLOWING_SPIRIT, ModFluids.FLOWING_FLOWING_SPIRIT,
                 new SimpleFluidRenderHandler(

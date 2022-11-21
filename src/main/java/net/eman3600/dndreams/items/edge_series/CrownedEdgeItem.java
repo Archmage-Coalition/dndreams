@@ -31,7 +31,7 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
 
 
     @Override
-    public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, Entity hit) {
+    public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @javax.annotation.Nullable Entity hit) {
         if (canAffordMana(user, stack) && user.getAttackCooldownProgress(0.5f) > 0.9f) {
             spendMana(user, stack);
 
