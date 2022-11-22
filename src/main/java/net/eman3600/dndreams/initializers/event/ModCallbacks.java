@@ -2,9 +2,11 @@ package net.eman3600.dndreams.initializers.event;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
+import net.eman3600.dndreams.cardinal_components.BossStateComponent;
 import net.eman3600.dndreams.cardinal_components.PermItemComponent;
 import net.eman3600.dndreams.cardinal_components.StatBoonComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
 import net.eman3600.dndreams.recipe.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
@@ -99,6 +101,11 @@ public class ModCallbacks {
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             StatBoonComponent boons = EntityComponents.STAT_BOON.get(handler.player);
+            try {
+                WorldComponents.BOSS_STATE.get(server.getScoreboard()).setDifficulty();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             boons.reloadAttributes();
             if (handler.player.getMaxHealth() > 20) handler.player.setHealth(boons.hp);

@@ -1,5 +1,5 @@
 {
-  "type": "dndreams:weaving_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     " G#",
     " XG",
@@ -15,9 +15,6 @@
     "G": {
       "item": "minecraft:gold_nugget"
     }
-  },
-  "weave_item": {
-    "item": "dndreams:nightmare_fuel"
   },
   "result": {
     "item": "dndreams:satiation_staff"

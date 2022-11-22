@@ -44,7 +44,7 @@ public interface BloodlustItem {
     }
 
     default Text getTooltipBloodlust(World world) {
-        if (world instanceof ClientWorldAccess access && hasBloodlust(access.getClient().player)) {
+        if (world.isClient && world instanceof ClientWorldAccess access && hasBloodlust(access.getPlayer())) {
             return Text.translatable("tooltip.dndreams.bloodlust.active");
         } else {
             return Text.translatable("tooltip.dndreams.bloodlust");

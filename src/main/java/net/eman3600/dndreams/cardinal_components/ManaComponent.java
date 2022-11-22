@@ -117,6 +117,12 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         return Math.min(player.experienceLevel/2, MAX_XP_BONUS);
     }
 
+    @Override
+    public boolean canAfford(int cost) {
+        return player.isCreative() || mana >= cost;
+    }
+
+    @Override
     public boolean shouldRender() {
         return renderTime > 0 && getManaMax() > 0;
     }
@@ -127,6 +133,10 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public void useMana(int cost) {
+        if (player.isCreative()) {
+            return;
+        }
+
         if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {
             player.timeUntilRegen = 1;
             player.damage(DamageSource.MAGIC, (float)cost/2);

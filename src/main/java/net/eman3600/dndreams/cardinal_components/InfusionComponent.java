@@ -14,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class InfusionComponent implements InfusionComponentI {
     private static final float MAX_POWER = 100f;
-    public static final int LINK_LENGTH = 100;
+    public static final int LINK_LENGTH = 40;
 
     private final PlayerEntity player;
 

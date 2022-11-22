@@ -7,8 +7,8 @@ import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
@@ -64,7 +64,7 @@ public abstract class ClientWorldMixin extends World implements ClientWorldAcces
     }
 
     @Override
-    public ClientPlayerEntity getPlayer() {
+    public PlayerEntity getPlayer() {
         return this.client.player;
     }
 }

@@ -28,14 +28,7 @@
       "entries": [
         {
 		  "type": "minecraft:item",
-		  "functions": [
-			{
-			  "add": false,
-			  "count": 2.0,
-			  "function": "minecraft:set_count"
-			}
-		  ],
-		  "name": "dndreams:vital_shard"
+		  "name": "dndreams:broken_vital_sword"
 		}
       ],
       "rolls": 1.0

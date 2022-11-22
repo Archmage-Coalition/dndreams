@@ -83,6 +83,7 @@ public class ModRegistries {
         MutandisItem.registerMutable("sapling", Blocks.FLOWERING_AZALEA);
         MutandisItem.registerMutable("sapling", ModBlocks.SAKURA_SAPLING);
         MutandisItem.registerMutable("sapling", ModBlocks.JAPANESE_MAPLE_SAPLING);
+        MutandisItem.registerMutable("sapling", ModBlocks.SCULK_WOOD_SAPLING);
 
         MutandisItem.registerMutable("crop", Blocks.WHEAT);
         MutandisItem.registerMutable("crop", Blocks.CARROTS);
@@ -154,7 +155,7 @@ public class ModRegistries {
 
         FuelRegistry registry = FuelRegistry.INSTANCE;
 
-        registry.add(ModItems.NIGHTMARE_FUEL, 2400);
+        registry.add(ModItems.NIGHTMARE_FUEL, 4800);
         registry.add(ModItems.ARCHFUEL, 3200);
     }
 
@@ -251,6 +252,36 @@ public class ModRegistries {
         registry.add(ModBlocks.EOS_SLAB, 5, 10);
         registry.add(ModBlocks.EOS_PLANKS, 5, 10);
         registry.add(ModBlocks.EOS_LEAVES, 30, 60);
+
+
+        registry.add(ModBlocks.HAVEN_LOG, 5, 5);
+        registry.add(ModBlocks.HAVEN_WOOD, 5, 5);
+        registry.add(ModBlocks.HAVEN_STRIPPED_LOG, 5, 5);
+        registry.add(ModBlocks.HAVEN_STRIPPED_WOOD, 5, 5);
+
+        registry.add(ModBlocks.HAVEN_SLAB, 5, 10);
+        registry.add(ModBlocks.HAVEN_PLANKS, 5, 10);
+        registry.add(ModBlocks.HAVEN_LEAVES, 30, 60);
+
+
+        registry.add(ModBlocks.PINE_LOG, 5, 5);
+        registry.add(ModBlocks.PINE_WOOD, 5, 5);
+        registry.add(ModBlocks.PINE_STRIPPED_LOG, 5, 5);
+        registry.add(ModBlocks.PINE_STRIPPED_WOOD, 5, 5);
+
+        registry.add(ModBlocks.PINE_SLAB, 5, 10);
+        registry.add(ModBlocks.PINE_PLANKS, 5, 10);
+        registry.add(ModBlocks.PINE_LEAVES, 30, 60);
+
+
+        registry.add(ModBlocks.STAR_LOG, 5, 5);
+        registry.add(ModBlocks.STAR_WOOD, 5, 5);
+        registry.add(ModBlocks.STAR_STRIPPED_LOG, 5, 5);
+        registry.add(ModBlocks.STAR_STRIPPED_WOOD, 5, 5);
+
+        registry.add(ModBlocks.STAR_SLAB, 5, 10);
+        registry.add(ModBlocks.STAR_PLANKS, 5, 10);
+        registry.add(ModBlocks.STAR_LEAVES, 30, 60);
     }
 
     private static void registerCompostables() {

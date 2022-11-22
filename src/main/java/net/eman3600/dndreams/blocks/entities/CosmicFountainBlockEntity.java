@@ -128,10 +128,12 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
     }
 
     private int worth(BlockState state) {
-        if (state.isOf(Blocks.SOUL_FIRE) || state.isOf(Blocks.SCULK)) return 10;
-        if (state.isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) return 15;
+        if (state.isOf(Blocks.SOUL_TORCH) || state.isOf(Blocks.SOUL_WALL_TORCH)) return 9;
+        if (state.isOf(Blocks.SOUL_FIRE)) return 16;
+        if (state.isOf(Blocks.SCULK) || state.isOf(Blocks.SCULK_CATALYST)) return 25;
+        if (state.isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) return 20;
 
-        return 25;
+        return 45;
     }
 
     private int multiplicity(BlockState state) {

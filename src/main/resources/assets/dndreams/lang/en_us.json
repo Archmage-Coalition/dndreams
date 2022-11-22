@@ -45,6 +45,7 @@
   
   "item.dndreams.excalibur": "Excalibur",
   "item.dndreams.vital_sword": "Lifecoil",
+  "item.dndreams.broken_vital_sword": "Broken Lifecoil",
   "item.dndreams.shattered_sword": "Shattered Sword",
   "item.dndreams.slumbering_sword": "Slumbering Sword",
   "item.dndreams.crowned_edge": "Crowned Edge",
@@ -480,6 +481,11 @@
   "ritual.dndreams.waystone_simple": "Rebind Waystone",
   "ritual.dndreams.amethyst_source": "Bud Amethyst",
   "ritual.dndreams.amethyst_sprout": "Sprout Amethyst",
+  "ritual.dndreams.summon_storm": "Thundercall",
+  "ritual.dndreams.nature_infusion": "Infusion - Nature",
+  "ritual.dndreams.infernal_infusion": "Infusion - Infernal",
+  "ritual.dndreams.otherwhere_infusion": "Infusion - Otherwhere",
+  "ritual.dndreams.spirit_infusion": "Infusion - Spirit",
   
   
   "infusion.dndreams.none": "None",
@@ -512,7 +518,7 @@
   
   
   "advancements.dndreams.main.root.title": "Demons and Dreams",
-  "advancements.dndreams.main.root.description": "The Heart of the Past",
+  "advancements.dndreams.main.root.description": "Something will go here one day...",
   
   
   "rei.dndreams.weaving": "Dream Weaving",
@@ -528,6 +534,11 @@
   "rei.dndreams.cauldron": "Cauldron Brewing",
   "rei.dndreams.cauldron.dream_only": "Dream World Only",
   "rei.dndreams.cauldron.real_only": "Real World Only",
+  "rei.dndreams.ritual": "Candle Rites",
+  "rei.dndreams.ritual.cost": "Power Cost: %s",
+  "rei.dndreams.apothecary": "Cauldron Apothecary",
+  "rei.dndreams.apothecary.capacity": "Capacity: %s",
+  "rei.dndreams.apothecary.cost": "Power Cost: %s",
 
 
   "stat.dndreams.enter_dream": "Times Dreamt"

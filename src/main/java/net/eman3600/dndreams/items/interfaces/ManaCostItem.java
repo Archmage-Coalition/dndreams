@@ -17,7 +17,7 @@ public interface ManaCostItem extends Vanishable {
 
     default boolean canAffordMana(PlayerEntity player, ItemStack stack) {
         if (player != null)
-            return EntityComponents.MANA.get(player).getMana() >= getManaCost(stack);
+            return EntityComponents.MANA.get(player).canAfford(getManaCost(stack));
         return false;
     }
     default Text getTooltipMana(ItemStack stack) {

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dndreams:mindstring_bow"
+    },
+    {
+      "item": "dndreams:restrained_light"
+    }
+  ],
+  "result": {
+    "item": "dndreams:lightstring_bow"
+  }
+}

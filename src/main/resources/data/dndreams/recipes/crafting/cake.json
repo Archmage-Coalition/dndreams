@@ -1,5 +1,5 @@
 {
-  "type": "dndreams:weaving_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "XXX",
     "###"
@@ -11,9 +11,6 @@
 	"X": {
       "item": "minecraft:sweet_berries"
     }
-  },
-  "weave_item": {
-    "item": "dndreams:dream_powder"
   },
   "result": {
     "item": "minecraft:cake",

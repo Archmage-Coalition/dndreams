@@ -82,7 +82,7 @@ public class GatewayComponent implements GatewayComponentI {
 
     public Vec3d getGatewayPosition() {
         if (event == 0) {
-            return new Vec3d(4.5, 1, 5.5);
+            return new Vec3d(6.5, 2, 23.5);
         }
 
         return new Vec3d(0, 0, 0);
@@ -96,12 +96,8 @@ public class GatewayComponent implements GatewayComponentI {
         return new BlockPos(0, 0, 0);
     }
 
-    public Identifier getStructure() {
-        if (event == 0) {
-            return new Identifier(Initializer.MODID, "gateway/nether_start");
-        }
-
-        return null;
+    public Identifier getStructure(String path) {
+        return new Identifier(Initializer.MODID, path);
     }
 
     public void enterGateway(int event, boolean challenge) {
@@ -133,7 +129,10 @@ public class GatewayComponent implements GatewayComponentI {
             }
         }
 
-        loadStructure(getGatewayDimension(), getStructureStart(), getStructure());
+        if (event == 0) {
+            loadStructure(getGatewayDimension(), getStructureStart(), getStructure("gateway/nether_1"));
+            loadStructure(getGatewayDimension(), getStructureStart().add(0, 0, 48), getStructure("gateway/nether_2"));
+        }
     }
 
     private boolean loadStructure(ServerWorld world, BlockPos pos, Identifier templateName) {

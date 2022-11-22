@@ -9,6 +9,8 @@ import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
@@ -25,6 +27,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
@@ -39,7 +42,7 @@ public class BonfireBlockEntity extends BlockEntity implements AbstractPowerRece
     private int power = 0;
     private List<PlayerEntity> linkedPlayers = new ArrayList<>();
 
-    public static double GIVE_RANGE = 4d;
+    public static double GIVE_RANGE = 6.5d;
 
     private static final Box eRange = new Box(-GIVE_RANGE,-GIVE_RANGE,-GIVE_RANGE,GIVE_RANGE,GIVE_RANGE,GIVE_RANGE);
 
@@ -100,7 +103,7 @@ public class BonfireBlockEntity extends BlockEntity implements AbstractPowerRece
 
 
 
-
+    @Environment(EnvType.CLIENT)
     public static void tickClient(World world, BlockPos blockPos, BlockState blockState, BonfireBlockEntity entity) {
         try {
             ClientWorld client = (ClientWorld) world;
@@ -110,6 +113,7 @@ public class BonfireBlockEntity extends BlockEntity implements AbstractPowerRece
         } catch (ClassCastException ignored) {}
     }
 
+    @Environment(EnvType.CLIENT)
     private void tickClient(ClientWorld world) {
         int i;
         Random random = world.random;
@@ -124,7 +128,7 @@ public class BonfireBlockEntity extends BlockEntity implements AbstractPowerRece
 
 
     public Box boxRange() {
-        return eRange.offset(pos);
+        return eRange.offset(Vec3d.ofCenter(pos));
     }
 
     @Override

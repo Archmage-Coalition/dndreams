@@ -7,6 +7,7 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModFluids;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.integration.rei.categories.*;
@@ -17,6 +18,7 @@ import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
 import net.eman3600.dndreams.recipe.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -29,6 +31,8 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
     public static final CategoryIdentifier<MutandisDisplay> MUTANDIS = CategoryIdentifier.of(new Identifier(Initializer.MODID, "mutandis"));
     public static final CategoryIdentifier<RefineryDisplay> REFINERY = CategoryIdentifier.of(new Identifier(Initializer.MODID, "refinery"));
     public static final CategoryIdentifier<CauldronDisplay> CAULDRON = CategoryIdentifier.of(new Identifier(Initializer.MODID, "cauldron"));
+    public static final CategoryIdentifier<RitualDisplay> RITUAL = CategoryIdentifier.of(new Identifier(Initializer.MODID, "ritual"));
+    public static final CategoryIdentifier<ApothecaryDisplay> APOTHECARY = CategoryIdentifier.of(new Identifier(Initializer.MODID, "apothecary"));
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
@@ -39,6 +43,11 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         registry.addWorkstations(REFINERY, RefineryCategory.ICON);
         registry.add(new CauldronCategory());
         registry.addWorkstations(CAULDRON, CauldronCategory.ICON);
+        registry.add(new ApothecaryCategory());
+        registry.addWorkstations(APOTHECARY, ApothecaryCategory.ICON);
+        registry.add(new RitualCategory());
+        registry.addWorkstations(RITUAL, RitualCategory.ICON);
+        registry.addWorkstations(RITUAL, EntryStacks.of(ModBlocks.ECHO_CANDLE));
 
         registry.add(new MutandisCategory());
         registry.addWorkstations(MUTANDIS, MutandisCategory.ICON);
@@ -70,6 +79,8 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         registry.registerFiller(SmokestackRecipe.class, SmokestackDisplay::new);
         registry.registerFiller(RefineryRecipe.class, RefineryDisplay::new);
         registry.registerFiller(CauldronRecipe.class, CauldronDisplay::new);
+        registry.registerFiller(RitualRecipe.class, RitualDisplay::new);
+        registry.registerFiller(ApothecaryRecipe.class, ApothecaryDisplay::new);
 
         for (List<Block> blocks: MutandisItem.mutables.values()) {
             for (Block out: blocks) {

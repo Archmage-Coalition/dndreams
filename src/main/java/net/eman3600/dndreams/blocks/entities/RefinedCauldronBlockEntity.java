@@ -87,7 +87,11 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
             boilingTime++;
             markDirty();
             world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
-        } else if (!world.getBlockState(pos.down()).isIn(ModTags.HEAT_BLOCKS) && boilingTime > 1) boilingTime--;
+        } else if (!world.getBlockState(pos.down()).isIn(ModTags.HEAT_BLOCKS) && boilingTime > 0) {
+            boilingTime--;
+            markDirty();
+            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
+        }
 
         if (level > 1) {
             if (cauldronState == CauldronState.CRAFTING && brewTicks++ > 100) {

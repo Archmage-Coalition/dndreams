@@ -98,7 +98,7 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
             ItemStack stack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "ingredient"));
             boolean corrupted = JsonHelper.getBoolean(jsonObject, "corrupted", false);
             int capacity = JsonHelper.getInt(jsonObject, "capacity", 2);
-            int power = JsonHelper.getInt(jsonObject, "power", 250);
+            int power = JsonHelper.getInt(jsonObject, "cost", 250);
 
             String potion = JsonHelper.getString(jsonObject, "effect", "minecraft:strength");
             Identifier id = Identifier.tryParse(potion);

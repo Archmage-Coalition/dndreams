@@ -9,6 +9,10 @@ public interface ManaComponentI extends ServerTickingComponent {
     int getXPBonus();
     int getRegenRate();
 
+    boolean canAfford(int cost);
+
+    boolean shouldRender();
+
     void useMana(int cost);
 
     void setMana(int value);
