@@ -155,7 +155,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
     }
 
-    @Redirect(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z"))
+    @Redirect(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z"), require = 0)
     private boolean dndreams$baseTick$isSubmergedIn(LivingEntity instance, TagKey<Fluid> tagKey) {
         if (tagKey == FluidTags.WATER) {
             return instance.isSubmergedIn(tagKey) | instance.isSubmergedIn(ModTags.SORROW);
