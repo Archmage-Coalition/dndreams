@@ -83,17 +83,17 @@ public class ModBiomes {
 
     private static BCLBiome registerLand(BCLBiome biome) {
         BIOMES_LAND.add(biome);
-        return BiomeAPI.registerBiome(biome);
+        return BiomeAPI.registerEndLandBiome(biome);
     }
 
     private static BCLBiome registerVoid(BCLBiome biome) {
         BIOMES_VOID.add(biome);
-        return BiomeAPI.registerBiome(biome);
+        return BiomeAPI.registerEndVoidBiome(biome);
     }
 
     private static BCLBiome registerCave(BCLBiome biome) {
         BIOMES_CAVE.add(biome);
-        return BiomeAPI.registerBiome(biome);
+        return BiomeAPI.registerEndLandBiome(biome);
     }
 
     private static BCLBiome registerSubLand(BCLBiome parent, BCLBiome biome) {

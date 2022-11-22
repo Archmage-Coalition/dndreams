@@ -33,19 +33,19 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
 
     @Shadow public abstract void setPosition(Vec3d pos);
 
-    @Shadow public abstract void resetNetherPortalCooldown();
-
     @Shadow public abstract int getMaxNetherPortalTime();
 
     @Shadow protected boolean inNetherPortal;
-
-    @Shadow protected abstract void tickNetherPortalCooldown();
 
     @Shadow protected abstract boolean updateWaterState();
 
     @Shadow public abstract boolean updateMovementInFluid(TagKey<Fluid> tag, double speed);
 
     @Shadow protected abstract void updateSubmergedInWaterState();
+
+    @Shadow protected abstract void tickPortalCooldown();
+
+    @Shadow public abstract void resetPortalCooldown();
 
     @Inject(method = "isInvulnerableTo", at = @At("RETURN"), cancellable = true)
     private void dndreams$isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
@@ -54,7 +54,7 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
         }
     }
 
-    @Inject(method = "tickNetherPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiler/Profiler;push(Ljava/lang/String;)V"), cancellable = true)
+    @Inject(method = "tickPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiler/Profiler;push(Ljava/lang/String;)V"), cancellable = true)
     private void dndreams$tickNetherPortal(CallbackInfo ci) {
         if (((Object)this) instanceof ServerPlayerEntity player) {
             GatewayComponent component = EntityComponents.GATEWAY.get(player);
@@ -62,12 +62,12 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
             if (world.getRegistryKey() == ModDimensions.GATEWAY_DIMENSION_KEY) {
                 if (component.isChallenge()) {
                     this.netherPortalTime = getMaxNetherPortalTime();
-                    resetNetherPortalCooldown();
+                    resetPortalCooldown();
                     this.inNetherPortal = false;
 
                     component.exitGateway(true);
 
-                    tickNetherPortalCooldown();
+                    tickPortalCooldown();
 
                     ci.cancel();
                 } else {
@@ -77,12 +77,12 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
                 }
             } else if (world.getRegistryKey() == World.OVERWORLD && !component.hasFoughtPhantomLord()) {
                 this.netherPortalTime = getMaxNetherPortalTime();
-                resetNetherPortalCooldown();
+                resetPortalCooldown();
                 this.inNetherPortal = false;
 
                 component.enterGateway(0, false);
 
-                tickNetherPortalCooldown();
+                tickPortalCooldown();
 
                 ci.cancel();
             }

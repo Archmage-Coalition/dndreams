@@ -57,7 +57,7 @@ dependencies {
 
 	modImplementation "vazkii.patchouli:Patchouli:${patchouli_version}"
 
-	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.5'
+	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.37'
 
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
