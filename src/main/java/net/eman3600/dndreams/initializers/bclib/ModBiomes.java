@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers.bclib;
 
 import com.google.common.collect.Lists;
+import net.eman3600.dndreams.mixin.BiomeAPIMixin;
 import net.eman3600.dndreams.world.biome.end.EndBiome;
 import net.eman3600.dndreams.world.biome.end.EosBiome;
 import net.eman3600.dndreams.world.biome.end.HeliosBiome;
@@ -10,6 +11,7 @@ import net.eman3600.dndreams.world.biome.haven.HavenLandBiomes;
 import net.eman3600.dndreams.world.biome.haven.HavenVoidBiomes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import org.betterx.bclib.api.v2.LifeCycleAPI;
@@ -17,6 +19,7 @@ import org.betterx.bclib.api.v2.generator.BiomeType;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.levelgen.biomes.InternalBiomeAPI;
 import org.betterx.bclib.config.Configs;
 import org.betterx.bclib.config.EntryConfig;
 import org.betterx.bclib.config.IdConfig;
@@ -83,17 +86,17 @@ public class ModBiomes {
 
     private static BCLBiome registerLand(BCLBiome biome) {
         BIOMES_LAND.add(biome);
-        return BiomeAPI.registerEndLandBiome(biome);
+        return BiomeAPIMixin.invokeRegisterBiome(biome, BuiltinRegistries.BIOME);
     }
 
     private static BCLBiome registerVoid(BCLBiome biome) {
         BIOMES_VOID.add(biome);
-        return BiomeAPI.registerEndVoidBiome(biome);
+        return BiomeAPIMixin.invokeRegisterBiome(biome, BuiltinRegistries.BIOME);
     }
 
     private static BCLBiome registerCave(BCLBiome biome) {
         BIOMES_CAVE.add(biome);
-        return BiomeAPI.registerEndLandBiome(biome);
+        return BiomeAPIMixin.invokeRegisterBiome(biome, BuiltinRegistries.BIOME);
     }
 
     private static BCLBiome registerSubLand(BCLBiome parent, BCLBiome biome) {
