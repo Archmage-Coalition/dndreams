@@ -61,7 +61,8 @@ dependencies {
 
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
-	//modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
+	/* Add a 1.19.2 version of Architectury in run/mods to load properly! */
 
 	modImplementation "com.github.quiqueck:BCLib:${project.bclib_version}"
 }
