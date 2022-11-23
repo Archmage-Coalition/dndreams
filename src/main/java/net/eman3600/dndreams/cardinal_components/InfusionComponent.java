@@ -46,6 +46,11 @@ public class InfusionComponent implements InfusionComponentI {
     }
 
     @Override
+    public boolean canAfford(float amount) {
+        return infused() && power >= amount;
+    }
+
+    @Override
     public void setInfusion(Infusion change) {
         infusion = change;
         setPower(getPowerMax());
