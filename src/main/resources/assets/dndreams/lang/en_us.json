@@ -2,7 +2,7 @@
   "item.dndreams.dream_powder": "Dream Powder",
   "item.dndreams.stardust": "Stardust",
   "item.dndreams.corrupt_ingot": "Hellsteel Ingot",
-  "item.dndreams.vital_shard": "Life Quartz",
+  "item.dndreams.vital_shard": "Rose Quartz",
   "item.dndreams.celestium": "Celestium",
   "item.dndreams.pericharite": "Pericharite",
   "item.dndreams.end_stick":  "End Stick",
@@ -274,8 +274,8 @@
   "block.dndreams.hellsand": "Hellslate Sand",
   "block.dndreams.hellsoil": "Hellslate Soil",
   
-  "block.dndreams.vital_ore": "Life Quartz Ore",
-  "block.dndreams.deepslate_vital_ore": "Deepslate Life Quartz Ore",
+  "block.dndreams.vital_ore": "Rose Quartz Ore",
+  "block.dndreams.deepslate_vital_ore": "Deepslate Rose Quartz Ore",
   "block.dndreams.celestium_ore": "Celestium Ore",
   "block.dndreams.celestium_block": "Celestium Block",
   
