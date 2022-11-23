@@ -44,7 +44,7 @@ public abstract class ItemStackMixin {
 
         if (isDamageable() && stack.isIn(ModTags.POWER_USING_TOOLS)) {
             InfusionComponent infusion = EntityComponents.INFUSION.get(player);
-            if (infusion.getPower() >= amount / POWER_DIVISOR) {
+            if (infusion.canAfford(amount / POWER_DIVISOR)) {
                 if (amount > 0) {
                     int i = EnchantmentHelper.getLevel(Enchantments.UNBREAKING, stack);
                     int j = amount;
@@ -66,7 +66,7 @@ public abstract class ItemStackMixin {
         }
         if (isDamageable() && stack.isIn(ModTags.MANA_USING_TOOLS)) {
             ManaComponent mana = EntityComponents.MANA.get(player);
-            if (mana.getMana() >= amount) {
+            if (mana.canAfford(amount)) {
                 if (amount > 0) {
                     int i = EnchantmentHelper.getLevel(Enchantments.UNBREAKING, stack);
                     int j = amount;

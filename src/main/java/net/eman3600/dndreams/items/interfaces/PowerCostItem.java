@@ -20,7 +20,7 @@ public interface PowerCostItem extends Vanishable {
 
     default boolean canAffordPower(PlayerEntity player, ItemStack stack) {
         if (player != null)
-            return EntityComponents.INFUSION.get(player).getPower() >= getPowerCost(stack);
+            return EntityComponents.INFUSION.get(player).canAfford(getPowerCost(stack));
         return false;
     }
 

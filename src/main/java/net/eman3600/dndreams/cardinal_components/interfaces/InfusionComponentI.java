@@ -8,6 +8,9 @@ import net.minecraft.entity.damage.DamageSource;
 public interface InfusionComponentI extends AutoSyncedComponent, ServerTickingComponent {
     Infusion getInfusion();
     boolean infused();
+
+    boolean canAfford(float amount);
+
     void setInfusion(Infusion change);
     float getPower();
     float getPowerMax();
