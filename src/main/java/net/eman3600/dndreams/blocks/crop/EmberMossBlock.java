@@ -35,14 +35,14 @@ public class EmberMossBlock extends PlantBlock {
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 
         if (overloaded(state, world, pos) && random.nextInt(10) == 0) {
-            world.setBlockState(pos, Blocks.FIRE.getDefaultState());
+            world.setBlockState(pos, AbstractFireBlock.getState(world, pos));
             return;
         }
 
         int i = LIMIT;
         for (BlockPos blockPos : BlockPos.iterate(pos.add(-REACH, -1, -REACH), pos.add(REACH, 1, REACH))) {
             if (!world.getBlockState(blockPos).isOf(this) || --i > 0) continue;
-            world.setBlockState(pos, Blocks.FIRE.getDefaultState());
+            world.setBlockState(pos, AbstractFireBlock.getState(world, pos));
             return;
         }
 
