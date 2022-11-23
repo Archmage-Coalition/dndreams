@@ -1,3 +1,3 @@
 The Affliction
 ===
-The Affliction is the root of
+The Affliction is the root of undeath.

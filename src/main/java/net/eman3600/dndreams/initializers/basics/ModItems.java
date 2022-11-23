@@ -34,6 +34,8 @@ import net.eman3600.dndreams.util.ModToolMaterials;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -75,7 +77,8 @@ public class ModItems {
 
     // World Flow
     public static final Item LIQUID_VOID = registerItem("liquid_void",
-            new Item(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON)));
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON),
+                    false, new StatusEffectInstance(ModStatusEffects.VOID_FLOW, 200)));
 
     // Liquid Soul
     public static final Item LIQUID_SOUL = registerItem("liquid_soul",
@@ -146,17 +149,23 @@ public class ModItems {
 
     // Bottled Stuff
     public static final Item VITAL_OIL = registerItem("vital_oil",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+                    false, new StatusEffectInstance(StatusEffects.REGENERATION, 400), new StatusEffectInstance(StatusEffects.INSTANT_HEALTH,1, 1)));
     public static final Item SOUL_SOUP = registerItem("soul_soup",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+                    true, new StatusEffectInstance(ModStatusEffects.LIFEMANA, 600), new StatusEffectInstance(ModStatusEffects.AFFLICTION, 1800)));
     public static final Item NATURES_GOSPEL = registerItem("natures_gospel",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
     public static final Item INFERNAL_ANIMUS = registerItem("infernal_animus",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
     public static final Item TRACE_OF_OTHERWHERE = registerItem("trace_of_otherwhere",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
     public static final Item GHOST_OF_LIGHT = registerItem("ghost_of_light",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE)));
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
 
     // Ingots
     public static final Item CORRUPT_SCRAP = registerItem("corrupt_scrap",

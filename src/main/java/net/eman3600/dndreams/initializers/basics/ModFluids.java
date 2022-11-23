@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers.basics;
 
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.blocks.spirtloggable.Spiritloggable;
 import net.eman3600.dndreams.fluids.FlowingSpiritFluid;
 import net.eman3600.dndreams.fluids.SorrowFluid;
 import net.eman3600.dndreams.fluids.block.FlowingSpiritBlock;
@@ -41,5 +42,6 @@ public class ModFluids {
 
     public static void registerFluids() {
         System.out.println("Registering fluids for " + Initializer.MODID);
+        Spiritloggable.registerFluidProperties();
     }
 }

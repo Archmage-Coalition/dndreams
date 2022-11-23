@@ -5,10 +5,12 @@ import net.eman3600.dndreams.blocks.entities.DeepslateCoreBlockEntity;
 import net.eman3600.dndreams.blocks.portal.GenericPortalAreaHelper;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.*;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -18,9 +20,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public class LiquidSoulItem extends Item {
+public class LiquidSoulItem extends DrinkableItem {
     public LiquidSoulItem(Settings settings) {
-        super(settings);
+        super(settings, false,
+                new StatusEffectInstance(ModStatusEffects.LIFEMANA, 1800),
+                new StatusEffectInstance(ModStatusEffects.AFFLICTION, 1800));
     }
 
     @Override
@@ -37,7 +41,7 @@ public class LiquidSoulItem extends Item {
             GenericPortalAreaHelper helper = new GenericPortalAreaHelper(world, offset, axis, ((GenericPortalBlock)ModBlocks.WEAK_PORTAL).frameBlock, (GenericPortalBlock)ModBlocks.WEAK_PORTAL);
 
             if (helper.width > 1 && helper.height > 1) {
-                context.getPlayer().setStackInHand(context.getHand(), ItemUsage.exchangeStack(stack, context.getPlayer(), new ItemStack(Items.GLASS_BOTTLE)));
+                context.getPlayer().setStackInHand(context.getHand(), ItemUsage.exchangeStack(stack, context.getPlayer(), new ItemStack(Items.GLASS_BOTTLE), true));
                 helper.createPortal();
 
                 world.setBlockState(helper.getFrameCorner(), ModBlocks.DEEPSLATE_CORE.getDefaultState().with(DeepslateCoreBlock.AXIS, axis));

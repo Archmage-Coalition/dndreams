@@ -1,0 +1,29 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:vital_oil"
+    },
+	{
+      "item": "dndreams:mellifluous_hunger"
+    },
+	{
+      "item": "dndreams:helios_fume"
+    },
+	{
+      "item": "dndreams:wither_bud"
+    },
+	{
+      "item": "dndreams:succulent_apple"
+    },
+	{
+      "item": "dndreams:stardust"
+    }
+  ],
+  "result": {
+    "item": "dndreams:panacea",
+    "count": 1
+  },
+  "color": 11317832,
+  "method": "bottle"
+}

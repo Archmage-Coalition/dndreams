@@ -5,6 +5,7 @@ import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.crop.*;
 import net.eman3600.dndreams.blocks.energy.*;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
+import net.eman3600.dndreams.blocks.spirtloggable.SpiritStairsBlock;
 import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
@@ -204,7 +205,7 @@ public class ModBlocks {
 
     // Dreamwood Stairs
     public static final Block DREAMWOOD_STAIRS = registerDreamBlock("dreamwood_stairs",
-            new ModStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+            new SpiritStairsBlock(DREAMWOOD_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(1.5f)));
