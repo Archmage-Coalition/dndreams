@@ -85,21 +85,31 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    // Managold Block
+    // Some of the Ore Blocks
     public static final Block MANAGOLD_BLOCK = registerBlock("managold_block",
             new Block(FabricBlockSettings.of(Material.METAL, MapColor.GOLD).strength(3.0f).resistance(6.0f)
                     .sounds(BlockSoundGroup.METAL)
                     .requiresTool()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-
-    // Tormite Block
     public static final Block TORMITE_BLOCK = registerBlock("tormite_block",
             new Block(FabricBlockSettings.of(Material.METAL, MapColor.GOLD).strength(3.0f).resistance(6.0f)
                     .sounds(BlockSoundGroup.METAL)
                     .requiresTool()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).fireproof());
+    public static final Block VITAL_BLOCK = registerBlock("vital_block",
+            new Block(FabricBlockSettings.of(Material.METAL, MapColor.PINK).strength(5.0f).resistance(6.0f)
+                    .sounds(BlockSoundGroup.METAL)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block PERICHARITE_BLOCK = registerBlock("pericharite_block",
+            new Block(FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).strength(5.0f).resistance(6.0f)
+                    .sounds(BlockSoundGroup.METAL)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // World Fountain
     public static final Block WORLD_FOUNTAIN = registerBlock("world_fountain",

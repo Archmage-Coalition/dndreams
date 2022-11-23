@@ -201,7 +201,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
         EntityComponents.TORMENT.maybeGet(player).ifPresent(tormentComponent -> {
             float tormentPercent = (tormentComponent.getTorment() / TormentComponent.MAX_TORMENT);
-            if (tormentPercent <= 0) return;
+            if (tormentPercent <= 0.1) return;
             int skipV = (int)((TORMENT_HEIGHT + 1) * (1f - tormentPercent));
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
