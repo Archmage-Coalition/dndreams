@@ -59,12 +59,12 @@ public class ModBlocks {
 
     // Vital Ore
     public static final Block VITAL_ORE = registerBlock("vital_ore",
-            new VitalOreBlock(FabricBlockSettings.copy(Blocks.STONE)
+            new VitalOreBlock(FabricBlockSettings.copy(Blocks.DIAMOND_ORE)
                     .requiresTool().ticksRandomly(), UniformIntProvider.create(2, 6)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block DEEPSLATE_VITAL_ORE = registerBlock("deepslate_vital_ore",
-            new VitalOreBlock(FabricBlockSettings.copy(Blocks.DEEPSLATE)
+            new VitalOreBlock(FabricBlockSettings.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
                     .requiresTool().ticksRandomly(), UniformIntProvider.create(2, 6)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));

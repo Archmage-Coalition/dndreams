@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:pericharite",
+  "ingredients": [
+    {
+      "item": "dndreams:pericharite_block"
+    }
+  ],
+  "result": {
+    "item": "dndreams:pericharite",
+    "count": 9
+  }
+}

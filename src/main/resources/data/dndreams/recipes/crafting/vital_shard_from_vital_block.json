@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:vital_shard",
+  "ingredients": [
+    {
+      "item": "dndreams:vital_block"
+    }
+  ],
+  "result": {
+    "item": "dndreams:vital_shard",
+    "count": 9
+  }
+}
