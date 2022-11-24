@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "X",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:celestium"
+    },
+    "X": {
+      "item": "dndreams:end_stick"
+    }
+  },
+  "result": {
+    "item": "dndreams:celestium_shovel"
+  }
+}
