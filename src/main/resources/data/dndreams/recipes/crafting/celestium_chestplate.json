@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "dndreams:celestium"
+    },
+	"#": {
+      "item": "dndreams:liquid_void"
+    }
+  },
+  "pattern": [
+    "X#X",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "item": "dndreams:celestium_chestplate"
+  }
+}
