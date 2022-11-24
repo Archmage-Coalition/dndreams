@@ -1,13 +1,10 @@
 package net.eman3600.dndreams.initializers.event;
 
-import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
-import net.eman3600.dndreams.cardinal_components.BossStateComponent;
 import net.eman3600.dndreams.cardinal_components.PermItemComponent;
 import net.eman3600.dndreams.cardinal_components.StatBoonComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
-import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
+import net.eman3600.dndreams.mixin_interfaces.ItemEntityAccess;
 import net.eman3600.dndreams.recipe.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
@@ -35,49 +32,44 @@ public class ModCallbacks {
     public static boolean launchNewItem(World world, Vec3d pos, ItemStack base) {
         ItemEntity entity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), base.copy());
         entity.addVelocity(0, 0.5D, 0);
+        ItemEntityAccess.markTransmutable(entity, false);
 
         return world.spawnEntity(entity);
     }
 
     public static void registerCallbacks() {
         ItemInFlowingSpiritCallback.EVENT.register(item -> {
-            if (item.world instanceof ServerWorld world && item instanceof ItemEntityInterface entityInterface) {
-                int windupTicks = entityInterface.getWindupTicks();
-                if (windupTicks >= 30) {
-                    entityInterface.setWindupTicks(0);
-                    ItemStack stack = item.getStack();
-                    int amount = stack.getCount();
+            if (item.world instanceof ServerWorld world && item instanceof ItemEntityAccess access && access.isTransmutable()) {
+                access.setTransmutable(false);
+                ItemStack stack = item.getStack();
+                int amount = stack.getCount();
 
-                    ItemStack input = item.getStack().copy();
-                    input.setCount(1);
+                ItemStack input = item.getStack().copy();
+                input.setCount(1);
 
-                    DUMMY_INVENTORY.setStack(0, input);
+                DUMMY_INVENTORY.setStack(0, input);
 
-                    Optional<TransmutationRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.TRANSMUTATION, DUMMY_INVENTORY, world);
-                    if (optional.isPresent()) {
-                        TransmutationRecipe recipe = optional.get();
-                        ItemStack output = recipe.craft(DUMMY_INVENTORY);
+                Optional<TransmutationRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.TRANSMUTATION, DUMMY_INVENTORY, world);
+                if (optional.isPresent()) {
+                    TransmutationRecipe recipe = optional.get();
+                    ItemStack output = recipe.craft(DUMMY_INVENTORY);
 
-                        if (!output.isEmpty()) {
-                            for (int i = 0; i < amount; i++) {
-                                if (launchNewItem(world, item.getPos(), output)) {
-                                    amount -= 1;
-                                    i--;
-                                }
-                            }
-
-                            stack.decrement(stack.getCount() - amount);
-
-
-                            if (amount <= 0) {
-                                item.remove(Entity.RemovalReason.DISCARDED);
+                    if (!output.isEmpty()) {
+                        for (int i = 0; i < amount; i++) {
+                            if (launchNewItem(world, item.getPos(), output)) {
+                                amount -= 1;
+                                i--;
                             }
                         }
-                    }
-                } else {
-                    entityInterface.incrementWindupTicks(1);
-                }
 
+                        stack.decrement(stack.getCount() - amount);
+
+
+                        if (amount <= 0) {
+                            item.remove(Entity.RemovalReason.DISCARDED);
+                        }
+                    }
+                }
             }
         });
 

@@ -1,6 +1,8 @@
 package net.eman3600.dndreams.initializers.basics;
 
+import net.eman3600.dndreams.entities.projectiles.BrewGasEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewLingeringEntity;
+import net.eman3600.dndreams.entities.projectiles.BrewLiquidEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.items.*;
@@ -226,7 +228,7 @@ public class ModItems {
             new ModShovelItem(ModToolMaterials.CELESTIUM, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_HOE = registerItem("celestium_hoe",
-            new ModHoeItem(ModToolMaterials.CELESTIUM, -2, 0F,
+            new ModHoeItem(ModToolMaterials.CELESTIUM, -5, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item CELESTIUM_HELMET = registerItem("celestium_helmet",
@@ -447,9 +449,13 @@ public class ModItems {
     public static final Item BREW_INGESTED = registerItem("brew_ingested",
             new BrewIngestedItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16)));
     public static final Item BREW_SPLASH = registerItem("brew_splash",
-            new BrewThrownItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16), BrewSplashEntity::new));
+            new BrewThrownItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16), .8f, BrewSplashEntity::new));
     public static final Item BREW_LINGERING = registerItem("brew_lingering",
-            new BrewThrownItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16), BrewLingeringEntity::new));
+            new BrewThrownItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16), .35f, BrewLingeringEntity::new));
+    public static final Item BREW_GAS = registerItem("brew_gas",
+            new BrewThrownItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16), .15f, BrewGasEntity::new));
+    public static final Item BREW_LIQUID = registerItem("brew_liquid",
+            new BrewThrownItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16), .25f, BrewLiquidEntity::new));
 
 
 

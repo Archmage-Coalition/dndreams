@@ -3,10 +3,7 @@ package net.eman3600.dndreams.initializers.entity;
 import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
 import net.eman3600.dndreams.entities.mobs.WardenRagdollEntity;
-import net.eman3600.dndreams.entities.projectiles.BrewLingeringEntity;
-import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
-import net.eman3600.dndreams.entities.projectiles.CrownedBeamEntity;
-import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
+import net.eman3600.dndreams.entities.projectiles.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
@@ -52,6 +49,22 @@ public class ModEntities {
     public static final EntityType<BrewLingeringEntity> BREW_LINGERING = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "brew_lingering"),
             FabricEntityTypeBuilder.<BrewLingeringEntity>create(SpawnGroup.MISC, BrewLingeringEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build()
+    );
+
+    public static final EntityType<BrewGasEntity> BREW_GAS = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "brew_gas"),
+            FabricEntityTypeBuilder.<BrewGasEntity>create(SpawnGroup.MISC, BrewGasEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build()
+    );
+
+    public static final EntityType<BrewLiquidEntity> BREW_LIQUID = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "brew_liquid"),
+            FabricEntityTypeBuilder.<BrewLiquidEntity>create(SpawnGroup.MISC, BrewLiquidEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
                     .trackRangeBlocks(4).trackedUpdateRate(10)
                     .build()

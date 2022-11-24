@@ -9,7 +9,7 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.items.consumable.brew.AbstractBrewItem;
-import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
+import net.eman3600.dndreams.mixin_interfaces.ItemEntityAccess;
 import net.eman3600.dndreams.recipe.ApothecaryRecipe;
 import net.eman3600.dndreams.recipe.CauldronRecipe;
 import net.eman3600.dndreams.recipe.ExtractionMethod;
@@ -104,7 +104,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
 
                     ItemStack output = recipe.craft(this);
                     ItemEntity item = new ItemEntity(world, vec.x, vec.y, vec.z, output);
-                    if (item instanceof ItemEntityInterface access) {
+                    if (item instanceof ItemEntityAccess access) {
                         access.markUnbrewable();
                     }
 
@@ -189,7 +189,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
 
     private void attemptAdd(ItemStack stack, ItemEntity itemEntity, ServerWorld world) {
         if (inventory.get(0).isOf(ModItems.WOOD_ASH)) inventory.clear();
-        if (itemEntity instanceof ItemEntityInterface access && access.isUnbrewable()) return;
+        if (itemEntity instanceof ItemEntityAccess access && access.isUnbrewable()) return;
 
         if (stack.isOf(ModItems.WOOD_ASH)) {
             reset(world);
@@ -216,7 +216,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
         if (addition.getItem().hasRecipeRemainder()) {
             ItemEntity remains = new ItemEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), addition.getItem().getRecipeRemainder().getDefaultStack());
 
-            if (remains instanceof ItemEntityInterface access) {
+            if (remains instanceof ItemEntityAccess access) {
                 access.markUnbrewable();
             }
 

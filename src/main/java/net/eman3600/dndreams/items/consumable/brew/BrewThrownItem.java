@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 public class BrewThrownItem extends AbstractBrewItem {
     private final Function2<PlayerEntity, World, AbstractBrewEntity> brewEntity;
 
-    public BrewThrownItem(Settings settings, Function2<PlayerEntity, World, AbstractBrewEntity> brewEntity) {
-        super(settings, 0.8f);
+    public BrewThrownItem(Settings settings, float durationMod, Function2<PlayerEntity, World, AbstractBrewEntity> brewEntity) {
+        super(settings, durationMod);
         this.brewEntity = brewEntity;
     }
 

@@ -18,6 +18,6 @@ public abstract class ItemColorsMixin {
     private static void dndreams$create(BlockColors blockColors, CallbackInfoReturnable<ItemColors> cir) {
         ItemColors colors = cir.getReturnValue();
 
-        colors.register((stack, tintIndex) -> tintIndex > 0 ? -1 : PotionUtil.getColor(PotionUtil.getPotionEffects(stack)), ModItems.BREW_INGESTED, ModItems.BREW_SPLASH, ModItems.BREW_LINGERING);
+        colors.register((stack, tintIndex) -> tintIndex > 0 ? -1 : PotionUtil.getColor(PotionUtil.getPotionEffects(stack)), ModItems.BREW_INGESTED, ModItems.BREW_SPLASH, ModItems.BREW_LINGERING, ModItems.BREW_GAS, ModItems.BREW_LIQUID);
     }
 }
