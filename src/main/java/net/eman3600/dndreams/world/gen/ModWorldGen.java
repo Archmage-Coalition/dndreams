@@ -22,10 +22,6 @@ public class ModWorldGen {
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.HELLSLATE_ORE_COMMON_PLACED.getKey().get());
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.VITAL_ORE_PLACED.getKey().get());
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
-                GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.VITAL_ORE_SPARSE_PLACED.getKey().get());
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
-                GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.VITAL_ORE_BURIED_PLACED.getKey().get());
         BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(),
                 GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.CELESTIUM_ORE_PLACED.getKey().get());
     }

@@ -76,7 +76,7 @@ public abstract class BucketItemMixin extends Item implements FluidModificationI
         BlockState state = world.getBlockState(pos);
         Block block;
 
-        if ((block = state.getBlock()) instanceof Spiritloggable && fluid != Fluids.WATER && Spiritloggable.FLUID_PROPERTIES.containsKey(fluid)) {
+        if ((block = state.getBlock()) instanceof Spiritloggable loggable && fluid != Fluids.WATER && Spiritloggable.FLUID_PROPERTIES.containsKey(fluid) && loggable.canFillWithFluid(world, pos, state, fluid)) {
             ((FluidFillable) block).tryFillWithFluid(world, pos, state, ((FlowableFluid)this.fluid).getStill(false));
             this.playEmptyingSound(player, world, pos);
             cir.setReturnValue(true);

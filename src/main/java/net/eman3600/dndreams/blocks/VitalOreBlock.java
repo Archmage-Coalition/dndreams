@@ -12,6 +12,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
@@ -38,12 +39,7 @@ public class VitalOreBlock extends OreBlock {
 
     @Override
     public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
-        boolean revealed = state.get(REVEALED);
-        if (!revealed) {
-            BlockState newState = state.with(REVEALED, true);
-            world.setBlockState(pos, newState);
-            world.updateListeners(pos, state, newState, Block.NOTIFY_ALL);
-        }
+        updateRevealed(world, pos, 4, true);
 
         super.onBlockBreakStart(state, world, pos, player);
     }
@@ -59,9 +55,19 @@ public class VitalOreBlock extends OreBlock {
         boolean revealed = state.get(REVEALED);
 
         if (revealed != moon.isBloodMoon()) {
-            BlockState newState = state.with(REVEALED, !revealed);
-            world.setBlockState(pos, newState);
-            world.updateListeners(pos, state, newState, Block.NOTIFY_ALL);
+            updateRevealed(world, pos, 4, !revealed);
+        }
+    }
+
+    private void updateRevealed(World world, BlockPos pos, int left, boolean revealed) {
+        BlockState state = world.getBlockState(pos);
+        if (!(state.getBlock() instanceof VitalOreBlock)) return;
+        BlockState newState = state.with(REVEALED, revealed);
+        world.setBlockState(pos, newState);
+        world.updateListeners(pos, state, newState, Block.NOTIFY_ALL);
+
+        if (left > 0) for (Direction dir: Direction.values()) {
+            updateRevealed(world, pos.offset(dir), left - 1, revealed);
         }
     }
 

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#c:end_ores",
+	"dndreams:hellslate",
+	"dndreams:hellsand",
+	"dndreams:hellsoil",
+	"dndreams:pericharite_ore",
+	"dndreams:managold_ore",
+	"dndreams:haven_coal_ore",
+	"dndreams:vital_ore",
+	"dndreams:deepslate_vital_ore"
+  ]
+}

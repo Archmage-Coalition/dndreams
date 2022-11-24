@@ -6,6 +6,7 @@ import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
+import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.*;
@@ -19,6 +20,8 @@ import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.tag.TagKey;
@@ -91,6 +94,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Shadow public abstract float getMaxHealth();
 
     @Shadow public abstract boolean damage(DamageSource source, float amount);
+
+    @Shadow public abstract Iterable<ItemStack> getArmorItems();
 
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -214,9 +219,9 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
                     hp = cap;
                 }
 
-                amount = Math.min((float) (hp - (hp * Math.pow(1 / Math.pow(Math.E, 1 / cap), amount))), hp - .2f);
+                amount = Math.min((float) (hp - (hp * Math.pow(1 / Math.pow(Math.E, 1 / cap), amount))), hp - .2f) + extraDmg;
 
-                cir.setReturnValue(amount + extraDmg);
+                cir.setReturnValue(amount);
             }
         }
     }

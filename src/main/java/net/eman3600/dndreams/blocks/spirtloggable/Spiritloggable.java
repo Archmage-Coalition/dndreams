@@ -10,7 +10,6 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +30,7 @@ public interface Spiritloggable extends Waterloggable {
 
     @Override
     default boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
-        return !(state.get(Properties.WATERLOGGED) || state.get(ModProperties.SPIRITLOGGED) || state.get(ModProperties.SORROWLOGGED)) && (fluid == Fluids.WATER || fluid == ModFluids.STILL_SORROW || fluid == ModFluids.STILL_FLOWING_SPIRIT);
+        return !isSpiritLogged(state) && FLUID_PROPERTIES.containsKey(fluid);
     }
 
 
@@ -89,6 +88,24 @@ public interface Spiritloggable extends Waterloggable {
     }
 
     static BlockState unlogDefaultState(Block block) {
-        return block.getDefaultState().with(Properties.WATERLOGGED, false).with(ModProperties.SPIRITLOGGED, false).with(ModProperties.SORROWLOGGED, false);
+        BlockState state = block.getDefaultState();
+        return state.with(Properties.WATERLOGGED, false).with(ModProperties.SORROWLOGGED, false).with(ModProperties.SPIRITLOGGED, false);
     }
+
+    default boolean isSpiritLogged(BlockState state) {
+        for (BooleanProperty property: FLUID_PROPERTIES.values()) {
+            if (state.get(property)) return true;
+        }
+        return false;
+    }
+
+    default Fluid getSpiritLogger(BlockState state) {
+        for (Fluid fluid: FLUID_PROPERTIES.keySet()) {
+            if (state.get(FLUID_PROPERTIES.get(fluid))) {
+                return fluid;
+            }
+        }
+        return null;
+    }
+
 }

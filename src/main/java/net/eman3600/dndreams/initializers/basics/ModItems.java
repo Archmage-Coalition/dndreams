@@ -58,7 +58,7 @@ public class ModItems {
 
     // Stardust
     public static final Item STARDUST = registerItem("stardust",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+            new StardustItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Refined Evil
     public static final Item REFINED_EVIL = registerItem("refined_evil",
@@ -310,7 +310,7 @@ public class ModItems {
 
     // Shattered Sword
     public static final Item SHATTERED_SWORD = registerItem("shattered_sword",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).rarity(Rarity.UNCOMMON).fireproof()));
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).rarity(Rarity.UNCOMMON).maxCount(1).fireproof()));
 
     // Slumbering Sword
     public static final Item SLUMBERING_SWORD = registerItem("slumbering_sword",
