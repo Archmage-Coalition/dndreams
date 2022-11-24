@@ -17,6 +17,8 @@ public class InstantModStatusEffect extends InstantStatusEffect {
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (this == ModStatusEffects.SILENCE && entity.isPlayer()) {
             EntityComponents.TORMENT.get(entity).addTorment(-35.0f * (amplifier + 1));
+        } else if (this == ModStatusEffects.IMMOLATION) {
+            entity.setOnFireFor(14 * (amplifier + 1));
         }
     }
 
@@ -25,6 +27,9 @@ public class InstantModStatusEffect extends InstantStatusEffect {
         int i;
         if (this == ModStatusEffects.SILENCE && target.isPlayer()) {
             applyUpdateEffect(target, amplifier);
+        } else if (this == ModStatusEffects.IMMOLATION) {
+            i = (int)(proximity * (double)(14 * (amplifier + 1)) + 0.5);
+            target.setOnFireFor(i);
         }
     }
 }

@@ -158,7 +158,8 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         if (mana > getManaMax() && !player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
             mana = getManaMax();
         }
-        if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW) && mana > getManaMax() && player.canTakeDamage()) {
+        if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW) && mana > getManaMax()) {
+            player.timeUntilRegen = 1;
             player.damage(DamageSource.MAGIC, 0.3f * ((float)mana - getManaMax()));
         }
         reRender();

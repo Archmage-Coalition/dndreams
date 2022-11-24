@@ -5,9 +5,12 @@ import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.crop.*;
 import net.eman3600.dndreams.blocks.energy.*;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
+import net.eman3600.dndreams.blocks.spirtloggable.SpiritFenceBlock;
+import net.eman3600.dndreams.blocks.spirtloggable.SpiritPaneBlock;
+import net.eman3600.dndreams.blocks.spirtloggable.SpiritSlabBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritStairsBlock;
-import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.initializers.event.ModParticles;
+import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.world.feature.tree.sapling_generator.*;
@@ -151,7 +154,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block SHIMMERING_GLASS_PANE = registerBlock("shimmering_glass_pane",
-            new PaneBlock(FabricBlockSettings.copy(Blocks.GLASS_PANE).luminance(state -> 7)),
+            new SpiritPaneBlock(FabricBlockSettings.copy(Blocks.GLASS_PANE).luminance(state -> 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
@@ -212,14 +215,14 @@ public class ModBlocks {
 
     // Dreamwood Slab
     public static final Block DREAMWOOD_SLAB = registerDreamBlock("dreamwood_slab",
-            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+            new SpiritSlabBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(0.5f)));
 
     // Dreamwood Fence
     public static final Block DREAMWOOD_FENCE = registerDreamBlock("dreamwood_fence",
-            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
+            new SpiritFenceBlock(FabricBlockSettings.of(Material.WOOD).strength(1.0f)
                     .sounds(BlockSoundGroup.WOOL)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS).food(ModFoodComponents.cakewood(1.34f)));

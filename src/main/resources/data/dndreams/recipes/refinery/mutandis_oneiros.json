@@ -1,0 +1,22 @@
+{
+  "type": "dndreams:refinery",
+  "group": "dndreams:mutandis_oneiros",
+  "ingredients": [
+    {
+      "item": "dndreams:mutandis_extremis"
+    },
+	{
+      "item": "dndreams:mutandis_extremis"
+    },
+	{
+      "item": "dndreams:stardust"
+    },
+	{
+      "item": "dndreams:dreamwood_fume"
+    }
+  ],
+  "result": {
+    "item": "dndreams:mutandis_oneiros",
+    "count": 2
+  }
+}

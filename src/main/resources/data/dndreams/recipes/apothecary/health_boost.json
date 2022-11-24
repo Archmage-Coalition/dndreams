@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "dndreams:vital_shard"
+  },
+  "corrupted": false,
+  "capacity": 4,
+  "cost": 400,
+  "effect": "minecraft:health_boost",
+  "duration": 3600
+}

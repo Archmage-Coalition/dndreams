@@ -27,6 +27,7 @@ public class ModStatusEffects {
     public static StatusEffect SPOTTED = register("spotted", new ModStatusEffect(StatusEffectCategory.HARMFUL, 21862));
     public static StatusEffect AETHER = register("aether", new ModStatusEffect(StatusEffectCategory.HARMFUL, 1118481));
     public static StatusEffect AFFLICTION = register("affliction", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x352922));
+    public static StatusEffect IMMOLATION = register("immolation", new InstantModStatusEffect(StatusEffectCategory.HARMFUL, 0xFF8A1A));
 
     private static StatusEffect register(String name, StatusEffect entry) {
         return Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

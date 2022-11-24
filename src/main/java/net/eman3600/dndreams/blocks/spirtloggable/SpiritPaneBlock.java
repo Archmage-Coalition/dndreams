@@ -3,19 +3,18 @@ package net.eman3600.dndreams.blocks.spirtloggable;
 import net.eman3600.dndreams.blocks.properties.ModProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.StairsBlock;
+import net.minecraft.block.PaneBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.WorldAccess;
 
-public class SpiritStairsBlock extends StairsBlock implements Spiritloggable {
-    public SpiritStairsBlock(BlockState baseBlockState, Settings settings) {
-        super(baseBlockState, settings);
+public class SpiritPaneBlock extends PaneBlock implements Spiritloggable {
+    public SpiritPaneBlock(Settings settings) {
+        super(settings);
         setDefaultState(Spiritloggable.unlogDefaultState(this));
     }
 

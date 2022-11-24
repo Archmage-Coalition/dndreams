@@ -40,10 +40,6 @@ public class ModFeatures {
 
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> VITAL_ORE =
             ConfiguredFeatures.register("vital_ore",Feature.ORE, new OreFeatureConfig(VITAL_ORES, 8));
-    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> VITAL_ORE_SPARSE =
-            ConfiguredFeatures.register("vital_ore_sparse",Feature.ORE, new OreFeatureConfig(VITAL_ORES, 6));
-    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> VITAL_ORE_BURIED =
-            ConfiguredFeatures.register("vital_ore_buried",Feature.ORE, new OreFeatureConfig(VITAL_ORES, 12, .8f));
 
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> CELESTIUM_ORE =
             ConfiguredFeatures.register("celestium_ore",Feature.ORE, new OreFeatureConfig(CELESTIUM_ORES, 4));

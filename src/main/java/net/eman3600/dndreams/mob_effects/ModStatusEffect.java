@@ -44,6 +44,7 @@ public class ModStatusEffect extends StatusEffect {
             EntityComponents.TORMENT.get(player).addPerSecond(0.5f * (amplifier + 1));
         } else if (this == ModStatusEffects.VOID_FLOW) {
             if (!entity.isPlayer()) {
+                entity.timeUntilRegen = 8;
                 entity.damage(DamageSource.MAGIC, 1.0f);
             }
         }
