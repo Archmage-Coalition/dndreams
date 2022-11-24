@@ -222,6 +222,26 @@ public class ModItems {
             new ModAxeItem(ModToolMaterials.CELESTIUM, 5.0F, -3.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
+    public static final Item CELESTIUM_SHOVEL = registerItem("celestium_shovel",
+            new ModShovelItem(ModToolMaterials.CELESTIUM, 1.5F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item CELESTIUM_HOE = registerItem("celestium_hoe",
+            new ModHoeItem(ModToolMaterials.CELESTIUM, -2, 0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+
+    public static final Item CELESTIUM_HELMET = registerItem("celestium_helmet",
+            new ArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CELESTIUM_CHESTPLATE = registerItem("celestium_chestplate",
+            new ArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CELESTIUM_LEGGINGS = registerItem("celestium_leggings",
+            new ArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CELESTIUM_BOOTS = registerItem("celestium_boots",
+            new ArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+
 
     // Mindstring Bow
     public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
