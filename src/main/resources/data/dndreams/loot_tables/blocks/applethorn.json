@@ -29,9 +29,9 @@
                       "name": "dndreams:poison_apple",
                       "conditions": [
                         {
-                          "condition": "dndreams:torment",
+                          "condition": "dndreams:sanity",
                           "entity": "this",
-						  "torment": 75
+						  "sanity": 25
                         }
                       ]
                     },

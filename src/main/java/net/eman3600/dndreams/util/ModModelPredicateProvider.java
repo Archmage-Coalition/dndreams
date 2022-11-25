@@ -4,6 +4,7 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.item.UnclampedModelPredicateProvider;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 
@@ -17,6 +18,17 @@ public class ModModelPredicateProvider {
         registerBloodlustItem(ModItems.CORRUPT_AXE);
         registerBloodlustItem(ModItems.CORRUPT_SHOVEL);
         registerBloodlustItem(ModItems.CORRUPT_HOE);
+
+        registerItem(new Identifier("bound"),
+                (stack, world, entity, seed) -> (stack.getOrCreateNbt().contains("bound")) ? 1f : 0f,
+                ModItems.TAGLOCK);
+    }
+
+
+    private static void registerItem(Identifier model, UnclampedModelPredicateProvider provider, Item... items) {
+        for (Item item: items) {
+            ModelPredicateProviderRegistry.register(item, model, provider);
+        }
     }
 
     private static void registerBow(Item bow) {

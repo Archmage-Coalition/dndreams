@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
+import net.eman3600.dndreams.mixin_interfaces.ItemEntityAccess;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.Entity;
@@ -13,12 +13,12 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemEntity.class)
-public abstract class ItemEntityMixin extends Entity implements ItemEntityInterface {
+public abstract class ItemEntityMixin extends Entity implements ItemEntityAccess {
 
     @Unique private boolean unbrewable = false;
+    @Unique private boolean transmutable = true;
 
     public ItemEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -31,18 +31,6 @@ public abstract class ItemEntityMixin extends Entity implements ItemEntityInterf
         }
     }
 
-    int windupTicks = 0;
-
-    @Override
-    public int getWindupTicks() {
-        return windupTicks;
-    }
-
-    @Override
-    public void setWindupTicks(int ticks) {
-        windupTicks = ticks;
-    }
-
     @Override
     public void markUnbrewable() {
         unbrewable = true;
@@ -53,13 +41,25 @@ public abstract class ItemEntityMixin extends Entity implements ItemEntityInterf
         return unbrewable;
     }
 
+    @Override
+    public boolean isTransmutable() {
+        return transmutable;
+    }
+
+    @Override
+    public void setTransmutable(boolean transmutable) {
+        this.transmutable = transmutable;
+    }
+
     @Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
     private void dndreams$writeNbt(NbtCompound nbt, CallbackInfo ci) {
         nbt.putBoolean("dndreams.unbrewable", unbrewable);
+        nbt.putBoolean("dndreams.transmutable", transmutable);
     }
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
     private void dndreams$readNbt(NbtCompound nbt, CallbackInfo ci) {
         unbrewable = nbt.getBoolean("dndreams.unbrewable");
+        transmutable = nbt.getBoolean("dndreams.transmutable");
     }
 }

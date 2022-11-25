@@ -1,20 +1,20 @@
 package net.eman3600.dndreams.rituals;
 
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
-import net.eman3600.dndreams.rituals.setup.AbstractSustainedRitual;
+import net.eman3600.dndreams.rituals.setup.SustainedRitual;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class SummonStormRitual extends AbstractSustainedRitual {
+public class SummonStormRitual extends SustainedRitual {
     public SummonStormRitual() {
         super(1000, 200, new Ring(Ring.INNER_RING, CandleTuning.OVERWORLD), new Ring(Ring.MIDDLE_RING, CandleTuning.OVERWORLD));
     }
 
     @Override
-    public boolean onCast(World world, BlockPos pos, SoulCandleBlockEntity blockEntity) {
+    public boolean onCast(ServerWorld world, BlockPos pos, SoulCandleBlockEntity blockEntity) {
         return !world.isThundering();
     }
 

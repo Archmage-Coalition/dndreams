@@ -92,6 +92,8 @@
   "item.dndreams.charged_shard": "Attuned Amethyst",
   "item.dndreams.waystone": "Waystone",
   "item.dndreams.waystone.tooltip": "§dBound: %s %s %s",
+  "item.dndreams.taglock": "Taglock",
+  "item.dndreams.taglock.tooltip": "§5Bound: %s",
   "item.dndreams.overworld_tuner": "Overworld Tuner",
   "item.dndreams.nether_tuner": "Nether Tuner",
   "item.dndreams.end_tuner": "End Tuner",
@@ -234,6 +236,7 @@
   "effect.dndreams.aether": "Starstruck",
   "effect.dndreams.affliction": "Affliction",
   "effect.dndreams.immolation": "Immolation",
+  "effect.dndreams.gas_mask": "Gas Mask",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",
@@ -488,9 +491,12 @@
   
   "ritual.dndreams.waystone": "Bind Waystone",
   "ritual.dndreams.waystone_simple": "Rebind Waystone",
+  "ritual.dndreams.taglock": "Take Taglock",
+  "ritual.dndreams.taglock_relocated": "Swipe Taglock",
   "ritual.dndreams.amethyst_source": "Bud Amethyst",
   "ritual.dndreams.amethyst_sprout": "Sprout Amethyst",
   "ritual.dndreams.summon_storm": "Thundercall",
+  "ritual.dndreams.night_terror": "Night Terror",
   "ritual.dndreams.nature_infusion": "Infusion - Nature",
   "ritual.dndreams.infernal_infusion": "Infusion - Infernal",
   "ritual.dndreams.otherwhere_infusion": "Infusion - Otherwhere",

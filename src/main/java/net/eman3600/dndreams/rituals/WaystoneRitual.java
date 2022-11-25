@@ -3,15 +3,15 @@ package net.eman3600.dndreams.rituals;
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.eman3600.dndreams.initializers.event.ModRituals;
 import net.eman3600.dndreams.items.WaystoneItem;
-import net.eman3600.dndreams.rituals.setup.AbstractRitual;
+import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
-public class WaystoneRitual extends AbstractRitual {
+public class WaystoneRitual extends Ritual {
 
 
     public WaystoneRitual(int cost, Ring... rings) {
@@ -19,7 +19,7 @@ public class WaystoneRitual extends AbstractRitual {
     }
 
     @Override
-    public boolean onCast(World world, BlockPos pos, SoulCandleBlockEntity blockEntity) {
+    public boolean onCast(ServerWorld world, BlockPos pos, SoulCandleBlockEntity blockEntity) {
         Vec3d vec = Vec3d.ofCenter(pos);
 
         ItemStack stack = WaystoneItem.boundAt(pos);

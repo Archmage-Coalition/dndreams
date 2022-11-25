@@ -1,0 +1,16 @@
+{
+  "type": "dndreams:ritual",
+  "ingredients": [
+    {
+      "item": "dndreams:taglock"
+    },
+	{
+      "item": "dndreams:waystone"
+    }
+  ],
+  "result": {
+    "item": "dndreams:taglock",
+    "count": 1
+  },
+  "ritual": "dndreams:taglock_relocated"
+}

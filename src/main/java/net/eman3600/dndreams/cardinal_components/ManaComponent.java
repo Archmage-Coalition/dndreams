@@ -119,12 +119,12 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public boolean canAfford(int cost) {
-        return player.isCreative() || mana >= cost;
+        return player.isCreative() || getMana() >= cost;
     }
 
     @Override
     public boolean shouldRender() {
-        return renderTime > 0 && getManaMax() > 0;
+        return renderTime > 0 && getManaMax() > 0 && !player.hasStatusEffect(ModStatusEffects.LIFEMANA);
     }
 
     public void reRender() {

@@ -126,6 +126,8 @@ ClientInitializer implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.BREW_SPLASH, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BREW_LINGERING, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BREW_GAS, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BREW_LIQUID, FlyingItemEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.BLOOD_ZOMBIE, BloodZombieEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BLOOD_SKELETON, BloodSkeletonEntityRenderer::new);
@@ -143,6 +145,10 @@ ClientInitializer implements ClientModInitializer {
                     //if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY && !bossState.elrunezSlain()) return true;
                 } catch (Exception ignored) {}
 
+                /*
+                  TO BE REMOVED
+                 */
+                if (world.getRegistryKey().getValue().getNamespace().equals("last_life")) return true;
                 return accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER);
             }
             return false;

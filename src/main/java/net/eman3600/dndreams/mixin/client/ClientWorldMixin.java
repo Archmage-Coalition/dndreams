@@ -36,7 +36,7 @@ public abstract class ClientWorldMixin extends World implements ClientWorldAcces
 
     @Redirect(method = "tickTime", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"))
     private boolean dndreams$tickTime(GameRules instance, GameRules.Key<GameRules.BooleanRule> rule) {
-        if (drawAether() || (this.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY && ((WorldAccess)this).highestTorment(getPlayers()) >= 100f)) {
+        if (drawAether() || (this.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY && ((WorldAccess)this).lowestSanity(getPlayers()) >= 100f)) {
             return false;
         } else {
             return instance.getBoolean(rule);

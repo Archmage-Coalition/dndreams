@@ -1,23 +1,23 @@
 package net.eman3600.dndreams.rituals;
 
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
-import net.eman3600.dndreams.rituals.setup.AbstractRitual;
+import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class AmethystSproutRitual extends AbstractRitual {
+public class AmethystSproutRitual extends Ritual {
     public AmethystSproutRitual() {
         super(1000, new Ring(Ring.INNER_RING, CandleTuning.OVERWORLD), new Ring(Ring.MIDDLE_RING, CandleTuning.END));
     }
 
     @Override
-    public boolean onCast(World world, BlockPos pos, SoulCandleBlockEntity blockEntity) {
+    public boolean onCast(ServerWorld world, BlockPos pos, SoulCandleBlockEntity blockEntity) {
         pos = pos.down();
 
         BlockState state = world.getBlockState(pos);

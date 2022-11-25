@@ -54,9 +54,9 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
             info.setReturnValue(18000L);
         } else if (getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY) {
             List<? extends PlayerEntity> players = getPlayers();
-            float highestTorment = highestTorment(players);
+            float lowestSanity = lowestSanity(players);
 
-            info.setReturnValue((long)(6000 + (highestTorment * 120)));
+            info.setReturnValue((long)(18000 - (lowestSanity * 120)));
         } else if (getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
             try {
                 BossStateComponent component = WorldComponents.BOSS_STATE.get(getScoreboard());
@@ -105,15 +105,15 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
     }
 
     @Unique
-    public float highestTorment(List<? extends PlayerEntity> players) {
-        float highest = 0f;
+    public float lowestSanity(List<? extends PlayerEntity> players) {
+        float lowest = 100f;
 
         for (PlayerEntity player: players) {
             TormentComponent torment = EntityComponents.TORMENT.get(player);
-            highest = Math.max(highest, torment.getTorment());
+            lowest = Math.min(lowest, torment.getSanity());
         }
 
-        return highest;
+        return lowest;
     }
 
     @Unique

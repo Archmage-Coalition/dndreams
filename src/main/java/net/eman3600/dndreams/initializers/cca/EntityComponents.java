@@ -26,7 +26,7 @@ public class EntityComponents implements EntityComponentInitializer {
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerForPlayers(MANA, ManaComponent::new, RespawnCopyStrategy.INVENTORY);
-        registry.registerForPlayers(TORMENT, TormentComponent::new, RespawnCopyStrategy.LOSSLESS_ONLY);
+        registry.registerForPlayers(TORMENT, TormentComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(DREAMING, DreamingComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(INFUSION, InfusionComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(GATEWAY, GatewayComponent::new, RespawnCopyStrategy.ALWAYS_COPY);

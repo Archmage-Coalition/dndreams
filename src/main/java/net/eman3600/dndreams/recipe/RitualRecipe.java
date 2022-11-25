@@ -3,7 +3,7 @@ package net.eman3600.dndreams.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
-import net.eman3600.dndreams.rituals.setup.AbstractRitual;
+import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.rituals.setup.RitualRegistry;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -76,7 +76,7 @@ public class RitualRecipe implements Recipe<Inventory> {
         return input;
     }
 
-    public AbstractRitual getRitual() {
+    public Ritual getRitual() {
         return RitualRegistry.REGISTRY.get(ritualID);
     }
 
