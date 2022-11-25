@@ -2,7 +2,7 @@ package net.eman3600.dndreams.rituals;
 
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.eman3600.dndreams.initializers.event.ModRituals;
-import net.eman3600.dndreams.items.WaystoneItem;
+import net.eman3600.dndreams.items.misc_tool.WaystoneItem;
 import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.inventory.Inventory;

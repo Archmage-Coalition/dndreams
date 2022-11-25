@@ -24,6 +24,7 @@ import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.hellsteel.*;
 import net.eman3600.dndreams.items.mindstring_bow.LightstringBow;
 import net.eman3600.dndreams.items.mindstring_bow.MindstringBow;
+import net.eman3600.dndreams.items.misc_tool.*;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
@@ -61,6 +62,10 @@ public class ModItems {
     // Stardust
     public static final Item STARDUST = registerItem("stardust",
             new StardustItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
+    // Thread of Sanity
+    public static final Item SANITY_THREAD = registerItem("sanity_thread",
+            new SanityThreadItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Refined Evil
     public static final Item REFINED_EVIL = registerItem("refined_evil",
@@ -208,6 +213,10 @@ public class ModItems {
     public static final Item FLINT_AND_HELLSTEEL = registerItem("flint_and_hellsteel", new FlintAndHellsteelItem(new FabricItemSettings()
             .group(ItemGroup.TOOLS).fireproof().maxCount(1)));
 
+    // Mind Shears
+    public static final Item MIND_SHEARS = registerItem("mind_shears", new MindShearsItem(
+            new FabricItemSettings().group(ItemGroup.TOOLS).fireproof().maxCount(1).maxDamage(256)));
+
     // Ancient Portal Activation
     public static final Item ANCIENT_SPARK = registerItem("ancient_spark", new AncientSparkItem(new FabricItemSettings()
             .group(ItemGroup.TOOLS).maxCount(1).maxDamage(64)));
@@ -351,9 +360,12 @@ public class ModItems {
 
 
 
-    // Brews of Lofty Dreams, Congealed Mind, & the Panacea
+    // Special Brews
     public static final Item SLEEPING_BREW = registerItem("sleeping_brew",
             new SleepingBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
+
+    public static final Item SILENCE_BREW = registerItem("silence_brew",
+            new SilenceBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
 
     public static final Item MANIFEST_BREW = registerItem("manifest_brew",
             new ManifestBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.EPIC).recipeRemainder(Items.GLASS_BOTTLE)));

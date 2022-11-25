@@ -2,8 +2,11 @@ package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -13,7 +16,7 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
     MANAGOLD("managold", 7, new int[]{2, 5, 6, 2}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
-    TORMITE("tormite", 14, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F, 0.0F, () -> Ingredient.ofItems(ModItems.TORMITE_INGOT)),
+    TORMITE("tormite", 14, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F, 0.0F, () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
 
     CELESTIUM("celestium", 33, new int[]{3, 6, 8, 3}, 18, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 0.0F, () -> Ingredient.ofItems(ModItems.CELESTIUM));
 
@@ -37,6 +40,12 @@ public enum ModArmorMaterials implements ArmorMaterial {
         this.toughness = toughness;
         this.knockbackResistance = knockbackResistance;
         this.repairIngredientSupplier = new Lazy(repairIngredientSupplier);
+    }
+
+    public static int getEquipCount(PlayerEntity player, ArmorMaterial material) {
+        int i = 0;
+        for (ItemStack stack: player.getArmorItems()) if (stack.getItem() instanceof ArmorItem item && item.getMaterial() == material) i++;
+        return i;
     }
 
     public int getDurability(EquipmentSlot slot) {

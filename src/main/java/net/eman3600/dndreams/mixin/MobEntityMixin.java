@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
-import net.eman3600.dndreams.items.TaglockItem;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;

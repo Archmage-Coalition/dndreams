@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items;
+package net.eman3600.dndreams.items.misc_tool;
 
 import net.eman3600.dndreams.blocks.entities.BonfireBlockEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
@@ -59,7 +59,7 @@ public class VitalSwordItem extends SwordItem implements AirSwingItem {
         BlockState state = world.getBlockState(pos);
         ItemStack stack = context.getStack();
 
-        if (state.getBlock() instanceof CampfireBlock && !state.get(Properties.WATERLOGGED)) {
+        if (state.getBlock() instanceof CampfireBlock && !state.get(Properties.WATERLOGGED) && (world.getDimension().bedWorks() || world.getDimension().respawnAnchorWorks())) {
             Direction dir = state.get(Properties.HORIZONTAL_FACING);
 
             world.setBlockState(pos, ModBlocks.BONFIRE.getDefaultState().with(Properties.HORIZONTAL_FACING, dir), Block.NOTIFY_ALL);

@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items;
+package net.eman3600.dndreams.items.misc_tool;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.minecraft.client.item.TooltipContext;

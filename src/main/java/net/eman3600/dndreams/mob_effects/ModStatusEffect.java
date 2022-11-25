@@ -36,6 +36,9 @@ public class ModStatusEffect extends StatusEffect {
         } else if (this == ModStatusEffects.IMPENDING && entity.isPlayer()) {
             PlayerEntity player = (PlayerEntity)entity;
             EntityComponents.TORMENT.get(player).lowerPerSecond(0.5f * (amplifier + 1));
+        } else if (this == ModStatusEffects.SPIRIT_WARD && entity.isPlayer()) {
+            PlayerEntity player = (PlayerEntity)entity;
+            EntityComponents.TORMENT.get(player).lowerPerSecond(-0.5f * (amplifier + 1));
         } else if (this == ModStatusEffects.VOID_FLOW) {
             if (!entity.isPlayer()) {
                 entity.timeUntilRegen = 8;

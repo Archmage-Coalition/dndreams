@@ -199,14 +199,14 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             float tormentMaxPercent = (component.getMaxSanity() / TormentComponent.MAX_SANITY);
             float tormentPercent = (component.getSanity() / TormentComponent.MAX_SANITY);
             if (!component.shouldRender()) return;
-            int skipV2 = (int)((TORMENT_HEIGHT + 1) * (1f - tormentMaxPercent));
-            int skipV = (int)((TORMENT_HEIGHT + 1) * (1f - tormentPercent));
+            int skipV2 = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentMaxPercent));
+            int skipV = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentPercent));
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
             drawTexture(matrices, tormentXPos, tormentYPos, 79, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV2, 79, tormentV2 + skipV2, TORMENT_WIDTH, MathHelper.ceil((TORMENT_HEIGHT) * tormentMaxPercent));
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV, 79, tormentV + skipV, TORMENT_WIDTH, MathHelper.ceil((TORMENT_HEIGHT) * tormentPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos + skipV2, 79, tormentV2 + skipV2, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentMaxPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos + skipV, 79, tormentV + skipV, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentPercent));
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });

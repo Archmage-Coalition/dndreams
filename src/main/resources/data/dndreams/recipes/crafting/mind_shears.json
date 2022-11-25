@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " #",
+    "# "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:tormite_ingot"
+    }
+  },
+  "result": {
+    "item": "dndreams:mind_shears",
+	"count": 1
+  }
+}

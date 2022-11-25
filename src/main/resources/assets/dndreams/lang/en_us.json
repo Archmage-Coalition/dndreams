@@ -31,13 +31,17 @@
   "item.dndreams.trace_of_otherwhere": "Trace of Otherwhere",
   "item.dndreams.ghost_of_light": "Ghost of the Light",
   "item.dndreams.star_fruit": "Starfruit",
+  "item.dndreams.sanity_thread": "Thread of Sanity",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
   "item.dndreams.corrupt_axe": "Hellsteel Axe",
   "item.dndreams.corrupt_shovel": "Hellsteel Shovel",
   "item.dndreams.corrupt_hoe": "Hellsteel Hoe",
+  
   "item.dndreams.flint_and_hellsteel": "Flint and Hellsteel",
+  "item.dndreams.mind_shears": "Mind Shears",
+  "item.dndreams.mind_shears.tooltip": "Tear your mind to pieces.",
   
   "item.dndreams.celestium_sword": "Celestium Sword",
   "item.dndreams.celestium_pickaxe": "Celestium Pickaxe",
@@ -137,6 +141,7 @@
   "item.dndreams.brew_gas.double": "Gas Brew of %s & %s",
   
   "item.dndreams.sleeping_brew": "Brew of Lofty Dreams",
+  "item.dndreams.silence_brew": "Silence Serum",
   "item.dndreams.manifest_brew": "Brew of Congealed Mind",
   "item.dndreams.manifest_brew.tooltip_before": "§3To twist your imagination to reality.",
   "item.dndreams.manifest_brew.tooltip_before2": "§3Bring the dream to life.",
@@ -182,10 +187,6 @@
   "tooltip.dndreams.magic_damage": "§2Magic Damage: %s",
   "tooltip.dndreams.dream_origin": "§3They said this didn't exist,",
   "tooltip.dndreams.dream_origin_2": "§3and they were probably right.",
-  
-  
-  "message.dndreams.torment_rush": "§cSomething is coming...",
-  "message.dndreams.torment_calm": "§bThe terrors recede...",
   
   
   "death.attack.crimson_sacrifice": "%s snuffed out their lifeforce",

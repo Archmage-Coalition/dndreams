@@ -3,17 +3,23 @@ package net.eman3600.dndreams.cardinal_components;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.util.ModArmorMaterials;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 public class TormentComponent implements TormentComponentI, AutoSyncedComponent, ServerTickingComponent {
     private float maxSanity = 100;
     private float sanity = 100;
+    public static final float THREAD_VALUE = 3.5f;
     private int dragonFlashTicks = 0;
     private boolean shielded = false;
 
@@ -77,6 +83,41 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     @Override
+    public boolean shearSanity(float value, boolean yield) {
+        boolean bl = false;
+        while (value >= THREAD_VALUE) {
+            ItemStack stack;
+            if (getMaxSanity() - THREAD_VALUE >= MIN_MAX_SANITY && player.world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) {
+                bl = true;
+                lowerMaxSanity(THREAD_VALUE);
+                stack = ModItems.SANITY_THREAD.getDefaultStack();
+            } else if (getSanity() - THREAD_VALUE >= MIN_SANITY) {
+                bl = true;
+                lowerSanity(THREAD_VALUE);
+                stack = ModItems.DREAM_POWDER.getDefaultStack();
+            } else {
+                break;
+            }
+
+            if (yield) {
+                Vec3d vec = player.getPos().add(0, 1.5, 0);
+
+                ItemEntity item = new ItemEntity(player.world, vec.x, vec.y, vec.z, stack);
+                item.addVelocity(0, 0.15D, 0);
+                item.setPickupDelay(20);
+
+                player.world.spawnEntity(item);
+            }
+
+            value -= THREAD_VALUE;
+        }
+
+
+        normalize();
+        return bl;
+    }
+
+    @Override
     public void lowerPerSecond(float value) {
         lowerSanity(value/20);
     }
@@ -117,16 +158,29 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public void serverTick() {
         if (!terrorized() && sanity < maxSanity) {
             lowerPerMinute(-7.5f);
+            int i = ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
+            if (i > 0) {
+                lowerPerMinute(-.5f * i);
+            }
         }
 
         if (WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon()) {
             lowerPerMinute(2f);
         }
+
+        int i = equippedTormite();
+        if (i > 0) {
+            lowerPerMinute(.2f * i);
+        }
+    }
+
+    private int equippedTormite() {
+        return ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE);
     }
 
     @Override
     public boolean terrorized() {
-        return player.hasStatusEffect(ModStatusEffects.LOOMING) || player.world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY || WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon();
+        return player.hasStatusEffect(ModStatusEffects.LOOMING) || player.world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY || WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() || equippedTormite() > 0;
     }
 
     @Override

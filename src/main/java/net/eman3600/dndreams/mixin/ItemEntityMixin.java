@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin extends Entity implements ItemEntityAccess {
@@ -55,6 +56,13 @@ public abstract class ItemEntityMixin extends Entity implements ItemEntityAccess
     private void dndreams$writeNbt(NbtCompound nbt, CallbackInfo ci) {
         nbt.putBoolean("dndreams.unbrewable", unbrewable);
         nbt.putBoolean("dndreams.transmutable", transmutable);
+    }
+
+    @Inject(method = "canMerge()Z", at = @At("HEAD"), cancellable = true)
+    private void dndreams$canMerge(CallbackInfoReturnable<Boolean> cir) {
+        if (!this.transmutable) {
+            cir.setReturnValue(false);
+        }
     }
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))

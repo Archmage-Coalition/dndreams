@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items;
+package net.eman3600.dndreams.items.misc_tool;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -7,7 +7,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;

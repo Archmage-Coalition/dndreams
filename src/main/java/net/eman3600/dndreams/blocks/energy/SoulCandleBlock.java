@@ -2,7 +2,7 @@ package net.eman3600.dndreams.blocks.energy;
 
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
-import net.eman3600.dndreams.items.WaystoneItem;
+import net.eman3600.dndreams.items.misc_tool.WaystoneItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;

@@ -6,6 +6,7 @@ import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
@@ -90,7 +91,7 @@ public class BonfireBlockEntity extends BlockEntity implements AbstractPowerRece
 
                 if (strong && ((infusion.infused() && infusion.getPower() < infusion.getPowerMax()) || player.getHealth() < player.getMaxHealth() || mana.getMana() < mana.getManaMax()) && usePower(30)) {
                     infusion.chargePower(1.2f);
-                    mana.chargeMana(10);
+                    if (!player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) mana.chargeMana(10);
                     player.heal(4f);
 
                     ((CosmicFountainBlock) ModBlocks.COSMIC_FOUNTAIN).displayEnchantParticle(world, pos, player, ModParticles.COSMIC_ENERGY, 3);

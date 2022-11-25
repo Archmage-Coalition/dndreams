@@ -1,0 +1,20 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:dream_powder"
+    },
+	{
+      "item": "dndreams:helios_fume"
+    },
+	{
+      "item": "dndreams:ember_moss"
+    }
+  ],
+  "result": {
+    "item": "dndreams:silence_brew",
+    "count": 1
+  },
+  "color": 14577901,
+  "method": "bottle"
+}
