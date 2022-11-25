@@ -3,10 +3,9 @@
   "ingredient": {
     "item": "dndreams:hollow_tear"
   },
-  "corrupted": true,
+  "corrupted": false,
   "capacity": 3,
   "cost": 300,
   "effect": "dndreams:spirit_ward",
-  "duration": 3600,
-  "max_amplifier": 0
+  "duration": 1000
 }

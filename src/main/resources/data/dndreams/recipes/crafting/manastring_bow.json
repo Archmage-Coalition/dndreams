@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " #X",
+    "S X",
+    " #X"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:echo_shard"
+    },
+    "X": {
+      "item": "dndreams:sculk_powder"
+    },
+    "S": {
+      "item": "dndreams:charged_shard"
+    }
+  },
+  "result": {
+    "item": "dndreams:manastring_bow"
+  }
+}

@@ -2,17 +2,26 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
-      "item": "dndreams:dream_powder"
+      "item": "dndreams:nightmare_fuel"
     },
 	{
       "item": "dndreams:helios_fume"
     },
 	{
       "item": "dndreams:ember_moss"
+    },
+	{
+      "item": "dndreams:distilled_spirit"
+    },
+	{
+      "item": "minecraft:ghast_tear"
+    },
+	{
+      "item": "dndreams:succulent_apple"
     }
   ],
   "result": {
-    "item": "dndreams:silence_brew",
+    "item": "dndreams:sanity_brew",
     "count": 1
   },
   "color": 14577901,

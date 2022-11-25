@@ -3,9 +3,9 @@
   "ingredient": {
     "item": "dndreams:nightmare_fuel"
   },
-  "corrupted": true,
+  "corrupted": false,
   "capacity": 3,
   "cost": 300,
-  "effect": "dndreams:silence",
+  "effect": "dndreams:impending",
   "duration": 1
 }

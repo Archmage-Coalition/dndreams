@@ -156,11 +156,10 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public void serverTick() {
-        if (!terrorized() && sanity < maxSanity) {
-            lowerPerMinute(-7.5f);
+        if (sanity < maxSanity) {
             int i = ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
             if (i > 0) {
-                lowerPerMinute(-.5f * i);
+                lowerPerMinute(-1.25f * i);
             }
         }
 
@@ -170,17 +169,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
         int i = equippedTormite();
         if (i > 0) {
-            lowerPerMinute(.2f * i);
+            lowerPerMinute(.15f * i);
         }
     }
 
     private int equippedTormite() {
         return ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE);
-    }
-
-    @Override
-    public boolean terrorized() {
-        return player.hasStatusEffect(ModStatusEffects.LOOMING) || player.world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY || WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() || equippedTormite() > 0;
     }
 
     @Override

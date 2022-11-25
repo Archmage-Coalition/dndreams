@@ -141,7 +141,7 @@
   "item.dndreams.brew_gas.double": "Gas Brew of %s & %s",
   
   "item.dndreams.sleeping_brew": "Brew of Lofty Dreams",
-  "item.dndreams.silence_brew": "Silence Serum",
+  "item.dndreams.sanity_brew": "Thoughtweave Serum",
   "item.dndreams.manifest_brew": "Brew of Congealed Mind",
   "item.dndreams.manifest_brew.tooltip_before": "§3To twist your imagination to reality.",
   "item.dndreams.manifest_brew.tooltip_before2": "§3Bring the dream to life.",
@@ -159,8 +159,10 @@
   "item.dndreams.applethorn_seeds": "Applethorn Seeds",
   "item.dndreams.wither_blossom_seeds": "Wither Blossom Seeds",
   
+  "item.dndreams.manastring_bow": "Manatwine Bow",
   "item.dndreams.mindstring_bow": "Mindstrung Bow",
-  "item.dndreams.lightstring_bow": "Lightstrung Bow",
+  "item.dndreams.lightstring_bow": "Lightthread Bow",
+  "item.dndreams.brewstring_bow": "Bow of Brews",
   
   "item.dndreams.vital_heart": "Life Crystal",
   "item.dndreams.vital_heart.tooltip": "You can feel it beating.",
@@ -181,6 +183,8 @@
   
   "tooltip.dndreams.mana_cost": "§dMana Cost: %s",
   "tooltip.dndreams.power_cost": "§dPower Cost: %s",
+  "tooltip.dndreams.sanity_cost": "§5Sanity Cost: %s",
+  "tooltip.dndreams.max_sanity_cost": "§5Max Sanity Cost: %s",
   "tooltip.dndreams.power_required": "§cRequires Infusion Power",
   "tooltip.dndreams.bloodlust": "§cIn exchange for blood!",
   "tooltip.dndreams.bloodlust.active": "§4Fueled by crimson.",

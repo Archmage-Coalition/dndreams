@@ -18,6 +18,5 @@ public interface TormentComponentI extends Component {
     void lowerPerSecond(float value);
     void lowerPerMinute(float value);
 
-    boolean terrorized();
     boolean shouldRender();
 }

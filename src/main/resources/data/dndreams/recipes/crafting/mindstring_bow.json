@@ -2,18 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     " #X",
-    "S X",
+    "# X",
     " #X"
   ],
   "key": {
     "#": {
-      "item": "minecraft:echo_shard"
+      "item": "dndreams:nightmare_fuel"
     },
     "X": {
-      "item": "dndreams:sculk_powder"
-    },
-    "S": {
-      "item": "dndreams:charged_shard"
+      "item": "dndreams:sanity_thread"
     }
   },
   "result": {

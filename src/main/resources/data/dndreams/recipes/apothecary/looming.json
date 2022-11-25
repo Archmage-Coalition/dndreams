@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "dndreams:nightmare_fuel"
+    "item": "dndreams:hollow_tear"
   },
   "corrupted": true,
   "capacity": 3,
   "cost": 300,
-  "effect": "dndreams:silence",
-  "duration": 1
+  "effect": "dndreams:looming",
+  "duration": 600
 }

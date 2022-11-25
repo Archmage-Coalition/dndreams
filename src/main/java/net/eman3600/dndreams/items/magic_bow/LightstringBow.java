@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items.mindstring_bow;
+package net.eman3600.dndreams.items.magic_bow;
 
 import net.eman3600.dndreams.items.interfaces.PowerCostItem;
 import net.minecraft.client.item.TooltipContext;
@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LightstringBow extends MindstringBow implements PowerCostItem {
+public class LightstringBow extends ManastringBow implements PowerCostItem {
     public LightstringBow(Settings settings) {
         super(settings);
     }

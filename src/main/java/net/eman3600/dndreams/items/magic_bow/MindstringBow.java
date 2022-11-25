@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.items.magic_bow;
 
-import net.eman3600.dndreams.items.interfaces.ManaCostItem;
+import net.eman3600.dndreams.items.interfaces.SanityCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MindstringBow extends BowItem implements ManaCostItem {
+public class MindstringBow extends MagicBow implements SanityCostItem {
     public MindstringBow(Settings settings) {
         super(settings);
     }
@@ -31,13 +31,8 @@ public class MindstringBow extends BowItem implements ManaCostItem {
         return new ItemStack(Items.ARROW);
     }
 
-    @Override
-    public int getBaseManaCost() {
-        return 7;
-    }
-
     public boolean allowInfinity() {
-        return true;
+        return false;
     }
 
     @Override
@@ -113,12 +108,12 @@ public class MindstringBow extends BowItem implements ManaCostItem {
     }
 
     protected boolean canAfford(PlayerEntity player, ItemStack stack) {
-        return canAffordMana(player, stack);
+        return canAffordSanity(player, stack);
     }
 
     protected void payAmmo(PlayerEntity player, ItemStack stack) {
         if (player != null) {
-            spendMana(player, stack);
+            spendSanity(player, stack);
         }
     }
 
@@ -133,11 +128,21 @@ public class MindstringBow extends BowItem implements ManaCostItem {
     }
 
     public float pullProgressDivisor() {
-        return 20.0F;
+        return 10.0F;
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(getTooltipMana(stack));
+        tooltip.add(getTooltipSanity(stack));
+    }
+
+    @Override
+    public float getBaseSanityCost() {
+        return .75f;
+    }
+
+    @Override
+    public boolean isPermanent(ItemStack stack) {
+        return false;
     }
 }

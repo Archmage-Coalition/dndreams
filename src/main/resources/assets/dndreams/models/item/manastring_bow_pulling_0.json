@@ -1,0 +1,6 @@
+{
+    "parent": "dndreams:item/mindstring_bow",
+    "textures": {
+        "layer0": "dndreams:item/manastring_bow_pulling_0"
+    }
+}

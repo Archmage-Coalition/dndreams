@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items.mindstring_bow;
+package net.eman3600.dndreams.items.magic_bow;
 
 import net.eman3600.dndreams.items.interfaces.PowerCostItem;
 import net.minecraft.client.item.TooltipContext;

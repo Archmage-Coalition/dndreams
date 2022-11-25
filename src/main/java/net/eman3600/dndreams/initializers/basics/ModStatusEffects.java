@@ -11,10 +11,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModStatusEffects {
-    public static StatusEffect IMPENDING = register("impending", new ModStatusEffect(StatusEffectCategory.HARMFUL, 11141290));
+    public static StatusEffect IMPENDING = register("impending", new InstantModStatusEffect(StatusEffectCategory.HARMFUL, 0x7700e0));
     public static StatusEffect BLOODLUST = register("bloodlust", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 15597568));
     public static StatusEffect SUPPRESSED = register("suppressed", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0));
-    public static StatusEffect LOOMING = register("looming", new ModStatusEffect(StatusEffectCategory.HARMFUL, 11141290));
+    public static StatusEffect LOOMING = register("looming", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x4400c2));
     public static StatusEffect SPIRIT_WARD = register("spirit_ward", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 11184640));
     public static StatusEffect DREAMY = register("dreamy", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 13369480));
     public static StatusEffect VOID_FLOW = register("void_flow", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5592405));
