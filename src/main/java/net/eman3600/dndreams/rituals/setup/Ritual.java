@@ -5,34 +5,34 @@ import net.eman3600.dndreams.blocks.energy.RitualCandleBlock;
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public abstract class AbstractRitual {
-    private final RegistryEntry.Reference<AbstractRitual> entry;
+public abstract class Ritual {
+    private final RegistryEntry.Reference<Ritual> entry;
 
     private final int cost;
     private final Ring[] rings;
 
 
-    public AbstractRitual(int cost, Ring... rings) {
+    public Ritual(int cost, Ring... rings) {
         this.entry = RitualRegistry.REGISTRY.createEntry(this);
         this.cost = cost;
         this.rings = rings;
     }
 
-    public RegistryEntry.Reference<AbstractRitual> reference() {
+    public RegistryEntry.Reference<Ritual> reference() {
         return entry;
     }
 
-    public static AbstractRitual ofID(Identifier id) {
+    public static Ritual ofID(Identifier id) {
         return RitualRegistry.REGISTRY.get(id);
     }
 
@@ -60,7 +60,7 @@ public abstract class AbstractRitual {
      * Called when the ritual is cast by the Soul Candle.
      * @return Whether the casting succeeded and should consume the materials.
      * */
-    public abstract boolean onCast(World world, BlockPos pos, SoulCandleBlockEntity blockEntity);
+    public abstract boolean onCast(ServerWorld world, BlockPos pos, SoulCandleBlockEntity blockEntity);
 
 
     public static class Ring {

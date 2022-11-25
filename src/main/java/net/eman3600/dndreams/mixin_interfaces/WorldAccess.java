@@ -5,5 +5,5 @@ import net.minecraft.entity.player.PlayerEntity;
 import java.util.List;
 
 public interface WorldAccess {
-    float highestTorment(List<? extends PlayerEntity> players);
+    float lowestSanity(List<? extends PlayerEntity> players);
 }

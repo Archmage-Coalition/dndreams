@@ -48,13 +48,18 @@ public class WaystoneItem extends Item {
         return boundAt(pos, 1);
     }
 
+    @Nullable
     public static BlockPos readBoundPos(NbtCompound nbt) {
-        NbtList posList = nbt.getList("bound_pos", NbtCompound.INT_TYPE);
-
-        return new BlockPos(posList.getInt(0),posList.getInt(1),posList.getInt(2));
+        return readBoundPos(nbt, null);
     }
 
-    public static BlockPos readBoundPos(NbtCompound nbt, BlockPos defaultPos) {
+    @Nullable
+    public static BlockPos readBoundPos(ItemStack stack) {
+        return readBoundPos(stack.getOrCreateNbt());
+    }
+
+    @Nullable
+    public static BlockPos readBoundPos(NbtCompound nbt, @Nullable BlockPos defaultPos) {
         if (!nbt.contains("bound_pos")) return defaultPos;
 
         NbtList posList = nbt.getList("bound_pos", NbtCompound.INT_TYPE);

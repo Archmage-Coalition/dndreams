@@ -1,17 +1,14 @@
 package net.eman3600.dndreams.rituals.setup;
 
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-
-public abstract class AbstractSustainedRitual extends AbstractRitual {
+public abstract class SustainedRitual extends Ritual {
     private final int sustainedCost;
 
 
-    public AbstractSustainedRitual(int initialCost, int sustainedCost, Ring... rings) {
+    public SustainedRitual(int initialCost, int sustainedCost, Ring... rings) {
         super(initialCost, rings);
         this.sustainedCost = sustainedCost;
     }

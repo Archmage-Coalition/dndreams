@@ -21,12 +21,6 @@ public class ModStatusEffect extends StatusEffect {
     @Override
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         super.onApplied(entity, attributes, amplifier);
-
-        if (this == ModStatusEffects.SPIRIT_WARD && entity instanceof PlayerEntity player) {
-            TormentComponent component = EntityComponents.TORMENT.get(player);
-
-            component.setTorment(0);
-        }
     }
 
     @Override
@@ -41,7 +35,7 @@ public class ModStatusEffect extends StatusEffect {
             }
         } else if (this == ModStatusEffects.IMPENDING && entity.isPlayer()) {
             PlayerEntity player = (PlayerEntity)entity;
-            EntityComponents.TORMENT.get(player).addPerSecond(0.5f * (amplifier + 1));
+            EntityComponents.TORMENT.get(player).lowerPerSecond(0.5f * (amplifier + 1));
         } else if (this == ModStatusEffects.VOID_FLOW) {
             if (!entity.isPlayer()) {
                 entity.timeUntilRegen = 8;

@@ -9,15 +9,15 @@ import static net.eman3600.dndreams.Initializer.MODID;
 public class RitualRegistry {
 
     public static final Identifier ID = new Identifier(MODID, "ritual");
-    public static final RegistryKey<Registry<AbstractRitual>> KEY = RegistryKey.ofRegistry(ID);
+    public static final RegistryKey<Registry<Ritual>> KEY = RegistryKey.ofRegistry(ID);
 
-    public static final Registry<AbstractRitual> REGISTRY = new SimpleRegistry<>(KEY, Lifecycle.stable(), AbstractRitual::reference);
+    public static final Registry<Ritual> REGISTRY = new SimpleRegistry<>(KEY, Lifecycle.stable(), Ritual::reference);
 
-    public static AbstractRitual register(String id, AbstractRitual ritual) {
+    public static Ritual register(String id, Ritual ritual) {
         return register(new Identifier(MODID, id), ritual);
     }
 
-    public static AbstractRitual register(Identifier id, AbstractRitual ritual) {
+    public static Ritual register(Identifier id, Ritual ritual) {
         Registry.register(REGISTRY, id, ritual);
         return ritual;
     }

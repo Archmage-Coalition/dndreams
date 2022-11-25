@@ -185,7 +185,7 @@ public class AttunementChamberBlockEntity extends AbstractPowerStorageBlockEntit
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
         if (slot == 0 && side == Direction.UP) {
-            return stack.getItem() instanceof AbstractChargeItem || stack.isOf(Items.AMETHYST_SHARD);
+            return (stack.getItem() instanceof AbstractChargeItem || stack.isOf(Items.AMETHYST_SHARD)) && inventory.get(0) == ItemStack.EMPTY;
         } else if (slot == 1 && side != Direction.UP) {
             return AttunementBurnSlot.ITEM_TO_ENERGY.containsKey(stack.getItem());
         }

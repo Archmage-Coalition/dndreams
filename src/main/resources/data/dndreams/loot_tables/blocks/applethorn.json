@@ -31,7 +31,7 @@
                         {
                           "condition": "dndreams:torment",
                           "entity": "this",
-						  "torment": 75
+						  "sanity": 25
                         }
                       ]
                     },

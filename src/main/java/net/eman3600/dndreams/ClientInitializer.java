@@ -145,6 +145,10 @@ ClientInitializer implements ClientModInitializer {
                     //if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY && !bossState.elrunezSlain()) return true;
                 } catch (Exception ignored) {}
 
+                /*
+                  TO BE REMOVED
+                 */
+                if (world.getRegistryKey().getValue().getNamespace().equals("last_life")) return true;
                 return accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER);
             }
             return false;

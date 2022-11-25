@@ -4,7 +4,7 @@ import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
-import net.eman3600.dndreams.rituals.setup.AbstractRitual;
+import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -122,7 +122,7 @@ public class AncientSparkItem extends Item implements RitualRemainItem {
     }
 
     @Override
-    public ItemStack getRitualRemains(AbstractRitual ritual, SoulCandleBlockEntity entity, ItemStack stack) {
+    public ItemStack getRitualRemains(Ritual ritual, SoulCandleBlockEntity entity, ItemStack stack) {
         ItemStack clone = stack.copy();
         clone.setDamage(clone.getDamage() + 8);
 

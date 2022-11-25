@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.items.TaglockItem;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
@@ -27,12 +28,12 @@ public abstract class MobEntityMixin extends LivingEntity {
     @Inject(method = "interactMob", at = @At("HEAD"), cancellable = true)
     private void dndreams$interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack stack = player.getStackInHand(hand);
-        if (((LivingEntity)this) instanceof WardenEntity warden && stack.isOf(Items.GLASS_BOTTLE) && !player.getItemCooldownManager().isCoolingDown(Items.GLASS_BOTTLE)) {
+        if (((LivingEntity)this) instanceof WardenEntity warden && stack.isOf(Items.GLASS_BOTTLE) && !player.getItemCooldownManager().isCoolingDown(stack.getItem())) {
             player.playSound(SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, 1.0f, 1.0f);
             ItemStack itemStack2 = ItemUsage.exchangeStack(stack, player, ModItems.LIQUID_SOUL.getDefaultStack());
             player.setStackInHand(hand, itemStack2);
 
-            player.getItemCooldownManager().set(Items.GLASS_BOTTLE, 20);
+            player.getItemCooldownManager().set(stack.getItem(), 20);
 
             warden.increaseAngerAt(player, 80, true);
 

@@ -36,7 +36,7 @@ public class NightmareFuelItem extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof PlayerEntity) {
-            EntityComponents.TORMENT.get(user).addTorment(TORMENT_INCREMENT);
+            EntityComponents.TORMENT.get(user).lowerSanity(TORMENT_INCREMENT);
         }
 
 

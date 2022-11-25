@@ -6,7 +6,6 @@ import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
-import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.*;
@@ -20,7 +19,6 @@ import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.FluidTags;
@@ -34,7 +32,6 @@ import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -130,7 +127,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
                 addStatusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 80, 0, true, true));
 
-                component.addPerMinute(component.isShielded() ? 10f : 150f);
+                component.lowerPerMinute(component.isShielded() ? 10f : 150f);
 
                 if (!component.isShielded()) {
                     if (!hasStatusEffect(ModStatusEffects.AFFLICTION)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));

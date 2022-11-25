@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.cardinal_components.PermItemComponent;
 import net.eman3600.dndreams.cardinal_components.StatBoonComponent;
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.ItemEntityAccess;
@@ -87,6 +88,10 @@ public class ModCallbacks {
             for (Item toRepair: PermItemComponent.resettables) {
                 perms.pair(toRepair);
             }
+
+            TormentComponent torment = EntityComponents.TORMENT.get(newPlayer);
+            torment.shield(false);
+            torment.setSanity(torment.getMaxSanity());
         });
 
         ServerPlayConnectionEvents.INIT.register((handler, server) -> EntityComponents.STAT_BOON.get(handler.player).reloadAttributes());

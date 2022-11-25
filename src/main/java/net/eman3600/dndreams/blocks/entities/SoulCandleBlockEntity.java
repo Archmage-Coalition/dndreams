@@ -1,14 +1,15 @@
 package net.eman3600.dndreams.blocks.entities;
 
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.items.WaystoneItem;
 import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
 import net.eman3600.dndreams.recipe.RitualRecipe;
-import net.eman3600.dndreams.rituals.setup.AbstractRitual;
-import net.eman3600.dndreams.rituals.setup.AbstractRitual.CandleTuning;
-import net.eman3600.dndreams.rituals.setup.AbstractRitual.Ring;
-import net.eman3600.dndreams.rituals.setup.AbstractSustainedRitual;
+import net.eman3600.dndreams.rituals.setup.Ritual;
+import net.eman3600.dndreams.rituals.setup.Ritual.CandleTuning;
+import net.eman3600.dndreams.rituals.setup.Ritual.Ring;
+import net.eman3600.dndreams.rituals.setup.SustainedRitual;
 import net.eman3600.dndreams.rituals.setup.RitualRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -33,6 +34,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +43,7 @@ import static net.eman3600.dndreams.blocks.energy.RitualCandleBlock.LIT;
 
 public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerReceiver {
     public int power;
-    public AbstractRitual ritual = null;
+    public Ritual ritual = null;
     public DefaultedList<ItemStack> items = DefaultedList.ofSize(0);
 
     private BlockPos boundPos = pos;
@@ -129,7 +131,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
                     }
                 }
 
-            } else if (ritual instanceof AbstractSustainedRitual susRite) {
+            } else if (ritual instanceof SustainedRitual susRite) {
 
                 if (duration < Short.MAX_VALUE) duration++;
                 susRite.tickSustained(world, boundPos, this);
@@ -184,7 +186,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
     @Override
     public int getMaxPower() {
         if (casting && ritual != null) return ritual.cost();
-        if (sustained && ritual instanceof AbstractSustainedRitual susRite) return susRite.getSustainedCost() * 3;
+        if (sustained && ritual instanceof SustainedRitual susRite) return susRite.getSustainedCost() * 3;
         return 0;
     }
 
@@ -204,7 +206,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
     @Override
     public int powerRequest() {
-        if (sustained && ritual instanceof AbstractSustainedRitual susRite && susRite.getSustainedCost() > 100) return susRite.getSustainedCost() / 20 + 1;
+        if (sustained && ritual instanceof SustainedRitual susRite && susRite.getSustainedCost() > 100) return susRite.getSustainedCost() / 20 + 1;
         return 5;
     }
 
@@ -294,7 +296,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         casting = false;
         ticks = 0;
 
-        if (ritual instanceof AbstractSustainedRitual) {
+        if (ritual instanceof SustainedRitual) {
             sustained = true;
         } else {
             ritual = null;
@@ -344,7 +346,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
     }
 
     public void endRitual(ServerWorld world) {
-        if (sustained && ritual instanceof AbstractSustainedRitual susRite) {
+        if (sustained && ritual instanceof SustainedRitual susRite) {
             susRite.onCease(world, boundPos, this);
 
             scatterRemains(world);
@@ -431,5 +433,21 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
     public List<ItemEntity> findRitualIngredients(ServerWorld world) {
         return world.getEntitiesByClass(ItemEntity.class, itemReach, entity -> true);
+    }
+
+    @Nullable
+    public ItemStack getInventoryTaglock() {
+        for (ItemStack stack: items) {
+            if (stack.isOf(ModItems.TAGLOCK)) return stack;
+        }
+        return null;
+    }
+
+    @Nullable
+    public ItemStack getInventoryWaystone() {
+        for (ItemStack stack: items) {
+            if (stack.isOf(ModItems.WAYSTONE)) return stack;
+        }
+        return null;
     }
 }

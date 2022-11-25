@@ -106,7 +106,7 @@ public class DreamingComponent implements DreamingComponentI {
                     }
                 }
             } else {
-                torment().setTorment(0);
+                torment().setSanity(100);
             }
         }
     }
@@ -133,7 +133,7 @@ public class DreamingComponent implements DreamingComponentI {
         } else if (!dreaming && getDimension() == ModDimensions.DREAM_TYPE_KEY) {
             changeDimension(true);
         } else if (dreaming) {
-            torment().addPerMinute(10f);
+            torment().lowerPerMinute(10f);
         }
 
         EntityComponents.DREAMING.sync(player);

@@ -16,7 +16,7 @@ public class InstantModStatusEffect extends InstantStatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (this == ModStatusEffects.SILENCE && entity.isPlayer()) {
-            EntityComponents.TORMENT.get(entity).addTorment(-35.0f * (amplifier + 1));
+            EntityComponents.TORMENT.get(entity).lowerSanity(-35.0f * (amplifier + 1));
         } else if (this == ModStatusEffects.IMMOLATION) {
             entity.setOnFireFor(14 * (amplifier + 1));
         }

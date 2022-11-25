@@ -19,14 +19,14 @@ import net.minecraft.util.JsonSerializer;
 
 import java.util.Set;
 
-public class TormentLootCondition implements LootCondition {
+public class SanityLootCondition implements LootCondition {
     private final LootContext.EntityTarget target;
-    private final float torment;
+    private final float sanity;
 
 
-    public TormentLootCondition(LootContext.EntityTarget target, float torment) {
+    public SanityLootCondition(LootContext.EntityTarget target, float sanity) {
         this.target = target;
-        this.torment = torment;
+        this.sanity = sanity;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class TormentLootCondition implements LootCondition {
 
     @Override
     public LootConditionType getType() {
-        return ModLootConditions.TORMENT;
+        return ModLootConditions.SANITY;
     }
 
     @Override
@@ -47,25 +47,25 @@ public class TormentLootCondition implements LootCondition {
         if (entity instanceof PlayerEntity player) {
             TormentComponent component = EntityComponents.TORMENT.get(player);
 
-            return component.getTorment() >= torment;
+            return component.getSanity() <= sanity;
         }
 
         return false;
     }
 
 
-    public static class Serializer implements JsonSerializer<TormentLootCondition> {
+    public static class Serializer implements JsonSerializer<SanityLootCondition> {
         @Override
-        public void toJson(JsonObject jsonObject, TormentLootCondition condition, JsonSerializationContext ctx) {
+        public void toJson(JsonObject jsonObject, SanityLootCondition condition, JsonSerializationContext ctx) {
             jsonObject.add("entity", ctx.serialize(condition.target));
-            jsonObject.addProperty("torment", condition.torment);
+            jsonObject.addProperty("sanity", condition.sanity);
         }
 
         @Override
-        public TormentLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext ctx) {
-            return new TormentLootCondition(
+        public SanityLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext ctx) {
+            return new SanityLootCondition(
                     JsonHelper.deserialize(jsonObject, "entity", ctx, LootContext.EntityTarget.class),
-                    JsonHelper.getFloat(jsonObject, "torment", 100f)
+                    JsonHelper.getFloat(jsonObject, "sanity", 0f)
             );
         }
     }

@@ -16,6 +16,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -51,13 +52,13 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     private static final int TORMENT_X_OFFSET = 6;
 
     @Unique
-    private static final int TORMENT_Y_OFFSET = 5;
+    private static final int TORMENT_Y_OFFSET = 28;
 
     @Unique
-    private static final int TORMENT_WIDTH = 13;
+    private static final int TORMENT_WIDTH = 14;
 
     @Unique
-    private static final int TORMENT_HEIGHT = 13;
+    private static final int TORMENT_HEIGHT = 14;
 
     @Unique
     private static final int POWER_X_OFFSET = 8;
@@ -183,31 +184,29 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
         int tormentXPos;
 
-        if (client.options.getMainArm().getValue() == Arm.RIGHT) {
+        if (client.options.getMainArm().getValue() != Arm.RIGHT) {
             tormentXPos = scaledWidth - TORMENT_X_OFFSET - TORMENT_WIDTH;
         } else {
             tormentXPos = TORMENT_X_OFFSET;
         }
 
-        int tormentV;
-
-        if (EntityComponents.TORMENT.get(player).isRushed()) {
-            tormentV = 26;
-        } else {
-            tormentV = 13;
-        }
+        int tormentV = 28;
+        int tormentV2 = 14;
 
         int tormentYPos = scaledHeight - TORMENT_Y_OFFSET - TORMENT_HEIGHT;
 
-        EntityComponents.TORMENT.maybeGet(player).ifPresent(tormentComponent -> {
-            float tormentPercent = (tormentComponent.getTorment() / TormentComponent.MAX_TORMENT);
-            if (tormentPercent <= 0.1) return;
+        EntityComponents.TORMENT.maybeGet(player).ifPresent(component -> {
+            float tormentMaxPercent = (component.getMaxSanity() / TormentComponent.MAX_SANITY);
+            float tormentPercent = (component.getSanity() / TormentComponent.MAX_SANITY);
+            if (!component.shouldRender()) return;
+            int skipV2 = (int)((TORMENT_HEIGHT + 1) * (1f - tormentMaxPercent));
             int skipV = (int)((TORMENT_HEIGHT + 1) * (1f - tormentPercent));
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
-            drawTexture(matrices, tormentXPos, tormentYPos, 80, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV, 80, tormentV + skipV, TORMENT_WIDTH, (int)((TORMENT_HEIGHT + 1) * tormentPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos, 79, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
+            drawTexture(matrices, tormentXPos, tormentYPos + skipV2, 79, tormentV2 + skipV2, TORMENT_WIDTH, MathHelper.ceil((TORMENT_HEIGHT) * tormentMaxPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos + skipV, 79, tormentV + skipV, TORMENT_WIDTH, MathHelper.ceil((TORMENT_HEIGHT) * tormentPercent));
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });

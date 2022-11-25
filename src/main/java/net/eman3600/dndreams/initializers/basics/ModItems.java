@@ -29,7 +29,7 @@ import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.items.trinket.PhantomNecklace;
-import net.eman3600.dndreams.rituals.setup.AbstractRitual;
+import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModToolMaterials;
@@ -423,18 +423,20 @@ public class ModItems {
     // Waystone
     public static final Item WAYSTONE = registerItem("waystone",
             new WaystoneItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(32)));
+    public static final Item TAGLOCK = registerItem("taglock",
+            new TaglockItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(16)));
 
     // Tuning Shards
     public static final Item OVERWORLD_TUNER = registerItem("overworld_tuner",
-            new TuningItem(AbstractRitual.CandleTuning.OVERWORLD,
+            new TuningItem(Ritual.CandleTuning.OVERWORLD,
                    new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
 
     public static final Item NETHER_TUNER = registerItem("nether_tuner",
-            new TuningItem(AbstractRitual.CandleTuning.NETHER,
+            new TuningItem(Ritual.CandleTuning.NETHER,
                     new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
 
     public static final Item END_TUNER = registerItem("end_tuner",
-            new TuningItem(AbstractRitual.CandleTuning.END,
+            new TuningItem(Ritual.CandleTuning.END,
                     new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
 
 

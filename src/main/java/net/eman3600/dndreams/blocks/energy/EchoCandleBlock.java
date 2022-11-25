@@ -3,7 +3,7 @@ package net.eman3600.dndreams.blocks.energy;
 import net.eman3600.dndreams.blocks.entities.EchoCandleBlockEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.items.charge.TuningItem;
-import net.eman3600.dndreams.rituals.setup.AbstractRitual.CandleTuning;
+import net.eman3600.dndreams.rituals.setup.Ritual.CandleTuning;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
