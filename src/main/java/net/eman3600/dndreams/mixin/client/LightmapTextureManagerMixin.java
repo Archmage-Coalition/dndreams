@@ -1,6 +1,9 @@
 package net.eman3600.dndreams.mixin.client;
 
 import net.eman3600.dndreams.ClientInitializer;
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -25,26 +28,47 @@ public abstract class LightmapTextureManagerMixin {
     @Shadow @Final private MinecraftClient client;
 
     @Unique private final int SHADOW = 26;
+    @Unique private final int SANITY_SHADOW = 32;
+    @Unique private final int DARKNESS_THRESHOLD = 85;
 
     @Shadow @Final private NativeImage image;
 
     @Inject(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/NativeImage;setColor(III)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void dndreams$update(float delta, CallbackInfo ci, ClientWorld clientWorld, float f, float g, float h, float i, float j, float l, float k, Vec3f vec3f, float m, Vec3f vec3f2, int n, int o, float p, float q, float r, float s, float t, boolean bl, float v, Vec3f vec3f5, int w, int x, int y, int z) {
         if (ClientInitializer.drawAether(clientWorld)) {
-            z = recalculated_light(z);
-            y = recalculated_light(y);
-            x = recalculated_light(x);
-
-            //int alpha = MathHelper.clamp(z + y + x, 0, 0xFF);
+            z = recalculatedLight(z);
+            y = recalculatedLight(y);
+            x = recalculatedLight(x);
 
             image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
+        } else if (clientWorld instanceof ClientWorldAccess access) {
+            TormentComponent component = EntityComponents.TORMENT.get(access.getPlayer());
 
-            //System.out.println("Alpha: " + alpha + " R: " + z + " G: " + y + " B: " + x);
+            if (component.getSanity() < DARKNESS_THRESHOLD) {
+                float clamped = MathHelper.clamp(component.getSanity(), 25, DARKNESS_THRESHOLD) - 25;
+                clamped = SANITY_SHADOW - (clamped * (SANITY_SHADOW/(DARKNESS_THRESHOLD - 25f)));
+
+                z = darkenLight(z, clamped);
+                y = darkenLight(y, clamped);
+                x = recalculatedLight(x, clamped);
+
+                image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
+            }
         }
     }
 
     @Unique
-    private int recalculated_light(int i) {
-        return (int)(Math.max(0, i - SHADOW) * 255.0/(255 - SHADOW));
+    private int recalculatedLight(int i) {
+        return recalculatedLight(i, SHADOW);
+    }
+
+    @Unique
+    private int recalculatedLight(int i, float shadow) {
+        return (int)(Math.max(0, i - shadow) * 255.0/(255 - shadow));
+    }
+
+    @Unique
+    private int darkenLight(int i, float shadow) {
+        return (int)(Math.max(0, i - shadow));
     }
 }
