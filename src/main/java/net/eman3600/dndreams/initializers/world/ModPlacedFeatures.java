@@ -56,7 +56,7 @@ public class ModPlacedFeatures {
             ModFeatures.HELLSLATE_ORE_COMMON, OreFeatures.modifiersWithCount(12, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-20), YOffset.aboveBottom(110))));
 
     public static final RegistryEntry<PlacedFeature> VITAL_ORE_PLACED = PlacedFeatures.register("vital_ore_placed",
-            ModFeatures.VITAL_ORE, OreFeatures.modifiersWithCount(100, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop())));
+            ModFeatures.VITAL_ORE, OreFeatures.modifiersWithCount(90, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop())));
 
     public static final RegistryEntry<PlacedFeature> CELESTIUM_ORE_PLACED = PlacedFeatures.register("celestium_ore_placed",
             ModFeatures.CELESTIUM_ORE, OreFeatures.modifiersWithCount(5, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(10), YOffset.aboveBottom(80))));

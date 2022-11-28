@@ -84,14 +84,16 @@ public class ModCallbacks {
 
             newPlayer.setHealth(newPlayer.getMaxHealth());
 
-            PermItemComponent perms = EntityComponents.PERM_ITEM.get(oldPlayer);
-            for (Item toRepair: PermItemComponent.resettables) {
-                perms.pair(toRepair);
-            }
+            if (!alive) {
+                PermItemComponent perms = EntityComponents.PERM_ITEM.get(oldPlayer);
+                for (Item toRepair : PermItemComponent.resettables) {
+                    perms.pair(toRepair);
+                }
 
-            TormentComponent torment = EntityComponents.TORMENT.get(newPlayer);
-            torment.shield(false);
-            torment.setSanity(torment.getMaxSanity());
+                TormentComponent torment = EntityComponents.TORMENT.get(newPlayer);
+                torment.shield(false);
+                torment.setSanity(torment.getMaxSanity());
+            }
         });
 
         ServerPlayConnectionEvents.INIT.register((handler, server) -> EntityComponents.STAT_BOON.get(handler.player).reloadAttributes());
