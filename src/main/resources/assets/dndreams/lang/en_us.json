@@ -61,7 +61,7 @@
   "item.dndreams.crowned_edge": "Crowned Edge",
   "item.dndreams.true_crowned_edge": "True Crowned Edge",
   
-  "item.dndreams.book_of_dreams": "Codex Somnus",
+  "item.dndreams.book_of_dreams": "Codex Neuros",
   "item.dndreams.book_of_dreams.landing_text": "Why, what dreams you'll have.",
   
   "item.dndreams.managold_ingot": "Managold Ingot",
@@ -145,10 +145,10 @@
   "item.dndreams.sleeping_brew": "Brew of Lofty Dreams",
   "item.dndreams.sanity_brew": "Thoughtweave Serum",
   "item.dndreams.manifest_brew": "Brew of Congealed Mind",
-  "item.dndreams.manifest_brew.tooltip_before": "§3To twist your imagination to reality.",
-  "item.dndreams.manifest_brew.tooltip_before2": "§3Bring the dream to life.",
-  "item.dndreams.manifest_brew.tooltip_after": "§3Its power courses through your",
-  "item.dndreams.manifest_brew.tooltip_after2": "§3veins, its power unending.",
+  "item.dndreams.manifest_brew.tooltip_before": "§3Reality is the poison that",
+  "item.dndreams.manifest_brew.tooltip_before2": "§3weakens the mind.",
+  "item.dndreams.manifest_brew.tooltip_after": "§3Reality has been treated.",
+  "item.dndreams.manifest_brew.tooltip_after2": "§3The dream shall prevail.",
   "item.dndreams.manifest_brew.use": "§dYou feel surreal...",
   
   "item.dndreams.panacea": "The Panacea",
