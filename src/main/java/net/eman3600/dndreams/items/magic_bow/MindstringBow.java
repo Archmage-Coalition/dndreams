@@ -145,4 +145,9 @@ public class MindstringBow extends MagicBow implements SanityCostItem {
     public boolean isPermanent(ItemStack stack) {
         return false;
     }
+
+    @Override
+    public boolean isOptional(ItemStack stack) {
+        return false;
+    }
 }

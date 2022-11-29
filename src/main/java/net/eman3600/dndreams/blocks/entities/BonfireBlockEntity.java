@@ -89,10 +89,11 @@ public class BonfireBlockEntity extends BlockEntity implements AbstractPowerRece
 
                 ManaComponent mana = EntityComponents.MANA.get(player);
 
-                if (strong && ((infusion.infused() && infusion.getPower() < infusion.getPowerMax()) || player.getHealth() < player.getMaxHealth() || mana.getMana() < mana.getManaMax()) && usePower(30)) {
+                if (strong && ((infusion.infused() && infusion.getPower() < infusion.getPowerMax()) || player.getHealth() < player.getMaxHealth() || mana.getMana() < mana.getManaMax() || player.getHungerManager().isNotFull() || player.getHungerManager().getSaturationLevel() < player.getHungerManager().getFoodLevel()) && usePower(30)) {
                     infusion.chargePower(1.2f);
                     if (!player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) mana.chargeMana(10);
                     player.heal(4f);
+                    player.getHungerManager().add(1, 1f);
 
                     ((CosmicFountainBlock) ModBlocks.COSMIC_FOUNTAIN).displayEnchantParticle(world, pos, player, ModParticles.COSMIC_ENERGY, 3);
                 }

@@ -6,7 +6,6 @@ import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.minecraft.entity.ItemEntity;
@@ -21,6 +20,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private float sanity = 100;
     public static final float THREAD_VALUE = 3.5f;
     private int dragonFlashTicks = 0;
+
     private boolean shielded = false;
 
     private final PlayerEntity player;
@@ -44,8 +44,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     private boolean sanityInflexible() {
-        return !WorldComponents.BOSS_STATE.get(player.getWorld().getScoreboard()).dragonSlain()
-                && player.getWorld().getDimensionKey() != ModDimensions.DREAM_TYPE_KEY;
+        return false/*sanityDisabled
+                && player.getWorld().getDimensionKey() != ModDimensions.DREAM_TYPE_KEY*/;
     }
 
     @Override
@@ -179,6 +179,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public boolean shouldRender() {
-        return !sanityInflexible();
+        return player.getWorld().getDimensionKey() != ModDimensions.GATEWAY_TYPE_KEY;
+    }
+
+    @Override
+    public boolean shouldOffsetRender() {
+        return EntityComponents.MANA.get(player).shouldRender();
     }
 }

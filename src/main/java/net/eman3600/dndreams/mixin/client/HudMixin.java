@@ -52,7 +52,9 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     private static final int TORMENT_X_OFFSET = 6;
 
     @Unique
-    private static final int TORMENT_Y_OFFSET = 28;
+    private static final int TORMENT_Y_OFFSET = 7;
+
+    @Unique private static final int TORMENT_Y_BIG_OFFSET = 28;
 
     @Unique
     private static final int TORMENT_WIDTH = 14;
@@ -193,9 +195,9 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         int tormentV = 28;
         int tormentV2 = 14;
 
-        int tormentYPos = scaledHeight - TORMENT_Y_OFFSET - TORMENT_HEIGHT;
-
         EntityComponents.TORMENT.maybeGet(player).ifPresent(component -> {
+            int tormentYPos = scaledHeight - TORMENT_HEIGHT - (component.shouldOffsetRender() ? TORMENT_Y_BIG_OFFSET : TORMENT_Y_OFFSET);
+
             float tormentMaxPercent = (component.getMaxSanity() / TormentComponent.MAX_SANITY);
             float tormentPercent = (component.getSanity() / TormentComponent.MAX_SANITY);
             if (!component.shouldRender()) return;

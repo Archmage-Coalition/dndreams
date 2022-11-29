@@ -92,7 +92,7 @@ public class ModCallbacks {
 
                 TormentComponent torment = EntityComponents.TORMENT.get(newPlayer);
                 torment.shield(false);
-                torment.setSanity(torment.getMaxSanity());
+                torment.setSanity(Math.max(30, torment.getSanity() - 15));
             }
         });
 

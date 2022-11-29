@@ -10,6 +10,7 @@ import net.minecraft.text.Text;
 public interface SanityCostItem extends Vanishable {
     float getBaseSanityCost();
     boolean isPermanent(ItemStack stack);
+    boolean isOptional(ItemStack stack);
 
     default float getSanityCost(ItemStack stack) {
         return getBaseSanityCost();
@@ -20,7 +21,7 @@ public interface SanityCostItem extends Vanishable {
             TormentComponent torment = EntityComponents.TORMENT.get(player);
             return isPermanent(stack) ?
                     torment.getMaxSanity() - getSanityCost(stack) >= TormentComponent.MIN_MAX_SANITY :
-                    torment.getSanity() - getSanityCost(stack) >= TormentComponent.MIN_SANITY;
+                    (isOptional(stack) || torment.getSanity() - getSanityCost(stack) >= TormentComponent.MIN_SANITY);
         }
         return false;
     }
