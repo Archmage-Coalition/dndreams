@@ -27,10 +27,10 @@ public class ModStatusEffect extends StatusEffect {
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (this == ModStatusEffects.LOOMING && entity.isPlayer()) {
             PlayerEntity player = (PlayerEntity)entity;
-            EntityComponents.TORMENT.get(player).lowerPerSecond(0.5f * (amplifier + 1));
+            EntityComponents.TORMENT.get(player).lowerPerSecond(1f * (amplifier + 1));
         } else if (this == ModStatusEffects.SPIRIT_WARD && entity.isPlayer()) {
             PlayerEntity player = (PlayerEntity)entity;
-            EntityComponents.TORMENT.get(player).lowerPerSecond(-0.5f * (amplifier + 1));
+            EntityComponents.TORMENT.get(player).lowerPerSecond(-1f * (amplifier + 1));
         } else if (this == ModStatusEffects.VOID_FLOW) {
             if (!entity.isPlayer()) {
                 entity.timeUntilRegen = 8;

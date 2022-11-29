@@ -28,6 +28,11 @@
           "name": "dndreams:dream_powder"
         }
       ],
+      "conditions": [
+        {
+          "condition": "dndreams:awakened"
+        }
+      ],
       "rolls": 1.0
     },
 	{

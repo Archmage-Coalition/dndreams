@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
@@ -17,6 +18,8 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Items;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
@@ -35,6 +38,7 @@ public class ModRegistries {
         registerMutables();
         registerEnergyFuels();
         registerApothecary();
+        registerInsanityMobAuras();
     }
 
     public static void registerEnergyFuels() {
@@ -141,6 +145,13 @@ public class ModRegistries {
         RefinedCauldronBlockEntity.registerEnhancement(Items.GLOWSTONE_DUST, EnhancementType.AMPLIFIER, 200);
         RefinedCauldronBlockEntity.registerEnhancement(Items.BLAZE_ROD, EnhancementType.AMPLIFIER, 200);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.JAPANESE_MAPLE_FUME, EnhancementType.AMPLIFIER, 200);
+    }
+
+    private static void registerInsanityMobAuras() {
+        TormentComponent.registerInsanityMob(LivingEntity::isUndead, 4f, 6f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN, 10f, 10f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 100f, 40f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.VILLAGER, -15f, 10f);
     }
 
     private static void registerSculkTransform() {

@@ -5,21 +5,30 @@ import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
-import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
 public class TormentComponent implements TormentComponentI, AutoSyncedComponent, ServerTickingComponent {
     private float maxSanity = 100;
     private float sanity = 100;
     public static final float THREAD_VALUE = 3.5f;
     private int dragonFlashTicks = 0;
+
+    private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
 
     private boolean shielded = false;
 
@@ -156,20 +165,35 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public void serverTick() {
+        float j = 0f;
+
         if (sanity < maxSanity) {
-            int i = ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
-            if (i > 0) {
-                lowerPerMinute(-1.25f * i);
-            }
+            j += -1.25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
         }
 
         if (WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon()) {
             lowerPerMinute(2f);
         }
 
-        int i = equippedTormite();
-        if (i > 0) {
-            lowerPerMinute(.15f * i);
+        j += .15f * equippedTormite();
+
+        for (Function<LivingEntity, Boolean> predicate: MOBS_TO_INSANITY.keySet()) {
+            InsanityRangePair pair = MOBS_TO_INSANITY.get(predicate);
+
+            for (LivingEntity entity: player.world.getNonSpectatingEntities(LivingEntity.class, player.getBoundingBox().expand(1.0 * pair.range, 0.5 * pair.range, 1.0 * pair.range))) {
+                if (!predicate.apply(entity)) continue;
+
+                float d = Math.max(0f, 1f - entity.distanceTo(player)/pair.range);
+                j += d * pair.insanity;
+            }
+        }
+
+        if (player.world.getLightLevel(player.getBlockPos()) < 1) {
+            j += 4f;
+        }
+
+        if (j != 0) {
+            lowerPerMinute(j);
         }
     }
 
@@ -185,5 +209,19 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public boolean shouldOffsetRender() {
         return EntityComponents.MANA.get(player).shouldRender();
+    }
+
+    public static void registerInsanityMob(Function<LivingEntity, Boolean> predicate, float insanity, float range) {
+        MOBS_TO_INSANITY.put(predicate, new InsanityRangePair(insanity, range));
+    }
+
+    private static class InsanityRangePair {
+        public final float insanity;
+        public final float range;
+
+        private InsanityRangePair(float insanity, float range) {
+            this.insanity = insanity;
+            this.range = range;
+        }
     }
 }

@@ -27,9 +27,9 @@ public abstract class LightmapTextureManagerMixin {
 
     @Shadow @Final private MinecraftClient client;
 
-    @Unique private final int SHADOW = 26;
-    @Unique private final int SANITY_SHADOW = 32;
-    @Unique private final int DARKNESS_THRESHOLD = 85;
+    @Unique private final float SHADOW = 26;
+    @Unique private final float SANITY_SHADOW = 40;
+    @Unique private final float DARKNESS_THRESHOLD = 70;
 
     @Shadow @Final private NativeImage image;
 
@@ -45,8 +45,8 @@ public abstract class LightmapTextureManagerMixin {
             TormentComponent component = EntityComponents.TORMENT.get(access.getPlayer());
 
             if (component.getSanity() < DARKNESS_THRESHOLD) {
-                float clamped = MathHelper.clamp(component.getSanity(), 25, DARKNESS_THRESHOLD) - 25;
-                clamped = SANITY_SHADOW - (clamped * (SANITY_SHADOW/(DARKNESS_THRESHOLD - 25f)));
+                float clamped = MathHelper.clamp(component.getSanity(), 0, DARKNESS_THRESHOLD);
+                clamped = SANITY_SHADOW - (clamped * (SANITY_SHADOW /(DARKNESS_THRESHOLD)));
 
                 z = darkenLight(z, clamped);
                 y = darkenLight(y, clamped);

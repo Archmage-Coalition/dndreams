@@ -43,7 +43,6 @@ public class DreamEye extends Item {
                 return stack;
             }
 
-            if (!player.isCreative()) stack.decrement(1);
             FabricDimensions.teleport(user, serverWorld, new TeleportTarget(user.getPos(), Vec3d.ZERO, user.getYaw(), user.getPitch()));
 
             player.getItemCooldownManager().set(ModItems.DREAM_EYE, 200);

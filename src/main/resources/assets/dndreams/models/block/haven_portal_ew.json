@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "dndreams:block/overhell_portal",
-        "portal": "dndreams:block/overhell_portal"
+        "particle": "dndreams:block/haven_portal",
+        "portal": "dndreams:block/haven_portal"
     },
     "elements": [
         {   "from": [ 6, 0, 0 ],
