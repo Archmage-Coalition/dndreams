@@ -1,7 +1,9 @@
 package net.eman3600.dndreams.recipe;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
+import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.inventory.Inventory;
@@ -63,7 +65,7 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
         try {
             boolean match = inventory.getStack(0).isItemEqualIgnoreDamage(input);
 
-            return match && (corrupted == inventory.getStack(1).isOf(Items.FERMENTED_SPIDER_EYE));
+            return match && (corrupted == inventory.getStack(1).isIn(ModTags.CORRUPTORS));
         } catch (IndexOutOfBoundsException e) {
             return !corrupted && inventory.getStack(0).isItemEqualIgnoreDamage(input);
         }
@@ -96,6 +98,7 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
         public ApothecaryRecipe read(Identifier identifier, JsonObject jsonObject) {
             String string = JsonHelper.getString(jsonObject, "group", "");
             ItemStack stack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "ingredient"));
+            if (stack.isIn(ModTags.CORRUPTORS)) throw new JsonParseException("Corruptors cannot be ingredients.");
             boolean corrupted = JsonHelper.getBoolean(jsonObject, "corrupted", false);
             int capacity = JsonHelper.getInt(jsonObject, "capacity", 2);
             int power = JsonHelper.getInt(jsonObject, "cost", 250);

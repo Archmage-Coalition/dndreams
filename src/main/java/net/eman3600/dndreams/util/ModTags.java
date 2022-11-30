@@ -37,6 +37,7 @@ public class ModTags {
     public static final TagKey<Item> MANA_USING_TOOLS = ofItem("mana_using_tools");
     public static final TagKey<Item> POWER_USING_TOOLS = ofItem("power_using_tools");
     public static final TagKey<Item> DREAM_EXCLUSIVE = ofItem("dream_exclusive");
+    public static final TagKey<Item> CORRUPTORS = ofItem("corruptors");
 
     public static final TagKey<EntityType<?>> SUBSTANTIAL_ENTITIES = ofEntity("substantial");
 

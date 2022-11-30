@@ -139,12 +139,12 @@ public class ModRegistries {
         RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.DISTILLED_SPIRIT, 3, 150);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.REDSTONE, EnhancementType.LENGTH, 100);
-        RefinedCauldronBlockEntity.registerEnhancement(Items.OBSIDIAN, EnhancementType.LENGTH, 100);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.SAKURA_FUME, EnhancementType.LENGTH, 100);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.CRYSTAL_MIX, EnhancementType.LENGTH, 100);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STARDUST, EnhancementType.LENGTH, 100);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.GLOWSTONE_DUST, EnhancementType.AMPLIFIER, 200);
-        RefinedCauldronBlockEntity.registerEnhancement(Items.BLAZE_ROD, EnhancementType.AMPLIFIER, 200);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.JAPANESE_MAPLE_FUME, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.CHARGED_SHARD, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STAR_FUME, EnhancementType.AMPLIFIER, 200);
     }
 
     private static void registerInsanityMobAuras() {

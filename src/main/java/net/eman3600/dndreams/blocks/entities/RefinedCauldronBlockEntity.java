@@ -208,7 +208,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
             return;
         }
 
-        if ((itemList().contains(stack.getItem()) && !stack.isOf(Items.FERMENTED_SPIDER_EYE)) || ingredients >= inventory.size() || stack.getItem() instanceof BucketItem) return;
+        if ((itemList().contains(stack.getItem()) && !stack.isIn(ModTags.CORRUPTORS)) || ingredients >= inventory.size() || stack.getItem() instanceof BucketItem) return;
 
         ItemStack addition = stack.copy();
         addition.setCount(1);
@@ -258,7 +258,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                 alterColor(-12, -12, -12);
                 return;
             } else if (getBrewStage() == BrewStage.EFFECT) {
-                if (inventory.get(ingredients - 1).isOf(Items.FERMENTED_SPIDER_EYE) && BrewStage.fromStack(inventory.get(ingredients - 2), world) != BrewStage.EFFECT) {
+                if (inventory.get(ingredients - 1).isIn(ModTags.CORRUPTORS) && BrewStage.fromStack(inventory.get(ingredients - 2), world) != BrewStage.EFFECT) {
                     cauldronState = CauldronState.RUINED;
                     color = RUINED_COLOR;
                     return;
@@ -326,7 +326,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
             stacks.set(0, inventory.get(i));
 
             try {
-                if (inventory.get(i + 1).isOf(Items.FERMENTED_SPIDER_EYE)) {
+                if (inventory.get(i + 1).isIn(ModTags.CORRUPTORS)) {
                     stacks.set(1, inventory.get(i + 1));
                 }
             } catch (IndexOutOfBoundsException ignored) {}
@@ -563,11 +563,11 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                 BrewStage itemStage = BrewStage.fromStack(stack, world);
 
                 if (itemStage == BrewStage.CAPACITY) requirement += CAPACITIES.get(item).power;
-                else if (itemStage == BrewStage.EFFECT && item != Items.FERMENTED_SPIDER_EYE) {
+                else if (itemStage == BrewStage.EFFECT && !stack.isIn(ModTags.CORRUPTORS)) {
                     Inventory inv = ImplementedInventory.of(DefaultedList.ofSize(2, ItemStack.EMPTY));
                     try {
                         inv.setStack(0, stack);
-                        if (inventory.get(i + 1).isOf(Items.FERMENTED_SPIDER_EYE)) {
+                        if (inventory.get(i + 1).isIn(ModTags.CORRUPTORS)) {
                             inv.setStack(1, inventory.get(i + 1));
                         }
                     } catch (IndexOutOfBoundsException ignored) {}
@@ -600,11 +600,11 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                 HashMap<BrewStage, Integer> map = BrewStage.toStepMap();
 
                 if (itemStage == BrewStage.CAPACITY) capacity += CAPACITIES.get(item).capacity;
-                else if (itemStage == BrewStage.EFFECT && item != Items.FERMENTED_SPIDER_EYE) {
+                else if (itemStage == BrewStage.EFFECT && !stack.isIn(ModTags.CORRUPTORS)) {
                     Inventory inv = ImplementedInventory.of(DefaultedList.ofSize(2, ItemStack.EMPTY));
                     try {
                         inv.setStack(0, stack);
-                        if (inventory.get(i + 1).isOf(Items.FERMENTED_SPIDER_EYE)) {
+                        if (inventory.get(i + 1).isIn(ModTags.CORRUPTORS)) {
                             inv.setStack(1, inventory.get(i + 1));
                         }
                     } catch (IndexOutOfBoundsException ignored) {}

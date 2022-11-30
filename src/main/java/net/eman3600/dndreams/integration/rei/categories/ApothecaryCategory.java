@@ -14,6 +14,7 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
 import net.eman3600.dndreams.integration.rei.display.ApothecaryDisplay;
+import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
@@ -59,7 +60,7 @@ public class ApothecaryCategory implements DisplayCategory<ApothecaryDisplay> {
 
         if (display.RECIPE.corrupted) {
             widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 9, bounds.getCenterY() - 7 - 18)).entries(inputs.get(0)));
-            widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 9, bounds.getCenterY() - 7)).entries(EntryIngredients.of(Items.FERMENTED_SPIDER_EYE)));
+            widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 9, bounds.getCenterY() - 7)).entries(EntryIngredients.ofItemTag(ModTags.CORRUPTORS)));
         } else {
             widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 9, bounds.getCenterY() - 7)).entries(inputs.get(0)));
         }

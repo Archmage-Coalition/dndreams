@@ -41,11 +41,19 @@ During the Age of the Illagers, Elrunez the Archmage opened the long-sealed port
 
 
 # The Affliction's Onset
-The Koinans were a race of humanoids adept in construction of tools and structures. They lasted about 10000 years before falling to their own creation.
+The Koinans were a race of humanoids adept in construction of tools and structures. They lasted about 10,000 years before falling to their own creation.
 
 Necromantic Revolution
 ===
 The first source of magic to be discovered was amethyst. It was used in conjunction with silver to begin the liquification of soul.
+
+The Fall
+===
+The
+
+The Aftermath
+===
+
 
 
 # Miscellanious Entities

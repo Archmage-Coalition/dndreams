@@ -2,6 +2,7 @@ package net.eman3600.dndreams.blocks.properties;
 
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
+import net.eman3600.dndreams.util.ModTags;
 import net.eman3600.dndreams.util.data.DistributionType;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.minecraft.inventory.Inventory;
@@ -25,7 +26,7 @@ public enum BrewStage {
     public static BrewStage fromStack(ItemStack stack, World world) {
         if (stack.isOf(Items.NETHER_WART)) return BASE;
         if (RefinedCauldronBlockEntity.CAPACITIES.containsKey(stack.getItem())) return CAPACITY;
-        if (stack.isOf(Items.FERMENTED_SPIDER_EYE)) return EFFECT;
+        if (stack.isIn(ModTags.CORRUPTORS)) return EFFECT;
 
         try {
             RecipeManager manager = world.getRecipeManager();

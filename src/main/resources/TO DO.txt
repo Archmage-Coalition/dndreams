@@ -1,4 +1,0 @@
-DONE. Sync time and Torment.
-2. Create the consumable entry item and reusable exit item.
-3. Make death only wake the player up from the Dream.
-4. Create the dream transference block (probably requires a second inventory in the Dream component).

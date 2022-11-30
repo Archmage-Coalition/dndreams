@@ -19,7 +19,6 @@ import org.betterx.bclib.api.v2.generator.BiomeType;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.levelgen.biomes.InternalBiomeAPI;
 import org.betterx.bclib.config.Configs;
 import org.betterx.bclib.config.EntryConfig;
 import org.betterx.bclib.config.IdConfig;
@@ -31,7 +30,7 @@ import static net.eman3600.dndreams.Initializer.MODID;
 
 /**
  * Credits to paulevs & Quiqueck for all the code for end generation
- * and much of the code for haven generation.
+ * and most of the code for haven generation.
  * */
 public class ModBiomes {
     private static final IdConfig CONFIG = new EntryConfig(MODID, "biomes");
@@ -41,9 +40,9 @@ public class ModBiomes {
     public static final List<BCLBiome> BIOMES_CAVE = Lists.newArrayList();
 
     // End Biomes
-    public static final EndBiome SELENE_BIOME = registerBiome(new SeleneBiome(), BiomeType.LAND);
-    public static final EndBiome EOS_BIOME = registerBiome(new EosBiome(), BiomeType.LAND);
-    public static final EndBiome HELIOS_BIOME = registerBiome(new HeliosBiome(), BiomeType.LAND);
+    public static final EndBiome SELENE_BIOME = registerEndBiome(new SeleneBiome(), BiomeType.LAND);
+    public static final EndBiome EOS_BIOME = registerEndBiome(new EosBiome(), BiomeType.LAND);
+    public static final EndBiome HELIOS_BIOME = registerEndBiome(new HeliosBiome(), BiomeType.LAND);
 
 
     // Haven Land Biomes
@@ -59,7 +58,7 @@ public class ModBiomes {
 
 
 
-    public static EndBiome registerBiome(EndBiome.Config biomeConfig, BiomeType type) {
+    public static EndBiome registerEndBiome(EndBiome.Config biomeConfig, BiomeType type) {
         final EndBiome biome = EndBiome.create(biomeConfig);
         if (Configs.BIOMES_CONFIG.getBoolean(biome.getID().getPath(), "enabled", true)) {
             if (type == BiomeType.LAND) {

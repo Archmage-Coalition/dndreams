@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "dndreams:ember_moss"
+  },
+  "result": {
+    "item": "minecraft:magma_cream"
+  }
+}

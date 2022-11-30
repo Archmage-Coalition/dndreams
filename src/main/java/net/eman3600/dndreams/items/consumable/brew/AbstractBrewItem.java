@@ -4,6 +4,7 @@ import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.blocks.properties.BrewStage;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.recipe.ApothecaryRecipe;
+import net.eman3600.dndreams.util.ModTags;
 import net.eman3600.dndreams.util.data.EnhancementType;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.minecraft.client.item.TooltipContext;
@@ -81,7 +82,7 @@ public abstract class AbstractBrewItem extends Item {
 
                 if (type == EnhancementType.AMPLIFIER) amplifier++;
                 else if (type == EnhancementType.LENGTH) length++;
-            } else if (stage == BrewStage.EFFECT && !stack.isOf(Items.FERMENTED_SPIDER_EYE)) {
+            } else if (stage == BrewStage.EFFECT && !stack.isIn(ModTags.CORRUPTORS)) {
                 Inventory inv = ImplementedInventory.of(DefaultedList.ofSize(2, ItemStack.EMPTY));
                 inv.setStack(0, stack);
 

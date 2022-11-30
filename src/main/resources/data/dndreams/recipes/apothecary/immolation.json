@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "dndreams:ember_moss"
+    "item": "minecraft:magma_cream"
   },
-  "corrupted": false,
-  "capacity": 3,
-  "cost": 300,
+  "corrupted": true,
+  "capacity": 2,
+  "cost": 250,
   "effect": "dndreams:immolation",
   "duration": 1
 }
