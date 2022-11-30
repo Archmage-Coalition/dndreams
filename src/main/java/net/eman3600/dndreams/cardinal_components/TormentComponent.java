@@ -167,12 +167,10 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public void serverTick() {
         float j = 0f;
 
-        if (sanity < maxSanity) {
-            j += -1.25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
-        }
+        j += -1.25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
 
         if (WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon()) {
-            lowerPerMinute(2f);
+            j += 2f;
         }
 
         j += .15f * equippedTormite();
