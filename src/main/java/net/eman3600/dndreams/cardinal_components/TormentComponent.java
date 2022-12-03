@@ -7,16 +7,15 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +44,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public float getSanity() {
         return sanity;
+    }
+
+    @Override
+    public float getEmbracedSanity() {
+        return isAtonement() ? getSanity() + 100 : getSanity();
     }
 
     @Override
@@ -168,6 +172,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         float j = 0f;
 
         j += -1.25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
+        if (isAtonement()) j+= 3f;
 
         if (WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon()) {
             j += 2f;
@@ -207,6 +212,15 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public boolean shouldOffsetRender() {
         return EntityComponents.MANA.get(player).shouldRender();
+    }
+
+    @Override
+    public boolean isAtonement() {
+        try {
+            return WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END);
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     public static void registerInsanityMob(Function<LivingEntity, Boolean> predicate, float insanity, float range) {

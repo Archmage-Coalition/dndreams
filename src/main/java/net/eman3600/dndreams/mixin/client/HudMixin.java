@@ -13,10 +13,12 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.border.WorldBorder;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,6 +26,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.awt.*;
 
@@ -94,6 +97,8 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
     @Shadow public abstract TextRenderer getTextRenderer();
 
+
+    @Shadow public float vignetteDarkness;
 
     @Override
     public void setDragonFlash(int ticks) {
@@ -204,11 +209,13 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             int skipV2 = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentMaxPercent));
             int skipV = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentPercent));
 
+            int x = component.isAtonement() ? 103 : 79;
+
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
-            drawTexture(matrices, tormentXPos, tormentYPos, 79, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV2, 79, tormentV2 + skipV2, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentMaxPercent));
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV, 79, tormentV + skipV, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos, x, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
+            drawTexture(matrices, tormentXPos, tormentYPos + skipV2, x, tormentV2 + skipV2, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentMaxPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos + skipV, x, tormentV + skipV, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentPercent));
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });
@@ -252,6 +259,27 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
             RenderSystem.setShaderColor(1, 1, 1, 1);
         }*/
+    }
+
+    @Inject(method = "renderVignetteOverlay", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShader(Ljava/util/function/Supplier;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
+    private void dndreams$renderVignetteOverlay(Entity entity, CallbackInfo ci, WorldBorder worldBorder, float f) {
+        if (f <= 0 && entity instanceof PlayerEntity player) {
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+            float sanity = torment.getEmbracedSanity();
+            float g = vignetteDarkness;
+
+            if (sanity <= 30) {
+                g += (1f - g) * (Math.min(30 - sanity, 15f))/15;
+
+                float scalar = g * sanity/15;
+                RenderSystem.setShaderColor(scalar, g, g, 1f);
+            } else if (sanity >= 110) {
+                g += (1f - g) * (sanity - 110)/90;
+
+                float scalar = g * (200 - sanity)/90;
+                RenderSystem.setShaderColor(g, g, scalar, 1f);
+            }
+        }
     }
 
     @Inject(method = "tick()V", at = @At("HEAD"))
