@@ -7,5 +7,5 @@
   "capacity": 2,
   "cost": 250,
   "effect": "minecraft:poison",
-  "duration": 600
+  "duration": 900
 }

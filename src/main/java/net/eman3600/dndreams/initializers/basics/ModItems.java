@@ -464,6 +464,10 @@ public class ModItems {
     public static final Item SATIATION_STAFF = registerItem("satiation_staff",
             new SatiationStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
+    // Mystic Staff
+    public static final Item MYSTIC_STAFF = registerItem("mystic_staff",
+            new MysticStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+
 
 
     // Brews

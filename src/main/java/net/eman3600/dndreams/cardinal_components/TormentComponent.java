@@ -103,7 +103,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             } else if (getSanity() - THREAD_VALUE >= MIN_SANITY) {
                 bl = true;
                 lowerSanity(THREAD_VALUE);
-                stack = ModItems.DREAM_POWDER.getDefaultStack();
+                stack = player.world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY ? ModItems.DREAM_POWDER.getDefaultStack() : ModItems.SCULK_POWDER.getDefaultStack();
             } else {
                 break;
             }

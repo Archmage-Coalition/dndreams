@@ -3,6 +3,7 @@ package net.eman3600.dndreams.initializers.event;
 import net.eman3600.dndreams.cardinal_components.PermItemComponent;
 import net.eman3600.dndreams.cardinal_components.StatBoonComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.ItemEntityAccess;
@@ -96,18 +97,18 @@ public class ModCallbacks {
             }
         });
 
-        ServerPlayConnectionEvents.INIT.register((handler, server) -> EntityComponents.STAT_BOON.get(handler.player).reloadAttributes());
+        ServerPlayConnectionEvents.INIT.register((handler, server) -> {
+            StatBoonComponent boons = EntityComponents.STAT_BOON.get(handler.player);
+            boons.reloadAttributes();
+            if (handler.player.getMaxHealth() > 20) handler.player.setHealth(boons.hp);
+        });
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-            StatBoonComponent boons = EntityComponents.STAT_BOON.get(handler.player);
             try {
                 WorldComponents.BOSS_STATE.get(server.getScoreboard()).setDifficulty();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            boons.reloadAttributes();
-            if (handler.player.getMaxHealth() > 20) handler.player.setHealth(boons.hp);
         });
     }
 

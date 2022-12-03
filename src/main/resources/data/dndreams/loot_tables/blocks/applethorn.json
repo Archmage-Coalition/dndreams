@@ -13,35 +13,34 @@
               "children": [
                 {
                   "type": "minecraft:item",
-                  "name": "minecraft:apple",
+                  "name": "dndreams:poison_apple",
                   "conditions": [
                     {
-                      "condition": "minecraft:random_chance",
-                      "chance": 0.7
+                      "condition": "dndreams:sanity",
+                      "entity": "this",
+					  "sanity": 25
                     }
                   ]
                 },
-                {
-                  "type": "minecraft:alternatives",
-                  "children": [
-                    {
-                      "type": "minecraft:item",
-                      "name": "dndreams:poison_apple",
-                      "conditions": [
-                        {
-                          "condition": "dndreams:sanity",
-                          "entity": "this",
-						  "sanity": 25
-                        }
-                      ]
-                    },
-                    {
-                      "type": "minecraft:item",
-                      "name": "dndreams:succulent_apple"
-                    }
+				{
+                  "type": "minecraft:item",
+                  "name": "dndreams:succulent_apple",
+                  "conditions": [
+				    {
+					  "condition": "minecraft:inverted",
+					  "term": {
+                        "condition": "dndreams:sanity",
+                        "entity": "this",
+					    "sanity": 85
+                      }
+					}
                   ]
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "minecraft:apple"
                 }
-              ],
+			  ],
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",

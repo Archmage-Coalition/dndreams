@@ -59,7 +59,7 @@ public class RefinedCauldronBlock extends BlockWithEntity {
                     entity.fill(1);
 
                     player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, Items.GLASS_BOTTLE.getDefaultStack()));
-                    world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                    world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     world.emitGameEvent(null, GameEvent.FLUID_PLACE, pos);
 
                     return ActionResult.SUCCESS;
@@ -78,6 +78,9 @@ public class RefinedCauldronBlock extends BlockWithEntity {
 
                     if (!result.isEmpty()) {
                         player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, result));
+
+                        world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                        world.emitGameEvent(null, GameEvent.FLUID_PLACE, pos);
                     }
                 }
 
@@ -94,6 +97,9 @@ public class RefinedCauldronBlock extends BlockWithEntity {
 
                     if (!result.isEmpty()) {
                         player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, result));
+
+                        world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                        world.emitGameEvent(null, GameEvent.FLUID_PLACE, pos);
                     }
                 }
 

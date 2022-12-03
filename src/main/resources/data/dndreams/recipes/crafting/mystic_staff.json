@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SG#",
+    " XG",
+    "X S"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:charged_shard"
+    },
+    "X": {
+      "item": "dndreams:end_stick"
+    },
+    "G": {
+      "item": "dndreams:managold_ingot"
+    },
+    "S": {
+      "item": "dndreams:sanity_thread"
+    }
+  },
+  "result": {
+    "item": "dndreams:mystic_staff"
+  }
+}
