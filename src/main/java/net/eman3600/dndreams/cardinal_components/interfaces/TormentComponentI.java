@@ -4,7 +4,7 @@ import dev.onyxstudios.cca.api.v3.component.Component;
 
 public interface TormentComponentI extends Component {
     float getSanity();
-    float getEmbracedSanity();
+    float getAttunedSanity();
     float getMaxSanity();
 
     boolean isShielded();
@@ -24,5 +24,5 @@ public interface TormentComponentI extends Component {
     boolean shouldRender();
     boolean shouldOffsetRender();
 
-    boolean isAtonement();
+    boolean isAttunement();
 }

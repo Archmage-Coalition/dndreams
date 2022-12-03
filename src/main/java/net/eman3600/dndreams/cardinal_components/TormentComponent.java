@@ -49,8 +49,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     @Override
-    public float getEmbracedSanity() {
-        return isAtonement() ? getSanity() + 100 : getSanity();
+    public float getAttunedSanity() {
+        return isAttunement() ? getSanity() + 100 : getSanity();
     }
 
     @Override
@@ -95,7 +95,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public void lowerMaxSanity(float value) {
         maxSanity -= value;
 
-        if (value > 0) sanityDamageTicks = SANITY_DAMAGE;
+        if (isAttunement() ? value < 0 : value > 0) sanityDamageTicks = SANITY_DAMAGE;
 
         normalize();
     }
@@ -183,8 +183,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public void serverTick() {
         float j = 0f;
 
-        j += -1.25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
-        if (isAtonement()) j+= 3f;
+        j -= 1.25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
+        if (isAttunement()) j -= 3f;
 
         if (WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon()) {
             j += 2f;
@@ -211,8 +211,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             lowerPerMinute(j);
         }
 
-        if (sanityDamageTicks > 0) {
+        float attunedSanity = getAttunedSanity();
+        if (sanityDamageTicks > 0 && attunedSanity > 25) {
             sanityDamageTicks--;
+            EntityComponents.TORMENT.sync(player);
+        } else if (sanityDamageTicks < SANITY_DAMAGE && attunedSanity <= 25) {
+            sanityDamageTicks++;
             EntityComponents.TORMENT.sync(player);
         }
     }
@@ -232,7 +236,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     @Override
-    public boolean isAtonement() {
+    public boolean isAttunement() {
         try {
             return WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END);
         } catch (NullPointerException e) {

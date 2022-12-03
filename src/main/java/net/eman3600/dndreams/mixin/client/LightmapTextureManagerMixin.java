@@ -44,7 +44,7 @@ public abstract class LightmapTextureManagerMixin {
         } else if (clientWorld instanceof ClientWorldAccess access) {
             TormentComponent component = EntityComponents.TORMENT.get(access.getPlayer());
 
-            if (component.getEmbracedSanity() < DARKNESS_THRESHOLD) {
+            if (component.getAttunedSanity() < DARKNESS_THRESHOLD) {
                 float clamped = MathHelper.clamp(component.getSanity(), 0, DARKNESS_THRESHOLD);
                 clamped = SANITY_SHADOW - (clamped * (SANITY_SHADOW /(DARKNESS_THRESHOLD)));
 

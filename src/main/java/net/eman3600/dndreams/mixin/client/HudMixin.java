@@ -15,12 +15,10 @@ import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.border.WorldBorder;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,7 +26,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.awt.*;
 
@@ -38,10 +35,9 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Unique
     private static final Identifier DNDREAMS_GUI_ICONS = new Identifier(Initializer.MODID, "textures/gui/icons.png");
 
-    @Unique
-    private static final Identifier DRAGON_FLASH_IMAGE = new Identifier(Initializer.MODID, "textures/gui/shader/dragon_flash.png");
-    @Unique
-    private static final Identifier INSANITY_DAMAGE_TEXTURE = new Identifier(Initializer.MODID, "textures/gui/shader/insanity_damage.png");
+    @Unique private static final Identifier DRAGON_FLASH_IMAGE = new Identifier(Initializer.MODID, "textures/gui/shader/dragon_flash.png");
+    @Unique private static final Identifier INSANITY_VIGNETTE_TEXTURE = new Identifier(Initializer.MODID, "textures/gui/shader/insanity_vignette.png");
+    @Unique private static final Identifier ATTUNEMENT_VIGNETTE_TEXTURE = new Identifier(Initializer.MODID, "textures/gui/shader/attunement_vignette.png");
 
     @Unique
     private static final int MANA_X_OFFSET = 6;
@@ -213,7 +209,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             int skipV2 = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentMaxPercent));
             int skipV = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentPercent));
 
-            int x = component.isAtonement() ? 103 : 79;
+            int x = component.isAttunement() ? 103 : 79;
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
@@ -265,27 +261,6 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         }*/
     }
 
-    @Inject(method = "renderVignetteOverlay", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShader(Ljava/util/function/Supplier;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void dndreams$renderVignetteOverlay(Entity entity, CallbackInfo ci, WorldBorder worldBorder, float f) {
-        if (f <= 0 && entity instanceof PlayerEntity player) {
-            TormentComponent torment = EntityComponents.TORMENT.get(player);
-            float sanity = torment.getEmbracedSanity();
-            float g = vignetteDarkness;
-
-            if (sanity <= 30) {
-                g += (1f - g) * (Math.min(30 - sanity, 15f))/15;
-
-                float scalar = g * sanity/15;
-                RenderSystem.setShaderColor(scalar, g, g, 1f);
-            } else if (sanity >= 110) {
-                g += (1f - g) * (sanity - 110)/90;
-
-                float scalar = g * (200 - sanity)/90;
-                RenderSystem.setShaderColor(g, g, scalar, 1f);
-            }
-        }
-    }
-
     @Inject(method = "tick()V", at = @At("HEAD"))
     private void dndreams$tick(CallbackInfo ci) {
         if (dragonFlashTicks > 0) {
@@ -295,23 +270,29 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderVignetteOverlay(Lnet/minecraft/entity/Entity;)V"))
     private void dndreams$render$vignette(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
-        renderInsanityDamageOverlay();
+        renderInsanityVignette();
     }
 
     @Unique
-    private void renderInsanityDamageOverlay() {
+    private void renderInsanityVignette() {
         PlayerEntity player = client.player;
         if (player == null) return;
 
+        TormentComponent torment = EntityComponents.TORMENT.get(player);
+        float g = torment.getSanityDamage();
+
+        renderCustomVignette(g, g, g, torment.isAttunement() ? ATTUNEMENT_VIGNETTE_TEXTURE : INSANITY_VIGNETTE_TEXTURE);
+    }
+
+    @Unique
+    private void renderCustomVignette(float r, float g, float b, Identifier texture) {
         RenderSystem.disableDepthTest();
         RenderSystem.depthMask(false);
         RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.ZERO, GlStateManager.DstFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO);
-
-        float g = EntityComponents.TORMENT.get(player).getSanityDamage();
         RenderSystem.setShaderColor(g, g, g, 1.0f);
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, INSANITY_DAMAGE_TEXTURE);
+        RenderSystem.setShaderTexture(0, texture);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);

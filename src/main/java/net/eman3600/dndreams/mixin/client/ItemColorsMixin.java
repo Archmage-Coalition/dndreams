@@ -33,7 +33,7 @@ public abstract class ItemColorsMixin {
 
         if (client.player == null) return -1;
         TormentComponent torment = EntityComponents.TORMENT.get(client.player);
-        float sanity = torment.getEmbracedSanity();
+        float sanity = torment.getAttunedSanity();
 
         if (sanity <= 25 || client.player.hasStatusEffect(ModStatusEffects.AETHER)) return -1;
         else if (sanity > 60) return 0;

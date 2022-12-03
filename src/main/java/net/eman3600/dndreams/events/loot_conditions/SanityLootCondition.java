@@ -47,7 +47,7 @@ public class SanityLootCondition implements LootCondition {
         if (entity instanceof PlayerEntity player) {
             TormentComponent component = EntityComponents.TORMENT.get(player);
 
-            return component.getSanity() <= sanity;
+            return component.getAttunedSanity() <= sanity;
         }
 
         return false;
