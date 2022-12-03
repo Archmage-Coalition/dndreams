@@ -128,12 +128,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
                 component.lowerPerMinute(component.isShielded() ? 10f : 150f);
 
                 if (!component.isShielded()) {
-                    if (!hasStatusEffect(ModStatusEffects.AFFLICTION)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
-                    if (!hasStatusEffect(ModStatusEffects.SUPPRESSED)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 80, 0, true, true));
+                    if (!hasStatusEffect(ModStatusEffects.AFFLICTION) || getStatusEffect(ModStatusEffects.AFFLICTION).getDuration() < 20) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
+                    if (!hasStatusEffect(ModStatusEffects.SUPPRESSED) || getStatusEffect(ModStatusEffects.SUPPRESSED).getDuration() < 20) addStatusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 80, 0, true, true));
                 }
             } else {
-                if (!hasStatusEffect(ModStatusEffects.AFFLICTION)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
-                if (!hasStatusEffect(ModStatusEffects.SUPPRESSED)) addStatusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 80, 0, true, true));
+                if (!hasStatusEffect(ModStatusEffects.AFFLICTION) || getStatusEffect(ModStatusEffects.AFFLICTION).getDuration() < 20) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
+                if (!hasStatusEffect(ModStatusEffects.SUPPRESSED) || getStatusEffect(ModStatusEffects.SUPPRESSED).getDuration() < 20) addStatusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 80, 0, true, true));
             }
         }
 

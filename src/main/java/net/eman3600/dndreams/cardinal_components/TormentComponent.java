@@ -26,6 +26,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private float sanity = 100;
     public static final float THREAD_VALUE = 3.5f;
     private int dragonFlashTicks = 0;
+    private int sanityDamageTicks = 0;
 
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
 
@@ -36,6 +37,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public static final float MAX_SANITY = 100f;
     public static final float MIN_SANITY = 0f;
     public static final float MIN_MAX_SANITY = 30f;
+    private static final int SANITY_DAMAGE = 15;
 
     public TormentComponent(PlayerEntity playerIn) {
         player = playerIn;
@@ -92,7 +94,15 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public void lowerMaxSanity(float value) {
         maxSanity -= value;
+
+        if (value > 0) sanityDamageTicks = SANITY_DAMAGE;
+
         normalize();
+    }
+
+    @Override
+    public float getSanityDamage() {
+        return MathHelper.clamp((float)sanityDamageTicks/SANITY_DAMAGE, 0, 1);
     }
 
     @Override
@@ -157,6 +167,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         maxSanity = tag.getFloat("max_sanity");
         dragonFlashTicks = tag.getInt("dragon_flash_ticks");
         shielded = tag.getBoolean("shielded");
+        sanityDamageTicks = tag.getInt("sanity_damage_ticks");
     }
 
     @Override
@@ -165,6 +176,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putFloat("max_sanity", maxSanity);
         tag.putInt("dragon_flash_ticks", dragonFlashTicks);
         tag.putBoolean("shielded", shielded);
+        tag.putInt("sanity_damage_ticks", sanityDamageTicks);
     }
 
     @Override
@@ -197,6 +209,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
         if (j != 0) {
             lowerPerMinute(j);
+        }
+
+        if (sanityDamageTicks > 0) {
+            sanityDamageTicks--;
+            EntityComponents.TORMENT.sync(player);
         }
     }
 

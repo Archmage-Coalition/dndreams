@@ -1,10 +1,13 @@
 # The Elements
 
 ## Reality
-The power of balance and equilibrium, embodied by the End. It is the power of order.
+The power of groundedness, embodied by the Overworld and Nether.
 
 ## Imagination
 The power of mind and soul, embodied by the Spirit World.
+
+## Cosmos
+The power of balance and equilibrium, embodied by the End.
 
 # The Affliction
 The affliction is the root of undeath, the source of madness and consumption, and the cause of the fall of Koinans. It manifests itself in several forms based on the various aspects of mind and soul.

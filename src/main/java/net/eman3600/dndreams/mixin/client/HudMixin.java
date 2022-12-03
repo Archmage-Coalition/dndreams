@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.mixin.client;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
@@ -12,6 +13,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,6 +40,8 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
     @Unique
     private static final Identifier DRAGON_FLASH_IMAGE = new Identifier(Initializer.MODID, "textures/gui/shader/dragon_flash.png");
+    @Unique
+    private static final Identifier INSANITY_DAMAGE_TEXTURE = new Identifier(Initializer.MODID, "textures/gui/shader/insanity_damage.png");
 
     @Unique
     private static final int MANA_X_OFFSET = 6;
@@ -287,5 +291,37 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         if (dragonFlashTicks > 0) {
             dragonFlashTicks--;
         }
+    }
+
+    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderVignetteOverlay(Lnet/minecraft/entity/Entity;)V"))
+    private void dndreams$render$vignette(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
+        renderInsanityDamageOverlay();
+    }
+
+    @Unique
+    private void renderInsanityDamageOverlay() {
+        PlayerEntity player = client.player;
+        if (player == null) return;
+
+        RenderSystem.disableDepthTest();
+        RenderSystem.depthMask(false);
+        RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.ZERO, GlStateManager.DstFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO);
+
+        float g = EntityComponents.TORMENT.get(player).getSanityDamage();
+        RenderSystem.setShaderColor(g, g, g, 1.0f);
+
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, INSANITY_DAMAGE_TEXTURE);
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
+        bufferBuilder.vertex(0.0, this.scaledHeight, -90.0).texture(0.0f, 1.0f).next();
+        bufferBuilder.vertex(this.scaledWidth, this.scaledHeight, -90.0).texture(1.0f, 1.0f).next();
+        bufferBuilder.vertex(this.scaledWidth, 0.0, -90.0).texture(1.0f, 0.0f).next();
+        bufferBuilder.vertex(0.0, 0.0, -90.0).texture(0.0f, 0.0f).next();
+        tessellator.draw();
+        RenderSystem.depthMask(true);
+        RenderSystem.enableDepthTest();
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
     }
 }
