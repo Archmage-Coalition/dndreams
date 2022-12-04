@@ -7,6 +7,7 @@ import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
@@ -38,6 +39,7 @@ public class ModRegistries {
         registerMutables();
         registerEnergyFuels();
         registerApothecary();
+        registerInsanityPredicates();
         registerInsanityMobAuras();
     }
 
@@ -147,9 +149,18 @@ public class ModRegistries {
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.STAR_FUME, EnhancementType.AMPLIFIER, 200);
     }
 
+    private static void registerInsanityPredicates() {
+        TormentComponent.registerPredicate(player -> -1.25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM));
+        TormentComponent.registerPredicate((player, torment) -> torment.isAttuned() ? -3f : 0);
+        TormentComponent.registerPredicate(player -> WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() ? 2f : 0);
+        TormentComponent.registerPredicate(player -> .15f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE));
+        TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos()) < 1 ? 4f : 0);
+    }
+
     private static void registerInsanityMobAuras() {
         TormentComponent.registerInsanityMob(LivingEntity::isUndead, 4f, 6f);
-        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN, 10f, 10f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), -10f, 10f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && !WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), 10f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 100f, 40f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.VILLAGER, -15f, 10f);
     }

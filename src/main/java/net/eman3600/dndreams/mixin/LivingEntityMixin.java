@@ -2,8 +2,8 @@ package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.cardinal_components.DreamingComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
-import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModTags;

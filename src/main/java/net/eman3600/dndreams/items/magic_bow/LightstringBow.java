@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.items.magic_bow;
 
 import net.eman3600.dndreams.items.interfaces.PowerCostItem;
+import net.eman3600.dndreams.items.interfaces.SanityCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LightstringBow extends ManastringBow implements PowerCostItem {
+public class LightstringBow extends MagicBow implements PowerCostItem, SanityCostItem {
     public LightstringBow(Settings settings) {
         super(settings);
     }
@@ -21,12 +22,7 @@ public class LightstringBow extends ManastringBow implements PowerCostItem {
         return new ItemStack(Items.SPECTRAL_ARROW);
     }
 
-    @Override
-    public int getBaseManaCost() {
-        return 5;
-    }
-
-    public float pullProgressDivisor() {
+    public float pullTime() {
         return 10.0F;
     }
 
@@ -39,20 +35,34 @@ public class LightstringBow extends ManastringBow implements PowerCostItem {
 
     @Override
     protected boolean canAfford(PlayerEntity player, ItemStack stack) {
-        return super.canAfford(player, stack) && canAffordPower(player, stack);
+        return canAffordPower(player, stack);
     }
 
     @Override
     protected void payAmmo(PlayerEntity player, ItemStack stack) {
         if (player != null) {
-            spendMana(player, stack);
+            spendSanity(player, stack);
             spendPower(player, stack);
         }
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
         tooltip.add(getTooltipPower(world, stack));
+    }
+
+    @Override
+    public float getBaseSanityCost() {
+        return 0.25f;
+    }
+
+    @Override
+    public boolean isPermanent(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public boolean isOptional(ItemStack stack) {
+        return true;
     }
 }

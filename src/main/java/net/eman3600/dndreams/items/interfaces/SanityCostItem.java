@@ -25,9 +25,7 @@ public interface SanityCostItem extends Vanishable {
         }
         return false;
     }
-    default Text getTooltipSanity(ItemStack stack) {
-        return Text.translatable((isPermanent(stack) ? "tooltip.dndreams.max_sanity_cost" : "tooltip.dndreams.sanity_cost"), "§d" + getSanityCost(stack));
-    }
+
     default void spendSanity(PlayerEntity player, ItemStack stack) {
         if (canAffordSanity(player, stack)) {
             TormentComponent torment = EntityComponents.TORMENT.get(player);

@@ -3,6 +3,7 @@ package net.eman3600.dndreams.items.consumable.permanent;
 import net.eman3600.dndreams.cardinal_components.PermItemComponent;
 import net.eman3600.dndreams.cardinal_components.StatBoonComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -37,7 +38,7 @@ public class AttributePermItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         PermItemComponent perms = EntityComponents.PERM_ITEM.get(user);
 
-        if (perms.canUse(this)) {
+        if (perms.canUse(this) && world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) {
             StatBoonComponent boons = EntityComponents.STAT_BOON.get(user);
 
             ItemStack stack = user.getStackInHand(hand);

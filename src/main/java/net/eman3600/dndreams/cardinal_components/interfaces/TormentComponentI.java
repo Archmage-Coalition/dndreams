@@ -24,5 +24,5 @@ public interface TormentComponentI extends Component {
     boolean shouldRender();
     boolean shouldOffsetRender();
 
-    boolean isAttunement();
+    boolean isAttuned();
 }

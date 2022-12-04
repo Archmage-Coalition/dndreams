@@ -209,7 +209,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             int skipV2 = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentMaxPercent));
             int skipV = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentPercent));
 
-            int x = component.isAttunement() ? 103 : 79;
+            int x = component.isAttuned() ? 103 : 79;
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
@@ -281,7 +281,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         TormentComponent torment = EntityComponents.TORMENT.get(player);
         float g = torment.getSanityDamage();
 
-        renderCustomVignette(g, g, g, torment.isAttunement() ? ATTUNEMENT_VIGNETTE_TEXTURE : INSANITY_VIGNETTE_TEXTURE);
+        renderCustomVignette(g, g, g, INSANITY_VIGNETTE_TEXTURE);
     }
 
     @Unique

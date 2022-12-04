@@ -3,10 +3,8 @@ package net.eman3600.dndreams.util;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
 import net.eman3600.dndreams.items.magic_bow.MagicBow;
-import net.eman3600.dndreams.items.magic_bow.ManastringBow;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 
@@ -48,7 +46,7 @@ public class ModModelPredicateProvider {
                     if (entity.getActiveItem() != stack) {
                         return 0.0f;
                     }
-                    return (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / bow.pullProgressDivisor();
+                    return (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / bow.pullTime();
                 });
 
         ModelPredicateProviderRegistry.register(bow, new Identifier("pulling"),

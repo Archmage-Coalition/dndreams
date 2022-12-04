@@ -7,6 +7,7 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +18,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -28,6 +31,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private int dragonFlashTicks = 0;
     private int sanityDamageTicks = 0;
 
+    private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
 
     private boolean shielded = false;
@@ -50,7 +54,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public float getAttunedSanity() {
-        return isAttunement() ? getSanity() + 100 : getSanity();
+        return isAttuned() ? MAX_SANITY : getSanity();
     }
 
     @Override
@@ -95,7 +99,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public void lowerMaxSanity(float value) {
         maxSanity -= value;
 
-        if (isAttunement() ? value < 0 : value > 0) sanityDamageTicks = SANITY_DAMAGE;
+        if (value > 0) sanityDamageTicks = SANITY_DAMAGE;
 
         normalize();
     }
@@ -183,14 +187,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public void serverTick() {
         float j = 0f;
 
-        j -= 1.25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM);
-        if (isAttunement()) j -= 3f;
-
-        if (WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon()) {
-            j += 2f;
+        for (Function<PlayerEntity, Float> predicate: INSANITY_PREDICATES) {
+            j += predicate.apply(player);
         }
-
-        j += .15f * equippedTormite();
 
         for (Function<LivingEntity, Boolean> predicate: MOBS_TO_INSANITY.keySet()) {
             InsanityRangePair pair = MOBS_TO_INSANITY.get(predicate);
@@ -201,10 +200,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
                 float d = Math.max(0f, 1f - entity.distanceTo(player)/pair.range);
                 j += d * pair.insanity;
             }
-        }
-
-        if (player.world.getLightLevel(player.getBlockPos()) < 1) {
-            j += 4f;
         }
 
         if (j != 0) {
@@ -221,10 +216,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         }
     }
 
-    private int equippedTormite() {
-        return ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE);
-    }
-
     @Override
     public boolean shouldRender() {
         return player.getWorld().getDimensionKey() != ModDimensions.GATEWAY_TYPE_KEY;
@@ -236,7 +227,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     @Override
-    public boolean isAttunement() {
+    public boolean isAttuned() {
         try {
             return WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END);
         } catch (NullPointerException e) {
@@ -246,6 +237,18 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     public static void registerInsanityMob(Function<LivingEntity, Boolean> predicate, float insanity, float range) {
         MOBS_TO_INSANITY.put(predicate, new InsanityRangePair(insanity, range));
+    }
+
+    /**
+     * Registers a predicate that removes a certain amount of sanity per minute based on conditions.
+     * @param predicate The function used to determine the amount of sanity lowered.
+     */
+    public static void registerPredicate(Function<PlayerEntity, Float> predicate) {
+        INSANITY_PREDICATES.add(predicate);
+    }
+
+    public static void registerPredicate(Function2<PlayerEntity, TormentComponent, Float> predicate) {
+        registerPredicate((player) -> predicate.apply(player, EntityComponents.TORMENT.get(player)));
     }
 
     private static class InsanityRangePair {
