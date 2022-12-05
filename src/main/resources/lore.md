@@ -9,7 +9,7 @@ The power of mind and soul, embodied by the Spirit World and the Moon.
 # The Affliction
 The affliction is the root of undeath, the source of madness and consumption, and the cause of the fall of Koinans. It manifests itself in several forms based on the various aspects of mind and soul.
 
-At its heart, the affliction is a plague born of necromantic origin, created by those who wished to utilize the power of mind and soul to open a gate to the Haven and live eternally.
+At its heart, the affliction is a plague born of necromantic origin, created by those who wished to utilize the power of mind and soul to live eternally and reach the Haven illegitimately.
 
 ## Zombification
 The affliction turned the souls of the Koinans rancid and consumed them until all that was left were zombified husks. Much of intelligent life has been zombified. Some of those that are not are still susceptible, but the airborne affliction is not enough to affect them.
