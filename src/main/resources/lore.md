@@ -58,12 +58,32 @@ When the Koinans attempted the process of powering the portal with a warden, the
 
 All the Koinans within a mile were turned to zombies who continued to spread the blight. The souls of the dead in the Haven turned into the Enkatal, and the angels were corrupted to the Talei. Many of those whom survived fled to the Nether. In an act of desperation, they tried to construct simulacrums which could house their souls. These too failed, creating withering. The simulacrums turned to wither skeletons, while the Koinans turned to skeletons under the withering decay.
 
-## The Aftermath
+## The Aftermath of the Koinans
 All the structures of the Koinans were left for abandoned or house undead. The sculk was allowed to spread far through the caves in which they were produced. The moon, being a reflection of the Haven, was cursed with crimson. Silver, being the metal of the Haven, was nearly petrified, turning to rose quartz.
 
-The illager race evolved long after the fall of the Koinans. The zombies could sense their intelligence and attempted to convert them, but they were more resistant to the affliction than the Koinans.
+The illager race evolved long after the fall of the Koinans. The zombies could sense their intelligence and attempted to convert them, but they were more resistant to the affliction than the Koinans. They discovered some of the remains of the Koinans, including the ancient cities, but they were mostly unsuccessful with rebuilding them.
+
+## The Nightmare Lord
+Elrunez was a powerful illager archmage. The details of his rise to power among illagers remain a mystery, but his insights into new forms of magic are not. He developed a way to unravel his own sanity and inflict upon himself a madness that let him see the congealing shadows.
+
+Using the threads of his own sanity, Elrunez was able to reinforce the ancient portal frame against overloading. After properly tuning the portal frame, he used a warden to fuel the portal, which managed to remain stable after overloading. However, the portal remained overconcentrated and, rather than leading to the Haven, the portal let out the spirits of those taken by sculk. This lasted until the portal's energy reached stable levels, at which point Elrunez entered.
+
+Once inside, Elrunez was able to fully embrace the madness of unreality and be taken by torment, crowning himself the Nightmare Lord. He then sealed the ancient portal and began locking it with the essence of 4 powerful Keepers.
 
 
+# Bosses
+## Pnevma, Ender Dragon
+The Ender Dragon was constructed by Elrunez to drown out the force of reality. Made of nightmares and madness, Pnevma plagues the End and suppresses the World Fountain. This has also dried up the minds of the endermen living in the End, stealing their wits and binding them to the will of Pnevma.
+
+## The Wither, Hand of the Plague
+An amalgamation of failed simulacrums, the Wither is the embodiment of the decaying force of the affliction that created the skeletons. It cares only to infect intelligent life and was the main spreader of the decay. Once its corrupted purpose was served, it collapsed into a heap of bones and skulls.
+
+Reawakened by the player, the Wither's new purpose is to kill them and any nearby townsfolk if the player was so foolish as to summon the Wither near a village. When slain, it will drop the nether star: a crystalized power source born of decayed souls.
+
+## Architects' Siege & The Wraith King
+The siege is begun by an influx of power in the ancient portal, twisted by madness to allow the spirits of the dead to come forth, twisted by sculk and madness. The portal, while stabilized by Elrunez, is tainted by insanity and will not become usable until the madness settles.
+
+As the warden is drained and broken to power the ancient portal, the nightmare takes its remains and rebirths it as the Wraith King. It is a being of madness, and its nightmarish presence must be slain to settle the insanity.
 
 
 # Miscellanious Entities
