@@ -17,6 +17,7 @@ public class EntityComponents implements EntityComponentInitializer {
     public static final ComponentKey<StatBoonComponent> STAT_BOON = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "stat_boon"), StatBoonComponent.class);
     public static final ComponentKey<PermItemComponent> PERM_ITEM = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "perm_item"), PermItemComponent.class);
     public static final ComponentKey<GatewayComponent> GATEWAY = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "gateway"), GatewayComponent.class);
+    public static final ComponentKey<ReviveComponent> REVIVE = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "revive"), ReviveComponent.class);
 
 
 
@@ -32,5 +33,6 @@ public class EntityComponents implements EntityComponentInitializer {
         registry.registerForPlayers(GATEWAY, GatewayComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(STAT_BOON, StatBoonComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(PERM_ITEM, PermItemComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(REVIVE, ReviveComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
     }
 }

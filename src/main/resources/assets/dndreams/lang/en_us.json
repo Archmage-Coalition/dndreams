@@ -21,6 +21,8 @@
   "item.dndreams.succulent_apple": "Succulent Apple",
   "item.dndreams.poison_apple": "Rotten Apple",
   "item.dndreams.wither_bud": "Wither Blossom",
+  "item.dndreams.dragonfruit": "Dragonfruit",
+  "item.dndreams.fidi_fruit": "Fruit of Fídi",
   "item.dndreams.archfuel": "Refined Fuel",
   "item.dndreams.refined_evil": "Refined Evil",
   "item.dndreams.crystal_mix": "Crystal Mix",
@@ -160,6 +162,7 @@
   "item.dndreams.lotus_seeds": "Lotus Seeds",
   "item.dndreams.applethorn_seeds": "Applethorn Seeds",
   "item.dndreams.wither_blossom_seeds": "Wither Blossom Seeds",
+  "item.dndreams.dragonfruit_seeds": "Dragonfruit Seeds",
   
   "item.dndreams.manastring_bow": "Manatwine Bow",
   "item.dndreams.mindstring_bow": "Mindstrung Bow",
@@ -246,6 +249,8 @@
   "effect.dndreams.affliction": "Affliction",
   "effect.dndreams.immolation": "Immolation",
   "effect.dndreams.gas_mask": "Gas Mask",
+  "effect.dndreams.rejuvenation": "Rejuvenation",
+  "effect.dndreams.mortal": "Spent",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",

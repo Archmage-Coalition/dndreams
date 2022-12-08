@@ -14,7 +14,8 @@ public class ModFoodComponents {
             .alwaysEdible().build();
     public static final FoodComponent SUCCULENT_APPLE = (new FoodComponent.Builder()).hunger(6).saturationModifier(1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.DREAMY, 400, 1), 1.0F)
-            .statusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 200, 1), 1.0F)
+            .alwaysEdible().build();
+    public static final FoodComponent DRAGONFRUIT = (new FoodComponent.Builder()).hunger(5).saturationModifier(1.0F)
             .alwaysEdible().build();
     public static final FoodComponent POISON_APPLE = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 400, 0), 1.0F)

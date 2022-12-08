@@ -15,6 +15,7 @@ import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewThrownItem;
 import net.eman3600.dndreams.items.consumable.permanent.AttributePermItem;
+import net.eman3600.dndreams.items.consumable.permanent.FidiFruitItem;
 import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
 import net.eman3600.dndreams.items.consumable.permanent.PanaceaItem;
 import net.eman3600.dndreams.items.creative.InfusionPearlItem;
@@ -148,12 +149,16 @@ public class ModItems {
     public static final Item RESTRAINED_LIGHT = registerItem("restrained_light", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item WITHHELD_AGONY = registerItem("withheld_agony", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
-    // Lotus & Wither Bud
+    // Lotus, Wither Bud, & Dragonfruit
     public static final Item LOTUS_FLOWER = registerItem("lotus_flower",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.LOTUS_FLOWER)));
+            new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.LOTUS_FLOWER)));
 
     public static final Item WITHER_BUD = registerItem("wither_bud",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.WITHER_BUD)));
+            new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.WITHER_BUD)));
+
+    public static final Item DRAGONFRUIT = registerItem("dragonfruit",
+            new DragonfruitItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.DRAGONFRUIT)));
+
 
     // Bottled Stuff
     public static final Item VITAL_OIL = registerItem("vital_oil",
@@ -412,6 +417,10 @@ public class ModItems {
     public static final Item ECHO_STAR = registerItem("echo_star",
             new AttributePermItem(new FabricItemSettings().group(ItemGroup.MISC),
                     5, ModAttributes.PLAYER_MAX_MANA, 5d));
+
+    // Fruit of Fidi
+    public static final Item FIDI_FRUIT = registerItem("fidi_fruit",
+            new FidiFruitItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.DRAGONFRUIT)));
 
 
 

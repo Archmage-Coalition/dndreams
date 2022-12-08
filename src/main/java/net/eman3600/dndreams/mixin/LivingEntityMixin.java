@@ -23,6 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.tag.TagKey;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.TeleportTarget;
@@ -94,6 +95,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Shadow public abstract Iterable<ItemStack> getArmorItems();
 
+    @Shadow public abstract boolean hasStackEquipped(EquipmentSlot slot);
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -139,16 +142,39 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "tryUseTotem", at = @At("RETURN"), cancellable = true)
     private void dndreams$tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue() && (Entity)this instanceof PlayerEntity player) {
-            DreamingComponent component = EntityComponents.DREAMING.get(player);
-            if (component.isDreaming()) {
-                player.setHealth(1.0f);
+        if (!cir.getReturnValue()) {
+            if (hasStatusEffect(ModStatusEffects.REJUVENATION) && !hasStatusEffect(ModStatusEffects.MORTAL)) {
 
-                RegistryKey<World> registryKey = World.OVERWORLD;
-                ServerWorld serverWorld = ((ServerWorld)world).getServer().getWorld(registryKey);
-                FabricDimensions.teleport(player, serverWorld, new TeleportTarget(component.returnPos(), Vec3d.ZERO, player.getYaw(), player.getPitch()));
+                setHealth(MathHelper.ceil(getMaxHealth() / 3f));
+                StatusEffectInstance current = getStatusEffect(ModStatusEffects.REJUVENATION);
 
+                removeStatusEffect(ModStatusEffects.REJUVENATION);
+
+                assert current != null;
+                if (current.getAmplifier() > 0) {
+                    addStatusEffect(new StatusEffectInstance(ModStatusEffects.REJUVENATION, current.getDuration() + 600, current.getAmplifier() - 1, current.isAmbient(), current.shouldShowIcon()));
+                }
+
+                if (EntityComponents.TORMENT.isProvidedBy(this)) {
+                    EntityComponents.TORMENT.get(this).lowerSanity(45f);
+                }
+
+                addStatusEffect(new StatusEffectInstance(ModStatusEffects.MORTAL, 600, 0, false, false, true));
+
+                this.world.sendEntityStatus(this, EntityStatuses.USE_TOTEM_OF_UNDYING);
                 cir.setReturnValue(true);
+            } else if ((Entity) this instanceof PlayerEntity player) {
+                DreamingComponent component = EntityComponents.DREAMING.get(player);
+                if (component.isDreaming()) {
+
+                    player.setHealth(1.0f);
+
+                    RegistryKey<World> registryKey = World.OVERWORLD;
+                    ServerWorld serverWorld = ((ServerWorld) world).getServer().getWorld(registryKey);
+                    FabricDimensions.teleport(player, serverWorld, new TeleportTarget(component.returnPos(), Vec3d.ZERO, player.getYaw(), player.getPitch()));
+
+                    cir.setReturnValue(true);
+                }
             }
         }
     }
