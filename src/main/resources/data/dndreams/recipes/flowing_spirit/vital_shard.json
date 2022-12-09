@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "dndreams:dragonfruit"
+  },
+  "result": {
+    "item": "dndreams:vital_shard"
+  }
+}

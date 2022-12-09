@@ -1,0 +1,12 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "dndreams:dragonfruit"
+  },
+  "corrupted": true,
+  "capacity": 5,
+  "cost": 600,
+  "effect": "dndreams:dragonsoul",
+  "duration": 3600,
+  "max_amplifier": 1
+}

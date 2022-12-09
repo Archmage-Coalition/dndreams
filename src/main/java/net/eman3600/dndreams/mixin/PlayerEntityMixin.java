@@ -46,7 +46,9 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private static void injectAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> info) {
         info.setReturnValue((info.getReturnValue())
                 .add(ModAttributes.PLAYER_MANA_REGEN, 8d)
-                .add(ModAttributes.PLAYER_MAX_MANA, 0d));
+                .add(ModAttributes.PLAYER_MAX_MANA, 0d)
+                .add(ModAttributes.PLAYER_REVIVAL, 1d)
+                .add(ModAttributes.PLAYER_RECLAMATION, 5d));
     }
 
     @Inject(method = "isBlockBreakingRestricted", at = @At("HEAD"), cancellable = true)

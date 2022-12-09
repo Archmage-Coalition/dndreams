@@ -65,6 +65,18 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Unique
     private static final int TORMENT_HEIGHT = 14;
 
+    @Unique private static final int REVIVE_X_OFFSET = TORMENT_X_OFFSET + TORMENT_WIDTH + 8;
+
+    @Unique private static final int REVIVE_Y_OFFSET = TORMENT_Y_OFFSET;
+
+    @Unique private static final int REVIVE_Y_BIG_OFFSET = TORMENT_Y_BIG_OFFSET;
+
+    @Unique
+    private static final int REVIVE_WIDTH = 17;
+
+    @Unique
+    private static final int REVIVE_HEIGHT = 16;
+
     @Unique
     private static final int POWER_X_OFFSET = 8;
 
@@ -158,6 +170,22 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)l, infusionComponent.getInfusion().color.getRGB());
             }
         });
+
+        EntityComponents.REVIVE.maybeGet(player).ifPresent(revive -> {
+            if (revive.shouldDisplay()) {
+                int amount = revive.remainingRevives();
+                String string = revive.remainingRevives() >= 0 ? "x" + amount : "Debt";
+
+                int k = client.options.getMainArm().getValue() == Arm.RIGHT ? REVIVE_X_OFFSET + REVIVE_WIDTH + 5 : scaledWidth - REVIVE_X_OFFSET - REVIVE_WIDTH - 5 - 10;
+                int l = scaledHeight - (revive.shouldOffsetRender() ? REVIVE_Y_BIG_OFFSET : REVIVE_Y_OFFSET) - 12;
+
+                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, revive.onCooldown() ? Color.YELLOW.getRGB() : Color.RED.getRGB());
+            }
+        });
     }
 
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
@@ -216,6 +244,27 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             drawTexture(matrices, tormentXPos, tormentYPos, x, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
             drawTexture(matrices, tormentXPos, tormentYPos + skipV2, x, tormentV2 + skipV2, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentMaxPercent));
             drawTexture(matrices, tormentXPos, tormentYPos + skipV, x, tormentV + skipV, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentPercent));
+            RenderSystem.setShaderColor(1, 1, 1, 1);
+            RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
+        });
+
+        EntityComponents.REVIVE.maybeGet(player).ifPresent(revive -> {
+            if (!revive.shouldDisplay()) return;
+
+            int reviveXPos = client.options.getMainArm().getValue() == Arm.RIGHT ? REVIVE_X_OFFSET : (scaledWidth - REVIVE_X_OFFSET - REVIVE_WIDTH);
+            int reviveYPos = scaledHeight - REVIVE_HEIGHT - (revive.shouldOffsetRender() ? REVIVE_Y_BIG_OFFSET : REVIVE_Y_OFFSET);
+
+            float vitalityPercent = revive.getDisplayedVitality() / 100;
+
+            int skipV = MathHelper.ceil(REVIVE_HEIGHT * (1f - vitalityPercent));
+            int u = revive.onCooldown() ? 134 : 117;
+
+            RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
+            RenderSystem.setShaderColor(1, 1, 1, 1.0f);
+
+            drawTexture(matrices, reviveXPos, reviveYPos, u, 16, REVIVE_WIDTH, REVIVE_HEIGHT);
+            drawTexture(matrices, reviveXPos, reviveYPos + skipV, u, skipV, REVIVE_WIDTH, (int)(REVIVE_HEIGHT * vitalityPercent));
+
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });

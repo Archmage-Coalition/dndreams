@@ -250,11 +250,14 @@
   "effect.dndreams.immolation": "Immolation",
   "effect.dndreams.gas_mask": "Gas Mask",
   "effect.dndreams.rejuvenation": "Rejuvenation",
-  "effect.dndreams.mortal": "Spent",
+  "effect.dndreams.dragonsoul": "Dragonsoul",
+  "effect.dndreams.mortal": "Mortality",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",
   "attribute.dndreams.name.player.mana_regen": "Mana Regeneration",
+  "attribute.dndreams.name.player.revival": "Revival",
+  "attribute.dndreams.name.player.reclamation": "Reclamation",
   
   
   "item.minecraft.potion.effect.void_flow": "Potion of Unstable Mana",

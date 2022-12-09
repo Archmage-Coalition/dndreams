@@ -1,0 +1,28 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:vital_oil"
+    },
+	{
+      "item": "dndreams:dragonfruit"
+    },
+	{
+      "item": "dndreams:mellifluous_hunger"
+    },
+	{
+      "item": "dndreams:entangled_earth"
+    },
+	{
+      "item": "minecraft:glistering_melon_slice"
+    },
+	{
+      "item": "dndreams:crystal_mix"
+    }
+  ],
+  "result": {
+    "item": "dndreams:fidi_fruit",
+    "count": 1
+  },
+  "color": 10290442
+}

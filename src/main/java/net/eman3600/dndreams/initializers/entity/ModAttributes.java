@@ -11,6 +11,10 @@ public class ModAttributes {
             (new ClampedEntityAttribute("attribute.dndreams.name.player.max_mana", 0.0D, 0.0D, 1024.0D)).setTracked(true));
     public static final EntityAttribute PLAYER_MANA_REGEN = register("player.mana_regen",
             (new ClampedEntityAttribute("attribute.dndreams.name.player.mana_regen", 8.0D, 0.0D, 1024.0D)).setTracked(true));
+    public static final EntityAttribute PLAYER_REVIVAL = register("player.revival",
+            (new ClampedEntityAttribute("attribute.dndreams.name.player.revival", 1.0D, 0.0D, 1024.0D)).setTracked(true));
+    public static final EntityAttribute PLAYER_RECLAMATION = register("player.reclamation",
+            (new ClampedEntityAttribute("attribute.dndreams.name.player.reclamation", 5.0D, 0.0D, 1024.0D)).setTracked(true));
 
     private static EntityAttribute register(String id, EntityAttribute attribute) {
         return Registry.register(Registry.ATTRIBUTE, new Identifier(Initializer.MODID, id), attribute);

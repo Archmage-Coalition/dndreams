@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.cardinal_components.PermItemComponent;
+import net.eman3600.dndreams.cardinal_components.ReviveComponent;
 import net.eman3600.dndreams.cardinal_components.StatBoonComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModItems;
@@ -94,6 +95,9 @@ public class ModCallbacks {
                 TormentComponent torment = EntityComponents.TORMENT.get(newPlayer);
                 torment.shield(false);
                 torment.setSanity(Math.max(30, torment.getSanity() - 15));
+
+                ReviveComponent revive = EntityComponents.REVIVE.get(newPlayer);
+                revive.deathReset();
             }
         });
 

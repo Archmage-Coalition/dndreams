@@ -4,6 +4,7 @@ import net.eman3600.dndreams.blocks.energy.BonfireBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
+import net.eman3600.dndreams.cardinal_components.ReviveComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
@@ -88,9 +89,11 @@ public class BonfireBlockEntity extends BlockEntity implements AbstractPowerRece
                 infusion.setLinkTicks(InfusionComponent.LINK_LENGTH);
 
                 ManaComponent mana = EntityComponents.MANA.get(player);
+                ReviveComponent revive = EntityComponents.REVIVE.get(player);
 
-                if (strong && ((infusion.infused() && infusion.getPower() < infusion.getPowerMax()) || player.getHealth() < player.getMaxHealth() || mana.getMana() < mana.getManaMax() || player.getHungerManager().isNotFull() || player.getHungerManager().getSaturationLevel() < player.getHungerManager().getFoodLevel()) && usePower(30)) {
+                if (strong && ((infusion.infused() && infusion.getPower() < infusion.getPowerMax()) || player.getHealth() < player.getMaxHealth() || mana.getMana() < mana.getManaMax() || player.getHungerManager().isNotFull() || player.getHungerManager().getSaturationLevel() < player.getHungerManager().getFoodLevel() || revive.needsMoreVitality()) && usePower(30)) {
                     infusion.chargePower(1.2f);
+                    revive.addVitality(5f);
                     if (!player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) mana.chargeMana(10);
                     player.heal(4f);
                     player.getHungerManager().add(1, 1f);

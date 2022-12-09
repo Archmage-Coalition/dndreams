@@ -1,9 +1,12 @@
 package net.eman3600.dndreams.initializers.basics;
 
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mob_effects.InstantModStatusEffect;
 import net.eman3600.dndreams.mob_effects.ModStatusEffect;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +32,10 @@ public class ModStatusEffects {
     public static StatusEffect AFFLICTION = register("affliction", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x352922));
     public static StatusEffect IMMOLATION = register("immolation", new InstantModStatusEffect(StatusEffectCategory.HARMFUL, 0xFF8A1A));
     public static StatusEffect GAS_MASK = register("gas_mask", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xEEEE11));
-    public static StatusEffect REJUVENATION = register("rejuvenation", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFF1522));
+    public static StatusEffect REJUVENATION = register("rejuvenation", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFF1522)
+            .addAttributeModifier(ModAttributes.PLAYER_RECLAMATION, "E8E0684F-42F6-9C0E-5972-0FC11C5872AA", 5f, EntityAttributeModifier.Operation.ADDITION));
+    public static StatusEffect DRAGONSOUL = register("dragonsoul", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9D050A)
+            .addAttributeModifier(ModAttributes.PLAYER_REVIVAL, "E8E0684F-42F6-9C0E-5972-0FC11C5872AB", 1f, EntityAttributeModifier.Operation.ADDITION));
     public static StatusEffect MORTAL = register("mortal", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x440000));
 
     private static StatusEffect register(String name, StatusEffect entry) {

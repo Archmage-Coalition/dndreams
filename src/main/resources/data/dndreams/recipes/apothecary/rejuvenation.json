@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "dndreams:dragonfruit"
+  },
+  "corrupted": false,
+  "capacity": 5,
+  "cost": 600,
+  "effect": "dndreams:rejuvenation",
+  "duration": 6000
+}

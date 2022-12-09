@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.cardinal_components.DreamingComponent;
+import net.eman3600.dndreams.cardinal_components.ReviveComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
@@ -143,36 +144,31 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Inject(method = "tryUseTotem", at = @At("RETURN"), cancellable = true)
     private void dndreams$tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue()) {
-            if (hasStatusEffect(ModStatusEffects.REJUVENATION) && !hasStatusEffect(ModStatusEffects.MORTAL)) {
-
-                setHealth(MathHelper.ceil(getMaxHealth() / 3f));
-                StatusEffectInstance current = getStatusEffect(ModStatusEffects.REJUVENATION);
-
-                removeStatusEffect(ModStatusEffects.REJUVENATION);
-
-                assert current != null;
-                if (current.getAmplifier() > 0) {
-                    addStatusEffect(new StatusEffectInstance(ModStatusEffects.REJUVENATION, current.getDuration() + 600, current.getAmplifier() - 1, current.isAmbient(), current.shouldShowIcon()));
-                }
-
-                if (EntityComponents.TORMENT.isProvidedBy(this)) {
-                    EntityComponents.TORMENT.get(this).lowerSanity(45f);
-                }
-
-                addStatusEffect(new StatusEffectInstance(ModStatusEffects.MORTAL, 600, 0, false, false, true));
-
-                this.world.sendEntityStatus(this, EntityStatuses.USE_TOTEM_OF_UNDYING);
-                cir.setReturnValue(true);
-            } else if ((Entity) this instanceof PlayerEntity player) {
-                DreamingComponent component = EntityComponents.DREAMING.get(player);
-                if (component.isDreaming()) {
+            if ((Entity) this instanceof PlayerEntity player) {
+                DreamingComponent dream = EntityComponents.DREAMING.get(player);
+                ReviveComponent revive = EntityComponents.REVIVE.get(player);
+                if (dream.isDreaming()) {
 
                     player.setHealth(1.0f);
 
                     RegistryKey<World> registryKey = World.OVERWORLD;
                     ServerWorld serverWorld = ((ServerWorld) world).getServer().getWorld(registryKey);
-                    FabricDimensions.teleport(player, serverWorld, new TeleportTarget(component.returnPos(), Vec3d.ZERO, player.getYaw(), player.getPitch()));
+                    FabricDimensions.teleport(player, serverWorld, new TeleportTarget(dream.returnPos(), Vec3d.ZERO, player.getYaw(), player.getPitch()));
 
+                    cir.setReturnValue(true);
+                } else if (revive.canRevive()) {
+
+                    setHealth(MathHelper.ceil(1f));
+
+                    if (EntityComponents.TORMENT.isProvidedBy(this)) {
+                        EntityComponents.TORMENT.get(this).lowerSanity(25f);
+                    }
+
+                    addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 0, false, false, true));
+
+                    revive.revive();
+
+                    this.world.sendEntityStatus(this, EntityStatuses.USE_TOTEM_OF_UNDYING);
                     cir.setReturnValue(true);
                 }
             }
