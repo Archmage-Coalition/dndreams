@@ -4,7 +4,6 @@ import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
-import net.eman3600.dndreams.util.ModDamageSource;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -18,8 +17,8 @@ import net.minecraft.world.World;
 
 public interface BloodlustItem {
     float DAMAGE = 2.5f;
-    DamageSource CRIMSON_SACRIFICE = new ModDamageSource("crimson_sacrifice").setBypassesArmor().setBypassesProtection().setUnblockable();
-    DamageSource CRIMSON_HEMORRHAGE = new ModDamageSource("crimson_hemorrhage").setBypassesArmor().setUsesMagic();
+    DamageSource CRIMSON_SACRIFICE = new DamageSource("crimson_sacrifice").setBypassesArmor().setBypassesProtection().setUnblockable();
+    DamageSource CRIMSON_HEMORRHAGE = new DamageSource("crimson_hemorrhage").setBypassesArmor().setUsesMagic();
 
     default TypedActionResult<ItemStack> inflictBloodlust(World world, PlayerEntity player, ItemStack stack) {
         if (!hasBloodlust(player)) {

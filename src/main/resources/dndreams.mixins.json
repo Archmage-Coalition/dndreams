@@ -18,6 +18,7 @@
     "ChorusPlantBlockMixin",
     "ChorusPlantFeatureMixin",
     "ComposterBlockMixin",
+    "DamageSourceMixin",
     "DragonFightMixin",
     "EnchantHelperMixin",
     "EnchantmentMixin",

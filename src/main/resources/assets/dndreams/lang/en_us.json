@@ -209,6 +209,12 @@
   "death.attack.wither_blossom_bush": "%1$s was poked to death by a wither blossom bush",
   "death.attack.wither_blossom_bush.player": "%1$s was poked to death by a wither blossom bush whilst trying to escape %2$s",
   
+  "death.attack.dndreams_electric": "%s was electrocuted",
+  "death.attack.dndreams_electric.player": "%1$s was electrocuted by %2$s",
+  "death.attack.dndreams_electric.item": "%1$s was electrocuted by %2$s weilding %3$s",
+  "death.attack.dndreams_shock": "%s became a conductor",
+  "death.attack.dndreams_shock.player": "%1$s became a conductor whilst fighting %2$s",
+  
   
   "command.dndreams.bloodmoon.get.true": "Tonight will have a blood moon.",
   "command.dndreams.bloodmoon.get.false": "The moon is normal tonight.",
