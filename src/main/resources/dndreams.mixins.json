@@ -18,6 +18,7 @@
     "ChorusPlantBlockMixin",
     "ChorusPlantFeatureMixin",
     "ComposterBlockMixin",
+    "CreeperEntityMixin",
     "DamageSourceMixin",
     "DragonFightMixin",
     "EnchantHelperMixin",
@@ -45,7 +46,6 @@
     "SculkVeinBlockMixin$SculkVeinGrowCheckerMixin",
     "ServerPlayerEntityMixin",
     "SonicBoomTaskMixin",
-    "WardenAngerManagerMixin",
     "WorldMixin",
     "server.ServerWorldMixin"
   ],

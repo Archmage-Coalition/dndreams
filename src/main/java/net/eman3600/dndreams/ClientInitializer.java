@@ -123,6 +123,7 @@ ClientInitializer implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.CROWNED_SLASH, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CROWNED_BEAM, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.TESLA_SLASH, EmptyEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.BREW_SPLASH, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BREW_LINGERING, FlyingItemEntityRenderer::new);

@@ -1,11 +1,13 @@
 package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
 import net.eman3600.dndreams.items.magic_bow.MagicBow;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 
 public class ModModelPredicateProvider {
@@ -19,6 +21,8 @@ public class ModModelPredicateProvider {
         registerBloodlustItem(ModItems.CORRUPT_AXE);
         registerBloodlustItem(ModItems.CORRUPT_SHOVEL);
         registerBloodlustItem(ModItems.CORRUPT_HOE);
+
+        registerShockedItem(ModItems.TESLA_SABER);
 
         registerItem(new Identifier("bound"),
                 (stack, world, entity, seed) -> (stack.getOrCreateNbt().contains("bound")) ? 1f : 0f,
@@ -64,5 +68,23 @@ public class ModModelPredicateProvider {
                     }
                     return 0f;
                 });
+    }
+
+    private static void registerShockedItem(Item item) {
+        ModelPredicateProviderRegistry.register(item, new Identifier("shocked"),
+                ((stack, world, entity, seed) -> {
+                    if (entity != null && EntityComponents.SHOCK.isProvidedBy(entity)) {
+                        return EntityComponents.SHOCK.get(entity).hasShock() ? 1f : 0f;
+                    }
+                    return 0f;
+                }));
+    }
+
+    private static void registerChargedItem(Item item) {
+        ModelPredicateProviderRegistry.register(item, new Identifier("charge"),
+                ((stack, world, entity, seed) -> {
+                    NbtCompound nbt = stack.getNbt();
+                    return (nbt != null && nbt.contains("charge")) ? nbt.getInt("charge") : 0f;
+                }));
     }
 }

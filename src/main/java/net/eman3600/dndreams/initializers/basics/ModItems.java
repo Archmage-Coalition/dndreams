@@ -347,6 +347,11 @@ public class ModItems {
     public static final Item BROKEN_VITAL_SWORD = registerItem("broken_vital_sword",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).maxCount(1).rarity(Rarity.UNCOMMON)));
 
+    // Tesla Saber
+    public static final Item TESLA_SABER = registerItem("tesla_saber",
+            new TeslaSaberItem(ModToolMaterials.TESLA, 3, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
+
     // Shattered Sword
     public static final Item SHATTERED_SWORD = registerItem("shattered_sword",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).rarity(Rarity.UNCOMMON).maxCount(1).fireproof()));
@@ -361,7 +366,7 @@ public class ModItems {
             new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 5,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.RARE).fireproof()));
 
-    // True Crowned Edge (aka Epitome)
+    // True Crowned Edge
     public static final Item TRUE_CROWNED_EDGE = registerItem("true_crowned_edge",
             new TrueCrownedEdgeItem(ModToolMaterials.LAMENT, 6, -2.2F, 5,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).fireproof()));
@@ -416,7 +421,7 @@ public class ModItems {
 
     public static final Item ECHO_STAR = registerItem("echo_star",
             new AttributePermItem(new FabricItemSettings().group(ItemGroup.MISC),
-                    5, ModAttributes.PLAYER_MAX_MANA, 5d));
+                    1, ModAttributes.PLAYER_MAX_MANA, 25d));
 
     // Fruit of Fidi
     public static final Item FIDI_FRUIT = registerItem("fidi_fruit",

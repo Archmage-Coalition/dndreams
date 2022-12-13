@@ -1,11 +1,14 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.blocks.energy.BonfireBlock;
-import net.eman3600.dndreams.blocks.entities.BonfireBlockEntity;
+import net.eman3600.dndreams.cardinal_components.ShockComponent;
+import net.eman3600.dndreams.entities.projectiles.TeslaSlashEntity;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.VariedMineSpeedItem;
+import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RespawnAnchorBlock;
@@ -13,10 +16,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.BlockPos;
@@ -30,6 +36,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Mixin(PlayerEntity.class)
@@ -37,6 +44,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
 
     @Shadow public abstract Arm getMainArm();
+
+    @Shadow public abstract boolean isInvulnerableTo(DamageSource damageSource);
+
+    @Shadow public abstract float getAttackCooldownProgress(float baseTime);
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -63,6 +74,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         if (getMainHandStack().getItem() instanceof AirSwingItem item && ((Object)this) instanceof ServerPlayerEntity player) {
             item.swingItem(player, getActiveHand(), (ServerWorld) player.world, getMainHandStack(), target);
         }
+
+        if (EntityComponents.SHOCK.isProvidedBy(this)) {
+            ShockComponent shock = EntityComponents.SHOCK.get(this);
+            if (shock.hasShock() && getAttackCooldownProgress(0.5f) > 0.9f) {
+                world.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, this.getSoundCategory(), 1.0f, 2.5f);
+
+                TeslaSlashEntity slash = new TeslaSlashEntity(this, world, shock.dischargeShock((float) getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE)));
+                world.spawnEntity(slash);
+            }
+        }
     }
 
     @Inject(method = "getBlockBreakingSpeed", at = @At("RETURN"), cancellable = true)
@@ -85,6 +106,27 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             Optional<Vec3d> optional = RespawnAnchorBlock.findRespawnPosition(EntityType.PLAYER, world, pos);
 
             cir.setReturnValue(optional);
+        }
+    }
+
+
+    @Inject(method = "applyDamage", at = @At("HEAD"), cancellable = true)
+    private void dndreams$applyDamage$absorbShock(DamageSource source, float amount, CallbackInfo ci) {
+        try {
+            ShockComponent shock = EntityComponents.SHOCK.get(this);
+
+            if (isInvulnerableTo(source)) return;
+
+            if (DamageSourceAccess.isElectric(source) && shock.canStoreShock()) {
+                amount = this.applyArmorToDamage(source, amount);
+                amount = this.modifyAppliedDamage(source, amount);
+
+                if (amount > 0f) shock.chargeShock(amount);
+
+                ci.cancel();
+            }
+        } catch (NullPointerException | NoSuchElementException e) {
+            e.printStackTrace();
         }
     }
 }

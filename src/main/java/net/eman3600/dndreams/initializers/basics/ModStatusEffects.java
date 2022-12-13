@@ -6,7 +6,6 @@ import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mob_effects.InstantModStatusEffect;
 import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +26,7 @@ public class ModStatusEffects {
     public static StatusEffect INSUBSTANTIAL = register("insubstantial", new ModStatusEffect(StatusEffectCategory.HARMFUL, 2289390));
     public static StatusEffect GRACE = register("grace", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 15658496));
     public static StatusEffect RESTRICTED = register("restricted", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5570560));
-    public static StatusEffect SPOTTED = register("spotted", new ModStatusEffect(StatusEffectCategory.HARMFUL, 21862));
+    public static StatusEffect INSULATED = register("insulated", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0x919F00));
     public static StatusEffect AETHER = register("aether", new ModStatusEffect(StatusEffectCategory.HARMFUL, 1118481));
     public static StatusEffect AFFLICTION = register("affliction", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x352922));
     public static StatusEffect IMMOLATION = register("immolation", new InstantModStatusEffect(StatusEffectCategory.HARMFUL, 0xFF8A1A));

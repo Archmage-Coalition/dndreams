@@ -36,6 +36,15 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<TeslaSlashEntity> TESLA_SLASH = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "tesla_slash"),
+            FabricEntityTypeBuilder.<TeslaSlashEntity>create(SpawnGroup.MISC, TeslaSlashEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .disableSummon()
+                    .build()
+    );
+
 
 
     public static final EntityType<BrewSplashEntity> BREW_SPLASH = Registry.register(

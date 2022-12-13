@@ -62,6 +62,8 @@
   "item.dndreams.slumbering_sword": "Slumbering Sword",
   "item.dndreams.crowned_edge": "Crowned Edge",
   "item.dndreams.true_crowned_edge": "True Crowned Edge",
+  "item.dndreams.tesla_saber": "Tesla Saber",
+  "item.dndreams.tesla_saber.tooltip": "Charge: %s",
   
   "item.dndreams.book_of_dreams": "Codex Somnus",
   "item.dndreams.book_of_dreams.landing_text": "Reality is not a constant but a product of its perception.",
@@ -212,8 +214,8 @@
   "death.attack.dndreams_electric": "%s was electrocuted",
   "death.attack.dndreams_electric.player": "%1$s was electrocuted by %2$s",
   "death.attack.dndreams_electric.item": "%1$s was electrocuted by %2$s weilding %3$s",
-  "death.attack.dndreams_shock": "%s became a conductor",
-  "death.attack.dndreams_shock.player": "%1$s became a conductor whilst fighting %2$s",
+  "death.attack.dndreams_shock": "%s couldn't hold the watts",
+  "death.attack.dndreams_shock.player": "%1$s couldn't hold the watts whilst fighting %2$s",
   
   
   "command.dndreams.bloodmoon.get.true": "Tonight will have a blood moon.",
@@ -250,7 +252,7 @@
   "effect.dndreams.insubstantial": "Insubstantial",
   "effect.dndreams.grace": "Grace",
   "effect.dndreams.restricted": "Restricted",
-  "effect.dndreams.spotted": "Echolocated",
+  "effect.dndreams.insulated": "Electric",
   "effect.dndreams.aether": "Starstruck",
   "effect.dndreams.affliction": "Affliction",
   "effect.dndreams.immolation": "Immolation",

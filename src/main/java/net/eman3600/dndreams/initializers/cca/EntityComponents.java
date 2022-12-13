@@ -7,6 +7,7 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 
 public class EntityComponents implements EntityComponentInitializer {
@@ -18,6 +19,7 @@ public class EntityComponents implements EntityComponentInitializer {
     public static final ComponentKey<PermItemComponent> PERM_ITEM = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "perm_item"), PermItemComponent.class);
     public static final ComponentKey<GatewayComponent> GATEWAY = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "gateway"), GatewayComponent.class);
     public static final ComponentKey<ReviveComponent> REVIVE = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "revive"), ReviveComponent.class);
+    public static final ComponentKey<ShockComponent> SHOCK = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "shock"), ShockComponent.class);
 
 
 
@@ -34,5 +36,6 @@ public class EntityComponents implements EntityComponentInitializer {
         registry.registerForPlayers(STAT_BOON, StatBoonComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(PERM_ITEM, PermItemComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(REVIVE, ReviveComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerFor(LivingEntity.class, SHOCK, ShockComponent::new);
     }
 }

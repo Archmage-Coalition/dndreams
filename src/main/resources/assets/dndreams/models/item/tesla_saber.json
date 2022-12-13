@@ -1,0 +1,14 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "dndreams:item/tesla_saber"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "shocked": 1
+            },
+            "model": "dndreams:item/tesla_saber_charged"
+        }
+    ]
+}

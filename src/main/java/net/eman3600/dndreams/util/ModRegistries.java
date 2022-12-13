@@ -4,10 +4,13 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
+import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.items.TeslaSaberItem;
 import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
@@ -21,9 +24,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.item.Items;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
+import net.minecraft.util.Hand;
 
 public class ModRegistries {
     public static final Object2ObjectMap<TagKey<Block>, Block> SCULK_TRANSFORM = new Object2ObjectOpenHashMap<>();
@@ -41,6 +46,7 @@ public class ModRegistries {
         registerApothecary();
         registerInsanityPredicates();
         registerInsanityMobAuras();
+        registerShockPredicates();
     }
 
     public static void registerEnergyFuels() {
@@ -319,6 +325,19 @@ public class ModRegistries {
         access.registerCompostable(.3f, ModItems.APPLETHORN_SEEDS);
         access.registerCompostable(.65f, ModItems.SUCCULENT_APPLE);
         access.registerCompostable(.65f, ModItems.POISON_APPLE);
+    }
+
+    private static void registerShockPredicates() {
+        ShockComponent.registerChargePredicate(entity -> !entity.isOnGround());
+        ShockComponent.registerChargePredicate(entity -> entity.hasStatusEffect(ModStatusEffects.INSULATED));
+        ShockComponent.registerChargePredicate(entity -> {
+            for (Hand hand: Hand.values()) {
+                if (entity.getStackInHand(hand).getItem() instanceof TeslaSaberItem) return true;
+            }
+
+            return false;
+        });
+        ShockComponent.registerChargePredicate(entity -> entity instanceof CreeperEntity);
     }
 
 }

@@ -67,7 +67,8 @@
       "dndreams:gateway",
       "dndreams:stat_boon",
       "dndreams:perm_item",
-      "dndreams:revive"
+      "dndreams:revive",
+      "dndreams:shock"
     ]
   }
 }

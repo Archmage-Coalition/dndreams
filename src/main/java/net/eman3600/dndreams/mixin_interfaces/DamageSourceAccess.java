@@ -24,6 +24,6 @@ public interface DamageSourceAccess {
     }
 
 
-    DamageSource ELECTRIC = create("dndreams_electric", true);
-    DamageSource SHOCK = create("dndreams_shock", true);
+    DamageSource ELECTRIC = create("dndreams_electric", true).setUnblockable();
+    DamageSource SHOCK = create("dndreams_shock", true).setUnblockable();
 }

@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Lazy;
@@ -16,6 +17,8 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(ModItems.DREAM_POWDER, ModItems.SCULK_POWDER)),
     VITAL(1, 575, 4.0F, 1.0F, 12,
             () -> Ingredient.ofItems(ModItems.VITAL_SHARD)),
+    TESLA(1, 2145, 4.0F, 2.0F, 12,
+            () -> Ingredient.ofItems(Items.COPPER_INGOT)),
     MANAGOLD(2, 32, 12.0F, 2.0F, 22,
             () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
     TORMITE(4, 128, 12.0F, 4.0F, 22,

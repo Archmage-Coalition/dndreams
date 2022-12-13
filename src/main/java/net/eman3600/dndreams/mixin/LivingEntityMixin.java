@@ -2,10 +2,12 @@ package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.cardinal_components.DreamingComponent;
 import net.eman3600.dndreams.cardinal_components.ReviveComponent;
+import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
@@ -40,6 +42,8 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.NoSuchElementException;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements LivingEntityAccess {
@@ -270,6 +274,23 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
         if (getType() == EntityType.WARDEN && status == ModStatusEffects.AFFLICTION) {
             cir.setReturnValue(false);
+        }
+    }
+
+    @Inject(method = "applyDamage", at = @At("HEAD"), cancellable = true)
+    private void dndreams$applyDamage$absorbShock(DamageSource source, float amount, CallbackInfo ci) {
+        try {
+            ShockComponent shock = EntityComponents.SHOCK.get(this);
+
+            if (isInvulnerableTo(source)) return;
+
+            if (DamageSourceAccess.isElectric(source) && shock.canStoreShock()) {
+                if (amount > 0f) shock.chargeShock(amount);
+
+                ci.cancel();
+            }
+        } catch (NullPointerException | NoSuchElementException e) {
+            e.printStackTrace();
         }
     }
 }
