@@ -161,7 +161,7 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() ? 2f : 0);
         TormentComponent.registerPredicate(player -> .15f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE));
         TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos()) < 1 ? 4f : 0);
-        TormentComponent.registerPredicate(player -> player.getFrozenTicks() / 10f);
+        TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
     }
 
     private static void registerInsanityMobAuras() {
