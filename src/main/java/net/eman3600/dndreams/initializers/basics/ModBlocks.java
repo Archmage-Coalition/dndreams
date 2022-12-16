@@ -1026,9 +1026,7 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block FRAZZLED_MOSS = registerBlock("frazzled_moss",
-            new FrazzledMossBlock(FabricBlockSettings.copy(Blocks.RED_MUSHROOM).nonOpaque().luminance(state -> 4)),
-
-            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+            new FrazzledMossBlock(FabricBlockSettings.copy(Blocks.RED_MUSHROOM).nonOpaque()));
 
     // Applethorn Crop
     public static final Block APPLETHORN = registerBlock("applethorn",
