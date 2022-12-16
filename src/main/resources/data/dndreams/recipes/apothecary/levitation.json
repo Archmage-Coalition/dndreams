@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "minecraft:popped_chorus_fruit"
+  },
+  "corrupted": false,
+  "capacity": 3,
+  "cost": 300,
+  "effect": "minecraft:levitation",
+  "duration": 300
+}

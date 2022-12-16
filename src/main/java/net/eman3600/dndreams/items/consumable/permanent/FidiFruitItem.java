@@ -2,7 +2,6 @@ package net.eman3600.dndreams.items.consumable.permanent;
 
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
-import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
@@ -18,7 +17,7 @@ public class FidiFruitItem extends Item {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         EntityComponents.REVIVE.maybeGet(user).ifPresent(revive -> {
             if (revive.isEnabled()) {
-                user.addStatusEffect(new StatusEffectInstance(ModStatusEffects.REJUVENATION, 600, 1));
+                user.addStatusEffect(new StatusEffectInstance(ModStatusEffects.DRAGONSOUL, 12000, 0));
             } else {
                 revive.setEnabled(true);
             }

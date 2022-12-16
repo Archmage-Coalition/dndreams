@@ -2,6 +2,7 @@ package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.blocks.energy.BonfireBlock;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.projectiles.TeslaSlashEntity;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
@@ -124,6 +125,12 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 if (amount > 0f) shock.chargeShock(amount);
 
                 ci.cancel();
+            }
+
+            TormentComponent torment = EntityComponents.TORMENT.get(this);
+
+            if (source == DamageSource.FREEZE) {
+                torment.lowerSanity(-amount/2);
             }
         } catch (NullPointerException | NoSuchElementException e) {
             e.printStackTrace();

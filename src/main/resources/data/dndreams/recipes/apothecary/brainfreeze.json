@@ -1,0 +1,12 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "dndreams:permafrost"
+  },
+  "corrupted": false,
+  "capacity": 4,
+  "cost": 400,
+  "effect": "dndreams:brainfreeze",
+  "duration": 3600,
+  "max_amplifier": 0
+}

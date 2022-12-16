@@ -88,6 +88,7 @@ ClientInitializer implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.EMBER_MOSS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.APPLETHORN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WITHER_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DRAGONFRUIT, RenderLayer.getCutout());
 
         BlockEntityRendererRegistry.register(ModBlockEntities.COSMIC_PORTAL_ENTITY, CosmicPortalBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(ModBlockEntities.REFINED_CAULDRON_ENTITY, RefinedCauldronBlockEntityRenderer::new);

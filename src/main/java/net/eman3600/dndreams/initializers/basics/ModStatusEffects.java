@@ -18,6 +18,7 @@ public class ModStatusEffects {
     public static StatusEffect SUPPRESSED = register("suppressed", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0));
     public static StatusEffect LOOMING = register("looming", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x4400c2));
     public static StatusEffect SPIRIT_WARD = register("spirit_ward", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 11184640));
+    public static StatusEffect BRAINFREEZE = register("brainfreeze", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2EBDFA));
     public static StatusEffect DREAMY = register("dreamy", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 13369480));
     public static StatusEffect VOID_FLOW = register("void_flow", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5592405));
     public static StatusEffect MEMORY = register("memory", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 26214));
@@ -31,6 +32,7 @@ public class ModStatusEffects {
     public static StatusEffect AFFLICTION = register("affliction", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x352922));
     public static StatusEffect IMMOLATION = register("immolation", new InstantModStatusEffect(StatusEffectCategory.HARMFUL, 0xFF8A1A));
     public static StatusEffect GAS_MASK = register("gas_mask", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xEEEE11));
+    public static StatusEffect CLEANSING = register("cleansing", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFFFF99));
     public static StatusEffect REJUVENATION = register("rejuvenation", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFF1522)
             .addAttributeModifier(ModAttributes.PLAYER_RECLAMATION, "E8E0684F-42F6-9C0E-5972-0FC11C5872AA", 5f, EntityAttributeModifier.Operation.ADDITION));
     public static StatusEffect DRAGONSOUL = register("dragonsoul", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9D050A)

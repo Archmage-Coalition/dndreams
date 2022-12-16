@@ -4,11 +4,11 @@ import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.util.Function2;
-import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -229,7 +229,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public boolean isAttuned() {
         try {
-            return WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END);
+            return (WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END)) || player.hasStatusEffect(ModStatusEffects.BRAINFREEZE);
         } catch (NullPointerException e) {
             return false;
         }

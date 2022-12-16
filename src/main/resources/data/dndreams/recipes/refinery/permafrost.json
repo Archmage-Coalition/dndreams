@@ -1,0 +1,23 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:eos_fume"
+    },
+	{
+      "item": "dndreams:liquid_void"
+    },
+	{
+      "item": "minecraft:snowball"
+    },
+	{
+      "item": "dndreams:icy_needle"
+    }
+  ],
+  "result": {
+    "item": "dndreams:permafrost",
+    "count": 1
+  },
+  "cost": 250,
+  "refine_time": 200
+}

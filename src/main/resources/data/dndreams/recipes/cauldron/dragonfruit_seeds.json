@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:applethorn_seeds"
+    },
+	{
+      "item": "minecraft:dragon_breath"
+    },
+	{
+      "item": "dndreams:drop_of_luck"
+    }
+  ],
+  "result": {
+    "item": "dndreams:dragonfruit_seeds",
+    "count": 1
+  },
+  "color": 10290442
+}

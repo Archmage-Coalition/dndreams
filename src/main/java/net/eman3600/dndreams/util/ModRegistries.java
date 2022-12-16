@@ -152,7 +152,7 @@ public class ModRegistries {
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.GLOWSTONE_DUST, EnhancementType.AMPLIFIER, 200);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.REFINED_EVIL, EnhancementType.AMPLIFIER, 200);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STAR_FUME, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STAR_FRUIT, EnhancementType.AMPLIFIER, 200);
     }
 
     private static void registerInsanityPredicates() {
@@ -161,6 +161,7 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() ? 2f : 0);
         TormentComponent.registerPredicate(player -> .15f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE));
         TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos()) < 1 ? 4f : 0);
+        TormentComponent.registerPredicate(player -> player.getFrozenTicks() / 10f);
     }
 
     private static void registerInsanityMobAuras() {
@@ -325,6 +326,9 @@ public class ModRegistries {
         access.registerCompostable(.3f, ModItems.APPLETHORN_SEEDS);
         access.registerCompostable(.65f, ModItems.SUCCULENT_APPLE);
         access.registerCompostable(.65f, ModItems.POISON_APPLE);
+        access.registerCompostable(.65f, ModItems.STAR_FRUIT);
+        access.registerCompostable(.3f, ModItems.WITHER_BLOSSOM_SEEDS);
+        access.registerCompostable(.3f, ModItems.DRAGONFRUIT_SEEDS);
     }
 
     private static void registerShockPredicates() {

@@ -72,7 +72,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Unique private static final int REVIVE_Y_BIG_OFFSET = TORMENT_Y_BIG_OFFSET;
 
     @Unique
-    private static final int REVIVE_WIDTH = 17;
+    private static final int REVIVE_WIDTH = 16;
 
     @Unique
     private static final int REVIVE_HEIGHT = 16;
@@ -183,7 +183,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                 this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, revive.onCooldown() ? Color.YELLOW.getRGB() : Color.RED.getRGB());
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, revive.onCooldown() ? Color.MAGENTA.getRGB() : Color.RED.getRGB());
             }
         });
     }

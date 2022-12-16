@@ -87,7 +87,7 @@ public class ModItems {
     // World Flow
     public static final Item LIQUID_VOID = registerItem("liquid_void",
             new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON),
-                    false, new StatusEffectInstance(ModStatusEffects.VOID_FLOW, 200)));
+                    false, new StatusEffectInstance(ModStatusEffects.BRAINFREEZE, 600)));
 
     // Liquid Soul
     public static final Item LIQUID_SOUL = registerItem("liquid_soul",
@@ -142,6 +142,7 @@ public class ModItems {
     public static final Item MELLIFLUOUS_HUNGER = registerItem("mellifluous_hunger", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item DISTILLED_SPIRIT = registerItem("distilled_spirit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item HOLLOW_TEAR = registerItem("hollow_tear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item PERMAFROST = registerItem("permafrost", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
     public static final Item ENTANGLED_EARTH = registerItem("entangled_earth", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item IMPRISONED_FEAR = registerItem("imprisoned_fear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
@@ -444,6 +445,10 @@ public class ModItems {
     // Wither Blossom Seeds
     public static final Item WITHER_BLOSSOM_SEEDS = registerItem("wither_blossom_seeds",
             new AliasedBlockItem(ModBlocks.WITHER_BLOSSOM, new FabricItemSettings().group(ItemGroup.MISC)));
+
+    // Dragonfruit Seeds
+    public static final Item DRAGONFRUIT_SEEDS = registerItem("dragonfruit_seeds",
+            new AliasedBlockItem(ModBlocks.DRAGONFRUIT, new FabricItemSettings().group(ItemGroup.MISC)));
 
 
 

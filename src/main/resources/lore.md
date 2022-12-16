@@ -1,7 +1,7 @@
 # The Elements
 
 ## Reality
-The power of groundedness, embodied by the End and the Sun.
+The power of groundedness, embodied by the End, the Sun, and ice.
 
 ## Imagination
 The power of mind and soul, embodied by the Spirit World and the Moon.

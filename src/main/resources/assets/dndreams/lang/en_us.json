@@ -127,6 +127,7 @@
   "item.dndreams.mellifluous_hunger": "Mellifluous Hunger",
   "item.dndreams.distilled_spirit": "Distilled Spirit",
   "item.dndreams.hollow_tear": "Hollow Tear",
+  "item.dndreams.permafrost": "Permafrost",
   
   "item.dndreams.entangled_earth": "Entangled Earth",
   "item.dndreams.imprisoned_fear": "Imprisoned Fear",
@@ -237,6 +238,8 @@
   "enchantment.dndreams.thrifty_desc": "Decreases mana cost.",
   "enchantment.dndreams.wicked": "Wicked",
   "enchantment.dndreams.wicked_desc": "Magic slashes wither foes.",
+  "enchantment.dndreams.mortal_frost": "Mortal Frost",
+  "enchantment.dndreams.mortal_frost_desc": "The frost that severs the soul. Can slay the Ender Dragon.",
   
   
   "effect.dndreams.impending": "Impending",
@@ -244,6 +247,7 @@
   "effect.dndreams.suppressed": "Suppressed",
   "effect.dndreams.looming": "Looming",
   "effect.dndreams.spirit_ward": "Spirit Ward",
+  "effect.dndreams.brainfreeze": "Soulfrost",
   "effect.dndreams.dreamy": "Dream Flow",
   "effect.dndreams.void_flow": "Cosmic Overload",
   "effect.dndreams.memory": "Honed Mind",
@@ -257,6 +261,7 @@
   "effect.dndreams.affliction": "Affliction",
   "effect.dndreams.immolation": "Immolation",
   "effect.dndreams.gas_mask": "Gas Mask",
+  "effect.dndreams.cleansing": "Cleansing",
   "effect.dndreams.rejuvenation": "Rejuvenation",
   "effect.dndreams.dragonsoul": "Dragonsoul",
   "effect.dndreams.mortal": "Mortality",

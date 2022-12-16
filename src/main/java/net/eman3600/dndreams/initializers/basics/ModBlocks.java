@@ -1033,6 +1033,10 @@ public class ModBlocks {
     public static final Block WITHER_BLOSSOM = registerBlock("wither_blossom",
             new WitherBlossomBlock(FabricBlockSettings.copy(Blocks.SWEET_BERRY_BUSH).nonOpaque()));
 
+    // Dragonfruit Crop
+    public static final Block DRAGONFRUIT = registerBlock("dragonfruit",
+            new DragonfruitBlock(FabricBlockSettings.copy(Blocks.BEETROOTS).nonOpaque()));
+
 
     // Ancient Portal
     public static final Block CHARGED_DEEPSLATE = registerBlock("charged_deepslate",
