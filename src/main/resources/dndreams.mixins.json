@@ -37,6 +37,7 @@
     "ItemMixin",
     "ItemStackMixin",
     "LichenGrowCheckerMixin",
+    "LightningEntityMixin",
     "LivingEntityMixin",
     "MobEntityMixin",
     "PersistentProjectileEntityMixin",
