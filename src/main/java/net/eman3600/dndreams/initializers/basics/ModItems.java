@@ -348,11 +348,6 @@ public class ModItems {
     public static final Item BROKEN_VITAL_SWORD = registerItem("broken_vital_sword",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).maxCount(1).rarity(Rarity.UNCOMMON)));
 
-    // Tesla Saber
-    public static final Item TESLA_SABER = registerItem("tesla_saber",
-            new TeslaSaberItem(ModToolMaterials.TESLA, 3, -2.4F,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
-
     // Shattered Sword
     public static final Item SHATTERED_SWORD = registerItem("shattered_sword",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).rarity(Rarity.UNCOMMON).maxCount(1).fireproof()));

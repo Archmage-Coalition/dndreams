@@ -22,8 +22,6 @@ public class ModModelPredicateProvider {
         registerBloodlustItem(ModItems.CORRUPT_SHOVEL);
         registerBloodlustItem(ModItems.CORRUPT_HOE);
 
-        registerShockedItem(ModItems.TESLA_SABER);
-
         registerItem(new Identifier("bound"),
                 (stack, world, entity, seed) -> (stack.getOrCreateNbt().contains("bound")) ? 1f : 0f,
                 ModItems.TAGLOCK);

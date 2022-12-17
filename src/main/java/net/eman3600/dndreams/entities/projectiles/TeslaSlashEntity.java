@@ -27,11 +27,13 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity.*;
-
 public class TeslaSlashEntity extends PersistentProjectileEntity implements ProjectileOverhaulEntity {
     private int lifeTicks = 0;
     private static final int maxLifeTicks = 5;
+
+    public static final float yawPerTick = 2;
+    public static final float changeInYaw = 70;
+    public static final float range = 3f;
     private static final double SPEED = 2.0d;
     public List<LivingEntity> victims = new ArrayList<>();
     private Vec3d origin;

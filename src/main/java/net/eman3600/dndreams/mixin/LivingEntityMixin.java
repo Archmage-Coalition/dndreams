@@ -168,7 +168,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
                         EntityComponents.TORMENT.get(this).lowerSanity(25f);
                     }
 
-                    addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 0, false, false, true));
+                    addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 40, 4, false, false, true));
 
                     revive.revive();
 

@@ -46,7 +46,8 @@ public abstract class WorldRendererMixin {
     @Inject(method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;getMoonPhase()I"))
     private void dndreams$renderSky$changeMoon(MatrixStack matrices, Matrix4f projectionMatrix, float tickDelta, Camera camera, boolean bl, Runnable runnable, CallbackInfo info) {
         if (WorldComponents.BLOOD_MOON.get(this.world).damnedNight()) {
-            RenderSystem.setShaderTexture(0, BLOOD_MOON_PHASES);
+            //RenderSystem.setShaderTexture(0, BLOOD_MOON_PHASES);
+            RenderSystem.setShaderColor(1f, 0f, 0f, 1f);
         } else if (drawAether()) {
             RenderSystem.setShaderTexture(0, EMPTY_MOON);
         }
