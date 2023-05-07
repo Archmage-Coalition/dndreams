@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "dndreams:corrupt_ingot"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "X X",
+	"X X"
+  ],
+  "result": {
+    "item": "dndreams:corrupt_leggings"
+  }
+}

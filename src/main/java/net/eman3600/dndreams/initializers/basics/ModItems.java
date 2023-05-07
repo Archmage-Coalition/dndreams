@@ -5,9 +5,13 @@ import net.eman3600.dndreams.entities.projectiles.BrewLingeringEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewLiquidEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
-import net.eman3600.dndreams.items.*;
+import net.eman3600.dndreams.items.BookOfDreams;
+import net.eman3600.dndreams.items.DreamyItem;
+import net.eman3600.dndreams.items.ExcaliburItem;
+import net.eman3600.dndreams.items.MysticStaffItem;
 import net.eman3600.dndreams.items.block_item.AliasedDreamyBlockItem;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
+import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
@@ -216,6 +220,19 @@ public class ModItems {
             new CorruptHoe(ModToolMaterials.CORRUPT, -2, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
+    public static final Item CORRUPT_HELMET = registerItem("corrupt_helmet",
+            new CorruptArmorItem(ModArmorMaterials.CORRUPT, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CORRUPT_CHESTPLATE = registerItem("corrupt_chestplate",
+            new CorruptArmorItem(ModArmorMaterials.CORRUPT, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CORRUPT_LEGGINGS = registerItem("corrupt_leggings",
+            new CorruptArmorItem(ModArmorMaterials.CORRUPT, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CORRUPT_BOOTS = registerItem("corrupt_boots",
+            new CorruptArmorItem(ModArmorMaterials.CORRUPT, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+
     // Flint and Hellsteel
     public static final Item FLINT_AND_HELLSTEEL = registerItem("flint_and_hellsteel", new FlintAndHellsteelItem(new FabricItemSettings()
             .group(ItemGroup.TOOLS).fireproof().maxCount(1)));
@@ -248,16 +265,16 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item CELESTIUM_HELMET = registerItem("celestium_helmet",
-            new ArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.HEAD,
+            new CelestiumArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.HEAD,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CELESTIUM_CHESTPLATE = registerItem("celestium_chestplate",
-            new ArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.CHEST,
+            new CelestiumArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.CHEST,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CELESTIUM_LEGGINGS = registerItem("celestium_leggings",
-            new ArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.LEGS,
+            new CelestiumArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.LEGS,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CELESTIUM_BOOTS = registerItem("celestium_boots",
-            new ArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.FEET,
+            new CelestiumArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
 
 

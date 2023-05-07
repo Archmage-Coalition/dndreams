@@ -10,7 +10,6 @@ import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
-import net.eman3600.dndreams.items.TeslaSaberItem;
 import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
@@ -28,7 +27,6 @@ import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.item.Items;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
-import net.minecraft.util.Hand;
 
 public class ModRegistries {
     public static final Object2ObjectMap<TagKey<Block>, Block> SCULK_TRANSFORM = new Object2ObjectOpenHashMap<>();
@@ -159,7 +157,7 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> -1.25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM));
         TormentComponent.registerPredicate((player, torment) -> torment.isAttuned() ? -3f : 0);
         TormentComponent.registerPredicate(player -> WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() ? 2f : 0);
-        TormentComponent.registerPredicate(player -> .15f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE));
+        TormentComponent.registerPredicate(player -> .25f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE));
         TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos()) < 1 ? 4f : 0);
         TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
     }
@@ -334,13 +332,6 @@ public class ModRegistries {
     private static void registerShockPredicates() {
         ShockComponent.registerChargePredicate(entity -> !entity.isOnGround());
         ShockComponent.registerChargePredicate(entity -> entity.hasStatusEffect(ModStatusEffects.INSULATED));
-        ShockComponent.registerChargePredicate(entity -> {
-            for (Hand hand: Hand.values()) {
-                if (entity.getStackInHand(hand).getItem() instanceof TeslaSaberItem) return true;
-            }
-
-            return false;
-        });
         ShockComponent.registerChargePredicate(entity -> entity instanceof CreeperEntity);
     }
 

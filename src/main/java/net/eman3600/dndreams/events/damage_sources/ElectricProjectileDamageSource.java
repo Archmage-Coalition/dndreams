@@ -15,6 +15,10 @@ public class ElectricProjectileDamageSource extends ProjectileDamageSource imple
         return new ElectricProjectileDamageSource("electric", magic, attacker).setUnblockable();
     }
 
+    public static DamageSource magic(Entity magic, @Nullable Entity attacker) {
+        return new ElectricProjectileDamageSource("electric", magic, attacker).setUnblockable().setUsesMagic();
+    }
+
     @Override
     public void setElectric() {}
 

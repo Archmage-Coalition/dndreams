@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.entities.projectiles;
 
+import net.eman3600.dndreams.events.damage_sources.ElectricProjectileDamageSource;
 import net.eman3600.dndreams.initializers.basics.ModEnchantments;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.event.ModMessages;
@@ -11,7 +12,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -130,7 +130,7 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
                                 livingEntity.timeUntilRegen = 1;
 
                                 livingEntity.takeKnockback(0.4f, MathHelper.sin(getOwner().getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getOwner().getYaw() * ((float) Math.PI / 180)));
-                                livingEntity.damage(DamageSource.magic(this, getOwner()), (float) this.getDamage());
+                                livingEntity.damage(ElectricProjectileDamageSource.magic(this, getOwner()), (float) this.getDamage());
                                 if (wicked) livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 80, 1), getOwner());
                             }
                         }

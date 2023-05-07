@@ -6,6 +6,9 @@ The power of groundedness, embodied by the End, the Sun, and ice.
 ## Imagination
 The power of mind and soul, embodied by the Spirit World and the Moon.
 
+## Wrath
+The power of hatred and retribution, embodied by electricity.
+
 # The Affliction
 The affliction is the root of undeath, the source of madness and consumption, and the cause of the fall of Koinans. It manifests itself in several forms based on the various aspects of mind and soul.
 
@@ -68,12 +71,12 @@ Elrunez was a powerful illager archmage. The details of his rise to power among 
 
 Using the threads of his own sanity, Elrunez was able to reinforce the ancient portal frame against overloading. After properly tuning the portal frame, he used a warden to fuel the portal, which managed to remain stable after overloading. However, the portal remained overconcentrated and, rather than leading to the Haven, the portal let out the spirits of those taken by sculk. This lasted until the portal's energy reached stable levels, at which point Elrunez entered.
 
-Once inside, Elrunez was able to fully embrace the madness of unreality and be taken by torment, crowning himself the Nightmare Lord. He then sealed the ancient portal and began locking it with the essence of 4 powerful Keepers.
+Once inside, Elrunez was able to fully embrace the madness of unreality and be taken by torment, crowning himself the Nightmare Lord. He then sealed the ancient portal and began locking it with the essence of 4 powerful Keepers, ensuring himself the last of all lords.
 
 
 # Bosses
 ## Pnevma, Ender Dragon
-The Ender Dragon was constructed by Elrunez to drown out the force of reality. Made of nightmares and madness, Pnevma plagues the End and suppresses the World Fountain. This has also dried up the minds of the endermen living in the End, stealing their wits and binding them to the will of Pnevma.
+The Ender Dragon was constructed by Elrunez to drown out the force of reality. Made of nightmares and madness, Pnevma plagues the End and suppresses the World Fountain by sponging up its energy. The dragon thusly can withstand the force of reality and even wield it despite being an entity of insanity. This has dried up the minds of the endermen living in the End, stealing their wits and binding them to the will of Pnevma.
 
 ## The Wither, Hand of the Plague
 An amalgamation of failed simulacrums, the Wither is the embodiment of the decaying force of the affliction that created the skeletons. It cares only to infect intelligent life and was the main spreader of the decay. Once its corrupted purpose was served, it collapsed into a heap of bones and skulls.

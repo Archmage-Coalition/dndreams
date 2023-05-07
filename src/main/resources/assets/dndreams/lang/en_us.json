@@ -40,6 +40,10 @@
   "item.dndreams.corrupt_axe": "Hellsteel Axe",
   "item.dndreams.corrupt_shovel": "Hellsteel Shovel",
   "item.dndreams.corrupt_hoe": "Hellsteel Hoe",
+  "item.dndreams.corrupt_helmet": "Hellsteel Helmet",
+  "item.dndreams.corrupt_chestplate": "Hellsteel Chestplate",
+  "item.dndreams.corrupt_leggings": "Hellsteel Leggings",
+  "item.dndreams.corrupt_boots": "Hellsteel Boots",
   
   "item.dndreams.flint_and_hellsteel": "Flint and Hellsteel",
   "item.dndreams.mind_shears": "Mind Shears",
@@ -62,8 +66,6 @@
   "item.dndreams.slumbering_sword": "Slumbering Sword",
   "item.dndreams.crowned_edge": "Crowned Edge",
   "item.dndreams.true_crowned_edge": "True Crowned Edge",
-  "item.dndreams.tesla_saber": "Tesla Saber",
-  "item.dndreams.tesla_saber.tooltip": "Charge: %s",
   
   "item.dndreams.book_of_dreams": "Codex Somnus",
   "item.dndreams.book_of_dreams.landing_text": "Reality is not a constant but a product of its perception.",
@@ -184,6 +186,7 @@
   "item.dndreams.sorrow_bucket": "Bucket of Torrential Sorrow",
   
   "item.dndreams.phantom_necklace": "Phantom Necklace",
+  "item.dndreams.ender_amulet": "Dissociation Charm",
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
 
