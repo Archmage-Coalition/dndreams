@@ -112,7 +112,7 @@ public class CorruptShovel extends ShovelItem implements BloodlustItem, VariedMi
 
     @Override
     public float additionalModifiers(ItemStack stack, PlayerEntity entity, BlockState state, World world) {
-        if (hasBloodlust(entity)) {
+        if (hasBloodlust(entity) && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
             return state.getBlock().getBlastResistance() < 3f ? .35f : 1.5f;
         }
         return 1;

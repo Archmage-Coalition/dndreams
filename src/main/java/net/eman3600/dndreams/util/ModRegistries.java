@@ -101,11 +101,11 @@ public class ModRegistries {
         MutandisItem.registerMutable("crop", Blocks.BEETROOTS);
         MutandisItem.registerMutable("crop", Blocks.PUMPKIN_STEM);
         MutandisItem.registerMutable("crop", Blocks.MELON_STEM);
+        MutandisItem.registerMutable("crop", Blocks.SWEET_BERRY_BUSH);
         MutandisItem.registerMutable("crop", ModBlocks.SNOWBELL);
         MutandisItem.registerMutable("crop", ModBlocks.LOTUS);
 
 
-        MutandisExtremisItem.registerMutable(ModBlocks.SCULK_WOOD_SAPLING);
         MutandisExtremisItem.registerMutable(Blocks.SCULK_SENSOR);
         MutandisExtremisItem.registerMutable(Blocks.SCULK_SHRIEKER);
         MutandisExtremisItem.registerMutable(Blocks.SCULK_CATALYST);

@@ -203,11 +203,11 @@ public class ModItems {
     public static final Item OBSIDIAN_STICK = registerItem("obsidian_stick",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
 
-    // Obsidian Heart
+    // Obsidian Vessel
     public static final Item DEMONIC_CORE = registerItem("demonic_core",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).maxCount(1).fireproof()));
     public static final Item DEMONIC_CORE_CHARGED = registerItem("demonic_core_charged",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).maxCount(1).fireproof()));
 
 
 
@@ -241,7 +241,7 @@ public class ModItems {
             new CorruptArmorItem(ModArmorMaterials.CORRUPT, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
 
-    // Flint and Hellsteel
+    // Bloodflame Catalyst
     public static final Item BLOODFLAME_VESSEL = registerItem("bloodflame_vessel", new BloodflameVessel(new FabricItemSettings()
             .group(ItemGroup.TOOLS).fireproof().maxCount(1)));
 
