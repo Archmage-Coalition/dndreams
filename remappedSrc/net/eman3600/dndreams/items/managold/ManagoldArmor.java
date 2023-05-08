@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items.managold;
+package net.eman3600.dndreams.items.misc_armor;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
