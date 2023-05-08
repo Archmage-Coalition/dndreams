@@ -30,6 +30,8 @@ import net.eman3600.dndreams.items.hellsteel.*;
 import net.eman3600.dndreams.items.magic_bow.LightstringBow;
 import net.eman3600.dndreams.items.magic_bow.ManastringBow;
 import net.eman3600.dndreams.items.magic_bow.MindstringBow;
+import net.eman3600.dndreams.items.misc_armor.ManagoldArmorItem;
+import net.eman3600.dndreams.items.misc_armor.TormiteArmorItem;
 import net.eman3600.dndreams.items.misc_tool.*;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
@@ -304,16 +306,16 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item MANAGOLD_HELMET = registerItem("managold_helmet",
-            new ArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.HEAD,
+            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.HEAD,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item MANAGOLD_CHESTPLATE = registerItem("managold_chestplate",
-            new ArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.CHEST,
+            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.CHEST,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item MANAGOLD_LEGGINGS = registerItem("managold_leggings",
-            new ArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.LEGS,
+            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.LEGS,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item MANAGOLD_BOOTS = registerItem("managold_boots",
-            new ArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.FEET,
+            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Tormite Gear
@@ -334,16 +336,16 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
     public static final Item TORMITE_HELMET = registerItem("tormite_helmet",
-            new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.HEAD,
+            new TormiteArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.HEAD,
                     new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item TORMITE_CHESTPLATE = registerItem("tormite_chestplate",
-            new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.CHEST,
+            new TormiteArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.CHEST,
                     new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item TORMITE_LEGGINGS = registerItem("tormite_leggings",
-            new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.LEGS,
+            new TormiteArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.LEGS,
                     new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item TORMITE_BOOTS = registerItem("tormite_boots",
-            new ArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.FEET,
+            new TormiteArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
 
     // Phantom Necklace

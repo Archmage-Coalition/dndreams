@@ -9,9 +9,9 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    CORRUPT(3, 1785, 7.0F, 2.0F, 15,
+    CORRUPT(3, 1824, 7.0F, 2.0F, 15,
             () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
-    CELESTIUM(4, 1824, 12.0F, 5.0F, 18,
+    CELESTIUM(4, 2145, 12.0F, 5.0F, 18,
             () -> Ingredient.ofItems(ModItems.CELESTIUM)),
     ARTIFACT(4, 3002, 12.0F, 4.0F, 22,
             () -> Ingredient.ofItems(ModItems.DREAM_POWDER, ModItems.SCULK_POWDER)),
