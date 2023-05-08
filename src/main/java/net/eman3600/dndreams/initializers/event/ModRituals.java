@@ -15,9 +15,10 @@ public class ModRituals {
     public static final Ritual TAGLOCK = register("taglock", new TaglockRitual());
     public static final Ritual TAGLOCK_RELOCATED = register("taglock_relocated", new TaglockRelocatedRitual());
 
+    public static final Ritual CHARGE_DEMONIC_CORE = register("charge_demonic_core", new DemonicCoreRitual());
+
     public static final Ritual AMETHYST_SOURCE = register("amethyst_source", new AmethystSourceRitual());
     public static final Ritual AMETHYST_SPROUT = register("amethyst_sprout", new AmethystSproutRitual());
-
     public static final Ritual SUMMON_STORM = register("summon_storm", new SummonStormRitual());
     public static final Ritual NIGHT_TERROR = register("night_terror", new NightTerrorRitual());
 

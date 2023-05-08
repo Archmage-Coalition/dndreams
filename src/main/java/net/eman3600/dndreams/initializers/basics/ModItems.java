@@ -203,6 +203,12 @@ public class ModItems {
     public static final Item OBSIDIAN_STICK = registerItem("obsidian_stick",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
 
+    // Obsidian Heart
+    public static final Item DEMONIC_CORE = registerItem("demonic_core",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
+    public static final Item DEMONIC_CORE_CHARGED = registerItem("demonic_core_charged",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
+
 
 
     // Hellsteel Sword & Tools

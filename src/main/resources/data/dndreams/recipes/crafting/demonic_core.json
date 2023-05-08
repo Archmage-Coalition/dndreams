@@ -2,17 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "item": "dndreams:corrupt_ingot"
+      "item": "dndreams:infernal_residue"
     },
 	"#": {
       "item": "minecraft:obsidian"
     }
   },
   "pattern": [
+    " ##",
     "#X#",
-    "X X"
+    " # "
   ],
   "result": {
-    "item": "dndreams:corrupt_helmet"
+    "item": "dndreams:demonic_core"
   }
 }

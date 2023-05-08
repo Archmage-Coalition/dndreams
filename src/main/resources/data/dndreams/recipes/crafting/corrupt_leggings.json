@@ -3,12 +3,15 @@
   "key": {
     "X": {
       "item": "dndreams:corrupt_ingot"
+    },
+	"#": {
+      "item": "minecraft:obsidian"
     }
   },
   "pattern": [
-    "XXX",
+    "#X#",
     "X X",
-	"X X"
+    "# #"
   ],
   "result": {
     "item": "dndreams:corrupt_leggings"
