@@ -9,7 +9,7 @@ import net.minecraft.item.ArmorMaterial;
 public class ManagoldArmorItem extends ModArmorItem {
     public ManagoldArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
         super(material, slot, settings, (builder, uUID) -> {
-            builder.put(ModAttributes.PLAYER_MANA_REGEN, new EntityAttributeModifier(uUID, "Mana regen bonus", .025, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+            builder.put(ModAttributes.PLAYER_MANA_REGEN, new EntityAttributeModifier(uUID, "Mana regen bonus", .05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
         });
     }
 }

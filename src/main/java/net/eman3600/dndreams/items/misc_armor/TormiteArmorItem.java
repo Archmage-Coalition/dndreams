@@ -10,6 +10,7 @@ public class TormiteArmorItem extends ModArmorItem {
     public TormiteArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
         super(material, slot, settings, (builder, uUID) -> {
             builder.put(ModAttributes.PLAYER_MANA_REGEN, new EntityAttributeModifier(uUID, "Mana regen bonus", .05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+            builder.put(ModAttributes.PLAYER_MAX_MANA, new EntityAttributeModifier(uUID, "Max mana bonus", 5, EntityAttributeModifier.Operation.ADDITION));
         });
     }
 }
