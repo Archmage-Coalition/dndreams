@@ -21,6 +21,7 @@ public class ModModelPredicateProvider {
         registerBloodlustItem(ModItems.CORRUPT_AXE);
         registerBloodlustItem(ModItems.CORRUPT_SHOVEL);
         registerBloodlustItem(ModItems.CORRUPT_HOE);
+        registerBloodlustItem(ModItems.BLOODFLAME_VESSEL);
 
         registerItem(new Identifier("bound"),
                 (stack, world, entity, seed) -> (stack.getOrCreateNbt().contains("bound")) ? 1f : 0f,

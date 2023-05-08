@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "dndreams:corrupt_ingot"
+    },
+	"#": {
+      "item": "dndreams:obsidian_stick"
+    },
+	"C": {
+      "item": "dndreams:demonic_core_charged"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "XCX",
+    "#X#"
+  ],
+  "result": {
+    "item": "dndreams:bloodflame_vessel"
+  }
+}

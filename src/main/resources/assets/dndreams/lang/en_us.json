@@ -44,15 +44,15 @@
   "item.dndreams.corrupt_chestplate": "Hellsteel Chestplate",
   "item.dndreams.corrupt_leggings": "Hellsteel Leggings",
   "item.dndreams.corrupt_boots": "Hellsteel Boots",
-  "item.dndreams.corrupt_helmet.tooltip": "§4+3 Armor Toughness with Bloodlust",
-  "item.dndreams.corrupt_chestplate.tooltip": "§4Taking damage grants Bloodlust",
-  "item.dndreams.corrupt_leggings.tooltip": "§4+20% speed with Bloodlust",
-  "item.dndreams.corrupt_boots.tooltip": "§4Lets you walk on lava and through fire.",
+  "item.dndreams.corrupt_helmet.tooltip": "§4Quickly puts out fire.",
+  "item.dndreams.corrupt_chestplate.tooltip": "§4Channels pain into rage.",
+  "item.dndreams.corrupt_leggings.tooltip": "§4Lets you walk through flames.",
+  "item.dndreams.corrupt_boots.tooltip": "§4Lets you walk on lava.",
   
   "item.dndreams.demonic_core": "Obsidian Vessel",
   "item.dndreams.demonic_core_charged": "Crimson Vessel",
   
-  "item.dndreams.flint_and_hellsteel": "Flint and Hellsteel",
+  "item.dndreams.bloodflame_vessel": "Bloodflame Catalyst",
   "item.dndreams.mind_shears": "Mind Shears",
   "item.dndreams.mind_shears.tooltip": "Tear your mind to pieces.",
   

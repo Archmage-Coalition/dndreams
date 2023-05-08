@@ -4,6 +4,7 @@ import net.eman3600.dndreams.blocks.energy.BonfireBlock;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.projectiles.TeslaSlashEntity;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
@@ -19,7 +20,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -49,6 +52,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Shadow public abstract boolean isInvulnerableTo(DamageSource damageSource);
 
     @Shadow public abstract float getAttackCooldownProgress(float baseTime);
+
+    @Shadow public abstract Iterable<ItemStack> getArmorItems();
+
+    @Shadow public abstract PlayerInventory getInventory();
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -134,6 +141,17 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             }
         } catch (NullPointerException | NoSuchElementException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setHealth(F)V"))
+    private void dndreams$applyDamage$afterDamage(DamageSource source, float amount, CallbackInfo ci) {
+        if (getInventory().getArmorStack(2).isOf(ModItems.CORRUPT_CHESTPLATE)) {
+            addStatusEffect(new StatusEffectInstance(ModStatusEffects.BLOODLUST, (int) Math.ceil(amount * 40)));
+
+            if (source.getAttacker() instanceof LivingEntity attacker) {
+                attacker.setOnFireFor((int) Math.ceil(amount * 2));
+            }
         }
     }
 }

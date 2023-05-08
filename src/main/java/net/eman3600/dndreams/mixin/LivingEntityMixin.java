@@ -4,6 +4,7 @@ import net.eman3600.dndreams.cardinal_components.DreamingComponent;
 import net.eman3600.dndreams.cardinal_components.ReviveComponent;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
@@ -117,6 +118,13 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "baseTick", at = @At("HEAD"))
     public void dndreams$baseTick(CallbackInfo ci) {
+        for (ItemStack stack: getArmorItems()) {
+            if (stack.isOf(ModItems.CORRUPT_HELMET) && getFireTicks() > 60) {
+                setFireTicks(60);
+                break;
+            }
+        }
+
         if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
             addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE, 0, true, true));
             if (hasStatusEffect(ModStatusEffects.GRACE)) {

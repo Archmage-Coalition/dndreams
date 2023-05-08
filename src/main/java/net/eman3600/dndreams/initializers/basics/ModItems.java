@@ -242,7 +242,7 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Flint and Hellsteel
-    public static final Item FLINT_AND_HELLSTEEL = registerItem("flint_and_hellsteel", new FlintAndHellsteelItem(new FabricItemSettings()
+    public static final Item BLOODFLAME_VESSEL = registerItem("bloodflame_vessel", new BloodflameVessel(new FabricItemSettings()
             .group(ItemGroup.TOOLS).fireproof().maxCount(1)));
 
     // Mind Shears

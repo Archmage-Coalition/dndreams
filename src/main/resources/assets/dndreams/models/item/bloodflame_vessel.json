@@ -1,0 +1,14 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "dndreams:item/bloodflame_vessel"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "bloodlust": 1
+            },
+            "model": "dndreams:item/bloodflame_vessel_bloodlust"
+        }
+    ]
+}
