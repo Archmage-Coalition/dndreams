@@ -1,9 +1,13 @@
 package net.eman3600.dndreams.items.hellsteel;
 
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.items.ModArmorItem;
+import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -15,6 +19,14 @@ import java.util.List;
 public class CorruptArmorItem extends ModArmorItem {
     public CorruptArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
         super(material, slot, settings, (builder, uUID) -> {});
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (!world.isClient() && entity instanceof LivingEntity living && wornPieces(living) >= 4 && living instanceof LivingEntityAccess access && access.hasNotBrokenLava()) {
+            living.addStatusEffect(new StatusEffectInstance(ModStatusEffects.FLAME_GUARD, 145, 0, true, true));
+        }
+        super.inventoryTick(stack, world, entity, slot, selected);
     }
 
     @Override

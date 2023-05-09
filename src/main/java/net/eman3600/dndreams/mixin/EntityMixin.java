@@ -2,9 +2,12 @@ package net.eman3600.dndreams.mixin;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentAccess;
 import net.eman3600.dndreams.cardinal_components.GatewayComponent;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.items.ModArmorItem;
+import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -97,6 +100,20 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
     @Redirect(method = "updateSubmergedInWaterState", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z"))
     private boolean dndreams$updateSubmergedInWaterState$isSubmergedIn(Entity instance, TagKey<Fluid> fluidTag) {
         return instance.isSubmergedIn(fluidTag) | instance.isSubmergedIn(ModTags.SORROW);
+    }
+
+    @Inject(method = "setOnFireFromLava", at = @At("HEAD"), cancellable = true)
+    private void dndreams$setOnFireFromLava(CallbackInfo ci) {
+        if (ModArmorItem.isWearing((Entity)(Object)this, ModItems.CORRUPT_BOOTS) && this instanceof LivingEntityAccess access && access.hasNotBrokenLava()) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "isFireImmune", at = @At("HEAD"), cancellable = true)
+    private void dndreams$isFireImmune(CallbackInfoReturnable<Boolean> cir) {
+        if ((Object)this instanceof LivingEntity living && living.hasStatusEffect(ModStatusEffects.FLAME_GUARD)) {
+            cir.setReturnValue(true);
+        }
     }
 
 }

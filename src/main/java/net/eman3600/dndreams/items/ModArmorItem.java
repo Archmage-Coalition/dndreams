@@ -3,12 +3,15 @@ package net.eman3600.dndreams.items;
 import com.google.common.collect.ImmutableMultimap;
 import net.eman3600.dndreams.mixin_interfaces.ArmorItemAccess;
 import net.eman3600.dndreams.util.Consumer2;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 import java.util.UUID;
 
@@ -27,6 +30,13 @@ public class ModArmorItem extends ArmorItem {
         if (this instanceof ArmorItemAccess access) {
             access.setAttributes(builder.build());
         }
+    }
+
+    public static boolean isWearing(Entity entity, Item item) {
+        for (ItemStack stack: entity.getArmorItems()) {
+            if (stack.isOf(item)) return true;
+        }
+        return false;
     }
 
 

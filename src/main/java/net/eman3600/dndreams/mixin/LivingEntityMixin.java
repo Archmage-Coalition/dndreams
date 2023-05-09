@@ -8,10 +8,14 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.items.ModArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.FluidBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.boss.WitherEntity;
@@ -23,10 +27,12 @@ import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.tag.TagKey;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.RegistryKey;
@@ -113,6 +119,59 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
             WorldComponents.BOSS_STATE.get(world.getScoreboard()).flagWitherSlain(true);
         }
     }
+
+
+
+
+    @Inject(method = "fall", at = @At("HEAD"), cancellable = true)
+    private void dndreams$fall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition, CallbackInfo ci) {
+        if (ModArmorItem.isWearing(this, ModItems.CORRUPT_BOOTS)) {
+            this.checkBlockCollision();
+            if (isAtLavaSurface()) {
+                this.onLanding();
+                ci.cancel();
+            }
+        }
+    }
+
+    @Inject(method = "tick", at = @At("TAIL"))
+    private void dndreams$tick$tail(CallbackInfo ci) {
+        if (ModArmorItem.isWearing(this, ModItems.CORRUPT_BOOTS)) {
+            updateLavaFloating();
+            this.checkBlockCollision();
+        }
+    }
+
+    @Inject(method = "canWalkOnFluid", at = @At("RETURN"), cancellable = true)
+    private void dndreams$canWalkOnFluid(FluidState state, CallbackInfoReturnable<Boolean> cir) {
+        if (ModArmorItem.isWearing(this, ModItems.CORRUPT_BOOTS) && state.isIn(FluidTags.LAVA) && hasNotBrokenLava()) {
+            cir.setReturnValue(true);
+        }
+    }
+
+    private boolean isAtLavaSurface() {
+        return hasNotBrokenLava() && isInLava();
+    }
+
+    @Override
+    public boolean hasNotBrokenLava() {
+        if ((Entity)this instanceof PlayerEntity player && player.isSneaking()) return false;
+        return this.fluidHeight.getDouble(FluidTags.LAVA) <= 0.7 && !isOnFire();
+    }
+
+    private void updateLavaFloating() {
+        if (isAtLavaSurface()) {
+            ShapeContext shapeContext = ShapeContext.of(this);
+            if (!shapeContext.isAbove(FluidBlock.COLLISION_SHAPE, this.getBlockPos(), true) || this.world.getFluidState(this.getBlockPos().up()).isIn(FluidTags.LAVA)) {
+                this.setVelocity(this.getVelocity().multiply(0.5).add(0.0, 0.05, 0.0));
+            } else {
+                this.onGround = true;
+            }
+        }
+    }
+
+
+
 
 
 

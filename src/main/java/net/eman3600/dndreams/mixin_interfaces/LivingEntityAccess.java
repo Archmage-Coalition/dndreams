@@ -9,5 +9,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public interface LivingEntityAccess {
     boolean isTrulyInsideWall();
 
+    boolean hasNotBrokenLava();
+
     boolean shouldResist(float damage, DamageSource source);
 }

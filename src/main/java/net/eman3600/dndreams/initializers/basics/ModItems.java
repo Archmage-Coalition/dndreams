@@ -211,6 +211,13 @@ public class ModItems {
 
 
 
+
+    // Resonant Pickaxe
+    public static final Item RESONANT_PICKAXE = registerItem("resonant_pickaxe",
+            new ResonantPickaxe(ModToolMaterials.RESONANT, 1, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+
+
     // Hellsteel Sword & Tools
     public static final Item CORRUPT_SWORD = registerItem("corrupt_sword",
             new CorruptSword(ModToolMaterials.CORRUPT, 3, -1.8F,
@@ -385,7 +392,7 @@ public class ModItems {
     // Crowned Edge
     public static final Item CROWNED_EDGE = registerItem("crowned_edge",
             new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 5,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.RARE).fireproof()));
+                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON).fireproof()));
 
     // True Crowned Edge
     public static final Item TRUE_CROWNED_EDGE = registerItem("true_crowned_edge",

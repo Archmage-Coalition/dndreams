@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C#C",
+    " X ",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:charged_shard"
+    },
+    "X": {
+      "item": "minecraft:echo_shard"
+    },
+    "C": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "dndreams:resonant_pickaxe"
+  }
+}

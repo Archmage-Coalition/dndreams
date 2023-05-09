@@ -1,0 +1,11 @@
+{
+  "type": "dndreams:apothecary",
+  "ingredient": {
+    "item": "minecraft:wither_rose"
+  },
+  "corrupted": true,
+  "capacity": 6,
+  "cost": 800,
+  "effect": "minecraft:darkness",
+  "duration": 400
+}

@@ -35,6 +35,8 @@
   "item.dndreams.star_fruit": "Starfruit",
   "item.dndreams.sanity_thread": "Thread of Sanity",
   
+  "item.dndreams.resonant_pickaxe": "Resonant Pickaxe",
+  
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
   "item.dndreams.corrupt_axe": "Hellsteel Axe",
@@ -276,6 +278,7 @@
   "effect.dndreams.rejuvenation": "Rejuvenation",
   "effect.dndreams.dragonsoul": "Dragonsoul",
   "effect.dndreams.mortal": "Mortality",
+  "effect.dndreams.flame_guard": "Flame Guard",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",

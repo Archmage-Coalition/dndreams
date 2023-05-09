@@ -41,6 +41,7 @@
     "LichenGrowCheckerMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",
+    "MagmaBlockMixin",
     "MobEntityMixin",
     "PersistentProjectileEntityMixin",
     "PlayerEntityMixin",
