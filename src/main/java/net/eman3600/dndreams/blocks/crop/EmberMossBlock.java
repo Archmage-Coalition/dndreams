@@ -1,9 +1,11 @@
 package net.eman3600.dndreams.blocks.crop;
 
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -75,6 +77,11 @@ public class EmberMossBlock extends PlantBlock {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity) {
+            for (ItemStack stack: entity.getArmorItems()) {
+                if (stack.isOf(ModItems.CORRUPT_LEGGINGS)) {
+                    return;
+                }
+            }
             if (!entity.isFireImmune()) {
                 entity.setFireTicks(entity.getFireTicks() + 2);
                 if (entity.getFireTicks() <= 0) {
