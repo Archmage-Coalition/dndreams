@@ -97,7 +97,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block TORMITE_BLOCK = registerBlock("tormite_block",
-            new Block(FabricBlockSettings.of(Material.METAL, MapColor.GOLD).strength(3.0f).resistance(6.0f)
+            new Block(FabricBlockSettings.of(Material.METAL, MapColor.PURPLE).strength(5.0f).resistance(6.0f)
                     .sounds(BlockSoundGroup.METAL)
                     .requiresTool()),
 
@@ -110,6 +110,12 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block PERICHARITE_BLOCK = registerBlock("pericharite_block",
             new Block(FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).strength(5.0f).resistance(6.0f)
+                    .sounds(BlockSoundGroup.METAL)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SILVER_BLOCK = registerBlock("silver_block",
+            new Block(FabricBlockSettings.of(Material.METAL, MapColor.OFF_WHITE).strength(5.0f).resistance(6.0f)
                     .sounds(BlockSoundGroup.METAL)
                     .requiresTool()),
 
@@ -988,6 +994,11 @@ public class ModBlocks {
 
     public static final Block PERICHARITE_ORE = registerBlock("pericharite_ore",
             new OreBlock(FabricBlockSettings.copy(Blocks.DIAMOND_ORE), UniformIntProvider.create(3, 6)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block SILVER_ORE = registerBlock("silver_ore",
+            new OreBlock(FabricBlockSettings.copy(Blocks.DIAMOND_ORE)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 

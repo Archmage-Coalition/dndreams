@@ -48,9 +48,9 @@ During the Age of the Illagers, Elrunez the Archmage opened the long-sealed port
 The Koinans were a race of humanoids adept in construction of tools and structures. They lasted about 10,000 years before falling to their own creation.
 
 ## The Spark
-The first sources of magic to be discovered were amethyst and silver. They were used to tap into the energies of the mind and soul. It started small with simply turning memories to dust, but soon they began liquifying souls.
+The first sources of magic to be discovered were amethyst and opal. They were used to tap into the energies of the mind and soul. It started small with simply turning memories to dust, but soon they began liquifying souls.
 
-Using these resources and others available, the Koinans were able to construct portals to the End. Using cosmic fluid and silver, they were able to turn dreams to powder and enter the Dream World.
+Using these resources and others available, the Koinans were able to construct portals to the End. Using cosmic fluid and opal, they were able to turn dreams to powder and enter the Dream World.
 
 ## The Blight
 Direct attempts to extend the Koinans' lives exploded into sculk. Next, they attempted to create new life instead, and they succeeded in creating the creepers: living demolition instruments. However, the creepers lacked an intelligence, and the attempts to give them one instead created the Madness, a force that threatened those distanced too far from reality with Tormentors.
@@ -62,7 +62,7 @@ When the Koinans attempted the process of powering the portal with a warden, the
 All the Koinans within a mile were turned to zombies who continued to spread the blight. The souls of the dead in the Haven turned into the Enkatal, and the angels were corrupted to the Talei. Many of those whom survived fled to the Nether. In an act of desperation, they tried to construct simulacrums which could house their souls. These too failed, creating withering. The simulacrums turned to wither skeletons, while the Koinans turned to skeletons under the withering decay.
 
 ## The Aftermath of the Koinans
-All the structures of the Koinans were left for abandoned or house undead. The sculk was allowed to spread far through the caves in which they were produced. The moon, being a reflection of the Haven, was cursed with crimson. Silver, being the metal of the Haven, was nearly petrified, turning to rose quartz.
+All the structures of the Koinans were left for abandoned or house undead. The sculk was allowed to spread far through the caves in which they were produced. The moon, being a reflection of the Haven, was cursed with crimson. Opal, being the gemstone of the Haven, lost much of its holy energy and turned to rose quartz. Meanwhile, the divine metal of silver seemed to vanish from all record with the fall of angels.
 
 The illager race evolved long after the fall of the Koinans. The zombies could sense their intelligence and attempted to convert them, but they were more resistant to the affliction than the Koinans. They discovered some of the remains of the Koinans, including the ancient cities, but they were mostly unsuccessful with rebuilding them.
 

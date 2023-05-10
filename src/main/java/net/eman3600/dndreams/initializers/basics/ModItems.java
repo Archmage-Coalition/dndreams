@@ -33,6 +33,7 @@ import net.eman3600.dndreams.items.magic_bow.MindstringBow;
 import net.eman3600.dndreams.items.misc_armor.ManagoldArmorItem;
 import net.eman3600.dndreams.items.misc_armor.TormiteArmorItem;
 import net.eman3600.dndreams.items.misc_tool.*;
+import net.eman3600.dndreams.items.pericharite.PerichariteArmorItem;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
@@ -198,6 +199,10 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item TORMITE_INGOT = registerItem("tormite_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
+    public static final Item RAW_SILVER = registerItem("raw_silver",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item SILVER_INGOT = registerItem("silver_ingot",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Obsidian Stick
     public static final Item OBSIDIAN_STICK = registerItem("obsidian_stick",
@@ -360,6 +365,37 @@ public class ModItems {
     public static final Item TORMITE_BOOTS = registerItem("tormite_boots",
             new TormiteArmorItem(ModArmorMaterials.TORMITE, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
+
+    // Pericharite
+    public static final Item PERICHARITE_SWORD = registerItem("pericharite_sword",
+            new SwordItem(ModToolMaterials.PERICHARITE, 3, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item PERICHARITE_PICKAXE = registerItem("pericharite_pickaxe",
+            new ModPickaxeItem(ModToolMaterials.PERICHARITE, 1, -2.8F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item PERICHARITE_AXE = registerItem("pericharite_axe",
+            new ModAxeItem(ModToolMaterials.PERICHARITE, 5.0F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+
+    public static final Item PERICHARITE_SHOVEL = registerItem("pericharite_shovel",
+            new ModShovelItem(ModToolMaterials.PERICHARITE, 1.5F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item PERICHARITE_HOE = registerItem("pericharite_hoe",
+            new ModHoeItem(ModToolMaterials.PERICHARITE, -5, 0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+
+    public static final Item PERICHARITE_HELMET = registerItem("pericharite_helmet",
+            new PerichariteArmorItem(ModArmorMaterials.PERICHARITE, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item PERICHARITE_CHESTPLATE = registerItem("pericharite_chestplate",
+            new PerichariteArmorItem(ModArmorMaterials.PERICHARITE, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item PERICHARITE_LEGGINGS = registerItem("pericharite_leggings",
+            new PerichariteArmorItem(ModArmorMaterials.PERICHARITE, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item PERICHARITE_BOOTS = registerItem("pericharite_boots",
+            new PerichariteArmorItem(ModArmorMaterials.PERICHARITE, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Phantom Necklace
     public static final Item PHANTOM_NECKLACE = registerItem("phantom_necklace",
