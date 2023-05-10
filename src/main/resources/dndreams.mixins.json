@@ -12,6 +12,7 @@
     "ArmorItemMixin",
     "BiomeAPIMixin",
     "BlockItemMixin",
+    "BlockMixin",
     "BlockStateModelGeneratorMixin",
     "BoatEntityMixin",
     "BrewingRegistryMixin",

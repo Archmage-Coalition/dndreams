@@ -197,11 +197,15 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item MANAGOLD_INGOT = registerItem("managold_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item MANAGOLD_NUGGET = registerItem("managold_nugget",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item TORMITE_INGOT = registerItem("tormite_ingot",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
     public static final Item RAW_SILVER = registerItem("raw_silver",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item SILVER_INGOT = registerItem("silver_ingot",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item SILVER_NUGGET = registerItem("silver_nugget",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Obsidian Stick
@@ -215,6 +219,38 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).maxCount(1).fireproof()));
 
 
+
+
+
+    // Managold Gear
+    public static final Item MANAGOLD_SWORD = registerItem("managold_sword",
+            new SwordItem(ModToolMaterials.MANAGOLD, 3, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item MANAGOLD_PICKAXE = registerItem("managold_pickaxe",
+            new ModPickaxeItem(ModToolMaterials.MANAGOLD, 1, -2.8F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item MANAGOLD_AXE = registerItem("managold_axe",
+            new ModAxeItem(ModToolMaterials.MANAGOLD, 6.0F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item MANAGOLD_SHOVEL = registerItem("managold_shovel",
+            new ModShovelItem(ModToolMaterials.MANAGOLD, 1.5F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item MANAGOLD_HOE = registerItem("managold_hoe",
+            new ModHoeItem(ModToolMaterials.MANAGOLD, -2, 0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+
+    public static final Item MANAGOLD_HELMET = registerItem("managold_helmet",
+            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item MANAGOLD_CHESTPLATE = registerItem("managold_chestplate",
+            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item MANAGOLD_LEGGINGS = registerItem("managold_leggings",
+            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item MANAGOLD_BOOTS = registerItem("managold_boots",
+            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
 
 
     // Resonant Pickaxe
@@ -306,36 +342,6 @@ public class ModItems {
     public static final Item LIGHTSTRING_BOW = registerItem("lightstring_bow",
             new LightstringBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
 
-    // Managold Gear
-    public static final Item MANAGOLD_SWORD = registerItem("managold_sword",
-            new SwordItem(ModToolMaterials.MANAGOLD, 3, -2.4F,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
-    public static final Item MANAGOLD_PICKAXE = registerItem("managold_pickaxe",
-            new ModPickaxeItem(ModToolMaterials.MANAGOLD, 1, -2.8F,
-                    new FabricItemSettings().group(ItemGroup.TOOLS)));
-    public static final Item MANAGOLD_AXE = registerItem("managold_axe",
-            new ModAxeItem(ModToolMaterials.MANAGOLD, 6.0F, -3.0F,
-                    new FabricItemSettings().group(ItemGroup.TOOLS)));
-    public static final Item MANAGOLD_SHOVEL = registerItem("managold_shovel",
-            new ModShovelItem(ModToolMaterials.MANAGOLD, 1.5F, -3.0F,
-                    new FabricItemSettings().group(ItemGroup.TOOLS)));
-    public static final Item MANAGOLD_HOE = registerItem("managold_hoe",
-            new ModHoeItem(ModToolMaterials.MANAGOLD, -2, 0F,
-                    new FabricItemSettings().group(ItemGroup.TOOLS)));
-
-    public static final Item MANAGOLD_HELMET = registerItem("managold_helmet",
-            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.HEAD,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
-    public static final Item MANAGOLD_CHESTPLATE = registerItem("managold_chestplate",
-            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.CHEST,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
-    public static final Item MANAGOLD_LEGGINGS = registerItem("managold_leggings",
-            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.LEGS,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
-    public static final Item MANAGOLD_BOOTS = registerItem("managold_boots",
-            new ManagoldArmorItem(ModArmorMaterials.MANAGOLD, EquipmentSlot.FEET,
-                    new FabricItemSettings().group(ItemGroup.COMBAT)));
-
     // Tormite Gear
     public static final Item TORMITE_SWORD = registerItem("tormite_sword",
             new SwordItem(ModToolMaterials.TORMITE, 3, -2.4F,
@@ -350,7 +356,7 @@ public class ModItems {
             new ModShovelItem(ModToolMaterials.TORMITE, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item TORMITE_HOE = registerItem("tormite_hoe",
-            new ModHoeItem(ModToolMaterials.TORMITE, -4, 0F,
+            new ModHoeItem(ModToolMaterials.TORMITE, 2, -2.6F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
     public static final Item TORMITE_HELMET = registerItem("tormite_helmet",

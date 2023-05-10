@@ -81,6 +81,7 @@
   
   "item.dndreams.managold_ingot": "Managold Ingot",
   "item.dndreams.raw_managold": "Raw Managold",
+  "item.dndreams.managold_nugget": "Managold Nugget",
   "item.dndreams.managold_sword": "Managold Sword",
   "item.dndreams.managold_pickaxe": "Managold Pickaxe",
   "item.dndreams.managold_axe": "Managold Axe",
@@ -104,8 +105,9 @@
   
   "item.dndreams.silver_ingot": "Silver Ingot",
   "item.dndreams.raw_silver": "Raw Silver",
-  "item.dndreams.pericharite_sword": "Pericharite Sword",
-  "item.dndreams.pericharite_pickaxe": "Pericharite Pickaxe",
+  "item.dndreams.silver_nugget": "Silver Nugget",
+  "item.dndreams.pericharite_sword": "Divine Judgment",
+  "item.dndreams.pericharite_pickaxe": "Celestial Iris",
   "item.dndreams.pericharite_axe": "Pericharite Axe",
   "item.dndreams.pericharite_shovel": "Pericharite Shovel",
   "item.dndreams.pericharite_hoe": "Pericharite Hoe",
@@ -291,6 +293,7 @@
   "effect.dndreams.dragonsoul": "Dragonsoul",
   "effect.dndreams.mortal": "Mortality",
   "effect.dndreams.flame_guard": "Flame Guard",
+  "effect.dndreams.heartbleed": "Heartbleed",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",
