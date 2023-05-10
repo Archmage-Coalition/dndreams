@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "dndreams:managold_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:managold_nugget"
+    }
+  },
+  "result": {
+    "item": "dndreams:managold_ingot"
+  }
+}

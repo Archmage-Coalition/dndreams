@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "dndreams:silver_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:silver_nugget"
+    }
+  },
+  "result": {
+    "item": "dndreams:silver_ingot"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dndreams:silver_nugget",
+  "ingredients": [
+    {
+      "item": "dndreams:silver_ingot"
+    }
+  ],
+  "result": {
+    "item": "dndreams:silver_nugget",
+    "count": 9
+  }
+}

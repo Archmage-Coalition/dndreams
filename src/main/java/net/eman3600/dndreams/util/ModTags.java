@@ -34,6 +34,7 @@ public class ModTags {
     public static final TagKey<Structure> TAINTED_PEARL_LOCATED = ofStructure("tainted_pearl_located");
 
     public static final TagKey<Item> WEAVING_ITEMS = ofItem("weaving_items");
+    public static final TagKey<Item> SMELTING_TOOLS = ofItem("smelting_tools");
     public static final TagKey<Item> MANA_USING_TOOLS = ofItem("mana_using_tools");
     public static final TagKey<Item> POWER_USING_TOOLS = ofItem("power_using_tools");
     public static final TagKey<Item> DREAM_EXCLUSIVE = ofItem("dream_exclusive");

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "dndreams:corrupt_sword",
+    "dndreams:corrupt_pickaxe",
+    "dndreams:corrupt_axe",
+    "dndreams:corrupt_shovel",
+    "dndreams:managold_hoe"
+  ]
+}
