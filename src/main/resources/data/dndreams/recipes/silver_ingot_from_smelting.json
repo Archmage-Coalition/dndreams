@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 6,
+  "group": "dndreams:silver_ingot",
+  "ingredient": {
+    "item": "dndreams:raw_silver"
+  },
+  "result": "dndreams:silver_ingot"
+}
