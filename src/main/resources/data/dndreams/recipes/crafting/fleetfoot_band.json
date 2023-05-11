@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  X",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:managold_ingot"
+    },
+	"X": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "dndreams:fleetfoot_band"
+  }
+}
