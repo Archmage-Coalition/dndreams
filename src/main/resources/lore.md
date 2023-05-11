@@ -1,13 +1,22 @@
 # The Elements
 
 ## Reality
-The power of groundedness, embodied by the End, the Sun, and ice.
+The power of solidity and order, embodied by the End, the Sun, and ice.
 
 ## Imagination
-The power of mind and soul, embodied by the Spirit World and the Moon.
+The power of mind and soul, embodied by the Spirit World, the Moon, and the affliction.
 
 ## Wrath
-The power of hatred and retribution, embodied by electricity.
+The power of hatred and retribution, embodied by the Nether, fire, and electricity.
+
+# The Materials
+The many materials of the world reflect different elements and their nuances.
+
+## Mind Powders
+Memory dust is a mass of memory and soul, now uncomprehendible but full of power. Dream powder is instead a mass of dreams. The two are so interconnected that they can flow between each other with the aid of flowing spirit.
+
+## Infernal Residue
+Infernal residue is a mass of anguish and wrath.
 
 # The Affliction
 The affliction is the root of undeath, the source of madness and consumption, and the cause of the fall of Koinans. It manifests itself in several forms based on the various aspects of mind and soul.
@@ -22,9 +31,6 @@ Withering is a horrid rot of the flesh that is responsible for the skeleton vari
 
 ## Sculk
 The first form of the affliction, sculk is soul twisted into a cancer that taints the world. Enough soul has been concentrated in the depths of the mountains to create Wardens, titans containing a nearly limitless supply of raw, concentrated soul, always hungering for more.
-
-## Crimson
-Crimson is a stain wrought from afflicting the haven. Its influence waxes and wanes, turning the moon red with blood at its peaks. It strengthens the undead taken by the affliction and increases their ability to spread the blight.
 
 ## Madness
 The same force that twisted soul to sculk twisted dream to madness. The shadows have congealed into terrible monsters that haunt the world, looking for those whose minds have been bent toward imagination enough to interact with them.
