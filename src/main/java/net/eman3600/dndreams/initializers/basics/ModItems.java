@@ -38,6 +38,7 @@ import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
+import net.eman3600.dndreams.items.trinket.FleetfootBand;
 import net.eman3600.dndreams.items.trinket.PhantomNecklace;
 import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.util.ModArmorMaterials;
@@ -403,7 +404,9 @@ public class ModItems {
             new PerichariteArmorItem(ModArmorMaterials.PERICHARITE, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
 
-    // Phantom Necklace
+    // Trinkets
+    public static final Item FLEETFOOT_BAND = registerItem("fleetfoot_band",
+            new FleetfootBand(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item PHANTOM_NECKLACE = registerItem("phantom_necklace",
             new PhantomNecklace(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).rarity(Rarity.RARE)));
 

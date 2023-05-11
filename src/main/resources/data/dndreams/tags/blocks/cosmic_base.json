@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#c:end_stones",
+	"#c:basalts",
+	"minecraft:amethyst_block",
+	"dndreams:celestium_block"
+  ]
+}

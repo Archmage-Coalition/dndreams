@@ -2,15 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "PXP",
-    "PXP",
+    "CXC",
     "PXP"
   ],
   "key": {
     "X": {
-	  "item": "minecraft:end_stone"
+	  "item": "minecraft:smooth_basalt"
 	},
 	"P": {
 	  "item": "minecraft:amethyst_shard"
+	},
+	"C": {
+	  "item": "dndreams:celestium"
 	}
   },
   "result": {

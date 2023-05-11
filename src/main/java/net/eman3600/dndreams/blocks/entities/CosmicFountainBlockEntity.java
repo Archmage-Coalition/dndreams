@@ -4,10 +4,8 @@ import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicFountainPoleBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicPortalBlock;
 import net.eman3600.dndreams.blocks.energy.RitualCandleBlock;
-import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
-import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.util.ModTags;
@@ -16,18 +14,14 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import static net.eman3600.dndreams.blocks.energy.CosmicFountainBlock.GIVE_RANGE;
 
 public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
     private int ticks = 0;
@@ -74,7 +68,7 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
 
                 BlockPos test = pos.down(l + 1).add(i, 0, j);
 
-                if (!world.getBlockState(test).isIn(ModTags.END_STONES)) return false;
+                if (!world.getBlockState(test).isIn(ModTags.COSMIC_BASE)) return false;
             }
         }
 
@@ -86,12 +80,12 @@ public class CosmicFountainBlockEntity extends AbstractPowerStorageBlockEntity {
 
                 if (i == 0 && j == 0) continue;
                 if ((Math.abs(i) >= 2) && (Math.abs(j) >= 2)) {
-                    if (Math.abs(i) == 2 && Math.abs(i) == Math.abs(j) && !world.getBlockState(test).isIn(ModTags.END_STONES)) return false;
+                    if (Math.abs(i) == 2 && Math.abs(i) == Math.abs(j) && !world.getBlockState(test).isIn(ModTags.COSMIC_BASE)) return false;
                     continue;
                 }
 
                 if (Math.abs(i) > 2 || Math.abs(j) > 2) {
-                    if (!world.getBlockState(test).isIn(ModTags.END_STONES)) return false;
+                    if (!world.getBlockState(test).isIn(ModTags.COSMIC_BASE)) return false;
                     continue;
                 }
 
