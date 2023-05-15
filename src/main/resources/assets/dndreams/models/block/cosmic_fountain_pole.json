@@ -1,8 +1,9 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
     "front": "dndreams:block/cosmic_fountain_pole",
     "side": "dndreams:block/cosmic_fountain_pole",
-    "top": "dndreams:block/cosmic_fountain_pole_top"
+    "top": "dndreams:block/cosmic_fountain_pole_top",
+    "bottom": "dndreams:block/cosmic_fountain_pole_bottom"
   }
 }

@@ -4,6 +4,6 @@
     "front": "dndreams:block/cosmic_fountain_front",
     "side": "dndreams:block/cosmic_fountain_side",
     "top": "dndreams:block/cosmic_fountain_top",
-    "bottom": "dndreams:block/cosmic_fountain_pole_top"
+    "bottom": "dndreams:block/cosmic_fountain_pole_bottom"
   }
 }
