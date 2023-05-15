@@ -5,45 +5,51 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
+import org.checkerframework.checker.index.qual.Positive;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class TooltipItem extends Item {
     @Nullable
-    private final String tooltipKey;
-    private final int lines;
+    private final List<TooltipKey> keys;
 
     public TooltipItem(Settings settings) {
-        this(settings, 1);
-    }
-
-    public TooltipItem(Settings settings, @Nullable String tooltipKey) {
-        this(settings, 1, tooltipKey);
-    }
-
-    public TooltipItem(Settings settings, int lines) {
-        this(settings, lines, null);
-    }
-
-    public TooltipItem(Settings settings, int lines, @Nullable String tooltipKey) {
         super(settings);
-        this.lines = lines;
-        this.tooltipKey = tooltipKey;
+        keys = new ArrayList<>();
+    }
+
+    public TooltipItem withTooltip(@Nullable String key, @Positive int lines) {
+        keys.add(new TooltipKey(key, lines));
+        return this;
     }
 
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        String key = Objects.requireNonNullElseGet(tooltipKey, () -> getTranslationKey() + ".tooltip");
 
-        if (lines <= 1) {
-            tooltip.add(Text.translatable(key));
-        } else {
-            for (int i = 0; i < lines; i++) {
-                tooltip.add(Text.translatable(key + "." + i));
+        for (TooltipKey key: keys) {
+            String route = key.key == null ? (getTranslationKey() + ".tooltip") : key.key;
+
+            if (key.lines <= 1) {
+                tooltip.add(Text.translatable(route));
+            } else {
+                for (int i = 0; i < key.lines; i++) {
+                    tooltip.add(Text.translatable(route + "." + i));
+                }
             }
+        }
+    }
+
+
+    private static class TooltipKey {
+        final String key;
+        final int lines;
+
+        TooltipKey(@Nullable String key, @Positive int lines) {
+            this.key = key;
+            this.lines = lines;
         }
     }
 }
