@@ -24,6 +24,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.CreeperEntity;
+import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Items;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
@@ -45,6 +46,7 @@ public class ModRegistries {
         registerInsanityPredicates();
         registerInsanityMobAuras();
         registerShockPredicates();
+        registerFoodSanities();
     }
 
     public static void registerEnergyFuels() {
@@ -333,6 +335,49 @@ public class ModRegistries {
         ShockComponent.registerChargePredicate(entity -> !entity.isOnGround());
         ShockComponent.registerChargePredicate(entity -> entity.hasStatusEffect(ModStatusEffects.INSULATED));
         ShockComponent.registerChargePredicate(entity -> entity instanceof CreeperEntity);
+    }
+
+    private static void registerFoodSanities() {
+        ModFoodComponents.registerSanityFood(FoodComponents.APPLE, 8);
+        ModFoodComponents.registerSanityFood(FoodComponents.BAKED_POTATO, 8);
+        ModFoodComponents.registerSanityFood(FoodComponents.BEEF, -8);
+        ModFoodComponents.registerSanityFood(FoodComponents.BEETROOT, 2);
+        ModFoodComponents.registerSanityFood(FoodComponents.BEETROOT_SOUP, 8);
+        ModFoodComponents.registerSanityFood(FoodComponents.BREAD, 8);
+        ModFoodComponents.registerSanityFood(FoodComponents.CARROT, 2);
+        ModFoodComponents.registerSanityFood(FoodComponents.CHICKEN, -8);
+        ModFoodComponents.registerSanityFood(FoodComponents.CHORUS_FRUIT, 6);
+        ModFoodComponents.registerSanityFood(FoodComponents.COD, -12);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_BEEF, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_CHICKEN, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_COD, 12);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_MUTTON, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_PORKCHOP, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_RABBIT, 12);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_SALMON, 12);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKIE, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.DRIED_KELP, -2);
+        ModFoodComponents.registerSanityFood(FoodComponents.ENCHANTED_GOLDEN_APPLE, -25);
+        ModFoodComponents.registerSanityFood(FoodComponents.GOLDEN_APPLE, -12);
+        ModFoodComponents.registerSanityFood(FoodComponents.GOLDEN_CARROT, -2);
+        ModFoodComponents.registerSanityFood(FoodComponents.HONEY_BOTTLE, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.MELON_SLICE, 2);
+        ModFoodComponents.registerSanityFood(FoodComponents.MUSHROOM_STEW, 8);
+        ModFoodComponents.registerSanityFood(FoodComponents.MUTTON, -8);
+        ModFoodComponents.registerSanityFood(FoodComponents.POISONOUS_POTATO, -16);
+        ModFoodComponents.registerSanityFood(FoodComponents.PORKCHOP, -8);
+        ModFoodComponents.registerSanityFood(FoodComponents.POTATO, 2);
+        ModFoodComponents.registerSanityFood(FoodComponents.PUFFERFISH, -16);
+        ModFoodComponents.registerSanityFood(FoodComponents.PUMPKIN_PIE, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.RABBIT, -12);
+        ModFoodComponents.registerSanityFood(FoodComponents.RABBIT_STEW, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.ROTTEN_FLESH, -16);
+        ModFoodComponents.registerSanityFood(FoodComponents.SALMON, -12);
+        ModFoodComponents.registerSanityFood(FoodComponents.SPIDER_EYE, -16);
+        ModFoodComponents.registerSanityFood(FoodComponents.SUSPICIOUS_STEW, -8);
+        ModFoodComponents.registerSanityFood(FoodComponents.SWEET_BERRIES, 6);
+        ModFoodComponents.registerSanityFood(FoodComponents.GLOW_BERRIES, -2);
+        ModFoodComponents.registerSanityFood(FoodComponents.TROPICAL_FISH, -12);
     }
 
 }

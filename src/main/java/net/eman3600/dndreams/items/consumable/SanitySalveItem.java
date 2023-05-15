@@ -28,7 +28,7 @@ public class SanitySalveItem extends Item {
                 stack.decrement(1);
             }
 
-            EntityComponents.TORMENT.get(player).lowerSanity(-7.5f);
+            EntityComponents.TORMENT.get(player).lowerSanity(-12f);
             player.timeUntilRegen = 1;
             player.damage(DamageSource.FREEZE, 2f);
         }

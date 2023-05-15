@@ -11,6 +11,7 @@ import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.items.ModArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
+import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.block.BlockState;
@@ -28,6 +29,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.FluidTags;
@@ -358,6 +360,18 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
             }
         } catch (NullPointerException | NoSuchElementException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Inject(method = "applyFoodEffects", at = @At("HEAD"))
+    private void dndreams$applyFoodEffects(ItemStack stack, World world, LivingEntity targetEntity, CallbackInfo ci) {
+        if (targetEntity instanceof PlayerEntity player && stack.isFood()) {
+            FoodComponent food = stack.getItem().getFoodComponent();
+
+            if (ModFoodComponents.FOODS_TO_SANITY.containsKey(food)) {
+
+                EntityComponents.TORMENT.get(player).lowerSanity(-ModFoodComponents.FOODS_TO_SANITY.get(food));
+            }
         }
     }
 }
