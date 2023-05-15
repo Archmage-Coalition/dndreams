@@ -77,10 +77,6 @@ public class ModItems {
     public static final Item SANITY_THREAD = registerItem("sanity_thread",
             new SanityThreadItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Refined Evil
-    public static final Item REFINED_EVIL = registerItem("refined_evil",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
-
     // Crystal Mix
     public static final Item CRYSTAL_MIX = registerItem("crystal_mix",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
@@ -146,6 +142,7 @@ public class ModItems {
     public static final Item EOS_FUME = registerItem("eos_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item STAR_FUME = registerItem("star_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
+    public static final Item REFINED_EVIL = registerItem("refined_evil", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item DROP_OF_LUCK = registerItem("drop_of_luck", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item MELLIFLUOUS_HUNGER = registerItem("mellifluous_hunger", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item DISTILLED_SPIRIT = registerItem("distilled_spirit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));

@@ -3,6 +3,6 @@
   "textures": {
     "front": "dndreams:block/cosmic_fountain_pole_on",
     "side": "dndreams:block/cosmic_fountain_pole",
-    "top": "dndreams:block/cosmic_fountain_side"
+    "top": "dndreams:block/cosmic_fountain_pole_top"
   }
 }
