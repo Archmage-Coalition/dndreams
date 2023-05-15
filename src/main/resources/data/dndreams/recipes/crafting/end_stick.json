@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:end_chunk"
+    }
+  },
+  "result": {
+    "item": "dndreams:end_stick",
+	"count": 4
+  }
+}

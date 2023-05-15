@@ -102,7 +102,8 @@ public class ModItems {
     public static final Item STAR_FRUIT = registerItem("star_fruit",
             new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.STAR_FRUIT)));
 
-    // End Sticks
+    // End Chunk
+    public static final Item END_CHUNK = registerItem("end_chunk", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item END_STICK = registerItem("end_stick", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Gemstones
@@ -203,7 +204,9 @@ public class ModItems {
     public static final Item SILVER_NUGGET = registerItem("silver_nugget",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Obsidian Stick
+    // Obsidian Chunks
+    public static final Item OBSIDIAN_CHUNK = registerItem("obsidian_chunk",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
     public static final Item OBSIDIAN_STICK = registerItem("obsidian_stick",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
 

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:obsidian_chunk"
+    }
+  },
+  "result": {
+    "item": "dndreams:obsidian_stick",
+	"count": 4
+  }
+}
