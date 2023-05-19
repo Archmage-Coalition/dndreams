@@ -51,6 +51,7 @@
     "SculkVeinBlockMixin$SculkVeinGrowCheckerMixin",
     "ServerPlayerEntityMixin",
     "SonicBoomTaskMixin",
+    "ThrownEntityMixin",
     "WorldMixin",
     "server.ServerWorldMixin"
   ],

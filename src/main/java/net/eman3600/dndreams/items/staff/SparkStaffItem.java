@@ -1,13 +1,12 @@
 package net.eman3600.dndreams.items.staff;
 
+import net.eman3600.dndreams.entities.projectiles.SparkBoltEntity;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -33,10 +32,10 @@ public class SparkStaffItem extends TooltipItem implements ManaCostItem, MagicDa
             if (!user.isCreative()) stack.damage(1, user, p -> p.sendToolBreakStatus(hand));
 
             if (!world.isClient) {
-                SnowballEntity snowballEntity = new SnowballEntity(world, user);
-                snowballEntity.setItem(new ItemStack(Items.SNOWBALL));
-                snowballEntity.setVelocity(user, Math.max(user.getPitch() - 7.5f, -90f), user.getYaw(), 0.0f, 0.65f, 0.3f);
-                world.spawnEntity(snowballEntity);
+                SparkBoltEntity bolt = new SparkBoltEntity(user, world);
+                bolt.setVelocity(user, Math.max(user.getPitch() - 7.5f, -90f), user.getYaw(), 0.0f, 1.2f, 0.3f);
+                bolt.setDamage(getMagicDamage(stack));
+                world.spawnEntity(bolt);
             }
 
             return TypedActionResult.success(stack, world.isClient());
