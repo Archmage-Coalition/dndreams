@@ -409,13 +409,34 @@ public class ModItems {
     public static final Item PHANTOM_NECKLACE = registerItem("phantom_necklace",
             new PhantomNecklace(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).rarity(Rarity.RARE)));
 
+    // Staves
+    public static final Item SPARK_STAFF = registerItem("spark_staff",
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1561))
+                    .withTooltip(null, 1));
+    public static final Item SNAP_STAFF = registerItem("snap_staff",
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(735))
+                    .withTooltip(null, 1));
+    public static final Item SEAR_STAFF = registerItem("sear_staff",
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1842))
+                    .withTooltip(null, 1));
+    public static final Item ENDER_STAFF = registerItem("ender_staff",
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(735))
+                    .withTooltip(null, 1));
+    public static final Item TELEPORT_STAFF = registerItem("teleport_staff",
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(2173))
+                    .withTooltip(null, 2));
+    public static final Item FORCE_STAFF = registerItem("force_staff",
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(2173))
+                    .withTooltip(null, 1));
+    public static final Item LAUNCH_STAFF = registerItem("launch_staff",
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(2173))
+                    .withTooltip(null, 1));
+    public static final Item WINDWEAVE_STAFF = registerItem("windweave_staff",
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(735))
+                    .withTooltip(null, 1));
 
 
 
-    // Excalibur
-    public static final Item EXCALIBUR = registerItem("excalibur",
-            new ExcaliburItem(ModToolMaterials.ARTIFACT, 1, -2.6F,
-            new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
 
     // Vital Sword
     public static final Item VITAL_SWORD = registerItem("vital_sword",

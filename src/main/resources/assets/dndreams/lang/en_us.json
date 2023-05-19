@@ -218,6 +218,23 @@
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
 
+  "item.dndreams.spark_staff": "Sparking Staff",
+  "item.dndreams.spark_staff.tooltip": "§3Quickly fires arcing bolts.",
+  "item.dndreams.snap_staff": "Snapping Staff",
+  "item.dndreams.snap_staff.tooltip": "§3Summons a line of fangs.",
+  "item.dndreams.sear_staff": "Searing Staff",
+  "item.dndreams.sear_staff.tooltip": "§6Shoots fireballs.",
+  "item.dndreams.ender_staff": "Ender Staff",
+  "item.dndreams.ender_staff.tooltip": "§dShoots ender pearls.",
+  "item.dndreams.teleport_staff": "Transposition Staff",
+  "item.dndreams.teleport_staff.tooltip.0": "§dTeleports you where you look.",
+  "item.dndreams.teleport_staff.tooltip.1": "§dInsurance sold separately.",
+  "item.dndreams.force_staff": "Dissonance Staff",
+  "item.dndreams.force_staff.tooltip": "§eInflicts telekinetic whiplash.",
+  "item.dndreams.launch_staff": "Propulsion Staff",
+  "item.dndreams.launch_staff.tooltip": "§eSends you flying.",
+  "item.dndreams.windweave_staff": "Windweave Staff",
+  "item.dndreams.windweave_staff.tooltip": "§5Weaves a bridge of solid air.",
   "item.dndreams.satiation_staff": "Satiation Staff",
   "item.dndreams.mystic_staff": "Mystic Staff",
   
