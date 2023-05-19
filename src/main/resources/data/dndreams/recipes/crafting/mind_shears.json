@@ -1,12 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " #",
-    "# "
+    " #D",
+	"NX#",
+    " N "
   ],
   "key": {
     "#": {
       "item": "dndreams:tormite_ingot"
+    },
+	"X": {
+      "item": "dndreams:crystal_mix"
+    },
+	"N": {
+      "item": "dndreams:nightmare_fuel"
+    },
+	"D": {
+      "item": "dndreams:dream_powder"
     }
   },
   "result": {

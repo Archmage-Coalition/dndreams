@@ -16,7 +16,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
     TORMITE("tormite", 14, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3.0F, 0.0F, () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
     CORRUPT("corrupt", 40, new int[]{3, 6, 8, 3}, 13, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1f, 0.0f, () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
     CELESTIUM("celestium", 45, new int[]{3, 6, 8, 3}, 18, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 0.0F, () -> Ingredient.ofItems(ModItems.CELESTIUM)),
-    PERICHARITE("pericharite", 55, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.0F, () -> Ingredient.ofItems(ModItems.PERICHARITE));
+    PERICHARITE("pericharite", 66, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.0F, () -> Ingredient.ofItems(ModItems.PERICHARITE));
 
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
