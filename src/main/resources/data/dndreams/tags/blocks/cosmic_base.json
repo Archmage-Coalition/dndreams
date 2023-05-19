@@ -4,6 +4,7 @@
     "#c:end_stones",
 	"#c:basalts",
 	"minecraft:amethyst_block",
-	"dndreams:celestium_block"
+	"dndreams:celestium_block",
+	"dndreams:celestium_ore"
   ]
 }

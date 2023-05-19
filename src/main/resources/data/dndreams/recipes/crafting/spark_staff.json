@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G#",
+    " XG",
+    "X  "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "X": {
+      "item": "dndreams:managold_ingot"
+    },
+    "G": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "item": "dndreams:spark_staff"
+  }
+}
