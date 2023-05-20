@@ -105,8 +105,6 @@ public class DreamingComponent implements DreamingComponentI {
                         break;
                     }
                 }
-            } else {
-                torment().setSanity(100);
             }
         }
     }

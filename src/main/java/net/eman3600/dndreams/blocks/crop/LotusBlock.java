@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.blocks.crop;
 
-import net.eman3600.dndreams.blocks.properties.ModIntProperty;
 import net.eman3600.dndreams.initializers.basics.ModFluids;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.minecraft.block.*;
@@ -10,7 +9,6 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
@@ -20,7 +18,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class LotusBlock extends CropBlock {
-    public static final IntProperty AGE = new ModIntProperty("age", 0, 6);
+    public static final IntProperty AGE = IntProperty.of("age", 0, 6);
     private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
             Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 1.5, 12.0),
             Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 1.5, 13.0),

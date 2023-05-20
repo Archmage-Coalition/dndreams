@@ -31,10 +31,7 @@ import net.eman3600.dndreams.items.misc_armor.ManagoldArmorItem;
 import net.eman3600.dndreams.items.misc_armor.TormiteArmorItem;
 import net.eman3600.dndreams.items.misc_tool.*;
 import net.eman3600.dndreams.items.pericharite.PerichariteArmorItem;
-import net.eman3600.dndreams.items.staff.EnderStaffItem;
-import net.eman3600.dndreams.items.staff.SearStaffItem;
-import net.eman3600.dndreams.items.staff.SnapStaffItem;
-import net.eman3600.dndreams.items.staff.SparkStaffItem;
+import net.eman3600.dndreams.items.staff.*;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
@@ -423,6 +420,9 @@ public class ModItems {
     public static final Item SNAP_STAFF = registerItem("snap_staff",
             new SnapStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(735))
                     .withTooltip(null, 1));
+    public static final Item LIGHT_STAFF = registerItem("light_staff",
+            new LightStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(735))
+                    .withTooltip(null, 2));
     public static final Item SEAR_STAFF = registerItem("sear_staff",
             new SearStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1299))
                     .withTooltip(null, 1));

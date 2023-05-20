@@ -31,7 +31,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private float maxSanity = 100;
     private float sanity = 100;
     public static final float THREAD_VALUE = 3.5f;
-    public static final int MAX_SHROUD = 100;
+    public static final int MAX_SHROUD = 60;
     private int dragonFlashTicks = 0;
     private int sanityDamageTicks = 0;
     private int shroud = 0;
@@ -280,18 +280,22 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     private boolean shouldShroud() {
         if (player.world instanceof ServerWorld serverWorld) {
-            BlockPos posStructure = serverWorld.locateStructure(ModTags.ENSHROUDED, player.getBlockPos(), 100, false);
-            BlockPos posBiome;
-            try {
-                posBiome = serverWorld.locateBiome(biome -> biome.isIn(ModTags.SHROUDED), player.getBlockPos(), 30, 20, 20).getFirst();
-            } catch (NullPointerException e) {
-                posBiome = null;
-            }
-
-            return (posStructure != null && posStructure.isWithinDistance(player.getPos(), 80)) || (posBiome != null && posBiome.isWithinDistance(player.getPos(), 30));
+            return shouldShroud(serverWorld, player.getBlockPos());
         }
 
         return false;
+    }
+
+    public static boolean shouldShroud(ServerWorld world, BlockPos pos) {
+        BlockPos posStructure = world.locateStructure(ModTags.ENSHROUDED, pos, 100, false);
+        BlockPos posBiome;
+        try {
+            posBiome = world.locateBiome(biome -> biome.isIn(ModTags.SHROUDED), pos, 30, 20, 20).getFirst();
+        } catch (NullPointerException e) {
+            posBiome = null;
+        }
+
+        return (posStructure != null && posStructure.isWithinDistance(pos, 80)) || (posBiome != null && posBiome.isWithinDistance(pos, 30));
     }
 
     private static class InsanityRangePair {

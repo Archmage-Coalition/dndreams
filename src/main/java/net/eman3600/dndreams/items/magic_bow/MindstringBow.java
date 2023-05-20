@@ -2,21 +2,10 @@ package net.eman3600.dndreams.items.magic_bow;
 
 import net.eman3600.dndreams.items.interfaces.SanityCostItem;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,7 +36,8 @@ public class MindstringBow extends MagicBow implements SanityCostItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable(getTranslationKey(stack) + ".tooltip"));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
+        tooltip.add(getTooltipSanity(stack));
     }
 
     @Override

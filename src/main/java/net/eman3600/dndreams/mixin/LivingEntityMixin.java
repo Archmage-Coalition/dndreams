@@ -157,7 +157,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Override
     public boolean hasNotBrokenLava() {
-        if ((Entity)this instanceof PlayerEntity player && player.isSneaking()) return false;
+        if ((Entity)this instanceof PlayerEntity player && player.isSneaking() && player.isInLava()) return false;
         return this.fluidHeight.getDouble(FluidTags.LAVA) <= 0.7 && !isOnFire();
     }
 

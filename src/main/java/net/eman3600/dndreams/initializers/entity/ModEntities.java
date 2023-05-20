@@ -53,6 +53,14 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<GlowBoltEntity> GLOW_BOLT = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "glow_bolt"),
+            FabricEntityTypeBuilder.<GlowBoltEntity>create(SpawnGroup.MISC, GlowBoltEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build()
+    );
+
 
 
     public static final EntityType<BrewSplashEntity> BREW_SPLASH = Registry.register(

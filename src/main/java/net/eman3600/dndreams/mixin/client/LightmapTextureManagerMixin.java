@@ -49,6 +49,17 @@ public abstract class LightmapTextureManagerMixin {
             y = recalculatedLight(y, strength);
             x = recalculatedLight(x, strength);
 
+            TormentComponent component = EntityComponents.TORMENT.get(access.getPlayer());
+
+            if (component.getAttunedSanity() < DARKNESS_THRESHOLD) {
+                float clamped = MathHelper.clamp(component.getSanity(), 0, DARKNESS_THRESHOLD);
+                clamped = SANITY_SHADOW - (clamped * (SANITY_SHADOW /(DARKNESS_THRESHOLD)));
+
+                z = darkenLight(z, clamped);
+                y = darkenLight(y, clamped);
+                x = recalculatedLight(x, clamped);
+            }
+
             image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
         } else if (clientWorld instanceof ClientWorldAccess access) {
             TormentComponent component = EntityComponents.TORMENT.get(access.getPlayer());

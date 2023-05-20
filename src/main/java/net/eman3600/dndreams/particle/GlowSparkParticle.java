@@ -7,17 +7,17 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.math.MathHelper;
 
-public class DiamondSparkParticle extends SpriteBillboardParticle {
-    protected DiamondSparkParticle(ClientWorld level, double xCoord, double yCoord, double zCoord,
-                                   SpriteProvider spriteSet, double xd, double yd, double zd) {
+public class GlowSparkParticle extends SpriteBillboardParticle {
+    protected GlowSparkParticle(ClientWorld level, double xCoord, double yCoord, double zCoord,
+                                SpriteProvider spriteSet, double xd, double yd, double zd) {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
         this.velocityMultiplier = 0F;
         this.x = xd;
         this.y = yd;
         this.z = zd;
-        this.scale *= 0.5F;
-        this.maxAge = 10;
+        this.scale *= 1F;
+        this.maxAge = 60;
         this.setSpriteForAge(spriteSet);
 
         this.red = 1f;
@@ -71,7 +71,7 @@ public class DiamondSparkParticle extends SpriteBillboardParticle {
 
         public Particle createParticle(DefaultParticleType particleType, ClientWorld level, double x, double y, double z,
                                        double dx, double dy, double dz) {
-            return new DiamondSparkParticle(level, x, y, z, this.sprites, dx, dy, dz);
+            return new GlowSparkParticle(level, x, y, z, this.sprites, dx, dy, dz);
         }
     }
 }

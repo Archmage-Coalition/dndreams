@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MG#",
+    " XG",
+    "X M"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:lantern"
+    },
+    "X": {
+      "item": "dndreams:managold_ingot"
+    },
+    "G": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "M": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "item": "dndreams:light_staff"
+  }
+}

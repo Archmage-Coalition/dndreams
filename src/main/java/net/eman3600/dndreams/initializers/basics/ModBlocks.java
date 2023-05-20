@@ -31,6 +31,14 @@ import net.minecraft.world.BlockView;
 
 public class ModBlocks {
 
+    // Special Blocks
+    public static final Block SHINE = registerBlock("shine",
+            new ShineBlock(FabricBlockSettings.of(Material.AIR).strength(0, 0)
+                    .sounds(BlockSoundGroup.AMETHYST_BLOCK)
+                    .breakInstantly()
+                    .luminance(s -> (s.get(ShineBlock.LIGHT) * 3) + 3)
+                    .ticksRandomly()));
+
     // Hellsteel Block
     public static final Block CORRUPT_BLOCK = registerBlock("corrupt_block",
             new Block(FabricBlockSettings.of(Material.METAL, MapColor.BRIGHT_RED).strength(4.0f).resistance(5.0f)

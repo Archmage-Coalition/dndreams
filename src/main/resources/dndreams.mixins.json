@@ -53,6 +53,7 @@
     "ServerPlayerEntityMixin",
     "SonicBoomTaskMixin",
     "ThrownEntityMixin",
+    "WardenEntityMixin",
     "WorldMixin",
     "server.ServerWorldMixin"
   ],

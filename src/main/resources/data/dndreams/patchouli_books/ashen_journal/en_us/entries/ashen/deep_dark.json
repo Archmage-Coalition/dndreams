@@ -29,6 +29,11 @@
     },
     {
       "type": "patchouli:spotlight",
+      "item": "minecraft:white_wool",
+      "text": "Wool blocks occlude sound, preventing sensors from detecting through them. They can be placed and broken safely as well, and your footsteps are muffled when atop them."
+    },
+    {
+      "type": "patchouli:spotlight",
       "item": "minecraft:sculk_shrieker",
       "text": "If notified of your presence, the shrieker will let out a wail that calls the sculk to channel its power into forming a powerful mass of sculk and soul known as the Warden."
     },

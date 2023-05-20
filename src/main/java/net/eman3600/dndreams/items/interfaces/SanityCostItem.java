@@ -36,4 +36,8 @@ public interface SanityCostItem extends Vanishable {
             }
         }
     }
+
+    default Text getTooltipSanity(ItemStack stack) {
+        return Text.translatable("tooltip.dndreams.sanity_cost", "§d" + getSanityCost(stack));
+    }
 }
