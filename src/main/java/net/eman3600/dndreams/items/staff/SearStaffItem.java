@@ -1,23 +1,24 @@
 package net.eman3600.dndreams.items.staff;
 
-import net.eman3600.dndreams.entities.projectiles.SparkBoltEntity;
 import net.eman3600.dndreams.items.TooltipItem;
-import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.SmallFireballEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SparkStaffItem extends TooltipItem implements ManaCostItem, MagicDamageItem {
+public class SearStaffItem extends TooltipItem implements ManaCostItem {
 
-    public SparkStaffItem(Settings settings) {
+    public SearStaffItem(Settings settings) {
         super(settings);
     }
 
@@ -28,14 +29,21 @@ public class SparkStaffItem extends TooltipItem implements ManaCostItem, MagicDa
         if (canAffordMana(user, stack)) {
             spendMana(user, stack);
 
-            user.getItemCooldownManager().set(this, 7);
+            user.getItemCooldownManager().set(this, 8);
             if (!user.isCreative()) stack.damage(1, user, p -> p.sendToolBreakStatus(hand));
 
             if (!world.isClient) {
-                SparkBoltEntity bolt = new SparkBoltEntity(user, world);
-                bolt.setVelocity(user, Math.max(user.getPitch() - 7.5f, -90f), user.getYaw(), 0.0f, 1.2f, 0.3f);
-                bolt.setDamage(getMagicDamage(stack));
-                world.spawnEntity(bolt);
+                Vec3d userVel = user.getVelocity();
+                Vec3d vel = Vec3d.fromPolar(user.getPitch(), user.getYaw()).add(userVel.x, user.isOnGround() ? 0 : userVel.y, userVel.z);
+                Vec3d pos = user.getEyePos();
+
+
+                SmallFireballEntity fireball = new SmallFireballEntity(world, user, vel.x, vel.y, vel.z);
+                fireball.setPos(pos.x, pos.y, pos.z);
+                fireball.setVelocity(vel.multiply(0.5));
+
+                world.spawnEntity(fireball);
+                world.syncWorldEvent(null, WorldEvents.BLAZE_SHOOTS, user.getBlockPos(), 0);
             }
 
             return TypedActionResult.success(stack, world.isClient());
@@ -46,12 +54,7 @@ public class SparkStaffItem extends TooltipItem implements ManaCostItem, MagicDa
 
     @Override
     public int getBaseManaCost() {
-        return 3;
-    }
-
-    @Override
-    public float getBaseMagicDamage() {
-        return 3;
+        return 5;
     }
 
     @Override
@@ -59,6 +62,5 @@ public class SparkStaffItem extends TooltipItem implements ManaCostItem, MagicDa
         super.appendTooltip(stack, world, tooltip, context);
 
         tooltip.add(getTooltipMana(stack));
-        tooltip.add(getTooltipMagicDamage(stack));
     }
 }

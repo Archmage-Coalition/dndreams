@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MG#",
+    " XG",
+    "X M"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:fire_charge"
+    },
+    "X": {
+      "item": "dndreams:corrupt_ingot"
+    },
+    "G": {
+      "item": "minecraft:echo_shard"
+    },
+    "M": {
+      "item": "dndreams:ember_moss"
+    }
+  },
+  "result": {
+    "item": "dndreams:sear_staff"
+  }
+}

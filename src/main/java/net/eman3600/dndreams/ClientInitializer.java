@@ -6,6 +6,7 @@ import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
 import net.eman3600.dndreams.cardinal_components.BossStateComponent;
 import net.eman3600.dndreams.entities.renderers.BloodSkeletonEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.BloodZombieEntityRenderer;
+import net.eman3600.dndreams.entities.renderers.SparkBoltEntityRenderer;
 import net.eman3600.dndreams.entities.renderers.WardenRagdollEntityRenderer;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
@@ -126,6 +127,7 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.CROWNED_SLASH, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CROWNED_BEAM, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.TESLA_SLASH, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SPARK_BOLT, SparkBoltEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.BREW_SPLASH, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BREW_LINGERING, FlyingItemEntityRenderer::new);
