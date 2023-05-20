@@ -9,11 +9,14 @@ import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.util.Function2;
+import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -28,8 +31,10 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private float maxSanity = 100;
     private float sanity = 100;
     public static final float THREAD_VALUE = 3.5f;
+    public static final int MAX_SHROUD = 100;
     private int dragonFlashTicks = 0;
     private int sanityDamageTicks = 0;
+    private int shroud = 0;
 
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
@@ -172,6 +177,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         dragonFlashTicks = tag.getInt("dragon_flash_ticks");
         shielded = tag.getBoolean("shielded");
         sanityDamageTicks = tag.getInt("sanity_damage_ticks");
+        shroud = tag.getInt("shroud");
     }
 
     @Override
@@ -181,6 +187,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("dragon_flash_ticks", dragonFlashTicks);
         tag.putBoolean("shielded", shielded);
         tag.putInt("sanity_damage_ticks", sanityDamageTicks);
+        tag.putInt("shroud", shroud);
     }
 
     @Override
@@ -207,11 +214,26 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         }
 
         float attunedSanity = getAttunedSanity();
+        boolean resync = false;
         if (sanityDamageTicks > 0 && attunedSanity > 25) {
             sanityDamageTicks--;
-            EntityComponents.TORMENT.sync(player);
+            resync = true;
         } else if (sanityDamageTicks < SANITY_DAMAGE && attunedSanity <= 25) {
             sanityDamageTicks++;
+            resync = true;
+        }
+
+
+        boolean shouldShroud = shouldShroud();
+        if (shroud < MAX_SHROUD && shouldShroud) {
+            shroud++;
+            resync = true;
+        } else if (shroud > 0 && !shouldShroud) {
+            shroud--;
+            resync = true;
+        }
+
+        if (resync) {
             EntityComponents.TORMENT.sync(player);
         }
     }
@@ -235,6 +257,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         }
     }
 
+    @Override
+    public int getShroud() {
+        return shroud;
+    }
+
     public static void registerInsanityMob(Function<LivingEntity, Boolean> predicate, float insanity, float range) {
         MOBS_TO_INSANITY.put(predicate, new InsanityRangePair(insanity, range));
     }
@@ -249,6 +276,22 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     public static void registerPredicate(Function2<PlayerEntity, TormentComponent, Float> predicate) {
         registerPredicate((player) -> predicate.apply(player, EntityComponents.TORMENT.get(player)));
+    }
+
+    private boolean shouldShroud() {
+        if (player.world instanceof ServerWorld serverWorld) {
+            BlockPos posStructure = serverWorld.locateStructure(ModTags.ENSHROUDED, player.getBlockPos(), 100, false);
+            BlockPos posBiome;
+            try {
+                posBiome = serverWorld.locateBiome(biome -> biome.isIn(ModTags.SHROUDED), player.getBlockPos(), 30, 20, 20).getFirst();
+            } catch (NullPointerException e) {
+                posBiome = null;
+            }
+
+            return (posStructure != null && posStructure.isWithinDistance(player.getPos(), 80)) || (posBiome != null && posBiome.isWithinDistance(player.getPos(), 30));
+        }
+
+        return false;
     }
 
     private static class InsanityRangePair {

@@ -47,7 +47,6 @@ public class DreamEye extends Item {
 
             player.getItemCooldownManager().set(ModItems.DREAM_EYE, 200);
             player.getItemCooldownManager().set(ModItems.ICY_NEEDLE, 200);
-            player.getItemCooldownManager().set(ModItems.MATERIALIZE_TOME, 200);
 
         }
 

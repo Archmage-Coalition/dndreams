@@ -25,4 +25,6 @@ public interface TormentComponentI extends Component {
     boolean shouldOffsetRender();
 
     boolean isAttuned();
+
+    int getShroud();
 }

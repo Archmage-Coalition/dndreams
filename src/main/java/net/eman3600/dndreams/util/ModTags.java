@@ -31,8 +31,10 @@ public class ModTags {
 
     public static final TagKey<Biome> GEN_HELLSLATE = ofBiome("gen_hellslate");
     public static final TagKey<Biome> GEN_HELLSLATE_COMMON = ofBiome("gen_hellslate_common");
+    public static final TagKey<Biome> SHROUDED = ofBiome("shrouded");
 
     public static final TagKey<Structure> TAINTED_PEARL_LOCATED = ofStructure("tainted_pearl_located");
+    public static final TagKey<Structure> ENSHROUDED = ofStructure("enshrouded");
 
     public static final TagKey<Item> WEAVING_ITEMS = ofItem("weaving_items");
     public static final TagKey<Item> SMELTING_TOOLS = ofItem("smelting_tools");

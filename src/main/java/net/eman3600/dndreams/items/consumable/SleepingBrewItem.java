@@ -42,7 +42,6 @@ public class SleepingBrewItem extends Item {
 
             player.getItemCooldownManager().set(ModItems.SLEEPING_BREW, 200);
             player.getItemCooldownManager().set(ModItems.ICY_NEEDLE, 200);
-            player.getItemCooldownManager().set(ModItems.MATERIALIZE_TOME, 200);
 
         }
 

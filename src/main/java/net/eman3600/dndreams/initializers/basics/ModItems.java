@@ -492,8 +492,6 @@ public class ModItems {
     // Icy Needle
     public static final Item ICY_NEEDLE = registerItem("icy_needle",
             new IcyNeedle(new FabricItemSettings().group(ItemGroup.MISC)));
-    public static final Item MATERIALIZE_TOME = registerItem("materialize_tome",
-            new MaterializeTome(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.RARE)));
 
     // Sanity Salve
     public static final Item SANITY_SALVE = registerItem("sanity_salve",
