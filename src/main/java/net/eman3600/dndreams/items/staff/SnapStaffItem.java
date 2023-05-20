@@ -6,6 +6,8 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.mob.EvokerFangsEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -60,6 +62,8 @@ public class SnapStaffItem extends TooltipItem implements ManaCostItem {
                 }
 
                 spendMana(user, stack);
+
+                world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.NEUTRAL, 1f, 1f);
 
                 user.getItemCooldownManager().set(this, 26);
                 if (!user.isCreative()) stack.damage(1, user, p -> p.sendToolBreakStatus(hand));

@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 
 import java.util.UUID;
 
-public class FleetfootBand extends TrinketItem {
-    public FleetfootBand(Settings settings) {
+public class FleetfootBandItem extends TrinketItem {
+    public FleetfootBandItem(Settings settings) {
         super(settings);
     }
 

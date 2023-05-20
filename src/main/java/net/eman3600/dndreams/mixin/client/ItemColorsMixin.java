@@ -24,7 +24,7 @@ public abstract class ItemColorsMixin {
         ItemColors colors = cir.getReturnValue();
 
         colors.register((stack, tintIndex) -> tintIndex > 0 ? -1 : PotionUtil.getColor(PotionUtil.getPotionEffects(stack)), ModItems.BREW_INGESTED, ModItems.BREW_SPLASH, ModItems.BREW_LINGERING, ModItems.BREW_GAS, ModItems.BREW_LIQUID);
-        colors.register(((stack, tintIndex) -> getInsanityRGB()), ModItems.NIGHTMARE_FUEL);
+        //colors.register(((stack, tintIndex) -> getInsanityRGB()), ModItems.NIGHTMARE_FUEL);
     }
 
     @Unique

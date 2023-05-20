@@ -31,6 +31,7 @@ import net.eman3600.dndreams.items.misc_armor.ManagoldArmorItem;
 import net.eman3600.dndreams.items.misc_armor.TormiteArmorItem;
 import net.eman3600.dndreams.items.misc_tool.*;
 import net.eman3600.dndreams.items.pericharite.PerichariteArmorItem;
+import net.eman3600.dndreams.items.staff.EnderStaffItem;
 import net.eman3600.dndreams.items.staff.SearStaffItem;
 import net.eman3600.dndreams.items.staff.SnapStaffItem;
 import net.eman3600.dndreams.items.staff.SparkStaffItem;
@@ -38,7 +39,8 @@ import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
-import net.eman3600.dndreams.items.trinket.FleetfootBand;
+import net.eman3600.dndreams.items.trinket.DissociationCharmItem;
+import net.eman3600.dndreams.items.trinket.FleetfootBandItem;
 import net.eman3600.dndreams.items.trinket.PhantomNecklace;
 import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.util.ModArmorMaterials;
@@ -408,7 +410,9 @@ public class ModItems {
 
     // Trinkets
     public static final Item FLEETFOOT_BAND = registerItem("fleetfoot_band",
-            new FleetfootBand(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+            new FleetfootBandItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+    public static final Item DISSOCIATION_CHARM = registerItem("dissociation_charm",
+            new DissociationCharmItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item PHANTOM_NECKLACE = registerItem("phantom_necklace",
             new PhantomNecklace(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).rarity(Rarity.RARE)));
 
@@ -423,7 +427,7 @@ public class ModItems {
             new SearStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1299))
                     .withTooltip(null, 1));
     public static final Item ENDER_STAFF = registerItem("ender_staff",
-            new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(735))
+            new EnderStaffItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(735))
                     .withTooltip(null, 1));
     public static final Item TELEPORT_STAFF = registerItem("teleport_staff",
             new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(2173))
@@ -500,8 +504,10 @@ public class ModItems {
             new TaintedPearlItem(new FabricItemSettings().group(ItemGroup.MISC)));
 
     // Book of Dreams
+    public static final Item ASHEN_JOURNAL = registerItem("ashen_journal",
+            new CodexItem(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
-            new BookOfDreams(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
+            new CodexItem(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
 
     // Magic Apples
     public static final Item SUCCULENT_APPLE = registerItem("succulent_apple",

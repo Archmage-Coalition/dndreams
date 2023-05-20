@@ -82,6 +82,8 @@
   
   "item.dndreams.book_of_dreams": "Codex Memorium",
   "item.dndreams.book_of_dreams.landing_text": "Reality is not a constant but a product of its perception.",
+  "item.dndreams.ashen_journal": "Ashen Journal",
+  "item.dndreams.ashen_journal.landing_text": "A dusty, tattered, and incomplete tome.",
   
   "item.dndreams.managold_ingot": "Managold Ingot",
   "item.dndreams.raw_managold": "Raw Managold",
@@ -214,7 +216,9 @@
   
   "item.dndreams.fleetfoot_band": "Fleetfoot Band",
   "item.dndreams.phantom_necklace": "Phantom Necklace",
-  "item.dndreams.ender_amulet": "Dissociation Charm",
+  "item.dndreams.dissociation_charm": "Dissociation Charm",
+  "item.dndreams.dissociation_charm.tooltip.0": "§3Prevents damage from ender pearls.",
+  "item.dndreams.dissociation_charm.tooltip.1": "§3Usually.",
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
 
@@ -223,18 +227,18 @@
   "item.dndreams.snap_staff": "Snapping Staff",
   "item.dndreams.snap_staff.tooltip": "§3Summons a line of fangs.",
   "item.dndreams.sear_staff": "Searing Staff",
-  "item.dndreams.sear_staff.tooltip": "§6Shoots fireballs.",
+  "item.dndreams.sear_staff.tooltip": "§3Shoots fireballs.",
   "item.dndreams.ender_staff": "Ender Staff",
-  "item.dndreams.ender_staff.tooltip": "§dShoots ender pearls.",
+  "item.dndreams.ender_staff.tooltip": "§3Shoots ender pearls.",
   "item.dndreams.teleport_staff": "Transposition Staff",
-  "item.dndreams.teleport_staff.tooltip.0": "§dTeleports you where you look.",
-  "item.dndreams.teleport_staff.tooltip.1": "§dInsurance sold separately.",
+  "item.dndreams.teleport_staff.tooltip.0": "§3Teleports you where you look.",
+  "item.dndreams.teleport_staff.tooltip.1": "§3Insurance sold separately.",
   "item.dndreams.force_staff": "Dissonance Staff",
-  "item.dndreams.force_staff.tooltip": "§eInflicts telekinetic whiplash.",
+  "item.dndreams.force_staff.tooltip": "§3Inflicts telekinetic whiplash.",
   "item.dndreams.launch_staff": "Propulsion Staff",
-  "item.dndreams.launch_staff.tooltip": "§eSends you flying.",
+  "item.dndreams.launch_staff.tooltip": "§3Sends you flying.",
   "item.dndreams.windweave_staff": "Windweave Staff",
-  "item.dndreams.windweave_staff.tooltip": "§5Weaves a bridge of solid air.",
+  "item.dndreams.windweave_staff.tooltip": "§3Weaves a bridge of solid air.",
   "item.dndreams.satiation_staff": "Satiation Staff",
   "item.dndreams.mystic_staff": "Mystic Staff",
   
@@ -316,6 +320,7 @@
   "effect.dndreams.mortal": "Mortality",
   "effect.dndreams.flame_guard": "Flame Guard",
   "effect.dndreams.heartbleed": "Heartbleed",
+  "effect.dndreams.discordant": "Discordant",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",

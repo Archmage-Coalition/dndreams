@@ -12,6 +12,7 @@ import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.world.biome.BiomeKeys;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,6 +29,7 @@ public abstract class LightmapTextureManagerMixin {
     @Shadow @Final private MinecraftClient client;
 
     @Unique private final float SHADOW = 26;
+    @Unique private final float DEPTHS = 40;
     @Unique private final float SANITY_SHADOW = 40;
     @Unique private final float DARKNESS_THRESHOLD = 70;
 
@@ -39,6 +41,12 @@ public abstract class LightmapTextureManagerMixin {
             z = recalculatedLight(z);
             y = recalculatedLight(y);
             x = recalculatedLight(x);
+
+            image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
+        } else if (clientWorld instanceof ClientWorldAccess access && (clientWorld.getBiome(access.getPlayer().getBlockPos()).matchesKey(BiomeKeys.DEEP_DARK))) {
+            z = recalculatedLight(z, DEPTHS);
+            y = recalculatedLight(y, DEPTHS);
+            x = recalculatedLight(x, DEPTHS);
 
             image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
         } else if (clientWorld instanceof ClientWorldAccess access) {

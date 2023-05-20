@@ -7,6 +7,8 @@ import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -27,6 +29,8 @@ public class SparkStaffItem extends TooltipItem implements ManaCostItem, MagicDa
 
         if (canAffordMana(user, stack)) {
             spendMana(user, stack);
+
+            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.NEUTRAL, 0.7f, 1.3f);
 
             user.getItemCooldownManager().set(this, 7);
             if (!user.isCreative()) stack.damage(1, user, p -> p.sendToolBreakStatus(hand));

@@ -363,6 +363,15 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
     }
 
+    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setHealth(F)V"))
+    private void dndreams$applyDamage$heartbleed(DamageSource source, float amount, CallbackInfo ci) {
+        if (hasStatusEffect(ModStatusEffects.HEARTBLEED) && source.getAttacker() instanceof LivingEntity attacker) {
+            float multiplier = 0.2f * (getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1);
+
+            attacker.heal(amount * multiplier);
+        }
+    }
+
     @Inject(method = "applyFoodEffects", at = @At("HEAD"))
     private void dndreams$applyFoodEffects(ItemStack stack, World world, LivingEntity targetEntity, CallbackInfo ci) {
         if (targetEntity instanceof PlayerEntity player && stack.isFood()) {

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#C#",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:nightmare_fuel"
+    },
+	"X": {
+      "item": "minecraft:ender_pearl"
+    },
+	"C": {
+      "item": "dndreams:entangled_earth"
+    }
+  },
+  "result": {
+    "item": "dndreams:dissociation_charm"
+  }
+}

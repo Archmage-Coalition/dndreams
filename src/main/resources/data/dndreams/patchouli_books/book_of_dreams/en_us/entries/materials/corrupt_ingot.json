@@ -11,7 +11,8 @@
       "type": "patchouli:spotlight",
       "item":  "dndreams:corrupt_scrap",
       "text": "Hellslate's only use is to create Hellsteel."
-    },{
+    },
+	{
 	  "type": "patchouli:crafting",
       "title": "Hellsteel Ingot",
 	  "recipe": "dndreams:corrupt_ingot",
