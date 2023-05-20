@@ -420,7 +420,7 @@ public class ModItems {
             new SnapStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(735))
                     .withTooltip(null, 1));
     public static final Item SEAR_STAFF = registerItem("sear_staff",
-            new SearStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1842))
+            new SearStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1299))
                     .withTooltip(null, 1));
     public static final Item ENDER_STAFF = registerItem("ender_staff",
             new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(735))
