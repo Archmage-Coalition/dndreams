@@ -5,13 +5,13 @@
       "item": "dndreams:celestium"
     },
 	"#": {
-      "item": "dndreams:liquid_void"
+      "item": "dndreams:end_chunk"
     }
   },
   "pattern": [
-    "XXX",
-    "X#X",
-    "X X"
+    "#X#",
+    "X X",
+    "# #"
   ],
   "result": {
     "item": "dndreams:celestium_leggings"
