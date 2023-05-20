@@ -31,6 +31,7 @@ public abstract class LightmapTextureManagerMixin {
     @Unique private final float DEPTHS = 40;
     @Unique private final float SANITY_SHADOW = 40;
     @Unique private final float DARKNESS_THRESHOLD = 70;
+    @Unique private final float HAUNTED = 110;
 
     @Shadow @Final private NativeImage image;
 
@@ -42,7 +43,7 @@ public abstract class LightmapTextureManagerMixin {
             x = recalculatedLight(x);
 
             image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
-        } else if (clientWorld instanceof ClientWorldAccess access && EntityComponents.TORMENT.get(access.getPlayer()).getShroud() > 0) {
+        } else if (clientWorld instanceof ClientWorldAccess access) {
             float strength = (float)(EntityComponents.TORMENT.get(access.getPlayer()).getShroud()) / TormentComponent.MAX_SHROUD * DEPTHS;
 
             z = recalculatedLight(z, strength);
@@ -60,20 +61,15 @@ public abstract class LightmapTextureManagerMixin {
                 x = recalculatedLight(x, clamped);
             }
 
-            image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
-        } else if (clientWorld instanceof ClientWorldAccess access) {
-            TormentComponent component = EntityComponents.TORMENT.get(access.getPlayer());
+            if (component.getHaunt() > 0) {
+                float haunt = HAUNTED * component.getHaunt() / TormentComponent.MAX_HAUNT;
 
-            if (component.getAttunedSanity() < DARKNESS_THRESHOLD) {
-                float clamped = MathHelper.clamp(component.getSanity(), 0, DARKNESS_THRESHOLD);
-                clamped = SANITY_SHADOW - (clamped * (SANITY_SHADOW /(DARKNESS_THRESHOLD)));
-
-                z = darkenLight(z, clamped);
-                y = darkenLight(y, clamped);
-                x = recalculatedLight(x, clamped);
-
-                image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
+                z = brightenLight(z, haunt);
+                y = brightenLight(y, haunt);
+                x = brightenLight(x, haunt/2);
             }
+
+            image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
         }
     }
 
@@ -90,5 +86,10 @@ public abstract class LightmapTextureManagerMixin {
     @Unique
     private int darkenLight(int i, float shadow) {
         return (int)(Math.max(0, i - shadow));
+    }
+
+    @Unique
+    private int brightenLight(int i, float brightness) {
+        return (int)(Math.min(255, i + brightness));
     }
 }

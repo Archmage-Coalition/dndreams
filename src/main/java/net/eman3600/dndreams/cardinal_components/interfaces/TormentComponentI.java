@@ -27,4 +27,6 @@ public interface TormentComponentI extends Component {
     boolean isAttuned();
 
     int getShroud();
+
+    int getHaunt();
 }

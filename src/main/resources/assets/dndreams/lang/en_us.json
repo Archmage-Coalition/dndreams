@@ -303,7 +303,7 @@
   "effect.dndreams.bloodlust": "Bloodlust",
   "effect.dndreams.suppressed": "Suppressed",
   "effect.dndreams.looming": "Looming",
-  "effect.dndreams.spirit_ward": "Spirit Ward",
+  "effect.dndreams.spirit_ward": "Peace",
   "effect.dndreams.brainfreeze": "Soulfrost",
   "effect.dndreams.dreamy": "Dream Flow",
   "effect.dndreams.void_flow": "Cosmic Overload",
@@ -325,6 +325,7 @@
   "effect.dndreams.flame_guard": "Flame Guard",
   "effect.dndreams.heartbleed": "Heartbleed",
   "effect.dndreams.discordant": "Discordant",
+  "effect.dndreams.haunted": "Haunted",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",
