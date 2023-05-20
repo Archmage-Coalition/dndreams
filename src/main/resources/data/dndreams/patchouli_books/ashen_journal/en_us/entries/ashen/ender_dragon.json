@@ -1,0 +1,15 @@
+{
+  "category": "dndreams:ashen",
+  "name": "The Ender Dragon",
+  "icon": "minecraft:dragon_head",
+  "pages": [
+	{
+      "type": "patchouli:text",
+      "text": "She resides in the End beyond the Curtain. It is unknown how long ago she appeared, but she has enthralled the endermen and suppressed the World Fountain. Seek her out and slay her to free the witless and awaken the world once more."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "minecraft:ender_dragon"
+    }
+  ]
+}

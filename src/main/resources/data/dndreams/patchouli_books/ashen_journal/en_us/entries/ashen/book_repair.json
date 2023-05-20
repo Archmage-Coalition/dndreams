@@ -1,0 +1,14 @@
+{
+  "category": "dndreams:ashen",
+  "name": "Completing the Codex",
+  "priority": true,
+  "icon": "dndreams:book_of_dreams",
+  "pages": [
+	{
+	  "type": "patchouli:crafting",
+      "title": "Repair",
+	  "recipe": "dndreams:crafting/book_of_dreams",
+      "text": "Seek out the ancient cities. Repair the tome. Create the codex."
+	}
+  ]
+}
