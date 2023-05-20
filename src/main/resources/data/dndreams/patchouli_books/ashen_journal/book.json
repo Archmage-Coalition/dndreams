@@ -1,0 +1,12 @@
+{
+  "name": "item.dndreams.ashen_journal",
+  "landing_text": "item.dndreams.ashen_journal.landing_text",
+  "custom_book_item": "dndreams:ashen_journal",
+  "book_texture": "dndreams:textures/gui/patchouli/book_ashen.png",
+  "filler_texture": "dndreams:textures/gui/patchouli/filler.png",
+  "dont_generate_book": true,
+  "pamphlet": "true",
+  "link_color": "0000ff",
+  "link_hover_color": "0000ff",
+  "progress_bar_color": "8500b9"
+}

@@ -40,6 +40,7 @@ public class ModStatusEffects {
     public static StatusEffect MORTAL = register("mortal", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x440000));
     public static StatusEffect FLAME_GUARD = register("flame_guard", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 14981690));
     public static StatusEffect HEARTBLEED = register("heartbleed", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xdd0a0a));
+    public static StatusEffect DISCORDANT = register("discordant", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x0b4d42));
 
     private static StatusEffect register(String name, StatusEffect entry) {
         return Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

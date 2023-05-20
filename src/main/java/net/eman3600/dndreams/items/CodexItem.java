@@ -13,8 +13,8 @@ import vazkii.patchouli.common.base.PatchouliSounds;
 import vazkii.patchouli.common.book.Book;
 import vazkii.patchouli.common.book.BookRegistry;
 
-public class BookOfDreams extends Item {
-    public BookOfDreams(Settings settings) {
+public class CodexItem extends Item {
+    public CodexItem(Settings settings) {
         super(settings);
     }
 

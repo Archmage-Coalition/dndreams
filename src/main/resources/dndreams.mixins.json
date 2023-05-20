@@ -28,6 +28,7 @@
     "EnchantmentMixin",
     "EndermanEntityMixin",
     "EndermanEyesFeatureRendererMixin",
+    "EnderPearlEntityMixin",
     "EnderPearlItemMixin",
     "EndPortalFeatureMixin",
     "EntityMixin",
