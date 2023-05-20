@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G#",
+    " XG",
+    "X  "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:ender_eye"
+    },
+    "X": {
+      "item": "minecraft:echo_shard"
+    },
+    "G": {
+      "item": "dndreams:nightmare_fuel"
+    }
+  },
+  "result": {
+    "item": "dndreams:ender_staff"
+  }
+}
