@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
+import net.eman3600.dndreams.mixin_interfaces.WardenEntityAccess;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
@@ -13,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WardenEntity.class)
-public abstract class WardenEntityMixin extends HostileEntity {
+public abstract class WardenEntityMixin extends HostileEntity implements WardenEntityAccess {
     protected WardenEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }

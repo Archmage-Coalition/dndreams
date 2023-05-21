@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G#",
+    " XG",
+    "X  "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:ender_eye"
+    },
+    "X": {
+      "item": "dndreams:end_chunk"
+    },
+    "G": {
+      "item": "dndreams:celestium"
+    }
+  },
+  "result": {
+    "item": "dndreams:teleport_staff"
+  }
+}

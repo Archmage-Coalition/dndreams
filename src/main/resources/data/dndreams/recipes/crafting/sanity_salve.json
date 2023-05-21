@@ -1,19 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:paper"
-    },
-    {
-      "item": "dndreams:icy_needle"
-    },
-    {
-      "item": "dndreams:sakura_fume"
-    },
-    {
-      "item": "dndreams:nightmare_fuel"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "X#X",
+    " X "
   ],
+  "key": {
+    "#": {
+      "item": "dndreams:nightmare_fuel"
+    },
+    "X": {
+      "item": "dndreams:icy_needle"
+    }
+  },
   "result": {
     "item": "dndreams:sanity_salve"
   }

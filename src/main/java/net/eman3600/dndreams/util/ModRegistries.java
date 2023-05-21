@@ -162,7 +162,7 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> .5f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE));
         TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos()) < 1 ? 4f : 0);
         TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
-        TormentComponent.registerPredicate((player, torment) -> torment.getShroud() > 0 ? 7.5f : 0);
+        TormentComponent.registerPredicate((player, torment) -> torment.getShroud() > 0 ? 2.5f : 0);
     }
 
     private static void registerInsanityMobAuras() {

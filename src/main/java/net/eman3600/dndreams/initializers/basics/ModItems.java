@@ -495,7 +495,7 @@ public class ModItems {
 
     // Sanity Salve
     public static final Item SANITY_SALVE = registerItem("sanity_salve",
-            new SanitySalveItem(new FabricItemSettings().group(ItemGroup.TOOLS)));
+            new SanitySalveItem(new FabricItemSettings().group(ItemGroup.TOOLS)).withTooltip(null, 2));
 
     // Tainted Pearl
     public static final Item TAINTED_PEARL = registerItem("tainted_pearl",

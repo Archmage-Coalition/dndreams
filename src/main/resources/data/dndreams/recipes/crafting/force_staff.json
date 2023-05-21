@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MG#",
+    " XG",
+    "X M"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "X": {
+      "item": "dndreams:end_chunk"
+    },
+    "G": {
+      "item": "dndreams:celestium"
+    },
+    "M": {
+      "item": "dndreams:icy_needle"
+    }
+  },
+  "result": {
+    "item": "dndreams:force_staff"
+  }
+}

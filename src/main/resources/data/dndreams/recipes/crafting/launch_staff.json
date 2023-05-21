@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MG#",
+    " XG",
+    "X M"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:quartz"
+    },
+    "X": {
+      "item": "dndreams:tormite_ingot"
+    },
+    "G": {
+      "item": "minecraft:echo_shard"
+    },
+    "M": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "dndreams:launch_staff"
+  }
+}

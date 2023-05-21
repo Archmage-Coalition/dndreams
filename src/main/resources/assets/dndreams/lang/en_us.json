@@ -139,8 +139,8 @@
   "item.dndreams.mutandis": "Mutandis",
   "item.dndreams.mutandis_extremis": "Mutandis Extremis",
   "item.dndreams.mutandis_oneiros": "Mutandis Oneiros",
-  "item.dndreams.sanity_salve": "Brainfreeze Wrap",
-  "item.dndreams.sanity_salve.tooltip": "§3Jolts you back to reality.",
+  "item.dndreams.sanity_salve": "Chilled Figment",
+  "item.dndreams.sanity_salve.tooltip.0": "§3Eases the mind.","item.dndreams.sanity_salve.tooltip.1": "§3May sting a little.",
   
   "item.dndreams.amethyst_jar": "Amethyst Jar",
   "item.dndreams.wood_ash": "Wood Ash",

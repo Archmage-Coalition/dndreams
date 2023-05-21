@@ -48,6 +48,7 @@
     "PersistentProjectileEntityMixin",
     "PlayerEntityMixin",
     "RocketItemMixin",
+    "SculkShriekerBlockEntityMixin",
     "SculkVeinBlockMixin",
     "SculkVeinBlockMixin$SculkVeinGrowCheckerMixin",
     "ServerPlayerEntityMixin",

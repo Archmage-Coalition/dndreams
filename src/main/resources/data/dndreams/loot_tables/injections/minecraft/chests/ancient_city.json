@@ -3,247 +3,48 @@
   "pools": [
     {
       "rolls": {
-		  "min": 0,
+		  "min": 1,
 		  "max": 2
 	  },
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "minecraft:ender_pearl",
-		  "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 2,
-                "max": 5
-              },
-              "add": true
-            }
-          ]
+          "type": "minecraft:loot_table",
+          "name": "dndreams:chests/ancient_city/gemstones",
+		  "weight": 2
         },
 		{
-          "type": "minecraft:item",
-          "name": "dndreams:charged_shard",
-		  "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 2
-              },
-              "add": true
-            }
-          ]
+          "type": "minecraft:loot_table",
+          "name": "dndreams:chests/ancient_city/powders",
+		  "weight": 2
         },
 		{
-          "type": "minecraft:item",
-          "name": "minecraft:diamond",
-		  "weight": 3,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 12
-              },
-              "add": true
-            }
-          ]
+          "type": "minecraft:loot_table",
+          "name": "dndreams:chests/ancient_city/nightmare",
+		  "weight": 1
         },
 		{
-          "type": "minecraft:item",
-          "name": "minecraft:emerald",
-		  "weight": 3,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 12
-              },
-              "add": true
-            }
-          ]
+          "type": "minecraft:loot_table",
+          "name": "dndreams:chests/ancient_city/illager",
+		  "weight": 2
         },
 		{
-          "type": "minecraft:item",
-          "name": "minecraft:lapis_lazuli",
-		  "weight": 3,
-          "functions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 3,
-                "max": 16
-              },
-              "add": true
-            }
-          ]
-        },
-		{
-          "type": "minecraft:item",
-          "name": "dndreams:vital_shard",
-		  "weight": 3,
-          "functions": [
+              "type": "minecraft:loot_table",
+              "conditions": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "dimension": "dndreams:dream"
+                  }
+                }
+              ],
+              "name": "dndreams:chests/ancient_city/tools_dream"
+            },
             {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 5
-              },
-              "add": true
-            }
-          ]
-        }
-      ]
-    },
-	{
-      "rolls": {
-		  "min": 0,
-		  "max": 2
-	  },
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:glowstone_dust",
-		  "weight": 4,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 11
-              },
-              "add": true
-            }
-          ]
-        },
-		{
-          "type": "minecraft:item",
-          "name": "minecraft:redstone",
-		  "weight": 6,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 16
-              },
-              "add": true
-            }
-          ]
-        },
-		{
-          "type": "minecraft:item",
-          "name": "minecraft:sugar",
-		  "weight": 6,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 12
-              },
-              "add": true
-            }
-          ]
-        },
-		{
-          "type": "minecraft:item",
-          "name": "dndreams:wood_ash",
-		  "weight": 6,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 12
-              },
-              "add": true
-            }
-          ]
-        },
-		{
-          "type": "minecraft:item",
-          "name": "dndreams:sculk_powder",
-		  "weight": 6,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 24
-              },
-              "add": true
-            }
-          ]
-        },
-		{
-          "type": "minecraft:item",
-          "name": "minecraft:gunpowder",
-		  "weight": 4,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 12
-              },
-              "add": true
-            }
-          ]
-        },
-		{
-          "type": "minecraft:item",
-          "name": "dndreams:crystal_mix",
-		  "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 2
-              },
-              "add": true
-            }
-          ]
-        }
-      ]
-    },
-	{
-      "rolls": {
-		  "min": 0,
-		  "max": 1
-	  },
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "dndreams:nightmare_fuel",
-		  "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0,
-                "max": 4
-              },
-              "add": true
+              "type": "minecraft:loot_table",
+              "name": "dndreams:chests/ancient_city/tools"
             }
           ]
         }
