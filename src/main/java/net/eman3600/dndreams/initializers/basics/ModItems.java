@@ -5,7 +5,10 @@ import net.eman3600.dndreams.entities.projectiles.BrewLingeringEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewLiquidEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
-import net.eman3600.dndreams.items.*;
+import net.eman3600.dndreams.items.CodexItem;
+import net.eman3600.dndreams.items.DreamyItem;
+import net.eman3600.dndreams.items.MysticStaffItem;
+import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.block_item.AliasedDreamyBlockItem;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
@@ -38,7 +41,6 @@ import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.items.trinket.DissociationCharmItem;
 import net.eman3600.dndreams.items.trinket.FleetfootBandItem;
-import net.eman3600.dndreams.items.trinket.PhantomNecklace;
 import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
@@ -410,8 +412,6 @@ public class ModItems {
             new FleetfootBandItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item DISSOCIATION_CHARM = registerItem("dissociation_charm",
             new DissociationCharmItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
-    public static final Item PHANTOM_NECKLACE = registerItem("phantom_necklace",
-            new PhantomNecklace(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).rarity(Rarity.RARE)));
 
     // Staves
     public static final Item SPARK_STAFF = registerItem("spark_staff",

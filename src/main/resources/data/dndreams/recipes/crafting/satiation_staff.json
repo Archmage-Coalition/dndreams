@@ -1,19 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " G#",
+    "MG#",
     " XG",
-    "X  "
+    "X M"
   ],
   "key": {
     "#": {
-      "item": "dndreams:charged_shard"
+      "item": "dndreams:vital_heart"
     },
     "X": {
-      "item": "dndreams:end_stick"
+      "item": "dndreams:tormite_ingot"
     },
     "G": {
-      "item": "minecraft:gold_nugget"
+      "item": "dndreams:charged_shard"
+    },
+    "M": {
+      "item": "dndreams:lotus_flower"
     }
   },
   "result": {
