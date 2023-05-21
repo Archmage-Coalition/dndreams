@@ -36,7 +36,7 @@ public class ModBlocks {
             new ShineBlock(FabricBlockSettings.of(Material.AIR).strength(0, 0)
                     .sounds(BlockSoundGroup.AMETHYST_BLOCK)
                     .breakInstantly()
-                    .luminance(s -> (s.get(ShineBlock.LIGHT) * 3) + 3)
+                    .luminance(s -> (int)(s.get(ShineBlock.LIGHT) * 3) + 6)
                     .ticksRandomly()));
 
     // Hellsteel Block

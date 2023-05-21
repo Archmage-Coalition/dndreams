@@ -22,12 +22,12 @@ import net.minecraft.world.World;
 public class ShineBlock extends Block {
     protected static final VoxelShape SHAPE = Block.createCuboidShape(6.0, 6.0, 6.0, 10.0, 10.0, 10.0);
     protected static final VoxelShape COLLISION = VoxelShapes.empty();
-    public static final IntProperty LIGHT = IntProperty.of("light", 0, 4);
+    public static final IntProperty LIGHT = IntProperty.of("light", 0, 3);
 
 
     public ShineBlock(Settings settings) {
         super(settings);
-        setDefaultState(getDefaultState().with(LIGHT, 4));
+        setDefaultState(getDefaultState().with(LIGHT, 3));
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ShineBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (random.nextInt(4) > 0 && !TormentComponent.shouldShroud(world, pos)) return;
+        if (random.nextInt(5) > 0 && !TormentComponent.shouldShroud(world, pos)) return;
 
         int level = state.get(LIGHT) - 1;
 

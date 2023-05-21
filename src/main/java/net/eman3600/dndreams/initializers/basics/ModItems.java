@@ -487,7 +487,7 @@ public class ModItems {
             new PanaceaItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.EPIC).recipeRemainder(Items.GLASS_BOTTLE)));
 
     public static final Item DREAM_EYE = registerItem("dream_eye",
-            new DreamEye(new FabricItemSettings().group(ItemGroup.MISC)));
+            new DreamEye(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
 
     // Icy Needle
     public static final Item ICY_NEEDLE = registerItem("icy_needle",
