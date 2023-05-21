@@ -5,7 +5,15 @@
   "pages": [
 	{
       "type": "patchouli:text",
-      "text": "These regions deep in the caves are coated by an ancient affliction; a malady of mind and soul - of demons and dreams. It is a deep resovoir of magic, but it is also baleful."
+      "text": "These regions deep in the caves are coated by an ancient affliction; a malady of mind and soul - of demons and dreams. It is a deep resovoir of magic, but any venture there is a risk."
+    },
+	{
+      "type": "patchouli:image",
+	  "images": [
+	    "dndreams:textures/gui/refs/deep_darkness.png"
+	  ],
+	  "border": true,
+      "text": "The Deep Dark absorbs ambient light, making it pitch black."
     },
 	{
       "type": "patchouli:text",
@@ -40,7 +48,11 @@
     {
       "type": "patchouli:entity",
       "entity": "minecraft:warden",
-	  "text": "The Warden cannot be slain. It is blind but has excellent hearing. If it spots you, run."
+	  "text": "The Warden cannot be slain. It can only be evaded."
+    },
+	{
+      "type": "patchouli:text",
+      "text": "The Warden is blind but has excellent hearing and can use echolocation. If it notices you move, it will begin pursuit. If you must escape, use its blindness to your advantage."
     },
     {
       "type": "patchouli:spotlight",

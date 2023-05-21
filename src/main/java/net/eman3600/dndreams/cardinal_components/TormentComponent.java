@@ -32,9 +32,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private float sanity = 100;
     public static final float THREAD_VALUE = 3.5f;
     public static final int MAX_SHROUD = 60;
+    public static final int MAX_HAUNT = 15;
     private int dragonFlashTicks = 0;
     private int sanityDamageTicks = 0;
     private int shroud = 0;
+    private int haunt = 0;
 
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
@@ -178,6 +180,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         shielded = tag.getBoolean("shielded");
         sanityDamageTicks = tag.getInt("sanity_damage_ticks");
         shroud = tag.getInt("shroud");
+        haunt = tag.getInt("haunt");
     }
 
     @Override
@@ -188,6 +191,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putBoolean("shielded", shielded);
         tag.putInt("sanity_damage_ticks", sanityDamageTicks);
         tag.putInt("shroud", shroud);
+        tag.putInt("haunt", haunt);
     }
 
     @Override
@@ -233,6 +237,14 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             resync = true;
         }
 
+        if (player.hasStatusEffect(ModStatusEffects.HAUNTED) && haunt < MAX_HAUNT) {
+            haunt = Math.min(haunt + 5, MAX_HAUNT);
+            resync = true;
+        } else if (haunt > 0 && !player.hasStatusEffect(ModStatusEffects.HAUNTED)) {
+            haunt--;
+            resync = true;
+        }
+
         if (resync) {
             EntityComponents.TORMENT.sync(player);
         }
@@ -260,6 +272,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public int getShroud() {
         return shroud;
+    }
+
+    @Override
+    public int getHaunt() {
+        return haunt;
     }
 
     public static void registerInsanityMob(Function<LivingEntity, Boolean> predicate, float insanity, float range) {
