@@ -7,5 +7,6 @@
   "capacity": 3,
   "cost": 300,
   "effect": "dndreams:spirit_ward",
-  "duration": 2100
+  "duration": 2100,
+  "max_amplifier": 1
 }

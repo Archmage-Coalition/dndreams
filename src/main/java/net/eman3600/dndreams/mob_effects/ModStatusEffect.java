@@ -1,16 +1,14 @@
 package net.eman3600.dndreams.mob_effects;
 
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
-import net.eman3600.dndreams.cardinal_components.TormentComponent;
-import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
 
 public class ModStatusEffect extends StatusEffect {
 
@@ -25,13 +23,7 @@ public class ModStatusEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (this == ModStatusEffects.LOOMING && entity.isPlayer()) {
-            PlayerEntity player = (PlayerEntity)entity;
-            EntityComponents.TORMENT.get(player).lowerPerMinute(20f * (amplifier + 1));
-        } else if (this == ModStatusEffects.SPIRIT_WARD && entity.isPlayer()) {
-            PlayerEntity player = (PlayerEntity)entity;
-            EntityComponents.TORMENT.get(player).lowerPerMinute(-20f * (amplifier + 1));
-        } else if (this == ModStatusEffects.VOID_FLOW) {
+        if (this == ModStatusEffects.VOID_FLOW) {
             if (!entity.isPlayer()) {
                 entity.timeUntilRegen = 8;
                 entity.damage(DamageSource.MAGIC, 1.0f);
@@ -42,10 +34,7 @@ public class ModStatusEffect extends StatusEffect {
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         int i;
-        if (this == ModStatusEffects.SPIRIT_WARD
-        || this == ModStatusEffects.LOOMING) {
-            return true;
-        } else if (this == ModStatusEffects.VOID_FLOW) {
+        if (this == ModStatusEffects.VOID_FLOW) {
             i = duration % 15;
             if (i == 0) {
                 return true;

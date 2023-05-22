@@ -69,11 +69,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         return maxSanity;
     }
 
-    private boolean sanityInflexible() {
-        return false/*sanityDisabled
-                && player.getWorld().getDimensionKey() != ModDimensions.DREAM_TYPE_KEY*/;
-    }
-
     @Override
     public boolean isShielded() {
         return shielded;
@@ -98,6 +93,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public void lowerSanity(float value) {
+        if ((player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD) && value > 0) || (player.hasStatusEffect(ModStatusEffects.LOOMING) && value < 0)) return;
+
         sanity -= value;
         normalize();
     }
@@ -162,13 +159,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     private void normalize() {
-        if (sanityInflexible()) {
-            maxSanity = MAX_SANITY;
-            sanity = getMaxSanity();
-        } else {
-            maxSanity = MathHelper.clamp(maxSanity, MIN_MAX_SANITY, MAX_SANITY);
-            sanity = MathHelper.clamp(sanity, MIN_SANITY, getMaxSanity());
-        }
+        maxSanity = MathHelper.clamp(maxSanity, MIN_MAX_SANITY, MAX_SANITY);
+        sanity = MathHelper.clamp(sanity, MIN_SANITY, getMaxSanity());
         EntityComponents.TORMENT.sync(player);
     }
 
