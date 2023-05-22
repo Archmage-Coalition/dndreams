@@ -3,9 +3,10 @@
   "ingredient": {
     "item": "dndreams:mellifluous_hunger"
   },
-  "corrupted": true,
+  "corrupted": false,
   "capacity": 4,
   "cost": 400,
-  "effect": "minecraft:hunger",
-  "duration": 1200
+  "effect": "dndreams:third_eye",
+  "duration": 1800,
+  "max_amplifier": 0
 }

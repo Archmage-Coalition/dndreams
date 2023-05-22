@@ -41,7 +41,7 @@ public class SatiationStaffItem extends TooltipItem implements ManaCostItem, San
 
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.NEUTRAL, 0.7f, 1.3f);
 
-            player.getItemCooldownManager().set(this, 7);
+            player.getItemCooldownManager().set(this, 100);
             if (!player.isCreative()) stack.damage(1, user, p -> p.sendToolBreakStatus(player.getActiveHand()));
 
             if (world instanceof ServerWorld) {
@@ -49,7 +49,7 @@ public class SatiationStaffItem extends TooltipItem implements ManaCostItem, San
 
                 manager.add(12, 1f);
 
-                player.heal(3);
+                player.heal(6);
             }
 
         }

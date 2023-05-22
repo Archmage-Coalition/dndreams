@@ -225,7 +225,7 @@
   "item.dndreams.fleetfoot_band": "Fleetfoot Band",
   "item.dndreams.phantom_necklace": "Phantom Necklace",
   "item.dndreams.dissociation_charm": "Dissociation Charm",
-  "item.dndreams.dissociation_charm.tooltip.0": "§3Prevents damage from ender pearls.",
+  "item.dndreams.dissociation_charm.tooltip.0": "§3Prevents damage from teleportation.",
   "item.dndreams.dissociation_charm.tooltip.1": "§3Usually.",
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
@@ -246,7 +246,8 @@
   "item.dndreams.teleport_staff.tooltip.0": "§3Teleports you where you look.",
   "item.dndreams.teleport_staff.tooltip.1": "§3Insurance sold separately.",
   "item.dndreams.force_staff": "Dissonance Staff",
-  "item.dndreams.force_staff.tooltip": "§3Inflicts telekinetic whiplash.",
+  "item.dndreams.force_staff.tooltip.0": "§3Inflicts telekinetic whiplash.",
+  "item.dndreams.force_staff.tooltip.1": "§3Don't miss!",
   "item.dndreams.launch_staff": "Propulsion Staff",
   "item.dndreams.launch_staff.tooltip": "§3Sends you flying.",
   "item.dndreams.windweave_staff": "Windweave Staff",

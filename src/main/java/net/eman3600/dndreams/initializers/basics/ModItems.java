@@ -432,11 +432,11 @@ public class ModItems {
             new EnderStaffItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(735))
                     .withTooltip(null, 1));
     public static final Item TELEPORT_STAFF = registerItem("teleport_staff",
-            new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(2173))
+            new TeleportStaffItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(2173))
                     .withTooltip(null, 2));
     public static final Item FORCE_STAFF = registerItem("force_staff",
-            new TooltipItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(2173))
-                    .withTooltip(null, 1));
+            new ForceStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(2173))
+                    .withTooltip(null, 2));
     public static final Item LAUNCH_STAFF = registerItem("launch_staff",
             new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(2173))
                     .withTooltip(null, 1));

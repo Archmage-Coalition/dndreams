@@ -8,5 +8,5 @@
   "cost": 300,
   "effect": "dndreams:looming",
   "duration": 1200,
-  "max_amplifier": 1
+  "max_amplifier": 0
 }
