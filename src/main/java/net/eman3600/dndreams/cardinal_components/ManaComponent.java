@@ -87,9 +87,9 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             return 0;
         }
 
-        if (player.hasStatusEffect(ModStatusEffects.DREAMY)) {
+        /*if (player.hasStatusEffect(ModStatusEffects.DREAMY)) {
             regenRate *= 1.85f * Math.pow(1.3f, player.getStatusEffect(ModStatusEffects.DREAMY).getAmplifier());
-        }
+        }*/
         if (player.getWorld().getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             regenRate *= 3f;
         }
@@ -99,17 +99,15 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public int getManaMax() {
-        int manaFactors = 0;
-
         if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {
             return (int)(player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH) * 2);
         }
 
-        if (player.hasStatusEffect(ModStatusEffects.MEMORY)) {
+        /*if (player.hasStatusEffect(ModStatusEffects.MEMORY)) {
             manaFactors += 15 * (player.getStatusEffect(ModStatusEffects.MEMORY).getAmplifier() + 1);
-        }
+        }*/
 
-        return Math.max(getBaseManaMax() + getXPBonus() + manaFactors, 0);
+        return Math.max(getBaseManaMax() + getXPBonus(), 0);
     }
 
     @Override

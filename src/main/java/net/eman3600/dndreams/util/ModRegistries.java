@@ -327,9 +327,10 @@ public class ModRegistries {
         access.registerCompostable(.3f, ModItems.APPLETHORN_SEEDS);
         access.registerCompostable(.65f, ModItems.SUCCULENT_APPLE);
         access.registerCompostable(.65f, ModItems.POISON_APPLE);
+        access.registerCompostable(1f, ModItems.DRAGONFRUIT);
         access.registerCompostable(.65f, ModItems.STAR_FRUIT);
         access.registerCompostable(.3f, ModItems.WITHER_BLOSSOM_SEEDS);
-        access.registerCompostable(.3f, ModItems.DRAGONFRUIT_SEEDS);
+        access.registerCompostable(.5f, ModItems.DRAGONFRUIT_SEEDS);
     }
 
     private static void registerShockPredicates() {

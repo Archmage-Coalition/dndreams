@@ -61,7 +61,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public float getAttunedSanity() {
-        return isAttuned() ? MAX_SANITY : getSanity();
+        return isAttuned() ? MAX_SANITY : isAwakened() ? 0 : getSanity();
     }
 
     @Override
@@ -267,6 +267,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         } catch (NullPointerException e) {
             return false;
         }
+    }
+
+    @Override
+    public boolean isAwakened() {
+        return player.hasStatusEffect(ModStatusEffects.THIRD_EYE);
     }
 
     @Override

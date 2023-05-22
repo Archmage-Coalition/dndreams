@@ -238,12 +238,13 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             int skipV = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentPercent));
 
             int x = component.isAttuned() ? 103 : 79;
+            int y = component.isAwakened() ? 42 : 0;
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
-            drawTexture(matrices, tormentXPos, tormentYPos, x, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV2, x, tormentV2 + skipV2, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentMaxPercent));
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV, x, tormentV + skipV, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos, x, y, TORMENT_WIDTH, TORMENT_HEIGHT);
+            drawTexture(matrices, tormentXPos, tormentYPos + skipV2, x, tormentV2 + skipV2 + y, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentMaxPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos + skipV, x, tormentV + skipV + y, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentPercent));
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });

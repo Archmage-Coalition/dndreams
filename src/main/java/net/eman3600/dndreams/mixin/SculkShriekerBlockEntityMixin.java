@@ -22,6 +22,6 @@ public abstract class SculkShriekerBlockEntityMixin extends BlockEntity {
 
     @Inject(method = "shriek(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/Entity;)V", at = @At("TAIL"))
     private void dndreams$shriek(ServerWorld world, Entity entity, CallbackInfo ci) {
-        WardenEntityAccess.hauntClosePlayers(world, Vec3d.ofCenter(this.pos), entity, 90, 40);
+        WardenEntityAccess.hauntClosePlayers(world, Vec3d.ofCenter(this.pos), entity, 80, 40);
     }
 }

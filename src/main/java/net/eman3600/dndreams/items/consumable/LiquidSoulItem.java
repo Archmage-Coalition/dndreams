@@ -10,15 +10,21 @@ import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.*;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class LiquidSoulItem extends DrinkableItem {
     public LiquidSoulItem(Settings settings) {
@@ -64,6 +70,13 @@ public class LiquidSoulItem extends DrinkableItem {
 
                 return ActionResult.SUCCESS;
             }
+        } else if (state.isOf(Blocks.REINFORCED_DEEPSLATE)) {
+
+            if (context.getPlayer() instanceof ServerPlayerEntity player) {
+                player.sendMessage(Text.translatable("item.dndreams.liquid_soul.needs_tuning"), true);
+            }
+
+            return ActionResult.SUCCESS;
         }
 
         return ActionResult.PASS;
@@ -86,5 +99,10 @@ public class LiquidSoulItem extends DrinkableItem {
             }
         }
         return false;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
     }
 }

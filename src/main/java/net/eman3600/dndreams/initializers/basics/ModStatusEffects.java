@@ -19,9 +19,9 @@ public class ModStatusEffects {
     public static StatusEffect LOOMING = register("looming", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x4400c2));
     public static StatusEffect SPIRIT_WARD = register("spirit_ward", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 11184640));
     public static StatusEffect BRAINFREEZE = register("brainfreeze", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2EBDFA));
-    public static StatusEffect DREAMY = register("dreamy", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 13369480));
+    public static StatusEffect DREAMY = register("dreamy", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 13369480).addAttributeModifier(ModAttributes.PLAYER_MANA_REGEN, "8C4A5112-9698-468A-B66A-A125711584F1", 0.6f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
     public static StatusEffect VOID_FLOW = register("void_flow", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5592405));
-    public static StatusEffect MEMORY = register("memory", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 26214));
+    public static StatusEffect MEMORY = register("memory", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 26214).addAttributeModifier(ModAttributes.PLAYER_MAX_MANA, "F2A2BCE4-000B-4362-BE53-E9497D966A16", 15f, EntityAttributeModifier.Operation.ADDITION));
     public static StatusEffect SILENCE = register("silence", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 12303291));
     public static StatusEffect LIFEMANA = register("lifemana", new ModStatusEffect(StatusEffectCategory.HARMFUL, 17510));
     public static StatusEffect INSUBSTANTIAL = register("insubstantial", new ModStatusEffect(StatusEffectCategory.HARMFUL, 2289390));
@@ -42,6 +42,7 @@ public class ModStatusEffects {
     public static StatusEffect HEARTBLEED = register("heartbleed", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xdd0a0a));
     public static StatusEffect DISCORDANT = register("discordant", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x0b4d42));
     public static StatusEffect HAUNTED = register("haunted", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x299eb8));
+    public static StatusEffect THIRD_EYE = register("third_eye", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x192225));
 
     private static StatusEffect register(String name, StatusEffect entry) {
         return Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

@@ -29,6 +29,7 @@
         },
 		{
           "type": "minecraft:alternatives",
+		  "weight": 2,
           "children": [
             {
               "type": "minecraft:loot_table",

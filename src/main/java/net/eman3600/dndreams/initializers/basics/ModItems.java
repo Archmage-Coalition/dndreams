@@ -82,8 +82,11 @@ public class ModItems {
     public static final Item CRYSTAL_MIX = registerItem("crystal_mix",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Shade Veil
+    // Horrific Veil
     public static final Item SHADE_CLOTH = registerItem("shade_cloth", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
+    // Pure Brilliance
+    public static final Item BRILLIANCE = registerItem("brilliance", new TooltipItem(new FabricItemSettings().group(ItemGroup.MATERIALS)).withTooltip(null, 1));
 
     // Ravaged Flesh
     public static final Item RAVAGED_FLESH = registerItem("ravaged_flesh", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)
@@ -91,8 +94,7 @@ public class ModItems {
 
     // World Flow
     public static final Item LIQUID_VOID = registerItem("liquid_void",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON),
-                    false, new StatusEffectInstance(ModStatusEffects.BRAINFREEZE, 600)));
+            new LiquidVoidItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON)));
 
     // Liquid Soul
     public static final Item LIQUID_SOUL = registerItem("liquid_soul",
@@ -100,7 +102,7 @@ public class ModItems {
 
     // Nightmare Fuel
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
-            new DreamyItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL).fireproof()));
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL).fireproof()).withTooltip(null, 2));
 
     // Starfruit
     public static final Item STAR_FRUIT = registerItem("star_fruit",
