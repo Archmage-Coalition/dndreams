@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.items.misc_tool;
 
+import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.eman3600.dndreams.items.interfaces.SanityCostItem;
 import net.minecraft.client.item.TooltipContext;
@@ -9,6 +10,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -18,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SatiationStaffItem extends Item implements ManaCostItem, SanityCostItem {
+public class SatiationStaffItem extends TooltipItem implements ManaCostItem, SanityCostItem {
     private static final int USE_TIME = 30;
 
     public SatiationStaffItem(Item.Settings settings) {
@@ -32,15 +35,22 @@ public class SatiationStaffItem extends Item implements ManaCostItem, SanityCost
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (world instanceof ServerWorld && user instanceof PlayerEntity player && canAfford(stack, player)) {
+        if (user instanceof PlayerEntity player && canAfford(stack, player)) {
             spendMana(player, stack);
             spendSanity(player, stack);
 
-            HungerManager manager = player.getHungerManager();
+            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.NEUTRAL, 0.7f, 1.3f);
 
-            manager.add(12, 1f);
+            player.getItemCooldownManager().set(this, 7);
+            if (!player.isCreative()) stack.damage(1, user, p -> p.sendToolBreakStatus(player.getActiveHand()));
 
-            player.heal(3);
+            if (world instanceof ServerWorld) {
+                HungerManager manager = player.getHungerManager();
+
+                manager.add(12, 1f);
+
+                player.heal(3);
+            }
 
         }
 
@@ -90,6 +100,7 @@ public class SatiationStaffItem extends Item implements ManaCostItem, SanityCost
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
         tooltip.add(getTooltipMana(stack));
         tooltip.add(getTooltipSanity(stack));
     }

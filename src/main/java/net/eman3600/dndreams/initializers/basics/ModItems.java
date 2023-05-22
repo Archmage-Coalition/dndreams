@@ -443,6 +443,9 @@ public class ModItems {
     public static final Item WINDWEAVE_STAFF = registerItem("windweave_staff",
             new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(735))
                     .withTooltip(null, 1));
+    public static final Item SATIATION_STAFF = registerItem("satiation_staff",
+            new SatiationStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(735))
+                    .withTooltip(null, 1));
 
 
 
@@ -579,10 +582,7 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
 
 
-    
-    // Staff of Satiation
-    public static final Item SATIATION_STAFF = registerItem("satiation_staff",
-            new SatiationStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+
 
     // Mystic Staff
     public static final Item MYSTIC_STAFF = registerItem("mystic_staff",
