@@ -1,6 +1,8 @@
 package net.eman3600.dndreams.mixin_interfaces;
 
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.PlayerEntity;
 
 public interface DamageSourceAccess {
 
@@ -21,6 +23,10 @@ public interface DamageSourceAccess {
             if (electric) access.setElectric();
         }
         return source;
+    }
+
+    default boolean isTransethereal() {
+        return this instanceof DamageSource source && source.getAttacker() instanceof PlayerEntity player && (EntityComponents.TORMENT.get(player).getAttunedSanity() <= 25 || player.isCreative());
     }
 
 

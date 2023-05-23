@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers.entity;
 
 import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
+import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.entities.mobs.WardenRagdollEntity;
 import net.eman3600.dndreams.entities.projectiles.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -15,6 +16,7 @@ import net.minecraft.util.registry.Registry;
 import static net.eman3600.dndreams.Initializer.MODID;
 import static net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity.createBloodSkeletonAttributes;
 import static net.eman3600.dndreams.entities.mobs.BloodZombieEntity.createBloodZombieAttributes;
+import static net.eman3600.dndreams.entities.mobs.TormentorEntity.createTormentorAttributes;
 import static net.eman3600.dndreams.entities.mobs.WardenRagdollEntity.createWardenRagdollAttributes;
 
 public class ModEntities {
@@ -111,6 +113,14 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<TormentorEntity> TORMENTOR = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "tormentor"),
+            FabricEntityTypeBuilder.<TormentorEntity>create(SpawnGroup.MISC, TormentorEntity::new)
+                    .dimensions(EntityType.ZOMBIE.getDimensions())
+                    .fireImmune()
+                    .build()
+    );
+
 
     public static final EntityType<WardenRagdollEntity> WARDEN_RAGDOLL = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "warden_ragdoll"),
@@ -130,5 +140,6 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(BLOOD_ZOMBIE, createBloodZombieAttributes());
         FabricDefaultAttributeRegistry.register(BLOOD_SKELETON, createBloodSkeletonAttributes());
         FabricDefaultAttributeRegistry.register(WARDEN_RAGDOLL, createWardenRagdollAttributes());
+        FabricDefaultAttributeRegistry.register(TORMENTOR, createTormentorAttributes());
     }
 }

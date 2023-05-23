@@ -114,6 +114,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     @Override
+    public void damageSanity(int increment) {
+        sanityDamageTicks = MathHelper.clamp(sanityDamageTicks + increment, 0, SANITY_DAMAGE);
+    }
+
+    @Override
     public boolean shearSanity(float value, boolean yield) {
         boolean bl = false;
         while (value >= THREAD_VALUE) {
@@ -211,11 +216,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
         float attunedSanity = getAttunedSanity();
         boolean resync = false;
-        if (sanityDamageTicks > 0 && attunedSanity > 25) {
+        if (sanityDamageTicks > 0) {
             sanityDamageTicks--;
-            resync = true;
-        } else if (sanityDamageTicks < SANITY_DAMAGE && attunedSanity <= 25) {
-            sanityDamageTicks++;
             resync = true;
         }
 

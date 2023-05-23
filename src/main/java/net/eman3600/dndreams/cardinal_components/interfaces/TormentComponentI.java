@@ -16,6 +16,8 @@ public interface TormentComponentI extends Component {
 
     float getSanityDamage();
 
+    void damageSanity(int increment);
+
     boolean shearSanity(float value, boolean yield);
 
     void lowerPerSecond(float value);

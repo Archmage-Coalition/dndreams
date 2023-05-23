@@ -21,7 +21,7 @@ public class FleetfootBandItem extends TrinketItem {
         Multimap<EntityAttribute, EntityAttributeModifier> list = super.getModifiers(stack, slot, entity, uuid);
 
         list.put(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier
-                (uuid, "dndreams:aglet", .1d, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+                (uuid, "dndreams:aglet", .15d, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 
         return list;
     }

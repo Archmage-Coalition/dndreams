@@ -20,7 +20,7 @@ public class ModFoodComponents {
             .alwaysEdible().build(), -20);
     public static final FoodComponent SUCCULENT_APPLE = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.DREAMY, 400, 0), 1.0F)
-            .alwaysEdible().build(), 16);
+            .alwaysEdible().build(), 12);
     public static final FoodComponent DRAGONFRUIT = registerSanityFood(new FoodComponent.Builder().hunger(12).saturationModifier(2.5F)
             .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 0), 1.0F)
             .alwaysEdible().build(), -4);
@@ -44,7 +44,7 @@ public class ModFoodComponents {
     public static final FoodComponent LOTUS_FLOWER = registerSanityFood(new FoodComponent.Builder().hunger(5).saturationModifier(0.8F)
             .build(), 3);
     public static final FoodComponent STAR_FRUIT = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(1.0F)
-            .build(), 8);
+            .build(), 6);
 
 
 

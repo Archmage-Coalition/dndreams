@@ -136,6 +136,7 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.BLOOD_SKELETON, BloodSkeletonEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.WARDEN_RAGDOLL, WardenRagdollEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.TORMENTOR, TormentorEntityRenderer::new);
     }
 
 

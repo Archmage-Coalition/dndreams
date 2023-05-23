@@ -71,7 +71,7 @@ public class TeleportStaffItem extends TooltipItem implements ManaCostItem {
 
     @Override
     public int getBaseManaCost() {
-        return 9;
+        return 8;
     }
 
     @Override

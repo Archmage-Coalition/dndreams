@@ -6,6 +6,7 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
@@ -171,6 +172,7 @@ public class ModRegistries {
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && !WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), 10f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 20f, 40f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.VILLAGER, -15f, 10f);
+        TormentComponent.registerInsanityMob(entity -> entity instanceof TormentorEntity tormentor && tormentor.isCorporeal(), 10f, 20f);
     }
 
     private static void registerSculkTransform() {
@@ -340,39 +342,39 @@ public class ModRegistries {
     }
 
     private static void registerFoodSanities() {
-        ModFoodComponents.registerSanityFood(FoodComponents.APPLE, 8);
-        ModFoodComponents.registerSanityFood(FoodComponents.BAKED_POTATO, 8);
+        ModFoodComponents.registerSanityFood(FoodComponents.APPLE, 6);
+        ModFoodComponents.registerSanityFood(FoodComponents.BAKED_POTATO, 6);
         ModFoodComponents.registerSanityFood(FoodComponents.BEEF, -8);
-        ModFoodComponents.registerSanityFood(FoodComponents.BEETROOT, 2);
-        ModFoodComponents.registerSanityFood(FoodComponents.BEETROOT_SOUP, 8);
-        ModFoodComponents.registerSanityFood(FoodComponents.BREAD, 8);
+        ModFoodComponents.registerSanityFood(FoodComponents.BEETROOT, 1);
+        ModFoodComponents.registerSanityFood(FoodComponents.BEETROOT_SOUP, 6);
+        ModFoodComponents.registerSanityFood(FoodComponents.BREAD, 6);
         ModFoodComponents.registerSanityFood(FoodComponents.CARROT, 2);
         ModFoodComponents.registerSanityFood(FoodComponents.CHICKEN, -8);
         ModFoodComponents.registerSanityFood(FoodComponents.CHORUS_FRUIT, 6);
         ModFoodComponents.registerSanityFood(FoodComponents.COD, -12);
-        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_BEEF, 16);
-        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_CHICKEN, 16);
-        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_COD, 12);
-        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_MUTTON, 16);
-        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_PORKCHOP, 16);
-        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_RABBIT, 12);
-        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_SALMON, 12);
-        ModFoodComponents.registerSanityFood(FoodComponents.COOKIE, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_BEEF, 12);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_CHICKEN, 12);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_COD, 9);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_MUTTON, 12);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_PORKCHOP, 12);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_RABBIT, 9);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKED_SALMON, 9);
+        ModFoodComponents.registerSanityFood(FoodComponents.COOKIE, 12);
         ModFoodComponents.registerSanityFood(FoodComponents.DRIED_KELP, 0.5f);
         ModFoodComponents.registerSanityFood(FoodComponents.ENCHANTED_GOLDEN_APPLE, -25);
         ModFoodComponents.registerSanityFood(FoodComponents.GOLDEN_APPLE, -12);
         ModFoodComponents.registerSanityFood(FoodComponents.GOLDEN_CARROT, -2);
-        ModFoodComponents.registerSanityFood(FoodComponents.HONEY_BOTTLE, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.HONEY_BOTTLE, 12);
         ModFoodComponents.registerSanityFood(FoodComponents.MELON_SLICE, 2);
-        ModFoodComponents.registerSanityFood(FoodComponents.MUSHROOM_STEW, 8);
+        ModFoodComponents.registerSanityFood(FoodComponents.MUSHROOM_STEW, 6);
         ModFoodComponents.registerSanityFood(FoodComponents.MUTTON, -8);
         ModFoodComponents.registerSanityFood(FoodComponents.POISONOUS_POTATO, -16);
         ModFoodComponents.registerSanityFood(FoodComponents.PORKCHOP, -8);
         ModFoodComponents.registerSanityFood(FoodComponents.POTATO, 2);
         ModFoodComponents.registerSanityFood(FoodComponents.PUFFERFISH, -16);
-        ModFoodComponents.registerSanityFood(FoodComponents.PUMPKIN_PIE, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.PUMPKIN_PIE, 12);
         ModFoodComponents.registerSanityFood(FoodComponents.RABBIT, -12);
-        ModFoodComponents.registerSanityFood(FoodComponents.RABBIT_STEW, 16);
+        ModFoodComponents.registerSanityFood(FoodComponents.RABBIT_STEW, 12);
         ModFoodComponents.registerSanityFood(FoodComponents.ROTTEN_FLESH, -16);
         ModFoodComponents.registerSanityFood(FoodComponents.SALMON, -12);
         ModFoodComponents.registerSanityFood(FoodComponents.SPIDER_EYE, -16);
