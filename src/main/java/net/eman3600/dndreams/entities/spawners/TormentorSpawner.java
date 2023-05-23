@@ -72,7 +72,7 @@ public class TormentorSpawner implements Spawner {
 
         if (choice.getY() >= world.getTopY() || maxHeight < choice.getY()) {
             return null;
-        } else if (!SpawnHelper.isClearForSpawn(world, choice, world.getBlockState(choice), world.getFluidState(choice), ModEntities.TORMENTOR)) {
+        } else if (!SpawnHelper.isClearForSpawn(world, choice, world.getBlockState(choice), world.getFluidState(choice), ModEntities.TORMENTOR) || !TormentorEntity.isValidNaturalSpawn(ModEntities.TORMENTOR, world, SpawnReason.NATURAL, choice, world.random)) {
             return findValidSpawn(world, choice.add(0, 1, 0), maxHeight);
         }
 

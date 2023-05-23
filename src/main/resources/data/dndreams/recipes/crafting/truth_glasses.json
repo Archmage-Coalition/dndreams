@@ -1,8 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " C ",
-    " # ",
+    "C#D",
     "MXM"
   ],
   "key": {
@@ -14,6 +13,9 @@
     },
 	"C": {
       "item": "dndreams:mellifluous_hunger"
+    },
+	"D": {
+      "item": "dndreams:imprisoned_fear"
     },
 	"M": {
       "item": "dndreams:charged_shard"

@@ -42,10 +42,6 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     public static TrackedData<Boolean> WOVEN = DataTracker.registerData(TormentorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<Boolean> CORPOREAL = DataTracker.registerData(TormentorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    public static TrackedData<Integer> BORED_TICKS = DataTracker.registerData(TormentorEntity.class, TrackedDataHandlerRegistry.INTEGER);
-
-    private static final String BORED_KEY = "BoredTicks";
-    private static final int LEAVE_TIME = 1800;
 
 
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
@@ -88,14 +84,14 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         super.initDataTracker();
         this.getDataTracker().startTracking(WOVEN, false);
         this.getDataTracker().startTracking(CORPOREAL, false);
-        this.getDataTracker().startTracking(BORED_TICKS, 0);
     }
 
     public static DefaultAttributeContainer.Builder createTormentorAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0d)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0d)
+                .add(EntityAttributes.GENERIC_ARMOR, 8.0d)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 28.0d);
     }
 
@@ -120,16 +116,6 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
                 } else {
                     getTorment(player).damageSanity(2);
                 }
-            }
-
-            if (!isCorporeal()) {
-                getDataTracker().set(BORED_TICKS, getDataTracker().get(BORED_TICKS) + 1);
-
-                if (getDataTracker().get(BORED_TICKS) > LEAVE_TIME) {
-                    remove(RemovalReason.DISCARDED);
-                }
-            } else if (getDataTracker().get(BORED_TICKS) > 0) {
-                getDataTracker().set(BORED_TICKS, 0);
             }
         }
     }
@@ -180,7 +166,6 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
         nbt.putBoolean(WOVEN_KEY, tracker.get(WOVEN));
         nbt.putBoolean(CORPOREAL_KEY, tracker.get(CORPOREAL));
-        nbt.putInt(BORED_KEY, tracker.get(BORED_TICKS));
 
     }
 
@@ -195,9 +180,6 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         }
         if (nbt.contains(CORPOREAL_KEY)) {
             tracker.set(CORPOREAL, nbt.getBoolean(CORPOREAL_KEY));
-        }
-        if (nbt.contains(BORED_KEY)) {
-            tracker.set(BORED_TICKS, nbt.getInt(BORED_KEY));
         }
     }
 
