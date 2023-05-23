@@ -13,7 +13,6 @@ public interface SanityEntity {
     boolean isCorporeal();
 
     boolean canView(PlayerEntity player);
-    boolean canInteract(PlayerEntity player);
 
     /**
      * Calculates the opacity that the specified player should see the tormentor at.

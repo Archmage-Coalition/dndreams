@@ -12,7 +12,9 @@ import java.util.List;
 
 public class LiquidVoidItem extends DrinkableItem {
     public LiquidVoidItem(Settings settings) {
-        super(settings, false, new StatusEffectInstance(ModStatusEffects.BRAINFREEZE, 600));
+        super(settings, false,
+                new StatusEffectInstance(ModStatusEffects.BRAINFREEZE, 600),
+                new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 600));
     }
 
 

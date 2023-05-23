@@ -36,6 +36,10 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     public static TrackedData<Boolean> WOVEN = DataTracker.registerData(TormentorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<Boolean> CORPOREAL = DataTracker.registerData(TormentorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static TrackedData<Integer> BORED_TICKS = DataTracker.registerData(TormentorEntity.class, TrackedDataHandlerRegistry.INTEGER);
+
+    private static final String BORED_KEY = "BoredTicks";
+    private final int LEAVE_TIME = 3600;
 
 
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
@@ -71,7 +75,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true, target -> {
             float sanity = getSanity((PlayerEntity) target);
 
-            return sanity <= 25;
+            return sanity <= 25 || isWoven();
         }));
     }
 
@@ -80,34 +84,48 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         super.initDataTracker();
         this.getDataTracker().startTracking(WOVEN, false);
         this.getDataTracker().startTracking(CORPOREAL, false);
+        this.getDataTracker().startTracking(BORED_TICKS, 0);
     }
 
     public static DefaultAttributeContainer.Builder createTormentorAttributes() {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0d)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0d);
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0d)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 28.0d);
     }
 
     @Override
     public void tick() {
         super.tick();
 
-        if (getTarget() != null && !isCorporeal()) {
+        if (!world.isClient()) {
+            if (getTarget() != null && !isCorporeal()) {
 
-            setCorporeal(true);
-        } else if (getTarget() == null && isCorporeal() && !isWoven()) {
+                setCorporeal(true);
+            } else if (getTarget() == null && isCorporeal() && !isWoven()) {
 
-            setCorporeal(false);
-        }
-
-        if (getTarget() instanceof PlayerEntity player) {
-
-            if (getSanity(player) > 40) {
-                setTarget(null);
                 setCorporeal(false);
-            } else {
-                getTorment(player).damageSanity(2);
+            }
+
+            if (getTarget() instanceof PlayerEntity player) {
+
+                if (getSanity(player) > 40 && !isWoven()) {
+                    setTarget(null);
+                    setCorporeal(false);
+                } else {
+                    getTorment(player).damageSanity(2);
+                }
+            }
+
+            if (!isCorporeal()) {
+                getDataTracker().set(BORED_TICKS, getDataTracker().get(BORED_TICKS) + 1);
+
+                if (getDataTracker().get(BORED_TICKS) > LEAVE_TIME) {
+                    remove(RemovalReason.DISCARDED);
+                }
+            } else if (getDataTracker().get(BORED_TICKS) > 0) {
+                getDataTracker().set(BORED_TICKS, 0);
             }
         }
     }
@@ -158,6 +176,8 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
         nbt.putBoolean(WOVEN_KEY, tracker.get(WOVEN));
         nbt.putBoolean(CORPOREAL_KEY, tracker.get(CORPOREAL));
+        nbt.putInt(BORED_KEY, tracker.get(BORED_TICKS));
+
     }
 
     @Override
@@ -171,6 +191,9 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         }
         if (nbt.contains(CORPOREAL_KEY)) {
             tracker.set(CORPOREAL, nbt.getBoolean(CORPOREAL_KEY));
+        }
+        if (nbt.contains(BORED_KEY)) {
+            tracker.set(BORED_TICKS, nbt.getInt(BORED_KEY));
         }
     }
 
@@ -194,18 +217,18 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     }
 
     @Override
-    public boolean canInteract(PlayerEntity player) {
-        return false;
+    public boolean canHit() {
+        return isCorporeal();
     }
 
     @Override
     public float renderedOpacity(PlayerEntity player) {
-        return isCorporeal() ? MathHelper.clamp(1f - (getSanity(player))/100f, 0, 1) : MathHelper.clamp(1f - (getSanity(player))/50f, 0, 1);
+        return isWoven() ? .85f : isCorporeal() ? MathHelper.clamp(1f - (getSanity(player))/150f + .1f, .1f, .85f) : MathHelper.clamp((1f - (getSanity(player))/50f) * .75f + .1f, .1f, .75f);
     }
 
     @Override
     public float renderedClarity(PlayerEntity player) {
-        return isCorporeal() ? 1 : renderedOpacity(player);
+        return isWoven() ? 1f : isCorporeal() ? MathHelper.clamp(1f - (getSanity(player))/100f, 0, 1) : MathHelper.clamp((1f - (getSanity(player))/50f) * .3f, 0, 1);
     }
 
     @Override

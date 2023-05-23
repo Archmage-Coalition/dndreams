@@ -25,7 +25,7 @@ public class TormentorEntityRenderer extends GeoEntityRenderer<TormentorEntity> 
 
     public TormentorEntityRenderer(EntityRendererFactory.Context renderManager) {
         super(renderManager, new TormentorEntityModel());
-        this.shadowOpacity = 0;
+        this.shadowOpacity = 0f;
     }
 
     @Override
