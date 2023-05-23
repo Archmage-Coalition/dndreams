@@ -111,6 +111,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         return MathHelper.clamp((float)sanityDamageTicks/SANITY_DAMAGE, 0, 1);
     }
 
+    public int getMaxTormentors() {
+        float effective = getAttunedSanity();
+
+        return effective <= 5 ? 12 : effective <= 50 ? (int)(6f - (effective/10f)) : 0;
+    }
+
     @Override
     public void damageSanity(int increment) {
         sanityDamageTicks = MathHelper.clamp(sanityDamageTicks + increment, 0, SANITY_DAMAGE);

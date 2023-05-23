@@ -18,7 +18,8 @@
                     {
                       "condition": "dndreams:sanity",
                       "entity": "this",
-					  "sanity": 25
+					  "sanity": 25,
+					  "mad": true
                     }
                   ]
                 },
@@ -27,12 +28,9 @@
                   "name": "dndreams:succulent_apple",
                   "conditions": [
 				    {
-					  "condition": "minecraft:inverted",
-					  "term": {
-                        "condition": "dndreams:sanity",
-                        "entity": "this",
-					    "sanity": 85
-                      }
+					  "condition": "dndreams:sanity",
+                      "entity": "this",
+					  "sanity": 85
 					}
                   ]
                 },

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    " # ",
+    "MXM"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:echo_shard"
+    },
+	"X": {
+      "item": "dndreams:shade_cloth"
+    },
+	"C": {
+      "item": "dndreams:mellifluous_hunger"
+    },
+	"M": {
+      "item": "dndreams:charged_shard"
+    }
+  },
+  "result": {
+    "item": "dndreams:truth_glasses"
+  }
+}
