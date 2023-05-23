@@ -25,9 +25,7 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 0), 1.0F)
             .alwaysEdible().build(), -4);
     public static final FoodComponent POISON_APPLE = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(0.0F)
-            .statusEffect(new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 400, 0), 1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 600, 1), 1.0F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.WITHER, 200, 1), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)
             .alwaysEdible().build(), -16);
     public static final FoodComponent WITHER_BUD = registerSanityFood(new FoodComponent.Builder().hunger(2).saturationModifier(1.0F)

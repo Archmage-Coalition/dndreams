@@ -4,6 +4,7 @@ import dev.emi.trinkets.api.TrinketsApi;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
+import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
@@ -18,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -114,7 +116,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public int getMaxTormentors() {
         float effective = getAttunedSanity();
 
-        return effective <= 5 ? 12 : effective <= 50 ? (int)(6f - (effective/10f)) : 0;
+        return effective <= 5 ? 24 : effective <= 50 ? (int)(12f - (effective/5f)) : 0;
     }
 
     @Override
@@ -320,6 +322,22 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         }
 
         return (posStructure != null && posStructure.isWithinDistance(pos, 80)) || (posBiome != null && posBiome.isWithinDistance(pos, 30));
+    }
+
+    public static boolean canSpawnTormentor(ServerWorld world, BlockPos pos) {
+        int allowed = 0;
+        int current = 0;
+        Box searchRegion = Box.from(Vec3d.of(pos)).expand(120, 40, 120);
+
+        for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, searchRegion)) {
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            allowed += torment.getMaxTormentors();
+        }
+
+        current += world.getNonSpectatingEntities(TormentorEntity.class, searchRegion).size();
+
+        return current < allowed;
     }
 
     private static class InsanityRangePair {

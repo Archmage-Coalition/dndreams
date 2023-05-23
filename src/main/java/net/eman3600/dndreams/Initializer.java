@@ -69,6 +69,7 @@ public class Initializer implements ModInitializer {
 
 		ModParticles.registerParticles();
 		ModEntities.registerEntities();
+		ModEntities.registerSpawns();
 
 		ModDimensions.registerDimensions();
 		ModBiomes.registerBiomes();

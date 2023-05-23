@@ -10,8 +10,10 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.Heightmap;
 
 import static net.eman3600.dndreams.Initializer.MODID;
 import static net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity.createBloodSkeletonAttributes;
@@ -141,5 +143,10 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(BLOOD_SKELETON, createBloodSkeletonAttributes());
         FabricDefaultAttributeRegistry.register(WARDEN_RAGDOLL, createWardenRagdollAttributes());
         FabricDefaultAttributeRegistry.register(TORMENTOR, createTormentorAttributes());
+    }
+
+    public static void registerSpawns() {
+
+        SpawnRestriction.register(TORMENTOR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TormentorEntity::isValidNaturalSpawn);
     }
 }

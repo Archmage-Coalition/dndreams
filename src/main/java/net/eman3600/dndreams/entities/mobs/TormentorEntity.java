@@ -8,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -23,8 +24,9 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -43,7 +45,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     public static TrackedData<Integer> BORED_TICKS = DataTracker.registerData(TormentorEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     private static final String BORED_KEY = "BoredTicks";
-    private final int LEAVE_TIME = 3600;
+    private static final int LEAVE_TIME = 1800;
 
 
     private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
@@ -57,13 +59,11 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         super(ModEntities.TORMENTOR, world);
     }
 
-    public TormentorEntity(World world, boolean woven, Vec3d pos) {
+    public TormentorEntity(World world, boolean woven) {
         this(world);
 
         getDataTracker().set(WOVEN, woven);
         getDataTracker().set(CORPOREAL, woven);
-
-        setPosition(pos);
     }
 
     @Override
@@ -247,12 +247,12 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ENTITY_CREEPER_HURT;
+        return SoundEvents.ENTITY_VEX_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_CREEPER_DEATH;
+        return SoundEvents.ENTITY_VEX_DEATH;
     }
 
     @Override
@@ -278,5 +278,9 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
             ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(ModStatusEffects.HAUNTED, 25, 0, false, false, false), this);
         }
         return bl;
+    }
+
+    public static boolean isValidNaturalSpawn(EntityType<? extends TormentorEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        return !world.getBlockState(pos.down()).isAir();
     }
 }
