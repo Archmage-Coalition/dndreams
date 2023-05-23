@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.cardinal_components;
 
+import dev.emi.trinkets.api.TrinketsApi;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
@@ -21,10 +22,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 public class TormentComponent implements TormentComponentI, AutoSyncedComponent, ServerTickingComponent {
@@ -265,7 +263,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public boolean isAwakened() {
-        return player.hasStatusEffect(ModStatusEffects.THIRD_EYE);
+        try {
+            return player.hasStatusEffect(ModStatusEffects.THIRD_EYE) || TrinketsApi.getTrinketComponent(player).get().isEquipped(ModItems.TRUTH_GLASSES);
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     @Override

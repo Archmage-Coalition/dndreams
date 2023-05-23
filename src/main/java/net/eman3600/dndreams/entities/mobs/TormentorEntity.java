@@ -1,10 +1,13 @@
 package net.eman3600.dndreams.entities.mobs;
 
 import net.eman3600.dndreams.entities.ai.TormentorMeleeAttackGoal;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -12,6 +15,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -265,5 +269,14 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         }
 
         super.onDeath(damageSource);
+    }
+
+    @Override
+    public boolean tryAttack(Entity target) {
+        boolean bl = super.tryAttack(target);
+        if (bl && this.getMainHandStack().isEmpty() && target instanceof LivingEntity) {
+            ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(ModStatusEffects.HAUNTED, 25, 0, false, false, false), this);
+        }
+        return bl;
     }
 }

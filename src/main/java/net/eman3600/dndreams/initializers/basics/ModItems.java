@@ -41,6 +41,7 @@ import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.items.trinket.DissociationCharmItem;
 import net.eman3600.dndreams.items.trinket.FleetfootBandItem;
+import net.eman3600.dndreams.items.trinket.TruthGlassesItem;
 import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
@@ -414,6 +415,8 @@ public class ModItems {
             new FleetfootBandItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item DISSOCIATION_CHARM = registerItem("dissociation_charm",
             new DissociationCharmItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+    public static final Item TRUTH_GLASSES = registerItem("truth_glasses",
+            new TruthGlassesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
     // Staves
     public static final Item SPARK_STAFF = registerItem("spark_staff",

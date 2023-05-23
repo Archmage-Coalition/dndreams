@@ -19,7 +19,7 @@
   "item.dndreams.liquid_void.wrong_dimension": "This source is too weak",
   "item.dndreams.nightmare_fuel": "Nightmare Fuel",
   "item.dndreams.nightmare_fuel.tooltip.0": "§3The truth, manifested.",
-  "item.dndreams.nightmare_fuel.tooltip.1": "§3Eat at your own risk.",
+  "item.dndreams.nightmare_fuel.tooltip.1": "§3Consume at your own risk.",
   "item.dndreams.corrupt_scrap":  "Hellslate",
   "item.dndreams.shade_cloth":  "Horrific Veil",
   "item.dndreams.shade_cloth.tooltip":  "§3It's pure horror!",
@@ -36,7 +36,7 @@
   "item.dndreams.fidi_fruit": "Fruit of Fídi",
   "item.dndreams.archfuel": "Refined Fuel",
   "item.dndreams.refined_evil": "Refined Evil",
-  "item.dndreams.refined_evil.tooltip": "§4It emanates a menacing aura.",
+  "item.dndreams.refined_evil.tooltip": "§3It emanates a menacing aura.",
   "item.dndreams.crystal_mix": "Crystal Mix",
   "item.dndreams.vital_oil": "Oil of Vitality",
   "item.dndreams.soul_soup": "Spectral Soup",
@@ -227,6 +227,9 @@
   "item.dndreams.dissociation_charm": "Dissociation Charm",
   "item.dndreams.dissociation_charm.tooltip.0": "§3Prevents damage from teleportation.",
   "item.dndreams.dissociation_charm.tooltip.1": "§3Usually.",
+  "item.dndreams.truth_glasses": "Truth Lenses",
+  "item.dndreams.truth_glasses.tooltip.0": "§3See things how they ought to be",
+  "item.dndreams.truth_glasses.tooltip.1": "§3and expand your mind.",
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
 
