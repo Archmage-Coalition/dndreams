@@ -214,8 +214,13 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     }
 
+    @Inject(method = "tryUseTotem", at = @At("HEAD"), cancellable = true)
+    private void dndreams$tryUseTotem$mortality(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+        if (hasStatusEffect(ModStatusEffects.MORTAL)) cir.setReturnValue(false);
+    }
+
     @Inject(method = "tryUseTotem", at = @At("RETURN"), cancellable = true)
-    private void dndreams$tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+    private void dndreams$tryUseTotem$stopDeath(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue()) {
             if ((Entity) this instanceof PlayerEntity player) {
                 DreamingComponent dream = EntityComponents.DREAMING.get(player);
