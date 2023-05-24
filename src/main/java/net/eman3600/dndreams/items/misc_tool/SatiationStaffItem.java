@@ -41,15 +41,15 @@ public class SatiationStaffItem extends TooltipItem implements ManaCostItem, San
 
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.NEUTRAL, 0.7f, 1.3f);
 
-            player.getItemCooldownManager().set(this, 100);
+            player.getItemCooldownManager().set(this, 50);
             if (!player.isCreative()) stack.damage(1, user, p -> p.sendToolBreakStatus(player.getActiveHand()));
 
             if (world instanceof ServerWorld) {
                 HungerManager manager = player.getHungerManager();
 
-                manager.add(12, 1f);
+                manager.add(8, 1f);
 
-                player.heal(6);
+                player.heal(4);
             }
 
         }
@@ -80,12 +80,12 @@ public class SatiationStaffItem extends TooltipItem implements ManaCostItem, San
 
     @Override
     public int getBaseManaCost() {
-        return 25;
+        return 20;
     }
 
     @Override
     public float getBaseSanityCost() {
-        return 20;
+        return 10;
     }
 
     @Override

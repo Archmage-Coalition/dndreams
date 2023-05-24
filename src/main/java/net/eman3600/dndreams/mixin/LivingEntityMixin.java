@@ -9,6 +9,7 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
+import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.items.ModArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
@@ -295,7 +296,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @ModifyVariable(method = "damage", at = @At("HEAD"))
     private float dndreams$damage$affliction(float amount) {
-        if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead()) {
+        if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead() && getType() != ModEntities.TORMENTOR) {
             return (float) (amount * Math.pow(1.4f, this.getStatusEffect(ModStatusEffects.AFFLICTION).getAmplifier() + 1));
         } else return amount;
     }
@@ -402,7 +403,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @ModifyArg(method = "heal", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setHealth(F)V"))
     private float dndreams$heal$reclamation(float health) {
         float amountHealed = health - getHealth();
-        float bonus = amountHealed * (float)getAttributeValue(ModAttributes.PLAYER_RECLAMATION) - amountHealed;
+        float bonus = (amountHealed * (float)getAttributeValue(ModAttributes.PLAYER_RECLAMATION)) - amountHealed;
 
         return health + bonus;
     }

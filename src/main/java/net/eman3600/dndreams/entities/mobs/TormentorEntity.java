@@ -221,7 +221,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        return super.isInvulnerableTo(damageSource) || (!isCorporeal() && !damageSource.isOutOfWorld() && !((DamageSourceAccess)damageSource).isTransethereal());
+        return super.isInvulnerableTo(damageSource) || damageSource == DamageSource.DROWN || (!isCorporeal() && !damageSource.isOutOfWorld() && !((DamageSourceAccess)damageSource).isTransethereal());
     }
 
     @Override

@@ -1,13 +1,17 @@
 package net.eman3600.dndreams.mixin.server;
 
+import com.google.common.collect.ImmutableList;
 import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
 import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
+import net.eman3600.dndreams.entities.spawners.TormentorSpawner;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.WorldGenerationProgressListener;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.RegistryEntry;
@@ -15,19 +19,28 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.dimension.DimensionType;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
+import net.minecraft.world.level.ServerWorldProperties;
+import net.minecraft.world.level.storage.LevelStorage;
+import net.minecraft.world.spawner.Spawner;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executor;
 import java.util.function.Supplier;
 
 @Mixin(ServerWorld.class)
 public abstract class ServerWorldMixin extends World implements StructureWorldAccess {
     @Shadow protected abstract boolean addEntity(Entity entity);
+
+    @Mutable
+    @Shadow @Final private List<Spawner> spawners;
 
     protected ServerWorldMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, RegistryEntry<DimensionType> dimension, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed, int maxChainedNeighborUpdates) {
         super(properties, registryRef, dimension, profiler, isClient, debugWorld, seed, maxChainedNeighborUpdates);
@@ -65,5 +78,22 @@ public abstract class ServerWorldMixin extends World implements StructureWorldAc
         }
 
         return result;
+    }
+
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void dndreams$init(MinecraftServer server, Executor workerExecutor, LevelStorage.Session session, ServerWorldProperties properties, RegistryKey worldKey, DimensionOptions dimensionOptions, WorldGenerationProgressListener worldGenerationProgressListener, boolean debugWorld, long seed, List spawners, boolean shouldTickTime, CallbackInfo ci) {
+        ArrayList<Spawner> tempList = new ArrayList<>();
+
+        for (Object item: spawners) {
+            if (item instanceof Spawner spawner) {
+                tempList.add(spawner);
+            }
+        }
+
+        // New Spawners Added Here
+        tempList.add(new TormentorSpawner());
+
+
+        this.spawners = ImmutableList.copyOf(tempList);
     }
 }

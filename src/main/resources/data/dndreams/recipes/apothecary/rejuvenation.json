@@ -7,5 +7,5 @@
   "capacity": 5,
   "cost": 600,
   "effect": "dndreams:rejuvenation",
-  "duration": 6000
+  "duration": 3600
 }

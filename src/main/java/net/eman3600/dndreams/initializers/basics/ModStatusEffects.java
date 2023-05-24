@@ -33,7 +33,7 @@ public class ModStatusEffects {
     public static StatusEffect IMMOLATION = register("immolation", new InstantModStatusEffect(StatusEffectCategory.HARMFUL, 0xFF8A1A));
     public static StatusEffect GAS_MASK = register("gas_mask", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xEEEE11));
     public static StatusEffect CLEANSING = register("cleansing", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFFFF99));
-    public static StatusEffect REJUVENATION = register("rejuvenation", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFF1522)
+    public static StatusEffect REJUVENATION = register("rejuvenation", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff70e8)
             .addAttributeModifier(ModAttributes.PLAYER_RECLAMATION, "E8E0684F-42F6-9C0E-5972-0FC11C5872AA", 0.25f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
     public static StatusEffect DRAGONSOUL = register("dragonsoul", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9D050A)
             .addAttributeModifier(ModAttributes.PLAYER_REVIVAL, "E8E0684F-42F6-9C0E-5972-0FC11C5872AB", 1f, EntityAttributeModifier.Operation.ADDITION));
