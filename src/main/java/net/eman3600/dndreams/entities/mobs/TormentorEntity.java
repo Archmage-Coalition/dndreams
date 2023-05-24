@@ -19,6 +19,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -266,5 +267,10 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     public static boolean isValidNaturalSpawn(EntityType<? extends TormentorEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
         return !world.getBlockState(pos.down()).isAir();
+    }
+
+    @Override
+    public boolean canWalkOnFluid(FluidState state) {
+        return true;
     }
 }
