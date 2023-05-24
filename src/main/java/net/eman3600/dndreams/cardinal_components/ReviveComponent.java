@@ -13,6 +13,8 @@ public class ReviveComponent implements ReviveComponentI {
     /**
      * If the player can use revives
      */
+    public static final float REGEN = 5f;
+
     private boolean enabled = false;
     private float vitality = 0;
     private int revivesUsed = 0;
@@ -123,9 +125,8 @@ public class ReviveComponent implements ReviveComponentI {
             markDirty();
         }
 
-        float regen = (float) player.getAttributeValue(ModAttributes.PLAYER_RECLAMATION);
-        if (regen > 0 && revivesUsed > 0) {
-            addVitality(regen/1200);
+        if (revivesUsed > 0) {
+            addVitality(REGEN/1200);
             markDirty();
         }
 

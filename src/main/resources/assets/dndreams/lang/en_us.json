@@ -345,7 +345,7 @@
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",
   "attribute.dndreams.name.player.mana_regen": "Mana Regeneration",
   "attribute.dndreams.name.player.revival": "Revival",
-  "attribute.dndreams.name.player.reclamation": "Reclamation",
+  "attribute.dndreams.name.player.reclamation": "Healing Received",
   
   
   "item.minecraft.potion.effect.void_flow": "Potion of Unstable Mana",

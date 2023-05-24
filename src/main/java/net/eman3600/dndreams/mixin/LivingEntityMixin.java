@@ -8,6 +8,8 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.entity.ModAttributes;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.items.ModArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
@@ -19,6 +21,8 @@ import net.minecraft.block.FluidBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.AttributeContainer;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTracker;
@@ -45,10 +49,7 @@ import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -110,6 +111,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Shadow public abstract Iterable<ItemStack> getArmorItems();
 
     @Shadow public abstract boolean hasStackEquipped(EquipmentSlot slot);
+
+    @Shadow public abstract double getAttributeValue(EntityAttribute attribute);
 
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -216,7 +219,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "tryUseTotem", at = @At("HEAD"), cancellable = true)
     private void dndreams$tryUseTotem$mortality(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-        if (hasStatusEffect(ModStatusEffects.MORTAL)) cir.setReturnValue(false);
+        if (hasStatusEffect(ModStatusEffects.MORTAL) && world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) cir.setReturnValue(false);
     }
 
     @Inject(method = "tryUseTotem", at = @At("RETURN"), cancellable = true)
@@ -387,5 +390,20 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
                 EntityComponents.TORMENT.get(player).lowerSanity(-ModFoodComponents.FOODS_TO_SANITY.get(food));
             }
         }
+    }
+
+    @Inject(method = "createLivingAttributes", at = @At("RETURN"), cancellable = true)
+    private static void dndreams$createLivingAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
+        cir.setReturnValue(cir.getReturnValue()
+                .add(ModAttributes.PLAYER_RECLAMATION, 1d)
+        );
+    }
+
+    @ModifyArg(method = "heal", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setHealth(F)V"))
+    private float dndreams$heal$reclamation(float health) {
+        float amountHealed = health - getHealth();
+        float bonus = amountHealed * (float)getAttributeValue(ModAttributes.PLAYER_RECLAMATION) - amountHealed;
+
+        return health + bonus;
     }
 }

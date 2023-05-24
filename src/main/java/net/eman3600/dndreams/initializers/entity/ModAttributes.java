@@ -1,8 +1,8 @@
 package net.eman3600.dndreams.initializers.entity;
 
 import net.eman3600.dndreams.Initializer;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.attribute.ClampedEntityAttribute;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
