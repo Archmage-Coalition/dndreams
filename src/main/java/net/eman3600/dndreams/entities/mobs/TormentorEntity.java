@@ -123,10 +123,12 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     private <E extends IAnimatable> PlayState idlePlayPredicate(AnimationEvent<E> event) {
         AnimationBuilder builder = new AnimationBuilder();
 
-        builder.addAnimation("idle_arms", EDefaultLoopTypes.LOOP);
+
 
         if (event.isMoving()) {
-            builder.addAnimation("move", EDefaultLoopTypes.LOOP);
+            builder.addAnimation("move", EDefaultLoopTypes.HOLD_ON_LAST_FRAME);
+        } else {
+            builder.addAnimation("idle_arms", EDefaultLoopTypes.LOOP);
         }
 
 

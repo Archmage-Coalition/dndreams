@@ -27,7 +27,6 @@ import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
 import net.eman3600.dndreams.items.edge_series.SlumberingSwordItem;
 import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.hellsteel.*;
-import net.eman3600.dndreams.items.magic_bow.LightstringBow;
 import net.eman3600.dndreams.items.magic_bow.ManastringBow;
 import net.eman3600.dndreams.items.magic_bow.MindstringBow;
 import net.eman3600.dndreams.items.misc_armor.ManagoldArmorItem;
@@ -345,9 +344,7 @@ public class ModItems {
     public static final Item MANASTRING_BOW = registerItem("manastring_bow",
             new ManastringBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
     public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
-            new MindstringBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
-    public static final Item LIGHTSTRING_BOW = registerItem("lightstring_bow",
-            new LightstringBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
+            new MindstringBow(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(2145)));
 
     // Tormite Gear
     public static final Item TORMITE_SWORD = registerItem("tormite_sword",

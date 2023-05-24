@@ -24,6 +24,11 @@
         },
 		{
           "type": "minecraft:loot_table",
+          "name": "dndreams:chests/ancient_city/lights",
+		  "weight": 2
+        },
+		{
+          "type": "minecraft:loot_table",
           "name": "dndreams:chests/ancient_city/illager",
 		  "weight": 2
         },

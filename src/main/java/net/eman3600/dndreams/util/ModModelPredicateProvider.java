@@ -14,7 +14,6 @@ public class ModModelPredicateProvider {
     public static void registerModModels() {
         registerBow(ModItems.MANASTRING_BOW);
         registerBow(ModItems.MINDSTRING_BOW);
-        registerBow(ModItems.LIGHTSTRING_BOW);
 
         registerBloodlustItem(ModItems.CORRUPT_SWORD);
         registerBloodlustItem(ModItems.CORRUPT_PICKAXE);

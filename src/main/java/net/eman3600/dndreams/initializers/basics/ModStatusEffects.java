@@ -19,7 +19,7 @@ public class ModStatusEffects {
     public static StatusEffect LOOMING = register("looming", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x4400c2));
     public static StatusEffect SPIRIT_WARD = register("spirit_ward", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 11184640));
     public static StatusEffect BRAINFREEZE = register("brainfreeze", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2EBDFA));
-    public static StatusEffect DREAMY = register("dreamy", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 13369480).addAttributeModifier(ModAttributes.PLAYER_MANA_REGEN, "8C4A5112-9698-468A-B66A-A125711584F1", 0.6f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static StatusEffect DREAMY = register("dreamy", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xf5d4ce).addAttributeModifier(ModAttributes.PLAYER_MANA_REGEN, "8C4A5112-9698-468A-B66A-A125711584F1", 0.6f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
     public static StatusEffect VOID_FLOW = register("void_flow", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5592405));
     public static StatusEffect MEMORY = register("memory", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 26214).addAttributeModifier(ModAttributes.PLAYER_MAX_MANA, "F2A2BCE4-000B-4362-BE53-E9497D966A16", 15f, EntityAttributeModifier.Operation.ADDITION));
     public static StatusEffect SILENCE = register("silence", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 12303291));

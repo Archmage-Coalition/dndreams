@@ -136,7 +136,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                 this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, Color.MAGENTA.getRGB());
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, 0x009295);
             }
 
             if (manaComponent.shouldRender()) {
@@ -150,7 +150,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                 this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, Color.MAGENTA.getRGB());
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, 0x009295);
                 //drawCenteredText(matrices, client.textRenderer, mana + "/" + maxMana, (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
             }
         });

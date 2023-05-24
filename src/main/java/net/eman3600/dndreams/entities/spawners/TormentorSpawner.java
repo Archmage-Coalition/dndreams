@@ -8,6 +8,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.spawner.Spawner;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public class TormentorSpawner implements Spawner {
 
     private int cooldown = 0;
+    private static float PLAYER_DISTANCE = 8;
 
     @Override
     public int spawn(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals) {
@@ -44,7 +46,7 @@ public class TormentorSpawner implements Spawner {
 
                     BlockPos attemptPos = findSpawnFrom(world, world.random, playerPos);
 
-                    if (attemptPos != null && TormentComponent.canSpawnTormentor(world, attemptPos)) {
+                    if (attemptPos != null && TormentComponent.canSpawnTormentor(world, attemptPos) && world.getNonSpectatingEntities(PlayerEntity.class, new Box(attemptPos.getX() - PLAYER_DISTANCE, attemptPos.getY() - PLAYER_DISTANCE, attemptPos.getZ() - PLAYER_DISTANCE, attemptPos.getX() + PLAYER_DISTANCE, attemptPos.getY() + PLAYER_DISTANCE, attemptPos.getZ() + PLAYER_DISTANCE)).size() <= 0) {
 
                         TormentorEntity tormentor = ModEntities.TORMENTOR.create(world);
                         tormentor.refreshPositionAndAngles(attemptPos, 0, 0);
@@ -71,6 +73,7 @@ public class TormentorSpawner implements Spawner {
     private BlockPos findValidSpawn(ServerWorld world, BlockPos choice, int maxHeight) {
 
         if (choice.getY() >= world.getTopY() || maxHeight < choice.getY()) {
+            cooldown -= 80;
             return null;
         } else if (!SpawnHelper.isClearForSpawn(world, choice, world.getBlockState(choice), world.getFluidState(choice), ModEntities.TORMENTOR) || !TormentorEntity.isValidNaturalSpawn(ModEntities.TORMENTOR, world, SpawnReason.NATURAL, choice, world.random)) {
             return findValidSpawn(world, choice.add(0, 1, 0), maxHeight);

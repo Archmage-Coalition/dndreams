@@ -10,7 +10,23 @@
         {
           "type": "minecraft:item",
           "name": "dndreams:nightmare_fuel",
-		  "weight": 6,
+		  "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 7
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "dndreams:infernal_residue",
+		  "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -34,22 +50,6 @@
                 "type": "minecraft:uniform",
                 "min": 1,
                 "max": 2
-              },
-              "add": true
-            }
-          ]
-        },
-		{
-          "type": "minecraft:item",
-          "name": "dndreams:sculk_wood_sapling",
-		  "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 5
               },
               "add": true
             }

@@ -1,0 +1,94 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+		  "min": 1,
+		  "max": 2
+	  },
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+		  "weight": 4,
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "dndreams:flowing_spirit_bucket",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 1,
+                  "add": true
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "dimension": "dndreams:dream"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "dndreams:light_staff",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 1,
+                  "add": true
+                },
+				{
+                  "add": false,
+                  "damage": {
+                    "type": "minecraft:uniform",
+                    "max": 1.0,
+                    "min": 0.5
+                  },
+                  "function": "minecraft:set_damage"
+                }
+              ]
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:torch",
+		  "weight": 6,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 48
+              },
+              "add": true
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:set_potion",
+              "id": "minecraft:night_vision"
+            }
+          ],
+          "name": "minecraft:potion",
+          "weight": 4
+        }
+      ]
+    }
+  ]
+}
