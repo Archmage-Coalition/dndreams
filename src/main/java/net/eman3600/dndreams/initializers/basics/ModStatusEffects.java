@@ -34,7 +34,7 @@ public class ModStatusEffects {
     public static StatusEffect GAS_MASK = register("gas_mask", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xEEEE11));
     public static StatusEffect CLEANSING = register("cleansing", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFFFF99));
     public static StatusEffect REJUVENATION = register("rejuvenation", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFF1522)
-            .addAttributeModifier(ModAttributes.PLAYER_RECLAMATION, "E8E0684F-42F6-9C0E-5972-0FC11C5872AA", 5f, EntityAttributeModifier.Operation.ADDITION));
+            .addAttributeModifier(ModAttributes.PLAYER_RECLAMATION, "E8E0684F-42F6-9C0E-5972-0FC11C5872AA", 0.25f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
     public static StatusEffect DRAGONSOUL = register("dragonsoul", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9D050A)
             .addAttributeModifier(ModAttributes.PLAYER_REVIVAL, "E8E0684F-42F6-9C0E-5972-0FC11C5872AB", 1f, EntityAttributeModifier.Operation.ADDITION));
     public static StatusEffect MORTAL = register("mortal", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x440000));
