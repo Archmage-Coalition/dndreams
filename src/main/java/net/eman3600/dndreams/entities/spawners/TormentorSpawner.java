@@ -40,6 +40,8 @@ public class TormentorSpawner implements Spawner {
 
             if (component.getAttunedSanity() <= 50) {
 
+                System.out.println("Max Tormentors Allotted: " + component.getMaxTormentors());
+
                 int j = random.nextBetween(1, component.getMaxTormentors());
 
                 for (int i = 0; i < j; i++) {
@@ -58,25 +60,26 @@ public class TormentorSpawner implements Spawner {
             }
         }
 
+        System.out.println("Spawned Tormentors: " + spawns);
 
         return spawns;
     }
 
     @Nullable
     private BlockPos findSpawnFrom(ServerWorld world, Random random, BlockPos center) {
-        BlockPos choice = center.add(random.nextBetween(-120, 120), random.nextBetween(-40, 40), random.nextBetween(-120, 120));
+        BlockPos choice = center.add(random.nextBetween(-90, 90), random.nextBetween(-40, 40), random.nextBetween(-90, 90));
 
-        return findValidSpawn(world, choice, choice.getY() + 40);
+        return findValidSpawn(world, choice, 40);
     }
 
     @Nullable
-    private BlockPos findValidSpawn(ServerWorld world, BlockPos choice, int maxHeight) {
+    private BlockPos findValidSpawn(ServerWorld world, BlockPos choice, int iterationsLeft) {
 
-        if (choice.getY() >= world.getTopY() || maxHeight < choice.getY()) {
+        if (choice.getY() >= world.getTopY() || iterationsLeft <= 0) {
             cooldown -= 80;
             return null;
         } else if (!SpawnHelper.isClearForSpawn(world, choice, world.getBlockState(choice), world.getFluidState(choice), ModEntities.TORMENTOR) || !TormentorEntity.isValidNaturalSpawn(ModEntities.TORMENTOR, world, SpawnReason.NATURAL, choice, world.random)) {
-            return findValidSpawn(world, choice.add(0, 1, 0), maxHeight);
+            return findValidSpawn(world, choice.add(0, world.isAir(choice) ? -1 : 1, 0), iterationsLeft - 1);
         }
 
         return choice;

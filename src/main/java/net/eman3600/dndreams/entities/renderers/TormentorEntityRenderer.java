@@ -43,6 +43,6 @@ public class TormentorEntityRenderer extends GeoEntityRenderer<TormentorEntity> 
         float clarity = animatable.renderedClarity(MinecraftClient.getInstance().player);
         float opacity = animatable.renderedOpacity(MinecraftClient.getInstance().player);
 
-        return Color.ofRGBA(clarity, clarity, clarity, opacity);
+        return animatable.hurtTime > 0 ? Color.ofRGBA(clarity, clarity * .2f, clarity * .2f, opacity) : Color.ofRGBA(clarity, clarity, clarity, opacity);
     }
 }

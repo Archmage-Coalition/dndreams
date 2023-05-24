@@ -327,7 +327,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public static boolean canSpawnTormentor(ServerWorld world, BlockPos pos) {
         int allowed = 0;
         int current = 0;
-        Box searchRegion = Box.from(Vec3d.of(pos)).expand(120, 40, 120);
+        Box searchRegion = Box.from(Vec3d.of(pos)).expand(120, 70, 120);
 
         for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, searchRegion)) {
             TormentComponent torment = EntityComponents.TORMENT.get(player);

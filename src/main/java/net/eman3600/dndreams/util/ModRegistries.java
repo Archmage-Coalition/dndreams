@@ -164,6 +164,7 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos()) < 1 ? 4f : 0);
         TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
         TormentComponent.registerPredicate((player, torment) -> torment.getShroud() > 0 ? 2.5f : 0);
+        TormentComponent.registerPredicate(player -> player.hasStatusEffect(ModStatusEffects.HAUNTED) ? 180f : 0f);
     }
 
     private static void registerInsanityMobAuras() {
