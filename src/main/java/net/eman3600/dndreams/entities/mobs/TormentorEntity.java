@@ -66,7 +66,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     @Override
     protected void initGoals() {
 
-        this.goalSelector.add(0, new SwimGoal(this));
+        //this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(2, new TormentorMeleeAttackGoal(this, 1.0, false));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
@@ -271,6 +271,6 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     @Override
     public boolean canWalkOnFluid(FluidState state) {
-        return true;
+        return !state.isEmpty();
     }
 }
