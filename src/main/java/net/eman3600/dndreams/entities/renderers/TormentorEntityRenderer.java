@@ -35,7 +35,7 @@ public class TormentorEntityRenderer extends GeoEntityRenderer<TormentorEntity> 
 
     @Override
     public RenderLayer getRenderType(TormentorEntity animatable, float partialTick, MatrixStack poseStack, @Nullable VertexConsumerProvider bufferSource, @Nullable VertexConsumer buffer, int packedLight, Identifier texture) {
-        return RenderLayer.getEntityTranslucentCull(texture);
+        return RenderLayer.getEntityTranslucent(texture);
     }
 
     @Override

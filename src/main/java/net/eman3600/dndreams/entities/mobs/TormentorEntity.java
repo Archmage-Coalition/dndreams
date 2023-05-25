@@ -273,4 +273,14 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     public boolean canWalkOnFluid(FluidState state) {
         return !state.isEmpty();
     }
+
+    @Override
+    public boolean isPushable() {
+        return isCorporeal();
+    }
+
+    @Override
+    protected void pushAway(Entity entity) {
+        if (isCorporeal()) super.pushAway(entity);
+    }
 }
