@@ -68,6 +68,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
         //this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(2, new TormentorMeleeAttackGoal(this, 1.0, false));
+        this.goalSelector.add(3, new FleeEntityGoal<>(this, PlayerEntity.class, 4.0f, 1.0, 1.2, a -> a instanceof PlayerEntity player && getSanity(player) > 25 && !isCorporeal()));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
         this.goalSelector.add(8, new LookAroundGoal(this));
