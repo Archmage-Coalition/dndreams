@@ -212,7 +212,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     @Override
     public float renderedOpacity(PlayerEntity player) {
-        return isWoven() ? .85f : isCorporeal() ? MathHelper.clamp(1f - (getSanity(player))/150f + .1f, .1f, .85f) : MathHelper.clamp((1f - (getSanity(player))/50f) * .75f + .1f, .1f, .75f);
+        return isWoven() ? .5f : isCorporeal() ? MathHelper.clamp((1f - (getSanity(player))/150f) * .5f + .1f, .1f, .5f) : MathHelper.clamp((1f - (getSanity(player))/50f) * .3f + .1f, .1f, .3f);
     }
 
     @Override

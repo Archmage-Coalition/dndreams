@@ -12,14 +12,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
 public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
-    private final int MAX_XP_BONUS = 50;
-    private final int REGEN_REQUIRE = 60;
-    private final int RENDER_LINGER = 60;
-    private final int MIN_REGEN = -120;
+    private static final int MAX_XP_BONUS = 50;
+    private static final int REGEN_REQUIRE = 60;
 
     private int mana = 0;
     private int regenTime = 0;
-    private int renderTime = RENDER_LINGER;
     private final PlayerEntity player;
 
     public ManaComponent(PlayerEntity playerIn) {
@@ -49,12 +46,6 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             regenerate();
         } else if (regenTime != 0) {
             regenTime = 0;
-        }
-
-        if (mana < getManaMax()) {
-            renderTime = RENDER_LINGER;
-        } else if (renderTime > 0) {
-            renderTime--;
         }
 
         if (mana > getManaMax() && !player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) {
@@ -103,10 +94,6 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             return (int)(player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH) * 2);
         }
 
-        /*if (player.hasStatusEffect(ModStatusEffects.MEMORY)) {
-            manaFactors += 15 * (player.getStatusEffect(ModStatusEffects.MEMORY).getAmplifier() + 1);
-        }*/
-
         return Math.max(getBaseManaMax() + getXPBonus(), 0);
     }
 
@@ -122,11 +109,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public boolean shouldRender() {
-        return renderTime > 0 && getManaMax() > 0 && !player.hasStatusEffect(ModStatusEffects.LIFEMANA);
-    }
-
-    public void reRender() {
-        renderTime = RENDER_LINGER;
+        return getManaMax() > 0 && !player.hasStatusEffect(ModStatusEffects.LIFEMANA);
     }
 
     @Override
@@ -142,13 +125,11 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         }
         mana = Math.max(0, mana - cost);
         regenTime = Math.min(regenTime, -getRegenRequirement());
-        reRender();
     }
 
     @Override
     public void setMana(int value) {
         mana = value;
-        reRender();
     }
 
     public void chargeMana(int charge) {
@@ -160,20 +141,17 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             player.timeUntilRegen = 1;
             player.damage(DamageSource.MAGIC, 0.3f * ((float)mana - getManaMax()));
         }
-        reRender();
     }
 
     @Override
     public void readFromNbt(NbtCompound tag) {
         mana = tag.getInt("mana");
         regenTime = tag.getInt("regen_time");
-        renderTime = tag.getInt("render_time");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putInt("mana", mana);
         tag.putInt("regen_time", regenTime);
-        tag.putInt("render_time", renderTime);
     }
 }
