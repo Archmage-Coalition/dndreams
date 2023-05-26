@@ -508,7 +508,7 @@ public class ModItems {
 
     // Codex Memorium
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
-            new CodexItem(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
+            new CodexItem(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)).withTooltip(null, 2));
 
     // Magic Apples
     public static final Item SUCCULENT_APPLE = registerItem("succulent_apple",

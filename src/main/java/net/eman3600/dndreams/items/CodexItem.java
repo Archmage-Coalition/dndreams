@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.items;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
@@ -13,7 +12,7 @@ import vazkii.patchouli.common.base.PatchouliSounds;
 import vazkii.patchouli.common.book.Book;
 import vazkii.patchouli.common.book.BookRegistry;
 
-public class CodexItem extends Item {
+public class CodexItem extends TooltipItem {
     public CodexItem(Settings settings) {
         super(settings);
     }

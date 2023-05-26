@@ -89,9 +89,9 @@
   "item.dndreams.true_crowned_edge": "True Crowned Edge",
   
   "item.dndreams.book_of_dreams": "Codex Memorium",
+  "item.dndreams.book_of_dreams.tooltip.0": "§3A compendium of ancient knowledge.",
+  "item.dndreams.book_of_dreams.tooltip.1": "§3But who compiled it?",
   "item.dndreams.book_of_dreams.landing_text": "Reality is not a constant but a product of its perception.",
-  "item.dndreams.ashen_journal": "Ashen Journal",
-  "item.dndreams.ashen_journal.landing_text": "A dusty, tattered, and incomplete tome.",
   
   "item.dndreams.managold_ingot": "Managold Ingot",
   "item.dndreams.raw_managold": "Raw Managold",

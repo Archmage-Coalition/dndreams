@@ -50,7 +50,7 @@ public class ModFoodComponents {
         return registerSanityFood(new FoodComponent.Builder().hunger((int)(3 * planks)).saturationModifier(0.6f)
                 .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, (int)(80 * planks)), 1.0f)
                 .alwaysEdible()
-                .build(), planks * 2);
+                .build(), planks * 1.5f);
     }
 
     public static FoodComponent registerSanityFood(FoodComponent component, float sanity) {
