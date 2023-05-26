@@ -1,14 +1,15 @@
 package net.eman3600.dndreams.events.advancements;
 
 import com.google.gson.JsonObject;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.minecraft.advancement.criterion.AbstractCriterion;
 import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.advancement.criterion.ConstructBeaconCriterion;
-import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+
+import java.util.NoSuchElementException;
 
 import static net.eman3600.dndreams.Initializer.MODID;
 
@@ -21,7 +22,13 @@ public class AwakenedCriterion extends AbstractCriterion<AwakenedCriterion.Condi
     }
 
     public void trigger(ServerPlayerEntity player) {
-        this.trigger(player, conditions -> true);
+        this.trigger(player, conditions -> {
+            try {
+                return WorldComponents.BOSS_STATE.get(player.getServer()).dragonSlain();
+            } catch (NullPointerException | NoSuchElementException e) {
+                return false;
+            }
+        });
     }
 
     @Override
@@ -36,12 +43,8 @@ public class AwakenedCriterion extends AbstractCriterion<AwakenedCriterion.Condi
             super(ID, player);
         }
 
-        public static ConstructBeaconCriterion.Conditions create() {
-            return new ConstructBeaconCriterion.Conditions(EntityPredicate.Extended.EMPTY, NumberRange.IntRange.ANY);
-        }
-
-        public static ConstructBeaconCriterion.Conditions level(NumberRange.IntRange level) {
-            return new ConstructBeaconCriterion.Conditions(EntityPredicate.Extended.EMPTY, level);
+        public static AwakenedCriterion.Conditions create() {
+            return new Conditions(EntityPredicate.Extended.EMPTY);
         }
     }
 }

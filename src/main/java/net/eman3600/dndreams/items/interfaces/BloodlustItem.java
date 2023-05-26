@@ -46,10 +46,14 @@ public interface BloodlustItem {
     }
 
     default Text getTooltipBloodlust(World world) {
-        if (world.isClient && world instanceof ClientWorldAccess access && hasBloodlust(access.getPlayer())) {
-            return Text.translatable("tooltip.dndreams.bloodlust.active");
-        } else {
-            return Text.translatable("tooltip.dndreams.bloodlust");
+        try {
+            if (world.isClient && world instanceof ClientWorldAccess access && hasBloodlust(access.getPlayer())) {
+                return Text.translatable("tooltip.dndreams.bloodlust.active");
+            } else {
+                return Text.translatable("tooltip.dndreams.bloodlust");
+            }
+        } catch (NullPointerException e) {
+            return Text.literal("");
         }
     }
 
