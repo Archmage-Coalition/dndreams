@@ -1,3 +1,6 @@
 {
-  "parent": "dndreams:block/soul_candle"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "dndreams:item/soul_candle"
+    }
 }

@@ -1,3 +1,6 @@
 {
-  "parent": "dndreams:block/cosmic_candle"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "dndreams:item/cosmic_candle"
+    }
 }

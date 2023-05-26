@@ -138,14 +138,14 @@ public class GatewayComponent implements GatewayComponentI {
     private boolean loadStructure(ServerWorld world, BlockPos pos, Identifier templateName) {
         StructureTemplateManager structureTemplateManager = world.getStructureTemplateManager();
 
-        Optional optional;
+        Optional<StructureTemplate> optional;
         try {
             optional = structureTemplateManager.getTemplate(templateName);
         } catch (InvalidIdentifierException var6) {
             return false;
         }
 
-        return optional.isPresent() && this.placeStructure(world, (StructureTemplate) optional.get(), pos);
+        return optional.isPresent() && this.placeStructure(world, optional.get(), pos);
     }
 
     private boolean placeStructure(ServerWorld world, StructureTemplate template, BlockPos blockPos) {
