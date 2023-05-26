@@ -2,9 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "dndreams:ashen_journal"
+      "item": "minecraft:book"
     },
-    {
+	{
+      "item": "minecraft:amethyst_shard"
+    },
+	{
       "item": "dndreams:sculk_powder"
     }
   ],

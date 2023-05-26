@@ -506,9 +506,7 @@ public class ModItems {
     public static final Item TAINTED_PEARL = registerItem("tainted_pearl",
             new TaintedPearlItem(new FabricItemSettings().group(ItemGroup.MISC)));
 
-    // Book of Dreams
-    public static final Item ASHEN_JOURNAL = registerItem("ashen_journal",
-            new CodexItem(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
+    // Codex Memorium
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
             new CodexItem(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
 
