@@ -5,12 +5,7 @@
   "pages": [
 	{
       "type": "patchouli:text",
-      "text": "The old land of the Dark has been largely abandoned by the demons that once roamed. Only those untempted by dreams have remained."
-    },
-    {
-      "type": "patchouli:crafting",
-      "recipe": "minecraft:ender_eye",
-      "text": "Within this Hell, keys to the Land of Light can be synthesized."
+      "text": "All connections to this place have been severed, and newly made connections are guarded by a powerful apparition. Without any magic to your name, it would be foolish to take them."
     }
   ]
 }

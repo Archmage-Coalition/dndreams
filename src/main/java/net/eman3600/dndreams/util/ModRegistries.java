@@ -168,7 +168,7 @@ public class ModRegistries {
     }
 
     private static void registerInsanityMobAuras() {
-        TormentComponent.registerInsanityMob(LivingEntity::isUndead, 4f, 6f);
+        TormentComponent.registerInsanityMob(LivingEntity::isUndead, 4f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), -10f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && !WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), 10f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 20f, 40f);
