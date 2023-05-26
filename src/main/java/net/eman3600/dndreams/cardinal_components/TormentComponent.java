@@ -251,11 +251,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     @Override
-    public boolean shouldRender() {
-        return player.getWorld().getDimensionKey() != ModDimensions.GATEWAY_TYPE_KEY;
-    }
-
-    @Override
     public boolean shouldOffsetRender() {
         return EntityComponents.MANA.get(player).shouldRender();
     }

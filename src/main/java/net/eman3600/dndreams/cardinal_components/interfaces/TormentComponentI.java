@@ -23,7 +23,6 @@ public interface TormentComponentI extends Component {
     void lowerPerSecond(float value);
     void lowerPerMinute(float value);
 
-    boolean shouldRender();
     boolean shouldOffsetRender();
 
     boolean isAttuned();

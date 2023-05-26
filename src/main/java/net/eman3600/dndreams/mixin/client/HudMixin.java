@@ -233,7 +233,6 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
             float tormentMaxPercent = (component.getMaxSanity() / TormentComponent.MAX_SANITY);
             float tormentPercent = (component.getSanity() / TormentComponent.MAX_SANITY);
-            if (!component.shouldRender()) return;
             int skipV2 = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentMaxPercent));
             int skipV = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentPercent));
 

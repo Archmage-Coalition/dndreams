@@ -7,7 +7,6 @@ import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -61,7 +60,7 @@ public class CorruptSword extends SwordItem implements BloodlustItem, MagicDamag
 
     @Override
     public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit) {
-        if (user.getAttackCooldownProgress(0.5f) > 0.9f && hit instanceof LivingEntity target) {
+        if (user.getAttackCooldownProgress(0.5f) > 0.9f && hit instanceof LivingEntity target && hasBloodlust(user)) {
             target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 140), user);
             target.timeUntilRegen = 8;
             target.damage(BloodlustItem.hemorrhage(user), getMagicDamage(stack));

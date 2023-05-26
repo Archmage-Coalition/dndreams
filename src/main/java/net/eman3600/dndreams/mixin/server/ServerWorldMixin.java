@@ -6,6 +6,7 @@ import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
 import net.eman3600.dndreams.entities.spawners.TormentorSpawner;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -91,7 +92,9 @@ public abstract class ServerWorldMixin extends World implements StructureWorldAc
         }
 
         // New Spawners Added Here
-        tempList.add(new TormentorSpawner());
+        if (getRegistryKey() != ModDimensions.GATEWAY_DIMENSION_KEY) {
+            tempList.add(new TormentorSpawner());
+        }
 
 
         this.spawners = ImmutableList.copyOf(tempList);
