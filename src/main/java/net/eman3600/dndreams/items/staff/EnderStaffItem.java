@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.items.staff;
 
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
@@ -30,7 +31,7 @@ public class EnderStaffItem extends TooltipItem implements ManaCostItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        if (canAffordMana(user, stack)) {
+        if (canAffordMana(user, stack) && !ModStatusEffects.shouldRestrict(user)) {
             spendMana(user, stack);
 
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_ENDER_PEARL_THROW, SoundCategory.NEUTRAL, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));

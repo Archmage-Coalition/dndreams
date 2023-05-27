@@ -37,7 +37,7 @@ public class TeleportStaffItem extends TooltipItem implements ManaCostItem {
         ItemStack stack = user.getStackInHand(hand);
         HitResult target = user.raycast(16, 0, false);
 
-        if (canAffordMana(user, stack) && user.squaredDistanceTo(target.getPos()) <= 225) {
+        if (canAffordMana(user, stack) && !ModStatusEffects.shouldRestrict(user) && user.squaredDistanceTo(target.getPos()) <= 225) {
 
             spendMana(user, stack);
 

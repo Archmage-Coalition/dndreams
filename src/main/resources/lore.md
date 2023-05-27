@@ -84,15 +84,17 @@ Once inside, Elrunez was able to fully embrace the madness of unreality and be t
 ## Pnevma, Ender Dragon
 The Ender Dragon was constructed by Elrunez to drown out the force of reality. Made of nightmares and madness, Pnevma plagues the End and suppresses the World Fountain by sponging up its energy. The dragon thusly can withstand the force of reality and even wield it despite being an entity of insanity. This has dried up the minds of the endermen living in the End, stealing their wits and binding them to the will of Pnevma.
 
+This task has been taxing to the element of imagination and has neutralized it somewhat. This has prevented the creation of dream powder.
+
 ## The Wither, Hand of the Plague
 An amalgamation of failed simulacrums, the Wither is the embodiment of the decaying force of the affliction that created the skeletons. It cares only to infect intelligent life and was the main spreader of the decay. Once its corrupted purpose was served, it collapsed into a heap of bones and skulls.
 
-Reawakened by the player, the Wither's new purpose is to kill them and any nearby townsfolk if the player was so foolish as to summon the Wither near a village. When slain, it will drop its nether star: a crystalized power source formed from electrified souls.
+Reawakened by the player, the Wither's new purpose is to kill them and any other sapient beings nearby. When slain, it will drop its nether star: a crystalized power source formed from electrified souls.
 
 ## Architects' Siege & The Wraith King
 The siege is begun by an influx of power in the ancient portal, twisted by madness to allow the spirits of the dead to come forth, twisted by sculk and madness. The portal, while stabilized by Elrunez, is tainted by insanity and will not become usable until the madness settles.
 
-As the warden is drained and broken to power the ancient portal, the nightmare takes its remains and rebirths it as the Wraith King. It is a being of madness, and its nightmarish presence must be slain to settle the insanity.
+The energy stolen from the warden by the ancient portal eventually retakes the shape of the warden, now an entity only of mind, soul, and madness. Destroying this entity will stabilize the portal.
 
 
 # Miscellanious Entities
