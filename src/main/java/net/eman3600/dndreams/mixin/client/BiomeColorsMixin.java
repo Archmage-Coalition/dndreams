@@ -18,7 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BiomeColors.class)
 public abstract class BiomeColorsMixin {
     @Unique
-    private static int DREAM_COLOR = 0x009999;
+    private static final int DREAM_COLOR = 0x009999;
+
+    @Unique
+    private static final int DREAM_WATER_COLOR = 0x006699;
 
     @Inject(method = "getColor", at = @At("HEAD"), cancellable = true)
     private static void dndreams$getColor(BlockRenderView world, BlockPos pos, ColorResolver resolver, CallbackInfoReturnable<Integer> cir) {
@@ -38,6 +41,13 @@ public abstract class BiomeColorsMixin {
     private static void dndreams$getFoliageColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
         if (isDream(world)) {
             cir.setReturnValue(DREAM_COLOR);
+        }
+    }
+
+    @Inject(method = "getWaterColor", at = @At("HEAD"), cancellable = true)
+    private static void dndreams$getWaterColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
+        if (isDream(world)) {
+            cir.setReturnValue(DREAM_WATER_COLOR);
         }
     }
 

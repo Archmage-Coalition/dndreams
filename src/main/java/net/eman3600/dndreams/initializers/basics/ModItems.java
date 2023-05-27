@@ -6,10 +6,8 @@ import net.eman3600.dndreams.entities.projectiles.BrewLiquidEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.items.CodexItem;
-import net.eman3600.dndreams.items.DreamyItem;
 import net.eman3600.dndreams.items.MysticStaffItem;
 import net.eman3600.dndreams.items.TooltipItem;
-import net.eman3600.dndreams.items.block_item.AliasedDreamyBlockItem;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
@@ -64,7 +62,7 @@ public class ModItems {
 
     // Dream Powder
     public static final Item DREAM_POWDER = registerItem("dream_powder",
-            new DreamyItem(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Sculk Powder
     public static final Item SCULK_POWDER = registerItem("sculk_powder",
@@ -542,7 +540,7 @@ public class ModItems {
 
     // Applethorn Seeds
     public static final Item APPLETHORN_SEEDS = registerItem("applethorn_seeds",
-            new AliasedDreamyBlockItem(ModBlocks.APPLETHORN, new FabricItemSettings().group(ItemGroup.MISC)));
+            new AliasedBlockItem(ModBlocks.APPLETHORN, new FabricItemSettings().group(ItemGroup.MISC)));
 
     // Wither Blossom Seeds
     public static final Item WITHER_BLOSSOM_SEEDS = registerItem("wither_blossom_seeds",

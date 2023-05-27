@@ -30,6 +30,11 @@
 		{
           "type": "minecraft:loot_table",
           "name": "dndreams:chests/ancient_city/illager",
+		  "weight": 3
+        },
+		{
+          "type": "minecraft:loot_table",
+          "name": "dndreams:chests/ancient_city/herbs",
 		  "weight": 2
         },
 		{
