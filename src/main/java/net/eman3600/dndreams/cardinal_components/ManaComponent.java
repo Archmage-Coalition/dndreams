@@ -6,6 +6,7 @@ import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -83,6 +84,12 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         }*/
         if (player.getWorld().getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
             regenRate *= 3f;
+        }
+
+        if (TormiteArmorItem.wornPieces(player) > 0) {
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            regenRate *= 1f + (TormiteArmorItem.wornPieces(player) * (1f - torment.getAttunedSanity()/100) * .375f);
         }
 
         return (int)regenRate;

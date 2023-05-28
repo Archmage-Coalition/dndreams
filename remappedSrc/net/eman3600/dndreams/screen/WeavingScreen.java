@@ -27,7 +27,7 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
     protected void init() {
         super.init();
         this.narrow = this.width < 379;
-        this.titleX = 34;
+        this.titleX = 39;
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {

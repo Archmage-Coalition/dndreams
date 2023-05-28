@@ -2,6 +2,7 @@ package net.eman3600.dndreams.items.hellsteel;
 
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.items.ModArmorItem;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -33,6 +34,10 @@ public class CorruptArmorItem extends ModArmorItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("tooltip.dndreams.corrupt_armor"));
         tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
+
+        if (world instanceof ClientWorldAccess access && access.getPlayer() != null && wornPieces(access.getPlayer()) >= 4) {
+            tooltip.add(Text.translatable("tooltip.dndreams.corrupt_armor.set_bonus"));
+        }
     }
 
     public static int wornPieces(Entity entity) {
