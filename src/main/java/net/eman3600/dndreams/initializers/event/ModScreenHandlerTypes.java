@@ -1,10 +1,10 @@
 package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.screen.AttunementScreenHandler;
-import net.eman3600.dndreams.screen.RefineryScreenHandler;
-import net.eman3600.dndreams.screen.SmokestackScreenHandler;
-import net.eman3600.dndreams.screen.WeavingScreenHandler;
+import net.eman3600.dndreams.screens.AttunementScreenHandler;
+import net.eman3600.dndreams.screens.RefineryScreenHandler;
+import net.eman3600.dndreams.screens.SmokestackScreenHandler;
+import net.eman3600.dndreams.screens.WeavingScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;

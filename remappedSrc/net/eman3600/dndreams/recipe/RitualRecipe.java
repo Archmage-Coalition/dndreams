@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.recipe;
+package net.eman3600.dndreams.recipes;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

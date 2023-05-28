@@ -6,8 +6,7 @@ import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
-import net.eman3600.dndreams.recipe.WeavingShapedRecipe;
-import net.eman3600.dndreams.recipe.WeavingShapelessRecipe;
+import net.eman3600.dndreams.recipes.WeavingShapedRecipe;
 
 import java.util.ArrayList;
 import java.util.Collections;

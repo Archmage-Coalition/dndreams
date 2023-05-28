@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.blocks;
 
-import net.eman3600.dndreams.screen.WeavingScreenHandler;
+import net.eman3600.dndreams.screens.WeavingScreenHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;

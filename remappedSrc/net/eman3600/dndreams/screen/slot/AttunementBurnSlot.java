@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.screen.slot;
+package net.eman3600.dndreams.screens.slot;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;

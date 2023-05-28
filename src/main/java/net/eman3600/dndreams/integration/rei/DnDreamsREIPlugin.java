@@ -15,10 +15,9 @@ import net.eman3600.dndreams.integration.rei.display.*;
 import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
-import net.eman3600.dndreams.recipe.*;
+import net.eman3600.dndreams.recipes.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
 import java.util.List;

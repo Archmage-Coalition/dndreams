@@ -57,12 +57,12 @@ public class LightstringBow extends MagicBow implements PowerCostItem, SanityCos
     }
 
     @Override
-    public boolean isPermanent(ItemStack stack) {
+    public boolean isSanityPermanent(ItemStack stack) {
         return false;
     }
 
     @Override
-    public boolean isOptional(ItemStack stack) {
+    public boolean isSanityOptional(ItemStack stack) {
         return true;
     }
 }

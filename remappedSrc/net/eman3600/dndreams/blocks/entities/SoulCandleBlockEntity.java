@@ -4,7 +4,7 @@ import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.items.WaystoneItem;
 import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
-import net.eman3600.dndreams.recipe.RitualRecipe;
+import net.eman3600.dndreams.recipes.RitualRecipe;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual.CandleTuning;
 import net.eman3600.dndreams.rituals.setup.AbstractRitual.Ring;

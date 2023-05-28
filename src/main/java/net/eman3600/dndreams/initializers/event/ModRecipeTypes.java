@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.recipe.*;
+import net.eman3600.dndreams.recipes.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

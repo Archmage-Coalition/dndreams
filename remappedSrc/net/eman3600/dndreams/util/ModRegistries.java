@@ -10,7 +10,7 @@ import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
 import net.eman3600.dndreams.mixin_interfaces.ComposterBlockAccess;
-import net.eman3600.dndreams.screen.slot.AttunementBurnSlot;
+import net.eman3600.dndreams.screens.slot.AttunementBurnSlot;
 import net.eman3600.dndreams.util.data.EnhancementType;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;

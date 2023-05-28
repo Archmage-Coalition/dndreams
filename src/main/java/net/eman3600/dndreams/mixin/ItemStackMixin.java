@@ -4,6 +4,7 @@ import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.items.MysticStaffItem;
 import net.eman3600.dndreams.items.interfaces.UnbreakableItem;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -93,6 +94,13 @@ public abstract class ItemStackMixin {
 
         if (player != null && ModStatusEffects.shouldRestrict(player)) {
             cir.setReturnValue(ActionResult.PASS);
+        }
+    }
+
+    @Inject(method = "getMaxDamage", at = @At("HEAD"), cancellable = true)
+    private void dndreams$getMaxDamage(CallbackInfoReturnable<Integer> cir) {
+        if (getItem() instanceof MysticStaffItem item) {
+            cir.setReturnValue(item.getStaffMaxDamage((ItemStack)(Object)this));
         }
     }
 }

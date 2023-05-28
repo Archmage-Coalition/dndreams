@@ -582,7 +582,7 @@ public class ModItems {
 
     // Mystic Staff
     public static final Item MYSTIC_STAFF = registerItem("mystic_staff",
-            new MysticStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+            new MysticStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(69)));
 
 
 

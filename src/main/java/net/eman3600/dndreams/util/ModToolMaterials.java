@@ -23,7 +23,7 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(Items.COPPER_INGOT)),
     MANAGOLD(2, 32, 12.0F, 2.0F, 22,
             () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
-    TORMITE(4, 128, 13.0F, 4.0F, 22,
+    TORMITE(4, 2145, 13.0F, 4.0F, 22,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
     PERICHARITE(4, 3122, 15.0F, 5.0F, 22,
             () -> Ingredient.ofItems(ModItems.PERICHARITE)),

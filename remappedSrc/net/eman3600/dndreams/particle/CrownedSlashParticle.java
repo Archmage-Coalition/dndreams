@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.particle;
+package net.eman3600.dndreams.particles;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

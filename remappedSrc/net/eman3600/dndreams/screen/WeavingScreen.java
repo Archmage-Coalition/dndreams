@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.screen;
+package net.eman3600.dndreams.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.Initializer;
@@ -27,7 +27,7 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
     protected void init() {
         super.init();
         this.narrow = this.width < 379;
-        this.titleX = 29;
+        this.titleX = 34;
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {

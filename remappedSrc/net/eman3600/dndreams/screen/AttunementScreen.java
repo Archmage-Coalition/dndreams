@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.screen;
+package net.eman3600.dndreams.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.Screen;

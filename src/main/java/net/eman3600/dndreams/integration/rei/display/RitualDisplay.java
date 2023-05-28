@@ -5,8 +5,7 @@ import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
-import net.eman3600.dndreams.recipe.CauldronRecipe;
-import net.eman3600.dndreams.recipe.RitualRecipe;
+import net.eman3600.dndreams.recipes.RitualRecipe;
 
 import java.util.Collections;
 import java.util.List;

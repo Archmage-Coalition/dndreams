@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.Initializer;
-import net.eman3600.dndreams.particle.*;
+import net.eman3600.dndreams.particles.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;

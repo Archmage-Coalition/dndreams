@@ -3,7 +3,7 @@ package net.eman3600.dndreams.items.consumable.brew;
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.blocks.properties.BrewStage;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
-import net.eman3600.dndreams.recipe.ApothecaryRecipe;
+import net.eman3600.dndreams.recipes.ApothecaryRecipe;
 import net.eman3600.dndreams.util.data.EnhancementType;
 import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.minecraft.client.item.TooltipContext;

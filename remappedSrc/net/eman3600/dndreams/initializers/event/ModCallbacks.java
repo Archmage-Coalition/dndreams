@@ -8,7 +8,7 @@ import net.eman3600.dndreams.cardinal_components.StatBoonComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.ItemEntityInterface;
-import net.eman3600.dndreams.recipe.TransmutationRecipe;
+import net.eman3600.dndreams.recipes.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;

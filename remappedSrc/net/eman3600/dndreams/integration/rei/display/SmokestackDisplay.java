@@ -7,7 +7,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
-import net.eman3600.dndreams.recipe.SmokestackRecipe;
+import net.eman3600.dndreams.recipes.SmokestackRecipe;
 import net.minecraft.recipe.Ingredient;
 
 import java.util.ArrayList;

@@ -55,6 +55,10 @@ public abstract class Ritual {
         return Util.createTranslationKey("ritual", RitualRegistry.REGISTRY.getId(this));
     }
 
+    public String toString() {
+        return RitualRegistry.REGISTRY.getId(this).getPath();
+    }
+
 
     /**
      * Called when the ritual is cast by the Soul Candle.
