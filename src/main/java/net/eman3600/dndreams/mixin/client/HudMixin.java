@@ -35,6 +35,8 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Unique
     private static final Identifier DNDREAMS_GUI_ICONS = new Identifier(Initializer.MODID, "textures/gui/icons.png");
 
+    private static final Identifier DNDREAMS_GUI_MANA_BAR = new Identifier(Initializer.MODID, "textures/gui/mana_bar.png");
+
     @Unique private static final Identifier DRAGON_FLASH_IMAGE = new Identifier(Initializer.MODID, "textures/gui/shader/dragon_flash.png");
     @Unique private static final Identifier INSANITY_VIGNETTE_TEXTURE = new Identifier(Initializer.MODID, "textures/gui/shader/insanity_vignette.png");
 
@@ -45,10 +47,10 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     private static final int MANA_Y_OFFSET = 7;
 
     @Unique
-    private static final int MANA_WIDTH = 71;
+    private static final int MANA_WIDTH = 110;
 
     @Unique
-    private static final int MANA_HEIGHT = 5;
+    private static final int MANA_HEIGHT = 8;
 
     @Unique
     private static final int TORMENT_X_OFFSET = 6;
@@ -164,26 +166,28 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         int xPos = client.options.getMainArm().getValue() == Arm.LEFT ? scaledWidth - MANA_X_OFFSET - MANA_WIDTH : MANA_X_OFFSET;
         int yPos = scaledHeight - MANA_Y_OFFSET - MANA_HEIGHT;
 
-        int vPos;
+
 
         PlayerEntity player = getCameraPlayer();
 
-        if (player.hasStatusEffect(ModStatusEffects.SUPPRESSED)) {
-            vPos = 10;
-        } else {
-            vPos = 5;
-        }
+
 
         if (!player.hasStatusEffect(ModStatusEffects.LIFEMANA))
             EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
-                int mana = manaComponent.getMana();
-                int maxMana = manaComponent.getManaMax();
                 if (!manaComponent.shouldRender()) return;
 
-                RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
+                int mana = manaComponent.getMana();
+                int maxMana = manaComponent.getManaMax();
+                int vPos = manaComponent.getManaFrame() * 6;
+
+                RenderSystem.setShaderTexture(0, DNDREAMS_GUI_MANA_BAR);
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
-                drawTexture(matrices, xPos, (yPos), 0, 0, MANA_WIDTH, MANA_HEIGHT);
-                drawTexture(matrices, xPos, yPos, 0, vPos, (int)((MANA_WIDTH) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT);
+                drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, 0, MANA_WIDTH, MANA_HEIGHT);
+                drawTexture(matrices, xPos, yPos, 0, vPos, (int)((MANA_WIDTH -2) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT -2);
+                if(player.hasStatusEffect(ModStatusEffects.SUPPRESSED))
+                {
+                    drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, MANA_HEIGHT, MANA_WIDTH, MANA_HEIGHT);
+                }
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
             });
