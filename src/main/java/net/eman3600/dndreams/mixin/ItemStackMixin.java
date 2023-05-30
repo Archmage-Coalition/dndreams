@@ -32,7 +32,7 @@ public abstract class ItemStackMixin {
     @Shadow public abstract Item getItem();
 
     @Unique
-    private static final float POWER_DIVISOR = 20f;
+    private static final float SANITY_DIVISOR = 20f;
 
     @Inject(at = @At("HEAD"), cancellable = true, method = "damage(ILnet/minecraft/util/math/random/Random;Lnet/minecraft/server/network/ServerPlayerEntity;)Z")
     public void dndreams$damage$boolean(int amount, Random random, ServerPlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
@@ -45,7 +45,7 @@ public abstract class ItemStackMixin {
 
         if (isDamageable() && stack.isIn(ModTags.SANITY_USING_TOOLS)) {
             TormentComponent torment = EntityComponents.TORMENT.get(player);
-            if (torment.canAfford(amount / POWER_DIVISOR)) {
+            if (torment.canAfford(amount / SANITY_DIVISOR)) {
                 if (amount > 0) {
                     int i = EnchantmentHelper.getLevel(Enchantments.UNBREAKING, stack);
                     int j = amount;
@@ -57,7 +57,7 @@ public abstract class ItemStackMixin {
                     }
 
                     if (j > 0) {
-                        torment.lowerSanity(j / POWER_DIVISOR);
+                        torment.lowerSanity(j / SANITY_DIVISOR);
                     }
                 }
 

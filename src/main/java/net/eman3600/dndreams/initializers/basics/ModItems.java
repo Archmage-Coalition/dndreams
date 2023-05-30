@@ -173,7 +173,8 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.WITHER_BUD)));
 
     public static final Item DRAGONFRUIT = registerItem("dragonfruit",
-            new DragonfruitItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.DRAGONFRUIT)));
+            new DragonfruitItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.DRAGONFRUIT))
+                    .withTooltip(null, 2));
 
 
     // Bottled Stuff

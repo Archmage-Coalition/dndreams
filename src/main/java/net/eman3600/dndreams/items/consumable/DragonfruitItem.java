@@ -1,12 +1,9 @@
 package net.eman3600.dndreams.items.consumable;
 
-import net.eman3600.dndreams.initializers.cca.EntityComponents;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
+import net.eman3600.dndreams.items.TooltipItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
-public class DragonfruitItem extends Item {
+public class DragonfruitItem extends TooltipItem {
     public DragonfruitItem(Settings settings) {
         super(settings);
     }

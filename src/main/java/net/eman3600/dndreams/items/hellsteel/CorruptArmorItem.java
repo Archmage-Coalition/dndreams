@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.items.hellsteel;
 
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.items.ModArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
@@ -24,7 +25,7 @@ public class CorruptArmorItem extends ModArmorItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (!world.isClient() && entity instanceof LivingEntity living && wornPieces(living) >= 4 && living instanceof LivingEntityAccess access && access.hasNotBrokenLava()) {
+        if (!world.isClient() && this == ModItems.CORRUPT_HELMET && entity instanceof LivingEntity living && wornPieces(living) >= 4 && living instanceof LivingEntityAccess access && access.hasNotBrokenLava()) {
             living.addStatusEffect(new StatusEffectInstance(ModStatusEffects.FLAME_GUARD, 145, 0, true, true));
         }
         super.inventoryTick(stack, world, entity, slot, selected);

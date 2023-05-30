@@ -40,8 +40,6 @@ public class TormentorSpawner implements Spawner {
 
             if (component.getAttunedSanity() <= 50) {
 
-                System.out.println("Max Tormentors Allotted: " + component.getMaxTormentors());
-
                 int j = random.nextBetween(1, component.getMaxTormentors());
 
                 for (int i = 0; i < j; i++) {
@@ -59,8 +57,6 @@ public class TormentorSpawner implements Spawner {
                 }
             }
         }
-
-        System.out.println("Spawned Tormentors: " + spawns);
 
         return spawns;
     }

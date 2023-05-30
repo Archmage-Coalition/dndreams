@@ -15,10 +15,13 @@ import net.minecraft.nbt.NbtCompound;
 public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     private static final int MAX_XP_BONUS = 50;
     private static final int REGEN_REQUIRE = 60;
+    public static final int MANA_FRAMES = 324;
 
     private int mana = 0;
     private int regenTime = 0;
     private final PlayerEntity player;
+
+    private float manaFrame = 0;
 
     public ManaComponent(PlayerEntity playerIn) {
         player = playerIn;
@@ -160,5 +163,22 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
     public void writeToNbt(NbtCompound tag) {
         tag.putInt("mana", mana);
         tag.putInt("regen_time", regenTime);
+    }
+
+    private float framesPerTick() {
+
+        return getRegenRate() / 32f;
+    }
+
+    @Override
+    public int getManaFrame() {
+        return (int)manaFrame;
+    }
+
+    @Override
+    public void clientTick() {
+
+        manaFrame += framesPerTick();
+        manaFrame %= MANA_FRAMES;
     }
 }
