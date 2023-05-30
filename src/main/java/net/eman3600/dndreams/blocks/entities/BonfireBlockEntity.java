@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.blocks.entities;
 
-import net.eman3600.dndreams.blocks.energy.BonfireBlock;
 import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
@@ -10,7 +9,6 @@ import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.event.ModParticles;
-import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -19,13 +17,9 @@ import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
@@ -91,8 +85,7 @@ public class BonfireBlockEntity extends BlockEntity implements AbstractPowerRece
                 ManaComponent mana = EntityComponents.MANA.get(player);
                 ReviveComponent revive = EntityComponents.REVIVE.get(player);
 
-                if (strong && ((infusion.infused() && infusion.getPower() < infusion.getPowerMax()) || player.getHealth() < player.getMaxHealth() || mana.getMana() < mana.getManaMax() || player.getHungerManager().isNotFull() || player.getHungerManager().getSaturationLevel() < player.getHungerManager().getFoodLevel() || revive.needsMoreVitality()) && usePower(30)) {
-                    infusion.chargePower(1.2f);
+                if (strong && (player.getHealth() < player.getMaxHealth() || mana.getMana() < mana.getManaMax() || player.getHungerManager().isNotFull() || player.getHungerManager().getSaturationLevel() < player.getHungerManager().getFoodLevel() || revive.needsMoreVitality()) && usePower(30)) {
                     revive.addVitality(5f);
                     if (!player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) mana.chargeMana(10);
                     player.heal(4f);

@@ -283,6 +283,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         return haunt;
     }
 
+    @Override
+    public boolean canAfford(float cost) {
+        return sanity >= cost;
+    }
+
     public static void registerInsanityMob(Function<LivingEntity, Boolean> predicate, float insanity, float range) {
         MOBS_TO_INSANITY.put(predicate, new InsanityRangePair(insanity, range));
     }

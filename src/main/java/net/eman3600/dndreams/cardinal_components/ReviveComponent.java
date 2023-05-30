@@ -63,6 +63,7 @@ public class ReviveComponent implements ReviveComponentI {
     public void revive() {
         revivesUsed++;
         cooldown = 1200;
+        vitality = 0f;
         markDirty();
     }
 
@@ -120,25 +121,24 @@ public class ReviveComponent implements ReviveComponentI {
 
     @Override
     public void serverTick() {
-        if (cooldown > 0) {
+        if (onCooldown()) {
             cooldown--;
             markDirty();
-        }
+        } else {
+            if (revivesUsed > 0) {
+                addVitality(REGEN / 1200);
+            }
 
-        if (revivesUsed > 0) {
-            addVitality(REGEN/1200);
-            markDirty();
-        }
+            if (vitality >= 100 && revivesUsed > 0) {
+                revivesUsed = 0;
+                vitality = 0;
+                markDirty();
+            }
 
-        if (vitality >= 100 && revivesUsed > 0) {
-            revivesUsed--;
-            vitality = 0;
-            markDirty();
-        }
-
-        if (vitality > 0 && revivesUsed <= 0) {
-            vitality = 0;
-            markDirty();
+            if (vitality > 0 && revivesUsed <= 0) {
+                vitality = 0;
+                markDirty();
+            }
         }
 
         if (dirty) {

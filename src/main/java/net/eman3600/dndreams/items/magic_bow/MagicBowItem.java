@@ -16,8 +16,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public abstract class MagicBow extends BowItem {
-    public MagicBow(Settings settings) {
+public abstract class MagicBowItem extends BowItem {
+    public MagicBowItem(Settings settings) {
         super(settings);
     }
 

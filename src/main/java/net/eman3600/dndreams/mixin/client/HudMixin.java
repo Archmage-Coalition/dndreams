@@ -37,7 +37,6 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
     @Unique private static final Identifier DRAGON_FLASH_IMAGE = new Identifier(Initializer.MODID, "textures/gui/shader/dragon_flash.png");
     @Unique private static final Identifier INSANITY_VIGNETTE_TEXTURE = new Identifier(Initializer.MODID, "textures/gui/shader/insanity_vignette.png");
-    @Unique private static final Identifier ATTUNEMENT_VIGNETTE_TEXTURE = new Identifier(Initializer.MODID, "textures/gui/shader/attunement_vignette.png");
 
     @Unique
     private static final int MANA_X_OFFSET = 6;
@@ -78,18 +77,6 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     private static final int REVIVE_HEIGHT = 16;
 
     @Unique
-    private static final int POWER_X_OFFSET = 8;
-
-    @Unique
-    private static final int POWER_Y_OFFSET = 8;
-
-    @Unique
-    private static final int POWER_WIDTH = 5;
-
-    @Unique
-    private static final int POWER_HEIGHT = 82;
-
-    @Unique
     private int dragonFlashTicks = 0;
 
 
@@ -109,8 +96,6 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
     @Shadow public abstract TextRenderer getTextRenderer();
 
-
-    @Shadow public float vignetteDarkness;
 
     @Override
     public void setDragonFlash(int ticks) {
@@ -156,20 +141,6 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         });
 
 
-
-        EntityComponents.INFUSION.maybeGet(player).ifPresent(infusionComponent -> {
-            if (infusionComponent.infused()) {
-                float power = infusionComponent.getRoundedPower();
-                String string = power + "%";
-                int k = POWER_X_OFFSET + POWER_WIDTH + 7;
-                int l = POWER_Y_OFFSET + 4;
-                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
-                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, infusionComponent.getInfusion().color.getRGB());
-            }
-        });
 
         EntityComponents.REVIVE.maybeGet(player).ifPresent(revive -> {
             if (revive.shouldDisplay()) {
@@ -265,24 +236,6 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             drawTexture(matrices, reviveXPos, reviveYPos, u, 16, REVIVE_WIDTH, REVIVE_HEIGHT);
             drawTexture(matrices, reviveXPos, reviveYPos + skipV, u, skipV, REVIVE_WIDTH, (int)(REVIVE_HEIGHT * vitalityPercent));
 
-            RenderSystem.setShaderColor(1, 1, 1, 1);
-            RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
-        });
-
-        int powerXPos = POWER_X_OFFSET;
-        int powerYPos = POWER_Y_OFFSET;
-
-        EntityComponents.INFUSION.maybeGet(player).ifPresent(infusionComponent -> {
-            float powerPercent = (infusionComponent.getPower() / infusionComponent.getPowerMax());
-            if (!infusionComponent.infused()) return;
-            int skipV = (int)(POWER_HEIGHT * (1f - powerPercent));
-
-            Color color = infusionComponent.getInfusion().color;
-
-            RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
-            RenderSystem.setShaderColor(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, 1.0f);
-            drawTexture(matrices, powerXPos, powerYPos, 93, 0, POWER_WIDTH, POWER_HEIGHT);
-            drawTexture(matrices, powerXPos, powerYPos + skipV, 98, skipV, POWER_WIDTH, (int)(POWER_HEIGHT * powerPercent));
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });

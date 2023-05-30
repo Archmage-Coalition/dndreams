@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.items.magic_bow;
 
-import net.eman3600.dndreams.items.interfaces.PowerCostItem;
 import net.eman3600.dndreams.items.interfaces.SanityCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,48 +11,38 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LightstringBow extends MagicBow implements PowerCostItem, SanityCostItem {
-    public LightstringBow(Settings settings) {
+public class MindstringBowItem extends MagicBowItem implements SanityCostItem {
+    public MindstringBowItem(Settings settings) {
         super(settings);
     }
 
-    @Override
     public ItemStack getProjectile() {
-        return new ItemStack(Items.SPECTRAL_ARROW);
+        return new ItemStack(Items.ARROW);
     }
 
-    public float pullTime() {
-        return 10.0F;
-    }
-
-    @Override
-    public float getBasePowerCost() {
-        return 0.5f;
-    }
-
-
-
-    @Override
     protected boolean canAfford(PlayerEntity player, ItemStack stack) {
-        return canAffordPower(player, stack);
+        return canAffordSanity(player, stack);
     }
 
-    @Override
     protected void payAmmo(PlayerEntity player, ItemStack stack) {
         if (player != null) {
             spendSanity(player, stack);
-            spendPower(player, stack);
         }
+    }
+
+    public float pullTime() {
+        return 10f;
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(getTooltipPower(world, stack));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
+        tooltip.add(getTooltipSanity(stack));
     }
 
     @Override
     public float getBaseSanityCost() {
-        return 0.25f;
+        return .75f;
     }
 
     @Override
@@ -63,6 +52,6 @@ public class LightstringBow extends MagicBow implements PowerCostItem, SanityCos
 
     @Override
     public boolean isSanityOptional(ItemStack stack) {
-        return true;
+        return false;
     }
 }

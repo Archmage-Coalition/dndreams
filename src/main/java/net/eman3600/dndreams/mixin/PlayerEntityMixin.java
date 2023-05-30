@@ -154,4 +154,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             }
         }
     }
+
+    @Inject(method = "canFoodHeal", at = @At("HEAD"), cancellable = true)
+    private void dndreams$canFoodHeal(CallbackInfoReturnable<Boolean> cir) {
+
+        if (hasStatusEffect(ModStatusEffects.MORTAL)) cir.setReturnValue(false);
+    }
 }

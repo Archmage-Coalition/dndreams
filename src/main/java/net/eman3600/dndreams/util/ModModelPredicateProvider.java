@@ -3,7 +3,7 @@ package net.eman3600.dndreams.util;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
-import net.eman3600.dndreams.items.magic_bow.MagicBow;
+import net.eman3600.dndreams.items.magic_bow.MagicBowItem;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
 import net.minecraft.item.Item;
@@ -35,11 +35,11 @@ public class ModModelPredicateProvider {
     }
 
     private static void registerBow(Item bow) {
-        if (bow instanceof MagicBow bowItem)
+        if (bow instanceof MagicBowItem bowItem)
             registerBow(bowItem);
     }
 
-    private static void registerBow(MagicBow bow) {
+    private static void registerBow(MagicBowItem bow) {
         ModelPredicateProviderRegistry.register(bow, new Identifier("pull"),
                 (stack, world, entity, seed) -> {
                     if (entity == null) {

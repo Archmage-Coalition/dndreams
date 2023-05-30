@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.items.MysticStaffItem;
@@ -43,9 +43,9 @@ public abstract class ItemStackMixin {
             return;
         }
 
-        if (isDamageable() && stack.isIn(ModTags.POWER_USING_TOOLS)) {
-            InfusionComponent infusion = EntityComponents.INFUSION.get(player);
-            if (infusion.canAfford(amount / POWER_DIVISOR)) {
+        if (isDamageable() && stack.isIn(ModTags.SANITY_USING_TOOLS)) {
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+            if (torment.canAfford(amount / POWER_DIVISOR)) {
                 if (amount > 0) {
                     int i = EnchantmentHelper.getLevel(Enchantments.UNBREAKING, stack);
                     int j = amount;
@@ -57,7 +57,7 @@ public abstract class ItemStackMixin {
                     }
 
                     if (j > 0) {
-                        infusion.usePower(j / POWER_DIVISOR);
+                        torment.lowerSanity(j / POWER_DIVISOR);
                     }
                 }
 

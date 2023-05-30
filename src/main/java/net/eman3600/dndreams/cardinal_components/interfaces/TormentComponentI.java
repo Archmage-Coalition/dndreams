@@ -32,4 +32,6 @@ public interface TormentComponentI extends Component {
     int getShroud();
 
     int getHaunt();
+
+    boolean canAfford(float cost);
 }

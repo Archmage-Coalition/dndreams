@@ -9,15 +9,7 @@ public interface InfusionComponentI extends AutoSyncedComponent, ServerTickingCo
     Infusion getInfusion();
     boolean infused();
 
-    boolean canAfford(float amount);
-
     void setInfusion(Infusion change);
-    float getPower();
-    float getPowerMax();
-    void setPower(float value);
-    void chargePower(float charge);
-    void usePower(float cost);
-    float getRoundedPower();
 
     void setLinkTicks(int amount);
 
