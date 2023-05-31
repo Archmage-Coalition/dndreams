@@ -14,6 +14,7 @@ import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -285,7 +286,25 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public boolean canAfford(float cost) {
-        return sanity >= cost;
+        return sanity > 0;
+    }
+
+    @Override
+    public void spendSanity(float cost) {
+        sanity -= cost;
+
+        if (sanity < 0) {
+            StatusEffectInstance effect = player.getStatusEffect(ModStatusEffects.AFFLICTION);
+
+            int duration = (int) (15 * cost);
+            if (effect != null) {
+                duration += effect.getDuration();
+            }
+
+            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, duration));
+        }
+
+        normalize();
     }
 
     public static void registerInsanityMob(Function<LivingEntity, Boolean> predicate, float insanity, float range) {

@@ -546,24 +546,21 @@
   "block.dndreams.haven_dirt": "Haven Dirt",
   "block.dndreams.haven_stone": "Haven Stone",
   "block.dndreams.haven_cobblestone": "Haven Cobblestone",
+  "block.dndreams.haven_stone_stairs": "Haven Stone Stairs",
+  "block.dndreams.haven_stone_slab": "Haven Stone Slab",
+  "block.dndreams.haven_stone_wall": "Haven Stone Wall",
+  "block.dndreams.haven_stone_pressure_plate": "Haven Stone Pressure Plate",
+  "block.dndreams.haven_stone_button": "Haven Stone Button",
   "block.dndreams.pericharite_ore": "Pericharite Ore",
   "block.dndreams.haven_coal_ore": "Haven Coal Ore",
   "block.dndreams.managold_ore": "Managold Ore",
 
 
-  "block.dndreams.shimmering_stone": "Spirit Stone",
-  "block.dndreams.shimmering_bricks": "Spirit Bricks",
-  "block.dndreams.shimmering_cobblestone": "Spirit Cobblestone",
-  "block.dndreams.shimmering_chiseled_bricks": "Spirit Chiseled Bricks",
-  "block.dndreams.shimmering_brick_stairs": "Spirit Brick Stairs",
-  "block.dndreams.shimmering_stone_stairs": "Spirit Stone Stairs",
-  "block.dndreams.shimmering_brick_slab": "Spirit Brick Slab",
-  "block.dndreams.shimmering_stone_slab": "Spirit Stone Slab",
-  "block.dndreams.shimmering_cobblestone_stairs": "Spirit Cobblestone Stairs",
-  "block.dndreams.shimmering_cobblestone_slab": "Spirit Cobblestone Slab",
-  "block.dndreams.shimmering_ice": "Spirit Ice",
-  "block.dndreams.shimmering_glass": "Spirit Glass",
-  "block.dndreams.shimmering_glass_pane": "Spirit Glass Pane",
+  "block.dndreams.spirit_stone": "Spirit Stone",
+  "block.dndreams.spirit_ice": "Spirit Ice",
+  "block.dndreams.sorrow_stone": "Sorrow Shards",
+  "block.dndreams.sorrow_sludge": "Sorry Sludge",
+  "block.dndreams.crystal_block": "Crystal Block",
   
   "block.dndreams.charged_deepslate": "Charged Deepslate",
   "block.dndreams.deepslate_core": "Charged Deepslate Core",
@@ -602,6 +599,8 @@
   "block.dndreams.smokestack": "Smokestack",
   "block.dndreams.refinery": "Refinery",
   "block.dndreams.refined_cauldron": "Refined Cauldron",
+  
+  "message.dndreams.ender_chest_restricted": "It won't budge",
   
   
   "ritual.dndreams.error.unknown": "Unknown Rite",

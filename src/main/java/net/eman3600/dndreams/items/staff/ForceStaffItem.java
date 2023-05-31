@@ -50,7 +50,7 @@ public class ForceStaffItem extends TooltipItem implements ManaCostItem, MagicDa
 
                 EntityHitResult entityHitResult = ProjectileUtil.raycast(user, pos, extent, box, entity -> !entity.isSpectator() && entity.canHit(), SQ);
 
-                if (entityHitResult.getEntity() instanceof LivingEntity target) {
+                if (entityHitResult != null && entityHitResult.getEntity() instanceof LivingEntity target) {
                     target.timeUntilRegen = 0;
                     target.damage(DamageSource.magic(user, user), getMagicDamage(stack));
                 }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "dndreams:block/haven_stone",
+    "top": "dndreams:block/haven_stone",
+    "side": "dndreams:block/haven_stone"
+  }
+}

@@ -6,7 +6,6 @@ import net.eman3600.dndreams.blocks.crop.*;
 import net.eman3600.dndreams.blocks.energy.*;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritFenceBlock;
-import net.eman3600.dndreams.blocks.spirtloggable.SpiritPaneBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritSlabBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritStairsBlock;
 import net.eman3600.dndreams.initializers.event.ModParticles;
@@ -143,32 +142,34 @@ public class ModBlocks {
     public static final Block BONFIRE = registerBlock("bonfire",
             new BonfireBlock(FabricBlockSettings.copyOf(Blocks.CAMPFIRE)));
 
-    // Shimmering blocks
-    public static final Block SHIMMERING_STONE = registerBlock("shimmering_stone",
+    // Spirit Blocks
+    public static final Block SPIRIT_STONE = registerBlock("spirit_stone",
             new Block(FabricBlockSettings.copy(Blocks.STONE)
                     .requiresTool().luminance(state -> 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHIMMERING_COBBLESTONE = registerBlock("shimmering_cobblestone",
-            new Block(FabricBlockSettings.copy(Blocks.COBBLESTONE)
-                    .requiresTool().luminance(state -> 7)),
+    public static final Block SPIRIT_ICE = registerBlock("spirit_ice",
+            new SpiritIceBlock(FabricBlockSettings.copy(Blocks.ICE).luminance(state -> 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHIMMERING_BRICKS = registerBlock("shimmering_bricks",
-            new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS)
-                    .requiresTool().luminance(state -> 7)),
+
+    // Sorrow Blocks
+    public static final Block SORROW_STONE = registerBlock("sorrow_stone",
+            new Block(FabricBlockSettings.copy(Blocks.OBSIDIAN)
+                    .strength(10f, 600f)
+                    .requiresTool()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHIMMERING_ICE = registerBlock("shimmering_ice",
-            new ShimmeringIceBlock(FabricBlockSettings.copy(Blocks.ICE).luminance(state -> 7)),
+
+    public static final Block SORROW_SLUDGE = registerBlock("sorrow_sludge",
+            new Block(FabricBlockSettings.copy(Blocks.MUD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHIMMERING_GLASS = registerBlock("shimmering_glass",
-            new GlassBlock(FabricBlockSettings.copy(Blocks.GLASS).luminance(state -> 7)),
 
-            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHIMMERING_GLASS_PANE = registerBlock("shimmering_glass_pane",
-            new SpiritPaneBlock(FabricBlockSettings.copy(Blocks.GLASS_PANE).luminance(state -> 7)),
+    // Crystal Blocks
+    public static final Block CRYSTAL_BLOCK = registerBlock("crystal_block",
+            new Block(FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK)
+                    .requiresTool()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
@@ -999,6 +1000,27 @@ public class ModBlocks {
             new Block(FabricBlockSettings.copy(Blocks.STONE)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_STONE_SLAB = registerBlock("haven_stone_slab",
+            new SpiritSlabBlock(FabricBlockSettings.copy(Blocks.STONE_SLAB)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_STONE_STAIRS = registerBlock("haven_stone_stairs",
+            new SpiritStairsBlock(HAVEN_STONE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE_STAIRS)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_STONE_WALL = registerBlock("haven_stone_wall",
+            new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_STONE_PRESSURE_PLATE = registerBlock("haven_stone_pressure_plate",
+            new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, FabricBlockSettings.copy(Blocks.STONE_PRESSURE_PLATE)),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
+    public static final Block HAVEN_STONE_BUTTON = registerBlock("haven_stone_button",
+            new StoneButtonBlock(FabricBlockSettings.copy(Blocks.STONE_BUTTON)),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
+
 
     public static final Block PERICHARITE_ORE = registerBlock("pericharite_ore",
             new OreBlock(FabricBlockSettings.copy(Blocks.DIAMOND_ORE), UniformIntProvider.create(3, 6)),
@@ -1019,6 +1041,7 @@ public class ModBlocks {
             new OreBlock(FabricBlockSettings.copy(Blocks.GOLD_ORE)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
 
     public static final Block HAVEN_COBBLESTONE = registerBlock("haven_cobblestone",
             new Block(FabricBlockSettings.copy(Blocks.COBBLESTONE)),

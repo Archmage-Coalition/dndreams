@@ -5,10 +5,7 @@
     "minecraft:crying_obsidian",
     "minecraft:bedrock",
     "minecraft:barrier",
-    "#dndreams:shimmering_stone",
-    "dndreams:shimmering_glass",
-    "dndreams:shimmering_ice",
-    "dndreams:shimmering_glass_pane",
+    "#dndreams:shimmer_blocks",
     "dndreams:charged_deepslate"
   ]
 }
