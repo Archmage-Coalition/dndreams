@@ -560,11 +560,18 @@
   "block.dndreams.haven_coal_ore": "Haven Coal Ore",
   "block.dndreams.managold_ore": "Managold Ore",
 
+  "block.dndreams.spirit_ice": "Spirit Ice",
 
   "block.dndreams.spirit_stone": "Spirit Slate",
-  "block.dndreams.spirit_ice": "Spirit Ice",
-  "block.dndreams.sorrow_stone": "Sorrow Shards",
+  
   "block.dndreams.sorrow_sludge": "Sorry Sludge",
+  "block.dndreams.sorrow_bricks": "Sorrow Bricks",
+  "block.dndreams.sorrow_brick_stairs": "Sorrow Brick Stairs",
+  "block.dndreams.sorrow_brick_slab": "Sorrow Brick Slab",
+  "block.dndreams.sorrow_brick_wall": "Sorrow Brick Wall",
+  
+  "block.dndreams.sorrow_stone": "Sorrow Shards",
+  
   "block.dndreams.crystal_block": "Crystal Block",
   
   "block.dndreams.charged_deepslate": "Charged Deepslate",
