@@ -58,7 +58,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Unique
     private static final int TORMENT_Y_OFFSET = 7;
 
-    @Unique private static final int TORMENT_Y_BIG_OFFSET = 28;
+    @Unique private static final int TORMENT_Y_BIG_OFFSET = 30;
 
     @Unique
     private static final int TORMENT_WIDTH = 14;
@@ -132,7 +132,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
                 String string = mana + "/" + maxMana;
                 int k = xPos + 9;
-                int l = (yPos - MANA_HEIGHT - 5);
+                int l = (yPos - MANA_HEIGHT - 3);
                 this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
                 this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
@@ -182,11 +182,11 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
                 RenderSystem.setShaderTexture(0, DNDREAMS_GUI_MANA_BAR);
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
-                drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, 0, MANA_WIDTH, MANA_HEIGHT);
-                drawTexture(matrices, xPos, yPos, 0, vPos, (int)((MANA_WIDTH -2) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT -2);
+                drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, MANA_HEIGHT, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
+                drawTexture(matrices, xPos + 1, yPos + 1, 0, vPos, (int)((MANA_WIDTH -2) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT -2, 230, 1944);
                 if(player.hasStatusEffect(ModStatusEffects.SUPPRESSED))
                 {
-                    drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, MANA_HEIGHT, MANA_WIDTH, MANA_HEIGHT);
+                    drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, 0, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
                 }
                 RenderSystem.setShaderColor(1, 1, 1, 1);
                 RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);

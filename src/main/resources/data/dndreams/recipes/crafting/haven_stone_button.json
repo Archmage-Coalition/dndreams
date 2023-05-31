@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dndreams:haven_stone"
+    }
+  ],
+  "result": {
+    "item": "dndreams:haven_stone_button"
+  }
+}

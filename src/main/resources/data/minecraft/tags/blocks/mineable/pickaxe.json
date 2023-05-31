@@ -12,8 +12,7 @@
 	"dndreams:vital_block",
     "dndreams:pericharite_block",
     "dndreams:silver_block",
-    "#dndreams:shimmering_stone",
-    "dndreams:shimmering_ice",
+    "#dndreams:shimmer_stones",
     "dndreams:cosmic_fountain",
     "dndreams:cosmic_fountain_pole",
     "dndreams:attunement_chamber",
@@ -23,6 +22,11 @@
     "dndreams:helios_grass_block",
     "dndreams:eos_grass_block",
     "dndreams:refined_cauldron",
-    "#dndreams:haven_stones"
+    "#dndreams:haven_stones",
+    "dndreams:haven_stone_slab",
+    "dndreams:haven_stone_stairs",
+    "dndreams:haven_stone_wall",
+    "dndreams:haven_stone_pressure_plate",
+    "dndreams:haven_stone_button"
   ]
 }

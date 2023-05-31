@@ -76,12 +76,18 @@ public class DreamingComponent implements DreamingComponentI {
             }
 
             returnPos = player.getPos();
-            player.setHealth((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
+            player.setHealth(player.getMaxHealth());
+            if (Float.isNaN(player.getHealth())) {
+                player.setHealth(20);
+            }
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
             player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.GRACE, 60, 0), player);
         } else {
             player.setPosition(returnPos);
             player.setHealth((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
+            if (Float.isNaN(player.getHealth())) {
+                player.setHealth(20);
+            }
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
             player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.GRACE, 60, 0), player);
 

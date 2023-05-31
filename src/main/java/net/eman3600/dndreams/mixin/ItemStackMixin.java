@@ -57,7 +57,7 @@ public abstract class ItemStackMixin {
                     }
 
                     if (j > 0) {
-                        torment.lowerSanity(j / SANITY_DIVISOR);
+                        torment.spendSanity(j / SANITY_DIVISOR);
                     }
                 }
 

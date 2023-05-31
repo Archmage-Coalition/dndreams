@@ -89,13 +89,8 @@ public class SatiationStaffItem extends TooltipItem implements ManaCostItem, San
     }
 
     @Override
-    public boolean isSanityPermanent(ItemStack stack) {
-        return false;
-    }
-
-    @Override
     public boolean isSanityOptional(ItemStack stack) {
-        return false;
+        return true;
     }
 
     @Override

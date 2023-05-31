@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "dndreams:block/haven_stone_slab"
+    },
+    "type=double": {
+      "model": "dndreams:block/haven_stone"
+    },
+    "type=top": {
+      "model": "dndreams:block/haven_stone_slab_top"
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
-      "item": "dndreams:applethorn_seeds"
+      "item": "minecraft:melon_seeds"
     },
 	{
       "item": "minecraft:dragon_breath"

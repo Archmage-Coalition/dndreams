@@ -157,13 +157,8 @@ public class MysticStaffItem extends Item implements ManaCostItem, SanityCostIte
     }
 
     @Override
-    public boolean isSanityPermanent(ItemStack stack) {
-        return false;
-    }
-
-    @Override
     public boolean isSanityOptional(ItemStack stack) {
-        return false;
+        return true;
     }
 
     @Override

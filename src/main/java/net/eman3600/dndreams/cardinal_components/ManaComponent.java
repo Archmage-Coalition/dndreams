@@ -2,10 +2,10 @@ package net.eman3600.dndreams.cardinal_components;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.ManaComponentI;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -167,7 +167,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     private float framesPerTick() {
 
-        return getRegenRate() / 32f;
+        return Math.min(getRegenRate() / 16f, 3f);
     }
 
     @Override
