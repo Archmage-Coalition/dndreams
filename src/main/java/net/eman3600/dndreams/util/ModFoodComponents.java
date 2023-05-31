@@ -16,7 +16,6 @@ public class ModFoodComponents {
 
 
     public static final FoodComponent NIGHTMARE_FUEL = registerSanityFood(new FoodComponent.Builder().hunger(12).saturationModifier(1.0F)
-            .statusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 50, 0, false, false, true), 1.0F)
             .alwaysEdible().build(), -20);
     public static final FoodComponent SUCCULENT_APPLE = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.DREAMY, 400, 0), 1.0F)
