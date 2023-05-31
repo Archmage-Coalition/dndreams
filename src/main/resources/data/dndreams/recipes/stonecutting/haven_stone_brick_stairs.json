@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "tag": "dndreams:haven_stone_or_bricks"
+  },
+  "result": "dndreams:haven_stone_brick_stairs"
+}

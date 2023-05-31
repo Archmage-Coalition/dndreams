@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "dndreams:block/haven_stone_bricks",
+    "top": "dndreams:block/haven_stone_bricks",
+    "side": "dndreams:block/haven_stone_bricks"
+  }
+}

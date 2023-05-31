@@ -156,7 +156,7 @@ public class ModBlocks {
     // Sorrow Blocks
     public static final Block SORROW_STONE = registerBlock("sorrow_stone",
             new Block(FabricBlockSettings.copy(Blocks.OBSIDIAN)
-                    .strength(10f, 600f)
+                    .strength(2.5f)
                     .requiresTool()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
@@ -1020,6 +1020,27 @@ public class ModBlocks {
             new StoneButtonBlock(FabricBlockSettings.copy(Blocks.STONE_BUTTON)),
 
             new FabricItemSettings().group(ItemGroup.REDSTONE));
+
+    public static final Block HAVEN_STONE_BRICKS = registerBlock("haven_stone_bricks",
+            new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block CHISELED_HAVEN_STONE_BRICKS = registerBlock("chiseled_haven_stone_bricks",
+            new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_STONE_BRICK_SLAB = registerBlock("haven_stone_brick_slab",
+            new SpiritSlabBlock(FabricBlockSettings.copy(Blocks.STONE_SLAB)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_STONE_BRICK_STAIRS = registerBlock("haven_stone_brick_stairs",
+            new SpiritStairsBlock(HAVEN_STONE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE_STAIRS)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block HAVEN_STONE_BRICK_WALL = registerBlock("haven_stone_brick_wall",
+            new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
 
     public static final Block PERICHARITE_ORE = registerBlock("pericharite_ore",

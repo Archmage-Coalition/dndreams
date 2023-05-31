@@ -6,6 +6,8 @@
 	"dndreams:pericharite_ore",
 	"dndreams:silver_ore",
 	"dndreams:managold_ore",
-	"dndreams:haven_coal_ore"
+	"dndreams:haven_coal_ore",
+    "dndreams:haven_stone_bricks",
+    "dndreams:chiseled_haven_stone_bricks"
   ]
 }
