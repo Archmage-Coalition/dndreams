@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "dndreams:sorrow_brick_slab"
+    }
+  },
+  "pattern": [
+    "#",
+	"#"
+  ],
+  "result": {
+    "item": "dndreams:chiseled_sorrow_tiles",
+	"count": 1
+  }
+}

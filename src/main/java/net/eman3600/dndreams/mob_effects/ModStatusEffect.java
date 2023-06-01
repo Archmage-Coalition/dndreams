@@ -12,6 +12,9 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 
 public class ModStatusEffect extends StatusEffect {
 
+    public static final DamageSource COSMIC_OVERLOAD = new DamageSource("cosmic_overload").setUsesMagic().setBypassesArmor().setBypassesProtection().setUnblockable();
+
+
     public ModStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
         super(statusEffectCategory, color);
     }
@@ -26,7 +29,7 @@ public class ModStatusEffect extends StatusEffect {
         if (this == ModStatusEffects.VOID_FLOW) {
             if (!entity.isPlayer()) {
                 entity.timeUntilRegen = 8;
-                entity.damage(DamageSource.MAGIC, 1.0f);
+                entity.damage(COSMIC_OVERLOAD, 1.0f);
             }
         }
     }
@@ -52,7 +55,7 @@ public class ModStatusEffect extends StatusEffect {
             ManaComponent component = EntityComponents.MANA.get(entity);
 
             if (component.getMana() > component.getManaMax()) {
-                entity.damage(DamageSource.MAGIC, 0.3f * ((float)component.getMana() - component.getManaMax()));
+                entity.damage(COSMIC_OVERLOAD, 0.3f * ((float)component.getMana() - component.getManaMax()));
             }
         }
 

@@ -30,10 +30,6 @@
     "dndreams:haven_stone_button",
     "dndreams:haven_stone_brick_slab",
     "dndreams:haven_stone_brick_stairs",
-    "dndreams:haven_stone_brick_wall",
-    "dndreams:sorrow_bricks",
-    "dndreams:sorrow_brick_slab",
-    "dndreams:sorrow_brick_stairs",
-    "dndreams:sorrow_brick_wall"
+    "dndreams:haven_stone_brick_wall"
   ]
 }

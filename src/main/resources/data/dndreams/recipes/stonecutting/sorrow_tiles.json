@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": [
+    {
+      "item": "dndreams:packed_sorrow"
+    },
+	{
+      "item": "dndreams:sorrow_bricks"
+    }
+  ],
+  "result": "dndreams:sorrow_tiles"
+}

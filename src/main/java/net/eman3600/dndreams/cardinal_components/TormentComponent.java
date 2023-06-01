@@ -296,12 +296,14 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         if (sanity < 0) {
             StatusEffectInstance effect = player.getStatusEffect(ModStatusEffects.AFFLICTION);
 
-            int duration = (int) (15 * cost);
+            int duration = (int) (40 * -sanity);
+            int amplifier = 0;
             if (effect != null) {
                 duration += effect.getDuration();
+                amplifier = Math.min(effect.getAmplifier() + 1, 2);
             }
 
-            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, duration));
+            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, duration, amplifier));
         }
 
         normalize();

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 1,
+  "ingredient": {
+    "item": "dndreams:sorrow_sludge"
+  },
+  "result": "dndreams:packed_sorrow"
+}

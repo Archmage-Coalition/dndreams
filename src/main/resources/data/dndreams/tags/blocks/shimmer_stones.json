@@ -4,6 +4,14 @@
     "dndreams:spirit_stone",
 	"dndreams:spirit_ice",
 	"dndreams:sorrow_stone",
-	"dndreams:crystal_block"
+	"dndreams:crystal_block",
+    "dndreams:sorrow_bricks",
+    "dndreams:sorrow_brick_slab",
+    "dndreams:sorrow_brick_stairs",
+    "dndreams:sorrow_brick_wall",
+    "dndreams:sorrow_tiles",
+    "dndreams:chiseled_sorrow_tiles",
+    "dndreams:sorrow_pillar",
+    "dndreams:packed_sorrow"
   ]
 }

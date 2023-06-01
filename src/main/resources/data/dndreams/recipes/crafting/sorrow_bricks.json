@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "dndreams:packed_sorrow"
+    }
+  },
+  "pattern": [
+    "##",
+	"##"
+  ],
+  "result": {
+    "item": "dndreams:sorrow_bricks",
+	"count": 4
+  }
+}

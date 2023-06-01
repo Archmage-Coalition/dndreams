@@ -7,6 +7,7 @@ import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
+import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -109,6 +110,9 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     @Override
     public int getXPBonus() {
+        if (getBaseManaMax() <= 0) {
+            return 0;
+        }
         return Math.min(player.experienceLevel/2, MAX_XP_BONUS);
     }
 
@@ -149,7 +153,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         }
         if (player.hasStatusEffect(ModStatusEffects.VOID_FLOW) && mana > getManaMax()) {
             player.timeUntilRegen = 1;
-            player.damage(DamageSource.MAGIC, 0.3f * ((float)mana - getManaMax()));
+            player.damage(ModStatusEffect.COSMIC_OVERLOAD, 0.3f * ((float)mana - getManaMax()));
         }
     }
 

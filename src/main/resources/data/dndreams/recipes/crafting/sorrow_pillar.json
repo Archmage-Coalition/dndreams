@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "dndreams:sorrow_tiles"
+    }
+  },
+  "pattern": [
+    "#",
+	"#"
+  ],
+  "result": {
+    "item": "dndreams:sorrow_pillar",
+	"count": 2
+  }
+}

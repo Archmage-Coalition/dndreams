@@ -13,14 +13,15 @@ import java.util.List;
 public class LiquidVoidItem extends DrinkableItem {
     public LiquidVoidItem(Settings settings) {
         super(settings, false,
-                new StatusEffectInstance(ModStatusEffects.BRAINFREEZE, 300),
-                new StatusEffectInstance(ModStatusEffects.SUPPRESSED, 900));
+                new StatusEffectInstance(ModStatusEffects.THIRD_EYE, 900),
+                new StatusEffectInstance(ModStatusEffects.VOID_FLOW, 300));
     }
 
 
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.0"));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.1"));
     }
 }
