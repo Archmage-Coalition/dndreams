@@ -565,10 +565,16 @@
   "block.dndreams.spirit_stone": "Spirit Slate",
   
   "block.dndreams.sorrow_sludge": "Sorry Sludge",
+  "block.dndreams.packed_sorrow": "Packed Sorrow",
+
   "block.dndreams.sorrow_bricks": "Sorrow Bricks",
   "block.dndreams.sorrow_brick_stairs": "Sorrow Brick Stairs",
   "block.dndreams.sorrow_brick_slab": "Sorrow Brick Slab",
   "block.dndreams.sorrow_brick_wall": "Sorrow Brick Wall",
+
+  "block.dndreams.sorrow_tiles": "Sorrow Tiles",
+  "block.dndreams.chiseled_sorrow_tiles": "Chiseled Sorrow Tiles",
+  "block.dndreams.sorrow_pillar": "Sorrow Pillar",
   
   "block.dndreams.sorrow_stone": "Sorrow Shards",
   

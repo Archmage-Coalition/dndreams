@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+      "end": "dndreams:block/sorrow_pillar_top",
+      "side": "dndreams:block/sorrow_pillar"
+    }
+}

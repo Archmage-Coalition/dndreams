@@ -153,7 +153,7 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    // Sorrow Blocks
+    // Sorrow Shards
     public static final Block SORROW_STONE = registerBlock("sorrow_stone",
             new Block(FabricBlockSettings.copy(Blocks.OBSIDIAN)
                     .strength(2.5f)
@@ -161,10 +161,52 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
+
+
+    // Sorrow Blocks
     public static final Block SORROW_SLUDGE = registerBlock("sorrow_sludge",
             new Block(FabricBlockSettings.copy(Blocks.MUD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block PACKED_SORROW = registerBlock("packed_sorrow",
+            new Block(FabricBlockSettings.copy(Blocks.PACKED_MUD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Sorrow Bricks
+    public static final Block SORROW_BRICKS = registerBlock("sorrow_bricks",
+            new Block(FabricBlockSettings.copy(Blocks.MUD_BRICKS)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SORROW_BRICK_SLAB = registerBlock("sorrow_brick_slab",
+            new SpiritSlabBlock(FabricBlockSettings.copy(Blocks.STONE_SLAB)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SORROW_BRICK_STAIRS = registerBlock("sorrow_brick_stairs",
+            new SpiritStairsBlock(SORROW_BRICKS.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE_STAIRS)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SORROW_BRICK_WALL = registerBlock("sorrow_brick_wall",
+            new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Sorrow Tiles, Chiseled, and Pillars
+    public static final Block SORROW_TILES = registerBlock("sorrow_tiles",
+            new PillarBlock(FabricBlockSettings.copy(Blocks.QUARTZ_PILLAR)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block CHISELED_SORROW_TILES = registerBlock("chiseled_sorrow_tiles",
+            new PillarBlock(FabricBlockSettings.copy(Blocks.QUARTZ_PILLAR)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SORROW_PILLAR = registerBlock("sorrow_pillar",
+            new PillarBlock(FabricBlockSettings.copy(Blocks.QUARTZ_PILLAR)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
 
     // Crystal Blocks
     public static final Block CRYSTAL_BLOCK = registerBlock("crystal_block",

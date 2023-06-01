@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column_horizontal",
+    "textures": {
+      "end": "dndreams:block/sorrow_tiles_top",
+      "side": "dndreams:block/chiseled_sorrow_tiles"
+    }
+}

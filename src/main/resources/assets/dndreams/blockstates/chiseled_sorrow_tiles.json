@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "dndreams:block/chiseled_sorrow_tiles_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "dndreams:block/chiseled_sorrow_tiles"
+    },
+    "axis=z": {
+      "model": "dndreams:block/chiseled_sorrow_tiles_horizontal",
+      "x": 90
+    }
+  }
+}
