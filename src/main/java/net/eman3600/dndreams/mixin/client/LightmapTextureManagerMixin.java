@@ -4,11 +4,13 @@ import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
+import net.eman3600.dndreams.mixin_interfaces.LightmapTextureManagerAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.texture.NativeImage;
+import net.minecraft.client.texture.NativeImageBackedTexture;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
@@ -23,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Environment(EnvType.CLIENT)
 @Mixin(LightmapTextureManager.class)
-public abstract class LightmapTextureManagerMixin {
+public abstract class LightmapTextureManagerMixin implements LightmapTextureManagerAccess {
 
     @Shadow @Final private MinecraftClient client;
 
@@ -35,8 +37,11 @@ public abstract class LightmapTextureManagerMixin {
 
     @Shadow @Final private NativeImage image;
 
+    @Shadow @Final private NativeImageBackedTexture texture;
+
     @Inject(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/NativeImage;setColor(III)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void dndreams$update(float delta, CallbackInfo ci, ClientWorld clientWorld, float f, float g, float h, float i, float j, float l, float k, Vec3f vec3f, float m, Vec3f vec3f2, int n, int o, float p, float q, float r, float s, float t, boolean bl, float v, Vec3f vec3f5, int w, int x, int y, int z) {
+
         if (ClientInitializer.drawAether(clientWorld)) {
             z = recalculatedLight(z);
             y = recalculatedLight(y);
@@ -91,5 +96,20 @@ public abstract class LightmapTextureManagerMixin {
     @Unique
     private int brightenLight(int i, float brightness) {
         return (int)(Math.min(255, i + brightness));
+    }
+
+    @Override
+    public void clearLightMap() {
+        this.client.getProfiler().push("lightTex");
+
+        for (int n = 0; n < 16; ++n) {
+            for (int o = 0; o < 16; ++o) {
+
+                this.image.setColor(n, o, 0xFFFFFFFF);
+            }
+        }
+
+        this.texture.upload();
+        this.client.getProfiler().pop();
     }
 }

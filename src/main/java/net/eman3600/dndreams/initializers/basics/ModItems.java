@@ -10,6 +10,8 @@ import net.eman3600.dndreams.items.MysticStaffItem;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
+import net.eman3600.dndreams.items.celestium.CelestiumAxeItem;
+import net.eman3600.dndreams.items.celestium.CelestiumSwordItem;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
@@ -30,6 +32,7 @@ import net.eman3600.dndreams.items.magic_bow.MindstringBowItem;
 import net.eman3600.dndreams.items.managold.ManagoldArmorItem;
 import net.eman3600.dndreams.items.misc_tool.*;
 import net.eman3600.dndreams.items.pericharite.PerichariteArmorItem;
+import net.eman3600.dndreams.items.pericharite.PerichariteSwordItem;
 import net.eman3600.dndreams.items.staff.*;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
@@ -309,13 +312,13 @@ public class ModItems {
 
     // Celestium Swords & Tools
     public static final Item CELESTIUM_SWORD = registerItem("celestium_sword",
-            new SwordItem(ModToolMaterials.CELESTIUM, 3, -2.4F,
-            new FabricItemSettings().group(ItemGroup.COMBAT)));
+            new CelestiumSwordItem(ModToolMaterials.CELESTIUM, 3, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CELESTIUM_PICKAXE = registerItem("celestium_pickaxe",
             new ModPickaxeItem(ModToolMaterials.CELESTIUM, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_AXE = registerItem("celestium_axe",
-            new ModAxeItem(ModToolMaterials.CELESTIUM, 5.0F, -3F,
+            new CelestiumAxeItem(ModToolMaterials.CELESTIUM, 5.0F, -3F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item CELESTIUM_SHOVEL = registerItem("celestium_shovel",
@@ -377,7 +380,7 @@ public class ModItems {
 
     // Pericharite
     public static final Item PERICHARITE_SWORD = registerItem("pericharite_sword",
-            new SwordItem(ModToolMaterials.PERICHARITE, 3, -2.4F,
+            new PerichariteSwordItem(ModToolMaterials.PERICHARITE, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item PERICHARITE_PICKAXE = registerItem("pericharite_pickaxe",
             new ModPickaxeItem(ModToolMaterials.PERICHARITE, 1, -2.8F,

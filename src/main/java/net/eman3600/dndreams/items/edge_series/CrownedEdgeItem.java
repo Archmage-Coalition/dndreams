@@ -74,5 +74,15 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
         public boolean isAcceptableItem(ItemStack stack) {
             return stack.getItem() instanceof CrownedEdgeItem;
         }
+
+        @Override
+        public int getMinPower(int level) {
+            return 16;
+        }
+
+        @Override
+        public int getMaxPower(int level) {
+            return 70;
+        }
     }
 }
