@@ -56,6 +56,7 @@ public class ModRegistries {
         AttunementBurnSlot.putFuel(Items.SUGAR, 3);
         AttunementBurnSlot.putFuel(Items.GUNPOWDER, 7);
         AttunementBurnSlot.putFuel(Items.BLAZE_POWDER, 50);
+        AttunementBurnSlot.putFuel(Items.LAPIS_LAZULI, 25);
 
         AttunementBurnSlot.putFuel(ModItems.SCULK_POWDER, 50);
         AttunementBurnSlot.putFuel(ModItems.DREAM_POWDER, 90);
