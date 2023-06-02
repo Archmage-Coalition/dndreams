@@ -1,0 +1,15 @@
+{
+    "name": "dndreams:abandoned_cabin",
+    "fallback": "minecraft:empty",
+    "elements": [
+        {
+            "weight": 1,
+            "element": {
+                "location": "dndreams:abandoned_cabin/basement_1",
+                "processors": "minecraft:empty",
+                "projection": "rigid",
+                "element_type": "minecraft:single_pool_element"
+            }
+        }
+    ]
+}
