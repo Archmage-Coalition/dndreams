@@ -3,7 +3,7 @@
 	"textures": {
 		"3": "dndreams:block/refined_cauldron_crystal",
 		"4": "dndreams:block/refined_cauldron",
-		"particle": "dndreams:block/refined_cauldron"
+		"particle": "dndreams:item/refined_cauldron"
 	},
 	"elements": [
 		{

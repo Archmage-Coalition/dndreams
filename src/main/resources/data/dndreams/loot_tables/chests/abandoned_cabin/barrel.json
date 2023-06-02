@@ -1,0 +1,339 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+		  "min": 0,
+		  "max": 4
+	  },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:wheat_seeds",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:pumpkin_seeds",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:melon_seeds",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:beetroot_seeds",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "dndreams:snowbell_seeds",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "dndreams:lotus_seeds",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "dndreams:japanese_maple_sapling",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "dndreams:japanese_maple_log",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "dndreams:japanese_maple_planks",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 6
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:glow_berries",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:bone_meal",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:string",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:sweet_berries",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:wheat",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:pumpkin",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:melon_slice",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 6
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:beetroot",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 2
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:vine",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 6
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:sugar",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 6
+              },
+              "add": true
+            }
+          ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:gunpowder",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 6
+              },
+              "add": true
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.8
+        }
+      ]
+    }
+  ]
+}
