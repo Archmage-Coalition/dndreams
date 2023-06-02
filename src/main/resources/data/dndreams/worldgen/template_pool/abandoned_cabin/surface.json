@@ -6,7 +6,7 @@
             "weight": 1,
             "element": {
                 "location": "dndreams:abandoned_cabin/surface_1",
-                "processors": "minecraft:empty",
+                "processors": "dndreams:compress_cobble",
                 "projection": "rigid",
                 "element_type": "minecraft:single_pool_element"
             }
@@ -15,7 +15,7 @@
             "weight": 1,
             "element": {
                 "location": "dndreams:abandoned_cabin/surface_2",
-                "processors": "minecraft:empty",
+                "processors": "dndreams:compress_cobble",
                 "projection": "rigid",
                 "element_type": "minecraft:single_pool_element"
             }
@@ -24,7 +24,7 @@
             "weight": 1,
             "element": {
                 "location": "dndreams:abandoned_cabin/surface_3",
-                "processors": "minecraft:empty",
+                "processors": "dndreams:compress_cobble",
                 "projection": "rigid",
                 "element_type": "minecraft:single_pool_element"
             }
