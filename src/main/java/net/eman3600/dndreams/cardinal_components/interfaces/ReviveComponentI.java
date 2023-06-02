@@ -24,5 +24,7 @@ public interface ReviveComponentI extends AutoSyncedComponent, ServerTickingComp
     float getDisplayedVitality();
     boolean needsMoreVitality();
 
-    boolean onCooldown();
+    boolean canRecharge();
+
+    void setRecharging(boolean canRecharge);
 }

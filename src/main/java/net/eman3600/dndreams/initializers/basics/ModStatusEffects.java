@@ -6,6 +6,7 @@ import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mob_effects.InstantModStatusEffect;
 import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,15 +35,18 @@ public class ModStatusEffects {
     public static StatusEffect GAS_MASK = register("gas_mask", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xEEEE11));
     public static StatusEffect CLEANSING = register("cleansing", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFFFF99));
     public static StatusEffect REJUVENATION = register("rejuvenation", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xff70e8)
-            .addAttributeModifier(ModAttributes.PLAYER_RECLAMATION, "E8E0684F-42F6-9C0E-5972-0FC11C5872AA", 0.25f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+            .addAttributeModifier(ModAttributes.PLAYER_RECLAMATION, "D08601E7-2066-4C5A-BB5D-CA4C07490FE7", 0.25f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
     public static StatusEffect DRAGONSOUL = register("dragonsoul", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9D050A)
-            .addAttributeModifier(ModAttributes.PLAYER_REVIVAL, "E8E0684F-42F6-9C0E-5972-0FC11C5872AB", 1f, EntityAttributeModifier.Operation.ADDITION));
+            .addAttributeModifier(ModAttributes.PLAYER_REVIVAL, "9C8D88A9-5C9E-476E-810C-95E0A2E68774", 1f, EntityAttributeModifier.Operation.ADDITION));
     public static StatusEffect MORTAL = register("mortal", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x440000));
     public static StatusEffect FLAME_GUARD = register("flame_guard", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 14981690));
     public static StatusEffect HEARTBLEED = register("heartbleed", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xdd0a0a));
     public static StatusEffect DISCORDANT = register("discordant", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x0b4d42));
     public static StatusEffect HAUNTED = register("haunted", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x299eb8));
     public static StatusEffect THIRD_EYE = register("third_eye", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x192225));
+    public static StatusEffect SMOTE = register("smote", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xfff296)
+            .addAttributeModifier(EntityAttributes.GENERIC_ARMOR, "8009BFB0-DB59-4D20-9945-13D4E8C59DD2", -.5f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
+            .addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, "8009BFB0-DB59-4D20-9945-13D4E8C59DD2", -.5f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 
     private static StatusEffect register(String name, StatusEffect entry) {
         return Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

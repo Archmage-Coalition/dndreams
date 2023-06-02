@@ -90,7 +90,9 @@
   "item.dndreams.shattered_sword": "Shattered Sword",
   "item.dndreams.slumbering_sword": "Slumbering Sword",
   "item.dndreams.crowned_edge": "Crowned Edge",
+  "item.dndreams.crowned_edge.tooltip": "§3An edge befit a king.",
   "item.dndreams.true_crowned_edge": "True Crowned Edge",
+  "item.dndreams.true_crowned_edge.tooltip": "§3An edge befit a lord.",
   
   "item.dndreams.book_of_dreams": "Codex Memorium",
   "item.dndreams.book_of_dreams.tooltip.0": "§3A compendium of ancient knowledge.",
@@ -356,6 +358,7 @@
   "effect.dndreams.discordant": "Discordant",
   "effect.dndreams.haunted": "Haunted",
   "effect.dndreams.third_eye": "Third Eye",
+  "effect.dndreams.smote": "Smote",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",

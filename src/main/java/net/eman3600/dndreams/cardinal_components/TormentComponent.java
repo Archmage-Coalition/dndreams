@@ -286,14 +286,14 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public boolean canAfford(float cost) {
-        return sanity > 0;
+        return sanity >= cost/2;
     }
 
     @Override
     public void spendSanity(float cost) {
         sanity -= cost;
 
-        if (sanity < 0) {
+        if (sanity < -cost/2) {
             StatusEffectInstance effect = player.getStatusEffect(ModStatusEffects.AFFLICTION);
 
             int duration = (int) (40 * -sanity);

@@ -79,4 +79,9 @@ public class TeleportStaffItem extends TooltipItem implements ManaCostItem {
         super.appendTooltip(stack, world, tooltip, context);
         tooltip.add(getTooltipMana(stack));
     }
+
+    @Override
+    public int getEnchantability() {
+        return 15;
+    }
 }

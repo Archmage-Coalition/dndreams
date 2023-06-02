@@ -182,19 +182,19 @@ public class ModItems {
             new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
                     false, new StatusEffectInstance(StatusEffects.REGENERATION, 400), new StatusEffectInstance(StatusEffects.INSTANT_HEALTH,1, 1)));
     public static final Item SOUL_SOUP = registerItem("soul_soup",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(ModStatusEffects.LIFEMANA, 600), new StatusEffectInstance(ModStatusEffects.AFFLICTION, 1800)));
     public static final Item NATURES_GOSPEL = registerItem("natures_gospel",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
     public static final Item INFERNAL_ANIMUS = registerItem("infernal_animus",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
     public static final Item TRACE_OF_OTHERWHERE = registerItem("trace_of_otherwhere",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
     public static final Item GHOST_OF_LIGHT = registerItem("ghost_of_light",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
 
     // Ingots
@@ -229,16 +229,16 @@ public class ModItems {
 
     // Managold Gear
     public static final Item MANAGOLD_SWORD = registerItem("managold_sword",
-            new SwordItem(ModToolMaterials.MANAGOLD, 3, -2.4F,
+            new SwordItem(ModToolMaterials.MANAGOLD, 3, -2.2F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item MANAGOLD_PICKAXE = registerItem("managold_pickaxe",
-            new ModPickaxeItem(ModToolMaterials.MANAGOLD, 1, -2.8F,
+            new ModPickaxeItem(ModToolMaterials.MANAGOLD, 1, -2.6F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item MANAGOLD_AXE = registerItem("managold_axe",
-            new ModAxeItem(ModToolMaterials.MANAGOLD, 6.0F, -3.0F,
+            new ModAxeItem(ModToolMaterials.MANAGOLD, 5.0F, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item MANAGOLD_SHOVEL = registerItem("managold_shovel",
-            new ModShovelItem(ModToolMaterials.MANAGOLD, 1.5F, -3.0F,
+            new ModShovelItem(ModToolMaterials.MANAGOLD, 1.5F, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item MANAGOLD_HOE = registerItem("managold_hoe",
             new ModHoeItem(ModToolMaterials.MANAGOLD, -2, 0F,
@@ -260,19 +260,19 @@ public class ModItems {
 
     // Resonant Pickaxe
     public static final Item RESONANT_PICKAXE = registerItem("resonant_pickaxe",
-            new ResonantPickaxe(ModToolMaterials.RESONANT, 1, -2.4F,
+            new ResonantPickaxeItem(ModToolMaterials.RESONANT, 1, -2.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
 
     // Hellsteel Sword & Tools
     public static final Item CORRUPT_SWORD = registerItem("corrupt_sword",
-            new CorruptSword(ModToolMaterials.CORRUPT, 3, -1.8F,
+            new CorruptSword(ModToolMaterials.CORRUPT, 3, -2.4F,
             new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item CORRUPT_PICKAXE = registerItem("corrupt_pickaxe",
-            new CorruptPickaxe(ModToolMaterials.CORRUPT, 1, -2.4F,
+            new CorruptPickaxe(ModToolMaterials.CORRUPT, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item CORRUPT_AXE = registerItem("corrupt_axe",
-            new CorruptAxe(ModToolMaterials.CORRUPT, 5.0F, -2.9F,
+            new CorruptAxe(ModToolMaterials.CORRUPT, 5.0F, -3.1F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item CORRUPT_SHOVEL = registerItem("corrupt_shovel",
             new CorruptShovel(ModToolMaterials.CORRUPT, 1.5F, -3.0F,
@@ -309,20 +309,20 @@ public class ModItems {
 
     // Celestium Swords & Tools
     public static final Item CELESTIUM_SWORD = registerItem("celestium_sword",
-            new SwordItem(ModToolMaterials.CELESTIUM, 3, -2.8F,
+            new SwordItem(ModToolMaterials.CELESTIUM, 3, -2.4F,
             new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CELESTIUM_PICKAXE = registerItem("celestium_pickaxe",
             new ModPickaxeItem(ModToolMaterials.CELESTIUM, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_AXE = registerItem("celestium_axe",
-            new ModAxeItem(ModToolMaterials.CELESTIUM, 5.0F, -3.4F,
+            new ModAxeItem(ModToolMaterials.CELESTIUM, 5.0F, -3F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item CELESTIUM_SHOVEL = registerItem("celestium_shovel",
             new ModShovelItem(ModToolMaterials.CELESTIUM, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_HOE = registerItem("celestium_hoe",
-            new ModHoeItem(ModToolMaterials.CELESTIUM, -5, 0F,
+            new ModHoeItem(ModToolMaterials.CELESTIUM, 4, -2.6F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item CELESTIUM_HELMET = registerItem("celestium_helmet",

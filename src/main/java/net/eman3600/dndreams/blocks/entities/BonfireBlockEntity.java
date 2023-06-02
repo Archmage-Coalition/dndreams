@@ -87,6 +87,7 @@ public class BonfireBlockEntity extends BlockEntity implements AbstractPowerRece
 
                 if (strong && (player.getHealth() < player.getMaxHealth() || mana.getMana() < mana.getManaMax() || player.getHungerManager().isNotFull() || player.getHungerManager().getSaturationLevel() < player.getHungerManager().getFoodLevel() || revive.needsMoreVitality()) && usePower(30)) {
                     revive.addVitality(5f);
+                    revive.setRecharging(true);
                     if (!player.hasStatusEffect(ModStatusEffects.VOID_FLOW)) mana.chargeMana(10);
                     player.heal(4f);
                     player.getHungerManager().add(1, 1f);

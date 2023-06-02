@@ -12,6 +12,11 @@ public interface SanityEntity {
     boolean isWoven();
     boolean isCorporeal();
 
+    /**
+     * Determines if the entity should be rendered for a given player.
+     * @param player The player in question.
+     * @return Whether the player should see the entity.
+     */
     boolean canView(PlayerEntity player);
 
     /**

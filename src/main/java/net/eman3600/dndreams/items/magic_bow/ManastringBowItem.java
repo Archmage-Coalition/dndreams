@@ -37,7 +37,7 @@ public class ManastringBowItem extends MagicBowItem implements ManaCostItem {
     }
 
     public float pullTime() {
-        return 20.0F;
+        return 18.0F;
     }
 
     @Override

@@ -80,4 +80,9 @@ public class ForceStaffItem extends TooltipItem implements ManaCostItem, MagicDa
         tooltip.add(getTooltipMana(stack));
         tooltip.add(getTooltipMagicDamage(stack));
     }
+
+    @Override
+    public int getEnchantability() {
+        return 15;
+    }
 }

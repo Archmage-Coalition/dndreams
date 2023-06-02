@@ -82,7 +82,7 @@
             },
             {
               "function": "minecraft:set_potion",
-              "id": "minecraft:night_vision"
+              "id": "minecraft:long_night_vision"
             }
           ],
           "name": "minecraft:potion",

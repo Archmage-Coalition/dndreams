@@ -362,9 +362,9 @@ public class ModRegistries {
         ModFoodComponents.registerSanityFood(FoodComponents.COOKED_SALMON, 4.5f);
         ModFoodComponents.registerSanityFood(FoodComponents.COOKIE, 6);
         ModFoodComponents.registerSanityFood(FoodComponents.DRIED_KELP, 0.25f);
-        ModFoodComponents.registerSanityFood(FoodComponents.ENCHANTED_GOLDEN_APPLE, -25);
-        ModFoodComponents.registerSanityFood(FoodComponents.GOLDEN_APPLE, -12);
-        ModFoodComponents.registerSanityFood(FoodComponents.GOLDEN_CARROT, -2);
+        ModFoodComponents.registerSanityFood(FoodComponents.ENCHANTED_GOLDEN_APPLE, 25);
+        ModFoodComponents.registerSanityFood(FoodComponents.GOLDEN_APPLE, 12);
+        ModFoodComponents.registerSanityFood(FoodComponents.GOLDEN_CARROT, 2);
         ModFoodComponents.registerSanityFood(FoodComponents.HONEY_BOTTLE, 6);
         ModFoodComponents.registerSanityFood(FoodComponents.MELON_SLICE, 1);
         ModFoodComponents.registerSanityFood(FoodComponents.MUSHROOM_STEW, 3);

@@ -147,7 +147,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         EntityComponents.REVIVE.maybeGet(player).ifPresent(revive -> {
             if (revive.shouldDisplay()) {
                 int amount = revive.remainingRevives();
-                String string = revive.remainingRevives() >= 0 ? "x" + amount : "Debt";
+                String string = amount >= 0 ? "x" + amount : "x0";
 
                 int k = client.options.getMainArm().getValue() == Arm.RIGHT ? REVIVE_X_OFFSET + REVIVE_WIDTH + 5 : scaledWidth - REVIVE_X_OFFSET - REVIVE_WIDTH - 5 - 10;
                 int l = scaledHeight - (revive.shouldOffsetRender() ? REVIVE_Y_BIG_OFFSET : REVIVE_Y_OFFSET) - 12;
@@ -156,7 +156,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                 this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, revive.onCooldown() ? Color.MAGENTA.getRGB() : Color.RED.getRGB());
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, Color.RED.getRGB());
             }
         });
     }
@@ -232,7 +232,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             float vitalityPercent = revive.getDisplayedVitality() / 100;
 
             int skipV = MathHelper.ceil(REVIVE_HEIGHT * (1f - vitalityPercent));
-            int u = revive.onCooldown() ? 134 : 117;
+            int u = revive.canRecharge() ? 117 : 134;
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);

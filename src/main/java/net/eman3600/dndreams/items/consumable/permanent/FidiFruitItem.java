@@ -18,6 +18,7 @@ public class FidiFruitItem extends Item {
         EntityComponents.REVIVE.maybeGet(user).ifPresent(revive -> {
             if (revive.isEnabled()) {
                 user.addStatusEffect(new StatusEffectInstance(ModStatusEffects.DRAGONSOUL, 12000, 0));
+                revive.setRecharging(true);
             } else {
                 revive.setEnabled(true);
             }

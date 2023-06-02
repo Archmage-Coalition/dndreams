@@ -10,15 +10,12 @@ import net.minecraft.util.math.MathHelper;
 
 public class ReviveComponent implements ReviveComponentI {
 
-    /**
-     * If the player can use revives
-     */
     public static final float REGEN = 5f;
 
     private boolean enabled = false;
     private float vitality = 0;
     private int revivesUsed = 0;
-    private int cooldown = 0;
+    private boolean recharging = true;
 
     private boolean dirty = false;
     private final PlayerEntity player;
@@ -44,7 +41,7 @@ public class ReviveComponent implements ReviveComponentI {
     }
     @Override
     public boolean canRevive() {
-        return enabled && cooldown <= 0 && !player.hasStatusEffect(ModStatusEffects.MORTAL) && revivesUsed < maxRevives();
+        return enabled && !player.hasStatusEffect(ModStatusEffects.MORTAL) && revivesUsed < maxRevives();
     }
     @Override
     public int remainingRevives() {
@@ -62,7 +59,7 @@ public class ReviveComponent implements ReviveComponentI {
     @Override
     public void revive() {
         revivesUsed++;
-        cooldown = 1200;
+        recharging = false;
         vitality = 0f;
         markDirty();
     }
@@ -75,7 +72,7 @@ public class ReviveComponent implements ReviveComponentI {
     @Override
     public void deathReset() {
         vitality = 0f;
-        cooldown = 0;
+        recharging = true;
         revivesUsed = 0;
 
         markDirty();
@@ -94,8 +91,8 @@ public class ReviveComponent implements ReviveComponentI {
     }
 
     @Override
-    public boolean onCooldown() {
-        return cooldown > 0;
+    public boolean canRecharge() {
+        return recharging;
     }
 
     private void markDirty() {
@@ -107,26 +104,29 @@ public class ReviveComponent implements ReviveComponentI {
         enabled = tag.getBoolean("enabled");
         vitality = tag.getFloat("vitality");
         revivesUsed = tag.getInt("revives_used");
-        cooldown = tag.getInt("cooldown");
+        recharging = tag.getBoolean("recharging");
     }
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putBoolean("enabled", enabled);
         tag.putFloat("vitality", vitality);
         tag.putInt("revives_used", revivesUsed);
-        tag.putInt("cooldown", cooldown);
+        tag.putBoolean("recharging", recharging);
+    }
+
+    @Override
+    public void setRecharging(boolean canRecharge) {
+        recharging = canRecharge;
     }
 
 
 
     @Override
     public void serverTick() {
-        if (onCooldown()) {
-            cooldown--;
-            markDirty();
-        } else {
+        if (canRecharge()) {
+
             if (revivesUsed > 0) {
-                addVitality(REGEN / 1200);
+                addVitality(REGEN / 900);
             }
 
             if (vitality >= 100 && revivesUsed > 0) {

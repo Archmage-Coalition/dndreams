@@ -102,4 +102,9 @@ public class SnapStaffItem extends TooltipItem implements ManaCostItem {
 
         tooltip.add(getTooltipMana(stack));
     }
+
+    @Override
+    public int getEnchantability() {
+        return 15;
+    }
 }

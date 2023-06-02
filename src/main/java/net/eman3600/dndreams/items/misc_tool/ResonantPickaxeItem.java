@@ -9,8 +9,8 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.world.World;
 
-public class ResonantPickaxe extends PickaxeItem implements VariedMineSpeedItem {
-    public ResonantPickaxe(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+public class ResonantPickaxeItem extends PickaxeItem implements VariedMineSpeedItem {
+    public ResonantPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
     }
 
