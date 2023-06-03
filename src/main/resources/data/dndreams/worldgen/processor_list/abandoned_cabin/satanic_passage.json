@@ -1,0 +1,207 @@
+{
+    "processors": [
+        {
+            "processor_type": "minecraft:rule",
+            "rules": [
+                {
+                    "input_predicate": {
+                        "block": "minecraft:torch",
+                        "probability": 0.125,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:red_candle",
+						"Properties": {
+							"lit": true,
+							"candles": 1
+						}
+                    }
+                },
+				{
+                    "input_predicate": {
+                        "block": "minecraft:torch",
+                        "probability": 0.143,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:red_candle",
+						"Properties": {
+							"lit": true,
+							"candles": 2
+						}
+                    }
+                },
+				{
+                    "input_predicate": {
+                        "block": "minecraft:torch",
+                        "probability": 0.167,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:red_candle",
+						"Properties": {
+							"lit": true,
+							"candles": 3
+						}
+                    }
+                },
+				{
+                    "input_predicate": {
+                        "block": "minecraft:torch",
+                        "probability": 0.2,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:red_candle",
+						"Properties": {
+							"lit": true,
+							"candles": 4
+						}
+                    }
+                },
+				{
+                    "input_predicate": {
+                        "block": "minecraft:torch",
+                        "probability": 0.25,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:black_candle",
+						"Properties": {
+							"lit": true,
+							"candles": 1
+						}
+                    }
+                },
+				{
+                    "input_predicate": {
+                        "block": "minecraft:torch",
+                        "probability": 0.333,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:black_candle",
+						"Properties": {
+							"lit": true,
+							"candles": 2
+						}
+                    }
+                },
+				{
+                    "input_predicate": {
+                        "block": "minecraft:torch",
+                        "probability": 0.5,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:black_candle",
+						"Properties": {
+							"lit": true,
+							"candles": 3
+						}
+                    }
+                },
+				{
+                    "input_predicate": {
+                        "block": "minecraft:torch",
+                        "probability": 1,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:black_candle",
+						"Properties": {
+							"lit": true,
+							"candles": 4
+						}
+                    }
+                }
+            ]
+        },
+		{
+            "processor_type": "minecraft:rule",
+            "rules": [
+                {
+                    "input_predicate": {
+                        "block": "minecraft:dripstone_block",
+                        "probability": 0.5,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:cobblestone"
+                    }
+                },
+				{
+                    "input_predicate": {
+                        "block": "minecraft:dripstone_block",
+                        "probability": 1,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:cobbled_deepslate"
+                    }
+                }
+            ]
+        },
+		{
+            "processor_type": "minecraft:rule",
+            "rules": [
+                {
+                    "input_predicate": {
+                        "block": "minecraft:obsidian",
+                        "probability": 0.2,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:crying_obsidian"
+                    }
+                },
+				{
+                    "input_predicate": {
+                        "block": "minecraft:obsidian",
+                        "probability": 0.1,
+                        "predicate_type": "minecraft:random_block_match"
+                    },
+                    "location_predicate": {
+                        "predicate_type": "minecraft:always_true"
+                    },
+                    "output_state": {
+                        "Name": "minecraft:air"
+                    }
+                }
+            ]
+        }
+    ]
+}

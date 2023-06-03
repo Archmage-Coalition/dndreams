@@ -10,6 +10,15 @@
                 "projection": "rigid",
                 "element_type": "minecraft:single_pool_element"
             }
+        },
+		{
+            "weight": 1,
+            "element": {
+                "location": "dndreams:abandoned_cabin/passage_1",
+                "processors": "dndreams:abandoned_cabin/satanic_passage",
+                "projection": "rigid",
+                "element_type": "minecraft:single_pool_element"
+            }
         }
     ]
 }
