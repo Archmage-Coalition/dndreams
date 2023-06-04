@@ -1,14 +1,15 @@
 package net.eman3600.dndreams.entities.mobs;
 
 import net.eman3600.dndreams.entities.ai.TormentorMeleeAttackGoal;
+import net.eman3600.dndreams.entities.ai.TormentorRangedAttackGoal;
+import net.eman3600.dndreams.entities.ai.TormentorTacticsGoal;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -19,15 +20,23 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -39,7 +48,14 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class TormentorEntity extends HostileEntity implements IAnimatable, SanityEntity {
+public class TormentorEntity extends HostileEntity implements IAnimatable, SanityEntity, RangedAttackMob {
+    public static final Item BOW_ITEM = ModItems.MINDSTRING_BOW;
+
+    private boolean updateRanged = false;
+
+    private final TormentorMeleeAttackGoal meleeGoal = new TormentorMeleeAttackGoal(this, 1.0, false);
+    private final TormentorRangedAttackGoal rangedGoal = new TormentorRangedAttackGoal(this, 1, 20, 20, BOW_ITEM);
+    private final TormentorTacticsGoal tacticsGoal = new TormentorTacticsGoal(this);
 
     public static TrackedData<Boolean> WOVEN = DataTracker.registerData(TormentorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<Boolean> CORPOREAL = DataTracker.registerData(TormentorEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -50,10 +66,12 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     public TormentorEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
+        updateAttackType();
+        goalSelector.add(0, tacticsGoal);
     }
 
     public TormentorEntity(World world) {
-        super(ModEntities.TORMENTOR, world);
+        this(ModEntities.TORMENTOR, world);
     }
 
     public TormentorEntity(World world, boolean woven) {
@@ -66,8 +84,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     @Override
     protected void initGoals() {
 
-        //this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(2, new TormentorMeleeAttackGoal(this, 1.0, false));
+        this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(3, new FleeEntityGoal<>(this, PlayerEntity.class, 4.0f, 1.0, 1.2, a -> a instanceof PlayerEntity player && getSanity(player) > 25 && !isCorporeal()));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
@@ -81,6 +98,24 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         }));
     }
 
+    public void updateAttackType() {
+
+        if (world == null || world.isClient()) {
+            return;
+        }
+
+        goalSelector.remove(meleeGoal);
+        goalSelector.remove(rangedGoal);
+
+        ItemStack stack = this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, BOW_ITEM));
+        if (stack.isOf(BOW_ITEM)) {
+            rangedGoal.setAttackInterval(20);
+            goalSelector.add(2, rangedGoal);
+        } else {
+            goalSelector.add(2, meleeGoal);
+        }
+    }
+
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
@@ -91,7 +126,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     public static DefaultAttributeContainer.Builder createTormentorAttributes() {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0d)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 70.0d)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0d)
                 .add(EntityAttributes.GENERIC_ARMOR, 8.0d)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 28.0d);
@@ -120,15 +155,25 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
                 }
             }
         }
+
+        if (updateRanged) {
+            updateRanged = false;
+
+            rangedGoal.setRanged(!isRanged());
+        }
     }
 
     private <E extends IAnimatable> PlayState idlePlayPredicate(AnimationEvent<E> event) {
         AnimationBuilder builder = new AnimationBuilder();
 
 
+        if (isRanged()) {
 
-        if (event.isMoving()) {
-            builder.addAnimation("move", EDefaultLoopTypes.HOLD_ON_LAST_FRAME);
+            builder.addAnimation("bow", EDefaultLoopTypes.LOOP);
+
+            event.getController().setAnimation(builder);
+        } else if (event.isMoving()) {
+            builder.addAnimation("move", EDefaultLoopTypes.LOOP);
         } else {
             builder.addAnimation("idle_arms", EDefaultLoopTypes.LOOP);
         }
@@ -153,8 +198,8 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     @Override
     public void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(new AnimationController<>(this, "idle", 0, this::idlePlayPredicate));
-        animationData.addAnimationController(new AnimationController<>(this, "attack", 0, this::attackPlayPredicate));
+        animationData.addAnimationController(new AnimationController<>(this, "idle", 5, this::idlePlayPredicate));
+        animationData.addAnimationController(new AnimationController<>(this, "attack", 2, this::attackPlayPredicate));
     }
 
     @Override
@@ -185,6 +230,13 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         if (nbt.contains(CORPOREAL_KEY)) {
             tracker.set(CORPOREAL, nbt.getBoolean(CORPOREAL_KEY));
         }
+        updateAttackType();
+    }
+
+    @Override
+    public void equipStack(EquipmentSlot slot, ItemStack stack) {
+        super.equipStack(slot, stack);
+        if (!world.isClient()) updateAttackType();
     }
 
     @Override
@@ -199,6 +251,10 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     public void setCorporeal(boolean corporeal) {
         getDataTracker().set(CORPOREAL, corporeal || isWoven());
+
+        if (!corporeal && isRanged()) {
+            setRanged(false);
+        }
     }
 
     @Override
@@ -254,6 +310,12 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
             getTorment(player).lowerSanity(-12.5f);
         }
 
+        for (TormentorEntity entity: tacticsGoal.getNearbyTormentors()) {
+            if (entity.getTarget() != null) {
+                entity.tacticsGoal.updateTactics();
+            }
+        }
+
         super.onDeath(damageSource);
     }
 
@@ -271,11 +333,6 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     }
 
     @Override
-    public boolean canWalkOnFluid(FluidState state) {
-        return !state.isEmpty();
-    }
-
-    @Override
     public boolean isPushable() {
         return isCorporeal();
     }
@@ -284,4 +341,59 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     protected void pushAway(Entity entity) {
         if (isCorporeal()) super.pushAway(entity);
     }
+
+    @Override
+    public boolean occludeVibrationSignals() {
+        return true;
+    }
+
+    public boolean isRanged() {
+        return this.getMainHandStack().isOf(BOW_ITEM);
+    }
+
+    @Override
+    public void attack(LivingEntity target, float pullProgress) {
+        ItemStack itemStack = new ItemStack(Items.ARROW);
+        PersistentProjectileEntity persistentProjectileEntity = ProjectileUtil.createArrowProjectile(this, itemStack, pullProgress);
+        double d = target.getX() - this.getX();
+        double e = target.getBodyY(0.3333333333333333) - persistentProjectileEntity.getY();
+        double f = target.getZ() - this.getZ();
+        double g = Math.sqrt(d * d + f * f);
+        persistentProjectileEntity.setVelocity(d, e + g * (double)0.2f, f, 1.6f, 14 - this.world.getDifficulty().getId() * 4);
+        this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0f, 1.0f / (this.getRandom().nextFloat() * 0.4f + 0.8f));
+        this.world.spawnEntity(persistentProjectileEntity);
+    }
+
+    @Override
+    protected boolean isDisallowedInPeaceful() {
+        return false;
+    }
+
+    @Nullable
+    @Override
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+        EntityData data = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+        this.updateAttackType();
+
+        this.handDropChances[0] = -2f;
+        this.handDropChances[1] = -2f;
+
+        return data;
+    }
+
+    @Override
+    public boolean canUseRangedWeapon(RangedWeaponItem weapon) {
+        return weapon == BOW_ITEM;
+    }
+
+    @Override
+    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+        return 1.3f;
+    }
+
+    public void setRanged(boolean ranged) {
+        updateRanged = ranged != isRanged();
+    }
+
+
 }

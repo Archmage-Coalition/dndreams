@@ -93,7 +93,7 @@ public abstract class MagicBowItem extends BowItem {
         }
     }
 
-    public abstract float pullTime();
+    public abstract int pullTime();
 
     public abstract ItemStack getProjectile();
 

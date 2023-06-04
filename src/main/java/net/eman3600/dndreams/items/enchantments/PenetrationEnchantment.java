@@ -23,8 +23,8 @@ public class PenetrationEnchantment extends AliasedEnchantment {
     public void onTargetDamaged(LivingEntity user, Entity target, int level) {
         if (target instanceof LivingEntity entity && level > 0) {
 
-            int i = 40 + user.getRandom().nextInt(60);
-            entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.SMOTE, i, level));
+            int i = 40 + (user.getRandom().nextInt(60) * level);
+            entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.SMOTE, i, 0));
         }
 
         super.onTargetDamaged(user, target, level);

@@ -28,10 +28,6 @@ public class TormentorMeleeAttackGoal extends MeleeAttackGoal {
     public void tick() {
         super.tick();
         ++this.ticks;
-        if (this.ticks >= 5 && this.getCooldown() < this.getMaxCooldown() / 2) {
-            this.tormentor.setAttacking(true);
-        } else {
-            this.tormentor.setAttacking(false);
-        }
+        this.tormentor.setAttacking(this.ticks >= 5 && this.getCooldown() < this.getMaxCooldown() / 2);
     }
 }

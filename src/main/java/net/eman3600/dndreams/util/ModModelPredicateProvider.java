@@ -36,10 +36,10 @@ public class ModModelPredicateProvider {
 
     private static void registerBow(Item bow) {
         if (bow instanceof MagicBowItem bowItem)
-            registerBow(bowItem);
+            registerMagicBow(bowItem);
     }
 
-    private static void registerBow(MagicBowItem bow) {
+    private static void registerMagicBow(MagicBowItem bow) {
         ModelPredicateProviderRegistry.register(bow, new Identifier("pull"),
                 (stack, world, entity, seed) -> {
                     if (entity == null) {

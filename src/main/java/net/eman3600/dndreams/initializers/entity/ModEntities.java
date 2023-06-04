@@ -118,7 +118,7 @@ public class ModEntities {
     public static final EntityType<TormentorEntity> TORMENTOR = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "tormentor"),
             FabricEntityTypeBuilder.<TormentorEntity>create(SpawnGroup.MISC, TormentorEntity::new)
-                    .dimensions(EntityType.ZOMBIE.getDimensions())
+                    .dimensions(new EntityDimensions(0.6f, 1.7f, true))
                     .fireImmune()
                     .build()
     );
