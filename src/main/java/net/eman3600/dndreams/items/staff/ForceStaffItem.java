@@ -1,13 +1,13 @@
 package net.eman3600.dndreams.items.staff;
 
 import net.eman3600.dndreams.items.TooltipItem;
+import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -15,8 +15,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +22,8 @@ import java.util.List;
 
 public class ForceStaffItem extends TooltipItem implements ManaCostItem, MagicDamageItem {
     public static final double DISTANCE = 12;
-    public static final double SQ = DISTANCE * DISTANCE;
+
+
 
     public ForceStaffItem(Settings settings) {
         super(settings);
@@ -43,12 +42,8 @@ public class ForceStaffItem extends TooltipItem implements ManaCostItem, MagicDa
             if (!user.isCreative()) stack.damage(1, user, p -> p.sendToolBreakStatus(hand));
 
             if (!world.isClient) {
-                Vec3d pos = user.getCameraPosVec(0);
-                Vec3d angle = user.getRotationVec(1.0f).multiply(DISTANCE);
-                Vec3d extent = pos.add(angle.x, angle.y, angle.z);
-                Box box = user.getBoundingBox().stretch(angle).expand(1.0, 1.0, 1.0);
 
-                EntityHitResult entityHitResult = ProjectileUtil.raycast(user, pos, extent, box, entity -> !entity.isSpectator() && entity.canHit(), SQ);
+                EntityHitResult entityHitResult = AirSwingItem.castWithDistance(user, DISTANCE, entity -> !entity.isSpectator() && entity.canHit());
 
                 if (entityHitResult != null && entityHitResult.getEntity() instanceof LivingEntity target) {
                     target.timeUntilRegen = 0;

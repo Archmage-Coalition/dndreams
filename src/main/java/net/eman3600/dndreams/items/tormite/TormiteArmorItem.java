@@ -19,6 +19,8 @@ public class TormiteArmorItem extends ModArmorItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+
         tooltip.add(Text.translatable("tooltip.dndreams.tormite_armor"));
         tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
     }

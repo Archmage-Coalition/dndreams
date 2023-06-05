@@ -75,6 +75,8 @@
   "item.dndreams.mind_shears.tooltip": "Tear your mind to pieces.",
   
   "item.dndreams.celestium_sword": "Celestium Sword",
+  "item.dndreams.celestium_sword.tooltip.0": "§3Teleports you to reach targets.",
+  "item.dndreams.celestium_sword.tooltip.1": "§3Teleportation can be hazardous.",
   "item.dndreams.celestium_pickaxe": "Celestium Pickaxe",
   "item.dndreams.celestium_axe": "Celestium Axe",
   "item.dndreams.celestium_shovel": "Celestium Shovel",
@@ -286,6 +288,9 @@
   "tooltip.dndreams.speed": "§2Projectile Speed: %s",
   "tooltip.dndreams.dream_origin": "§3They said this didn't exist,",
   "tooltip.dndreams.dream_origin_2": "§3and they were probably right.",
+  "tooltip.dndreams.mana_buffer": "§eDurability is protected by mana.",
+  "tooltip.dndreams.sanity_repair": "§eRepaires faster while you're sane.",
+  "tooltip.dndreams.insanity_repair": "§eRepaires faster while you're mad.",
   
   
   "death.attack.crimson_sacrifice": "%s snuffed out their lifeforce",

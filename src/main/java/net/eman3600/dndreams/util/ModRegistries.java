@@ -359,7 +359,6 @@ public class ModRegistries {
 
     private static void registerShockPredicates() {
         ShockComponent.registerChargePredicate(entity -> !entity.isOnGround());
-        ShockComponent.registerChargePredicate(entity -> entity.hasStatusEffect(ModStatusEffects.INSULATED));
         ShockComponent.registerChargePredicate(entity -> entity instanceof CreeperEntity);
     }
 

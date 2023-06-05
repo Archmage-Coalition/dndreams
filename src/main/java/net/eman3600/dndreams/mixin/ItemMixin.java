@@ -1,19 +1,25 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.List;
 
 @Mixin(Item.class)
 public abstract class ItemMixin {
@@ -36,6 +42,20 @@ public abstract class ItemMixin {
 
                 info.setReturnValue(ActionResult.SUCCESS);
             }
+        }
+    }
+
+    @Inject(method = "appendTooltip", at = @At("TAIL"))
+    private void dndreams$appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
+
+        if (stack.isIn(ModTags.MANA_BUFFERING_TOOLS)) {
+            tooltip.add(Text.translatable("tooltip.dndreams.mana_buffer"));
+        }
+        if (stack.isIn(ModTags.SANITY_REPAIRING_TOOLS)) {
+            tooltip.add(Text.translatable("tooltip.dndreams.sanity_repair"));
+        }
+        if (stack.isIn(ModTags.INSANITY_REPAIRING_TOOLS)) {
+            tooltip.add(Text.translatable("tooltip.dndreams.insanity_repair"));
         }
     }
 }

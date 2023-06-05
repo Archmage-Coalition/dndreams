@@ -60,13 +60,7 @@ public class ShockComponent implements ShockComponentI {
 
     @Override
     public float dischargeShock(@Nonnegative float max) {
-        if (shock <= max) {
-            return dischargeShock();
-        } else {
-            shock -= max;
-            markDirty();
-            return max;
-        }
+        return Math.min(dischargeShock(), max);
     }
 
     public boolean canStoreShock() {
