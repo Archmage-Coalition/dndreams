@@ -38,8 +38,10 @@ public class ModTags {
 
     public static final TagKey<Item> WEAVING_ITEMS = ofItem("weaving_items");
     public static final TagKey<Item> SMELTING_TOOLS = ofItem("smelting_tools");
-    public static final TagKey<Item> MANA_USING_TOOLS = ofItem("mana_using_tools");
-    public static final TagKey<Item> SANITY_USING_TOOLS = ofItem("sanity_using_tools");
+    public static final TagKey<Item> AUTO_REPAIRING_TOOLS = ofItem("auto_repairing_tools");
+    public static final TagKey<Item> MANA_BUFFERING_TOOLS = ofItem("mana_buffering_tools");
+    public static final TagKey<Item> SANITY_REPAIRING_TOOLS = ofItem("sanity_repairing_tools");
+    public static final TagKey<Item> INSANITY_REPAIRING_TOOLS = ofItem("insanity_repairing_tools");
     public static final TagKey<Item> DREAM_EXCLUSIVE = ofItem("dream_exclusive");
     public static final TagKey<Item> CORRUPTORS = ofItem("corruptors");
 

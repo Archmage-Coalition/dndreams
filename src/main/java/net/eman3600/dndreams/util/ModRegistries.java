@@ -10,11 +10,13 @@ import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
 import net.eman3600.dndreams.mixin_interfaces.ComposterBlockAccess;
+import net.eman3600.dndreams.mixin_interfaces.ItemStackAccess;
 import net.eman3600.dndreams.screens.slot.AttunementBurnSlot;
 import net.eman3600.dndreams.util.data.EnhancementType;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -48,6 +50,24 @@ public class ModRegistries {
         registerInsanityMobAuras();
         registerShockPredicates();
         registerFoodSanities();
+        registerRepairPredicates();
+    }
+
+    private static void registerRepairPredicates() {
+
+        ItemStackAccess.registerRepairPredicate(ModTags.SANITY_REPAIRING_TOOLS, (stack, player) -> {
+
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            return (int)((1 - torment.getAttunedSanity()/100f) * 120 + 40);
+        });
+
+        ItemStackAccess.registerRepairPredicate(ModTags.INSANITY_REPAIRING_TOOLS, (stack, player) -> {
+
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            return (int)(torment.getAttunedSanity()/100f * 70 + 10);
+        });
     }
 
     public static void registerEnergyFuels() {

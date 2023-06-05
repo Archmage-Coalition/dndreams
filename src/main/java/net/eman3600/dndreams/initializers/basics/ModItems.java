@@ -341,13 +341,6 @@ public class ModItems {
             new CelestiumArmorItem(ModArmorMaterials.CELESTIUM, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
 
-
-    // Magic Bows
-    public static final Item MANASTRING_BOW = registerItem("manastring_bow",
-            new ManastringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
-    public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
-            new MindstringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(2145)));
-
     // Tormite Gear
     public static final Item TORMITE_SWORD = registerItem("tormite_sword",
             new SwordItem(ModToolMaterials.TORMITE, 3, -2.4F,
@@ -408,6 +401,16 @@ public class ModItems {
     public static final Item PERICHARITE_BOOTS = registerItem("pericharite_boots",
             new PerichariteArmorItem(ModArmorMaterials.PERICHARITE, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
+
+    // Magic Bows
+    public static final Item MANASTRING_BOW = registerItem("manastring_bow",
+            new ManastringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
+    public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
+            new MindstringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(2145)));
+
+    // Magic Arrows
+    public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
+            new Item(new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Trinkets
     public static final Item FLEETFOOT_BAND = registerItem("fleetfoot_band",
@@ -470,12 +473,12 @@ public class ModItems {
 
     // Crowned Edge
     public static final Item CROWNED_EDGE = registerItem("crowned_edge",
-            new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 5,
+            new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 6,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON).fireproof()));
 
     // True Crowned Edge
     public static final Item TRUE_CROWNED_EDGE = registerItem("true_crowned_edge",
-            new TrueCrownedEdgeItem(ModToolMaterials.LAMENT, 6, -2.2F, 5,
+            new TrueCrownedEdgeItem(ModToolMaterials.LAMENT, 6, -2.2F, 8,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).fireproof()));
 
 

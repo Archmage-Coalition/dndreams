@@ -13,7 +13,7 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(Items.DIAMOND)),
     CORRUPT(3, 1299, 7.0F, 2.0F, 13,
             () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
-    CELESTIUM(4, 2145, 12.0F, 4.0F, 18,
+    CELESTIUM(4, 2145, 12.0F, 6.0F, 18,
             () -> Ingredient.ofItems(ModItems.CELESTIUM)),
     ARTIFACT(4, 3002, 12.0F, 4.0F, 22,
             () -> Ingredient.ofItems(ModItems.DREAM_POWDER, ModItems.SCULK_POWDER)),
@@ -23,15 +23,15 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(Items.COPPER_INGOT)),
     MANAGOLD(2, 32, 12.0F, 2.0F, 22,
             () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
-    TORMITE(4, 2145, 13.0F, 5.0F, 22,
+    TORMITE(4, 2145, 13.0F, 8.0F, 22,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
-    PERICHARITE(4, 3122, 15.0F, 6.0F, 22,
+    PERICHARITE(4, 3122, 15.0F, 11.0F, 22,
             () -> Ingredient.ofItems(ModItems.PERICHARITE)),
     SLUMBERING_EDGE(4, 735, 12.0F, 1.0F, 10,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
-    CROWNED_EDGE(4, 3122, 12.0F, 3.0F, 18,
+    CROWNED_EDGE(4, 3122, 12.0F, 4.0F, 18,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
-    LAMENT(4, 6244, 12.0F, 3.0F, 18,
+    LAMENT(4, 6244, 12.0F, 4.0F, 18,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL));
 
     private final int miningLevel;

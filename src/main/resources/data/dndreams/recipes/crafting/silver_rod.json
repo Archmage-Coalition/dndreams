@@ -1,22 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "#D#",
-    "#X#",
-    "#S#"
+    "#",
+    "#"
   ],
   "key": {
     "#": {
       "item": "dndreams:silver_nugget"
-    },
-	"X": {
-      "item": "minecraft:blaze_rod"
-    },
-	"D": {
-      "item": "dndreams:dreamwood_fume"
-    },
-	"S": {
-      "item": "dndreams:star_fume"
     }
   },
   "result": {

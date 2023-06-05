@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers.basics;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem.CrownedEnchantment;
+import net.eman3600.dndreams.items.enchantments.AutoRepairEnchantment;
 import net.eman3600.dndreams.items.enchantments.ManaCostEnchantment;
 import net.eman3600.dndreams.items.enchantments.PenetrationEnchantment;
 import net.eman3600.dndreams.items.enchantments.PotencyEnchantment;
@@ -16,6 +17,7 @@ public class ModEnchantments {
     public static final Enchantment THRIFTY = register("thrifty", new ManaCostEnchantment(Enchantment.Rarity.UNCOMMON, 3, EquipmentSlot.values()));
     public static final Enchantment WICKED = register("wicked", new CrownedEnchantment(Enchantment.Rarity.UNCOMMON, 1, EquipmentSlot.values()));
     public static final Enchantment PENETRATION = register("penetration", new PenetrationEnchantment(Enchantment.Rarity.RARE, 5, EquipmentSlot.values()));
+    public static final Enchantment REPARATION = register("reparation", new AutoRepairEnchantment(Enchantment.Rarity.UNCOMMON, 3, EquipmentSlot.values()));
 
     public static Enchantment register(String id, Enchantment enchant) {
         return Registry.register(Registry.ENCHANTMENT, new Identifier(Initializer.MODID, id), enchant);

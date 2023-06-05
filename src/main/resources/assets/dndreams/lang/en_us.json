@@ -219,8 +219,8 @@
   "item.dndreams.manastring_bow": "Manatwine Bow",
   "item.dndreams.mindstring_bow": "Mindstrung Bow",
   "item.dndreams.mindstring_bow.tooltip": "§3Fire off your mind.",
-  "item.dndreams.lightstring_bow": "Lightthread Bow",
-  "item.dndreams.brewstring_bow": "Bow of Brews",
+  "item.dndreams.brewstring_bow": "Witchwound Bow",
+  "item.dndreams.managold_arrow": "Managold Arrow",
   
   "item.dndreams.vital_heart": "Life Crystal",
   "item.dndreams.vital_heart.tooltip": "You can feel it beating.",
@@ -328,6 +328,8 @@
   "enchantment.dndreams.wicked_desc": "Magic slashes wither foes.",
   "enchantment.dndreams.penetration": "Divine Judgment",
   "enchantment.dndreams.penetration_desc": "Attacks weaken armor.",
+  "enchantment.dndreams.reparation": "Reparation",
+  "enchantment.dndreams.reparation_desc": "Increases repair efficiency.",
   
   
   "effect.dndreams.impending": "Instant Madness",

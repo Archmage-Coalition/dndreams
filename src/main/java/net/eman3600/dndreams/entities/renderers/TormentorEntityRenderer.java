@@ -85,7 +85,7 @@ public class TormentorEntityRenderer extends GeoEntityRenderer<TormentorEntity> 
 
         matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(-180.0f));
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0f));
-        matrices.translate(0, -1f, .15);
+        matrices.translate(0, -1f, .2);
         boolean bl = arm == Arm.LEFT;
         matrices.translate((float)(bl ? -1 : 1) / 16.0f, 0.125, -0.625);
         this.heldItemRenderer.renderItem(entity, stack, transformationMode, bl, matrices, vertexConsumers, light);
