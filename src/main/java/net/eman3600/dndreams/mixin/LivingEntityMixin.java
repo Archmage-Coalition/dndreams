@@ -192,14 +192,14 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
         if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
             addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE, 0, true, true));
-            if (hasStatusEffect(ModStatusEffects.GRACE)) {
-                removeStatusEffect(ModStatusEffects.GRACE);
+            if (hasStatusEffect(ModStatusEffects.LANDING)) {
+                removeStatusEffect(ModStatusEffects.LANDING);
             }
         } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!isInsideWall() || isOnGround())) {
             removeStatusEffect(ModStatusEffects.INSUBSTANTIAL);
         }
-        if (hasStatusEffect(ModStatusEffects.GRACE) && isOnGround()) {
-            removeStatusEffect(ModStatusEffects.GRACE);
+        if (hasStatusEffect(ModStatusEffects.LANDING) && isOnGround()) {
+            removeStatusEffect(ModStatusEffects.LANDING);
         }
 
         if (fluidHeight.getOrDefault(ModTags.SORROW, 0) > 0.1f) {
@@ -406,5 +406,17 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         float bonus = (amountHealed * (float)getAttributeValue(ModAttributes.PLAYER_RECLAMATION)) - amountHealed;
 
         return health + bonus;
+    }
+
+    @ModifyConstant(method = "travel", constant = @Constant(doubleValue = 0.08))
+    private double dndreams$travel$grace(double constant) {
+
+        if (hasStatusEffect(ModStatusEffects.GRACE)) {
+
+            onLanding();
+            return isSneaking() ? constant : 0.02 / (1 + getStatusEffect(ModStatusEffects.GRACE).getAmplifier());
+        }
+
+        return constant;
     }
 }

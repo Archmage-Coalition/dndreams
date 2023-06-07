@@ -68,6 +68,8 @@ public class ModRegistries {
 
             return (int)(torment.getAttunedSanity()/100f * 70 + 10);
         });
+
+        ItemStackAccess.registerRepairPredicate(ModTags.GROUND_REPAIRING_TOOLS, (stack, player) -> player.isOnGround() ? 160 : -1);
     }
 
     public static void registerEnergyFuels() {

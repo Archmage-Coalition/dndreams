@@ -42,6 +42,7 @@ public class ModTags {
     public static final TagKey<Item> MANA_BUFFERING_TOOLS = ofItem("mana_buffering_tools");
     public static final TagKey<Item> SANITY_REPAIRING_TOOLS = ofItem("sanity_repairing_tools");
     public static final TagKey<Item> INSANITY_REPAIRING_TOOLS = ofItem("insanity_repairing_tools");
+    public static final TagKey<Item> GROUND_REPAIRING_TOOLS = ofItem("ground_repairing_tools");
     public static final TagKey<Item> DREAM_EXCLUSIVE = ofItem("dream_exclusive");
     public static final TagKey<Item> CORRUPTORS = ofItem("corruptors");
 

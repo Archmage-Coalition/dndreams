@@ -60,7 +60,7 @@ public class ModStatusEffect extends StatusEffect {
         }
 
         if (this == ModStatusEffects.INSUBSTANTIAL && !entity.isOnGround()) {
-            entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.GRACE, 100));
+            entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.LANDING, 100));
         }
     }
 }

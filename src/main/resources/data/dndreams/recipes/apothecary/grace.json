@@ -3,9 +3,10 @@
   "ingredient": {
     "item": "dndreams:brilliance"
   },
-  "corrupted": true,
+  "corrupted": false,
   "capacity": 4,
   "cost": 400,
   "effect": "minecraft:levitation",
-  "duration": 300
+  "duration": 1200,
+  "max_amplifier": 2
 }

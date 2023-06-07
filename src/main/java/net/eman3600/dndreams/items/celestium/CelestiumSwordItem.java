@@ -40,7 +40,7 @@ public class CelestiumSwordItem extends SwordItem implements DivineWeaponItem, A
     @Override
     public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit) {
 
-        if (hit == null) {
+        if (hit == null && !ModStatusEffects.shouldRestrict(user)) {
 
             EntityHitResult cast = AirSwingItem.castWithDistance(user, DISTANCE, entity -> !entity.isSpectator() && entity.canHit());
 

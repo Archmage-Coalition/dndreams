@@ -11,6 +11,7 @@ import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.VariedMineSpeedItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
+import net.eman3600.dndreams.mixin_interfaces.PlayerEntityAccess;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RespawnAnchorBlock;
@@ -36,7 +37,9 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -56,6 +59,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Shadow public abstract Iterable<ItemStack> getArmorItems();
 
     @Shadow public abstract PlayerInventory getInventory();
+
+    @Shadow public abstract float getMovementSpeed();
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -159,5 +164,11 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private void dndreams$canFoodHeal(CallbackInfoReturnable<Boolean> cir) {
 
         if (hasStatusEffect(ModStatusEffects.MORTAL)) cir.setReturnValue(false);
+    }
+
+    @ModifyConstant(method = "tickMovement", constant = @Constant(floatValue = 0.02f))
+    private float dndreams$tickMovement$maintainSpeed(float constant) {
+
+        return (PlayerEntityAccess.hasAerialMovement(this)) ? (float) (getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED) / getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED)) * constant : constant;
     }
 }
