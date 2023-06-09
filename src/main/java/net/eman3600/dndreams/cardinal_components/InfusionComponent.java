@@ -3,10 +3,12 @@ package net.eman3600.dndreams.cardinal_components;
 import net.eman3600.dndreams.cardinal_components.interfaces.InfusionComponentI;
 import net.eman3600.dndreams.infusions.setup.Infusion;
 import net.eman3600.dndreams.infusions.setup.InfusionRegistry;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModInfusions;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -24,6 +26,7 @@ public class InfusionComponent implements InfusionComponentI {
      * How long the player has left being linked to their bonfire.
      */
     private int linkTicks = 0;
+    private boolean needsKit = true;
 
     public InfusionComponent(PlayerEntity player) {
         this.player = player;
@@ -77,12 +80,14 @@ public class InfusionComponent implements InfusionComponentI {
     public void readFromNbt(NbtCompound tag) {
         infusion = Infusion.ofID(Identifier.tryParse(tag.getString("infusion")));
         linkTicks = tag.getInt("link_ticks");
+        needsKit = tag.getBoolean("needs_kit");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putString("infusion", InfusionRegistry.REGISTRY.getId(infusion).toString());
         tag.putInt("link_ticks", linkTicks);
+        tag.putBoolean("needs_kit", needsKit);
     }
 
     @Override
@@ -94,6 +99,13 @@ public class InfusionComponent implements InfusionComponentI {
         if (linkTicks > 0) {
             linkTicks--;
             EntityComponents.INFUSION.sync(player);
+        }
+
+        if (needsKit) {
+            needsKit = false;
+            EntityComponents.INFUSION.sync(player);
+
+            player.giveItemStack(new ItemStack(ModItems.BOOK_OF_DREAMS));
         }
     }
 }

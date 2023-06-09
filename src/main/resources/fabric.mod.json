@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Demons and Dreams",
-  "description": "",
+  "description": "A new way to play the game.",
   "authors": [
     "Eman3600",
     "SciRave",
@@ -69,7 +69,8 @@
       "dndreams:stat_boon",
       "dndreams:perm_item",
       "dndreams:revive",
-      "dndreams:shock"
+      "dndreams:shock",
+      "dndreams:warden"
     ]
   }
 }

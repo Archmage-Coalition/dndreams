@@ -6,7 +6,7 @@
   "corrupted": false,
   "capacity": 4,
   "cost": 400,
-  "effect": "minecraft:levitation",
+  "effect": "dndreams:grace",
   "duration": 1200,
   "max_amplifier": 2
 }

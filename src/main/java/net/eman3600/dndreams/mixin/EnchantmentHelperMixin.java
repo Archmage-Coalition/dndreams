@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(EnchantmentHelper.class)
-public abstract class EnchantHelperMixin {
+public abstract class EnchantmentHelperMixin {
 
     @Inject(method = "getPossibleEntries", at = @At(value = "RETURN"), cancellable = true)
     private static void dndreams$getPossibleEntries(int power, ItemStack stack, boolean treasureAllowed, CallbackInfoReturnable<List<EnchantmentLevelEntry>> cir) {

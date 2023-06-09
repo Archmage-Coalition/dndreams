@@ -8,6 +8,8 @@ import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.*;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.MerchantEntity;
+import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.util.Identifier;
 
 public class EntityComponents implements EntityComponentInitializer {
@@ -20,6 +22,7 @@ public class EntityComponents implements EntityComponentInitializer {
     public static final ComponentKey<GatewayComponent> GATEWAY = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "gateway"), GatewayComponent.class);
     public static final ComponentKey<ReviveComponent> REVIVE = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "revive"), ReviveComponent.class);
     public static final ComponentKey<ShockComponent> SHOCK = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "shock"), ShockComponent.class);
+    public static final ComponentKey<WardenComponent> WARDEN = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "warden"), WardenComponent.class);
 
 
 
@@ -37,5 +40,9 @@ public class EntityComponents implements EntityComponentInitializer {
         registry.registerForPlayers(PERM_ITEM, PermItemComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(REVIVE, ReviveComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerFor(LivingEntity.class, SHOCK, ShockComponent::new);
+
+        registry.registerForPlayers(WARDEN, WardenComponent::new, RespawnCopyStrategy.NEVER_COPY);
+        registry.registerFor(RaiderEntity.class, WARDEN, WardenComponent::new);
+        registry.registerFor(MerchantEntity.class, WARDEN, WardenComponent::new);
     }
 }
