@@ -146,6 +146,7 @@
   "item.dndreams.icy_needle": "Icy Needle",
   "item.dndreams.materialize_tome": "Solemn Return",
   "item.dndreams.ancient_spark": "Soul Chime",
+  "item.dndreams.ancient_spark.tooltip": "§3Can tune the ancient portal.",
   "item.dndreams.attuned_shard": "Attuned Amethyst",
   "item.dndreams.attuned_shard.tooltip": "§dCharge: %s§d/500",
   "item.dndreams.charged_shard": "Attuned Amethyst",

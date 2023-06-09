@@ -2,9 +2,11 @@ package net.eman3600.dndreams.rituals;
 
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.misc_tool.TaglockItem;
 import net.eman3600.dndreams.rituals.setup.Ritual;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -22,6 +24,7 @@ public class NightTerrorRitual extends Ritual {
             TormentComponent component = EntityComponents.TORMENT.get(player);
             if (component.getSanity() > 5f) {
                 component.setSanity(0);
+                player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 6000));
                 return true;
             }
         }

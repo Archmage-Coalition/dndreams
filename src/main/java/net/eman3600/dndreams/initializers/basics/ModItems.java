@@ -307,7 +307,7 @@ public class ModItems {
 
     // Ancient Portal Activation
     public static final Item ANCIENT_SPARK = registerItem("ancient_spark", new AncientSparkItem(new FabricItemSettings()
-            .group(ItemGroup.TOOLS).maxCount(1).maxDamage(64)));
+            .group(ItemGroup.TOOLS).maxCount(1).maxDamage(64)).withTooltip(null, 1));
 
 
     // Celestium Swords & Tools

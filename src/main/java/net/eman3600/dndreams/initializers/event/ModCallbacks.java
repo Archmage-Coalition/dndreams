@@ -11,6 +11,7 @@ import net.eman3600.dndreams.mixin_interfaces.ItemEntityAccess;
 import net.eman3600.dndreams.recipes.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
 import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
+import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.entity.Entity;
@@ -117,6 +118,7 @@ public class ModCallbacks {
         });
 
         EntityElytraEvents.ALLOW.register(entity -> !entity.hasStatusEffect(ModStatusEffects.GRACE));
+        EntitySleepEvents.ALLOW_RESETTING_TIME.register(player -> !WorldComponents.BLOOD_MOON.get(player.getWorld()).damnedNight());
     }
 
 

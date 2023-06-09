@@ -17,7 +17,6 @@ import net.minecraft.world.event.listener.GameEventListener;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -61,8 +60,8 @@ public abstract class SculkShriekerBlockEntityMixin extends BlockEntity implemen
         }
     }
 
-    @Unique
-    private void shriekAtAnyone(ServerWorld world, Entity entity) {
+    @Override
+    public void shriekAtAnyone(ServerWorld world, Entity entity) {
         BlockState blockState = this.getCachedState();
         if (blockState.get(SculkShriekerBlock.SHRIEKING)) {
             return;

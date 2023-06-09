@@ -1,0 +1,16 @@
+{
+  "type": "dndreams:refinery",
+  "group": "dndreams:silver_rod",
+  "ingredients": [
+    {
+      "item": "dndreams:silver_ingot"
+    },
+	{
+      "item": "dndreams:dreamwood_fume"
+    }
+  ],
+  "result": {
+    "item": "dndreams:silver_rod",
+    "count": 2
+  }
+}

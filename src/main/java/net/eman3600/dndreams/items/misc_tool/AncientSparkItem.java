@@ -1,16 +1,14 @@
 package net.eman3600.dndreams.items.misc_tool;
 
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
-import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
 import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.util.ModTags;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SculkShriekerBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.particle.ParticleTypes;
@@ -23,7 +21,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class AncientSparkItem extends Item implements RitualRemainItem {
+public class AncientSparkItem extends TooltipItem implements RitualRemainItem {
     private static Random random = new Random();
 
     public AncientSparkItem(Settings settings) {
@@ -44,19 +42,6 @@ public class AncientSparkItem extends Item implements RitualRemainItem {
                 p.sendToolBreakStatus(context.getHand());
             });
             return ActionResult.SUCCESS;
-        } else if (world.getBlockState(pos).getBlock() instanceof SculkShriekerBlock) {
-            BlockState state = world.getBlockState(pos);
-
-            if (!state.get(SculkShriekerBlock.CAN_SUMMON)) {
-                world.setBlockState(pos, state.with(SculkShriekerBlock.CAN_SUMMON, true));
-
-                world.playSound(null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 4.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
-
-                stack.damage(1, player, (p) -> {
-                    p.sendToolBreakStatus(context.getHand());
-                });
-                return ActionResult.SUCCESS;
-            }
         } else if (world.getBlockState(pos).getBlock() == ModBlocks.WORLD_FOUNTAIN) {
             if (context.getPlayer() instanceof ServerPlayerEntity player2) {
                 EntityComponents.GATEWAY.get(player2).enterGateway(0, true);

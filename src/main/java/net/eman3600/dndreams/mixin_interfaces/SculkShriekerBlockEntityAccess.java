@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import org.jetbrains.annotations.Nullable;
 
 public interface SculkShriekerBlockEntityAccess {
@@ -27,4 +28,7 @@ public interface SculkShriekerBlockEntityAccess {
         }
         return null;
     }
+
+
+    void shriekAtAnyone(ServerWorld world, Entity entity);
 }
