@@ -3,16 +3,20 @@ package net.eman3600.dndreams.recipes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public class RefineryRecipe implements Recipe<Inventory> {
@@ -151,8 +155,8 @@ public class RefineryRecipe implements Recipe<Inventory> {
             } else if (defaultedList.size() > 4) {
                 throw new JsonParseException("Too many ingredients for refining recipe");
             } else {
-                ItemStack itemStack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
-                ItemStack byproduct = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "byproduct", null));
+                ItemStack itemStack = outputFromJson(JsonHelper.getObject(jsonObject, "result"));
+                ItemStack byproduct = outputFromJson(JsonHelper.getObject(jsonObject, "byproduct", null));
 
                 int time = JsonHelper.getInt(jsonObject, "refine_time", 200);
                 int cost = Math.max(JsonHelper.getInt(jsonObject, "cost", 100), 25);
@@ -205,6 +209,32 @@ public class RefineryRecipe implements Recipe<Inventory> {
             packetByteBuf.writeInt(recipe.refineTime);
             packetByteBuf.writeInt(recipe.powerCost);
             packetByteBuf.writeBoolean(recipe.dreamOnly);
+        }
+    }
+
+    public static ItemStack outputFromJson(JsonObject json) {
+        if (json == null) return ItemStack.EMPTY;
+
+        Item item = getItem(json);
+        if (json.has("data")) {
+            throw new JsonParseException("Disallowed data tag found");
+        } else {
+            int i = JsonHelper.getInt(json, "count", 1);
+            if (i < 1) {
+                throw new JsonSyntaxException("Invalid icon count: " + i);
+            } else {
+                return new ItemStack(item, i);
+            }
+        }
+    }
+
+    public static Item getItem(JsonObject json) {
+        String string = JsonHelper.getString(json, "item");
+        Item item = Registry.ITEM.getOrEmpty(new Identifier(string)).orElseThrow(() -> new JsonSyntaxException("Unknown item '" + string + "'"));
+        if (item == Items.AIR) {
+            throw new JsonSyntaxException("Invalid item: " + string);
+        } else {
+            return item;
         }
     }
 }

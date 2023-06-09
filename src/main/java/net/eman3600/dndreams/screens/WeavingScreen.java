@@ -11,7 +11,6 @@ import net.minecraft.util.Identifier;
 
 public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
     private static final Identifier TEXTURE = new Identifier(Initializer.MODID, "textures/gui/container/weaving.png");
-    private boolean narrow;
 
     public WeavingScreen(WeavingScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -19,7 +18,6 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
 
     protected void init() {
         super.init();
-        this.narrow = this.width < 379;
         this.titleX = 29;
     }
 
@@ -40,7 +38,6 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
     }
 
     protected boolean isClickOutsideBounds(double mouseX, double mouseY, int left, int top, int button) {
-        boolean bl = mouseX < (double)left || mouseY < (double)top || mouseX >= (double)(left + this.backgroundWidth) || mouseY >= (double)(top + this.backgroundHeight);
-        return bl;
+        return mouseX < (double)left || mouseY < (double)top || mouseX >= (double)(left + this.backgroundWidth) || mouseY >= (double)(top + this.backgroundHeight);
     }
 }

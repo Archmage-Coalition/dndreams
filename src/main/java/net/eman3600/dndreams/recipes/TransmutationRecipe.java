@@ -103,7 +103,7 @@ public class TransmutationRecipe implements Recipe<Inventory> {
         public TransmutationRecipe read(Identifier identifier, JsonObject jsonObject) {
             String string = JsonHelper.getString(jsonObject, "group", "");
             Ingredient ingredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient"));
-            ItemStack itemStack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
+            ItemStack itemStack = RefineryRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
             boolean realOnly = JsonHelper.getBoolean(jsonObject, "real_only", false);
             boolean keepData = JsonHelper.getBoolean(jsonObject, "keep_data", false);
 

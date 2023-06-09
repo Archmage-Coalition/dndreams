@@ -96,7 +96,7 @@ public class ApothecaryRecipe implements Recipe<Inventory> {
 
         public ApothecaryRecipe read(Identifier identifier, JsonObject jsonObject) {
             String string = JsonHelper.getString(jsonObject, "group", "");
-            ItemStack stack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "ingredient"));
+            ItemStack stack = RefineryRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "ingredient"));
             if (stack.isIn(ModTags.CORRUPTORS)) throw new JsonParseException("Corruptors cannot be ingredients.");
             boolean corrupted = JsonHelper.getBoolean(jsonObject, "corrupted", false);
             int capacity = JsonHelper.getInt(jsonObject, "capacity", 2);

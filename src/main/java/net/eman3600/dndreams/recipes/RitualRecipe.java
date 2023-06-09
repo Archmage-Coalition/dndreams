@@ -90,7 +90,7 @@ public class RitualRecipe implements Recipe<Inventory> {
 
         public RitualRecipe read(Identifier identifier, JsonObject jsonObject) {
             DefaultedList<Ingredient> ingredients = getIngredients(JsonHelper.getArray(jsonObject, "ingredients"));
-            ItemStack itemStack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
+            ItemStack itemStack = RefineryRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
 
             Identifier ritual = Identifier.tryParse(jsonObject.get("ritual").getAsString());
 

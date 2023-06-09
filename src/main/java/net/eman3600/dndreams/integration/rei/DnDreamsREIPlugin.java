@@ -23,8 +23,6 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class DnDreamsREIPlugin implements REIClientPlugin {
-    public static final CategoryIdentifier<WeavingShapelessDisplay> WEAVING_SHAPELESS = CategoryIdentifier.of(new Identifier(Initializer.MODID, "weaving_shapeless"));
-    public static final CategoryIdentifier<WeavingShapedDisplay> WEAVING_SHAPED = CategoryIdentifier.of(new Identifier(Initializer.MODID, "weaving_shaped"));
     public static final CategoryIdentifier<TransmutationDisplay> TRANSMUTATION = CategoryIdentifier.of(new Identifier(Initializer.MODID, "transmutation"));
     public static final CategoryIdentifier<SmokestackDisplay> SMOKESTACK = CategoryIdentifier.of(new Identifier(Initializer.MODID, "smokestack"));
     public static final CategoryIdentifier<MutandisDisplay> MUTANDIS = CategoryIdentifier.of(new Identifier(Initializer.MODID, "mutandis"));
@@ -53,10 +51,6 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         registry.addWorkstations(MUTANDIS, EntryStacks.of(ModItems.MUTANDIS_EXTREMIS));
         registry.addWorkstations(MUTANDIS, EntryStacks.of(ModItems.MUTANDIS_ONEIROS));
 
-        registry.add(new WeavingShapedCategory());
-        registry.addWorkstations(WEAVING_SHAPED, WeavingShapedCategory.ICON);
-        registry.add(new WeavingShapelessCategory());
-        registry.addWorkstations(WEAVING_SHAPELESS, WeavingShapelessCategory.ICON);
         registry.add(new TransmutationCategory());
         registry.addWorkstations(TRANSMUTATION, EntryStacks.of(ModFluids.STILL_FLOWING_SPIRIT));
 
@@ -72,8 +66,6 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        registry.registerFiller(WeavingShapedRecipe.class, WeavingShapedDisplay::new);
-        registry.registerFiller(WeavingShapelessRecipe.class, WeavingShapelessDisplay::new);
         registry.registerFiller(TransmutationRecipe.class, TransmutationDisplay::new);
         registry.registerFiller(SmokestackRecipe.class, SmokestackDisplay::new);
         registry.registerFiller(RefineryRecipe.class, RefineryDisplay::new);

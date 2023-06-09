@@ -55,7 +55,7 @@ public class WeavingResultSlot extends Slot {
 
     public void onTakeItem(PlayerEntity player, ItemStack stack) {
         this.onCrafted(stack);
-        DefaultedList<ItemStack> defaultedList = player.world.getRecipeManager().getRemainingStacks(ModRecipeTypes.WEAVING, this.input, player.world);
+        DefaultedList<ItemStack> defaultedList = player.world.getRecipeManager().getRemainingStacks(ModRecipeTypes.OLD_WEAVING, this.input, player.world);
 
         for(int i = 0; i < defaultedList.size(); ++i) {
             ItemStack itemStack = this.input.getStack(i);

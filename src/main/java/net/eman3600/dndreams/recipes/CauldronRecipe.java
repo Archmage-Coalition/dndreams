@@ -117,7 +117,7 @@ public class CauldronRecipe implements Recipe<Inventory> {
             } else if (defaultedList.size() > 9) {
                 throw new JsonParseException("Too many ingredients for cauldron recipe");
             } else {
-                ItemStack itemStack = WeavingShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
+                ItemStack itemStack = RefineryRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
 
 
                 boolean dream = JsonHelper.getBoolean(jsonObject, "dream_only", false);
