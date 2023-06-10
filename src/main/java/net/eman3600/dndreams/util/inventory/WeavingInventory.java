@@ -1,27 +1,23 @@
 package net.eman3600.dndreams.util.inventory;
 
+import net.eman3600.dndreams.screens.WeavingScreenHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Iterator;
 
 public class WeavingInventory implements Inventory, RecipeInputProvider {
     private final DefaultedList<ItemStack> stacks;
-    private final int width;
-    private final int height;
-    private final ScreenHandler handler;
+    private final WeavingScreenHandler handler;
 
-    public WeavingInventory(ScreenHandler handler, int width, int height) {
-        this.stacks = DefaultedList.ofSize(width * height + 1, ItemStack.EMPTY);
+    public WeavingInventory(WeavingScreenHandler handler) {
+        this.stacks = DefaultedList.ofSize(3, ItemStack.EMPTY);
         this.handler = handler;
-        this.width = width;
-        this.height = height;
     }
 
     public int size() {
@@ -45,7 +41,7 @@ public class WeavingInventory implements Inventory, RecipeInputProvider {
 
     @Override
     public ItemStack getStack(int slot) {
-        return slot >= this.size() ? ItemStack.EMPTY : (ItemStack)this.stacks.get(slot);
+        return slot >= this.size() ? ItemStack.EMPTY : this.stacks.get(slot);
     }
 
     @Override
@@ -71,6 +67,7 @@ public class WeavingInventory implements Inventory, RecipeInputProvider {
 
     @Override
     public void markDirty() {
+        handler.getContentsChangedListener().run();
     }
 
     @Override
@@ -83,14 +80,6 @@ public class WeavingInventory implements Inventory, RecipeInputProvider {
         this.stacks.clear();
     }
 
-    public int getHeight() {
-        return this.height;
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
     @Override
     public void provideRecipeInputs(RecipeMatcher finder) {
         Iterator var2 = this.stacks.iterator();
@@ -100,5 +89,9 @@ public class WeavingInventory implements Inventory, RecipeInputProvider {
             finder.addUnenchantedInput(itemStack);
         }
 
+    }
+
+    public boolean canPlayerAffordSanity(float cost) {
+        return handler.canPlayerAffordSanity(cost);
     }
 }

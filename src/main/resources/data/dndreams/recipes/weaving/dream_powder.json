@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [],
+  "result": {
+    "item": "dndreams:dream_powder",
+    "count": 1
+  },
+  "sanity_cost": 1.5
+}

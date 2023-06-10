@@ -1,40 +1,42 @@
 package net.eman3600.dndreams.screens;
 
+import com.google.common.collect.Lists;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
-import net.eman3600.dndreams.recipes.OldWeavingRecipe;
+import net.eman3600.dndreams.recipes.WeavingRecipe;
 import net.eman3600.dndreams.screens.slot.WeavingResultSlot;
-import net.eman3600.dndreams.screens.slot.WeavingSlot;
 import net.eman3600.dndreams.util.inventory.WeavingInventory;
 import net.eman3600.dndreams.util.inventory.WeavingResultInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeMatcher;
+import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.World;
 
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class WeavingScreenHandler extends ScreenHandler {
-    public static final int field_30781 = 0;
-    private static final int field_30782 = 1;
-    private static final int field_30783 = 10;
-    private static final int field_30784 = 10;
-    private static final int field_30785 = 37;
-    private static final int field_30786 = 37;
-    private static final int field_30787 = 46;
+
     private final WeavingInventory input;
     private final WeavingResultInventory result;
     private final ScreenHandlerContext context;
+    private final Property selectedRecipe = Property.create();
     private final PlayerEntity player;
+    private List<WeavingRecipe> availableRecipes = Lists.newArrayList();
+    private float sanityCost = 0;
+    public boolean clientDirty = false;
+    private Runnable contentsChangedListener = () -> {};
 
     public WeavingScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
@@ -42,20 +44,18 @@ public class WeavingScreenHandler extends ScreenHandler {
 
     public WeavingScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
         super(ModScreenHandlerTypes.WEAVING, syncId);
-        this.input = new WeavingInventory(this, 3, 3);
+        this.input = new WeavingInventory(this);
         this.result = new WeavingResultInventory();
         this.context = context;
         this.player = playerInventory.player;
 
-        this.addSlot(new WeavingResultSlot(playerInventory.player, this.input, this.result, 0, 124, 35));
+        this.addSlot(new WeavingResultSlot(playerInventory.player, this.input, this.result, this, 0, 143, 33));
 
         int i;
         int j;
-        for(i = 0; i < 3; ++i) {
-            for(j = 0; j < 3; ++j) {
-                this.addSlot(new Slot(this.input, j + i * 3, 30 + j * 18, 17 + i * 18));
-            }
-        }
+        this.addSlot(new Slot(this.input, 0, 20, 13));
+        this.addSlot(new Slot(this.input, 1, 20, 33));
+        this.addSlot(new Slot(this.input, 2, 20, 51));
 
         for(i = 0; i < 3; ++i) {
             for(j = 0; j < 9; ++j) {
@@ -67,40 +67,60 @@ public class WeavingScreenHandler extends ScreenHandler {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
 
-        this.addSlot(new WeavingSlot(this.input, 9, 93, 57));
+        this.addProperty(this.selectedRecipe);
+        this.selectedRecipe.set(-1);
+        onContentChanged(input);
     }
 
-    protected static void updateResult(ScreenHandler handler, World world, PlayerEntity player, WeavingInventory craftingInventory, WeavingResultInventory resultInventory) {
-        if (!world.isClient) {
-            ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
-            ItemStack itemStack = ItemStack.EMPTY;
-            Optional<OldWeavingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.OLD_WEAVING, craftingInventory, world);
-            if (optional.isPresent()) {
-                OldWeavingRecipe craftingRecipe = (OldWeavingRecipe) optional.get();
-                if (resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe)) {
-                    itemStack = craftingRecipe.craft(craftingInventory);
-                }
-            }
 
-            resultInventory.setStack(0, itemStack);
-            handler.setPreviousTrackedSlot(0, itemStack);
-            serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 0, itemStack));
+    private void populateResult() {
+        if (!this.availableRecipes.isEmpty() && this.isInBounds(this.selectedRecipe.get())) {
+            WeavingRecipe recipe = this.availableRecipes.get(this.selectedRecipe.get());
+            result.setLastRecipe(recipe);
+            result.setStack(0, recipe.craft(this.input));
+            sanityCost = recipe.sanityCost;
+        } else {
+            result.setStack(0, ItemStack.EMPTY);
+            sanityCost = 0;
         }
+        this.sendContentUpdates();
+        clientDirty = true;
     }
 
+    public boolean canCraft() {
+        return !this.availableRecipes.isEmpty();
+    }
+
+    @Override
+    public boolean onButtonClick(PlayerEntity player, int id) {
+        if (this.isInBounds(id)) {
+            this.selectedRecipe.set(id);
+            this.populateResult();
+        }
+        return true;
+    }
+
+    private boolean isInBounds(int id) {
+        return id >= 0 && id < this.availableRecipes.size();
+    }
+
+    @Override
     public void onContentChanged(Inventory inventory) {
-        this.context.run((world, pos) -> {
-            updateResult(this, world, this.player, this.input, this.result);
-        });
-    }
 
-    public void populateRecipeFinder(RecipeMatcher finder) {
-        this.input.provideRecipeInputs(finder);
-    }
+        WeavingRecipe current = selectedRecipe.get() >= 0 ? availableRecipes.get(selectedRecipe.get()) : null;
 
-    public void clearCraftingSlots() {
-        this.input.clear();
-        this.result.clear();
+        this.availableRecipes.clear();
+        this.selectedRecipe.set(-1);
+        this.result.setStack(0, ItemStack.EMPTY);
+        this.availableRecipes = player.world.getRecipeManager().getAllMatches(ModRecipeTypes.WEAVING, input, player.world);
+
+        if (current != null && availableRecipes.contains(current)) {
+            selectedRecipe.set(availableRecipes.indexOf(current));
+
+            populateResult();
+        } else {
+            sanityCost = 0;
+        }
     }
 
     public boolean matches(Recipe<? super WeavingInventory> recipe) {
@@ -114,55 +134,61 @@ public class WeavingScreenHandler extends ScreenHandler {
         });
     }
 
+    @Override
+    public ScreenHandlerType<?> getType() {
+        return ModScreenHandlerTypes.WEAVING;
+    }
+
     public boolean canUse(PlayerEntity player) {
         return canUse(this.context, player, ModBlocks.DREAM_TABLE);
     }
 
+    @Override
     public ItemStack transferSlot(PlayerEntity player, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot = (Slot)this.slots.get(index);
-        if (slot != null && slot.hasStack()) {
+        Slot slot = this.slots.get(index);
+        if (slot.hasStack()) {
             ItemStack itemStack2 = slot.getStack();
+            Item item = itemStack2.getItem();
             itemStack = itemStack2.copy();
             if (index == 0) {
-                this.context.run((world, pos) -> {
-                    itemStack2.getItem().onCraft(itemStack2, world, player);
-                });
-                if (!this.insertItem(itemStack2, 10, 46, true)) {
-                    return ItemStack.EMPTY;
-                }
+                boolean failure = true;
 
-                slot.onQuickTransfer(itemStack2, itemStack);
-            } else if (index >= 10 && index < 46) {
-                if (!this.insertItem(itemStack2, 1, 10, false)) {
-                    if (index < 37) {
-                        if (!this.insertItem(itemStack2, 37, 46, false)) {
-                            return ItemStack.EMPTY;
-                        }
-                    } else if (!this.insertItem(itemStack2, 10, 37, false)) {
-                        return ItemStack.EMPTY;
+                while (trulyMatches()) {
+
+                    itemStack2 = itemStack.copy();
+
+                    if (this.insertItem(itemStack2, 4, 40, true)) {
+                        failure = false;
+                        slot.onTakeItem(player, itemStack);
+                        slot.onQuickTransfer(itemStack2, itemStack);
+                        item.onCraft(itemStack, player.world, player);
+                    } else {
+                        break;
                     }
                 }
-            } else if (!this.insertItem(itemStack2, 10, 46, false)) {
+
+                if (failure) return ItemStack.EMPTY;
+                else {
+                    slot.markDirty();
+                    this.sendContentUpdates();
+                    updateAfterCraft();
+                    return itemStack;
+                }
+
+            } else if (index < 4 ? !this.insertItem(itemStack2, 4, 40, false) : !this.insertItem(itemStack2, 1, 4, false)) {
                 return ItemStack.EMPTY;
             }
-
             if (itemStack2.isEmpty()) {
                 slot.setStack(ItemStack.EMPTY);
-            } else {
-                slot.markDirty();
             }
-
+            slot.markDirty();
             if (itemStack2.getCount() == itemStack.getCount()) {
                 return ItemStack.EMPTY;
             }
-
             slot.onTakeItem(player, itemStack2);
-            if (index == 0) {
-                player.dropItem(itemStack2, false);
-            }
+            this.sendContentUpdates();
         }
-
         return itemStack;
     }
 
@@ -170,23 +196,68 @@ public class WeavingScreenHandler extends ScreenHandler {
         return slot.inventory != this.result && super.canInsertIntoSlot(stack, slot);
     }
 
-    public int getCraftingResultSlotIndex() {
-        return 0;
+    public int getAvailableRecipeCount() {
+        return this.availableRecipes.size();
     }
 
-    public int getCraftingWidth() {
-        return this.input.getWidth();
+    public void setContentsChangedListener(Runnable contentsChangedListener) {
+        this.contentsChangedListener = contentsChangedListener;
     }
 
-    public int getCraftingHeight() {
-        return this.input.getHeight();
+    public Runnable getContentsChangedListener() {
+        return contentsChangedListener;
     }
 
-    public int getCraftingSlotCount() {
-        return 11;
+    public int getSelectedRecipe() {
+        return selectedRecipe.get();
     }
 
-    public boolean canInsertIntoSlot(int index) {
-        return index != this.getCraftingResultSlotIndex();
+    public List<WeavingRecipe> getAvailableRecipes() {
+        return availableRecipes;
+    }
+
+    public boolean canPlayerAffordSanity(float cost) {
+        return EntityComponents.TORMENT.get(player).canAfford(cost);
+    }
+
+    public boolean trulyMatches() {
+        int recipe = selectedRecipe.get();
+        return isInBounds(recipe) && availableRecipes.get(recipe).trulyMatches(input, player.world);
+    }
+
+    public void updateAfterCraft() {
+        onContentChanged(input);
+    }
+
+    public float getSanityCost() {
+        return sanityCost;
+    }
+
+    public boolean showsOutput() {
+        return !result.isEmpty();
+    }
+
+    public Map<Integer, Ingredient> getMissingIngredients() {
+
+        Map<Integer, Ingredient> map = new HashMap<>();
+
+        if (getSelectedRecipe() >= 0) {
+            WeavingRecipe recipe = availableRecipes.get(getSelectedRecipe());
+
+            if (!recipe.mold.isEmpty() && input.getStack(0).isEmpty()) {
+
+                map.put(0, recipe.mold);
+            }
+            if (recipe.input.size() > 0 && input.getStack(1).isEmpty()) {
+
+                map.put(1, recipe.input.get(0));
+            }
+            if (recipe.input.size() > 1 && input.getStack(2).isEmpty()) {
+
+                map.put(2, recipe.input.get(1));
+            }
+        }
+
+        return map;
     }
 }

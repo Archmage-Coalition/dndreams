@@ -1,12 +1,17 @@
 package net.eman3600.dndreams.util.inventory;
 
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.recipes.WeavingRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeUnlocker;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
@@ -40,7 +45,7 @@ public class WeavingResultInventory implements Inventory, RecipeUnlocker {
     }
 
     public ItemStack getStack(int slot) {
-        return (ItemStack)this.stacks.get(0);
+        return this.stacks.get(0);
     }
 
     public ItemStack removeStack(int slot, int amount) {
@@ -73,5 +78,19 @@ public class WeavingResultInventory implements Inventory, RecipeUnlocker {
     @Nullable
     public Recipe<?> getLastRecipe() {
         return this.lastRecipe;
+    }
+
+    @Override
+    public boolean shouldCraftRecipe(World world, ServerPlayerEntity player, Recipe<?> recipe) {
+        boolean should = RecipeUnlocker.super.shouldCraftRecipe(world, player, recipe);
+
+        if (recipe instanceof WeavingRecipe weavingRecipe) {
+
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            return should && torment.canAfford(weavingRecipe.sanityCost);
+        }
+
+        return should;
     }
 }

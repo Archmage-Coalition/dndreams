@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [
+    {
+      "item": "dndreams:tormite_ingot"
+    },
+	{
+      "item": "dndreams:shade_cloth"
+    }
+  ],
+  "result": {
+    "item": "dndreams:tormite_boots",
+    "count": 1
+  },
+  "mold": {
+	  "item": "dndreams:managold_boots"
+  },
+  "sanity_cost": 15
+}

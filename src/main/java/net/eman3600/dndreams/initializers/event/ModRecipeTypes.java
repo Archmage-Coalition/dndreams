@@ -9,7 +9,7 @@ import net.minecraft.util.registry.Registry;
 public class ModRecipeTypes {
     // Types
 
-    public static final RecipeType<OldWeavingRecipe> OLD_WEAVING = register("old_weaving");
+    public static final RecipeType<WeavingRecipe> WEAVING = register("weaving");
     public static final RecipeType<TransmutationRecipe> TRANSMUTATION = register("transmutation");
     public static final RecipeType<RitualRecipe> RITUAL = register("ritual");
     public static final RecipeType<SmokestackRecipe> SMOKESTACK = register("smokestack");
@@ -20,6 +20,8 @@ public class ModRecipeTypes {
 
     // Serializers
 
+    public static final RecipeSerializer<WeavingRecipe> WEAVING_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER,
+            new Identifier(Initializer.MODID, WeavingRecipe.Serializer.ID), WeavingRecipe.Serializer.INSTANCE);
     public static final RecipeSerializer<TransmutationRecipe> TRANSMUTATION_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER,
             new Identifier(Initializer.MODID, TransmutationRecipe.Serializer.ID), TransmutationRecipe.Serializer.INSTANCE);
     public static final RecipeSerializer<RitualRecipe> RITUAL_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER,

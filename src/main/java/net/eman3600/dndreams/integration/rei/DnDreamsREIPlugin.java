@@ -26,6 +26,7 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
     public static final CategoryIdentifier<TransmutationDisplay> TRANSMUTATION = CategoryIdentifier.of(new Identifier(Initializer.MODID, "transmutation"));
     public static final CategoryIdentifier<SmokestackDisplay> SMOKESTACK = CategoryIdentifier.of(new Identifier(Initializer.MODID, "smokestack"));
     public static final CategoryIdentifier<MutandisDisplay> MUTANDIS = CategoryIdentifier.of(new Identifier(Initializer.MODID, "mutandis"));
+    public static final CategoryIdentifier<WeavingDisplay> WEAVING = CategoryIdentifier.of(new Identifier(Initializer.MODID, "weaving"));
     public static final CategoryIdentifier<RefineryDisplay> REFINERY = CategoryIdentifier.of(new Identifier(Initializer.MODID, "refinery"));
     public static final CategoryIdentifier<CauldronDisplay> CAULDRON = CategoryIdentifier.of(new Identifier(Initializer.MODID, "cauldron"));
     public static final CategoryIdentifier<RitualDisplay> RITUAL = CategoryIdentifier.of(new Identifier(Initializer.MODID, "ritual"));
@@ -38,6 +39,8 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         registry.addWorkstations(SMOKESTACK, EntryStacks.of(Blocks.SMOKER));
         registry.add(new RefineryCategory());
         registry.addWorkstations(REFINERY, RefineryCategory.ICON);
+        registry.add(new WeavingCategory());
+        registry.addWorkstations(WEAVING, WeavingCategory.ICON);
         registry.add(new CauldronCategory());
         registry.addWorkstations(CAULDRON, CauldronCategory.ICON);
         registry.add(new ApothecaryCategory());
@@ -68,6 +71,7 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(TransmutationRecipe.class, TransmutationDisplay::new);
         registry.registerFiller(SmokestackRecipe.class, SmokestackDisplay::new);
+        registry.registerFiller(WeavingRecipe.class, WeavingDisplay::new);
         registry.registerFiller(RefineryRecipe.class, RefineryDisplay::new);
         registry.registerFiller(CauldronRecipe.class, CauldronDisplay::new);
         registry.registerFiller(RitualRecipe.class, RitualDisplay::new);

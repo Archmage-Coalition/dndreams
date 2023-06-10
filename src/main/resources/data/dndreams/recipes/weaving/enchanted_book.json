@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+	{
+      "item": "dndreams:sanity_thread"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "count": 1
+  },
+  "mold": {
+	  "item": "minecraft:enchanted_book"
+  },
+  "sanity_cost": 15
+}
