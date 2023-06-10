@@ -18,10 +18,7 @@ import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewThrownItem;
-import net.eman3600.dndreams.items.consumable.permanent.AttributePermItem;
-import net.eman3600.dndreams.items.consumable.permanent.FidiFruitItem;
-import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
-import net.eman3600.dndreams.items.consumable.permanent.PanaceaItem;
+import net.eman3600.dndreams.items.consumable.permanent.*;
 import net.eman3600.dndreams.items.creative.InfusionPearlItem;
 import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
 import net.eman3600.dndreams.items.edge_series.SlumberingSwordItem;
@@ -303,7 +300,7 @@ public class ModItems {
 
     // Mind Shears
     public static final Item MIND_SHEARS = registerItem("mind_shears", new MindShearsItem(
-            new FabricItemSettings().group(ItemGroup.TOOLS).fireproof().maxCount(1).maxDamage(256)));
+            new FabricItemSettings().group(ItemGroup.TOOLS).fireproof().maxCount(1).maxDamage(256)).withTooltip(null, 1));
 
     // Ancient Portal Activation
     public static final Item ANCIENT_SPARK = registerItem("ancient_spark", new AncientSparkItem(new FabricItemSettings()
@@ -524,12 +521,16 @@ public class ModItems {
 
     // Attribute Crystals
     public static final Item VITAL_HEART = registerItem("vital_heart",
-            new AttributePermItem(new FabricItemSettings().group(ItemGroup.MISC),
+            new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
                     5, EntityAttributes.GENERIC_MAX_HEALTH, 2d));
 
     public static final Item ECHO_STAR = registerItem("echo_star",
-            new AttributePermItem(new FabricItemSettings().group(ItemGroup.MISC),
+            new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
                     1, ModAttributes.PLAYER_MAX_MANA, 25d));
+
+    // Crystal Feather
+    public static final Item CRYSTAL_FEATHER = registerItem("crystal_feather",
+            new CrystalFeatherItem(new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     // Fruit of Fidi
     public static final Item FIDI_FRUIT = registerItem("fidi_fruit",

@@ -72,7 +72,10 @@
   
   "item.dndreams.bloodflame_vessel": "Bloodflame Catalyst",
   "item.dndreams.mind_shears": "Mind Shears",
-  "item.dndreams.mind_shears.tooltip": "Tear your mind to pieces.",
+  "item.dndreams.mind_shears.tooltip": "§3Tear your mind to pieces.",
+  "item.dndreams.crystal_feather": "Crystal Feather",
+  "item.dndreams.crystal_feather.tooltip": "§3Grants the dodge step ability.",
+  "item.dndreams.crystal_feather.tooltip.used": "§cCannot be used again.",
   
   "item.dndreams.celestium_sword": "Celestium Sword",
   "item.dndreams.celestium_sword.tooltip.0": "§3Teleports you to reach targets.",
@@ -367,12 +370,15 @@
   "effect.dndreams.haunted": "Haunted",
   "effect.dndreams.third_eye": "Third Eye",
   "effect.dndreams.smote": "Judgment",
+  "effect.dndreams.stifled": "Stifled",
   
   
   "attribute.dndreams.name.player.max_mana": "Mana Maximum",
   "attribute.dndreams.name.player.mana_regen": "Mana Regeneration",
   "attribute.dndreams.name.player.revival": "Revival",
   "attribute.dndreams.name.player.reclamation": "Healing Received",
+  "attribute.dndreams.name.player.evasion": "Evasion Time",
+  "attribute.dndreams.name.player.lunge": "Dodge Distance",
   
   
   "item.minecraft.potion.effect.void_flow": "Potion of Unstable Mana",
@@ -712,5 +718,8 @@
   "rei.dndreams.apothecary.cost": "Power Cost: %s",
 
 
-  "stat.dndreams.enter_dream": "Times Dreamt"
+  "stat.dndreams.enter_dream": "Times Dreamt",
+  
+  
+  "key.dndreams.dodge": "Step Dodge"
 }

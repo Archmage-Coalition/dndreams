@@ -100,6 +100,8 @@ public class ModCallbacks {
 
                 ReviveComponent revive = EntityComponents.REVIVE.get(newPlayer);
                 revive.deathReset();
+
+
             }
         });
 

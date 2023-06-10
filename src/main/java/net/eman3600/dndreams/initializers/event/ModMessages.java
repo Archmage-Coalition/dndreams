@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.networking.packet_c2s.AirSwingPacket;
+import net.eman3600.dndreams.networking.packet_c2s.DodgePacket;
 import net.eman3600.dndreams.networking.packet_s2c.*;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -10,6 +11,7 @@ import net.minecraft.util.Identifier;
 public class ModMessages {
 
     public static final Identifier AIR_SWING_ID = new Identifier(Initializer.MODID, "air_swing");
+    public static final Identifier DODGE_ID = new Identifier(Initializer.MODID, "dodge");
 
     public static final Identifier DRAGON_FLASH_ID = new Identifier(Initializer.MODID, "dragon_flash");
     public static final Identifier CROWNED_SLASH_ID = new Identifier(Initializer.MODID, "crowned_slash");
@@ -20,6 +22,7 @@ public class ModMessages {
 
     public static void registerC2SPackets() {
         ServerPlayNetworking.registerGlobalReceiver(AIR_SWING_ID, AirSwingPacket::receive);
+        ServerPlayNetworking.registerGlobalReceiver(DODGE_ID, DodgePacket::receive);
     }
 
     public static void registerS2CPackets() {

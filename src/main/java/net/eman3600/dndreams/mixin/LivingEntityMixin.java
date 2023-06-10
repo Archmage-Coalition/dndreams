@@ -1,9 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.cardinal_components.DreamingComponent;
-import net.eman3600.dndreams.cardinal_components.ReviveComponent;
-import net.eman3600.dndreams.cardinal_components.ShockComponent;
-import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.cardinal_components.*;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
@@ -418,5 +415,17 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
 
         return constant;
+    }
+
+    @Inject(method = "canHit", at = @At("RETURN"), cancellable = true)
+    private void dndreams$canHit$dodge(CallbackInfoReturnable<Boolean> cir) {
+        if (cir.getReturnValue() && EntityComponents.INFUSION.isProvidedBy(this)) {
+
+            InfusionComponent infusion = EntityComponents.INFUSION.get(this);
+
+            if (infusion.hasImmunity()) {
+                cir.setReturnValue(false);
+            }
+        }
     }
 }

@@ -3,8 +3,8 @@ package net.eman3600.dndreams.items.misc_tool;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.items.TooltipItem;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -13,7 +13,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class MindShearsItem extends Item {
+public class MindShearsItem extends TooltipItem {
     public MindShearsItem(Settings settings) {
         super(settings);
     }

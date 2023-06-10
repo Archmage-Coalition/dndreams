@@ -5,6 +5,7 @@ import net.eman3600.dndreams.blocks.renderer.BonfireBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
 import net.eman3600.dndreams.cardinal_components.BossStateComponent;
 import net.eman3600.dndreams.entities.renderers.*;
+import net.eman3600.dndreams.events.KeyInputHandler;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModFluids;
@@ -135,6 +136,9 @@ ClientInitializer implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.WARDEN_RAGDOLL, WardenRagdollEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.TORMENTOR, TormentorEntityRenderer::new);
+
+        KeyInputHandler.registerBindings();
+        KeyInputHandler.registerKeyInputs();
     }
 
 

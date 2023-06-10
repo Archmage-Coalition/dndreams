@@ -1,0 +1,28 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "minecraft:feather"
+    },
+	{
+      "item": "minecraft:quartz"
+    },
+	{
+      "item": "dndreams:crystal_mix"
+    },
+	{
+      "item": "dndreams:ember_moss"
+    },
+	{
+      "item": "dndreams:nightmare_fuel"
+    },
+	{
+      "item": "dndreams:sakura_fume"
+    }
+  ],
+  "result": {
+    "item": "dndreams:crystal_feather",
+    "count": 1
+  },
+  "color": 13026289
+}

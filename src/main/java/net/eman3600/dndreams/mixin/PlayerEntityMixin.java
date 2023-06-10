@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.blocks.energy.BonfireBlock;
+import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.projectiles.TeslaSlashEntity;
@@ -72,7 +73,9 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 .add(ModAttributes.PLAYER_MANA_REGEN, 8d)
                 .add(ModAttributes.PLAYER_MAX_MANA, 0d)
                 .add(ModAttributes.PLAYER_REVIVAL, 1d)
-                .add(ModAttributes.PLAYER_RECLAMATION, 1d));
+                .add(ModAttributes.PLAYER_RECLAMATION, 1d)
+                .add(ModAttributes.PLAYER_EVASION, 7d)
+                .add(ModAttributes.PLAYER_LUNGE, 1d));
     }
 
     @Inject(method = "isBlockBreakingRestricted", at = @At("HEAD"), cancellable = true)
@@ -170,5 +173,17 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private float dndreams$tickMovement$maintainSpeed(float constant) {
 
         return (PlayerEntityAccess.hasAerialMovement(this)) ? (float) (getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED) / getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED)) * constant : constant;
+    }
+
+    @Inject(method = "isInvulnerableTo", at = @At("RETURN"), cancellable = true)
+    private void dndreams$isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
+        if (!cir.getReturnValue()) {
+
+            InfusionComponent infusion = EntityComponents.INFUSION.get(this);
+
+            if (infusion.hasImmunity() && damageSource.getSource() != null && !damageSource.isOutOfWorld()) {
+                cir.setReturnValue(true);
+            }
+        }
     }
 }

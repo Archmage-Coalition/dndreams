@@ -47,6 +47,7 @@ public class ModStatusEffects {
     public static StatusEffect SMOTE = register("smote", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xfff296)
             .addAttributeModifier(EntityAttributes.GENERIC_ARMOR, "8009BFB0-DB59-4D20-9945-13D4E8C59DD2", -.5f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
             .addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, "8009BFB0-DB59-4D20-9945-13D4E8C59DD2", -.5f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static StatusEffect STIFLED = register("stifled", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xb78d86));
 
     private static StatusEffect register(String name, StatusEffect entry) {
         return Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);
