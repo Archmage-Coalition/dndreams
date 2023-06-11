@@ -48,7 +48,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     public static final float MAX_SANITY = 100f;
     public static final float MIN_SANITY = 0f;
-    public static final float MIN_MAX_SANITY = 30f;
+    public static final float LOWEST_MAX_SANITY = 30f;
     private static final int SANITY_DAMAGE = 15;
 
     public TormentComponent(PlayerEntity playerIn) {
@@ -130,7 +130,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         boolean bl = false;
         while (value >= THREAD_VALUE) {
             ItemStack stack;
-            if (getMaxSanity() - THREAD_VALUE >= MIN_MAX_SANITY && player.world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) {
+            if (getMaxSanity() - THREAD_VALUE >= LOWEST_MAX_SANITY && player.world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) {
                 bl = true;
                 lowerMaxSanity(THREAD_VALUE);
                 stack = ModItems.SANITY_THREAD.getDefaultStack();
@@ -171,7 +171,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     private void normalize() {
-        maxSanity = MathHelper.clamp(maxSanity, MIN_MAX_SANITY, MAX_SANITY);
+        maxSanity = MathHelper.clamp(maxSanity, LOWEST_MAX_SANITY, MAX_SANITY);
         sanity = MathHelper.clamp(sanity, MIN_SANITY, getMaxSanity());
         EntityComponents.TORMENT.sync(player);
     }

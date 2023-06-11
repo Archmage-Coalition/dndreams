@@ -12,7 +12,6 @@ import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
-import net.eman3600.dndreams.integration.rei.display.CauldronDisplay;
 import net.eman3600.dndreams.integration.rei.display.RitualDisplay;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -80,8 +79,8 @@ public class RitualCategory implements DisplayCategory<RitualDisplay> {
             widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 3 + 30, bounds.getCenterY() - 7)).entries(output.get(0)));
         }
 
-        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 38), Text.translatable(display.RECIPE.getRitual().getTranslationKey())).color(0x373737).noShadow());
-        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 33), Text.translatable("rei.dndreams.ritual.cost", display.RECIPE.getRitual().cost())).color(0x373737).noShadow());
+        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 38), Text.translatable(display.RECIPE.getRitual().getTranslationKey())).color(0xFF404040, 0xFFBBBBBB).noShadow());
+        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 33), Text.translatable("rei.dndreams.ritual.cost", display.RECIPE.getRitual().cost())).color(0xFF404040, 0xFFBBBBBB).noShadow());
 
         return widgets;
     }

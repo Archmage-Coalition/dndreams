@@ -16,7 +16,6 @@ import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
 import net.eman3600.dndreams.integration.rei.display.ApothecaryDisplay;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -64,11 +63,15 @@ public class ApothecaryCategory implements DisplayCategory<ApothecaryDisplay> {
         } else {
             widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() - 9, bounds.getCenterY() - 7)).entries(inputs.get(0)));
         }
-        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 15), Text.translatable(display.RECIPE.effect.getTranslationKey())).color(0x373737).noShadow());
-        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 15 + 10), Text.translatable("rei.dndreams.apothecary.capacity", display.RECIPE.capacity)).color(0x373737).noShadow());
-        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 15 + 20), Text.translatable("rei.dndreams.apothecary.cost", display.RECIPE.power)).color(0x373737).noShadow());
+        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 15), Text.translatable(display.RECIPE.effect.getTranslationKey())).color(0xFF404040, 0xFFBBBBBB).noShadow());
+        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 15 + 10), Text.translatable("rei.dndreams.apothecary.capacity", display.RECIPE.capacity)).color(0xFF404040, 0xFFBBBBBB).noShadow());
+        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 15 + 20), Text.translatable("rei.dndreams.apothecary.cost", display.RECIPE.power)).color(0xFF404040, 0xFFBBBBBB).noShadow());
+
+
 
 
         return widgets;
     }
+
+
 }

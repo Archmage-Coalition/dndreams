@@ -64,7 +64,7 @@ public class WeavingCategory implements DisplayCategory<WeavingDisplay> {
 
         widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 25, bounds.getCenterY() - 21)).entries(output.get(0)));
 
-        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX() - 29 - 18, bounds.getCenterY() + 20), Text.translatable("rei.dndreams.weaving.cost", display.RECIPE.sanityCost)).color(0x373737).noShadow().leftAligned());
+        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX() - 29 - 18, bounds.getCenterY() + 20), Text.translatable("rei.dndreams.weaving.cost", display.RECIPE.sanityCost)).color(0xFF404040, 0xFFBBBBBB).noShadow().leftAligned());
 
         return widgets;
     }
