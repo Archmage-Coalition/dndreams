@@ -196,7 +196,7 @@ public class InfusionComponent implements InfusionComponentI {
             Vec3d velocity = player.getVelocity();
             velocity = velocity.subtract(0, velocity.y, 0);
 
-            if (velocity.lengthSquared() <= .01) {
+            if (velocity.lengthSquared() <= .0025) {
                 velocity = Vec3d.fromPolar(0, player.getYaw());
             }
 

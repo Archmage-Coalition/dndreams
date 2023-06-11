@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public class TormentorSpawner implements Spawner {
 
     private int cooldown = 0;
-    private static float PLAYER_DISTANCE = 8;
+    private static final float PLAYER_DISTANCE = 8;
 
     @Override
     public int spawn(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals) {

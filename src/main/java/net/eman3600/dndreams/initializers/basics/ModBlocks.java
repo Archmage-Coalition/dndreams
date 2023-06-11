@@ -142,12 +142,55 @@ public class ModBlocks {
     public static final Block BONFIRE = registerBlock("bonfire",
             new BonfireBlock(FabricBlockSettings.copyOf(Blocks.CAMPFIRE)));
 
-    // Spirit Blocks
+    // Spirit Slates
     public static final Block SPIRIT_STONE = registerBlock("spirit_stone",
             new Block(FabricBlockSettings.copy(Blocks.STONE)
                     .requiresTool().luminance(state -> 7)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SPIRIT_STONE_SLAB = registerBlock("spirit_stone_slab",
+            new SpiritSlabBlock(FabricBlockSettings.copy(Blocks.STONE_SLAB)
+                    .luminance(state -> 7)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SPIRIT_STONE_STAIRS = registerBlock("spirit_stone_stairs",
+            new SpiritStairsBlock(SPIRIT_STONE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE_STAIRS)
+                    .luminance(state -> 7)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SPIRIT_STONE_WALL = registerBlock("spirit_stone_wall",
+            new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL)
+                    .luminance(state -> 7)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block SPIRIT_STONE_BRICKS = registerBlock("spirit_stone_bricks",
+            new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS)
+                    .luminance(state -> 7)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block CHISELED_SPIRIT_STONE = registerBlock("chiseled_spirit_stone",
+            new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS)
+                    .luminance(state -> 7)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SPIRIT_STONE_BRICK_SLAB = registerBlock("spirit_stone_brick_slab",
+            new SpiritSlabBlock(FabricBlockSettings.copy(Blocks.STONE_SLAB)
+                    .luminance(state -> 7)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SPIRIT_STONE_BRICK_STAIRS = registerBlock("spirit_stone_brick_stairs",
+            new SpiritStairsBlock(SPIRIT_STONE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE_STAIRS)
+                    .luminance(state -> 7)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block SPIRIT_STONE_BRICK_WALL = registerBlock("spirit_stone_brick_wall",
+            new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL)
+                    .luminance(state -> 7)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Spirit Ice
     public static final Block SPIRIT_ICE = registerBlock("spirit_ice",
             new SpiritIceBlock(FabricBlockSettings.copy(Blocks.ICE).luminance(state -> 7)),
 
