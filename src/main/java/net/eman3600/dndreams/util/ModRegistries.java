@@ -192,10 +192,11 @@ public class ModRegistries {
 
     private static void registerInsanityMobAuras() {
         TormentComponent.registerInsanityMob(LivingEntity::isUndead, 4f, 10f);
-        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), -10f, 10f);
-        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && !WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), 10f, 10f);
-        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 20f, 40f);
-        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.VILLAGER, -15f, 10f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), -3f, 10f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && !WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), 6f, 10f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 15f, 40f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.VILLAGER, -10f, 10f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.CAT, -5f, 16f);
         TormentComponent.registerInsanityMob(entity -> entity instanceof TormentorEntity tormentor && tormentor.isCorporeal(), 10f, 20f);
     }
 
