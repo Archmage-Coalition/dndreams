@@ -352,7 +352,7 @@ public class ModItems {
             new ModShovelItem(ModToolMaterials.TORMITE, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item TORMITE_HOE = registerItem("tormite_hoe",
-            new ModHoeItem(ModToolMaterials.TORMITE, 2, -2.6F,
+            new ModHoeItem(ModToolMaterials.TORMITE, 4, -2.6F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
     public static final Item TORMITE_HELMET = registerItem("tormite_helmet",
@@ -383,7 +383,7 @@ public class ModItems {
             new ModShovelItem(ModToolMaterials.PERICHARITE, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item PERICHARITE_HOE = registerItem("pericharite_hoe",
-            new ModHoeItem(ModToolMaterials.PERICHARITE, -5, 0F,
+            new ModHoeItem(ModToolMaterials.PERICHARITE, 4, -2.6F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item PERICHARITE_HELMET = registerItem("pericharite_helmet",

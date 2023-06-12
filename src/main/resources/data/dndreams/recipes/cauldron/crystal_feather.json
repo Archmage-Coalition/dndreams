@@ -5,19 +5,19 @@
       "item": "minecraft:feather"
     },
 	{
-      "item": "minecraft:quartz"
+      "item": "minecraft:emerald"
     },
 	{
-      "item": "dndreams:crystal_mix"
+      "item": "minecraft:diamond"
     },
 	{
-      "item": "dndreams:ember_moss"
+      "item": "minecraft:amethyst_shard"
+    },
+	{
+      "item": "minecraft:blaze_powder"
     },
 	{
       "item": "dndreams:nightmare_fuel"
-    },
-	{
-      "item": "dndreams:sakura_fume"
     }
   ],
   "result": {
