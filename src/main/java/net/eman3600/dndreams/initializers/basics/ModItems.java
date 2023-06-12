@@ -125,6 +125,8 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item PERICHARITE = registerItem("pericharite",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item SORROW_FRAGMENT = registerItem("sorrow_fragment",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Infernal Residue
     public static final Item INFERNAL_RESIDUE = registerItem("infernal_residue", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
