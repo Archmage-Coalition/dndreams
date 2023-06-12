@@ -252,8 +252,8 @@ public class ModBlocks {
 
     // Crystal Blocks
     public static final Block CRYSTAL_BLOCK = registerBlock("crystal_block",
-            new Block(FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK)
-                    .requiresTool()),
+            new TransparentBlock(FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK)
+                    .requiresTool().nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
