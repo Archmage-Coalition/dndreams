@@ -31,7 +31,7 @@ public abstract class LightmapTextureManagerMixin implements LightmapTextureMana
 
     @Unique private final float SHADOW = 26;
     @Unique private final float DEPTHS = 40;
-    @Unique private final float SANITY_SHADOW = 40;
+    @Unique private final float SANITY_SHADOW = 30;
     @Unique private final float DARKNESS_THRESHOLD = 70;
     @Unique private final float HAUNTED = 110;
 
