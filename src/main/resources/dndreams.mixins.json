@@ -28,6 +28,7 @@
     "EnchantmentHelperMixin",
     "EnchantmentMixin",
     "EnderChestBlockEntityMixin",
+    "EnderChestBlockMixin",
     "EndermanEntityMixin",
     "EndermanEyesFeatureRendererMixin",
     "EnderPearlEntityMixin",
