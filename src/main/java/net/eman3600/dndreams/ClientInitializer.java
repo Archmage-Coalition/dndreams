@@ -145,7 +145,7 @@ ClientInitializer implements ClientModInitializer {
 
     public static boolean drawAether(World world) {
         try {
-            if ((world instanceof ClientWorldAccess accessedWorld)) {
+            if ((world instanceof ClientWorldAccess access)) {
                 try {
                     BossStateComponent bossState = WorldComponents.BOSS_STATE.get(world.getScoreboard());
 
@@ -156,7 +156,7 @@ ClientInitializer implements ClientModInitializer {
                   TO BE REMOVED
                  */
                 if (world.getRegistryKey().getValue().getNamespace().equals("last_life")) return true;
-                return accessedWorld.getClient().player.hasStatusEffect(ModStatusEffects.AETHER);
+                return access.getClient().player.hasStatusEffect(ModStatusEffects.AETHER);
             }
             return false;
         } catch (NullPointerException e) {
