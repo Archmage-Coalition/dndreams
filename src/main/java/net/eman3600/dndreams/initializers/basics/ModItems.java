@@ -123,6 +123,8 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item CRYSTAL_SPIRIT = registerItem("crystal_spirit",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item PERICHARITE = registerItem("pericharite",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
@@ -322,7 +324,7 @@ public class ModItems {
             new ModShovelItem(ModToolMaterials.CELESTIUM, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_HOE = registerItem("celestium_hoe",
-            new ModHoeItem(ModToolMaterials.CELESTIUM, 4, -2.6F,
+            new ScytheItem(ModToolMaterials.CELESTIUM, 6, -3.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item CELESTIUM_HELMET = registerItem("celestium_helmet",
@@ -352,7 +354,7 @@ public class ModItems {
             new ModShovelItem(ModToolMaterials.TORMITE, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
     public static final Item TORMITE_HOE = registerItem("tormite_hoe",
-            new ModHoeItem(ModToolMaterials.TORMITE, 4, -2.6F,
+            new ScytheItem(ModToolMaterials.TORMITE, 6, -3.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS).fireproof()));
 
     public static final Item TORMITE_HELMET = registerItem("tormite_helmet",
@@ -383,7 +385,7 @@ public class ModItems {
             new ModShovelItem(ModToolMaterials.PERICHARITE, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item PERICHARITE_HOE = registerItem("pericharite_hoe",
-            new ModHoeItem(ModToolMaterials.PERICHARITE, 4, -2.6F,
+            new ScytheItem(ModToolMaterials.PERICHARITE, 6, -3.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item PERICHARITE_HELMET = registerItem("pericharite_helmet",

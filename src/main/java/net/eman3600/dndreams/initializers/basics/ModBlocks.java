@@ -251,7 +251,7 @@ public class ModBlocks {
 
 
     // Crystal Blocks
-    public static final Block CRYSTAL_BLOCK = registerBlock("crystal_block",
+    public static final Block CRYSTAL_SPIRIT_BLOCK = registerBlock("crystal_spirit_block",
             new CrystalGlassBlock(FabricBlockSettings.copy(Blocks.AMETHYST_BLOCK)
                     .requiresTool().nonOpaque()),
 

@@ -27,6 +27,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.CreeperEntity;
+import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Items;
 import net.minecraft.tag.BlockTags;
@@ -195,7 +196,7 @@ public class ModRegistries {
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), -3f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && !WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), 6f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 15f, 40f);
-        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.VILLAGER, -10f, 10f);
+        TormentComponent.registerInsanityMob(entity -> entity instanceof MerchantEntity, -10f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.CAT, -5f, 16f);
         TormentComponent.registerInsanityMob(entity -> entity instanceof TormentorEntity tormentor && tormentor.isCorporeal(), 10f, 20f);
     }

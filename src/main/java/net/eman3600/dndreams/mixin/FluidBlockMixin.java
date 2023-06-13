@@ -88,7 +88,7 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
                 } else if (world.getFluidState(blockPos).isIn(ModTags.SORROW)) {
-                    Block block = ModBlocks.CRYSTAL_BLOCK;
+                    Block block = ModBlocks.CRYSTAL_SPIRIT_BLOCK;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
@@ -111,7 +111,7 @@ public abstract class FluidBlockMixin extends Block implements FluidDrainable {
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);
                 } else if (world.getFluidState(blockPos).isIn(ModTags.FLOWING_SPIRIT)) {
-                    Block block = ModBlocks.CRYSTAL_BLOCK;
+                    Block block = ModBlocks.CRYSTAL_SPIRIT_BLOCK;
                     world.setBlockState(pos, block.getDefaultState());
                     this.playExtinguishSound(world, pos);
                     cir.setReturnValue(false);

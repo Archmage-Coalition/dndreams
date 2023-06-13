@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "dndreams:block/crystal_block"
+    "all": "dndreams:block/crystal_spirit_block"
   }
 }

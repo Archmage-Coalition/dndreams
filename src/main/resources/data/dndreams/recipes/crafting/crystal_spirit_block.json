@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:crystal_spirit"
+    }
+  },
+  "result": {
+    "item": "dndreams:crystal_spirit_block",
+	"count": 1
+  }
+}

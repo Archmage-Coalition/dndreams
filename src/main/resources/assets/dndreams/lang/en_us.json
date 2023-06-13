@@ -5,6 +5,7 @@
   "item.dndreams.vital_shard": "Rose Quartz",
   "item.dndreams.celestium": "Celestium",
   "item.dndreams.celestium.tooltip": "§3It emanates cosmic energy.",
+  "item.dndreams.crystal_spirit": "Crystalline Spirit Shard",
   "item.dndreams.pericharite": "Pericharite",
   "item.dndreams.end_chunk":  "Refined End Stone",
   "item.dndreams.end_stick":  "End Stick",
@@ -83,7 +84,7 @@
   "item.dndreams.celestium_pickaxe": "Celestium Pickaxe",
   "item.dndreams.celestium_axe": "Celestium Axe",
   "item.dndreams.celestium_shovel": "Celestium Shovel",
-  "item.dndreams.celestium_hoe": "Celestium Hoe",
+  "item.dndreams.celestium_hoe": "Celestium Scythe",
   "item.dndreams.celestium_helmet": "Celestium Helmet",
   "item.dndreams.celestium_chestplate": "Celestium Chestplate",
   "item.dndreams.celestium_leggings": "Celestium Leggings",
@@ -122,7 +123,7 @@
   "item.dndreams.tormite_pickaxe": "Tormite Pickaxe",
   "item.dndreams.tormite_axe": "Tormite Axe",
   "item.dndreams.tormite_shovel": "Tormite Shovel",
-  "item.dndreams.tormite_hoe": "Tormite Hoe",
+  "item.dndreams.tormite_hoe": "Tormite Scythe",
   "item.dndreams.tormite_helmet": "Tormite Helmet",
   "item.dndreams.tormite_helmet.tooltip": "§3Idk yet",
   "item.dndreams.tormite_chestplate": "Tormite Chestplate",
@@ -139,7 +140,7 @@
   "item.dndreams.pericharite_pickaxe": "Celestial Iris",
   "item.dndreams.pericharite_axe": "Deific Axe",
   "item.dndreams.pericharite_shovel": "Deific Shovel",
-  "item.dndreams.pericharite_hoe": "Deific Hoe",
+  "item.dndreams.pericharite_hoe": "Deific Scythe",
   "item.dndreams.pericharite_helmet": "Deific Helmet",
   "item.dndreams.pericharite_chestplate": "Deific Chestplate",
   "item.dndreams.pericharite_leggings": "Deific Leggings",
@@ -608,7 +609,7 @@
   
   "block.dndreams.sorrow_stone": "Sorrow Shards",
   
-  "block.dndreams.crystal_block": "Crystal Block",
+  "block.dndreams.crystal_spirit_block": "Crystalline Spirit Block",
   
   "block.dndreams.charged_deepslate": "Charged Deepslate",
   "block.dndreams.deepslate_core": "Charged Deepslate Core",
