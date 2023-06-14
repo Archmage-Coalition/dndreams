@@ -201,16 +201,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
         if (fluidHeight.getOrDefault(ModTags.SORROW, 0) > 0.1f) {
             if ((Object)this instanceof PlayerEntity player) {
+
                 TormentComponent component = EntityComponents.TORMENT.get(player);
 
-                component.lowerPerMinute(component.isShielded() ? 10f : 150f);
-
-                if (!component.isShielded()) {
-                    if (!hasStatusEffect(ModStatusEffects.AFFLICTION) || getStatusEffect(ModStatusEffects.AFFLICTION).getDuration() < 20) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
-                }
-            } else {
-                if (!hasStatusEffect(ModStatusEffects.AFFLICTION) || getStatusEffect(ModStatusEffects.AFFLICTION).getDuration() < 20) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
+                component.lowerPerMinute(50f);
             }
+            if (!hasStatusEffect(ModStatusEffects.AFFLICTION) || getStatusEffect(ModStatusEffects.AFFLICTION).getDuration() < 20) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
         }
 
     }
@@ -265,11 +261,6 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Redirect(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/effect/StatusEffectUtil;hasWaterBreathing(Lnet/minecraft/entity/LivingEntity;)Z"))
     private boolean dndreams$baseTick$waterBreathing(LivingEntity entity) {
-        if (entity instanceof PlayerEntity player) {
-            TormentComponent component = EntityComponents.TORMENT.get(player);
-
-            if (StatusEffectUtil.hasWaterBreathing(entity) && component.isShielded()) return true;
-        }
 
         return StatusEffectUtil.hasWaterBreathing(entity) && !entity.isSubmergedIn(ModTags.SORROW);
     }
@@ -278,10 +269,6 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     private void dndreams$getNextAirUnderwater(int air, CallbackInfoReturnable<Integer> cir) {
         try {
             LivingEntity entity = (LivingEntity) (Object) this;
-
-            if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).isShielded()) {
-                return;
-            }
 
             if (entity.isSubmergedIn(ModTags.SORROW)) {
                 cir.setReturnValue(Math.max(air > 0 ? air - 5 : air - 2, -20));
@@ -340,14 +327,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At("HEAD"), cancellable = true)
     private void dndreams$addStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
         StatusEffect status = effect.getEffectType();
-        EntityComponents.TORMENT.maybeGet(this).ifPresent(component -> {
 
-            if (component.isShielded() && (status == ModStatusEffects.AFFLICTION || status == StatusEffects.WITHER || status == StatusEffects.DARKNESS)) {
-                cir.setReturnValue(false);
-            }
-        });
-
-        if (getType() == EntityType.WARDEN && status == ModStatusEffects.AFFLICTION) {
+        if ((getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR) && status == ModStatusEffects.AFFLICTION) {
             cir.setReturnValue(false);
         }
     }

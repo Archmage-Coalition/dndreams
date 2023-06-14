@@ -42,8 +42,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
 
-    private boolean shielded = false;
-
     private final PlayerEntity player;
 
     public static final float MAX_SANITY = 100f;
@@ -68,16 +66,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public float getMaxSanity() {
         return maxSanity;
-    }
-
-    @Override
-    public boolean isShielded() {
-        return shielded;
-    }
-
-    public void shield(boolean shielded) {
-        this.shielded = shielded;
-        EntityComponents.TORMENT.sync(player);
     }
 
     @Override
@@ -181,7 +169,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         sanity = tag.getFloat("sanity");
         maxSanity = tag.getFloat("max_sanity");
         dragonFlashTicks = tag.getInt("dragon_flash_ticks");
-        shielded = tag.getBoolean("shielded");
         sanityDamageTicks = tag.getInt("sanity_damage_ticks");
         shroud = tag.getInt("shroud");
         haunt = tag.getInt("haunt");
@@ -192,7 +179,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putFloat("sanity", sanity);
         tag.putFloat("max_sanity", maxSanity);
         tag.putInt("dragon_flash_ticks", dragonFlashTicks);
-        tag.putBoolean("shielded", shielded);
         tag.putInt("sanity_damage_ticks", sanityDamageTicks);
         tag.putInt("shroud", shroud);
         tag.putInt("haunt", haunt);

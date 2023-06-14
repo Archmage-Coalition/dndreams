@@ -140,9 +140,11 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
                     ticks = 0;
 
                     if (!usePower(susRite.getSustainedCost()) || !ringsMatch(true) || !susRite.canSustain(world, pos, this)) {
+                        System.out.println("Deactivating " + susRite + " at sustain tick");
                         deactivate(true);
                     }
                 }
+                markDirty();
             }
         } else {
             if (casting || sustained) deactivate(false);
@@ -244,6 +246,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
     }
 
     public void failRitual() {
+        System.out.println("Deactivating " + ritual + " at failure");
         if (world instanceof ServerWorld) {
             ItemScatterer.spawn(world, pos, items);
             clearItems();
@@ -260,6 +263,7 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
             world.setBlockState(pos, getCachedState().with(LIT, false));
         }
+
         markDirty();
     }
 
@@ -279,6 +283,8 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
 
         ItemScatterer.spawn(world, pos, finalList);
         clearItems();
+
+        System.out.println("Scattered remains");
     }
 
     private void castRitual(ServerWorld world) {
@@ -411,6 +417,8 @@ public class SoulCandleBlockEntity extends BlockEntity implements AbstractPowerR
         }
 
         boundPos = WaystoneItem.readBoundPos(nbt, pos);
+
+        System.out.println("Loaded ritual as " + ritual);
     }
 
     public boolean identifyRitual(ServerWorld world, Inventory inv) {

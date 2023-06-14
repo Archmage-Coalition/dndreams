@@ -13,10 +13,10 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
     MANAGOLD("managold", 7, new int[]{2, 5, 6, 2}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
-    TORMITE("tormite", 45, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 3.0F, 0.0F, () -> Ingredient.ofItems(ModItems.SHADE_CLOTH)),
+    TORMITE("tormite", 45, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.0F, () -> Ingredient.ofItems(ModItems.SHADE_CLOTH)),
     CORRUPT("corrupt", 29, new int[]{3, 6, 8, 3}, 13, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1f, 0.0f, () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
-    CELESTIUM("celestium", 45, new int[]{3, 6, 8, 3}, 18, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F, 0.0F, () -> Ingredient.ofItems(ModItems.CELESTIUM)),
-    PERICHARITE("pericharite", 66, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.0F, () -> Ingredient.ofItems(ModItems.PERICHARITE));
+    CELESTIUM("celestium", 45, new int[]{3, 6, 8, 3}, 18, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F, 0.0F, () -> Ingredient.ofItems(ModItems.CELESTIUM)),
+    PERICHARITE("pericharite", 66, new int[]{3, 6, 8, 3}, 25, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 5.0F, 0.0F, () -> Ingredient.ofItems(ModItems.PERICHARITE));
 
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};

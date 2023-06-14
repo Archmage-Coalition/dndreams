@@ -1,19 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "S#S",
-    "#X#",
-    "S#S"
+    "#",
+    "X"
   ],
   "key": {
     "X": {
       "item": "dndreams:echo_candle"
     },
 	"#": {
-      "tag": "minecraft:soul_fire_base_blocks"
-    },
-	"S": {
-      "item": "dndreams:sculk_powder"
+      "item": "dndreams:liquid_soul"
     }
   },
   "result": {
