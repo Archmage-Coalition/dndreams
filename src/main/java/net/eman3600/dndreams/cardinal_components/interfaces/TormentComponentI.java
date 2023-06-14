@@ -7,8 +7,6 @@ public interface TormentComponentI extends Component {
     float getAttunedSanity();
     float getMaxSanity();
 
-    boolean isShielded();
-
     void setSanity(float value);
     void setMaxSanity(float value);
     void lowerSanity(float value);

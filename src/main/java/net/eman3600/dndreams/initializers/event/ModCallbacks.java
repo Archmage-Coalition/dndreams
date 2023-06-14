@@ -95,8 +95,7 @@ public class ModCallbacks {
                 }
 
                 TormentComponent torment = EntityComponents.TORMENT.get(newPlayer);
-                torment.shield(false);
-                torment.setSanity(Math.max(30, torment.getSanity() - 15));
+                torment.setSanity(75);
 
                 ReviveComponent revive = EntityComponents.REVIVE.get(newPlayer);
                 revive.deathReset();

@@ -492,9 +492,6 @@ public class ModItems {
     public static final Item MANIFEST_BREW = registerItem("manifest_brew",
             new ManifestBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.EPIC).recipeRemainder(Items.GLASS_BOTTLE)));
 
-    public static final Item PANACEA = registerItem("panacea",
-            new PanaceaItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.EPIC).recipeRemainder(Items.GLASS_BOTTLE)));
-
     public static final Item DREAM_EYE = registerItem("dream_eye",
             new DreamEye(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
 
