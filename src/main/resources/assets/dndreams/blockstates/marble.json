@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "dndreams:block/marble"
+      },
+      {
+        "model": "dndreams:block/marble",
+        "y": 180
+      }
+    ]
+  }
+}
