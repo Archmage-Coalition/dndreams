@@ -36,6 +36,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     private static final Identifier DNDREAMS_GUI_ICONS = new Identifier(Initializer.MODID, "textures/gui/icons.png");
 
     private static final Identifier DNDREAMS_GUI_MANA_BAR = new Identifier(Initializer.MODID, "textures/gui/mana_bar.png");
+    private static final Identifier DNDREAMS_GUI_HEARTS = new Identifier(Initializer.MODID, "textures/gui/hearts.png");
 
     @Unique private static final Identifier DRAGON_FLASH_IMAGE = new Identifier(Initializer.MODID, "textures/gui/shader/dragon_flash.png");
     @Unique private static final Identifier INSANITY_VIGNETTE_TEXTURE = new Identifier(Initializer.MODID, "textures/gui/shader/insanity_vignette.png");
@@ -265,6 +266,23 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             drawTexture(matrices, n, m, 646, 414,0, 0, 646, 414, 646, 414);
 
             RenderSystem.setShaderColor(1, 1, 1, 1);
+        }
+    }
+
+    @Inject(method = "drawHeart", at = @At("HEAD"), cancellable = true)
+    private void dndreams$drawHeart(MatrixStack matrices, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart, CallbackInfo ci) {
+
+        CustomHeartType customType = HudAccess.CustomHeartType.fromPlayerState(getCameraPlayer(), type);
+        if (customType != CustomHeartType.NO_CHANGE) {
+            RenderSystem.setShaderTexture(0, DNDREAMS_GUI_HEARTS);
+
+            boolean hardcore = v > 0;
+
+            drawTexture(matrices, x, y, customType.getU(), customType.getV(halfHeart, blinking, hardcore), 9, 9);
+
+
+            RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
+            ci.cancel();
         }
     }
 
