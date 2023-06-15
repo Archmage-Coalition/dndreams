@@ -38,6 +38,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private int sanityDamageTicks = 0;
     private int shroud = 0;
     private int haunt = 0;
+    private float gloom = 0;
+    private boolean dirty = false;
 
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
@@ -63,9 +65,13 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         return isAttuned() ? MAX_SANITY : isAwakened() ? 0 : getSanity();
     }
 
+    public float getTrueMaxSanity() {
+        return maxSanity;
+    }
+
     @Override
     public float getMaxSanity() {
-        return maxSanity;
+        return MathHelper.clamp(maxSanity - gloom, 0, MAX_SANITY);
     }
 
     @Override
@@ -79,6 +85,15 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         maxSanity = value;
         normalize();
     }
+
+    @Override
+    public void inflictGloom(float value) {
+
+        gloom += value;
+        normalize();
+    }
+
+
 
     @Override
     public void lowerSanity(float value) {
@@ -118,7 +133,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         boolean bl = false;
         while (value >= THREAD_VALUE) {
             ItemStack stack;
-            if (getMaxSanity() - THREAD_VALUE >= LOWEST_MAX_SANITY && player.world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) {
+            if (getTrueMaxSanity() - THREAD_VALUE >= LOWEST_MAX_SANITY && player.world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) {
                 bl = true;
                 lowerMaxSanity(THREAD_VALUE);
                 stack = ModItems.SANITY_THREAD.getDefaultStack();
@@ -160,8 +175,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     private void normalize() {
         maxSanity = MathHelper.clamp(maxSanity, LOWEST_MAX_SANITY, MAX_SANITY);
+        gloom = MathHelper.clamp(gloom, 0, MAX_SANITY);
         sanity = MathHelper.clamp(sanity, MIN_SANITY, getMaxSanity());
-        EntityComponents.TORMENT.sync(player);
+        markDirty();
     }
 
     @Override
@@ -172,6 +188,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         sanityDamageTicks = tag.getInt("sanity_damage_ticks");
         shroud = tag.getInt("shroud");
         haunt = tag.getInt("haunt");
+        gloom = tag.getFloat("gloom");
     }
 
     @Override
@@ -182,6 +199,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("sanity_damage_ticks", sanityDamageTicks);
         tag.putInt("shroud", shroud);
         tag.putInt("haunt", haunt);
+        tag.putFloat("gloom", gloom);
     }
 
     @Override
@@ -207,33 +225,36 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             lowerPerMinute(j);
         }
 
-        float attunedSanity = getAttunedSanity();
-        boolean resync = false;
         if (sanityDamageTicks > 0) {
             sanityDamageTicks--;
-            resync = true;
+            markDirty();
         }
 
 
         boolean shouldShroud = shouldShroud();
         if (shroud < MAX_SHROUD && shouldShroud) {
             shroud++;
-            resync = true;
+            markDirty();
         } else if (shroud > 0 && !shouldShroud) {
             shroud--;
-            resync = true;
+            markDirty();
         }
 
         if (player.hasStatusEffect(ModStatusEffects.HAUNTED) && haunt < MAX_HAUNT) {
             haunt = Math.min(haunt + 5, MAX_HAUNT);
-            resync = true;
+            markDirty();
         } else if (haunt > 0 && !player.hasStatusEffect(ModStatusEffects.HAUNTED)) {
             haunt--;
-            resync = true;
+            markDirty();
         }
 
-        if (resync) {
+        if (shroud <= 0 && gloom > 0) {
+            gloom = Math.max(0, gloom - 0.1f);
+        }
+
+        if (dirty) {
             EntityComponents.TORMENT.sync(player);
+            dirty = false;
         }
     }
 
@@ -355,5 +376,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             this.insanity = insanity;
             this.range = range;
         }
+    }
+
+    public void markDirty() {
+        dirty = true;
     }
 }

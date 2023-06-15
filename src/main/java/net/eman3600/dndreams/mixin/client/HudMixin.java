@@ -102,6 +102,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Override
     public void setDragonFlash(int ticks) {
         dragonFlashTicks = ticks;
+        System.out.println("Set Dragon Flash Ticks");
     }
 
 
@@ -244,7 +245,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });
 
-        /*if (dragonFlashTicks > 0) {
+        if (dragonFlashTicks > 0) {
             RenderSystem.setShaderTexture(0, DRAGON_FLASH_IMAGE);
 
             int n = scaledWidth / 2;
@@ -261,10 +262,10 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
             RenderSystem.setShaderColor(1, 1, 1, alpha);
 
-            drawTexture(matrices, n, m, 0, 0, scaledWidth, scaledHeight, scaledWidth, scaledHeight);
+            drawTexture(matrices, n, m, 646, 414,0, 0, 646, 414, 646, 414);
 
             RenderSystem.setShaderColor(1, 1, 1, 1);
-        }*/
+        }
     }
 
     @Inject(method = "tick()V", at = @At("HEAD"))

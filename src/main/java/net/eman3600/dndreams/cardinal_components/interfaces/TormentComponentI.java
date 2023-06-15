@@ -5,10 +5,15 @@ import dev.onyxstudios.cca.api.v3.component.Component;
 public interface TormentComponentI extends Component {
     float getSanity();
     float getAttunedSanity();
+    float getTrueMaxSanity();
+
     float getMaxSanity();
 
     void setSanity(float value);
     void setMaxSanity(float value);
+
+    void inflictGloom(float value);
+
     void lowerSanity(float value);
     void lowerMaxSanity(float value);
 

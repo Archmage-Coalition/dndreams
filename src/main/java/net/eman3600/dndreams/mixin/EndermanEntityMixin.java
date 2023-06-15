@@ -1,7 +1,10 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
+import net.eman3600.dndreams.mixin_interfaces.EndermanEntityAccess;
+import net.eman3600.dndreams.mixin_interfaces.HudAccess;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.RevengeGoal;
@@ -23,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.UUID;
 
 @Mixin(EndermanEntity.class)
-public abstract class EndermanEntityMixin extends HostileEntity implements Angerable {
+public abstract class EndermanEntityMixin extends HostileEntity implements Angerable, EndermanEntityAccess {
 
     @Shadow @Nullable public abstract UUID getAngryAt();
 
@@ -45,15 +48,17 @@ public abstract class EndermanEntityMixin extends HostileEntity implements Anger
         }
     }
 
+    @Inject(method = "playAngrySound", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FFZ)V"))
+    private void dndreams$playAngrySound(CallbackInfo ci) {
+
+        if (world instanceof ClientWorldAccess access && isPlayerStaring(access.getPlayer()) && world.getScoreboard() != null && !WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
+
+            ((HudAccess)access.getClient().inGameHud).setDragonFlash(24);
+        }
+    }
+
     @ModifyArg(method = "initGoals", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 9))
     private Goal dndreams$createDifferentRevengeGoal(Goal instance) {
         return new RevengeGoal((EndermanEntity) (Object) this, EnderDragonEntity.class);
     }
-
-//    @Inject(method = "playAngrySound", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FFZ)V"))
-//    private void dndreams$playAngrySound(CallbackInfo ci) {
-//        if (world.isClient && !WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
-//            ((HudAccess)((ClientWorldAccess)world).getClient().inGameHud).setDragonFlash(30);
-//        }
-//    }
 }

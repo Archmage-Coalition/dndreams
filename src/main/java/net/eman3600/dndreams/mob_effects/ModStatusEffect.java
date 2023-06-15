@@ -27,10 +27,14 @@ public class ModStatusEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (this == ModStatusEffects.VOID_FLOW) {
+
             if (!entity.isPlayer()) {
                 entity.timeUntilRegen = 8;
                 entity.damage(COSMIC_OVERLOAD, 1.0f);
             }
+        } else if (this == ModStatusEffects.HAUNTED) {
+
+            EntityComponents.TORMENT.maybeGet(entity).ifPresent(torment -> torment.inflictGloom(.15f));
         }
     }
 
@@ -44,7 +48,7 @@ public class ModStatusEffect extends StatusEffect {
             }
         }
 
-        return false;
+        return this == ModStatusEffects.HAUNTED;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class SanityThreadItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         TormentComponent component = EntityComponents.TORMENT.get(user);
-        if (component.getMaxSanity() < TormentComponent.MAX_SANITY) {
+        if (component.getTrueMaxSanity() < TormentComponent.MAX_SANITY) {
             component.lowerMaxSanity(-TormentComponent.THREAD_VALUE);
             ItemStack stack = user.getStackInHand(hand);
 
