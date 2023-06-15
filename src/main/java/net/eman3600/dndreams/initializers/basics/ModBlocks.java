@@ -1194,7 +1194,6 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
-    // Ancient Portal
     public static final Block DEEPSLATE_CORE = registerBlock("deepslate_core",
             new DeepslateCoreBlock(FabricBlockSettings.of(Material.STONE)
                     .strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)
