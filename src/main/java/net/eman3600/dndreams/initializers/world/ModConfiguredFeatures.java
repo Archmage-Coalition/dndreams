@@ -122,6 +122,11 @@ public class ModConfiguredFeatures {
                     ConfiguredFeatures.createRandomPatchFeatureConfig(32, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                             new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.SELENE_GRASS)))));
 
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> GOLDEN_GRASS =
+            ConfiguredFeatures.register("golden_grass", Feature.RANDOM_PATCH,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(32, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.GOLDEN_GRASS)))));
+
 
 
     public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> HAVEN_GRASS =

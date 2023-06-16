@@ -14,9 +14,11 @@ import net.minecraft.world.gen.structure.Structure;
 public class ModTags {
     /* TAGS */
     public static final TagKey<Block> BASE_STONE_END = ofBlock("base_stone_end");
+    public static final TagKey<Block> BASE_MARBLE_END = ofBlock("base_marble_end");
     public static final TagKey<Block> BASE_SAND_NETHER = ofBlock("base_sand_nether");
     public static final TagKey<Block> BASE_SOIL_NETHER = ofBlock("base_soil_nether");
     public static final TagKey<Block> SUBSTANTIAL = ofBlock("substantial");
+    public static final TagKey<Block> MARBLES = ofBlock("marbles");
     public static final TagKey<Block> DEEPSLATE_FRAME = ofBlock("deepslate_frame");
     public static final TagKey<Block> SOUL_POWER = ofBlock("soul_power");
     public static final TagKey<Block> COSMIC_AUGMENTS = ofBlock("cosmic_augments");

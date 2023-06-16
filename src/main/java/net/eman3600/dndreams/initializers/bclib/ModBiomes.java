@@ -2,10 +2,7 @@ package net.eman3600.dndreams.initializers.bclib;
 
 import com.google.common.collect.Lists;
 import net.eman3600.dndreams.mixin.BiomeAPIMixin;
-import net.eman3600.dndreams.world.biome.end.EndBiome;
-import net.eman3600.dndreams.world.biome.end.EosBiome;
-import net.eman3600.dndreams.world.biome.end.HeliosBiome;
-import net.eman3600.dndreams.world.biome.end.SeleneBiome;
+import net.eman3600.dndreams.world.biome.end.*;
 import net.eman3600.dndreams.world.biome.haven.HavenCaveBiomes;
 import net.eman3600.dndreams.world.biome.haven.HavenLandBiomes;
 import net.eman3600.dndreams.world.biome.haven.HavenVoidBiomes;
@@ -43,6 +40,7 @@ public class ModBiomes {
     public static final EndBiome SELENE_BIOME = registerEndBiome(new SeleneBiome(), BiomeType.LAND);
     public static final EndBiome EOS_BIOME = registerEndBiome(new EosBiome(), BiomeType.LAND);
     public static final EndBiome HELIOS_BIOME = registerEndBiome(new HeliosBiome(), BiomeType.LAND);
+    public static final EndBiome MARBLE_GARDEN_BIOME = registerEndBiome(new MarbleGardenBiome(), BiomeType.LAND);
 
 
     // Haven Land Biomes

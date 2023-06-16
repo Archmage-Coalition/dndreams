@@ -42,9 +42,11 @@ public class ModPlacedFeatures {
 
     public static final RegistryEntry<PlacedFeature> SELENE_GRASS = PlacedFeatures.register("patch_selene_grass", ModConfiguredFeatures.SELENE_GRASS, VegetationPlacedFeatures.modifiers(2));
 
-    public static final RegistryEntry<PlacedFeature> HAVEN_GRASS = PlacedFeatures.register("patch_haven_grass", ModConfiguredFeatures.HAVEN_GRASS, VegetationPlacedFeatures.modifiers(2));
+    public static final RegistryEntry<PlacedFeature> GOLDEN_GRASS = PlacedFeatures.register("patch_golden_grass", ModConfiguredFeatures.GOLDEN_GRASS, VegetationPlacedFeatures.modifiers(7));
 
-    public static final RegistryEntry<PlacedFeature> STAR_GRASS = PlacedFeatures.register("patch_star_grass", ModConfiguredFeatures.STAR_GRASS, VegetationPlacedFeatures.modifiers(2));
+    public static final RegistryEntry<PlacedFeature> HAVEN_GRASS = PlacedFeatures.register("patch_haven_grass", ModConfiguredFeatures.HAVEN_GRASS, VegetationPlacedFeatures.modifiers(7));
+
+    public static final RegistryEntry<PlacedFeature> STAR_GRASS = PlacedFeatures.register("patch_star_grass", ModConfiguredFeatures.STAR_GRASS, VegetationPlacedFeatures.modifiers(5));
 
 
 

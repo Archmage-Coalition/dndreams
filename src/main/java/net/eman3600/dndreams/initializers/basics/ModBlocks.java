@@ -34,8 +34,9 @@ public class ModBlocks {
     public static final Block SHINE = registerBlock("shine",
             new ShineBlock(FabricBlockSettings.of(Material.AIR).strength(0, 0)
                     .sounds(BlockSoundGroup.AMETHYST_BLOCK)
+                    .nonOpaque()
                     .breakInstantly()
-                    .luminance(s -> (int)(s.get(ShineBlock.LIGHT) * 3) + 6)
+                    .luminance(s -> (s.get(ShineBlock.LIGHT) * 3) + 6)
                     .ticksRandomly()));
 
     // Marble
@@ -45,6 +46,16 @@ public class ModBlocks {
                     .requiresTool()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block GOLDEN_GRASS_BLOCK = registerBlock("golden_grass_block",
+            new MarbleSpreadableBlock(FabricBlockSettings.copy(MARBLE).ticksRandomly()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block GOLDEN_GRASS = registerBlock("golden_grass",
+            new EndFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     // Hellsteel Block
     public static final Block CORRUPT_BLOCK = registerBlock("corrupt_block",

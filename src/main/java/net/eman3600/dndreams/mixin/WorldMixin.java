@@ -1,8 +1,8 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.ClientInitializer;
-import net.eman3600.dndreams.cardinal_components.BossStateComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.cardinal_components.WorldStateComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
@@ -48,6 +48,10 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
     @Shadow public abstract Scoreboard getScoreboard();
 
+    @Shadow protected float rainGradient;
+
+    @Shadow protected float thunderGradient;
+
     @Inject(method = "getTimeOfDay", at = @At("HEAD"), cancellable = true)
     public void injectTimeOfDay(CallbackInfoReturnable<Long> info) {
         if (drawAether()) {
@@ -57,45 +61,50 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
             float lowestSanity = lowestSanity(players);
 
             info.setReturnValue((long)(18000 - (lowestSanity * 120)));
-        } else if (getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
-            try {
-                BossStateComponent component = WorldComponents.BOSS_STATE.get(getScoreboard());
-
-                if (component.elrunezSlain()) {
-                    info.setReturnValue(6000L);
-                } else {
-                    info.setReturnValue(18000L);
-                }
-            } catch (Exception e) {
-                info.setReturnValue(18000L);
-            }
+        } else if (usesCustomState()) {
+            info.setReturnValue(getWorldState().getDayTime());
         }
     }
 
     @Inject(method = "initWeatherGradients", at = @At("HEAD"), cancellable = true)
-    private void injectInitWeatherGardients(CallbackInfo info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || getDimensionKey() == ModDimensions.HAVEN_TYPE_KEY || drawAether()) {
+    private void injectInitWeatherGradients(CallbackInfo info) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
             info.cancel();
+        } else if (usesCustomState()) {
+            WorldStateComponent state = getWorldState();
+
+            this.rainGradient = state.getRainGradient();
+            this.thunderGradient = state.getThunderGradient();
         }
     }
 
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
     private void injectRainGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || getDimensionKey() == ModDimensions.HAVEN_TYPE_KEY || drawAether()) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
             info.setReturnValue(0f);
+        } else if (usesCustomState()) {
+
+            WorldStateComponent state = getWorldState();
+
+            info.setReturnValue(state.getRainGradient());
         }
     }
 
     @Inject(method = "getThunderGradient", at = @At("HEAD"), cancellable = true)
     private void injectThunderGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || getDimensionKey() == ModDimensions.HAVEN_TYPE_KEY || drawAether()) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
             info.setReturnValue(0f);
+        } else if (usesCustomState()) {
+
+            WorldStateComponent state = getWorldState();
+
+            info.setReturnValue(state.getThunderGradient());
         }
     }
 
     @Inject(method = "calculateAmbientDarkness", at = @At("HEAD"), cancellable = true)
     private void injectAmbientDarkness(CallbackInfo info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.HAVEN_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || usesCustomState()) {
             double d = 1.0D - (double)(this.getRainGradient(1.0F) * 5.0F) / 16.0D;
             double e = 1.0D - (double)(this.getThunderGradient(1.0F) * 5.0F) / 16.0D;
             double f = 0.5D + 2.0D * MathHelper.clamp(MathHelper.cos(this.getDimension().getSkyAngle(this.getTimeOfDay()) * 6.2831855F), -0.25D, 0.25D);
@@ -122,4 +131,13 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
         return (isClient && ClientInitializer.drawAether((World)(Object) this));
 
     }
+
+    private WorldStateComponent getWorldState() {
+        return WorldComponents.WORLD_STATE.get(this);
+    }
+
+    private boolean usesCustomState() {
+        return WorldComponents.WORLD_STATE.isProvidedBy(this) && getWorldState().isCustom();
+    }
+
 }

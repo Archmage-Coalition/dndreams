@@ -13,6 +13,6 @@ public class EndFernBlock extends FernBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(ModTags.END_STONES);
+        return floor.isIn(ModTags.END_STONES) || floor.isIn(ModTags.MARBLES);
     }
 }

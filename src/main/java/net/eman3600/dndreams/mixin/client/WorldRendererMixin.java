@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -18,7 +19,9 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Environment(EnvType.CLIENT)
@@ -43,9 +46,16 @@ public abstract class WorldRendererMixin {
 
     @Inject(method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;getMoonPhase()I"))
     private void dndreams$renderSky$changeMoon(MatrixStack matrices, Matrix4f projectionMatrix, float tickDelta, Camera camera, boolean bl, Runnable runnable, CallbackInfo info) {
-        if (WorldComponents.BLOOD_MOON.get(this.world).damnedNight()) {
+        if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
+            RenderSystem.setShaderColor(1f, 1f, 1f, 0f);
+        } else if (WorldComponents.BLOOD_MOON.get(this.world).damnedNight()) {
             RenderSystem.setShaderColor(1f, 0f, 0f, 1f);
-        } else if (drawAether()) {
+        }
+    }
+
+    @Inject(method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V", at = @At(value = "CONSTANT", args = "floatValue=30.0f"))
+    private void dndreams$renderSky$changeSun(MatrixStack matrices, Matrix4f projectionMatrix, float tickDelta, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
+        if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
             RenderSystem.setShaderColor(1f, 1f, 1f, 0f);
         }
     }

@@ -2,7 +2,6 @@ package net.eman3600.dndreams.world.biome.end;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.bclib.EndFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,7 +14,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.EndPlacedFeatures;
-import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
@@ -170,11 +168,6 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
 
     public abstract static class Config {
         public static final SurfaceMaterialProvider DEFAULT_MATERIAL = new DefaultSurfaceMaterialProvider();
-
-        public static final MaterialRules.MaterialRule END_STONE = MaterialRules.block(DefaultSurfaceMaterialProvider.END_STONE);
-        public static final MaterialRules.MaterialRule SELENE_GRASS = MaterialRules.block(ModBlocks.SELENE_GRASS_BLOCK.getDefaultState());
-        public static final MaterialRules.MaterialRule EOS_GRASS = MaterialRules.block(ModBlocks.EOS_GRASS_BLOCK.getDefaultState());
-        public static final MaterialRules.MaterialRule HELIOS_GRASS = MaterialRules.block(ModBlocks.HELIOS_GRASS_BLOCK.getDefaultState());
 
         public final Identifier ID;
 

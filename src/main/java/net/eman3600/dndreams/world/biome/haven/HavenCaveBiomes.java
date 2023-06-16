@@ -2,6 +2,7 @@ package net.eman3600.dndreams.world.biome.haven;
 
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.Biome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 
@@ -13,6 +14,8 @@ public class HavenCaveBiomes {
         BiomesCommonMethods.addDefaultLandFeatures(builder);
         BiomesCommonMethods.setDefaultColors(builder);
         BiomesCommonMethods.addDefaultSounds(builder);
+        builder.precipitation(Biome.Precipitation.RAIN);
+
         return builder.surface(ModBlocks.HAVEN_STONE).plantsColor(0x707c47).build();
     }
 }

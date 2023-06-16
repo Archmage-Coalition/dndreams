@@ -3,6 +3,7 @@ package net.eman3600.dndreams.mixin.client;
 import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.mixin_interfaces.LightmapTextureManagerAccess;
 import net.fabricmc.api.EnvType;
@@ -14,6 +15,8 @@ import net.minecraft.client.texture.NativeImageBackedTexture;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,6 +24,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Environment(EnvType.CLIENT)
@@ -75,6 +79,16 @@ public abstract class LightmapTextureManagerMixin implements LightmapTextureMana
             }
 
             image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
+        }
+    }
+
+    @Inject(method = "getBrightness", at = @At("HEAD"), cancellable = true)
+    private static void dndreams$getBrightness(DimensionType type, int lightLevel, CallbackInfoReturnable<Float> cir) {
+
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.world != null && client.player != null && client.world.getRegistryKey() == World.END && WorldComponents.BOSS_STATE.get(client.world.getScoreboard()).dragonSlain()) {
+
+            cir.setReturnValue(1f);
         }
     }
 

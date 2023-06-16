@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "dndreams:block/golden_grass_block"
+      },
+      {
+        "model": "dndreams:block/golden_grass_block",
+        "y": 90
+      },
+      {
+        "model": "dndreams:block/golden_grass_block",
+        "y": 180
+      },
+      {
+        "model": "dndreams:block/golden_grass_block",
+        "y": 270
+      }
+    ]
+  }
+}
