@@ -38,6 +38,14 @@ public class ModBlocks {
                     .luminance(s -> (int)(s.get(ShineBlock.LIGHT) * 3) + 6)
                     .ticksRandomly()));
 
+    // Marble
+    public static final Block MARBLE = registerBlock("marble",
+            new Block(FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_WHITE).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
     // Hellsteel Block
     public static final Block CORRUPT_BLOCK = registerBlock("corrupt_block",
             new Block(FabricBlockSettings.of(Material.METAL, MapColor.BRIGHT_RED).strength(4.0f).resistance(5.0f)
