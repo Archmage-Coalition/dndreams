@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.mixin.client;
 
-import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
@@ -19,7 +18,6 @@ import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
@@ -36,27 +34,13 @@ public abstract class ClientWorldMixin extends World implements ClientWorldAcces
 
     @Redirect(method = "tickTime", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules;getBoolean(Lnet/minecraft/world/GameRules$Key;)Z"))
     private boolean dndreams$tickTime(GameRules instance, GameRules.Key<GameRules.BooleanRule> rule) {
-        if (drawAether() || (this.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY && ((WorldAccess)this).lowestSanity(getPlayers()) >= 100f)) {
+        if (this.getDimensionKey() == ModDimensions.DREAM_TYPE_KEY && ((WorldAccess)this).lowestSanity(getPlayers()) >= 100f) {
             return false;
         } else {
             return instance.getBoolean(rule);
         }
     }
 
-    @Redirect(method = "setTimeOfDay", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld$Properties;setTimeOfDay(J)V"))
-    private void dndreams$setTimeOfDay(ClientWorld.Properties instance, long timeOfDay) {
-        if (drawAether()) {
-            instance.setTimeOfDay(18000L);
-        } else {
-            instance.setTimeOfDay(timeOfDay);
-        }
-    }
-
-
-    @Unique
-    private boolean drawAether() {
-        return ClientInitializer.drawAether(this);
-    }
 
     @Override
     public MinecraftClient getClient() {

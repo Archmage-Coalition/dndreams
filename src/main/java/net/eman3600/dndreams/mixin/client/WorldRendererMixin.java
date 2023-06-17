@@ -46,17 +46,8 @@ public abstract class WorldRendererMixin {
 
     @Inject(method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;getMoonPhase()I"))
     private void dndreams$renderSky$changeMoon(MatrixStack matrices, Matrix4f projectionMatrix, float tickDelta, Camera camera, boolean bl, Runnable runnable, CallbackInfo info) {
-        if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
-            RenderSystem.setShaderColor(1f, 1f, 1f, 0f);
-        } else if (WorldComponents.BLOOD_MOON.get(this.world).damnedNight()) {
+        if (WorldComponents.BLOOD_MOON.get(this.world).damnedNight()) {
             RenderSystem.setShaderColor(1f, 0f, 0f, 1f);
-        }
-    }
-
-    @Inject(method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V", at = @At(value = "CONSTANT", args = "floatValue=30.0f"))
-    private void dndreams$renderSky$changeSun(MatrixStack matrices, Matrix4f projectionMatrix, float tickDelta, Camera camera, boolean bl, Runnable runnable, CallbackInfo ci) {
-        if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
-            RenderSystem.setShaderColor(1f, 1f, 1f, 0f);
         }
     }
 
@@ -97,7 +88,7 @@ public abstract class WorldRendererMixin {
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/GameRenderer;getSkyDarkness(F)F"))
     private float dndreams$render$getSkyDarkness(GameRenderer instance, float tickDelta) {
-        if (drawAether()) return 1f;
+        if (drawAether()) return 0f;
 
         return instance.getSkyDarkness(tickDelta);
     }
@@ -107,6 +98,14 @@ public abstract class WorldRendererMixin {
         if (drawAether()) return null;
 
         return instance.getFogColorOverride(skyAngle, tickDelta);
+    }
+
+    @Inject(method = "renderWeather", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderTexture(ILnet/minecraft/util/Identifier;)V", shift = At.Shift.AFTER))
+    private void dndreams$renderWeather(LightmapTextureManager manager, float tickDelta, double cameraX, double cameraY, double cameraZ, CallbackInfo ci) {
+
+        if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
+            RenderSystem.setShaderColor(.365f, .052f, .485f, 1f);
+        }
     }
 
 

@@ -54,21 +54,19 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
     @Inject(method = "getTimeOfDay", at = @At("HEAD"), cancellable = true)
     public void injectTimeOfDay(CallbackInfoReturnable<Long> info) {
-        if (drawAether()) {
-            info.setReturnValue(18000L);
+        if (getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
+            info.setReturnValue(6000L);
         } else if (getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY) {
             List<? extends PlayerEntity> players = getPlayers();
             float lowestSanity = lowestSanity(players);
 
             info.setReturnValue((long)(18000 - (lowestSanity * 120)));
-        } else if (usesCustomState()) {
-            info.setReturnValue(getWorldState().getDayTime());
         }
     }
 
     @Inject(method = "initWeatherGradients", at = @At("HEAD"), cancellable = true)
     private void injectInitWeatherGradients(CallbackInfo info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
             info.cancel();
         } else if (usesCustomState()) {
             WorldStateComponent state = getWorldState();
@@ -80,7 +78,7 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
     private void injectRainGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
             info.setReturnValue(0f);
         } else if (usesCustomState()) {
 
@@ -92,7 +90,7 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
     @Inject(method = "getThunderGradient", at = @At("HEAD"), cancellable = true)
     private void injectThunderGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY || drawAether()) {
+        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
             info.setReturnValue(0f);
         } else if (usesCustomState()) {
 
@@ -104,7 +102,7 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
     @Inject(method = "calculateAmbientDarkness", at = @At("HEAD"), cancellable = true)
     private void injectAmbientDarkness(CallbackInfo info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || usesCustomState()) {
+        if (getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY || getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
             double d = 1.0D - (double)(this.getRainGradient(1.0F) * 5.0F) / 16.0D;
             double e = 1.0D - (double)(this.getThunderGradient(1.0F) * 5.0F) / 16.0D;
             double f = 0.5D + 2.0D * MathHelper.clamp(MathHelper.cos(this.getDimension().getSkyAngle(this.getTimeOfDay()) * 6.2831855F), -0.25D, 0.25D);

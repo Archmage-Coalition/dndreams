@@ -65,6 +65,7 @@
   ],
   "client": [
     "ItemRendererMixin",
+    "client.BackgroundRendererMixin",
     "client.BiomeColorsMixin",
     "client.ChunkRendererRegionMixin",
     "client.ClientPlayerEntityMixin",

@@ -204,7 +204,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
                 TormentComponent component = EntityComponents.TORMENT.get(player);
 
-                component.lowerPerMinute(50f);
+                component.lowerPerMinute(150f);
             }
             if (!hasStatusEffect(ModStatusEffects.AFFLICTION) || getStatusEffect(ModStatusEffects.AFFLICTION).getDuration() < 20) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
         }

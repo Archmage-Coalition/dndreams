@@ -13,7 +13,6 @@ public class WorldStateComponent implements WorldStateComponentI {
     private final World world;
     private float rainGradient = 0;
     private float thunderGradient = 0;
-    private long dayTime = 0;
     private boolean dirty = false;
 
     public WorldStateComponent(World world) {
@@ -26,11 +25,6 @@ public class WorldStateComponent implements WorldStateComponentI {
     }
 
     @Override
-    public long getDayTime() {
-        return dayTime;
-    }
-
-    @Override
     public float getRainGradient() {
         return rainGradient;
     }
@@ -40,26 +34,20 @@ public class WorldStateComponent implements WorldStateComponentI {
         return thunderGradient;
     }
 
-    private long getProperDayTime() {
-        if (world instanceof ServerWorld serverWorld) {
-            World overworld = serverWorld.getServer().getWorld(World.OVERWORLD);
-            if (overworld == null) return 6000L;
-
-            BloodMoonComponent bloodMoon = WorldComponents.BLOOD_MOON.get(overworld);
-
-            if (bloodMoon.isBloodMoon()) return overworld.getTime() % 24000;
-            else if (bloodMoon.damnedNight()) return 12200L;
-            else return 6000L + (60L * bloodMoon.getChance());
-        }
-
-        return 6000L;
-    }
-
     private float getProperRain() {
         Scoreboard board = world.getScoreboard();
 
-        if (board != null) {
-            return WorldComponents.BOSS_STATE.get(board).elrunezSlain() ? 0 : 1f;
+        if (board != null && !WorldComponents.BOSS_STATE.get(board).elrunezSlain()) {
+            return 1f;
+        }
+
+        if (world instanceof ServerWorld serverWorld) {
+            World overworld = serverWorld.getServer().getWorld(World.OVERWORLD);
+            if (overworld == null) return 0;
+
+            BloodMoonComponent bloodMoon = WorldComponents.BLOOD_MOON.get(overworld);
+
+            return bloodMoon.damnedNight() ? 1f : 0f;
         }
 
         return 0;
@@ -68,11 +56,11 @@ public class WorldStateComponent implements WorldStateComponentI {
     private float getProperThunder() {
         if (world instanceof ServerWorld serverWorld) {
             World overworld = serverWorld.getServer().getWorld(World.OVERWORLD);
-            if (overworld == null) return 6000L;
+            if (overworld == null) return 0;
 
             BloodMoonComponent bloodMoon = WorldComponents.BLOOD_MOON.get(overworld);
 
-            return Math.min(getProperRain(), bloodMoon.damnedNight() ? 1f : 0f);
+            return Math.min(getProperRain(), bloodMoon.isBloodMoon() ? 1f : 0f);
         }
 
         return 0;
@@ -80,17 +68,6 @@ public class WorldStateComponent implements WorldStateComponentI {
 
     @Override
     public void serverTick() {
-
-        long properTime = getProperDayTime();
-
-        if (dayTime < properTime) {
-
-            dayTime = Math.min(properTime, dayTime + 6);
-            markDirty();
-        } else if (dayTime > properTime) {
-            dayTime = Math.max(properTime, dayTime - 6);
-            markDirty();
-        }
 
         float properRain = getProperRain();
 
@@ -127,7 +104,6 @@ public class WorldStateComponent implements WorldStateComponentI {
     @Override
     public void readFromNbt(NbtCompound tag) {
 
-        dayTime = tag.getLong("day_time");
         rainGradient = tag.getFloat("rain_gradient");
         thunderGradient = tag.getFloat("thunder_gradient");
     }
@@ -135,7 +111,6 @@ public class WorldStateComponent implements WorldStateComponentI {
     @Override
     public void writeToNbt(NbtCompound tag) {
 
-        tag.putLong("day_time", dayTime);
         tag.putFloat("rain_gradient", rainGradient);
         tag.putFloat("thunder_gradient", thunderGradient);
     }

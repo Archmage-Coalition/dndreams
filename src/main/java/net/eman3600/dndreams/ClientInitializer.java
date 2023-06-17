@@ -3,18 +3,17 @@ package net.eman3600.dndreams;
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.BonfireBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
-import net.eman3600.dndreams.cardinal_components.BossStateComponent;
 import net.eman3600.dndreams.entities.renderers.*;
 import net.eman3600.dndreams.events.KeyInputHandler;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModFluids;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
-import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.screens.AttunementScreen;
 import net.eman3600.dndreams.screens.RefineryScreen;
@@ -148,9 +147,8 @@ ClientInitializer implements ClientModInitializer {
         try {
             if ((world instanceof ClientWorldAccess access)) {
                 try {
-                    BossStateComponent bossState = WorldComponents.BOSS_STATE.get(world.getScoreboard());
 
-                    //if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY && !bossState.elrunezSlain()) return true;
+                    if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) return true;
                 } catch (Exception ignored) {}
 
                 return access.getClient().player.hasStatusEffect(ModStatusEffects.AETHER);

@@ -42,7 +42,7 @@ public class MindstringBowItem extends MagicBowItem implements SanityCostItem {
 
     @Override
     public float getBaseSanityCost() {
-        return .75f;
+        return .5f;
     }
 
     @Override
