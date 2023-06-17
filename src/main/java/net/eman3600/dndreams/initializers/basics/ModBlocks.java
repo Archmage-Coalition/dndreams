@@ -52,7 +52,7 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     public static final Block GOLDEN_GRASS = registerBlock("golden_grass",
-            new EndFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
+            new MarbleFernBlock(FabricBlockSettings.copy(Blocks.GRASS)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));

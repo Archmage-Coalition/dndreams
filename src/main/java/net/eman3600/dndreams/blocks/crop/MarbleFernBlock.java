@@ -6,13 +6,13 @@ import net.minecraft.block.FernBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 
-public class EndFernBlock extends FernBlock {
-    public EndFernBlock(Settings settings) {
+public class MarbleFernBlock extends FernBlock {
+    public MarbleFernBlock(Settings settings) {
         super(settings);
     }
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(ModTags.END_STONES);
+        return floor.isIn(ModTags.MARBLES);
     }
 }
