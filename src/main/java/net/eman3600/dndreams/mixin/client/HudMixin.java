@@ -37,6 +37,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
     private static final Identifier DNDREAMS_GUI_MANA_BAR = new Identifier(Initializer.MODID, "textures/gui/mana_bar.png");
     private static final Identifier DNDREAMS_GUI_HEARTS = new Identifier(Initializer.MODID, "textures/gui/hearts.png");
+    private static final Identifier DNDREAMS_GUI_SANITY_METER = new Identifier(Initializer.MODID, "textures/gui/sanity_meter.png");
 
     @Unique private static final Identifier DRAGON_FLASH_IMAGE = new Identifier(Initializer.MODID, "textures/gui/shader/dragon_flash.png");
     @Unique private static final Identifier INSANITY_VIGNETTE_TEXTURE = new Identifier(Initializer.MODID, "textures/gui/shader/insanity_vignette.png");
@@ -53,19 +54,18 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Unique
     private static final int MANA_HEIGHT = 8;
 
-    @Unique
-    private static final int TORMENT_X_OFFSET = 6;
+    @Unique private static final int TORMENT_X_OFFSET = 6;
 
-    @Unique
-    private static final int TORMENT_Y_OFFSET = 7;
+    @Unique private static final int TORMENT_Y_OFFSET = 7;
 
     @Unique private static final int TORMENT_Y_BIG_OFFSET = 30;
 
-    @Unique
-    private static final int TORMENT_WIDTH = 14;
+    @Unique private static final int TORMENT_WIDTH = 30;
 
-    @Unique
-    private static final int TORMENT_HEIGHT = 14;
+    @Unique private static final int TORMENT_HEIGHT = 30;
+
+    @Unique private static final int TORMENT_INNER_WIDTH = 20;
+    @Unique private static final int TORMENT_INNER_HEIGHT = 20;
 
     @Unique private static final int REVIVE_X_OFFSET = TORMENT_X_OFFSET + TORMENT_WIDTH + 8;
 
@@ -140,7 +140,6 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
                 this.getTextRenderer().draw(matrices, string, (float)k, (float)l, 0x009295);
-                //drawCenteredText(matrices, client.textRenderer, mana + "/" + maxMana, (xPosMana + MANA_WIDTH/2), (yPos - MANA_HEIGHT - 5), Color.MAGENTA.getRGB());
             }
         });
 
@@ -186,8 +185,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                 RenderSystem.setShaderColor(1, 1, 1, 1.0f);
                 drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, MANA_HEIGHT, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
                 drawTexture(matrices, xPos + 1, yPos + 1, 0, vPos, (int)((MANA_WIDTH -2) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT -2, 230, 1944);
-                if(player.hasStatusEffect(ModStatusEffects.SUPPRESSED))
-                {
+                if (player.hasStatusEffect(ModStatusEffects.SUPPRESSED)) {
                     drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, 0, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
                 }
                 RenderSystem.setShaderColor(1, 1, 1, 1);
@@ -202,25 +200,35 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             tormentXPos = TORMENT_X_OFFSET;
         }
 
-        int tormentV = 28;
-        int tormentV2 = 14;
+        int tormentV = 30;
+        int tormentV2 = 50;
 
         EntityComponents.TORMENT.maybeGet(player).ifPresent(component -> {
             int tormentYPos = scaledHeight - TORMENT_HEIGHT - (component.shouldOffsetRender() ? TORMENT_Y_BIG_OFFSET : TORMENT_Y_OFFSET);
+            int tormentInnerY = tormentYPos + 5;
+            int tormentInnerX = tormentXPos + 5;
 
             float tormentMaxPercent = (component.getMaxSanity() / TormentComponent.MAX_SANITY);
             float tormentPercent = (component.getSanity() / TormentComponent.MAX_SANITY);
-            int skipV2 = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentMaxPercent));
-            int skipV = MathHelper.ceil((TORMENT_HEIGHT) * (1f - tormentPercent));
+            int skipV2 = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentMaxPercent));
+            int skipV = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentPercent));
 
-            int x = component.isAttuned() ? 103 : 79;
-            int y = component.isAwakened() ? 42 : 0;
+            int mainU = component.isAttuned() ? 30 : 0;
 
-            RenderSystem.setShaderTexture(0, DNDREAMS_GUI_ICONS);
+            int innerU = 5;
+
+
+            RenderSystem.setShaderTexture(0, DNDREAMS_GUI_SANITY_METER);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
-            drawTexture(matrices, tormentXPos, tormentYPos, x, y, TORMENT_WIDTH, TORMENT_HEIGHT);
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV2, x, tormentV2 + skipV2 + y, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentMaxPercent));
-            drawTexture(matrices, tormentXPos, tormentYPos + skipV, x, tormentV + skipV + y, TORMENT_WIDTH, (int)((TORMENT_HEIGHT) * tormentPercent));
+            drawTexture(matrices, tormentXPos, tormentYPos, mainU, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
+            drawTexture(matrices, tormentInnerX, tormentInnerY + skipV2, innerU + mainU, tormentV2 + skipV2, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV2);
+            drawTexture(matrices, tormentInnerX, tormentInnerY + skipV, innerU, tormentV + skipV, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV);
+
+            if (component.isAwakened() && !component.isAttuned()) {
+
+                drawTexture(matrices, tormentInnerX + 6, tormentInnerY + 3, 0, 70, 8, 14);
+            }
+
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
         });

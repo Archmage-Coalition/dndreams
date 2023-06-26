@@ -21,7 +21,7 @@ public class MindShearsItem extends TooltipItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        TypedActionResult<ItemStack> result = EntityComponents.TORMENT.get(user).shearSanity(TormentComponent.THREAD_VALUE, true) ? TypedActionResult.consume(stack) : TypedActionResult.pass(stack);
+        TypedActionResult<ItemStack> result = EntityComponents.TORMENT.get(user).shearSanity(TormentComponent.THREAD_VALUE, true) ? TypedActionResult.success(stack, world.isClient) : TypedActionResult.pass(stack);
         if (result.getResult() != ActionResult.PASS) {
             world.playSound(user, user.getBlockPos(), SoundEvents.BLOCK_GROWING_PLANT_CROP, SoundCategory.PLAYERS, 1.0f, 1.0f);
             user.getItemCooldownManager().set(this, 5);

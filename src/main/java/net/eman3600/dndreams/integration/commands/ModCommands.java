@@ -16,6 +16,7 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -44,19 +45,22 @@ public class ModCommands {
     public static void displayFeedback(CommandContext<ServerCommandSource> context, String string, boolean sendToOps, Object... args) {
         context.getSource().sendFeedback(Text.translatable("command.dndreams." + string, args), sendToOps);
     }
+    public static void displayError(CommandContext<ServerCommandSource> context, String string, Object... args) {
+        context.getSource().sendError(Text.translatable("command.dndreams." + string, args));
+    }
 
     protected static String displayBloodMoonTime(CommandContext<ServerCommandSource> context) {
         ServerWorld world = context.getSource().getWorld();
         BloodMoonComponent bloodComponent = WorldComponents.BLOOD_MOON.get(world);
 
-        return "bloodmoon.get." + bloodComponent.damnedNight();
+        return "bloodmoon.get." + (bloodComponent.isBloodMoon() ? "now" : bloodComponent.damnedNight() ? "tonight" : "inactive");
     }
 
     protected static String displayBloodMoonTimeSet(CommandContext<ServerCommandSource> context) {
         ServerWorld world = context.getSource().getWorld();
         BloodMoonComponent bloodComponent = WorldComponents.BLOOD_MOON.get(world);
 
-        return "bloodmoon.set." + bloodComponent.damnedNight();
+        return "bloodmoon.set." + (bloodComponent.isBloodMoon() ? "now" : bloodComponent.damnedNight() ? "tonight" : "inactive");
     }
 
     protected static String displayBossSlain(CommandContext<ServerCommandSource> context, String slain) {
@@ -113,10 +117,15 @@ public class ModCommands {
                 boolean setBloodMoon = context.getArgument("tonight", Boolean.class);
 
                 ServerWorld world = context.getSource().getWorld();
-                BloodMoonComponent bloodComponent = WorldComponents.BLOOD_MOON.get(world);
 
-                bloodComponent.setDamnedNight(setBloodMoon);
-                displayFeedback(context, displayBloodMoonTimeSet(context), true);
+                if (world.getRegistryKey() == World.OVERWORLD) {
+                    BloodMoonComponent bloodComponent = WorldComponents.BLOOD_MOON.get(world);
+
+                    bloodComponent.setDamnedNight(setBloodMoon);
+                    displayFeedback(context, displayBloodMoonTimeSet(context), true);
+                } else {
+                    displayError(context, "bloodmoon.set.wrong_dimension");
+                }
                 return 0;
             }))));
 

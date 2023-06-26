@@ -316,10 +316,13 @@
   "death.attack.dndreams_shock.player": "%1$s couldn't hold the watts whilst fighting %2$s",
   
   
-  "command.dndreams.bloodmoon.get.true": "Tonight will have a blood moon.",
-  "command.dndreams.bloodmoon.get.false": "The moon is normal tonight.",
-  "command.dndreams.bloodmoon.set.true": "It is now ordained the blood moon shall rise tonight.",
-  "command.dndreams.bloodmoon.set.false": "It is now ordained the moon shall be unstained.",
+  "command.dndreams.bloodmoon.get.now": "There is currently a blood moon.",
+  "command.dndreams.bloodmoon.get.tonight": "Tonight will have a blood moon.",
+  "command.dndreams.bloodmoon.get.inactive": "The moon is normal tonight.",
+  "command.dndreams.bloodmoon.set.now": "It is now a blood moon.",
+  "command.dndreams.bloodmoon.set.tonight": "It is now ordained the blood moon shall rise tonight.",
+  "command.dndreams.bloodmoon.set.inactive": "It is now ordained the moon shall be unstained.",
+  "command.dndreams.bloodmoon.set.wrong_dimension": "You cannot set that here.",
   
   "command.dndreams.slain.ender_dragon.true": "The Ender Dragon is dead.",
   "command.dndreams.slain.ender_dragon.false": "The Ender Dragon lives.",
