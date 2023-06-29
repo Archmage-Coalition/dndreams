@@ -52,7 +52,7 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
 
     @Inject(method = "isInvulnerableTo", at = @At("RETURN"), cancellable = true)
     private void dndreams$isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
-        if ((Object)this instanceof LivingEntity living && (living.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) || living.hasStatusEffect(ModStatusEffects.LANDING) || living.hasStatusEffect(ModStatusEffects.GRACE))) {
+        if ((Object)this instanceof LivingEntity living && (living.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) || EntityComponents.SHOCK.get(living).isCushioned())) {
             cir.setReturnValue(cir.getReturnValue() || damageSource == DamageSource.IN_WALL || damageSource == DamageSource.FALL);
         }
     }

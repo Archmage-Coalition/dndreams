@@ -1,5 +1,5 @@
 {
-    "name": "dndreams:abandoned_cabin",
+    "name": "dndreams:abandoned_cabin/surface",
     "fallback": "minecraft:empty",
     "elements": [
         {

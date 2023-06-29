@@ -189,15 +189,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
         if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
             addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE, 0, true, true));
-            if (hasStatusEffect(ModStatusEffects.LANDING)) {
-                removeStatusEffect(ModStatusEffects.LANDING);
-            }
         } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!isInsideWall() || isOnGround())) {
             removeStatusEffect(ModStatusEffects.INSUBSTANTIAL);
         }
-        if (hasStatusEffect(ModStatusEffects.LANDING) && isOnGround()) {
-            removeStatusEffect(ModStatusEffects.LANDING);
-        }
+        EntityComponents.SHOCK.maybeGet(this).ifPresent(component -> {
+            if (component.isCushioned() && this.isOnGround()) component.setCushioned(false);
+        });
 
         if (fluidHeight.getOrDefault(ModTags.SORROW, 0) > 0.1f) {
             if ((Object)this instanceof PlayerEntity player) {

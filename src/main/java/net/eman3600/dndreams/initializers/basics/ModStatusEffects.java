@@ -26,7 +26,6 @@ public class ModStatusEffects {
     public static StatusEffect SILENCE = register("silence", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 12303291));
     public static StatusEffect LIFEMANA = register("lifemana", new ModStatusEffect(StatusEffectCategory.HARMFUL, 17510));
     public static StatusEffect INSUBSTANTIAL = register("insubstantial", new ModStatusEffect(StatusEffectCategory.HARMFUL, 2289390));
-    public static StatusEffect LANDING = register("landing", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xd5f3da));
     public static StatusEffect GRACE = register("grace", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 15658496));
     public static StatusEffect RESTRICTED = register("restricted", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5570560));
     public static StatusEffect AETHER = register("aether", new ModStatusEffect(StatusEffectCategory.HARMFUL, 1118481));

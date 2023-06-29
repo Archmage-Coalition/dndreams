@@ -2,7 +2,6 @@ package net.eman3600.dndreams.cardinal_components;
 
 import net.eman3600.dndreams.cardinal_components.interfaces.DreamingComponentI;
 import net.eman3600.dndreams.initializers.basics.ModItems;
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.event.ModStats;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
@@ -81,7 +80,7 @@ public class DreamingComponent implements DreamingComponentI {
                 player.setHealth(20);
             }
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
-            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.LANDING, 60, 0), player);
+            EntityComponents.SHOCK.maybeGet(player).ifPresent(component -> component.setCushioned(true));
         } else {
             player.setPosition(returnPos);
             player.setHealth((float)player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH));
@@ -89,7 +88,7 @@ public class DreamingComponent implements DreamingComponentI {
                 player.setHealth(20);
             }
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
-            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.LANDING, 60, 0), player);
+            EntityComponents.SHOCK.maybeGet(player).ifPresent(component -> component.setCushioned(true));
 
             if (congealed) {
                 List<ItemStack> stacks = new ArrayList<>();

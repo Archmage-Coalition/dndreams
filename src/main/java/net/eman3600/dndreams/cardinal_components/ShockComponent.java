@@ -17,6 +17,7 @@ public class ShockComponent implements ShockComponentI {
     private static final List<Function<LivingEntity, Boolean>> chargePredicates = new ArrayList<>();
 
     private float shock = 0f;
+    private boolean cushioned = false;
 
     private final LivingEntity entity;
     private boolean dirty;
@@ -73,6 +74,7 @@ public class ShockComponent implements ShockComponentI {
 
     @Override
     public void serverTick() {
+
         if (hasShock() && !canStoreShock()) {
             entity.timeUntilRegen = 0;
             entity.damage(DamageSourceAccess.SHOCK, dischargeShock());
@@ -87,11 +89,26 @@ public class ShockComponent implements ShockComponentI {
     @Override
     public void readFromNbt(NbtCompound tag) {
         shock = tag.getFloat("shock");
+        cushioned = tag.getBoolean("cushioned");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putFloat("shock", shock);
+        tag.putBoolean("cushioned", cushioned);
+    }
+
+    @Override
+    public boolean isCushioned()
+    {
+        return cushioned;
+    }
+
+    @Override
+    public void setCushioned(boolean cushioned)
+    {
+        this.cushioned = cushioned;
+        markDirty();
     }
 
     public static void registerChargePredicate(Function<LivingEntity, Boolean> predicate) {

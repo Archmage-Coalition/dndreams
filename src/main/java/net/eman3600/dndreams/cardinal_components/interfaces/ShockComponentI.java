@@ -15,4 +15,8 @@ public interface ShockComponentI extends AutoSyncedComponent, ServerTickingCompo
     float dischargeShock();
 
     float dischargeShock(@Nonnegative float max);
+
+    boolean isCushioned();
+
+    void setCushioned(boolean cushioned);
 }

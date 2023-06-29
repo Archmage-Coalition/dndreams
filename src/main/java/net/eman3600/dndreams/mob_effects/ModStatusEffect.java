@@ -8,7 +8,6 @@ import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
 
 public class ModStatusEffect extends StatusEffect {
 
@@ -64,7 +63,7 @@ public class ModStatusEffect extends StatusEffect {
         }
 
         if (this == ModStatusEffects.INSUBSTANTIAL && !entity.isOnGround()) {
-            entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.LANDING, 100));
+            EntityComponents.SHOCK.maybeGet(entity).ifPresent(component -> component.setCushioned(true));
         }
     }
 }
