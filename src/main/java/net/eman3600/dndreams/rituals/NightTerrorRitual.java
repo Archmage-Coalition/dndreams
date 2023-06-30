@@ -24,7 +24,7 @@ public class NightTerrorRitual extends Ritual {
             TormentComponent component = EntityComponents.TORMENT.get(player);
             if (component.getSanity() > 5f) {
                 component.setSanity(0);
-                player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 6000));
+                player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.BRAINFREEZE, 6000));
                 return true;
             }
         }

@@ -210,6 +210,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "tryUseTotem", at = @At("HEAD"), cancellable = true)
     private void dndreams$tryUseTotem$mortality(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+
         if (hasStatusEffect(ModStatusEffects.MORTAL) && world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) cir.setReturnValue(false);
     }
 

@@ -309,11 +309,13 @@
   "death.attack.wither_blossom_bush": "%1$s was poked to death by a wither blossom bush",
   "death.attack.wither_blossom_bush.player": "%1$s was poked to death by a wither blossom bush whilst trying to escape %2$s",
   
-  "death.attack.dndreams_electric": "%s was electrocuted",
-  "death.attack.dndreams_electric.player": "%1$s was electrocuted by %2$s",
-  "death.attack.dndreams_electric.item": "%1$s was electrocuted by %2$s weilding %3$s",
-  "death.attack.dndreams_shock": "%s couldn't hold the watts",
-  "death.attack.dndreams_shock.player": "%1$s couldn't hold the watts whilst fighting %2$s",
+  "death.attack.dndreams.electric": "%s was electrocuted",
+  "death.attack.dndreams.electric.player": "%1$s was electrocuted by %2$s",
+  "death.attack.dndreams.electric.item": "%1$s was electrocuted by %2$s weilding %3$s",
+  "death.attack.dndreams.shock": "%s couldn't hold the watts",
+  "death.attack.dndreams.shock.player": "%1$s couldn't hold the watts whilst fighting %2$s",
+  "death.attack.dndreams.gloom": "%s's soul was gutted",
+  "death.attack.dndreams.gloom.player": "%1$s's soul was gutted whilst fighting %2$s",
   
   
   "command.dndreams.bloodmoon.get.now": "There is currently a blood moon.",

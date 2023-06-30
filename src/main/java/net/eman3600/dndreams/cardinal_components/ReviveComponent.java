@@ -41,7 +41,7 @@ public class ReviveComponent implements ReviveComponentI {
     }
     @Override
     public boolean canRevive() {
-        return enabled && !player.hasStatusEffect(ModStatusEffects.MORTAL) && revivesUsed < maxRevives();
+        return enabled && !player.hasStatusEffect(ModStatusEffects.MORTAL) && revivesUsed < maxRevives() && player.getMaxHealth() >= 2f;
     }
     @Override
     public int remainingRevives() {

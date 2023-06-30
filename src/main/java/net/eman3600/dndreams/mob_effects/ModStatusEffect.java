@@ -31,9 +31,6 @@ public class ModStatusEffect extends StatusEffect {
                 entity.timeUntilRegen = 8;
                 entity.damage(COSMIC_OVERLOAD, 1.0f);
             }
-        } else if (this == ModStatusEffects.HAUNTED) {
-
-            EntityComponents.TORMENT.maybeGet(entity).ifPresent(torment -> torment.inflictGloom(.15f));
         }
     }
 

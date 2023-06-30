@@ -13,7 +13,8 @@ public interface HudAccess {
         AFFLICTION(1),
         MORTAL(2),
         MORTAL_CONTAINER(2, true),
-        REJUVENATION(3);
+        REJUVENATION(3),
+        GLOOM(4);
 
         private final int id;
         private final boolean container;

@@ -12,7 +12,14 @@ public interface TormentComponentI extends Component {
     void setSanity(float value);
     void setMaxSanity(float value);
 
-    void inflictGloom(float value);
+    void inflictGloom(int value);
+    int getGloom();
+
+    float getTrueHp();
+
+    void setGloom(int value);
+
+    void updateGloom();
 
     void lowerSanity(float value);
     void lowerMaxSanity(float value);

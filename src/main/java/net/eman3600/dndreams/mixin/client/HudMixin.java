@@ -4,8 +4,8 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
-import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.mixin_interfaces.HudAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,12 +19,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;
@@ -99,6 +101,10 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
     @Shadow public abstract TextRenderer getTextRenderer();
 
+
+    @Shadow @Final private Random random;
+
+    @Shadow protected abstract void drawHeart(MatrixStack matrices, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart);
 
     @Override
     public void setDragonFlash(int ticks) {
@@ -213,7 +219,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             int skipV2 = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentMaxPercent));
             int skipV = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentPercent));
 
-            int mainU = component.isAttuned() ? 30 : 0;
+            int mainU = player.hasStatusEffect(ModStatusEffects.BRAINFREEZE) ? 30 : 0;
 
             int innerU = 5;
 
@@ -221,13 +227,12 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_SANITY_METER);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
             drawTexture(matrices, tormentXPos, tormentYPos, mainU, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
-            drawTexture(matrices, tormentInnerX, tormentInnerY + skipV2, innerU + mainU, tormentV2 + skipV2, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV2);
+            drawTexture(matrices, tormentInnerX, tormentInnerY + skipV2, innerU, tormentV2 + skipV2, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV2);
             drawTexture(matrices, tormentInnerX, tormentInnerY + skipV, innerU, tormentV + skipV, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV);
 
-            if (component.isAwakened() && !component.isAttuned()) {
+            drawTexture(matrices, tormentInnerX, tormentInnerY, TORMENT_INNER_WIDTH * ((int)Math.min(3, (100f - component.getAttunedSanity())/25f)), component.isAttuned() || component.isAwakened() ? 90 : 70, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT);
 
-                drawTexture(matrices, tormentInnerX + 6, tormentInnerY + 3, 0, 70, 8, 14);
-            }
+
 
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
@@ -292,6 +297,79 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
             ci.cancel();
         }
+    }
+
+    @ModifyArg(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/MathHelper;ceil(F)I", ordinal = 2))
+    private float dndreams$renderStatusBars$fixHeartLines(float value) {
+
+        if (client.player != null && EntityComponents.TORMENT.isProvidedBy(client.player)) {
+            TormentComponent torment = EntityComponents.TORMENT.get(client.player);
+
+            if (torment.getGloom() > 0) {
+                return value + (.05f * torment.getGloom());
+            }
+        }
+
+        return value;
+    }
+
+    @Inject(method = "renderHealthBar", at = @At("TAIL"))
+    private void dndreams$renderHealthBar(MatrixStack matrices, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking, CallbackInfo ci) {
+
+        if (EntityComponents.TORMENT.isProvidedBy(player)) {
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            if (torment.getGloom() > 0) {
+                maxHealth = torment.getTrueHp();
+
+                boolean hardcore = player.world.getLevelProperties().isHardcore();
+                int i = 9 * (hardcore ? 5 : 0);
+                int hearts = MathHelper.ceil((double)maxHealth / 2.0);
+                int absorptionHearts = MathHelper.ceil((double)absorption / 2.0);
+                int gloomHearts = torment.getGloom() / 2;
+                int l = hearts * 2;
+
+                for (int m = hearts + gloomHearts - 1; m >= hearts; m--) {
+
+                    int n = m / 10;
+                    int o = m % 10;
+                    int p = x + o * 8;
+                    int q = y - n * lines;
+                    if (lastHealth + absorption <= 4) {
+                        q += this.random.nextInt(2);
+                    }
+
+                    this.drawHeart(matrices, InGameHud.HeartType.CONTAINER, p, q, i, blinking, false);
+                    this.drawGloomHeart(matrices, CustomHeartType.GLOOM, p, q, hardcore, false, false);
+                }
+
+                if (torment.getGloom() % 2 == 1) {
+
+                    int m = hearts - 1;
+                    int n = m / 10;
+                    int o = m % 10;
+                    int p = x + o * 8;
+                    int q = y - n * lines;
+                    if (lastHealth + absorption <= 4) {
+                        q += this.random.nextInt(2);
+                    }
+                    if (m < hearts && m == regeneratingHeartIndex) {
+                        q -= 2;
+                    }
+
+                    this.drawGloomHeart(matrices, CustomHeartType.GLOOM, p, q, hardcore, false, true);
+                }
+            }
+        }
+    }
+
+    @Unique private void drawGloomHeart(MatrixStack matrices, CustomHeartType type, int x, int y, boolean hardcore, boolean blinking, boolean halfHeart) {
+
+        RenderSystem.setShaderTexture(0, DNDREAMS_GUI_HEARTS);
+
+        drawTexture(matrices, x, y, type.getU(), type.getV(halfHeart, blinking, hardcore), 9, 9);
+
+        RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
     }
 
     @Inject(method = "tick()V", at = @At("HEAD"))

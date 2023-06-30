@@ -33,7 +33,7 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)
             .alwaysEdible().build(), -16);
     public static final FoodComponent RAVAGED_FLESH = registerSanityFood(new FoodComponent.Builder().hunger(4).saturationModifier(0.0F)
-            .statusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, 3600, 3), 1.0F)
+            .statusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 3600, 3), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 600, 1), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 1), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)

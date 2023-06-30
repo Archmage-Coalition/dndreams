@@ -15,9 +15,6 @@ The many materials of the world reflect different elements and their nuances.
 ## Mind Powders
 Memory dust is a mass of memory and soul, now uncomprehendible but full of power. Dream powder is instead a mass of dreams. The two are so interconnected that they can flow between each other with the aid of flowing spirit.
 
-## Infernal Residue
-Infernal residue is a mass of anguish and wrath.
-
 # The Affliction
 The affliction is the root of undeath, the source of madness and consumption, and the cause of the fall of Koinans. It manifests itself in several forms based on the various aspects of mind and soul.
 
@@ -68,7 +65,7 @@ When the Koinans attempted the process of powering the portal with a warden, the
 All the Koinans within a mile were turned to zombies who continued to spread the blight. The souls of the dead in the Haven turned into the Enkatal, and the angels were corrupted to the Talei. Many of those whom survived fled to the Nether. In an act of desperation, they tried to construct simulacrums which could house their souls. These too failed, creating withering. The simulacrums turned to wither skeletons, while the Koinans turned to skeletons under the withering decay.
 
 ## The Aftermath of the Koinans
-All the structures of the Koinans were left for abandoned or house undead. The sculk was allowed to spread far through the caves in which they were produced. The moon, being a reflection of the Haven, was cursed with crimson. Opal, being the gemstone of the Haven, lost much of its holy energy and turned to rose quartz. Meanwhile, the divine metal of silver seemed to vanish from all record with the fall of angels.
+All the structures of the Koinans were left for abandoned or house undead. The sculk was allowed to spread far through the caves in which they were produced. Opal, being the gemstone of the Haven, lost much of its holy energy and turned to rose quartz. Meanwhile, the divine metal of silver seemed to vanish from all record with the fall of angels.
 
 The illager race evolved long after the fall of the Koinans. The zombies could sense their intelligence and attempted to convert them, but they were more resistant to the affliction than the Koinans. They discovered some of the remains of the Koinans, including the ancient cities, but they were mostly unsuccessful with rebuilding them.
 

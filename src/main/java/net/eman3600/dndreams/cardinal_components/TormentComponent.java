@@ -10,10 +10,14 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -38,8 +42,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private int sanityDamageTicks = 0;
     private int shroud = 0;
     private int haunt = 0;
-    private float gloom = 0;
     private boolean dirty = false;
+    private int gloom = 0;
+    private int gloomTicks = 0;
+    private float trueHp = 20.0f;
+    public static final UUID gloomId = new UUID(0xade4f29f0a684049L, 0xbcb4bb8d300edac8L);
 
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
@@ -71,7 +78,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public float getMaxSanity() {
-        return MathHelper.clamp(maxSanity - gloom, 0, MAX_SANITY);
+        return MathHelper.clamp(maxSanity, 0, MAX_SANITY);
     }
 
     @Override
@@ -87,17 +94,75 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     @Override
-    public void inflictGloom(float value) {
+    public void inflictGloom(int value) {
+
+        gloomTicks = 60;
+        if (player.getAbsorptionAmount() > 0) {
+            float remainder = value - player.getAbsorptionAmount();
+
+            if (remainder >= 1) {
+                player.setAbsorptionAmount(0f);
+                gloom += remainder;
+                updateGloom();
+            } else {
+                player.damage(DamageSourceAccess.GLOOM, value);
+            }
+            return;
+        }
 
         gloom += value;
-        normalize();
+        updateGloom();
     }
 
+    @Override
+    public int getGloom() {
+        return gloom;
+    }
+
+    @Override
+    public float getTrueHp() {
+        return trueHp;
+    }
+
+    @Override
+    public void setGloom(int value) {
+        if (gloom < value) gloomTicks = 60;
+        gloom = value;
+        updateGloom();
+    }
+
+    public boolean shouldHealGloom() {
+        return shroud <= 0;
+    }
+
+    @Override
+    public void updateGloom() {
+        EntityAttributeInstance instance = player.getAttributes().getCustomInstance(EntityAttributes.GENERIC_MAX_HEALTH);
+
+        if (instance != null) {
+
+            instance.removeModifier(gloomId);
+
+            float extra = player.getHealth() - ((float)instance.getValue() - gloom);
+
+            if (gloom > 0) {
+
+                instance.addPersistentModifier(new EntityAttributeModifier(gloomId, "gloom", -gloom, EntityAttributeModifier.Operation.ADDITION));
+            }
+            if (extra > 0) {
+
+                player.timeUntilRegen = 0;
+                player.damage(DamageSourceAccess.GLOOM, extra);
+            }
+        }
+
+        markDirty();
+    }
 
 
     @Override
     public void lowerSanity(float value) {
-        if ((player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD) && value > 0) || (player.hasStatusEffect(ModStatusEffects.LOOMING) && value < 0)) return;
+        if (player.hasStatusEffect(ModStatusEffects.BRAINFREEZE)) return;
 
         sanity -= value;
         normalize();
@@ -175,7 +240,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     private void normalize() {
         maxSanity = MathHelper.clamp(maxSanity, LOWEST_MAX_SANITY, MAX_SANITY);
-        gloom = MathHelper.clamp(gloom, 0, MAX_SANITY);
         sanity = MathHelper.clamp(sanity, MIN_SANITY, getMaxSanity());
         markDirty();
     }
@@ -188,7 +252,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         sanityDamageTicks = tag.getInt("sanity_damage_ticks");
         shroud = tag.getInt("shroud");
         haunt = tag.getInt("haunt");
-        gloom = tag.getFloat("gloom");
+        gloom = tag.getInt("gloom");
+        gloomTicks = tag.getInt("gloom_ticks");
+        trueHp = tag.getFloat("true_hp");
     }
 
     @Override
@@ -199,7 +265,10 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("sanity_damage_ticks", sanityDamageTicks);
         tag.putInt("shroud", shroud);
         tag.putInt("haunt", haunt);
-        tag.putFloat("gloom", gloom);
+        tag.putInt("gloom", gloom);
+        tag.putInt("gloom_ticks", gloomTicks);
+        trueHp = player.getMaxHealth();
+        tag.putFloat("true_hp", trueHp);
     }
 
     @Override
@@ -240,16 +309,38 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             markDirty();
         }
 
+        if (gloom > 0) {
+
+            if (player.getAbsorptionAmount() > 0) {
+                int g = gloom;
+                gloom = 0;
+                inflictGloom(g);
+            } else if (gloomTicks > 0) {
+                gloomTicks--;
+                markDirty();
+            } else if (shouldHealGloom()) {
+                gloomTicks = 10;
+                gloom--;
+                updateGloom();
+            }
+        } else if (gloomTicks > 0) {
+
+            gloomTicks = 0;
+            markDirty();
+        }
+
+        if (trueHp != player.getMaxHealth()) {
+
+            trueHp = player.getMaxHealth();
+            markDirty();
+        }
+
         if (player.hasStatusEffect(ModStatusEffects.HAUNTED) && haunt < MAX_HAUNT) {
             haunt = Math.min(haunt + 5, MAX_HAUNT);
             markDirty();
         } else if (haunt > 0 && !player.hasStatusEffect(ModStatusEffects.HAUNTED)) {
             haunt--;
             markDirty();
-        }
-
-        if (shroud <= 0 && gloom > 0) {
-            gloom = Math.max(0, gloom - 0.1f);
         }
 
         if (dirty) {
@@ -266,7 +357,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public boolean isAttuned() {
         try {
-            return (WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END)) || player.hasStatusEffect(ModStatusEffects.BRAINFREEZE);
+            return (WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END)) || player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD);
         } catch (NullPointerException e) {
             return false;
         }
@@ -301,16 +392,16 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         sanity -= cost;
 
         if (sanity < -cost/2) {
-            StatusEffectInstance effect = player.getStatusEffect(ModStatusEffects.AFFLICTION);
+            StatusEffectInstance effect = player.getStatusEffect(ModStatusEffects.LOOMING);
 
-            int duration = (int) (40 * -sanity);
-            int amplifier = 0;
+            int duration = 40 * MathHelper.ceil(-sanity);
             if (effect != null) {
                 duration += effect.getDuration();
-                amplifier = Math.min(effect.getAmplifier() + 1, 2);
             }
 
-            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, duration, amplifier));
+            inflictGloom(MathHelper.ceil(-sanity));
+
+            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, duration, 0));
         }
 
         normalize();
@@ -333,6 +424,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     private boolean shouldShroud() {
+
+        if (player.hasStatusEffect(ModStatusEffects.LOOMING)) return true;
+
         if (player.world instanceof ServerWorld serverWorld) {
             return shouldShroud(serverWorld, player.getBlockPos());
         }
