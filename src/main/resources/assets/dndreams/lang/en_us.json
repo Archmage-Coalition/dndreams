@@ -318,11 +318,11 @@
   "death.attack.dndreams.gloom.player": "%1$s's soul was gutted whilst fighting %2$s",
   
   
-  "command.dndreams.bloodmoon.get.now": "There is currently a blood moon.",
-  "command.dndreams.bloodmoon.get.tonight": "Tonight will have a blood moon.",
+  "command.dndreams.bloodmoon.get.now": "There is currently a dread moon.",
+  "command.dndreams.bloodmoon.get.tonight": "Tonight will have a dread moon.",
   "command.dndreams.bloodmoon.get.inactive": "The moon is normal tonight.",
-  "command.dndreams.bloodmoon.set.now": "It is now a blood moon.",
-  "command.dndreams.bloodmoon.set.tonight": "It is now ordained the blood moon shall rise tonight.",
+  "command.dndreams.bloodmoon.set.now": "It is now a dread moon.",
+  "command.dndreams.bloodmoon.set.tonight": "It is now ordained the dread moon shall rise tonight.",
   "command.dndreams.bloodmoon.set.inactive": "It is now ordained the moon shall be unstained.",
   "command.dndreams.bloodmoon.set.wrong_dimension": "You cannot set that here.",
   
@@ -349,7 +349,7 @@
   "effect.dndreams.impending": "Instant Madness",
   "effect.dndreams.bloodlust": "Bloodlust",
   "effect.dndreams.suppressed": "Suppressed",
-  "effect.dndreams.looming": "Looming",
+  "effect.dndreams.looming": "Dreadstrain",
   "effect.dndreams.spirit_ward": "Spirit Ward",
   "effect.dndreams.brainfreeze": "Soulfrost",
   "effect.dndreams.dreamy": "Dream Flow",
@@ -658,7 +658,9 @@
   "block.dndreams.refinery": "Refinery",
   "block.dndreams.refined_cauldron": "Refined Cauldron",
   
+  
   "message.dndreams.ender_chest_restricted": "It won't budge",
+  "message.dndreams.blood_moon": "§3The dread moon rises...",
   
   
   "ritual.dndreams.error.unknown": "Unknown Rite",
@@ -704,10 +706,10 @@
   "entity.dndreams.crowned_beam": "Crowned Beam",
   "entity.dndreams.spark_bolt": "Spark Bolt",
   "entity.dndreams.glow_bolt": "Illuminant Bolt",
-  "entity.dndreams.blood_moon.blood_zombie": "Blood Zombie",
-  "entity.dndreams.blood_moon.blood_skeleton": "Blood Skeleton",
-  "entity.dndreams.blood_moon.blood_spider": "Blood Spider",
-  "entity.dndreams.blood_moon.blood_creeper": "Blood Creeper",
+  "entity.dndreams.blood_moon.blood_zombie": "Dread Zombie",
+  "entity.dndreams.blood_moon.blood_skeleton": "Dread Skeleton",
+  "entity.dndreams.blood_moon.blood_spider": "Dread Spider",
+  "entity.dndreams.blood_moon.blood_creeper": "Dread Creeper",
   "entity.dndreams.tormentor": "Tormentor",
   "entity.dndreams.warden_ragdoll": "Warden",
   

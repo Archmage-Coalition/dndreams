@@ -179,24 +179,24 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
 
 
-        if (!player.hasStatusEffect(ModStatusEffects.LIFEMANA))
-            EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
-                if (!manaComponent.shouldRender()) return;
 
-                int mana = manaComponent.getMana();
-                int maxMana = manaComponent.getManaMax();
-                int vPos = manaComponent.getManaFrame() * 6;
+        EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
+            if (!manaComponent.shouldRender()) return;
 
-                RenderSystem.setShaderTexture(0, DNDREAMS_GUI_MANA_BAR);
-                RenderSystem.setShaderColor(1, 1, 1, 1.0f);
-                drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, MANA_HEIGHT, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
-                drawTexture(matrices, xPos + 1, yPos + 1, 0, vPos, (int)((MANA_WIDTH -2) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT -2, 230, 1944);
-                if (player.hasStatusEffect(ModStatusEffects.SUPPRESSED)) {
-                    drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, 0, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
-                }
-                RenderSystem.setShaderColor(1, 1, 1, 1);
-                RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
-            });
+            int mana = manaComponent.getMana();
+            int maxMana = manaComponent.getManaMax();
+            int vPos = manaComponent.getManaFrame() * 6;
+
+            RenderSystem.setShaderTexture(0, DNDREAMS_GUI_MANA_BAR);
+            RenderSystem.setShaderColor(1, 1, 1, 1.0f);
+            drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, MANA_HEIGHT, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
+            drawTexture(matrices, xPos + 1, yPos + 1, 0, vPos, (int)((MANA_WIDTH - 2) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT - 2, 230, 1944);
+            if (player.hasStatusEffect(ModStatusEffects.SUPPRESSED)) {
+                drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, 0, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
+            }
+            RenderSystem.setShaderColor(1, 1, 1, 1);
+            RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
+        });
 
         int tormentXPos;
 
@@ -222,6 +222,9 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             int mainU = player.hasStatusEffect(ModStatusEffects.BRAINFREEZE) ? 30 : 0;
 
             int innerU = 5;
+            float sanity = component.getAttunedSanity();
+            int treeU = sanity >= 85 ? 0 : sanity >= 65 ? 20 : sanity >= 45 ? 40 : sanity >= 25 ? 60 : sanity >= 5 ? 80 : 100;
+            int treeV = EntityComponents.DREAMING.get(player).isDreaming() ? 90 : 70;
 
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_SANITY_METER);
@@ -230,7 +233,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             drawTexture(matrices, tormentInnerX, tormentInnerY + skipV2, innerU, tormentV2 + skipV2, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV2);
             drawTexture(matrices, tormentInnerX, tormentInnerY + skipV, innerU, tormentV + skipV, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV);
 
-            drawTexture(matrices, tormentInnerX, tormentInnerY, TORMENT_INNER_WIDTH * ((int)Math.min(3, (100f - component.getAttunedSanity())/25f)), component.isAttuned() || component.isAwakened() ? 90 : 70, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT);
+            drawTexture(matrices, tormentInnerX, tormentInnerY, treeU, treeV, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT);
 
 
 

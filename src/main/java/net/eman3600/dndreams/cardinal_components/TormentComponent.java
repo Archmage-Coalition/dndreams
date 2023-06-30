@@ -13,6 +13,7 @@ import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModTags;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
@@ -106,11 +107,19 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
                 updateGloom();
             } else {
                 player.damage(DamageSourceAccess.GLOOM, value);
+                updateGloom();
             }
             return;
         }
 
         gloom += value;
+        updateGloom();
+    }
+
+    @Override
+    public void healGloom(int value) {
+
+        gloom = Math.max(0, gloom - value);
         updateGloom();
     }
 
@@ -132,7 +141,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     public boolean shouldHealGloom() {
-        return shroud <= 0;
+        return player.world.getLightLevel(player.getBlockPos(), player.world.getAmbientDarkness()) >= 12 && !player.hasStatusEffect(ModStatusEffects.LOOMING) && sanityDamageTicks <= 3;
     }
 
     @Override
@@ -142,17 +151,16 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         if (instance != null) {
 
             instance.removeModifier(gloomId);
+            if (gloom >= (int)instance.getValue()) gloom = (int)instance.getValue() - 1;
 
             float extra = player.getHealth() - ((float)instance.getValue() - gloom);
 
             if (gloom > 0) {
-
                 instance.addPersistentModifier(new EntityAttributeModifier(gloomId, "gloom", -gloom, EntityAttributeModifier.Operation.ADDITION));
             }
-            if (extra > 0) {
+            if (extra > 0 && player.isAlive()) {
 
-                player.timeUntilRegen = 0;
-                player.damage(DamageSourceAccess.GLOOM, extra);
+                player.damage(DamageSourceAccess.GLOOM, 0);
             }
         }
 
@@ -185,7 +193,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public int getMaxTormentors() {
         float effective = getAttunedSanity();
 
-        return effective <= 5 ? 24 : effective <= 50 ? (int)(12f - (effective/5f)) : 0;
+        return effective <= 5 ? 16 : effective <= 25 ? 6 : effective <= 50 ? 2 : 0;
     }
 
     @Override
@@ -425,8 +433,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     private boolean shouldShroud() {
 
-        if (player.hasStatusEffect(ModStatusEffects.LOOMING)) return true;
-
         if (player.world instanceof ServerWorld serverWorld) {
             return shouldShroud(serverWorld, player.getBlockPos());
         }
@@ -435,6 +441,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     public static boolean shouldShroud(ServerWorld world, BlockPos pos) {
+        if (WorldComponents.BLOOD_MOON.get(world).isBloodMoon()) return true;
         BlockPos posStructure = world.locateStructure(ModTags.ENSHROUDED, pos, 100, false);
         BlockPos posBiome;
         try {
@@ -458,6 +465,22 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         }
 
         current += world.getNonSpectatingEntities(TormentorEntity.class, searchRegion).size();
+
+        return current < allowed;
+    }
+
+    public static boolean canSpawnSanityMob(ServerWorld world, BlockPos pos, Class<Entity> type, Function<TormentComponent, Integer> maxAllowed) {
+        int allowed = 0;
+        int current = 0;
+        Box searchRegion = Box.from(Vec3d.of(pos)).expand(120, 70, 120);
+
+        for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, searchRegion)) {
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            allowed += maxAllowed.apply(torment);
+        }
+
+        current += world.getNonSpectatingEntities(type, searchRegion).size();
 
         return current < allowed;
     }

@@ -49,6 +49,7 @@ public class ModTags {
     public static final TagKey<Item> CORRUPTORS = ofItem("corruptors");
 
     public static final TagKey<EntityType<?>> SUBSTANTIAL_ENTITIES = ofEntity("substantial");
+    public static final TagKey<EntityType<?>> GLOOM_ENTITIES = ofEntity("gloom");
 
     /* TAG REGISTRIES */
     private static TagKey<Block> ofBlock(String id) {

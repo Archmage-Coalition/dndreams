@@ -4,13 +4,12 @@
   "version": "${version}",
 
   "name": "Demons and Dreams",
-  "description": "A new way to play the game.",
+  "description": "A new way to play the game. Special thanks to Cakeman for the Tormentor model.",
   "authors": [
     "Eman3600",
-    "SciRave",
     "MoltenCookie62",
     "Robot__Simp1",
-	"Cakeman"
+    "SciRave"
   ],
   "contact": {
     "homepage": "",

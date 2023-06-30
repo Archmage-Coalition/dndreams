@@ -111,6 +111,19 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
         }
     }
 
+    @Override
+    public boolean isTrulyDay() {
+
+        long time = getTimeOfDay() % 24000;
+
+        return !this.getDimension().hasFixedTime() && (time >= 23461 || time < 12543);
+    }
+    @Override
+    public boolean isTrulyNight() {
+
+        return !this.getDimension().hasFixedTime() && !isTrulyDay();
+    }
+
     @Unique
     public float lowestSanity(List<? extends PlayerEntity> players) {
         float lowest = 100f;

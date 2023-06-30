@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.entities.mobs;
 
-import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -55,6 +55,7 @@ public class BloodZombieEntity extends ZombieEntity {
         boolean bl = super.tryAttack(target);
         if (bl && this.getMainHandStack().isEmpty() && target instanceof LivingEntity) {
             ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 200), this);
+            //EntityComponents.TORMENT.maybeGet(target).ifPresent(torment -> torment.inflictGloom(1));
         }
         return bl;
     }

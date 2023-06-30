@@ -13,6 +13,7 @@ import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.VariedMineSpeedItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.PlayerEntityAccess;
+import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RespawnAnchorBlock;
@@ -29,9 +30,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stat;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
@@ -62,6 +65,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Shadow public abstract PlayerInventory getInventory();
 
     @Shadow public abstract float getMovementSpeed();
+
+    @Shadow public abstract void increaseStat(Stat<?> stat, int amount);
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -160,6 +165,11 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             if (source.getAttacker() instanceof LivingEntity attacker) {
                 attacker.setOnFireFor((int) Math.ceil(amount * 2));
             }
+        }
+
+        if (source.getAttacker() instanceof LivingEntity entity && entity.getType().isIn(ModTags.GLOOM_ENTITIES)) {
+
+            EntityComponents.TORMENT.maybeGet(this).ifPresent(torment -> torment.inflictGloom(MathHelper.ceil(amount)));
         }
     }
 

@@ -2,29 +2,30 @@ package net.eman3600.dndreams.cardinal_components;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.BloodMoonComponentI;
-import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
 
-import java.util.Random;
-
 public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedComponent {
     private int chance = 100;
     private long knownDay = -1;
     private boolean damnedNight = false;
+    private boolean notifiedClients = false;
 
-    private World world;
+    private final World world;
     private Object provider;
 
-    private final int CUMULATIVE_CHANCE = 3;
-    private Random random = new Random();
+    private static final int CUMULATIVE_CHANCE = 3;
 
-    public BloodMoonComponent(World worldIn) {
-        world = worldIn;
+    public BloodMoonComponent(World world) {
+        this.world = world;
     }
 
     private RegistryKey<DimensionType> getDimensionKey() {
@@ -50,10 +51,8 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
     public boolean damnedNight() {
         if (getDimensionKey() == DimensionTypes.OVERWORLD) {
             return damnedNight;
-        } else if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY) {
-            return world.getTimeOfDay() >= 18000;
         }
-        return false;
+        return getDimensionKey() == ModDimensions.DREAM_TYPE_KEY;
     }
 
     @Override
@@ -64,26 +63,22 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
             if (damnedNight) {
                 chance = 0;
                 damnedNight = false;
-            } else if (random.nextInt(100) < chance) {
+            } else if (world.random.nextInt(100) < chance) {
                 damnedNight = true;
             } else {
                 chance += CUMULATIVE_CHANCE;
             }
         }
+        if (notifiedClients != isBloodMoon() && world.getRegistryKey() == World.OVERWORLD) {
+            notifiedClients = isBloodMoon();
+            if (notifiedClients) ((ServerWorld)world).getServer().getPlayerManager().getPlayerList().forEach(player -> player.sendMessageToClient(Text.translatable("message.dndreams.blood_moon"), false));
+            System.out.println("The current time is " + world.getTimeOfDay());
+        }
         WorldComponents.BLOOD_MOON.sync(world);
     }
 
-    @Override
-    public boolean manualStart() {
-        if (damnedNight) {
-            return false;
-        }
-        damnedNight = true;
-        return true;
-    }
-
     public boolean isBloodMoon() {
-        return damnedNight() && world.isNight();
+        return damnedNight() && ((WorldAccess)world).isTrulyNight();
     }
 
     @Override
@@ -91,6 +86,7 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
         chance = tag.getInt("chance");
         knownDay = tag.getLong("known_day");
         damnedNight = tag.getBoolean("damned_night");
+        notifiedClients = tag.getBoolean("notified_clients");
     }
 
     @Override
@@ -98,5 +94,6 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
         tag.putInt("chance", chance);
         tag.putLong("known_day", knownDay);
         tag.putBoolean("damned_night", damnedNight);
+        tag.putBoolean("notified_clients", notifiedClients);
     }
 }

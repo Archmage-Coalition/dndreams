@@ -183,7 +183,6 @@ public class ModRegistries {
     private static void registerInsanityPredicates() {
         TormentComponent.registerPredicate(player -> -.5f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM));
         TormentComponent.registerPredicate((player, torment) -> torment.isAttuned() ? -3f : 0);
-        TormentComponent.registerPredicate(player -> WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() ? 2f : 0);
         TormentComponent.registerPredicate(player -> .5f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE));
         TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos(), player.world.getAmbientDarkness()) < 1 ? 4f : 0);
         TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
