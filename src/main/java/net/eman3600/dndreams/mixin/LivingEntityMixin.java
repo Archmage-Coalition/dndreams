@@ -203,7 +203,6 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
                 component.lowerPerMinute(150f);
             }
-            if (!hasStatusEffect(ModStatusEffects.AFFLICTION) || getStatusEffect(ModStatusEffects.AFFLICTION).getDuration() < 20) addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 80, 0, true, true));
         }
 
     }
@@ -276,12 +275,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
 
 
-    @ModifyVariable(method = "damage", at = @At("HEAD"))
+    /*@ModifyVariable(method = "damage", at = @At("HEAD"))
     private float dndreams$damage$affliction(float amount) {
         if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead() && getType() != ModEntities.TORMENTOR) {
             return (float) (amount * Math.pow(1.4f, this.getStatusEffect(ModStatusEffects.AFFLICTION).getAmplifier() + 1));
         } else return amount;
-    }
+    }*/
 
     @Inject(method = "modifyAppliedDamage", at = @At("RETURN"), cancellable = true)
     private void dndreams$modifyAppliedDamage(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {

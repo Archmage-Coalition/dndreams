@@ -70,7 +70,8 @@
       "dndreams:perm_item",
       "dndreams:revive",
       "dndreams:shock",
-      "dndreams:warden"
+      "dndreams:warden",
+      "dndreams:rot"
     ]
   }
 }

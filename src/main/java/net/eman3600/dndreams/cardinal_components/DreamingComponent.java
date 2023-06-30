@@ -65,6 +65,7 @@ public class DreamingComponent implements DreamingComponentI {
         currInv.clear();
 
         player.clearStatusEffects();
+        EntityComponents.ROT.get(player).setRot(0);
 
         if (toDream) {
             player.incrementStat(ModStats.ENTER_DREAM);

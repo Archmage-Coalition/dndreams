@@ -3,6 +3,7 @@ package net.eman3600.dndreams.mixin.client;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.cardinal_components.RotComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
@@ -305,11 +306,11 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @ModifyArg(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/MathHelper;ceil(F)I", ordinal = 2))
     private float dndreams$renderStatusBars$fixHeartLines(float value) {
 
-        if (client.player != null && EntityComponents.TORMENT.isProvidedBy(client.player)) {
-            TormentComponent torment = EntityComponents.TORMENT.get(client.player);
+        if (client.player != null && EntityComponents.ROT.isProvidedBy(client.player)) {
+            RotComponent rot = EntityComponents.ROT.get(client.player);
 
-            if (torment.getGloom() > 0) {
-                return value + (.05f * torment.getGloom());
+            if (rot.getRot() > 0) {
+                return value + (.05f * rot.getRot());
             }
         }
 
@@ -319,18 +320,16 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Inject(method = "renderHealthBar", at = @At("TAIL"))
     private void dndreams$renderHealthBar(MatrixStack matrices, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking, CallbackInfo ci) {
 
-        if (EntityComponents.TORMENT.isProvidedBy(player)) {
-            TormentComponent torment = EntityComponents.TORMENT.get(player);
+        if (EntityComponents.ROT.isProvidedBy(player)) {
+            RotComponent rot = EntityComponents.ROT.get(player);
 
-            if (torment.getGloom() > 0) {
-                maxHealth = torment.getTrueHp();
+            if (rot.getRot() > 0) {
+                maxHealth = rot.getTrueHp();
 
                 boolean hardcore = player.world.getLevelProperties().isHardcore();
                 int i = 9 * (hardcore ? 5 : 0);
                 int hearts = MathHelper.ceil((double)maxHealth / 2.0);
-                int absorptionHearts = MathHelper.ceil((double)absorption / 2.0);
-                int gloomHearts = torment.getGloom() / 2;
-                int l = hearts * 2;
+                int gloomHearts = rot.getRot() / 2;
 
                 for (int m = hearts + gloomHearts - 1; m >= hearts; m--) {
 
@@ -343,10 +342,10 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                     }
 
                     this.drawHeart(matrices, InGameHud.HeartType.CONTAINER, p, q, i, blinking, false);
-                    this.drawGloomHeart(matrices, CustomHeartType.GLOOM, p, q, hardcore, false, false);
+                    this.drawGloomHeart(matrices, CustomHeartType.ROT, p, q, hardcore, blinking, false);
                 }
 
-                if (torment.getGloom() % 2 == 1) {
+                if (rot.getRot() % 2 == 1) {
 
                     int m = hearts - 1;
                     int n = m / 10;
@@ -356,11 +355,11 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                     if (lastHealth + absorption <= 4) {
                         q += this.random.nextInt(2);
                     }
-                    if (m < hearts && m == regeneratingHeartIndex) {
+                    if (m == regeneratingHeartIndex) {
                         q -= 2;
                     }
 
-                    this.drawGloomHeart(matrices, CustomHeartType.GLOOM, p, q, hardcore, false, true);
+                    this.drawGloomHeart(matrices, CustomHeartType.ROT, p, q, hardcore, blinking, true);
                 }
             }
         }

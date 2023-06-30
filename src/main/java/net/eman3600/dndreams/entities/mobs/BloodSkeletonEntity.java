@@ -1,21 +1,14 @@
 package net.eman3600.dndreams.entities.mobs;
 
 import net.eman3600.dndreams.initializers.entity.ModEntities;
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.StrayEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -52,24 +45,6 @@ public class BloodSkeletonEntity extends SkeletonEntity {
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_STRAY_DEATH;
-    }
-
-    @Override
-    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
-        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
-        if (persistentProjectileEntity instanceof ArrowEntity) {
-            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 200));
-        }
-        return persistentProjectileEntity;
-    }
-
-    @Override
-    public boolean tryAttack(Entity target) {
-        boolean bl = super.tryAttack(target);
-        if (bl && this.getMainHandStack().isEmpty() && target instanceof LivingEntity) {
-            ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 200), this);
-        }
-        return bl;
     }
 
     public static DefaultAttributeContainer.Builder createBloodSkeletonAttributes() {

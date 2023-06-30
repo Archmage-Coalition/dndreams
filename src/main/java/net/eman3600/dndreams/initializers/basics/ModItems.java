@@ -185,7 +185,7 @@ public class ModItems {
                     false, new StatusEffectInstance(StatusEffects.REGENERATION, 400), new StatusEffectInstance(StatusEffects.INSTANT_HEALTH,1, 1)));
     public static final Item SOUL_SOUP = registerItem("soul_soup",
             new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(ModStatusEffects.LIFEMANA, 600), new StatusEffectInstance(ModStatusEffects.AFFLICTION, 1800)));
+                    true, new StatusEffectInstance(ModStatusEffects.LIFEMANA, 600), new StatusEffectInstance(ModStatusEffects.THIRD_EYE, 1800)));
     public static final Item NATURES_GOSPEL = registerItem("natures_gospel",
             new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));

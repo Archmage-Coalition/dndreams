@@ -169,7 +169,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
         if (source.getAttacker() instanceof LivingEntity entity && entity.getType().isIn(ModTags.GLOOM_ENTITIES)) {
 
-            EntityComponents.TORMENT.maybeGet(this).ifPresent(torment -> torment.inflictGloom(MathHelper.ceil(amount)));
+            EntityComponents.ROT.maybeGet(this).ifPresent(rot -> rot.inflictRot(MathHelper.ceil(amount)));
         }
     }
 

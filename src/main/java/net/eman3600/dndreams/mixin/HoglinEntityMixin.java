@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.Hoglin;
 import net.minecraft.entity.mob.HoglinEntity;
@@ -23,7 +23,7 @@ public abstract class HoglinEntityMixin extends AnimalEntity implements Monster,
 
     @Inject(method = "canConvert", at = @At("HEAD"), cancellable = true)
     private void dndreams$shouldZombify(CallbackInfoReturnable<Boolean> cir) {
-        if (!this.isImmuneToZombification() && hasStatusEffect(ModStatusEffects.AFFLICTION)) {
+        if (!this.isImmuneToZombification() && EntityComponents.ROT.get(this).getRot() > 0) {
             cir.setReturnValue(true);
         }
     }

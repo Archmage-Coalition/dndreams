@@ -1,13 +1,11 @@
 package net.eman3600.dndreams.items.hellsteel;
 
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -38,7 +36,7 @@ public class CorruptSword extends SwordItem implements BloodlustItem, MagicDamag
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (hasBloodlust(attacker) && !(attacker instanceof PlayerEntity)) {
-            target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 140), attacker);
+            //target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 140), attacker);
             target.timeUntilRegen = 8;
             target.damage(BloodlustItem.hemorrhage(attacker), getMagicDamage(stack));
             target.takeKnockback(0.4f, MathHelper.sin(attacker.getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(attacker.getYaw() * ((float) Math.PI / 180)));
@@ -61,7 +59,7 @@ public class CorruptSword extends SwordItem implements BloodlustItem, MagicDamag
     @Override
     public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit) {
         if (user.getAttackCooldownProgress(0.5f) > 0.9f && hit instanceof LivingEntity target && hasBloodlust(user)) {
-            target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 140), user);
+            //target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.AFFLICTION, 140), user);
             target.timeUntilRegen = 8;
             target.damage(BloodlustItem.hemorrhage(user), getMagicDamage(stack));
             target.takeKnockback(0.4f, MathHelper.sin(user.getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(user.getYaw() * ((float) Math.PI / 180)));

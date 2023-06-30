@@ -30,7 +30,7 @@ public class LiquidSoulItem extends DrinkableItem {
     public LiquidSoulItem(Settings settings) {
         super(settings, false,
                 new StatusEffectInstance(ModStatusEffects.LIFEMANA, 1800),
-                new StatusEffectInstance(ModStatusEffects.AFFLICTION, 1800),
+                new StatusEffectInstance(ModStatusEffects.AFFLICTION, 1, 1),
                 new StatusEffectInstance(ModStatusEffects.HAUNTED, 90));
     }
 

@@ -10,16 +10,11 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -44,10 +39,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private int shroud = 0;
     private int haunt = 0;
     private boolean dirty = false;
-    private int gloom = 0;
-    private int gloomTicks = 0;
-    private float trueHp = 20.0f;
-    public static final UUID gloomId = new UUID(0xade4f29f0a684049L, 0xbcb4bb8d300edac8L);
 
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
@@ -92,79 +83,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public void setMaxSanity(float value) {
         maxSanity = value;
         normalize();
-    }
-
-    @Override
-    public void inflictGloom(int value) {
-
-        gloomTicks = 60;
-        if (player.getAbsorptionAmount() > 0) {
-            float remainder = value - player.getAbsorptionAmount();
-
-            if (remainder >= 1) {
-                player.setAbsorptionAmount(0f);
-                gloom += remainder;
-                updateGloom();
-            } else {
-                player.damage(DamageSourceAccess.GLOOM, value);
-                updateGloom();
-            }
-            return;
-        }
-
-        gloom += value;
-        updateGloom();
-    }
-
-    @Override
-    public void healGloom(int value) {
-
-        gloom = Math.max(0, gloom - value);
-        updateGloom();
-    }
-
-    @Override
-    public int getGloom() {
-        return gloom;
-    }
-
-    @Override
-    public float getTrueHp() {
-        return trueHp;
-    }
-
-    @Override
-    public void setGloom(int value) {
-        if (gloom < value) gloomTicks = 60;
-        gloom = value;
-        updateGloom();
-    }
-
-    public boolean shouldHealGloom() {
-        return player.world.getLightLevel(player.getBlockPos(), player.world.getAmbientDarkness()) >= 12 && !player.hasStatusEffect(ModStatusEffects.LOOMING) && sanityDamageTicks <= 3;
-    }
-
-    @Override
-    public void updateGloom() {
-        EntityAttributeInstance instance = player.getAttributes().getCustomInstance(EntityAttributes.GENERIC_MAX_HEALTH);
-
-        if (instance != null) {
-
-            instance.removeModifier(gloomId);
-            if (gloom >= (int)instance.getValue()) gloom = (int)instance.getValue() - 1;
-
-            float extra = player.getHealth() - ((float)instance.getValue() - gloom);
-
-            if (gloom > 0) {
-                instance.addPersistentModifier(new EntityAttributeModifier(gloomId, "gloom", -gloom, EntityAttributeModifier.Operation.ADDITION));
-            }
-            if (extra > 0 && player.isAlive()) {
-
-                player.damage(DamageSourceAccess.GLOOM, 0);
-            }
-        }
-
-        markDirty();
     }
 
 
@@ -260,9 +178,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         sanityDamageTicks = tag.getInt("sanity_damage_ticks");
         shroud = tag.getInt("shroud");
         haunt = tag.getInt("haunt");
-        gloom = tag.getInt("gloom");
-        gloomTicks = tag.getInt("gloom_ticks");
-        trueHp = tag.getFloat("true_hp");
     }
 
     @Override
@@ -273,10 +188,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("sanity_damage_ticks", sanityDamageTicks);
         tag.putInt("shroud", shroud);
         tag.putInt("haunt", haunt);
-        tag.putInt("gloom", gloom);
-        tag.putInt("gloom_ticks", gloomTicks);
-        trueHp = player.getMaxHealth();
-        tag.putFloat("true_hp", trueHp);
     }
 
     @Override
@@ -314,32 +225,6 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             markDirty();
         } else if (shroud > 0 && !shouldShroud) {
             shroud--;
-            markDirty();
-        }
-
-        if (gloom > 0) {
-
-            if (player.getAbsorptionAmount() > 0) {
-                int g = gloom;
-                gloom = 0;
-                inflictGloom(g);
-            } else if (gloomTicks > 0) {
-                gloomTicks--;
-                markDirty();
-            } else if (shouldHealGloom()) {
-                gloomTicks = 10;
-                gloom--;
-                updateGloom();
-            }
-        } else if (gloomTicks > 0) {
-
-            gloomTicks = 0;
-            markDirty();
-        }
-
-        if (trueHp != player.getMaxHealth()) {
-
-            trueHp = player.getMaxHealth();
             markDirty();
         }
 
@@ -400,16 +285,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         sanity -= cost;
 
         if (sanity < -cost/2) {
-            StatusEffectInstance effect = player.getStatusEffect(ModStatusEffects.LOOMING);
 
-            int duration = 40 * MathHelper.ceil(-sanity);
-            if (effect != null) {
-                duration += effect.getDuration();
-            }
-
-            inflictGloom(MathHelper.ceil(-sanity));
-
-            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.LOOMING, duration, 0));
+            EntityComponents.ROT.get(player).inflictRot(MathHelper.ceil(-sanity));
         }
 
         normalize();

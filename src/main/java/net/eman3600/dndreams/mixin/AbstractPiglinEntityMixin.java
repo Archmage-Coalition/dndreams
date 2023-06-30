@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.HostileEntity;
@@ -21,7 +21,7 @@ public abstract class AbstractPiglinEntityMixin extends HostileEntity {
 
     @Inject(method = "shouldZombify", at = @At("HEAD"), cancellable = true)
     private void dndreams$shouldZombify(CallbackInfoReturnable<Boolean> cir) {
-        if (!this.isImmuneToZombification() && hasStatusEffect(ModStatusEffects.AFFLICTION)) {
+        if (!this.isImmuneToZombification() && EntityComponents.ROT.get(this).getRot() > 0) {
             cir.setReturnValue(true);
         }
     }

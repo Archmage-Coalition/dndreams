@@ -23,6 +23,7 @@ public class EntityComponents implements EntityComponentInitializer {
     public static final ComponentKey<ReviveComponent> REVIVE = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "revive"), ReviveComponent.class);
     public static final ComponentKey<ShockComponent> SHOCK = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "shock"), ShockComponent.class);
     public static final ComponentKey<WardenComponent> WARDEN = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "warden"), WardenComponent.class);
+    public static final ComponentKey<RotComponent> ROT = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "rot"), RotComponent.class);
 
 
 
@@ -40,6 +41,7 @@ public class EntityComponents implements EntityComponentInitializer {
         registry.registerForPlayers(PERM_ITEM, PermItemComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(REVIVE, ReviveComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerFor(LivingEntity.class, SHOCK, ShockComponent::new);
+        registry.registerFor(LivingEntity.class, ROT, RotComponent::new);
 
         registry.registerForPlayers(WARDEN, WardenComponent::new, RespawnCopyStrategy.NEVER_COPY);
         registry.registerFor(RaiderEntity.class, WARDEN, WardenComponent::new);

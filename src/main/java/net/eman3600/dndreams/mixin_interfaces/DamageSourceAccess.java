@@ -31,5 +31,5 @@ public interface DamageSourceAccess {
 
     DamageSource ELECTRIC = create("dndreams.electric", true).setUnblockable();
     DamageSource SHOCK = create("dndreams.shock", true).setUnblockable();
-    DamageSource GLOOM = new DamageSource("dndreams.gloom").setOutOfWorld().setBypassesArmor().setBypassesProtection().setUnblockable();
+    DamageSource ROT = new DamageSource("dndreams.rot").setOutOfWorld().setBypassesArmor().setBypassesProtection().setUnblockable();
 }
