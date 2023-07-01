@@ -130,7 +130,7 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
         for (PlayerEntity player: players) {
             TormentComponent torment = EntityComponents.TORMENT.get(player);
-            lowest = Math.min(lowest, torment.getSanity());
+            lowest = Math.min(lowest, torment.getAttunedSanity());
         }
 
         return lowest;

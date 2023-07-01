@@ -3,6 +3,7 @@ package net.eman3600.dndreams.cardinal_components;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.LivingEntity;
@@ -11,6 +12,8 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.world.LightType;
+import net.minecraft.world.World;
 
 import java.util.UUID;
 
@@ -104,8 +107,10 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
 
     public void healRot(int value) {
 
-        rot = Math.max(0, rot - value);
-        updateRot();
+        if (rot > 0) {
+            rot = Math.max(0, rot - value);
+            updateRot();
+        }
     }
 
     public int getRot() {
@@ -127,8 +132,9 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
     }
 
     public boolean shouldCleanseRot() {
-        if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).getSanityDamage() > 3) return false;
-        return entity.world.getLightLevel(entity.getBlockPos(), entity.world.getAmbientDarkness()) >= 12;
+        if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).getSanityDamage() > 0.1f) return false;
+        if (entity.world.getRegistryKey() == World.END && entity.world.getScoreboard() != null && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain()) return true;
+        return entity.world.getLightLevel(LightType.SKY, entity.getBlockPos()) >= 12 && entity.world.isDay();
     }
 
     public void updateRot() {

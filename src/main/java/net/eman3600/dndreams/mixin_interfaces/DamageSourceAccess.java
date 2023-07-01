@@ -7,6 +7,8 @@ public interface DamageSourceAccess {
 
     void setElectric();
     boolean isElectric();
+    void setAffliction();
+    boolean isAffliction();
 
 
 
@@ -15,11 +17,15 @@ public interface DamageSourceAccess {
     static boolean isElectric(DamageSource source) {
         return source instanceof DamageSourceAccess access && access.isElectric();
     }
+    static boolean isAffliction(DamageSource source) {
+        return source instanceof DamageSourceAccess access && access.isAffliction();
+    }
 
-    static DamageSource create(String name, boolean electric) {
+    static DamageSource create(String name, boolean electric, boolean affliction) {
         DamageSource source = new DamageSource(name);
         if (source instanceof DamageSourceAccess access) {
             if (electric) access.setElectric();
+            if (affliction) access.setAffliction();
         }
         return source;
     }
@@ -29,7 +35,8 @@ public interface DamageSourceAccess {
     }
 
 
-    DamageSource ELECTRIC = create("dndreams.electric", true).setUnblockable();
-    DamageSource SHOCK = create("dndreams.shock", true).setUnblockable();
+    DamageSource ELECTRIC = create("dndreams.electric", true, false).setUnblockable();
+    DamageSource SHOCK = create("dndreams.shock", true, false).setUnblockable();
     DamageSource ROT = new DamageSource("dndreams.rot").setOutOfWorld().setBypassesArmor().setBypassesProtection().setUnblockable();
+    DamageSource AFFLICTION = create("dndreams.affliction", false, true).setUsesMagic();
 }

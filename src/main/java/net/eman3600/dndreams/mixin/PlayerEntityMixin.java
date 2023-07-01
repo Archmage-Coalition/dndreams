@@ -13,7 +13,6 @@ import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.VariedMineSpeedItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.PlayerEntityAccess;
-import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RespawnAnchorBlock;
@@ -167,7 +166,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             }
         }
 
-        if (source.getAttacker() instanceof LivingEntity entity && entity.getType().isIn(ModTags.GLOOM_ENTITIES)) {
+        if (DamageSourceAccess.isAffliction(source)) {
 
             EntityComponents.ROT.maybeGet(this).ifPresent(rot -> rot.inflictRot(MathHelper.ceil(amount)));
         }

@@ -314,8 +314,11 @@
   "death.attack.dndreams.electric.item": "%1$s was electrocuted by %2$s weilding %3$s",
   "death.attack.dndreams.shock": "%s couldn't hold the watts",
   "death.attack.dndreams.shock.player": "%1$s couldn't hold the watts whilst fighting %2$s",
-  "death.attack.dndreams.rot": "%s's soul was gutted",
-  "death.attack.dndreams.rot.player": "%1$s's soul was gutted whilst fighting %2$s",
+  "death.attack.dndreams.rot": "%s was consumed by affliction",
+  "death.attack.dndreams.rot.player": "%1$s was consumed by affliction whilst fighting %2$s",
+  "death.attack.dndreams.affliction": "%s was corrupted",
+  "death.attack.dndreams.affliction.player": "%1$s was corrupted by %2$s",
+  "death.attack.dndreams.affliction.item": "%1$s was corrupted by %2$s weilding %3$s",
   
   
   "command.dndreams.bloodmoon.get.now": "There is currently a dread moon.",

@@ -354,6 +354,11 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
             attacker.heal(amount * multiplier);
         }
+
+        if (DamageSourceAccess.isAffliction(source)) {
+
+            EntityComponents.ROT.maybeGet(this).ifPresent(rot -> rot.inflictRot(MathHelper.ceil(amount)));
+        }
     }
 
     @Inject(method = "applyFoodEffects", at = @At("HEAD"))
