@@ -4,14 +4,18 @@ import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.util.ModTags;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
@@ -37,9 +41,9 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
         if (rot > 0) {
 
             if (entity.getAbsorptionAmount() > 0) {
-                int g = rot;
-                rot = 0;
-                inflictRot(g);
+                healRot(MathHelper.ceil(entity.getAbsorptionAmount()));
+                entity.setAbsorptionAmount(0);
+                if (entity.hasStatusEffect(StatusEffects.ABSORPTION)) entity.removeStatusEffect(StatusEffects.ABSORPTION);
             } else if (rotTicks > 0) {
                 rotTicks--;
                 markDirty();
@@ -86,18 +90,19 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
 
         if (isImmune()) return;
 
+        EntityComponents.TORMENT.maybeGet(entity).ifPresent(torment -> torment.lowerSanity(value * 2));
+
         rotTicks = 60;
         if (entity.getAbsorptionAmount() > 0) {
             float remainder = value - entity.getAbsorptionAmount();
 
+            entity.setAbsorptionAmount(0f);
+            if (entity.hasStatusEffect(StatusEffects.ABSORPTION)) entity.removeStatusEffect(StatusEffects.ABSORPTION);
             if (remainder >= 1) {
-                entity.setAbsorptionAmount(0f);
                 rot += remainder;
-                updateRot();
-            } else {
-                entity.damage(DamageSourceAccess.ROT, value);
-                updateRot();
             }
+
+            updateRot();
             return;
         }
 
@@ -128,13 +133,14 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
     }
 
     public boolean isImmune() {
-        return entity.isUndead() || entity.getType().isIn(ModTags.GLOOM_ENTITIES);
+        return entity.isUndead() || entity.getType().isIn(ModTags.ROT_IMMUNE_ENTITIES);
     }
 
     public boolean shouldCleanseRot() {
         if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).getSanityDamage() > 0.1f) return false;
+        if (entity.world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) return false;
         if (entity.world.getRegistryKey() == World.END && entity.world.getScoreboard() != null && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain()) return true;
-        return entity.world.getLightLevel(LightType.SKY, entity.getBlockPos()) >= 12 && entity.world.isDay();
+        return entity.world.getLightLevel(LightType.SKY, entity.getBlockPos()) >= 12 && !getBloodMoonComponent().isBloodMoon();
     }
 
     public void updateRot() {
@@ -161,5 +167,13 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
 
     public void markDirty() {
         dirty = true;
+    }
+
+    private BloodMoonComponent getBloodMoonComponent() {
+        return WorldComponents.BLOOD_MOON.get(entity.world);
+    }
+
+    public static boolean hasRot(Entity entity) {
+        return EntityComponents.ROT.isProvidedBy(entity) && EntityComponents.ROT.get(entity).getRot() > 0;
     }
 }

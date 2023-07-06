@@ -197,11 +197,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         });
 
         if (fluidHeight.getOrDefault(ModTags.SORROW, 0) > 0.1f) {
+
             if ((Object)this instanceof PlayerEntity player) {
 
                 TormentComponent component = EntityComponents.TORMENT.get(player);
 
-                component.lowerPerMinute(150f);
+                component.lowerPerMinute(100f);
             }
         }
 
@@ -347,8 +348,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
     }
 
-    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setHealth(F)V"))
-    private void dndreams$applyDamage$heartbleed(DamageSource source, float amount, CallbackInfo ci) {
+    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setAbsorptionAmount(F)V", shift = At.Shift.AFTER))
+    private void dndreams$applyDamage$afterAbsorptionDamage(DamageSource source, float amount, CallbackInfo ci) {
         if (hasStatusEffect(ModStatusEffects.HEARTBLEED) && source.getAttacker() instanceof LivingEntity attacker) {
             float multiplier = 0.2f * (getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1);
 
