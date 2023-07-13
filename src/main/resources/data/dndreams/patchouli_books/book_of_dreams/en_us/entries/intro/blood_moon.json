@@ -1,16 +1,16 @@
 {
   "category": "dndreams:intro",
-  "name": "Blood Moon",
+  "name": "Dread Moon",
   "icon": "dndreams:infernal_residue",
   "pages": [
 	{
       "type": "patchouli:text",
-      "text": "The crimson curse waxes and wanes. On nights its influence peaks, the moon turns red as blood and strengthens the affliction."
+      "text": "The Haven's curse waxes and wanes. On nights its influence peaks, the moon turns nightmarish as the affliction is strengthened."
     },
     {
       "type": "patchouli:spotlight",
       "item": "dndreams:infernal_residue",
-      "text": "Monsters found under the Blood Moon yield an infernal residue used in creating items related to the crimson."
+      "text": "Monsters found under the Dread Moon yield an evil substance used in creating items related to the affliction."
     },
     {
       "type": "patchouli:entity",

@@ -1,0 +1,25 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "minecraft:emerald"
+    },
+	{
+      "item": "dndreams:dragonfruit"
+    },
+	{
+      "item": "minecraft:glistering_melon_slice"
+    },
+	{
+      "item": "dndreams:shade_cloth"
+    },
+	{
+      "item": "minecraft:leather"
+    }
+  ],
+  "result": {
+    "item": "minecraft:totem_of_undying",
+    "count": 1
+  },
+  "color": 15391620
+}

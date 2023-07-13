@@ -318,7 +318,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     public static boolean shouldShroud(ServerWorld world, BlockPos pos) {
-        if (WorldComponents.BLOOD_MOON.get(world).isBloodMoon()) return true;
+        //if (WorldComponents.BLOOD_MOON.get(world).isBloodMoon()) return true;
         BlockPos posStructure = world.locateStructure(ModTags.ENSHROUDED, pos, 100, false);
         BlockPos posBiome;
         try {
