@@ -18,9 +18,27 @@ public interface AirSwingItem {
     void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit);
 
     static Vec3d rayZVector(float yaw, float pitch) {
+        Vec3d rot = new Vec3d(0, 0, 1d);
+        rot = rot.rotateX((float)Math.toRadians(-pitch));
+        rot = rot.rotateY((float)Math.toRadians(-yaw));
+
+        return rot;
+    }
+
+    static Vec3d flatRayZVector(float yaw, float pitch) {
         Vec3d rot = new Vec3d(0, 0, 0.1d);
         rot = rot.rotateX((float)Math.toRadians(-pitch));
         rot = rot.add(0, 0, 1);
+        rot = rot.rotateY((float)Math.toRadians(-yaw));
+
+        return rot;
+    }
+
+    static Vec3d rollYVector(float yaw, float pitch, float roll) {
+        Vec3d rot = new Vec3d(0, 1d, 0);
+
+        rot = rot.rotateZ((float)Math.toRadians(-roll));
+        rot = rot.rotateX((float)Math.toRadians(-pitch));
         rot = rot.rotateY((float)Math.toRadians(-yaw));
 
         return rot;

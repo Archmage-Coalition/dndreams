@@ -315,7 +315,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Redirect(method = "damage", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/LivingEntity;timeUntilRegen:I", opcode = Opcodes.PUTFIELD))
     public void dndreams$damage$shortenIFrames(LivingEntity instance, int value) {
-        if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead()) {
+        if (this.hasStatusEffect(ModStatusEffects.MORTAL)) {
             instance.timeUntilRegen = 14;
         } else {
             instance.timeUntilRegen = value;
@@ -326,7 +326,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     private void dndreams$addStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
         StatusEffect status = effect.getEffectType();
 
-        if ((getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR) && status == ModStatusEffects.AFFLICTION) {
+        if ((getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR) && status == StatusEffects.WITHER) {
             cir.setReturnValue(false);
         }
     }

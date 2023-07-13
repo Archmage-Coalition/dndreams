@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
-import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
 import net.eman3600.dndreams.items.magic_bow.MagicBowItem;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
@@ -21,6 +20,9 @@ public class ModModelPredicateProvider {
         registerBloodlustItem(ModItems.CORRUPT_SHOVEL);
         registerBloodlustItem(ModItems.CORRUPT_HOE);
         registerBloodlustItem(ModItems.BLOODFLAME_VESSEL);
+
+        registerRestoredItem(ModItems.CROWNED_EDGE);
+        registerRestoredItem(ModItems.TRUE_CROWNED_EDGE);
 
         registerItem(new Identifier("bound"),
                 (stack, world, entity, seed) -> (stack.getOrCreateNbt().contains("bound")) ? 1f : 0f,
@@ -68,11 +70,12 @@ public class ModModelPredicateProvider {
                 });
     }
 
-    private static void registerShockedItem(Item item) {
-        ModelPredicateProviderRegistry.register(item, new Identifier("shocked"),
+    private static void registerRestoredItem(Item item) {
+        ModelPredicateProviderRegistry.register(item, new Identifier("restored"),
                 ((stack, world, entity, seed) -> {
-                    if (entity != null && EntityComponents.SHOCK.isProvidedBy(entity)) {
-                        return EntityComponents.SHOCK.get(entity).hasShock() ? 1f : 0f;
+                    NbtCompound nbt = stack.getNbt();
+                    if (nbt != null && nbt.contains("restored") && nbt.getBoolean("restored")) {
+                        return 1f;
                     }
                     return 0f;
                 }));

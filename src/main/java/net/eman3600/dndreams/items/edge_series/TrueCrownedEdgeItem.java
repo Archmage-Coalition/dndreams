@@ -34,19 +34,19 @@ public class TrueCrownedEdgeItem extends CrownedEdgeItem {
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, user.getSoundCategory(), 1.0f, 1.5f);
 
 
+            float roll = CrownedSlashEntity.randomlyRoll(world);
             CrownedSlashEntity slash = new CrownedSlashEntity(user, world);
+            slash.initFromStack(stack, roll);
             world.spawnEntity(slash);
-            slash.initFromStack(stack);
 
             if (canAffordMana(user, stack)) {
                 spendMana(user, stack);
 
                 CrownedBeamEntity beam = new CrownedBeamEntity(user, world);
+                beam.initFromStack(stack, roll);
                 world.spawnEntity(beam);
-                beam.initFromStack(stack);
 
-                beam.slash = slash;
-                slash.beam = beam;
+                slash.setDamaging(false);
             }
         }
     }

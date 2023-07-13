@@ -29,7 +29,7 @@ public class ModStatusEffects {
     public static StatusEffect GRACE = register("grace", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 15658496));
     public static StatusEffect RESTRICTED = register("restricted", new ModStatusEffect(StatusEffectCategory.HARMFUL, 5570560));
     public static StatusEffect AETHER = register("aether", new ModStatusEffect(StatusEffectCategory.HARMFUL, 1118481));
-    public static StatusEffect AFFLICTION = register("affliction", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0x352922));
+    public static StatusEffect AFFLICTION = register("affliction", new InstantModStatusEffect(StatusEffectCategory.HARMFUL, 0x352922));
     public static StatusEffect IMMOLATION = register("immolation", new InstantModStatusEffect(StatusEffectCategory.HARMFUL, 0xFF8A1A));
     public static StatusEffect GAS_MASK = register("gas_mask", new ModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xEEEE11));
     public static StatusEffect CLEANSING = register("cleansing", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 0xFFFF99));

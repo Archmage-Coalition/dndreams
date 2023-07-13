@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "dndreams:item/true_crowned_edge_restored"
+    }
+}

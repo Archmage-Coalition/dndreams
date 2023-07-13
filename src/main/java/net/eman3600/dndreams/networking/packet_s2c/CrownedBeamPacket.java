@@ -18,7 +18,7 @@ public class CrownedBeamPacket {
         if (wicked) {
             Random random = new Random();
 
-            if (random.nextInt(5) == 0) {
+            if (random.nextInt(3) == 0) {
                 client.world.addParticle(ModParticles.CROWNED_WICKED, true, vec.x, vec.y, vec.z, 0, 0, 0);
                 return;
             }

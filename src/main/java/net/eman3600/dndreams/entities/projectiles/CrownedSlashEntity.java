@@ -1,31 +1,26 @@
 package net.eman3600.dndreams.entities.projectiles;
 
-import net.eman3600.dndreams.events.damage_sources.ElectricProjectileDamageSource;
+import net.eman3600.dndreams.events.damage_sources.AfflictionProjectileDamageSource;
 import net.eman3600.dndreams.initializers.basics.ModEnchantments;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
-import net.eman3600.dndreams.util.matrices.RotatedBox;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -34,25 +29,20 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrownedSlashEntity extends PersistentProjectileEntity implements ProjectileOverhaulEntity {
-    private Vec3d origin;
+public class CrownedSlashEntity extends BeamProjectileEntity {
     public List<LivingEntity> victims = new ArrayList<>();
-    public static final float yawPerTick = 2;
-    public static final float changeInYaw = 120;
-    public static final int moveTicksPerTick = 12;
-    public static final float range = 3f;
-    public CrownedBeamEntity beam = null;
-    private int lifeTicks = 0;
-    private int failsafeTicks = 0;
-    private boolean wicked = false;
+    public static final int DURATION = 4;
+    public static final int DETAIL = 6;
+    public static final float REACH = 3f;
+    public static final float RANGE = 3f;
+    public static final float PLAYER_OFFSET = 2.6f;
+    public static TrackedData<Boolean> WICKED = DataTracker.registerData(CrownedSlashEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static TrackedData<Integer> LIFE = DataTracker.registerData(CrownedSlashEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public static TrackedData<Float> ROLL = DataTracker.registerData(CrownedSlashEntity.class, TrackedDataHandlerRegistry.FLOAT);
 
 
-    public CrownedSlashEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
+    public CrownedSlashEntity(EntityType<? extends BeamProjectileEntity> entityType, World world) {
         super(entityType, world);
-    }
-
-    public CrownedSlashEntity(double x, double y, double z, World world) {
-        super(ModEntities.CROWNED_SLASH, x, y, z, world);
     }
 
     public CrownedSlashEntity(LivingEntity owner, World world) {
@@ -60,24 +50,41 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
     }
 
     @Override
-    public ItemStack asItemStack() {
-        return null;
+    protected void initDataTracker() {
+        super.initDataTracker();
+        getDataTracker().startTracking(WICKED, false);
+        getDataTracker().startTracking(LIFE, 0);
+        getDataTracker().startTracking(ROLL, 0f);
     }
 
-    public void initFromStack(ItemStack stack) {
+    public void tickLife() {
+        getDataTracker().set(LIFE, getDataTracker().get(LIFE) + 1);
+    }
+
+    public int getLife() {
+        return getDataTracker().get(LIFE);
+    }
+
+    public void initFromStack(ItemStack stack, float roll) {
         if (stack.getItem() instanceof MagicDamageItem item) {
-            this.setDamage(item.getMagicDamage(stack));
+            setDamage(item.getMagicDamage(stack));
         } else {
             setDamage(1);
         }
 
-        origin = getPos().subtract(0, 1d, 0);
+        if (getOwner() != null) {
+            setYaw(getOwner().getYaw());
+            setPitch(getOwner().getPitch());
 
-        setYaw(getOwner().getYaw() + changeInYaw/2);
+            Vec3d updated = getPos();
+            updated = updated.add(AirSwingItem.rayZVector(this.getYaw(), this.getPitch()).multiply(PLAYER_OFFSET));
 
-        wicked = EnchantmentHelper.getLevel(ModEnchantments.WICKED, stack) > 0;
+            setPosition(updated);
+        }
 
-        setPierceLevel((byte) 3);
+        getDataTracker().set(ROLL, roll);
+
+        getDataTracker().set(WICKED, EnchantmentHelper.getLevel(ModEnchantments.WICKED, stack) > 0);
     }
 
     @Override
@@ -91,77 +98,62 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
 
         try {
 
-            for (int l = 0; l < moveTicksPerTick; l++) {
-                if (origin != null && world instanceof ServerWorld serverWorld) {
+            if (world instanceof ServerWorld serverWorld) {
+                for (int i = 0; i < DETAIL; i++) {
 
-                    setYaw(getYaw() - yawPerTick);
-                    if (getBoundingBox() instanceof RotatedBox box) {
-                        setBoundingBox(box.rotated(-yawPerTick));
-                    }
-
-                    Vec3d forward = AirSwingItem.rayZVector(this.getYaw(), this.getPitch());
-
-                    setPosition(origin.add(forward.multiply(range)));
-                    setVelocity(0, 0, 0);
-
-                    lifeTicks++;
-
-                    if (lifeTicks > changeInYaw / yawPerTick) {
-                        break;
-                    }
-
-                    Vec3d center = getBoundingBox().getCenter();
-
-                    for (float k = 0; k < range; k += 0.5d) {
-                        Vec3d boxCenter = center.subtract(forward.multiply(k));
-                        Box box = new Box(boxCenter, boxCenter).expand(0.25d);
-
-                        for (LivingEntity livingEntity : world.getNonSpectatingEntities(LivingEntity.class, box)) {
-                            if (livingEntity == getOwner() || isOnTeam(livingEntity) || livingEntity instanceof ArmorStandEntity && ((ArmorStandEntity) livingEntity).isMarker())
-                                continue;
-
-                            if (!victims.contains(livingEntity)) {
-                                victims.add(livingEntity);
-                                if (beam != null) {
-                                    beam.victims.add(livingEntity);
-                                }
-
-
-                                livingEntity.timeUntilRegen = 1;
-
-                                livingEntity.takeKnockback(0.4f, MathHelper.sin(getOwner().getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getOwner().getYaw() * ((float) Math.PI / 180)));
-                                livingEntity.damage(ElectricProjectileDamageSource.magic(this, getOwner()), (float) this.getDamage());
-                                if (wicked) livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 80, 1), getOwner());
-                            }
-                        }
-
-                    }
+                    Vec3d renderPos = getRolledPosition(getLife() + (float)i / DETAIL);
 
                     PacketByteBuf packet = PacketByteBufs.create();
 
-                    packet.writeDouble(getX());
-                    packet.writeDouble(getY());
-                    packet.writeDouble(getZ());
-                    packet.writeBoolean(wicked);
+                    packet.writeDouble(renderPos.x);
+                    packet.writeDouble(renderPos.y);
+                    packet.writeDouble(renderPos.z);
+                    packet.writeBoolean(getDataTracker().get(WICKED));
 
                     for (ServerPlayerEntity player : serverWorld.getPlayers()) {
                         ServerPlayNetworking.send(player, ModMessages.CROWNED_SLASH_ID, packet);
                     }
-
-                    updatePositionAndAngles(getX(), getY(), getZ(), getYaw(), getPitch());
-
                 }
-            }
 
-            if (lifeTicks > changeInYaw / yawPerTick && world instanceof ServerWorld) {
-                kill();
+                Vec3d forward = AirSwingItem.rayZVector(this.getYaw(), this.getPitch());
+
+                setVelocity(0, 0, 0);
+                velocityDirty = true;
+
+                Vec3d center = getRolledPosition(getLife());
+
+                if (isDamaging()) {
+                    for (float k = 0; k < REACH; k += 1d) {
+                        Vec3d boxCenter = center.subtract(forward.multiply(k));
+                        Box box = new Box(boxCenter, boxCenter).expand(0.5d);
+
+                        for (LivingEntity livingEntity : world.getNonSpectatingEntities(LivingEntity.class, box)) {
+                            if (livingEntity == getOwner() || !livingEntity.canHit() || isOnTeam(livingEntity) || livingEntity instanceof ArmorStandEntity && ((ArmorStandEntity) livingEntity).isMarker())
+                                continue;
+
+                            if (!victims.contains(livingEntity)) {
+                                victims.add(livingEntity);
+
+
+                                livingEntity.timeUntilRegen = 1;
+
+                                livingEntity.takeKnockback(0.4f, MathHelper.sin(getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getYaw() * ((float) Math.PI / 180)));
+                                livingEntity.damage(getDataTracker().get(WICKED) ? AfflictionProjectileDamageSource.magic(this, getOwner()) : DamageSource.magic(this, getOwner()), (float) this.getDamage());
+                            }
+                        }
+
+                    }
+                }
+
+                tickLife();
+
+                if (getLife() > DURATION) {
+                    kill();
+                }
+
             }
 
         } catch (NullPointerException e) {
-            kill();
-        }
-
-        if (++failsafeTicks > 600) {
             kill();
         }
     }
@@ -174,43 +166,49 @@ public class CrownedSlashEntity extends PersistentProjectileEntity implements Pr
         }
     }
 
-    @Override
-    public void onEntityHit(EntityHitResult entityHitResult) {
-        super.onEntityHit(entityHitResult);
+    private Vec3d getRolledPosition(float delta) {
+        Vec3d result = getPos();
+
+        float distance = (delta * RANGE / DURATION) - (RANGE * .5f);
+
+        Vec3d offset = AirSwingItem.rollYVector(getYaw(), getPitch(), getDataTracker().get(ROLL)).multiply(distance);
+
+        return result.add(offset);
     }
 
     @Override
-    protected boolean tryPickup(PlayerEntity player) {
-        return false;
-    }
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
 
-    @Override
-    public void onCollision(HitResult hitResult) {
-        super.onCollision(hitResult);
+        DataTracker tracker = getDataTracker();
 
-        if (hitResult.getType() == HitResult.Type.BLOCK) {
-            this.kill();
+        if (nbt.contains("Wicked")) {
+            tracker.set(WICKED, nbt.getBoolean("Wicked"));
+        }
+        if (nbt.contains("Life")) {
+            tracker.set(LIFE, nbt.getInt("Life"));
+        }
+        if (nbt.contains("Roll")) {
+            tracker.set(ROLL, nbt.getFloat("Roll"));
         }
     }
 
     @Override
-    protected SoundEvent getHitSound() {
-        return SoundEvents.BLOCK_AMETHYST_BLOCK_HIT;
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+
+        DataTracker tracker = getDataTracker();
+
+        nbt.putBoolean("Wicked", tracker.get(WICKED));
+        nbt.putInt("Life", tracker.get(LIFE));
+        nbt.putFloat("Roll", tracker.get(ROLL));
     }
 
-    @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
-        nbt.putInt("life_ticks", lifeTicks);
-        nbt.putInt("failsafe_ticks", failsafeTicks);
+    public static float randomlyRoll(World world) {
+        int i = world.random.nextInt(4);
 
-        return super.writeNbt(nbt);
-    }
+        int j = i != 0 && i != 3 ? i * 60 : i == 0 ? 30 : 150;
 
-    @Override
-    public void readNbt(NbtCompound nbt) {
-        lifeTicks = nbt.getInt("life_ticks");
-        failsafeTicks = nbt.getInt("failsafe_ticks");
-
-        super.readNbt(nbt);
+        return j + 90;
     }
 }

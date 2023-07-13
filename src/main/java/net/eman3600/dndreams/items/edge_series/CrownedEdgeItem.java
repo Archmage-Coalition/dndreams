@@ -42,8 +42,8 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, user.getSoundCategory(), 1.0f, 1.5f);
 
             CrownedSlashEntity slash = new CrownedSlashEntity(user, world);
+            slash.initFromStack(stack, CrownedSlashEntity.randomlyRoll(world));
             world.spawnEntity(slash);
-            slash.initFromStack(stack);
         }
     }
 

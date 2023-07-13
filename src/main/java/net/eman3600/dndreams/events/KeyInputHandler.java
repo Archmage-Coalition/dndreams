@@ -15,12 +15,18 @@ public class KeyInputHandler {
     public static final String KEY_DODGE = "key.dndreams.dodge";
 
     public static KeyBinding dodgeKey;
+    private static boolean holdingDodgeKey;
 
     public static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (dodgeKey.wasPressed() && client.player != null) {
+            if (dodgeKey.isPressed() && client.player != null) {
 
-                EntityComponents.INFUSION.get(client.player).tryDodgeClient();
+                if (!holdingDodgeKey) {
+                    holdingDodgeKey = true;
+                    EntityComponents.INFUSION.get(client.player).tryDodgeClient();
+                }
+            } else if (holdingDodgeKey) {
+                holdingDodgeKey = false;
             }
         });
     }

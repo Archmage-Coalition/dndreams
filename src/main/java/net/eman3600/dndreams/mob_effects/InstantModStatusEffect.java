@@ -23,6 +23,8 @@ public class InstantModStatusEffect extends InstantStatusEffect {
             entity.setOnFireFor(14 * (amplifier + 1));
         } else if (this == ModStatusEffects.CLEANSING) {
             entity.clearStatusEffects();
+        } else if (this == ModStatusEffects.AFFLICTION) {
+            EntityComponents.ROT.maybeGet(entity).ifPresent(rot -> rot.inflictRot(2 * (amplifier + 1)));
         }
     }
 

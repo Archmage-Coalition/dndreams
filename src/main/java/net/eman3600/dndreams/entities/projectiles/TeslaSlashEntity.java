@@ -8,17 +8,14 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -27,37 +24,46 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeslaSlashEntity extends PersistentProjectileEntity implements ProjectileOverhaulEntity {
-    private int lifeTicks = 0;
-    private static final int maxLifeTicks = 5;
-
-    public static final float yawPerTick = 2;
-    public static final float changeInYaw = 70;
-    public static final float range = 3f;
+public class TeslaSlashEntity extends BeamProjectileEntity {
+    private static final int DURATION = 40;
     private static final double SPEED = 2.0d;
     public List<LivingEntity> victims = new ArrayList<>();
-    private Vec3d origin;
-    private float shock = 0f;
+    public static TrackedData<Integer> LIFE = DataTracker.registerData(TeslaSlashEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public static TrackedData<Float> ROLL = DataTracker.registerData(TeslaSlashEntity.class, TrackedDataHandlerRegistry.FLOAT);
 
-    public TeslaSlashEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
+    public TeslaSlashEntity(EntityType<? extends BeamProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
 
     public TeslaSlashEntity(LivingEntity owner, World world, float shock) {
         super(ModEntities.TESLA_SLASH, owner, world);
-        this.shock = shock;
         setDamage(shock);
+        getDataTracker().set(ROLL, CrownedSlashEntity.randomlyRoll(world));
 
-        setPos(getX(), getY() - 1, getZ());
-        origin = getPos();
+        if (getOwner() != null) {
+            setYaw(getOwner().getYaw());
+            setPitch(getOwner().getPitch());
 
-        setYaw(getOwner().getYaw());
-        setPierceLevel((byte) 3);
+            Vec3d updated = getPos();
+            updated = updated.add(AirSwingItem.rayZVector(this.getYaw(), this.getPitch()).multiply(CrownedSlashEntity.PLAYER_OFFSET));
+
+            setPosition(updated);
+        }
     }
 
     @Override
-    protected ItemStack asItemStack() {
-        return null;
+    protected void initDataTracker() {
+        super.initDataTracker();
+        getDataTracker().startTracking(LIFE, 0);
+        getDataTracker().startTracking(ROLL, 0f);
+    }
+
+    public void tickLife() {
+        getDataTracker().set(LIFE, getDataTracker().get(LIFE) + 1);
+    }
+
+    public int getLife() {
+        return getDataTracker().get(LIFE);
     }
 
     @Override
@@ -67,63 +73,69 @@ public class TeslaSlashEntity extends PersistentProjectileEntity implements Proj
 
     @Override
     public void tick() {
-        if (world instanceof ServerWorld serverWorld && !firstUpdate) {
-            if (origin != null) {
-                try {
+        try {
 
-                    Vec3d forward = AirSwingItem.rayZVector(getYaw(), getPitch());
-                    Vec3d focus = getPos().subtract(forward.multiply(-range));
+            if (world instanceof ServerWorld serverWorld && !firstUpdate) {
+                for (int i = 0; i <= CrownedSlashEntity.DETAIL * CrownedSlashEntity.DURATION; i++) {
 
-                    for (float i = -changeInYaw / 2; i <= changeInYaw / 2; i += yawPerTick) {
-                        Vec3d curve = AirSwingItem.rayZVector(getYaw() + i, getPitch());
+                    Vec3d renderPos = getRolledPosition((float)i / (CrownedSlashEntity.DETAIL));
 
-                        for (float k = 1; k < range; k += 0.5d) {
-                            Vec3d boxCenter = focus.add(curve.multiply(k));
-                            Box box = new Box(boxCenter, boxCenter).expand(0.25d);
+                    PacketByteBuf packet = PacketByteBufs.create();
+
+                    packet.writeDouble(renderPos.x);
+                    packet.writeDouble(renderPos.y);
+                    packet.writeDouble(renderPos.z);
+
+                    for (ServerPlayerEntity player : serverWorld.getPlayers()) {
+                        ServerPlayNetworking.send(player, ModMessages.TESLA_SLASH_ID, packet);
+                    }
+                }
+
+                Vec3d forward = AirSwingItem.rayZVector(this.getYaw(), this.getPitch());
+                System.out.println(forward);
+                setVelocity(forward.multiply(SPEED));
+                velocityDirty = true;
+
+
+                if (isDamaging()) {
+                    for (int i = 0; i <= CrownedSlashEntity.DURATION; i++) {
+                        Vec3d center = getRolledPosition(i);
+
+                        for (float k = 0; k < CrownedSlashEntity.REACH; k += 1d) {
+                            Vec3d boxCenter = center.add(forward.multiply(k));
+                            Box box = new Box(boxCenter, boxCenter).expand(0.5d);
 
                             for (LivingEntity livingEntity : world.getNonSpectatingEntities(LivingEntity.class, box)) {
-                                if (livingEntity == getOwner() || isOnTeam(livingEntity) || livingEntity instanceof ArmorStandEntity && ((ArmorStandEntity) livingEntity).isMarker())
+                                if (livingEntity == getOwner() || !livingEntity.canHit() || isOnTeam(livingEntity) || livingEntity instanceof ArmorStandEntity && ((ArmorStandEntity) livingEntity).isMarker())
                                     continue;
 
                                 if (!victims.contains(livingEntity)) {
                                     victims.add(livingEntity);
 
+
                                     livingEntity.timeUntilRegen = 1;
 
-                                    livingEntity.takeKnockback(0.4f, MathHelper.sin(getOwner().getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getOwner().getYaw() * ((float) Math.PI / 180)));
-                                    livingEntity.damage(ElectricProjectileDamageSource.projectile(this, getOwner()), (float) this.getDamage());
+                                    livingEntity.takeKnockback(0.4f, MathHelper.sin(getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getYaw() * ((float) Math.PI / 180)));
+                                    livingEntity.damage(ElectricProjectileDamageSource.projectile(this, getOwner()), this.getDamage());
                                 }
                             }
 
                         }
-
-                        Vec3d edge = focus.add(curve.multiply(range));
-
-                        PacketByteBuf packet = PacketByteBufs.create();
-
-                        packet.writeDouble(edge.x);
-                        packet.writeDouble(edge.y);
-                        packet.writeDouble(edge.z);
-
-                        for (ServerPlayerEntity player : serverWorld.getPlayers()) {
-                            ServerPlayNetworking.send(player, ModMessages.TESLA_SLASH_ID, packet);
-                        }
                     }
+                }
 
+                tickLife();
 
-                    setVelocity(AirSwingItem.rayZVector(getYaw(), getPitch()).multiply(SPEED));
-
-                } catch (NullPointerException e) {
+                if (getLife() > DURATION) {
                     kill();
                 }
+
             }
 
-            lifeTicks++;
-
-            if (lifeTicks > maxLifeTicks) {
-                kill();
-            }
+        } catch (NullPointerException e) {
+            kill();
         }
+
 
         super.tick();
     }
@@ -141,35 +153,36 @@ public class TeslaSlashEntity extends PersistentProjectileEntity implements Proj
     }
 
     @Override
-    protected boolean tryPickup(PlayerEntity player) {
-        return false;
-    }
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
 
-    @Override
-    public void onCollision(HitResult hitResult) {
-        super.onCollision(hitResult);
+        DataTracker tracker = getDataTracker();
 
-        if (hitResult.getType() == HitResult.Type.BLOCK) {
-            this.kill();
+        if (nbt.contains("Life")) {
+            tracker.set(LIFE, nbt.getInt("Life"));
+        }
+        if (nbt.contains("Roll")) {
+            tracker.set(ROLL, nbt.getFloat("Roll"));
         }
     }
 
     @Override
-    protected SoundEvent getHitSound() {
-        return SoundEvents.BLOCK_AMETHYST_BLOCK_HIT;
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+
+        DataTracker tracker = getDataTracker();
+
+        nbt.putInt("Life", tracker.get(LIFE));
+        nbt.putFloat("Roll", tracker.get(ROLL));
     }
 
-    @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
-        nbt.putInt("life_ticks", lifeTicks);
+    private Vec3d getRolledPosition(float delta) {
+        Vec3d result = getPos();
 
-        return super.writeNbt(nbt);
-    }
+        float distance = (delta * CrownedSlashEntity.RANGE / CrownedSlashEntity.DURATION) - (CrownedSlashEntity.RANGE * .5f);
 
-    @Override
-    public void readNbt(NbtCompound nbt) {
-        lifeTicks = nbt.getInt("life_ticks");
+        Vec3d offset = AirSwingItem.rollYVector(getYaw(), getPitch(), getDataTracker().get(ROLL)).multiply(distance);
 
-        super.readNbt(nbt);
+        return result.add(offset);
     }
 }
