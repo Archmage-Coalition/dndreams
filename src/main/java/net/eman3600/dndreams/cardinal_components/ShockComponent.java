@@ -37,6 +37,7 @@ public class ShockComponent implements ShockComponentI {
         markDirty();
 
         if (entity instanceof CreeperEntityAccess access) {
+
             entity.getDataTracker().set(access.getChargedTracker(), true);
         }
     }

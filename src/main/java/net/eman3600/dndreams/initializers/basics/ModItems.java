@@ -18,10 +18,12 @@ import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewThrownItem;
-import net.eman3600.dndreams.items.consumable.permanent.*;
+import net.eman3600.dndreams.items.consumable.permanent.AttributePermItem;
+import net.eman3600.dndreams.items.consumable.permanent.CrystalFeatherItem;
+import net.eman3600.dndreams.items.consumable.permanent.FidiFruitItem;
+import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
 import net.eman3600.dndreams.items.creative.InfusionPearlItem;
 import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
-import net.eman3600.dndreams.items.edge_series.SlumberingSwordItem;
 import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.hellsteel.*;
 import net.eman3600.dndreams.items.magic_bow.ManastringBowItem;
@@ -465,19 +467,14 @@ public class ModItems {
     public static final Item SHATTERED_SWORD = registerItem("shattered_sword",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).rarity(Rarity.UNCOMMON).maxCount(1).fireproof()));
 
-    // Slumbering Sword
-    public static final Item SLUMBERING_SWORD = registerItem("slumbering_sword",
-            new SlumberingSwordItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON).fireproof()));
-
     // Crowned Edge
     public static final Item CROWNED_EDGE = registerItem("crowned_edge",
-            new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 6,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON).fireproof()));
+            new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 4,
+                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.RARE).fireproof()));
 
     // True Crowned Edge
     public static final Item TRUE_CROWNED_EDGE = registerItem("true_crowned_edge",
-            new TrueCrownedEdgeItem(ModToolMaterials.LAMENT, 6, -2.2F, 8,
+            new TrueCrownedEdgeItem(ModToolMaterials.TRUE, 3, -2.2F, 6,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).fireproof()));
 
 

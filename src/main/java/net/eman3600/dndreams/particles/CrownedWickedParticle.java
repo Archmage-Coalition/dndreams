@@ -12,9 +12,9 @@ public class CrownedWickedParticle extends SpriteBillboardParticle {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
         this.velocityMultiplier = 0F;
-        this.x = xd;
-        this.y = yd;
-        this.z = zd;
+//        this.x = xd;
+//        this.y = yd;
+//        this.z = zd;
         this.scale *= 0.75F;
         this.maxAge = 25;
         this.setSpriteForAge(spriteSet);

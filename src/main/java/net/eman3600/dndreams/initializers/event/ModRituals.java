@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.initializers.event;
 
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.entity.ModInfusions;
 import net.eman3600.dndreams.rituals.*;
 import net.eman3600.dndreams.rituals.setup.Ritual;
@@ -16,6 +17,7 @@ public class ModRituals {
     public static final Ritual TAGLOCK_RELOCATED = register("taglock_relocated", new TaglockRelocatedRitual());
 
     public static final Ritual CHARGE_DEMONIC_CORE = register("charge_demonic_core", new DemonicCoreRitual());
+    public static final Ritual REPAIR_EDGE = register("repair_edge", new CraftingRitual(ModItems.CROWNED_EDGE, 1000, new Ring(Ring.INNER_RING, CandleTuning.OVERWORLD)));
 
     public static final Ritual AMETHYST_SOURCE = register("amethyst_source", new AmethystSourceRitual());
     public static final Ritual AMETHYST_SPROUT = register("amethyst_sprout", new AmethystSproutRitual());

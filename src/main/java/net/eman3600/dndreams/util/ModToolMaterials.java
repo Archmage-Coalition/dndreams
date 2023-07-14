@@ -25,11 +25,9 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
     PERICHARITE(4, 3122, 23F, 11.0F, 22,
             () -> Ingredient.ofItems(ModItems.PERICHARITE)),
-    SLUMBERING_EDGE(4, 735, 12.0F, 1.0F, 10,
+    CROWNED_EDGE(4, 3122, 12.0F, 3.0F, 18,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
-    CROWNED_EDGE(4, 3122, 12.0F, 4.0F, 18,
-            () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
-    LAMENT(4, 6244, 12.0F, 4.0F, 18,
+    TRUE(4, 6244, 12.0F, 6.0F, 18,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL));
 
     private final int miningLevel;
