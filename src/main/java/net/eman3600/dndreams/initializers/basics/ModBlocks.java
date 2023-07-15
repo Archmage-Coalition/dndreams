@@ -8,10 +8,7 @@ import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritFenceBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritSlabBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritStairsBlock;
-import net.eman3600.dndreams.blocks.spreadable.HavenSpreadableBlock;
-import net.eman3600.dndreams.blocks.spreadable.MadMossBlock;
-import net.eman3600.dndreams.blocks.spreadable.MadMossSourceBlock;
-import net.eman3600.dndreams.blocks.spreadable.MarbleSpreadableBlock;
+import net.eman3600.dndreams.blocks.spreadable.*;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
@@ -1289,15 +1286,24 @@ public class ModBlocks {
 
     public static final Block MAD_MOSS = registerBlock("mad_moss",
             new MadMossBlock(FabricBlockSettings.copyOf(Blocks.MOSS_BLOCK)
+                    .strength(4f, 1f)
                     .mapColor(MapColor.PALE_PURPLE)
                     .allowsSpawning(ModBlocks::never)
                     .nonOpaque()));
 
     public static final Block MAD_MOSS_SOURCE = registerBlock("mad_moss_source",
             new MadMossSourceBlock(FabricBlockSettings.copyOf(Blocks.MOSS_BLOCK)
+                    .strength(8f)
                     .mapColor(MapColor.PALE_PURPLE)
                     .allowsSpawning(ModBlocks::never)
                     .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    public static final Block SHADE_MOSS = registerBlock("shade_moss",
+            new ShadeMossBlock(FabricBlockSettings.copyOf(Blocks.MOSS_BLOCK)
+                    .strength(4f, 1f)
+                    .mapColor(MapColor.PALE_PURPLE)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 

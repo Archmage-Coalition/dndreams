@@ -39,6 +39,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private int shroud = 0;
     private int haunt = 0;
     private boolean dirty = false;
+    private boolean sanityDamage = false;
 
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
@@ -117,6 +118,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public void damageSanity(int increment) {
         sanityDamageTicks = MathHelper.clamp(sanityDamageTicks + increment, 0, SANITY_DAMAGE);
+        markDirty();
     }
 
     @Override
@@ -213,9 +215,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             lowerPerMinute(j);
         }
 
-        if (sanityDamageTicks > 0) {
+        if (sanityDamageTicks > 0 && !sanityDamage) {
             sanityDamageTicks--;
             markDirty();
+        } else if (sanityDamage) {
+            sanityDamage = false;
+            damageSanity(1);
         }
 
 
@@ -374,5 +379,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     public void markDirty() {
         dirty = true;
+    }
+
+    public void markSanityDamage() {
+        sanityDamage = true;
     }
 }

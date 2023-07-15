@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.initializers.entity;
 
+import net.eman3600.dndreams.entities.misc.ShadeSourceEntity;
 import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
 import net.eman3600.dndreams.entities.mobs.TormentorEntity;
@@ -22,6 +23,14 @@ import static net.eman3600.dndreams.entities.mobs.TormentorEntity.createTormento
 import static net.eman3600.dndreams.entities.mobs.WardenRagdollEntity.createWardenRagdollAttributes;
 
 public class ModEntities {
+    public static final EntityType<ShadeSourceEntity> SHADE_SOURCE = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "shade_source"),
+            FabricEntityTypeBuilder.<ShadeSourceEntity>create(SpawnGroup.MISC, ShadeSourceEntity::new)
+                    .dimensions(EntityDimensions.fixed(0f, 0f))
+                    .build()
+    );
+
+
     public static final EntityType<CrownedSlashEntity> CROWNED_SLASH = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "crowned_slash"),
             FabricEntityTypeBuilder.<CrownedSlashEntity>create(SpawnGroup.MISC, CrownedSlashEntity::new)

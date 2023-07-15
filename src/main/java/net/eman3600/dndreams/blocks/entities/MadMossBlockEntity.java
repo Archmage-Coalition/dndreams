@@ -61,8 +61,10 @@ public class MadMossBlockEntity extends AbstractReplacementBlockEntity {
 
             if (entity instanceof MadMossSourceBlockEntity source) {
 
-                if (source.getBlocks() > 0) {
-                    Direction direction = Direction.fromHorizontal(world.random.nextInt(4));
+                int i = 4;
+
+                while (source.getBlocks() > 0 && i-- >= 0) {
+                    Direction direction = Direction.values()[world.random.nextInt(6)];
 
                     BlockPos spreadPos = getPos().offset(direction);
 
@@ -71,6 +73,7 @@ public class MadMossBlockEntity extends AbstractReplacementBlockEntity {
                     if (spreadPos != null && canReplace(world, spreadPos)) {
                         replace(world, spreadPos, sourcePos);
                         source.removeBlock();
+                        break;
                     }
                 }
             } else {
@@ -86,7 +89,7 @@ public class MadMossBlockEntity extends AbstractReplacementBlockEntity {
 
         BlockState state = world.getBlockState(pos);
 
-        return !state.hasBlockEntity() && !state.getCollisionShape(world, pos).isEmpty() && state.getCollisionShape(world, pos).getBoundingBox().getYLength() > 0.4 && !state.isIn(ModTags.MAD_MOSS_IMMUNE);
+        return !state.hasBlockEntity() && state.isFullCube(world, pos) && state.getHardness(world, pos) <= 6 && state.getHardness(world, pos) >= 0 && !state.isIn(ModTags.MAD_MOSS_IMMUNE);
     }
 
     public static void replace(World world, BlockPos pos, BlockPos sourcePos) {
@@ -121,15 +124,24 @@ public class MadMossBlockEntity extends AbstractReplacementBlockEntity {
     @Nullable
     public static BlockPos findExposed(World world, BlockPos pos) {
 
-        for (int i = -2; i < 3; i++) {
+        for (int i = 1; i > -2; i--) {
 
             BlockPos test = pos.offset(Direction.UP, i);
 
-            if (world.isInBuildLimit(test) && !world.isAir(test) && world.isAir(test.up())) {
+            if (world.isInBuildLimit(test) && !world.isAir(test) && isExposed(world, test)) {
                 return test;
             }
         }
 
         return null;
+    }
+
+    public static boolean isExposed(World world, BlockPos pos) {
+
+        for (Direction direction: Direction.values()) {
+            if (world.isAir(pos.offset(direction))) return true;
+        }
+
+        return false;
     }
 }

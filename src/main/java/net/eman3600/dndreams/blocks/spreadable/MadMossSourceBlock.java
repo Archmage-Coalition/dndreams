@@ -9,9 +9,7 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,10 +25,9 @@ public class MadMossSourceBlock extends BlockWithEntity {
             BlockEntity entity = world.getBlockEntity(pos);
 
             if (entity instanceof AbstractReplacementBlockEntity replacementBlockEntity && newState.isAir()) {
-                Vec3d vec = Vec3d.ofCenter(pos);
-
-                ItemScatterer.spawn(world, vec.x, vec.y, vec.z, replacementBlockEntity.getReplacedState().getBlock().getPickStack(world, pos, state));
+                world.setBlockState(pos, replacementBlockEntity.getReplacedState());
             }
+
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }

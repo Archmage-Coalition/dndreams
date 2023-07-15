@@ -19,6 +19,8 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.CatEntity;
+import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -86,6 +88,8 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(3, new FleeEntityGoal<>(this, PlayerEntity.class, 4.0f, 1.0, 1.2, a -> a instanceof PlayerEntity player && getSanity(player) > 25 && !isCorporeal()));
+        this.goalSelector.add(3, new FleeEntityGoal<>(this, OcelotEntity.class, 6.0f, 1.0, 1.2));
+        this.goalSelector.add(3, new FleeEntityGoal<>(this, CatEntity.class, 6.0f, 1.0, 1.2));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
         this.goalSelector.add(8, new LookAroundGoal(this));
@@ -151,7 +155,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
                     setTarget(null);
                     setCorporeal(false);
                 } else {
-                    getTorment(player).damageSanity(2);
+                    getTorment(player).markSanityDamage();
                 }
             }
         }

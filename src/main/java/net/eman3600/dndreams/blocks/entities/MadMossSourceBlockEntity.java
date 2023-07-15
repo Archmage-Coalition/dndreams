@@ -21,7 +21,7 @@ public class MadMossSourceBlockEntity extends AbstractReplacementBlockEntity {
     private int maxShades = 4;
     private int shades = 0;
     private int nextCheckTicks = 20;
-    private int blocks = 40;
+    private int blocks = 100;
 
     private boolean initialSpread = true;
 
