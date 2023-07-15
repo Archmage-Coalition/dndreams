@@ -2,6 +2,7 @@ package net.eman3600.dndreams.recipes;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -80,7 +81,7 @@ public class SmokestackRecipe implements Recipe<Inventory> {
             Ingredient ingredient = Ingredient.fromJson(jsonElement);
             String string2 = JsonHelper.getString(jsonObject, "result");
             Identifier identifier2 = new Identifier(string2);
-            ItemStack itemStack = new ItemStack(Registry.ITEM.getOrEmpty(identifier2).orElseThrow(() -> new IllegalStateException("Item: " + string2 + " does not exist")));
+            ItemStack itemStack = new ItemStack(Registry.ITEM.getOrEmpty(identifier2).orElseThrow(() -> new JsonSyntaxException("Item: " + string2 + " does not exist")));
 
             return new SmokestackRecipe(identifier, ingredient, itemStack);
         }

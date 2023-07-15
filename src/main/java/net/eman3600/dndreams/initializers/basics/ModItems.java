@@ -151,8 +151,8 @@ public class ModItems {
     public static final Item DREAMWOOD_FUME = registerItem("dreamwood_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item SCULK_WOOD_FUME = registerItem("sculk_wood_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item JAPANESE_MAPLE_FUME = registerItem("japanese_maple_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item PRISTINE_FUME = registerItem("pristine_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item SELENE_FUME = registerItem("selene_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item HELIOS_FUME = registerItem("helios_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item EOS_FUME = registerItem("eos_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item STAR_FUME = registerItem("star_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 

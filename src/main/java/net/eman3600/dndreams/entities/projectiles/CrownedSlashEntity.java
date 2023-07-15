@@ -9,13 +9,13 @@ import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrownedSlashEntity extends BeamProjectileEntity {
-    public List<LivingEntity> victims = new ArrayList<>();
+    public List<Entity> victims = new ArrayList<>();
     public static final int DURATION = 4;
     public static final int DETAIL = 6;
     public static final float REACH = 3f;
@@ -127,18 +127,18 @@ public class CrownedSlashEntity extends BeamProjectileEntity {
                         Vec3d boxCenter = center.subtract(forward.multiply(k));
                         Box box = new Box(boxCenter, boxCenter).expand(0.5d);
 
-                        for (LivingEntity livingEntity : world.getNonSpectatingEntities(LivingEntity.class, box)) {
-                            if (livingEntity == getOwner() || !livingEntity.canHit() || isOnTeam(livingEntity) || livingEntity instanceof ArmorStandEntity && ((ArmorStandEntity) livingEntity).isMarker())
+                        for (Entity target : world.getNonSpectatingEntities(LivingEntity.class, box)) {
+                            if (target == getOwner() || !target.canHit() || isOnTeam(target))
                                 continue;
 
-                            if (!victims.contains(livingEntity)) {
-                                victims.add(livingEntity);
+                            if (!victims.contains(target)) {
+                                victims.add(target);
 
 
-                                livingEntity.timeUntilRegen = 1;
+                                target.timeUntilRegen = 1;
 
-                                livingEntity.takeKnockback(0.4f, MathHelper.sin(getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getYaw() * ((float) Math.PI / 180)));
-                                livingEntity.damage(getDataTracker().get(WICKED) ? AfflictionProjectileDamageSource.magic(this, getOwner()) : DamageSource.magic(this, getOwner()), (float) this.getDamage());
+                                if (target instanceof LivingEntity livingEntity) livingEntity.takeKnockback(0.4f, MathHelper.sin(getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getYaw() * ((float) Math.PI / 180)));
+                                target.damage(getDataTracker().get(WICKED) ? AfflictionProjectileDamageSource.magic(this, getOwner()) : DamageSource.magic(this, getOwner()), this.getDamage());
                             }
                         }
 
@@ -158,7 +158,7 @@ public class CrownedSlashEntity extends BeamProjectileEntity {
         }
     }
 
-    private boolean isOnTeam(LivingEntity entity) {
+    private boolean isOnTeam(Entity entity) {
         try {
             return getOwner().isTeammate(entity);
         } catch (NullPointerException e) {

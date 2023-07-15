@@ -13,9 +13,6 @@ public class GlowSparkParticle extends SpriteBillboardParticle {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
         this.velocityMultiplier = 0F;
-        this.x = xd;
-        this.y = yd;
-        this.z = zd;
         this.scale *= 1F;
         this.maxAge = 60;
         this.setSpriteForAge(spriteSet);
@@ -45,8 +42,8 @@ public class GlowSparkParticle extends SpriteBillboardParticle {
 
     @Override
     public void move(double dx, double dy, double dz) {
-        this.setBoundingBox(this.getBoundingBox().offset(dx, dy, dz));
-        this.repositionFromBoundingBox();
+//        this.setBoundingBox(this.getBoundingBox().offset(dx, dy, dz));
+//        this.repositionFromBoundingBox();
     }
 
     @Override

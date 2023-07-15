@@ -230,6 +230,9 @@ public class ModRegistries {
         StrippableBlockRegistry.register(ModBlocks.JAPANESE_MAPLE_WOOD, ModBlocks.STRIPPED_JAPANESE_MAPLE_WOOD);
         StrippableBlockRegistry.register(ModBlocks.JAPANESE_MAPLE_LOG, ModBlocks.STRIPPED_JAPANESE_MAPLE_LOG);
 
+        StrippableBlockRegistry.register(ModBlocks.PRISTINE_WOOD, ModBlocks.STRIPPED_PRISTINE_WOOD);
+        StrippableBlockRegistry.register(ModBlocks.PRISTINE_LOG, ModBlocks.STRIPPED_PRISTINE_LOG);
+
         StrippableBlockRegistry.register(ModBlocks.SELENE_WOOD, ModBlocks.SELENE_STRIPPED_WOOD);
         StrippableBlockRegistry.register(ModBlocks.SELENE_LOG, ModBlocks.SELENE_STRIPPED_LOG);
 

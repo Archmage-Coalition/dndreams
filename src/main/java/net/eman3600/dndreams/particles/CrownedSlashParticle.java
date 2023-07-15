@@ -12,9 +12,8 @@ public class CrownedSlashParticle extends SpriteBillboardParticle {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
         this.velocityMultiplier = 0F;
-//        this.x = xd;
-//        this.y = yd;
-//        this.z = zd;
+//        this.move(velocityX, velocityY, velocityZ);
+//        this.setVelocity(0, 0, 0);
         this.scale *= 0.75F;
         this.maxAge = 10;
         this.setSpriteForAge(spriteSet);

@@ -585,6 +585,71 @@ public class ModBlocks {
 
 
 
+    // Pristine Wood
+    public static final Block PRISTINE_LOG = registerBlock("pristine_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block PRISTINE_WOOD = registerBlock("pristine_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STRIPPED_PRISTINE_LOG = registerBlock("pristine_stripped_log",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block STRIPPED_PRISTINE_WOOD = registerBlock("pristine_stripped_wood",
+            new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block PRISTINE_PLANKS = registerBlock("pristine_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block PRISTINE_LEAVES = registerBlock("pristine_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
+                    .nonOpaque().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block PRISTINE_SAPLING = registerBlock("pristine_sapling",
+            new MarbleSaplingBlock(new PristineSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
+                    .nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    public static final Block PRISTINE_STAIRS = registerBlock("pristine_stairs",
+            new ModStairsBlock(PRISTINE_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block PRISTINE_SLAB = registerBlock("pristine_slab",
+            new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block PRISTINE_FENCE = registerBlock("pristine_fence",
+            new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block PRISTINE_FENCE_GATE = registerBlock("pristine_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
+                    .sounds(BlockSoundGroup.WOOD)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+
+
+
+
+
     // Selene Wood Logs
     public static final Block SELENE_LOG = registerBlock("selene_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)

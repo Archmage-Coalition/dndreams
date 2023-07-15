@@ -53,6 +53,14 @@ public class ModConfiguredFeatures {
                     new AcaciaFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0)),
                     new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> PRISTINE_TREE =
+            ConfiguredFeatures.register("pristine_tree", Feature.TREE,
+                    new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.PRISTINE_LOG),
+                            new StraightTrunkPlacer(5, 6, 3), BlockStateProvider.of(ModBlocks.PRISTINE_LEAVES),
+                            new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
+                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
+                            .dirtProvider(BlockStateProvider.of(ModBlocks.MARBLE)).ignoreVines().build());
+
 
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> HELIOS_TREE =
             ConfiguredFeatures.register("helios_tree", Feature.TREE,
@@ -149,6 +157,10 @@ public class ModConfiguredFeatures {
             PlacedFeatures.register("dreamwood_checked", DREAMWOOD_TREE,
                     PlacedFeatures.wouldSurvive(ModBlocks.DREAMWOOD_SAPLING));
 
+    public static final RegistryEntry<PlacedFeature> PRISTINE_CHECKED =
+            PlacedFeatures.register("pristine_checked", PRISTINE_TREE,
+                    PlacedFeatures.wouldSurvive(ModBlocks.PRISTINE_SAPLING));
+
     public static final RegistryEntry<PlacedFeature> EOS_CHECKED =
             PlacedFeatures.register("eos_checked", EOS_TREE,
                     PlacedFeatures.wouldSurvive(ModBlocks.EOS_SAPLING));
@@ -170,6 +182,11 @@ public class ModConfiguredFeatures {
             ConfiguredFeatures.register("dreamwood_spawn", Feature.RANDOM_SELECTOR,
                     new RandomFeatureConfig(List.of(new RandomFeatureEntry(DREAMWOOD_CHECKED, 0.5f)),
                             DREAMWOOD_CHECKED));
+
+    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> PRISTINE_SPAWN =
+            ConfiguredFeatures.register("pristine_spawn", Feature.RANDOM_SELECTOR,
+                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(PRISTINE_CHECKED, 0.5f)),
+                            PRISTINE_CHECKED));
 
     public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> EOS_SPAWN =
             ConfiguredFeatures.register("eos_spawn", Feature.RANDOM_SELECTOR,

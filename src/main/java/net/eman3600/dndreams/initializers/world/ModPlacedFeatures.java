@@ -22,6 +22,10 @@ public class ModPlacedFeatures {
             ModConfiguredFeatures.DREAMWOOD_SPAWN, VegetationPlacedFeatures.modifiers(
                     PlacedFeatures.createCountExtraModifier(0, 0.05f, 1)));
 
+    public static final RegistryEntry<PlacedFeature> PRISTINE_PLACED = PlacedFeatures.register("pristine_placed",
+            ModConfiguredFeatures.PRISTINE_SPAWN, VegetationPlacedFeatures.modifiers(
+                    PlacedFeatures.createCountExtraModifier(2, 0.25f, 1)));
+
     public static final RegistryEntry<PlacedFeature> EOS_PLACED = PlacedFeatures.register("eos_placed",
             ModConfiguredFeatures.EOS_SPAWN, VegetationPlacedFeatures.modifiers(
                     PlacedFeatures.createCountExtraModifier(2, 0.25f, 1)));
