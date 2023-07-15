@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.blocks;
+package net.eman3600.dndreams.blocks.spreadable;
 
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.minecraft.block.*;
