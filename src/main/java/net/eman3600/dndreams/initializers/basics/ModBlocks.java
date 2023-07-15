@@ -29,6 +29,8 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 
+import java.util.function.Function;
+
 public class ModBlocks {
 
     // Special Blocks
@@ -1284,23 +1286,7 @@ public class ModBlocks {
                     .strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(ModBlocks::never)
                     .nonOpaque()));
 
-    public static final Block MAD_MOSS = registerBlock("mad_moss",
-            new MadMossBlock(FabricBlockSettings.copyOf(Blocks.MOSS_BLOCK)
-                    .strength(4f, 1f)
-                    .mapColor(MapColor.PALE_PURPLE)
-                    .allowsSpawning(ModBlocks::never)
-                    .nonOpaque()));
-
-    public static final Block MAD_MOSS_SOURCE = registerBlock("mad_moss_source",
-            new MadMossSourceBlock(FabricBlockSettings.copyOf(Blocks.MOSS_BLOCK)
-                    .strength(8f)
-                    .mapColor(MapColor.PALE_PURPLE)
-                    .allowsSpawning(ModBlocks::never)
-                    .nonOpaque()),
-
-            new FabricItemSettings().group(ItemGroup.DECORATIONS));
-
-    public static final Block SHADE_MOSS = registerBlock("shade_moss",
+    public static final Block SHADE_MOSS = registerDreamBlock("shade_moss",
             new ShadeMossBlock(FabricBlockSettings.copyOf(Blocks.MOSS_BLOCK)
                     .strength(4f, 1f)
                     .mapColor(MapColor.PALE_PURPLE)),
@@ -1399,6 +1385,12 @@ public class ModBlocks {
 
     public static Block registerDreamBlock(String name, Block block, Item.Settings settings) {
         registerDreamBlockItem(name, block, settings);
+        return registerBlock(name, block);
+    }
+
+    public static Block registerBlock(String name, Block block, Function<Block, BlockItem> item) {
+        Registry.register(Registry.ITEM, new Identifier(Initializer.MODID, name),
+                item.apply(block));
         return registerBlock(name, block);
     }
 

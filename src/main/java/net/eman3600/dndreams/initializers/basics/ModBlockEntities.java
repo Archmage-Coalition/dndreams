@@ -22,8 +22,6 @@ public class ModBlockEntities {
     public static BlockEntityType<RefineryBlockEntity> REFINERY_ENTITY;
     public static BlockEntityType<RefinedCauldronBlockEntity> REFINED_CAULDRON_ENTITY;
     public static BlockEntityType<BonfireBlockEntity> BONFIRE_ENTITY;
-    public static BlockEntityType<MadMossBlockEntity> MAD_MOSS_ENTITY;
-    public static BlockEntityType<MadMossSourceBlockEntity> MAD_MOSS_SOURCE_ENTITY;
 
     public static void registerBlockEntities() {
 
@@ -58,9 +56,5 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(RefinedCauldronBlockEntity::new, ModBlocks.REFINED_CAULDRON).build());
         BONFIRE_ENTITY = registerEntity("bonfire",
                 FabricBlockEntityTypeBuilder.create(BonfireBlockEntity::new, ModBlocks.BONFIRE).build());
-        MAD_MOSS_ENTITY = registerEntity("mad_moss",
-                FabricBlockEntityTypeBuilder.create(MadMossBlockEntity::new, ModBlocks.MAD_MOSS).build());
-        MAD_MOSS_SOURCE_ENTITY = registerEntity("mad_moss_source",
-                FabricBlockEntityTypeBuilder.create(MadMossSourceBlockEntity::new, ModBlocks.MAD_MOSS_SOURCE).build());
     }
 }

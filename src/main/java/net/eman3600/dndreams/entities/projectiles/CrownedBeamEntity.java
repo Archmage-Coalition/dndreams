@@ -110,7 +110,6 @@ public class CrownedBeamEntity extends BeamProjectileEntity {
                 }
 
                 Vec3d forward = AirSwingItem.rayZVector(this.getYaw(), this.getPitch());
-                System.out.println(forward);
                 setVelocity(forward.multiply(SPEED));
                 velocityDirty = true;
 

@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
 import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
+import net.eman3600.dndreams.entities.spawners.ShadeSourceSpawner;
 import net.eman3600.dndreams.entities.spawners.TormentorSpawner;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
@@ -99,6 +100,7 @@ public abstract class ServerWorldMixin extends World implements StructureWorldAc
         // New Spawners Added Here
         if (getRegistryKey() != ModDimensions.GATEWAY_DIMENSION_KEY) {
             tempList.add(new TormentorSpawner());
+            tempList.add(new ShadeSourceSpawner());
         }
 
 

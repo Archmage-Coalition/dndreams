@@ -2,7 +2,6 @@ package net.eman3600.dndreams.entities.misc;
 
 import net.eman3600.dndreams.blocks.spreadable.ShadeMossBlock;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
-import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
@@ -63,6 +62,8 @@ public class ShadeSourceEntity extends Entity {
     @Override
     public void tick() {
         super.tick();
+
+        if (world.isClient) return;
 
         boolean shouldRecede = true;
         Box box = SEARCH_BOX.offset(getPos());
@@ -126,7 +127,7 @@ public class ShadeSourceEntity extends Entity {
 
                             for (Direction direction: Direction.values()) {
 
-                                if (world.random.nextInt(12) == 0) break;
+                                if (world.random.nextInt(16) == 0) break;
 
                                 BlockPos pos = previous.pos.offset(direction);
                                 pos = findExposed(pos);
@@ -352,7 +353,7 @@ public class ShadeSourceEntity extends Entity {
         return PistonBehavior.IGNORE;
     }
 
-    public static boolean isValidNaturalSpawn(EntityType<? extends TormentorEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+    public static boolean isValidNaturalSpawn(EntityType<? extends ShadeSourceEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
         BlockPos test = pos.down();
         return !world.getBlockState(test).isAir() && world.getFluidState(test).isEmpty() && isExposed(world, test);
     }

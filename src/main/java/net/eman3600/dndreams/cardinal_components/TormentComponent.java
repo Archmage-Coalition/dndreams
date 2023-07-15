@@ -4,6 +4,7 @@ import dev.emi.trinkets.api.TrinketsApi;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
+import net.eman3600.dndreams.entities.misc.ShadeSourceEntity;
 import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
@@ -349,6 +350,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         current += world.getNonSpectatingEntities(TormentorEntity.class, searchRegion).size();
 
         return current < allowed;
+    }
+
+    public static boolean canSpawnShade(ServerWorld world, BlockPos pos) {
+        Box searchRegion = Box.from(Vec3d.of(pos)).expand(80, 70, 80);
+
+        return world.getNonSpectatingEntities(ShadeSourceEntity.class, searchRegion).isEmpty();
     }
 
     public static boolean canSpawnSanityMob(ServerWorld world, BlockPos pos, Class<Entity> type, Function<TormentComponent, Integer> maxAllowed) {
