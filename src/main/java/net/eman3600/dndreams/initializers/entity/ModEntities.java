@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.initializers.entity;
 
-import net.eman3600.dndreams.entities.misc.ShadeSourceEntity;
+import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
 import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
 import net.eman3600.dndreams.entities.mobs.TormentorEntity;
@@ -23,9 +23,9 @@ import static net.eman3600.dndreams.entities.mobs.TormentorEntity.createTormento
 import static net.eman3600.dndreams.entities.mobs.WardenRagdollEntity.createWardenRagdollAttributes;
 
 public class ModEntities {
-    public static final EntityType<ShadeSourceEntity> SHADE_SOURCE = Registry.register(
-            Registry.ENTITY_TYPE, new Identifier(MODID, "shade_source"),
-            FabricEntityTypeBuilder.<ShadeSourceEntity>create(SpawnGroup.MISC, ShadeSourceEntity::new)
+    public static final EntityType<ShadeRiftEntity> SHADE_RIFT = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "shade_rift"),
+            FabricEntityTypeBuilder.<ShadeRiftEntity>create(SpawnGroup.MISC, ShadeRiftEntity::new)
                     .dimensions(EntityDimensions.fixed(0f, 0f))
                     .build()
     );

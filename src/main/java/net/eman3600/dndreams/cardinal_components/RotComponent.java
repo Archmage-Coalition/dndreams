@@ -26,8 +26,10 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
     private final LivingEntity entity;
     private int rot = 0;
     private int rotTicks = 0;
+    private int slowTicks = 0;
     private float trueHp = 20.0f;
     private boolean dirty = false;
+
     public static final UUID rotId = new UUID(0xade4f29f0a684049L, 0xbcb4bb8d300edac8L);
 
     public RotComponent(LivingEntity entity) {
@@ -175,5 +177,14 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
 
     public static boolean hasRot(Entity entity) {
         return EntityComponents.ROT.isProvidedBy(entity) && EntityComponents.ROT.get(entity).getRot() > 0;
+    }
+
+    public int getSlowTicks() {
+        return slowTicks;
+    }
+
+    public void setSlowTicks(int slowTicks) {
+        this.slowTicks = slowTicks;
+        markDirty();
     }
 }

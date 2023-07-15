@@ -123,7 +123,7 @@ ClientInitializer implements ClientModInitializer {
         ModParticles.registerParticleFactories();
 
 
-        EntityRendererRegistry.register(ModEntities.SHADE_SOURCE, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SHADE_RIFT, EmptyEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.CROWNED_SLASH, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CROWNED_BEAM, EmptyEntityRenderer::new);

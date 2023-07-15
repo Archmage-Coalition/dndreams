@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.blocks.spreadable;
 
-import net.eman3600.dndreams.entities.misc.ShadeSourceEntity;
+import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateManager;
@@ -33,7 +33,7 @@ public class ShadeMossBlock extends Block {
         if (state.get(TORMENTED)) {
 
             Box box = SEARCH_BOX.offset(pos);
-            for (ShadeSourceEntity entity: world.getNonSpectatingEntities(ShadeSourceEntity.class, box)) {
+            for (ShadeRiftEntity entity: world.getNonSpectatingEntities(ShadeRiftEntity.class, box)) {
 
                 entity.updateMoss();
             }

@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.entities.spawners;
 
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
-import net.eman3600.dndreams.entities.misc.ShadeSourceEntity;
+import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.minecraft.entity.SpawnReason;
@@ -55,7 +55,7 @@ public class ShadeSourceSpawner implements Spawner {
 
                 if (attemptPos != null && TormentComponent.canSpawnShade(world, attemptPos) && world.getNonSpectatingEntities(PlayerEntity.class, new Box(attemptPos.getX() - PLAYER_DISTANCE, attemptPos.getY() - PLAYER_DISTANCE, attemptPos.getZ() - PLAYER_DISTANCE, attemptPos.getX() + PLAYER_DISTANCE, attemptPos.getY() + PLAYER_DISTANCE, attemptPos.getZ() + PLAYER_DISTANCE)).size() <= 0) {
 
-                    ShadeSourceEntity source = ModEntities.SHADE_SOURCE.create(world);
+                    ShadeRiftEntity source = ModEntities.SHADE_RIFT.create(world);
                     source.refreshPositionAndAngles(attemptPos, 0, 0);
                     world.spawnEntityAndPassengers(source);
                     spawns++;
@@ -81,7 +81,7 @@ public class ShadeSourceSpawner implements Spawner {
         if (choice.getY() >= world.getTopY() || iterationsLeft <= 0) {
             cooldown -= 80;
             return null;
-        } else if (!SpawnHelper.isClearForSpawn(world, choice, world.getBlockState(choice), world.getFluidState(choice), ModEntities.SHADE_SOURCE) || !ShadeSourceEntity.isValidNaturalSpawn(ModEntities.SHADE_SOURCE, world, SpawnReason.NATURAL, choice, world.random)) {
+        } else if (!SpawnHelper.isClearForSpawn(world, choice, world.getBlockState(choice), world.getFluidState(choice), ModEntities.SHADE_RIFT) || !ShadeRiftEntity.isValidNaturalSpawn(ModEntities.SHADE_RIFT, world, SpawnReason.NATURAL, choice, world.random)) {
             return findValidSpawn(world, choice.add(0, world.isAir(choice) ? -1 : 1, 0), iterationsLeft - 1);
         }
 

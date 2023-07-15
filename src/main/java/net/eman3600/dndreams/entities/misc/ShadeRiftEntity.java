@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShadeSourceEntity extends Entity {
+public class ShadeRiftEntity extends Entity {
 
     public static final int SEARCH_RANGE = 48;
     private static final Box SEARCH_BOX = new Box(-SEARCH_RANGE,-SEARCH_RANGE,-SEARCH_RANGE,SEARCH_RANGE,SEARCH_RANGE,SEARCH_RANGE);
@@ -40,23 +40,23 @@ public class ShadeSourceEntity extends Entity {
     public static final int TOUCH_RANGE = 2;
     public static final List<BlockPos> TOUCH_OFFSETS = BlockPos.stream(-TOUCH_RANGE, -TOUCH_RANGE, -TOUCH_RANGE, TOUCH_RANGE, TOUCH_RANGE, TOUCH_RANGE).map(BlockPos::toImmutable).toList();
 
-    public static TrackedData<Boolean> RECEDING = DataTracker.registerData(ShadeSourceEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    public static TrackedData<Boolean> FIRST_SPREAD = DataTracker.registerData(ShadeSourceEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    public static TrackedData<Integer> BLOCKS_LEFT = DataTracker.registerData(ShadeSourceEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    public static TrackedData<Integer> SHADES = DataTracker.registerData(ShadeSourceEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    public static TrackedData<Integer> MAX_SHADES = DataTracker.registerData(ShadeSourceEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    public static TrackedData<Integer> DELAY_TICKS = DataTracker.registerData(ShadeSourceEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public static TrackedData<Boolean> RECEDING = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static TrackedData<Boolean> FIRST_SPREAD = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static TrackedData<Integer> BLOCKS_LEFT = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public static TrackedData<Integer> SHADES = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public static TrackedData<Integer> MAX_SHADES = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public static TrackedData<Integer> DELAY_TICKS = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     private List<List<ReplacedState>> replacedStates = new ArrayList<>();
 
-    public ShadeSourceEntity(EntityType<?> type, World world) {
+    public ShadeRiftEntity(EntityType<?> type, World world) {
         super(type, world);
         noClip = true;
         getDataTracker().set(BLOCKS_LEFT, world.random.nextBetween(200, 400));
     }
 
-    public ShadeSourceEntity(World world) {
-        this(ModEntities.SHADE_SOURCE, world);
+    public ShadeRiftEntity(World world) {
+        this(ModEntities.SHADE_RIFT, world);
     }
 
     @Override
@@ -123,11 +123,12 @@ public class ShadeSourceEntity extends Entity {
                     } else if (replacedStates.size() > 0) {
                         List<ReplacedState> previousChunk = replacedStates.get(replacedStates.size() - 1);
 
-                        for (ReplacedState previous: previousChunk) {
+                        if (previousChunk.isEmpty()) dataTracker.set(BLOCKS_LEFT, 0);
+                        else for (ReplacedState previous: previousChunk) {
 
                             for (Direction direction: Direction.values()) {
 
-                                if (world.random.nextInt(16) == 0) break;
+                                if (replacedStates.size() > 3 && world.random.nextInt(75) < replacedStates.size()) break;
 
                                 BlockPos pos = previous.pos.offset(direction);
                                 pos = findExposed(pos);
@@ -353,7 +354,7 @@ public class ShadeSourceEntity extends Entity {
         return PistonBehavior.IGNORE;
     }
 
-    public static boolean isValidNaturalSpawn(EntityType<? extends ShadeSourceEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+    public static boolean isValidNaturalSpawn(EntityType<? extends ShadeRiftEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
         BlockPos test = pos.down();
         return !world.getBlockState(test).isAir() && world.getFluidState(test).isEmpty() && isExposed(world, test);
     }
