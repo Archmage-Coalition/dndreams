@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.entities.misc;
 
+import net.eman3600.dndreams.blocks.crop.ShadeSaplingBlock;
 import net.eman3600.dndreams.blocks.spreadable.ShadeMossBlock;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
@@ -8,6 +9,7 @@ import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -21,6 +23,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
@@ -99,7 +102,9 @@ public class ShadeRiftEntity extends Entity {
 
                     List<ReplacedState> previousChunk = replacedStates.get(replacedStates.size() - 1);
 
-                    for (ReplacedState state: previousChunk) {
+                    for (int i = previousChunk.size() - 1; i >= 0; i--) {
+                        ReplacedState state = previousChunk.get(i);
+
                         revertState(state);
                         receiveBlock();
                     }
@@ -274,6 +279,31 @@ public class ShadeRiftEntity extends Entity {
         BlockState state = world.getBlockState(pos);
         world.setBlockState(pos, ModBlocks.SHADE_MOSS.getDefaultState().with(ShadeMossBlock.TORMENTED, true), Block.NOTIFY_LISTENERS);
 
+        BlockPos surfacePos = pos.up();
+        BlockState surfaceState = world.getBlockState(surfacePos);
+
+        if (surfaceState.isOf(Blocks.GRASS)) {
+            world.setBlockState(surfacePos, ModBlocks.SHADE_GRASS.getDefaultState(), Block.NOTIFY_LISTENERS);
+        } else if (surfaceState.isOf(Blocks.FERN)) {
+            world.setBlockState(surfacePos, ModBlocks.SHADE_FERN.getDefaultState(), Block.NOTIFY_LISTENERS);
+        } else if (surfaceState.isAir()) {
+
+            int i = world.random.nextInt(50);
+
+            if (i >= 25) {
+                world.setBlockState(surfacePos, ModBlocks.SHADE_WEED.getDefaultState(), Block.NOTIFY_LISTENERS);
+            } else if (i <= 1) {
+                world.setBlockState(surfacePos, ModBlocks.SHADE_BUSH.getDefaultState(), Block.NOTIFY_LISTENERS);
+            } else if (i == 2) {
+                BlockState bush = ModBlocks.SHADE_BUSH.getDefaultState();
+                ShadeSaplingBlock sapling = (ShadeSaplingBlock)ModBlocks.SHADE_BUSH;
+
+                if (sapling.canGrow(world, world.random, surfacePos, bush)) {
+                    sapling.grow((ServerWorld) world, world.random, surfacePos, bush);
+                }
+            }
+        }
+
         return new ReplacedState(pos, state);
     }
 
@@ -289,6 +319,17 @@ public class ShadeRiftEntity extends Entity {
     }
 
     private void revertState(ReplacedState state) {
+
+        BlockPos surfacePos = state.pos.up();
+        BlockState surfaceState = world.getBlockState(surfacePos);
+
+        if (surfaceState.isOf(ModBlocks.SHADE_GRASS)) {
+            world.setBlockState(surfacePos, Blocks.GRASS.getDefaultState(), Block.NOTIFY_LISTENERS);
+        } else if (surfaceState.isOf(ModBlocks.SHADE_FERN)) {
+            world.setBlockState(surfacePos, Blocks.FERN.getDefaultState(), Block.NOTIFY_LISTENERS);
+        } else if (surfaceState.isOf(ModBlocks.SHADE_WEED) || surfaceState.isOf(ModBlocks.SHADE_BUSH)) {
+            world.removeBlock(surfacePos, false);
+        }
 
         world.setBlockState(state.pos, state.state, Block.NOTIFY_ALL);
     }

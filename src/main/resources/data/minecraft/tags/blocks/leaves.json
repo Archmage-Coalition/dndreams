@@ -6,9 +6,10 @@
     "dndreams:sculk_wood_leaves",
     "dndreams:japanese_maple_leaves",
     "dndreams:pristine_leaves",
-	"dndreams:selene_leaves",
-	"dndreams:helios_leaves",
-	"dndreams:eos_leaves",
-    "dndreams:sculk_light"
+	"dndreams:shade_leaves",
+    "dndreams:sculk_light",
+	"dndreams:haven_leaves",
+	"dndreams:pine_leaves",
+	"dndreams:star_leaves"
   ]
 }

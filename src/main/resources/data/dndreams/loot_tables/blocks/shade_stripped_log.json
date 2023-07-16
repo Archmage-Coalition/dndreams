@@ -1,0 +1,1 @@
+{"pools":[{"entries":[{"name":"dndreams:shade_stripped_log","type":"minecraft:item"}],"rolls":1.0,"conditions":[{"condition":"minecraft:survives_explosion"}],"bonus_rolls":0.0}],"type":"minecraft:block"}

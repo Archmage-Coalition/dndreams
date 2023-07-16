@@ -3,6 +3,8 @@
   "values": [
     "dndreams:shade_moss",
 	"#dndreams:substantial",
+	"#dndreams:shade",
+	"dndreams:shade_leaves",
 	"minecraft:farmland",
 	"#minecraft:soul_fire_base_blocks"
   ]

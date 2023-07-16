@@ -26,25 +26,7 @@ public class ModPlacedFeatures {
             ModConfiguredFeatures.PRISTINE_SPAWN, VegetationPlacedFeatures.modifiers(
                     PlacedFeatures.createCountExtraModifier(2, 0.25f, 1)));
 
-    public static final RegistryEntry<PlacedFeature> EOS_PLACED = PlacedFeatures.register("eos_placed",
-            ModConfiguredFeatures.EOS_SPAWN, VegetationPlacedFeatures.modifiers(
-                    PlacedFeatures.createCountExtraModifier(2, 0.25f, 1)));
 
-    public static final RegistryEntry<PlacedFeature> HELIOS_PLACED = PlacedFeatures.register("helios_placed",
-            ModConfiguredFeatures.HELIOS_SPAWN, VegetationPlacedFeatures.modifiers(
-                    PlacedFeatures.createCountExtraModifier(2, 0.25f, 1)));
-
-    public static final RegistryEntry<PlacedFeature> SELENE_PLACED = PlacedFeatures.register("selene_placed",
-            ModConfiguredFeatures.SELENE_SPAWN, VegetationPlacedFeatures.modifiers(
-                    PlacedFeatures.createCountExtraModifier(2, 0.25f, 1)));
-
-
-
-    public static final RegistryEntry<PlacedFeature> HELIOS_GRASS = PlacedFeatures.register("patch_helios_grass", ModConfiguredFeatures.HELIOS_GRASS, VegetationPlacedFeatures.modifiers(2));
-
-    public static final RegistryEntry<PlacedFeature> EOS_GRASS = PlacedFeatures.register("patch_eos_grass", ModConfiguredFeatures.EOS_GRASS, VegetationPlacedFeatures.modifiers(2));
-
-    public static final RegistryEntry<PlacedFeature> SELENE_GRASS = PlacedFeatures.register("patch_selene_grass", ModConfiguredFeatures.SELENE_GRASS, VegetationPlacedFeatures.modifiers(2));
 
     public static final RegistryEntry<PlacedFeature> GOLDEN_GRASS = PlacedFeatures.register("patch_golden_grass", ModConfiguredFeatures.GOLDEN_GRASS, VegetationPlacedFeatures.modifiers(7));
 

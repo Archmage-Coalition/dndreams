@@ -15,6 +15,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
@@ -25,7 +26,7 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
 
     private final LivingEntity entity;
     private int rot = 0;
-    private int rotTicks = 0;
+    private float rotTicks = 0;
     private int slowTicks = 0;
     private float trueHp = 20.0f;
     private boolean dirty = false;
@@ -47,10 +48,16 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
                 entity.setAbsorptionAmount(0);
                 if (entity.hasStatusEffect(StatusEffects.ABSORPTION)) entity.removeStatusEffect(StatusEffects.ABSORPTION);
             } else if (rotTicks > 0) {
-                rotTicks--;
-                markDirty();
+                float cleansing = getPassiveCleansing();
+                if (cleansing > 0) {
+                    rotTicks -= cleansing;
+                    markDirty();
+                } else if (rotTicks < 10) {
+                    rotTicks = 10;
+                    markDirty();
+                }
             } else if (shouldCleanseRot()) {
-                rotTicks = 10;
+                rotTicks = 10f;
                 rot--;
                 updateRot();
             }
@@ -75,7 +82,7 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
     @Override
     public void readFromNbt(NbtCompound tag) {
         rot = tag.getInt("rot");
-        rotTicks = tag.getInt("rot_ticks");
+        rotTicks = tag.getFloat("rot_ticks");
         trueHp = tag.getFloat("true_hp");
     }
 
@@ -83,7 +90,7 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
     public void writeToNbt(NbtCompound tag) {
 
         tag.putInt("rot", rot);
-        tag.putInt("rot_ticks", rotTicks);
+        tag.putFloat("rot_ticks", rotTicks);
         trueHp = entity.getMaxHealth();
         tag.putFloat("true_hp", trueHp);
     }
@@ -139,10 +146,21 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
     }
 
     public boolean shouldCleanseRot() {
-        if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).getSanityDamage() > 0.1f) return false;
-        if (entity.world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) return false;
-        if (entity.world.getRegistryKey() == World.END && entity.world.getScoreboard() != null && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain()) return true;
-        return entity.world.getLightLevel(LightType.SKY, entity.getBlockPos()) >= 12 && !getBloodMoonComponent().isBloodMoon();
+        return getPassiveCleansing() > 0;
+    }
+
+    public float getPassiveCleansing() {
+
+        if (rotTicks >= 11) return 1;
+        if (entity.world instanceof ServerWorld server && TormentComponent.shouldShroud(server, entity.getBlockPos())) return 0;
+        if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).getSanityDamage() > 0.1f) return 0;
+        if (entity.world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY || entity.world.getRegistryKey() == ModDimensions.GATEWAY_DIMENSION_KEY) return 0;
+        if (getBloodMoonComponent().isBloodMoon()) return 0;
+        if (entity.world.getRegistryKey() == World.END && entity.world.getScoreboard() != null) return WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain() ? 1 : 0;
+        if (entity.world.getRegistryKey() == World.NETHER) return 0.05f;
+        if (entity.world.getLightLevel(LightType.SKY, entity.getBlockPos()) >= 12) return entity.world.isDay() ? 1 : 0.05f;
+
+        return 0.01f;
     }
 
     public void updateRot() {

@@ -7,7 +7,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.World;
 
 public class ShadeMossBlock extends Block {
 
@@ -29,8 +29,9 @@ public class ShadeMossBlock extends Block {
     }
 
     @Override
-    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
-        if (state.get(TORMENTED)) {
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+
+        if (state.get(TORMENTED) && !moved) {
 
             Box box = SEARCH_BOX.offset(pos);
             for (ShadeRiftEntity entity: world.getNonSpectatingEntities(ShadeRiftEntity.class, box)) {
@@ -39,6 +40,6 @@ public class ShadeMossBlock extends Block {
             }
         }
 
-        super.onBroken(world, pos, state);
+        super.onStateReplaced(state, world, pos, newState, moved);
     }
 }

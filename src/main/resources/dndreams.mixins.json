@@ -48,6 +48,7 @@
     "LivingEntityMixin",
     "MagmaBlockMixin",
     "MobEntityMixin",
+    "PlantBlockMixin",
     "PlayerEntityMixin",
     "RocketItemMixin",
     "SculkShriekerBlockEntityMixin",

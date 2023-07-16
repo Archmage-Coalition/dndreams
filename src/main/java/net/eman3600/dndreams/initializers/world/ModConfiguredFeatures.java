@@ -2,18 +2,22 @@ package net.eman3600.dndreams.initializers.world;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.ThreeLayersFeatureSize;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
-import net.minecraft.world.gen.foliage.DarkOakFoliagePlacer;
+import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
 import net.minecraft.world.gen.foliage.SpruceFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.trunk.DarkOakTrunkPlacer;
+import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
+import net.minecraft.world.gen.trunk.BendingTrunkPlacer;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
@@ -61,30 +65,13 @@ public class ModConfiguredFeatures {
                             new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
                             .dirtProvider(BlockStateProvider.of(ModBlocks.MARBLE)).ignoreVines().build());
 
-
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> HELIOS_TREE =
-            ConfiguredFeatures.register("helios_tree", Feature.TREE,
-                    new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.HELIOS_LOG),
-                            new DarkOakTrunkPlacer(6, 2, 1), BlockStateProvider.of(ModBlocks.HELIOS_LEAVES),
-                            new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
-                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
-                            .dirtProvider(BlockStateProvider.of(Blocks.END_STONE)).ignoreVines().build());
-
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> EOS_TREE =
-            ConfiguredFeatures.register("eos_tree", Feature.TREE,
-                    new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.EOS_LOG),
-                            new DarkOakTrunkPlacer(6, 2, 1), BlockStateProvider.of(ModBlocks.EOS_LEAVES),
-                            new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
-                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
-                            .dirtProvider(BlockStateProvider.of(Blocks.END_STONE)).ignoreVines().build());
-
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> SELENE_TREE =
-            ConfiguredFeatures.register("selene_tree", Feature.TREE,
-                    new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.SELENE_LOG),
-                            new DarkOakTrunkPlacer(6, 2, 1), BlockStateProvider.of(ModBlocks.SELENE_LEAVES),
-                            new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
-                            new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
-                            .dirtProvider(BlockStateProvider.of(Blocks.END_STONE)).ignoreVines().build());
+    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> SHADE_TREE =
+            ConfiguredFeatures.register("shade_tree", Feature.TREE,
+                    new TreeFeatureConfig.Builder(BlockStateProvider.of(ModBlocks.SHADE_LOG),
+                            new BendingTrunkPlacer(4, 2, 0, 3, UniformIntProvider.create(1, 2)),
+                            new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(ModBlocks.SHADE_LEAVES.getDefaultState(), 1)),
+                            new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(2), 50),
+                            new TwoLayersFeatureSize(1, 0, 1)).dirtProvider(BlockStateProvider.of(ModBlocks.SHADE_MOSS)).forceDirt().build());
 
 
 
@@ -114,21 +101,6 @@ public class ModConfiguredFeatures {
 
 
 
-
-    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> HELIOS_GRASS =
-            ConfiguredFeatures.register("helios_grass", Feature.RANDOM_PATCH,
-                    ConfiguredFeatures.createRandomPatchFeatureConfig(32, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.HELIOS_GRASS)))));
-
-    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> EOS_GRASS =
-            ConfiguredFeatures.register("eos_grass", Feature.RANDOM_PATCH,
-                    ConfiguredFeatures.createRandomPatchFeatureConfig(32, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.EOS_GRASS)))));
-
-    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> SELENE_GRASS =
-            ConfiguredFeatures.register("selene_grass", Feature.RANDOM_PATCH,
-                    ConfiguredFeatures.createRandomPatchFeatureConfig(32, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.SELENE_GRASS)))));
 
     public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> GOLDEN_GRASS =
             ConfiguredFeatures.register("golden_grass", Feature.RANDOM_PATCH,
@@ -161,18 +133,6 @@ public class ModConfiguredFeatures {
             PlacedFeatures.register("pristine_checked", PRISTINE_TREE,
                     PlacedFeatures.wouldSurvive(ModBlocks.PRISTINE_SAPLING));
 
-    public static final RegistryEntry<PlacedFeature> EOS_CHECKED =
-            PlacedFeatures.register("eos_checked", EOS_TREE,
-                    PlacedFeatures.wouldSurvive(ModBlocks.EOS_SAPLING));
-
-    public static final RegistryEntry<PlacedFeature> HELIOS_CHECKED =
-            PlacedFeatures.register("helios_checked", HELIOS_TREE,
-                    PlacedFeatures.wouldSurvive(ModBlocks.HELIOS_SAPLING));
-
-    public static final RegistryEntry<PlacedFeature> SELENE_CHECKED =
-            PlacedFeatures.register("selene_checked", SELENE_TREE,
-                    PlacedFeatures.wouldSurvive(ModBlocks.SELENE_SAPLING));
-
 
 
 
@@ -187,21 +147,6 @@ public class ModConfiguredFeatures {
             ConfiguredFeatures.register("pristine_spawn", Feature.RANDOM_SELECTOR,
                     new RandomFeatureConfig(List.of(new RandomFeatureEntry(PRISTINE_CHECKED, 0.5f)),
                             PRISTINE_CHECKED));
-
-    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> EOS_SPAWN =
-            ConfiguredFeatures.register("eos_spawn", Feature.RANDOM_SELECTOR,
-                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(EOS_CHECKED, 0.5f)),
-                            EOS_CHECKED));
-
-    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> HELIOS_SPAWN =
-            ConfiguredFeatures.register("helios_spawn", Feature.RANDOM_SELECTOR,
-                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(HELIOS_CHECKED, 0.5f)),
-                            HELIOS_CHECKED));
-
-    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> SELENE_SPAWN =
-            ConfiguredFeatures.register("selene_spawn", Feature.RANDOM_SELECTOR,
-                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(SELENE_CHECKED, 0.5f)),
-                            SELENE_CHECKED));
 
 
 

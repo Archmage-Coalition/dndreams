@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#dndreams:sculk_wood_logs"
+    "#dndreams:sculk_wood_logs",
     "#dndreams:pristine_logs",
+	"#dndreams:shade_logs"
   ]
 }

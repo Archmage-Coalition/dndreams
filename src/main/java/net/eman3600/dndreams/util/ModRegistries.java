@@ -133,22 +133,14 @@ public class ModRegistries {
         MutandisItem.registerMutable("crop", ModBlocks.LOTUS);
 
 
-        MutandisExtremisItem.registerMutable(Blocks.SCULK_SENSOR);
-        MutandisExtremisItem.registerMutable(Blocks.SCULK_SHRIEKER);
-        MutandisExtremisItem.registerMutable(Blocks.SCULK_CATALYST);
-
         MutandisExtremisItem.registerMutable(Blocks.CRIMSON_FUNGUS);
         MutandisExtremisItem.registerMutable(Blocks.WARPED_FUNGUS);
         MutandisExtremisItem.registerMutable(Blocks.CRIMSON_ROOTS);
         MutandisExtremisItem.registerMutable(Blocks.WARPED_ROOTS);
         MutandisExtremisItem.registerMutable(Blocks.NETHER_SPROUTS);
 
-        MutandisExtremisItem.registerMutable(ModBlocks.EOS_GRASS);
-        MutandisExtremisItem.registerMutable(ModBlocks.SELENE_GRASS);
-        MutandisExtremisItem.registerMutable(ModBlocks.HELIOS_GRASS);
-        MutandisExtremisItem.registerMutable(ModBlocks.EOS_SAPLING);
-        MutandisExtremisItem.registerMutable(ModBlocks.SELENE_SAPLING);
-        MutandisExtremisItem.registerMutable(ModBlocks.HELIOS_SAPLING);
+        MutandisExtremisItem.registerMutable(ModBlocks.GOLDEN_GRASS);
+        MutandisExtremisItem.registerMutable(ModBlocks.PRISTINE_SAPLING);
 
         MutandisExtremisItem.registerMutable(Blocks.NETHER_WART);
         MutandisExtremisItem.registerMutable(Blocks.SUGAR_CANE);
@@ -233,14 +225,8 @@ public class ModRegistries {
         StrippableBlockRegistry.register(ModBlocks.PRISTINE_WOOD, ModBlocks.STRIPPED_PRISTINE_WOOD);
         StrippableBlockRegistry.register(ModBlocks.PRISTINE_LOG, ModBlocks.STRIPPED_PRISTINE_LOG);
 
-        StrippableBlockRegistry.register(ModBlocks.SELENE_WOOD, ModBlocks.SELENE_STRIPPED_WOOD);
-        StrippableBlockRegistry.register(ModBlocks.SELENE_LOG, ModBlocks.SELENE_STRIPPED_LOG);
-
-        StrippableBlockRegistry.register(ModBlocks.HELIOS_WOOD, ModBlocks.HELIOS_STRIPPED_WOOD);
-        StrippableBlockRegistry.register(ModBlocks.HELIOS_LOG, ModBlocks.HELIOS_STRIPPED_LOG);
-
-        StrippableBlockRegistry.register(ModBlocks.EOS_WOOD, ModBlocks.EOS_STRIPPED_WOOD);
-        StrippableBlockRegistry.register(ModBlocks.EOS_LOG, ModBlocks.EOS_STRIPPED_LOG);
+        StrippableBlockRegistry.register(ModBlocks.SHADE_WOOD, ModBlocks.STRIPPED_SHADE_WOOD);
+        StrippableBlockRegistry.register(ModBlocks.SHADE_LOG, ModBlocks.STRIPPED_SHADE_LOG);
 
         StrippableBlockRegistry.register(ModBlocks.HAVEN_WOOD, ModBlocks.HAVEN_STRIPPED_WOOD);
         StrippableBlockRegistry.register(ModBlocks.HAVEN_LOG, ModBlocks.HAVEN_STRIPPED_LOG);
@@ -283,36 +269,6 @@ public class ModRegistries {
         registry.add(ModBlocks.JAPANESE_MAPLE_PLANKS, 5, 10);
         registry.add(ModBlocks.JAPANESE_MAPLE_SLAB, 5, 10);
         registry.add(ModBlocks.JAPANESE_MAPLE_LEAVES, 30, 60);
-
-
-        registry.add(ModBlocks.SELENE_LOG, 5, 5);
-        registry.add(ModBlocks.SELENE_WOOD, 5, 5);
-        registry.add(ModBlocks.SELENE_STRIPPED_LOG, 5, 5);
-        registry.add(ModBlocks.SELENE_STRIPPED_WOOD, 5, 5);
-
-        registry.add(ModBlocks.SELENE_PLANKS, 5, 10);
-        registry.add(ModBlocks.SELENE_SLAB, 5, 10);
-        registry.add(ModBlocks.SELENE_LEAVES, 30, 60);
-
-
-        registry.add(ModBlocks.HELIOS_LOG, 10, 10);
-        registry.add(ModBlocks.HELIOS_WOOD, 10, 10);
-        registry.add(ModBlocks.HELIOS_STRIPPED_LOG, 10, 10);
-        registry.add(ModBlocks.HELIOS_STRIPPED_WOOD, 10, 10);
-
-        registry.add(ModBlocks.HELIOS_PLANKS, 10, 20);
-        registry.add(ModBlocks.HELIOS_SLAB, 10, 20);
-        registry.add(ModBlocks.HELIOS_LEAVES, 60, 120);
-
-
-        registry.add(ModBlocks.EOS_LOG, 5, 5);
-        registry.add(ModBlocks.EOS_WOOD, 5, 5);
-        registry.add(ModBlocks.EOS_STRIPPED_LOG, 5, 5);
-        registry.add(ModBlocks.EOS_STRIPPED_WOOD, 5, 5);
-
-        registry.add(ModBlocks.EOS_SLAB, 5, 10);
-        registry.add(ModBlocks.EOS_PLANKS, 5, 10);
-        registry.add(ModBlocks.EOS_LEAVES, 30, 60);
 
 
         registry.add(ModBlocks.HAVEN_LOG, 5, 5);

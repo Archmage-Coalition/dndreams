@@ -37,9 +37,6 @@ public class ModBiomes {
     public static final List<BCLBiome> BIOMES_CAVE = Lists.newArrayList();
 
     // End Biomes
-    public static final EndBiome SELENE_BIOME = registerEndBiome(new SeleneBiome(), BiomeType.LAND);
-    public static final EndBiome EOS_BIOME = registerEndBiome(new EosBiome(), BiomeType.LAND);
-    public static final EndBiome HELIOS_BIOME = registerEndBiome(new HeliosBiome(), BiomeType.LAND);
     public static final EndBiome MARBLE_GARDEN_BIOME = registerEndBiome(new MarbleGardenBiome(), BiomeType.LAND);
 
 
