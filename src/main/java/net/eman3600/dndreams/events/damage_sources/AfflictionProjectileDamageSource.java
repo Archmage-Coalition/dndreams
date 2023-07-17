@@ -19,6 +19,6 @@ public class AfflictionProjectileDamageSource extends ProjectileDamageSource {
     }
 
     public static DamageSource magic(Entity magic, @Nullable Entity attacker) {
-        return new AfflictionProjectileDamageSource("affliction", magic, attacker).setUnblockable().setUsesMagic();
+        return new AfflictionProjectileDamageSource("affliction", magic, attacker).setUnblockable().setBypassesArmor().setUsesMagic();
     }
 }

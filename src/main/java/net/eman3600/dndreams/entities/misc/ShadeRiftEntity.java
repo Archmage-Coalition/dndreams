@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.entities.misc;
 
-import net.eman3600.dndreams.blocks.crop.ShadeSaplingBlock;
 import net.eman3600.dndreams.blocks.spreadable.ShadeMossBlock;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
@@ -23,7 +22,6 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
@@ -290,18 +288,18 @@ public class ShadeRiftEntity extends Entity {
 
             int i = world.random.nextInt(50);
 
-            if (i >= 25) {
+            if (i >= 31) {
                 world.setBlockState(surfacePos, ModBlocks.SHADE_WEED.getDefaultState(), Block.NOTIFY_LISTENERS);
             } else if (i <= 1) {
                 world.setBlockState(surfacePos, ModBlocks.SHADE_BUSH.getDefaultState(), Block.NOTIFY_LISTENERS);
-            } else if (i == 2) {
+            }/* else if (i == 2) {
                 BlockState bush = ModBlocks.SHADE_BUSH.getDefaultState();
                 ShadeSaplingBlock sapling = (ShadeSaplingBlock)ModBlocks.SHADE_BUSH;
 
                 if (sapling.canGrow(world, world.random, surfacePos, bush)) {
                     sapling.grow((ServerWorld) world, world.random, surfacePos, bush);
                 }
-            }
+            }*/
         }
 
         return new ReplacedState(pos, state);

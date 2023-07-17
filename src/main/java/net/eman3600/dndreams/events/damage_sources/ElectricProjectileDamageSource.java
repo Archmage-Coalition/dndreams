@@ -19,6 +19,6 @@ public class ElectricProjectileDamageSource extends ProjectileDamageSource {
     }
 
     public static DamageSource magic(Entity magic, @Nullable Entity attacker) {
-        return new ElectricProjectileDamageSource("electric", magic, attacker).setUnblockable().setUsesMagic();
+        return new ElectricProjectileDamageSource("electric", magic, attacker).setUnblockable().setBypassesArmor().setUsesMagic();
     }
 }
