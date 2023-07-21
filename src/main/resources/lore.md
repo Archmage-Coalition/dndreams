@@ -77,6 +77,14 @@ Using the threads of his own sanity, Elrunez was able to reinforce the ancient p
 Once inside, Elrunez was able to fully embrace the madness of unreality and be taken by torment, crowning himself the Nightmare Lord. He then sealed the ancient portal and began locking it with the essence of 4 powerful Keepers, ensuring himself the last of all lords.
 
 
+# Artifacts
+## Crowned Edge
+???
+
+## Instrument of Truth
+
+
+
 # Bosses
 ## Pnevma, Ender Dragon
 The Ender Dragon was constructed by Elrunez to drown out the force of reality. Made of nightmares and madness, Pnevma plagues the End and suppresses the World Fountain by sponging up its energy. The dragon thusly can withstand the force of reality and even wield it despite being an entity of insanity. This has dried up the minds of the endermen living in the End, stealing their wits and binding them to the will of Pnevma.

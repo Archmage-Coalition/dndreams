@@ -7,5 +7,5 @@
   "capacity": 4,
   "cost": 400,
   "effect": "dndreams:affliction",
-  "duration": 900
+  "duration": 1
 }

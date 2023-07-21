@@ -131,7 +131,7 @@ public class ShadeRiftEntity extends Entity {
 
                             for (Direction direction: Direction.values()) {
 
-                                if (replacedStates.size() > 3 && world.random.nextInt(75) < replacedStates.size()) break;
+                                if (replacedStates.size() > 3 && world.random.nextInt(100) < replacedStates.size()) break;
 
                                 BlockPos pos = previous.pos.offset(direction);
                                 pos = findExposed(pos);

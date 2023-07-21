@@ -31,6 +31,7 @@ import net.eman3600.dndreams.items.magic_bow.MindstringBowItem;
 import net.eman3600.dndreams.items.managold.ManagoldArmorItem;
 import net.eman3600.dndreams.items.misc_tool.*;
 import net.eman3600.dndreams.items.pericharite.PerichariteArmorItem;
+import net.eman3600.dndreams.items.pericharite.PerichariteShovelItem;
 import net.eman3600.dndreams.items.pericharite.PerichariteSwordItem;
 import net.eman3600.dndreams.items.staff.*;
 import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
@@ -383,7 +384,7 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item PERICHARITE_SHOVEL = registerItem("pericharite_shovel",
-            new ModShovelItem(ModToolMaterials.PERICHARITE, 1.5F, -3.0F,
+            new PerichariteShovelItem(ModToolMaterials.PERICHARITE, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item PERICHARITE_HOE = registerItem("pericharite_hoe",
             new ScytheItem(ModToolMaterials.PERICHARITE, 6, -3.4F,
