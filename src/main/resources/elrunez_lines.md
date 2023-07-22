@@ -34,6 +34,8 @@ _First Fight:_ “You disappoint me, [Playername]. Though you do not know me now
 _Subsequent Fights:_ “So be it.“
 
 # Soul Spire
+
+## Simple Version
 _First Fight:_ “A simulacrum, gifted with resurrection, the mind undying and the form rebuilding, driven to life by force of will. The semblance of a Koinan, but with resistance to the undead plague. You have proven your strength in severing the seals I cast to prevent anyone from stumbling back to this Forsaken Haven. Yet your will to resurrect fragments your mind, and madness takes root. The affliction refuses to be transcended, and immortality remains damning. You are not of use to me. Which means, [Playername], as the last of all lords, I must destroy you.“
 
 _Subsequent Fights:_ “It doesn’t matter how many times it takes. I must destroy you.“

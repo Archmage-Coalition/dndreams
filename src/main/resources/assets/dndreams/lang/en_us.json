@@ -90,6 +90,7 @@
   "item.dndreams.celestium_leggings": "Celestium Leggings",
   "item.dndreams.celestium_boots": "Celestium Boots",
   
+  "item.dndreams.ritual_dagger": "Chrysasimi",
   "item.dndreams.vital_sword": "Lifecoil",
   "item.dndreams.broken_vital_sword": "Broken Lifecoil",
   "item.dndreams.shattered_sword": "Shattered Sword",
@@ -177,7 +178,7 @@
   "item.dndreams.japanese_maple_fume": "Sour Spice",
   "item.dndreams.shade_fume": "Fragrance of Solitude",
   "item.dndreams.pristine_fume": "Hint of Purity",
-  "item.dndreams.star_fume": "Breath of Divinity",
+  "item.dndreams.star_fume": "Essence of Unity",
   
   "item.dndreams.drop_of_luck": "Drop of Luck",
   "item.dndreams.mellifluous_hunger": "Mellifluous Hunger",
@@ -319,6 +320,8 @@
   "death.attack.dndreams.affliction": "%s was corrupted",
   "death.attack.dndreams.affliction.player": "%1$s was corrupted by %2$s",
   "death.attack.dndreams.affliction.item": "%1$s was corrupted by %2$s weilding %3$s",
+  "death.attack.dndreams.cursed_flame": "%s's soul turned to ash",
+  "death.attack.dndreams.cursed_flame.player": "%1$s's soul turned to ash whilst fighting %2$s",
   
   
   "command.dndreams.bloodmoon.get.now": "There is currently a dread moon.",

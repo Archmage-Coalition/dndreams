@@ -36,11 +36,20 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public static final int MAX_SHROUD = 60;
     public static final int MAX_HAUNT = 15;
     private int dragonFlashTicks = 0;
-    private int sanityDamageTicks = 0;
+    /**
+     * Haze refers to the nightmare haze, which causes a purple vignette to appear and prevents the passive healing of affliction.
+     */
+    private int hazeTicks = 0;
+    /**
+     * Shroud is the darkness of the Deep Dark.
+     */
     private int shroud = 0;
     private int haunt = 0;
     private boolean dirty = false;
-    private boolean sanityDamage = false;
+    /**
+     * When set to true, the next tick will see the nightmare haze increase instead of decrease. Should be set to true every tick when the haze needs to be maintained.
+     */
+    private boolean nightmareHaze = false;
 
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
@@ -100,14 +109,14 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public void lowerMaxSanity(float value) {
         maxSanity -= value;
 
-        if (value > 0) sanityDamageTicks = SANITY_DAMAGE;
+        if (value > 0) hazeTicks = SANITY_DAMAGE;
 
         normalize();
     }
 
     @Override
-    public float getSanityDamage() {
-        return MathHelper.clamp((float)sanityDamageTicks/SANITY_DAMAGE, 0, 1);
+    public float getNightmareHaze() {
+        return MathHelper.clamp((float) hazeTicks /SANITY_DAMAGE, 0, 1);
     }
 
     public int getMaxTormentors() {
@@ -117,8 +126,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     @Override
-    public void damageSanity(int increment) {
-        sanityDamageTicks = MathHelper.clamp(sanityDamageTicks + increment, 0, SANITY_DAMAGE);
+    public void inflictHaze(int increment) {
+        hazeTicks = MathHelper.clamp(hazeTicks + increment, 0, SANITY_DAMAGE);
         markDirty();
     }
 
@@ -178,7 +187,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         sanity = tag.getFloat("sanity");
         maxSanity = tag.getFloat("max_sanity");
         dragonFlashTicks = tag.getInt("dragon_flash_ticks");
-        sanityDamageTicks = tag.getInt("sanity_damage_ticks");
+        hazeTicks = tag.getInt("haze_ticks");
         shroud = tag.getInt("shroud");
         haunt = tag.getInt("haunt");
     }
@@ -188,7 +197,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putFloat("sanity", sanity);
         tag.putFloat("max_sanity", maxSanity);
         tag.putInt("dragon_flash_ticks", dragonFlashTicks);
-        tag.putInt("sanity_damage_ticks", sanityDamageTicks);
+        tag.putInt("haze_ticks", hazeTicks);
         tag.putInt("shroud", shroud);
         tag.putInt("haunt", haunt);
     }
@@ -216,12 +225,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             lowerPerMinute(j);
         }
 
-        if (sanityDamageTicks > 0 && !sanityDamage) {
-            sanityDamageTicks--;
+        if (hazeTicks > 0 && !nightmareHaze) {
+            hazeTicks--;
             markDirty();
-        } else if (sanityDamage) {
-            sanityDamage = false;
-            damageSanity(1);
+        } else if (nightmareHaze) {
+            nightmareHaze = false;
+            inflictHaze(1);
         }
 
 
@@ -388,7 +397,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         dirty = true;
     }
 
-    public void markSanityDamage() {
-        sanityDamage = true;
+    public void markHaze() {
+        nightmareHaze = true;
     }
 }

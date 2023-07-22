@@ -80,7 +80,7 @@ public class ShadeRiftEntity extends Entity {
 
                 if (world.getBlockState(touchPos.add(player.getBlockPos())).isOf(ModBlocks.SHADE_MOSS)) {
 
-                    torment.markSanityDamage();
+                    torment.markHaze();
                     torment.lowerPerMinute(40f);
                     break;
                 }

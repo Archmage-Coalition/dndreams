@@ -36,7 +36,7 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 1), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1), 1.0F)
             .alwaysEdible().build(), -16);
-    public static final FoodComponent LOTUS_FLOWER = registerSanityFood(new FoodComponent.Builder().hunger(5).saturationModifier(0.8F)
+    public static final FoodComponent LOTUS_FLOWER = registerSanityFood(new FoodComponent.Builder().hunger(4).saturationModifier(0.6f)
             .build(), 1.5f);
     public static final FoodComponent STAR_FRUIT = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(1.0F)
             .build(), 6);

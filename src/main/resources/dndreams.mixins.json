@@ -18,6 +18,7 @@
     "BrewingRegistryMixin",
     "BucketItemMixin",
     "CakeBlockMixin",
+    "CampfireBlockMixin",
     "ChorusFlowerBlockMixin",
     "ChorusPlantBlockMixin",
     "ChorusPlantFeatureMixin",

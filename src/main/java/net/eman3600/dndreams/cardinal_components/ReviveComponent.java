@@ -41,7 +41,7 @@ public class ReviveComponent implements ReviveComponentI {
     }
     @Override
     public boolean canRevive() {
-        return enabled && !player.hasStatusEffect(ModStatusEffects.MORTAL) && revivesUsed < maxRevives() && player.getMaxHealth() >= 2f;
+        return enabled && !player.hasStatusEffect(ModStatusEffects.MORTAL) && revivesUsed < maxRevives();
     }
     @Override
     public int remainingRevives() {
@@ -49,6 +49,7 @@ public class ReviveComponent implements ReviveComponentI {
     }
     @Override
     public boolean shouldDisplay() {
+        if (EntityComponents.DREAMING.isProvidedBy(player) && EntityComponents.DREAMING.get(player).isDreaming()) return false;
         return !player.hasStatusEffect(ModStatusEffects.MORTAL) && maxRevives() > 0;
     }
     @Override

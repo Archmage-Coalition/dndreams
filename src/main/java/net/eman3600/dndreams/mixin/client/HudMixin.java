@@ -392,7 +392,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         if (player == null) return;
 
         TormentComponent torment = EntityComponents.TORMENT.get(player);
-        float g = torment.getSanityDamage();
+        float g = torment.getNightmareHaze();
 
         renderCustomVignette(g, g, g, INSANITY_VIGNETTE_TEXTURE);
     }

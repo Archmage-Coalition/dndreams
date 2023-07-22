@@ -104,7 +104,8 @@ public class ModCallbacks {
         ServerPlayConnectionEvents.INIT.register((handler, server) -> {
             StatBoonComponent boons = EntityComponents.STAT_BOON.get(handler.player);
             boons.reloadAttributes();
-            if (handler.player.getMaxHealth() > 20) handler.player.setHealth(boons.hp);
+            RotComponent rot = EntityComponents.ROT.get(handler.player);
+            if (handler.player.getMaxHealth() > 20 || rot.getRot() > 0) handler.player.setHealth(boons.hp);
         });
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {

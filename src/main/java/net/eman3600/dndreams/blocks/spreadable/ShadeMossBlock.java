@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
@@ -32,6 +33,8 @@ public class ShadeMossBlock extends Block {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 
         if (state.get(TORMENTED) && !moved) {
+
+            if (newState.isAir()) ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), this.asItem().getDefaultStack());
 
             Box box = SEARCH_BOX.offset(pos);
             for (ShadeRiftEntity entity: world.getNonSpectatingEntities(ShadeRiftEntity.class, box)) {

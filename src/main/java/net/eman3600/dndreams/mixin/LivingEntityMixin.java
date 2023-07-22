@@ -236,6 +236,13 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
                     if (EntityComponents.TORMENT.isProvidedBy(this)) {
                         EntityComponents.TORMENT.get(this).lowerSanity(25f);
                     }
+                    EntityComponents.ROT.maybeGet(this).ifPresent(rot -> {
+                        float total = getMaxHealth() + rot.getRot();
+
+                        if (total > 10 && rot.getRot() > 0 && getMaxHealth() < 10) {
+                            rot.healRot((int)(10 - getMaxHealth()));
+                        }
+                    });
 
                     addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 40, 4, false, false, true));
 

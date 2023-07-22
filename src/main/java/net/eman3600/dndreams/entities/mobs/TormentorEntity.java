@@ -155,7 +155,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
                     setTarget(null);
                     setCorporeal(false);
                 } else {
-                    getTorment(player).markSanityDamage();
+                    getTorment(player).markHaze();
                 }
             }
         }

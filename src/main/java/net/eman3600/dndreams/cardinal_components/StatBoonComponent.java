@@ -19,7 +19,7 @@ public class StatBoonComponent implements StatBoonComponentI {
     public static final UUID uuid = new UUID(0x628c2a812ca80f25L, 0xc0b0234fd066d371L);
     /**
      * The variable hp is changed only when reading nbt. It is NOT an accurate representation of the player's hp at any time other
-     * than during the reading process.
+     * than when the player rejoins the game.
      */
     public float hp;
 
