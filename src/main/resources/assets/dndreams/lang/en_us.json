@@ -23,13 +23,16 @@
   "item.dndreams.nightmare_fuel": "Nightmare Fuel",
   "item.dndreams.nightmare_fuel.tooltip.0": "§3The truth, manifested.",
   "item.dndreams.nightmare_fuel.tooltip.1": "§3Consume at your own risk.",
+  "item.dndreams.subdued_madness":  "Subdued Madness",
+  "item.dndreams.subdued_madness.tooltip.0":  "§3The nature of such matters",
+  "item.dndreams.subdued_madness.tooltip.1":  "§3is known not even by him.",
   "item.dndreams.corrupt_scrap":  "Hellslate",
   "item.dndreams.shade_cloth":  "Horrific Veil",
   "item.dndreams.shade_cloth.tooltip":  "§3It's pure horror!",
   "item.dndreams.brilliance":  "Dazzling Brilliance",
   "item.dndreams.brilliance.tooltip":  "§3Blinding perfection.",
   "item.dndreams.ravaged_flesh":  "Ravaged Flesh",
-  "item.dndreams.infernal_residue":  "Dread Matter",
+  "item.dndreams.infernal_residue":  "Soul Ember",
   "item.dndreams.tainted_pearl":  "Accursed Pearl",
   "item.dndreams.lotus_flower": "Lotus Flower",
   "item.dndreams.succulent_apple": "Succulent Apple",
@@ -53,6 +56,7 @@
   "item.dndreams.sanity_thread": "Thread of Sanity",
   
   "item.dndreams.resonant_pickaxe": "Resonant Pickaxe",
+  "item.dndreams.resonant_pickaxe.tooltip": "§3Mines all blocks at the same speed.",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
@@ -322,6 +326,9 @@
   "death.attack.dndreams.affliction.item": "%1$s was corrupted by %2$s weilding %3$s",
   "death.attack.dndreams.cursed_flame": "%s's soul turned to ash",
   "death.attack.dndreams.cursed_flame.player": "%1$s's soul turned to ash whilst fighting %2$s",
+  "death.attack.dndreams.radiance": "%s was punished for their sins",
+  "death.attack.dndreams.radiance.player": "%1$s was punished by %2$s for their sins",
+  "death.attack.dndreams.radiance.item": "%1$s was punished by %2$s weilding %3$s for their sins",
   
   
   "command.dndreams.bloodmoon.get.now": "There is currently a dread moon.",

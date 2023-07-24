@@ -28,6 +28,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -120,6 +121,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     public void injectDeath(DamageSource damageSource, CallbackInfo info) {
         if ((Entity)this instanceof WitherEntity) {
             WorldComponents.BOSS_STATE.get(world.getScoreboard()).flagWitherSlain(true);
+        } else if ((Entity)this instanceof MerchantEntity) {
+            EntityComponents.TORMENT.maybeGet(damageSource.getAttacker()).ifPresent(torment -> torment.lowerSanity(15));
         }
     }
 

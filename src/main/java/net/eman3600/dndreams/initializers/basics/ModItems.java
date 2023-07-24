@@ -105,6 +105,10 @@ public class ModItems {
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
             new TooltipItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL).fireproof()).withTooltip(null, 2));
 
+    // Subdued Madness
+    public static final Item SUBDUED_MADNESS = registerItem("subdued_madness",
+            new TooltipItem(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()).withTooltip(null, 2));
+
     // Starfruit
     public static final Item STAR_FRUIT = registerItem("star_fruit",
             new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.STAR_FRUIT)));

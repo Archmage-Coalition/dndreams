@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "minecraft:redstone"
+  },
+  "result": {
+    "item": "minecraft:copper_ingot"
+  }
+}

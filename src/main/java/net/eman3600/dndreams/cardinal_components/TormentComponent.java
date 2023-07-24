@@ -26,6 +26,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Function;
 
@@ -50,6 +51,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
      * When set to true, the next tick will see the nightmare haze increase instead of decrease. Should be set to true every tick when the haze needs to be maintained.
      */
     private boolean nightmareHaze = false;
+    private int facelessCooldown = 20;
+    @Nullable private Entity facelessEntity = null;
+    @Nullable private UUID facelessID = null;
 
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
@@ -190,6 +194,10 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         hazeTicks = tag.getInt("haze_ticks");
         shroud = tag.getInt("shroud");
         haunt = tag.getInt("haunt");
+        facelessCooldown = tag.getInt("faceless_cooldown");
+        if (tag.containsUuid("faceless")) {
+            this.facelessID = tag.getUuid("faceless");
+        }
     }
 
     @Override
@@ -200,6 +208,10 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("haze_ticks", hazeTicks);
         tag.putInt("shroud", shroud);
         tag.putInt("haunt", haunt);
+        tag.putInt("faceless_cooldown", facelessCooldown);
+        if (this.facelessID != null) {
+            tag.putUuid("faceless", this.facelessID);
+        }
     }
 
     @Override
@@ -248,6 +260,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             markDirty();
         } else if (haunt > 0 && !player.hasStatusEffect(ModStatusEffects.HAUNTED)) {
             haunt--;
+            markDirty();
+        }
+
+        if (facelessCooldown > 0) {
+            facelessCooldown--;
             markDirty();
         }
 
@@ -381,6 +398,33 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         current += world.getNonSpectatingEntities(type, searchRegion).size();
 
         return current < allowed;
+    }
+
+    public int getFacelessCooldown() {
+        return facelessCooldown;
+    }
+
+    public void setFacelessCooldown(int facelessCooldown) {
+        this.facelessCooldown = facelessCooldown;
+        markDirty();
+    }
+
+    @Nullable
+    public Entity getFacelessEntity() {
+        if (facelessEntity != null && !facelessEntity.isRemoved()) return facelessEntity;
+        if (facelessID != null && player.world instanceof ServerWorld world) {
+            this.facelessEntity = world.getEntity(facelessID);
+            return facelessEntity;
+        }
+        return null;
+    }
+
+    public void setFacelessEntity(@Nullable Entity entity) {
+        if (entity != null) {
+            this.facelessID = entity.getUuid();
+            this.facelessEntity = entity;
+            markDirty();
+        }
     }
 
     private static class InsanityRangePair {

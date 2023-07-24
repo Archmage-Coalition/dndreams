@@ -70,6 +70,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         super(entityType, world);
         updateAttackType();
         goalSelector.add(0, tacticsGoal);
+        this.experiencePoints = 12;
     }
 
     public TormentorEntity(World world) {
@@ -87,7 +88,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     protected void initGoals() {
 
         this.goalSelector.add(1, new SwimGoal(this));
-        this.goalSelector.add(3, new FleeEntityGoal<>(this, PlayerEntity.class, 4.0f, 1.0, 1.2, a -> a instanceof PlayerEntity player && getSanity(player) > 25 && !isCorporeal()));
+        this.goalSelector.add(3, new FleeEntityGoal<>(this, PlayerEntity.class, 4.0f, 1.0, 1.2, a -> a instanceof PlayerEntity player && getSanity(player) >= 25 && !isCorporeal()));
         this.goalSelector.add(3, new FleeEntityGoal<>(this, OcelotEntity.class, 6.0f, 1.0, 1.2));
         this.goalSelector.add(3, new FleeEntityGoal<>(this, CatEntity.class, 6.0f, 1.0, 1.2));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
@@ -98,7 +99,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true, target -> {
             float sanity = getSanity((PlayerEntity) target);
 
-            return sanity <= 25 || isWoven();
+            return sanity < 25 || isWoven();
         }));
     }
 
@@ -151,7 +152,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
             if (getTarget() instanceof PlayerEntity player) {
 
-                if (getSanity(player) > 40 && !isWoven()) {
+                if (getSanity(player) >= 45 && !isWoven()) {
                     setTarget(null);
                     setCorporeal(false);
                 } else {
@@ -263,7 +264,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     @Override
     public boolean canView(PlayerEntity player) {
-        return isWoven() || getSanity(player) <= 50;
+        return isWoven() || getSanity(player) < 25 || (isCorporeal() && getSanity(player) < 45);
     }
 
     @Override
@@ -273,12 +274,12 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     @Override
     public float renderedOpacity(PlayerEntity player) {
-        return isWoven() ? .5f : isCorporeal() ? MathHelper.clamp((1f - (getSanity(player))/150f) * .5f + .1f, .1f, .5f) : MathHelper.clamp((1f - (getSanity(player))/50f) * .3f + .1f, .1f, .3f);
+        return isWoven() ? .5f : isCorporeal() ? MathHelper.clamp((1f - (getSanity(player))/150f) * .5f + .1f, .1f, .5f) : MathHelper.clamp((1f - (getSanity(player))/25f) * .3f + .1f, .1f, .3f);
     }
 
     @Override
     public float renderedClarity(PlayerEntity player) {
-        return !isAlive() || hurtTime > 0 ? 1f : isCorporeal() ? .2f : MathHelper.clamp((1f - (getSanity(player))/50f) * .1f, 0, .1f);
+        return !isAlive() || hurtTime > 0 ? 1f : isCorporeal() ? .2f : MathHelper.clamp((1f - (getSanity(player))/25f) * .1f, 0, .1f);
     }
 
     @Override

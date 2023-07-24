@@ -51,7 +51,7 @@ public class ShadeRiftSpawner implements Spawner {
 
         BlockPos playerPos = player.getBlockPos();
 
-        if (component.getAttunedSanity() <= 5) {
+        if (component.getAttunedSanity() < 5) {
 
             int j = random.nextBetween(2, 6);
 
