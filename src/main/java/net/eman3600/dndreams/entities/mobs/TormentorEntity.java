@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.entities.mobs;
 
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.ai.TormentorMeleeAttackGoal;
 import net.eman3600.dndreams.entities.ai.TormentorRangedAttackGoal;
 import net.eman3600.dndreams.entities.ai.TormentorTacticsGoal;
@@ -312,7 +313,8 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     @Override
     public void onDeath(DamageSource damageSource) {
         if (damageSource.getAttacker() instanceof PlayerEntity player) {
-            getTorment(player).lowerSanity(-12.5f);
+            TormentComponent torment = getTorment(player);
+            if (!torment.isAttuned()) torment.lowerSanity(-12.5f);
         }
 
         for (TormentorEntity entity: tacticsGoal.getNearbyTormentors()) {

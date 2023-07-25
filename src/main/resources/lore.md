@@ -13,7 +13,7 @@ The power of hatred and retribution, embodied by the Nether, fire, and electrici
 The many materials of the world reflect different elements and their nuances.
 
 ## Mind Powders
-Memory dust is a mass of memory and soul, now uncomprehendible but full of power. Dream powder is instead a mass of dreams. The two are so interconnected that they can flow between each other with the aid of flowing spirit.
+Memory dust is a mass of memory and soul, now incomprehensible but full of power. Dream powder is instead a mass of dreams. The two are so interconnected that they can flow between each other with the aid of flowing spirit.
 
 # The Affliction
 The affliction is the root of undeath, the source of madness and consumption, and the cause of the fall of Koinans. It manifests itself in several forms based on the various aspects of mind and soul.
@@ -69,12 +69,12 @@ All the structures of the Koinans were left for abandoned or house undead. The s
 
 The illager race evolved long after the fall of the Koinans. The zombies could sense their intelligence and attempted to convert them, but they were more resistant to the affliction than the Koinans. They discovered some of the remains of the Koinans, including the ancient cities, but they were mostly unsuccessful with rebuilding them.
 
-## The Nightmare Lord
+## The Lord of Torment
 Elrunez was a powerful illager archmage. The details of his rise to power among illagers remain a mystery, but his insights into new forms of magic are not. He developed a way to unravel his own sanity and inflict upon himself a madness that let him see the congealing shadows.
 
 Using the threads of his own sanity, Elrunez was able to reinforce the ancient portal frame against overloading. After properly tuning the portal frame, he used a warden to fuel the portal, which managed to remain stable after overloading. However, the portal remained overconcentrated and, rather than leading to the Haven, the portal let out the spirits of those taken by sculk. This lasted until the portal's energy reached stable levels, at which point Elrunez entered.
 
-Once inside, Elrunez was able to fully embrace the madness of unreality and be taken by torment, crowning himself the Nightmare Lord. He then sealed the ancient portal and began locking it with the essence of 4 powerful Keepers, ensuring himself the last of all lords.
+Once inside, Elrunez was able to fully embrace the madness of unreality and be taken by torment, crowning himself the Lord of Torment. He then sealed the ancient portal and began locking it with the essence of 4 powerful Keepers, ensuring himself the last of all lords.
 
 
 # Artifacts

@@ -27,7 +27,7 @@ public class TormentorTacticsGoal extends Goal {
 
     public List<TormentorEntity> getNearbyTormentors() {
 
-        return tormentor.world.getEntitiesByClass(TormentorEntity.class, Box.from(Vec3d.of(tormentor.getBlockPos())).expand(30), entity -> entity.isCorporeal() && entity.isAlive());
+        return tormentor.world.getEntitiesByClass(TormentorEntity.class, Box.from(Vec3d.of(tormentor.getBlockPos())).expand(30), entity -> entity.isCorporeal() && entity.isAlive() && entity != this.tormentor);
     }
 
     @Override
