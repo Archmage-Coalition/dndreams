@@ -57,6 +57,8 @@
   
   "item.dndreams.resonant_pickaxe": "Resonant Pickaxe",
   "item.dndreams.resonant_pickaxe.tooltip": "§3Mines all blocks at the same speed.",
+  "item.dndreams.ritual_dagger": "Chrysasimi",
+  "item.dndreams.starhand": "Astechi",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
@@ -94,7 +96,6 @@
   "item.dndreams.celestium_leggings": "Celestium Leggings",
   "item.dndreams.celestium_boots": "Celestium Boots",
   
-  "item.dndreams.ritual_dagger": "Chrysasimi",
   "item.dndreams.vital_sword": "Lifecoil",
   "item.dndreams.broken_vital_sword": "Broken Lifecoil",
   "item.dndreams.shattered_sword": "Shattered Sword",

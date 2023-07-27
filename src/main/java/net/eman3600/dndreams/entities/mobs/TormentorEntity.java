@@ -402,5 +402,8 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         updateRanged = ranged != isRanged();
     }
 
-
+    @Override
+    public boolean canBreatheInWater() {
+        return true;
+    }
 }

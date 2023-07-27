@@ -16,6 +16,8 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -80,7 +82,9 @@ public class ShadeRiftEntity extends Entity {
 
                 if (world.getBlockState(touchPos.add(player.getBlockPos())).isOf(ModBlocks.SHADE_MOSS)) {
 
-                    torment.markHaze();
+                    if (!player.hasStatusEffect(StatusEffects.DARKNESS) || player.getStatusEffect(StatusEffects.DARKNESS).getDuration() < 30) {
+                        player.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 60, 0, true, false, false));
+                    }
                     torment.lowerPerMinute(40f);
                     break;
                 }

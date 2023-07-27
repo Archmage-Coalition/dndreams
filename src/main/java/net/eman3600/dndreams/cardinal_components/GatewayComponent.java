@@ -62,7 +62,7 @@ public class GatewayComponent implements GatewayComponentI {
         } else if (event == 0) {
             dims = new DimensionPair(World.OVERWORLD, World.NETHER);
         } else if (event == 1) {
-            dims = new DimensionPair(ModDimensions.DREAM_DIMENSION_KEY, World.OVERWORLD);
+            dims = new DimensionPair(World.OVERWORLD, ModDimensions.HAVEN_DIMENSION_KEY);
         }
 
         try {
@@ -172,11 +172,7 @@ public class GatewayComponent implements GatewayComponentI {
             return;
         }
 
-        if (!success) {
-            FabricDimensions.teleport(player, getExitDimension(false), new TeleportTarget(returnPos, Vec3d.ZERO, player.getYaw(), player.getPitch()));
-        } else {
-            FabricDimensions.teleport(player, getExitDimension(true), new TeleportTarget(returnPos, Vec3d.ZERO, player.getYaw(), player.getPitch()));
-        }
+        FabricDimensions.teleport(player, getExitDimension(success), new TeleportTarget(returnPos, Vec3d.ZERO, player.getYaw(), player.getPitch()));
     }
 
 
