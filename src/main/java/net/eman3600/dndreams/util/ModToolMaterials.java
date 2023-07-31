@@ -15,8 +15,6 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
     CELESTIUM(4, 2145, 14.5F, 6.0F, 18,
             () -> Ingredient.ofItems(ModItems.CELESTIUM)),
-    ARTIFACT(4, 3002, 12.0F, 4.0F, 22,
-            () -> Ingredient.ofItems(ModItems.DREAM_POWDER, ModItems.SCULK_POWDER, ModItems.STARDUST)),
     VITAL(1, 575, 4.0F, 1.0F, 12,
             () -> Ingredient.ofItems(ModItems.VITAL_SHARD)),
     MANAGOLD(2, 32, 12.0F, 2.0F, 22,
@@ -27,8 +25,8 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(ModItems.PERICHARITE)),
     CROWNED_EDGE(4, 3122, 12.0F, 3.0F, 18,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
-    TRUE(4, 6244, 12.0F, 6.0F, 18,
-            () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL));
+    TRUE(4, 6244, 26.0F, 6.0F, 18,
+            () -> Ingredient.ofItems(ModItems.STARDUST));
 
     private final int miningLevel;
     private final int itemDurability;

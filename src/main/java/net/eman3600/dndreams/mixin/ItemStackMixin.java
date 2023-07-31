@@ -5,9 +5,11 @@ import net.eman3600.dndreams.initializers.basics.ModEnchantments;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.MysticStaffItem;
+import net.eman3600.dndreams.items.interfaces.ActivateableToolItem;
 import net.eman3600.dndreams.items.interfaces.UnbreakableItem;
 import net.eman3600.dndreams.mixin_interfaces.ItemStackAccess;
 import net.eman3600.dndreams.util.ModTags;
+import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.UnbreakingEnchantment;
@@ -100,6 +102,14 @@ public abstract class ItemStackMixin implements ItemStackAccess {
     private void dndreams$getMaxDamage(CallbackInfoReturnable<Integer> cir) {
         if (getItem() instanceof MysticStaffItem item) {
             cir.setReturnValue(item.getStaffMaxDamage((ItemStack)(Object)this));
+        }
+    }
+
+    @Inject(method = "isSuitableFor", at = @At("HEAD"), cancellable = true)
+    private void dndreams$isSuitableFor(BlockState state, CallbackInfoReturnable<Boolean> cir) {
+
+        if (getItem() instanceof ActivateableToolItem item) {
+            cir.setReturnValue(item.isSuitableFor((ItemStack)(Object)this, state));
         }
     }
 

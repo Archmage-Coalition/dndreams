@@ -1,0 +1,38 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "dndreams:item/instrument_of_truth"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "form": 0.1
+            },
+            "model": "dndreams:item/instrument_staff"
+        },
+		{
+            "predicate": {
+                "form": 0.2
+            },
+            "model": "dndreams:item/instrument_katana"
+        },
+		{
+            "predicate": {
+                "form": 0.3
+            },
+            "model": "dndreams:item/instrument_pickaxe"
+        },
+		{
+            "predicate": {
+                "form": 0.4
+            },
+            "model": "dndreams:item/instrument_axe"
+        },
+		{
+            "predicate": {
+                "form": 0.5
+            },
+            "model": "dndreams:item/instrument_shovel"
+        }
+    ]
+}

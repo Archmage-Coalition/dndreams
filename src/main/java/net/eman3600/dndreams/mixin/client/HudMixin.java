@@ -8,6 +8,7 @@ import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.mixin_interfaces.HudAccess;
+import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -17,6 +18,8 @@ import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -29,6 +32,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.awt.*;
 
@@ -106,6 +110,8 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Shadow @Final private Random random;
 
     @Shadow protected abstract void drawHeart(MatrixStack matrices, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart);
+
+    @Shadow private ItemStack currentStack;
 
     @Override
     public void setDragonFlash(int ticks) {
@@ -384,6 +390,28 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderVignetteOverlay(Lnet/minecraft/entity/Entity;)V"))
     private void dndreams$render$vignette(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
         renderInsanityVignette();
+    }
+
+    @Inject(method = "renderHeldItemTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;fill(Lnet/minecraft/client/util/math/MatrixStack;IIIII)V"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
+    private void dndreams$renderHeldItemTooltip(MatrixStack matrices, CallbackInfo ci, MutableText mutableText, int i, int j, int k, int l) {
+
+        if (this.currentStack.isIn(ModTags.INSTRUMENTS)) {
+
+            //MutableText text = mutableText.formatted(Formatting.WHITE);
+
+            String string = mutableText.getString();
+
+            this.getTextRenderer().draw(matrices, string, (float)(j + 1), (float)k, (l << 24));
+            this.getTextRenderer().draw(matrices, string, (float)(j - 1), (float)k, (l << 24));
+            this.getTextRenderer().draw(matrices, string, (float)j, (float)(k + 1), (l << 24));
+            this.getTextRenderer().draw(matrices, string, (float)j, (float)(k - 1), (l << 24));
+            this.getTextRenderer().draw(matrices, string, (float)j, (float)k, 0xFFFFFF + (l << 24));
+
+            RenderSystem.disableBlend();
+            this.client.getProfiler().pop();
+
+            ci.cancel();
+        }
     }
 
     @Unique

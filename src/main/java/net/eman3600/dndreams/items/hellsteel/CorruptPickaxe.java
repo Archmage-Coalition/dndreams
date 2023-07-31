@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.items.hellsteel;
 
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
-import net.eman3600.dndreams.items.interfaces.VariedMineSpeedItem;
+import net.eman3600.dndreams.items.interfaces.VariableMineSpeedItem;
 import net.eman3600.dndreams.util.ImmunityExplosionBehavior;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CorruptPickaxe extends PickaxeItem implements BloodlustItem, VariedMineSpeedItem {
+public class CorruptPickaxe extends PickaxeItem implements BloodlustItem, VariableMineSpeedItem {
     public CorruptPickaxe(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
     }
@@ -48,7 +48,7 @@ public class CorruptPickaxe extends PickaxeItem implements BloodlustItem, Varied
     }
 
     @Override
-    public float additionalModifiers(ItemStack stack, PlayerEntity entity, BlockState state, World world) {
+    public float additionalMiningModifiers(ItemStack stack, PlayerEntity entity, BlockState state, World world) {
         if (hasBloodlust(entity) && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
             return state.getBlock().getBlastResistance() < 3f ? .35f : 1.5f;
         }

@@ -9,8 +9,9 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
+import net.eman3600.dndreams.items.InstrumentOfTruthItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
-import net.eman3600.dndreams.items.interfaces.VariedMineSpeedItem;
+import net.eman3600.dndreams.items.interfaces.VariableMineSpeedItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.PlayerEntityAccess;
 import net.minecraft.block.Block;
@@ -106,13 +107,24 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         }
     }
 
+    @ModifyConstant(method = "attack", constant = @Constant(floatValue = 1.5f))
+    private float dndreams$attack$critDamage(float constant) {
+
+        if (getMainHandStack().getItem() instanceof InstrumentOfTruthItem item && item.getForm(getMainHandStack()) == InstrumentOfTruthItem.InstrumentForm.KATANA) {
+
+            return 3f;
+        }
+
+        return constant;
+    }
+
     @Inject(method = "getBlockBreakingSpeed", at = @At("RETURN"), cancellable = true)
     private void dndreams$getBlockBreakingSpeed(BlockState block, CallbackInfoReturnable<Float> cir) {
         float f = cir.getReturnValueF();
 
         ItemStack stack = getMainHandStack();
-        if (stack.getItem() instanceof VariedMineSpeedItem item) {
-            f *= item.additionalModifiers(stack, (PlayerEntity) (Object) this, block, world);
+        if (stack.getItem() instanceof VariableMineSpeedItem item) {
+            f *= item.additionalMiningModifiers(stack, (PlayerEntity) (Object) this, block, world);
         }
 
         cir.setReturnValue(f);

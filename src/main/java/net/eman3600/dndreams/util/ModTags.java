@@ -49,6 +49,7 @@ public class ModTags {
     public static final TagKey<Item> GROUND_REPAIRING_TOOLS = ofItem("ground_repairing_tools");
     public static final TagKey<Item> DREAM_EXCLUSIVE = ofItem("dream_exclusive");
     public static final TagKey<Item> CORRUPTORS = ofItem("corruptors");
+    public static final TagKey<Item> INSTRUMENTS = ofItem("instruments");
 
     public static final TagKey<EntityType<?>> SUBSTANTIAL_ENTITIES = ofEntity("substantial");
     public static final TagKey<EntityType<?>> GLOOM_ENTITIES = ofEntity("gloom");

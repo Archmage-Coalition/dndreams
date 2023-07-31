@@ -6,6 +6,7 @@ import net.eman3600.dndreams.entities.projectiles.BrewLiquidEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.items.CodexItem;
+import net.eman3600.dndreams.items.InstrumentOfTruthItem;
 import net.eman3600.dndreams.items.MysticStaffItem;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
@@ -480,6 +481,10 @@ public class ModItems {
     public static final Item TRUE_CROWNED_EDGE = registerItem("true_crowned_edge",
             new TrueCrownedEdgeItem(ModToolMaterials.TRUE, 3, -2.2F, 6,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).fireproof()));
+
+    // Instrument of Truth
+    public static final Item INSTRUMENT_OF_TRUTH = registerItem("instrument_of_truth",
+            new InstrumentOfTruthItem(new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).fireproof()));
 
 
 
