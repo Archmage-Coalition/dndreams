@@ -474,17 +474,17 @@ public class ModItems {
 
     // Crowned Edge
     public static final Item CROWNED_EDGE = registerItem("crowned_edge",
-            new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 4,
+            new CrownedEdgeItem(ModToolMaterials.CROWNED_EDGE, 3, -2.3F, 6,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.RARE).fireproof()));
 
     // True Crowned Edge
     public static final Item TRUE_CROWNED_EDGE = registerItem("true_crowned_edge",
-            new TrueCrownedEdgeItem(ModToolMaterials.TRUE, 3, -2.2F, 6,
+            new TrueCrownedEdgeItem(ModToolMaterials.TRUE_EDGE, 5, -2.2F, 8,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).fireproof()));
 
     // Instrument of Truth
     public static final Item INSTRUMENT_OF_TRUTH = registerItem("instrument_of_truth",
-            new InstrumentOfTruthItem(new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).fireproof()));
+            new InstrumentOfTruthItem(new FabricItemSettings().group(ItemGroup.TOOLS).rarity(Rarity.EPIC).fireproof().maxCount(1)));
 
 
 

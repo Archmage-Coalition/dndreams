@@ -2,25 +2,36 @@ package net.eman3600.dndreams.items;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.interfaces.ActivateableToolItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -97,6 +108,11 @@ public class InstrumentOfTruthItem extends Item implements ActivateableToolItem,
     }
 
     @Override
+    public boolean allowContinuingBlockBreaking(PlayerEntity player, ItemStack oldStack, ItemStack newStack) {
+        return true;
+    }
+
+    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
@@ -124,15 +140,90 @@ public class InstrumentOfTruthItem extends Item implements ActivateableToolItem,
 
             target.damage(DamageSource.magic(user, user), getMagicDamage(stack));
             target.timeUntilRegen = 0;
+        } else if (getForm(stack) != InstrumentForm.AXE && getForm(stack).miningTool) {
+
+            setForm(stack, InstrumentForm.KATANA);
         }
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (!world.isClient && isActive(stack) && entity instanceof PlayerEntity player) {
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            if (!torment.isTruthActive()) {
+                setForm(stack, InstrumentForm.INACTIVE);
+                torment.setTruthActive(false);
+            }
+        }
+    }
+
+    @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return getForm(stack) == InstrumentForm.STAFF ? UseAction.BOW : UseAction.NONE;
+    }
+
+    public InstrumentForm getBestForm(World world, PlayerEntity player, InstrumentForm currentForm, @Nullable BlockState state) {
+
+        EntityHitResult cast = AirSwingItem.castWithDistance(player, 6, entity -> !entity.isSpectator() && entity.canHit());
+
+        if (cast != null && cast.getEntity() instanceof LivingEntity && cast.getEntity().getType() != EntityType.ARMOR_STAND) {
+
+            return currentForm == InstrumentForm.AXE ? currentForm : InstrumentForm.KATANA;
+        }
+
+        HitResult blockHit = player.raycast(6, 0, false);
+
+        if (blockHit instanceof BlockHitResult hit && state == null) {
+
+            state = world.getBlockState(hit.getBlockPos());
+        }
+
+        if (state != null && !state.isAir()) {
+            return state.isIn(BlockTags.PICKAXE_MINEABLE) ? InstrumentForm.PICKAXE : state.isIn(BlockTags.AXE_MINEABLE) || state.isIn(BlockTags.HOE_MINEABLE) ? InstrumentForm.AXE : state.isIn(BlockTags.SHOVEL_MINEABLE) ? InstrumentForm.SHOVEL : InstrumentForm.PICKAXE;
+        }
+
+        return InstrumentForm.STAFF;
+    }
+
+    @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack stack = user.getStackInHand(hand);
+        TormentComponent torment = EntityComponents.TORMENT.get(user);
+
+        if (!isActive(stack) && !torment.isTruthActive()) {
+
+            torment.setTruthActive(true);
+            setForm(stack, getBestForm(world, user, InstrumentForm.INACTIVE, null));
+
+            return TypedActionResult.success(stack);
+        } else if (getForm(stack).miningTool && user.isSneaking()) {
+
+            setHyper(stack, !isHyper(stack));
+
+            return TypedActionResult.success(stack);
+        }
+
+        return super.use(world, user, hand);
+    }
+
+    @Override
+    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
+        if (isActive(stack) && miner instanceof PlayerEntity player) {
+
+            setForm(stack, getBestForm(world, player, getForm(stack), state));
+            return true;
+        }
+
+        return false;
     }
 
     public enum InstrumentForm {
         INACTIVE(0, false, 0),
-        STAFF(1, false, 12),
-        KATANA(2, false, 13, -2.4f, 6),
+        STAFF(1, false, 18),
+        KATANA(2, false, 13, -2.4f, 10),
         PICKAXE(3, true, 5, -2.8f, 0),
-        AXE(4, true, 11, -3f, 10),
+        AXE(4, true, 15, -3f, 10),
         SHOVEL(5, true, 5.5f, -3f, 0);
 
         public final int id;

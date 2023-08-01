@@ -3,10 +3,13 @@ package net.eman3600.dndreams.mixin;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.items.InstrumentOfTruthItem;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.State;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
@@ -65,6 +68,17 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
     private void dndreams$onEntityCollision(World world, BlockPos pos, Entity entity, CallbackInfo ci) {
         if (entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !world.getBlockState(pos).isIn(ModTags.SUBSTANTIAL)) {
             ci.cancel();
+        }
+    }
+
+    @Inject(method = "onBlockBreakStart", at = @At("HEAD"))
+    private void dndreams$onBlockBreakStart(World world, BlockPos pos, PlayerEntity player, CallbackInfo ci) {
+
+        ItemStack stack = player.getMainHandStack();
+
+        if (stack.getItem() instanceof InstrumentOfTruthItem item && item.isActive(stack)) {
+
+            item.setForm(stack, item.getBestForm(world, player, item.getForm(stack), world.getBlockState(pos)));
         }
     }
 }

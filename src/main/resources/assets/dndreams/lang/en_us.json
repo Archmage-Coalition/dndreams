@@ -62,6 +62,7 @@
   "item.dndreams.instrument_of_truth": "Instrument of Truth",
   "item.dndreams.instrument_of_truth.tooltip.0": "§3When you forge the world a new truth,",
   "item.dndreams.instrument_of_truth.tooltip.1": "§3everything is black and white.",
+  "item.dndreams.instrument_of_truth.use": "Press %s to deactivate",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
@@ -333,6 +334,9 @@
   "death.attack.dndreams.radiance": "%s was punished for their sins",
   "death.attack.dndreams.radiance.player": "%1$s was punished by %2$s for their sins",
   "death.attack.dndreams.radiance.item": "%1$s was punished by %2$s weilding %3$s for their sins",
+  "death.attack.dndreams.direct_magic": "%1$s was killed by magic",
+  "death.attack.dndreams.direct_magic.player": "%1$s was killed by %2$s using magic",
+  "death.attack.dndreams.direct_magic.item": "%1$s was killed by %2$s using %3$s",
   
   
   "command.dndreams.bloodmoon.get.now": "There is currently a dread moon.",

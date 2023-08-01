@@ -152,6 +152,7 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
 
     public float getPassiveCleansing() {
 
+        if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).isTruthActive()) return 10;
         if (rotTicks >= 11) return 1;
         if (entity.hasStatusEffect(StatusEffects.DARKNESS)) return 0;
         if (entity.world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY || entity.world.getRegistryKey() == ModDimensions.GATEWAY_DIMENSION_KEY) return 0;

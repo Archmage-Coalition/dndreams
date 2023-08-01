@@ -28,9 +28,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
@@ -236,11 +234,18 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_SANITY_METER);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
-            drawTexture(matrices, tormentXPos, tormentYPos, mainU, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
-            drawTexture(matrices, tormentInnerX, tormentInnerY + skipV2, innerU, tormentV2 + skipV2, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV2);
-            drawTexture(matrices, tormentInnerX, tormentInnerY + skipV, innerU, tormentV + skipV, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV);
 
-            drawTexture(matrices, tormentInnerX, tormentInnerY, treeU, treeV, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT);
+            if (component.isTruthActive()) {
+
+                drawTexture(matrices, tormentXPos, tormentYPos, 60, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
+            } else {
+
+                drawTexture(matrices, tormentXPos, tormentYPos, mainU, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
+                drawTexture(matrices, tormentInnerX, tormentInnerY + skipV2, innerU, tormentV2 + skipV2, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV2);
+                drawTexture(matrices, tormentInnerX, tormentInnerY + skipV, innerU, tormentV + skipV, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV);
+
+                drawTexture(matrices, tormentInnerX, tormentInnerY, treeU, treeV, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT);
+            }
 
 
 
@@ -412,6 +417,17 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
             ci.cancel();
         }
+    }
+
+    @ModifyConstant(method = "renderHeldItemTooltip", constant = @Constant(intValue = 59))
+    private int dndreams$renderHeldItemTooltip$fixPosition(int constant) {
+
+        if (this.client.interactionManager.hasStatusBars() && this.getCameraPlayer().getMaxHealth() > 20) {
+
+            return (int) (constant + ((this.getCameraPlayer().getMaxHealth() - 1) / 20f) * 9);
+        }
+
+        return constant;
     }
 
     @Unique

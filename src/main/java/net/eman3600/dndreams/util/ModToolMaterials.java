@@ -24,9 +24,9 @@ public enum ModToolMaterials implements ToolMaterial {
     PERICHARITE(4, 3122, 23F, 11.0F, 22,
             () -> Ingredient.ofItems(ModItems.PERICHARITE)),
     CROWNED_EDGE(4, 3122, 12.0F, 3.0F, 18,
-            () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
-    TRUE(4, 6244, 26.0F, 6.0F, 18,
-            () -> Ingredient.ofItems(ModItems.STARDUST));
+            () -> Ingredient.ofItems(ModItems.SCULK_POWDER)),
+    TRUE_EDGE(4, 6244, 26.0F, 6.0F, 18,
+            () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL));
 
     private final int miningLevel;
     private final int itemDurability;
@@ -35,7 +35,7 @@ public enum ModToolMaterials implements ToolMaterial {
     private final int enchantability;
     private final Lazy<Ingredient> repairIngredient;
 
-    private ModToolMaterials(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
+    ModToolMaterials(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
         this.miningLevel = miningLevel;
         this.itemDurability = itemDurability;
         this.miningSpeed = miningSpeed;

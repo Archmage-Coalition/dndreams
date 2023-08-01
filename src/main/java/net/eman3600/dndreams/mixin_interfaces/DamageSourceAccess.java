@@ -1,6 +1,8 @@
 package net.eman3600.dndreams.mixin_interfaces;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.EntityDamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 
 public interface DamageSourceAccess {
@@ -28,6 +30,10 @@ public interface DamageSourceAccess {
             if (affliction) access.setAffliction();
         }
         return source;
+    }
+
+    static DamageSource magic(Entity attacker) {
+        return new EntityDamageSource("dndreams.direct_magic", attacker).setBypassesArmor().setUsesMagic();
     }
 
     default boolean isTransethereal() {

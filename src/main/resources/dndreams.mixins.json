@@ -51,6 +51,7 @@
     "MobEntityMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",
+    "PlayerInventoryMixin",
     "RocketItemMixin",
     "SculkShriekerBlockEntityMixin",
     "SculkShriekerBlockMixin",

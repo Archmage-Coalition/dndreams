@@ -11,6 +11,7 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.items.InstrumentOfTruthItem;
 import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.Entity;
@@ -46,6 +47,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
      */
     private int shroud = 0;
     private int haunt = 0;
+    private boolean truthActive = false;
     private boolean dirty = false;
     /**
      * When set to true, the next tick will see the nightmare haze increase instead of decrease. Should be set to true every tick when the haze needs to be maintained.
@@ -195,6 +197,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         shroud = tag.getInt("shroud");
         haunt = tag.getInt("haunt");
         facelessCooldown = tag.getInt("faceless_cooldown");
+        truthActive = tag.getBoolean("truth_active");
         if (tag.containsUuid("faceless")) {
             this.facelessID = tag.getUuid("faceless");
         }
@@ -209,6 +212,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("shroud", shroud);
         tag.putInt("haunt", haunt);
         tag.putInt("faceless_cooldown", facelessCooldown);
+        tag.putBoolean("truth_active", truthActive);
         if (this.facelessID != null) {
             tag.putUuid("faceless", this.facelessID);
         }
@@ -237,12 +241,21 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             lowerPerMinute(j);
         }
 
+        if (truthActive && nightmareHaze) {
+            nightmareHaze = false;
+            markDirty();
+        }
+
         if (hazeTicks > 0 && !nightmareHaze) {
             hazeTicks--;
             markDirty();
         } else if (nightmareHaze) {
             nightmareHaze = false;
             inflictHaze(1);
+        }
+
+        if (truthActive && !player.getInventory().containsAny(stack -> stack.getItem() instanceof InstrumentOfTruthItem item && item.isActive(stack))) {
+            setTruthActive(false);
         }
 
 
@@ -282,7 +295,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public boolean isAttuned() {
         try {
-            return (WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END)) || player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD);
+            return !truthActive && (WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END)) || player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD);
         } catch (NullPointerException e) {
             return false;
         }
@@ -291,7 +304,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public boolean isAwakened() {
         try {
-            return player.hasStatusEffect(ModStatusEffects.THIRD_EYE) || TrinketsApi.getTrinketComponent(player).get().isEquipped(ModItems.TRUTH_GLASSES);
+            return truthActive || player.hasStatusEffect(ModStatusEffects.THIRD_EYE) || TrinketsApi.getTrinketComponent(player).get().isEquipped(ModItems.TRUTH_GLASSES);
         } catch (NoSuchElementException e) {
             return false;
         }
@@ -425,6 +438,15 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             this.facelessEntity = entity;
             markDirty();
         }
+    }
+
+    public boolean isTruthActive() {
+        return truthActive;
+    }
+
+    public void setTruthActive(boolean truthActive) {
+        this.truthActive = truthActive;
+        markDirty();
     }
 
     private static class InsanityRangePair {

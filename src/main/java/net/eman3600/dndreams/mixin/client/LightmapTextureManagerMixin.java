@@ -61,8 +61,8 @@ public abstract class LightmapTextureManagerMixin implements LightmapTextureMana
 
             TormentComponent component = EntityComponents.TORMENT.get(access.getPlayer());
 
-            if (component.getAttunedSanity() < DARKNESS_THRESHOLD) {
-                float clamped = MathHelper.clamp(component.getSanity(), 0, DARKNESS_THRESHOLD);
+            if (component.getAttunedSanity() < DARKNESS_THRESHOLD && !component.isTruthActive()) {
+                float clamped = MathHelper.clamp(component.getAttunedSanity(), 0, DARKNESS_THRESHOLD);
                 clamped = SANITY_SHADOW - (clamped * (SANITY_SHADOW /(DARKNESS_THRESHOLD)));
 
                 z = darkenLight(z, clamped);
