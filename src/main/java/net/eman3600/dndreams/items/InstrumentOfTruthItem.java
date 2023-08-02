@@ -277,6 +277,21 @@ public class InstrumentOfTruthItem extends Item implements ActivateableToolItem,
         return false;
     }
 
+    @Override
+    public int getItemBarStep(ItemStack stack) {
+        return 13;
+    }
+
+    @Override
+    public boolean isItemBarVisible(ItemStack stack) {
+        return isActive(stack);
+    }
+
+    @Override
+    public int getItemBarColor(ItemStack stack) {
+        return isHyper(stack) ? 0xEE00EE : 0x00EEEE;
+    }
+
     public enum InstrumentForm {
         INACTIVE(0, false, 0),
         STAFF(1, false, 18),

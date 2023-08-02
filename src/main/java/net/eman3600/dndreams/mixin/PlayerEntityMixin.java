@@ -184,7 +184,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             attacker.heal(amount * multiplier);
         }
 
-        if (DamageSourceAccess.isAffliction(source)) {
+        if (DamageSourceAccess.isAffliction(source) || (source == DamageSource.DROWN && EntityComponents.TORMENT.get(this).isFearDrowning())) {
 
             EntityComponents.ROT.maybeGet(this).ifPresent(rot -> rot.inflictRot(MathHelper.ceil(amount)));
         }

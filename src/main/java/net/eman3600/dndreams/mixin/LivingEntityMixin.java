@@ -260,7 +260,14 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Redirect(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z"), require = 0)
     private boolean dndreams$baseTick$isSubmergedIn(LivingEntity instance, TagKey<Fluid> tagKey) {
+
         if (tagKey == FluidTags.WATER) {
+
+            if (instance instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).isFearDrowning()) {
+
+                return true;
+            }
+
             return instance.isSubmergedIn(tagKey) | instance.isSubmergedIn(ModTags.SORROW);
         } else {
             return instance.isSubmergedIn(tagKey);
@@ -269,6 +276,11 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Redirect(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/effect/StatusEffectUtil;hasWaterBreathing(Lnet/minecraft/entity/LivingEntity;)Z"))
     private boolean dndreams$baseTick$waterBreathing(LivingEntity entity) {
+
+        if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).isFearDrowning()) {
+
+            return false;
+        }
 
         return StatusEffectUtil.hasWaterBreathing(entity) && !entity.isSubmergedIn(ModTags.SORROW);
     }

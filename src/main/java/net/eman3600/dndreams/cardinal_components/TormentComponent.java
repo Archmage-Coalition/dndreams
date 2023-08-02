@@ -53,6 +53,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
      * When set to true, the next tick will see the nightmare haze increase instead of decrease. Should be set to true every tick when the haze needs to be maintained.
      */
     private boolean nightmareHaze = false;
+    private int fearDrowning = 0;
     private int facelessCooldown = 20;
     @Nullable private Entity facelessEntity = null;
     @Nullable private UUID facelessID = null;
@@ -198,6 +199,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         haunt = tag.getInt("haunt");
         facelessCooldown = tag.getInt("faceless_cooldown");
         truthActive = tag.getBoolean("truth_active");
+        fearDrowning = tag.getInt("fear_drowning");
         if (tag.containsUuid("faceless")) {
             this.facelessID = tag.getUuid("faceless");
         }
@@ -213,6 +215,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("haunt", haunt);
         tag.putInt("faceless_cooldown", facelessCooldown);
         tag.putBoolean("truth_active", truthActive);
+        tag.putInt("fear_drowning", fearDrowning);
         if (this.facelessID != null) {
             tag.putUuid("faceless", this.facelessID);
         }
@@ -278,6 +281,11 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
         if (facelessCooldown > 0) {
             facelessCooldown--;
+            markDirty();
+        }
+
+        if (fearDrowning > 0) {
+            fearDrowning--;
             markDirty();
         }
 
@@ -446,6 +454,15 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     public void setTruthActive(boolean truthActive) {
         this.truthActive = truthActive;
+        markDirty();
+    }
+
+    public boolean isFearDrowning() {
+        return fearDrowning > 0;
+    }
+
+    public void setFearDrowning() {
+        this.fearDrowning = 4;
         markDirty();
     }
 
