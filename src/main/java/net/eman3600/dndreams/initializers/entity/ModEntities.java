@@ -1,10 +1,7 @@
 package net.eman3600.dndreams.initializers.entity;
 
 import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
-import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
-import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
-import net.eman3600.dndreams.entities.mobs.TormentorEntity;
-import net.eman3600.dndreams.entities.mobs.WardenRagdollEntity;
+import net.eman3600.dndreams.entities.mobs.*;
 import net.eman3600.dndreams.entities.projectiles.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -19,6 +16,7 @@ import net.minecraft.world.Heightmap;
 import static net.eman3600.dndreams.Initializer.MODID;
 import static net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity.createBloodSkeletonAttributes;
 import static net.eman3600.dndreams.entities.mobs.BloodZombieEntity.createBloodZombieAttributes;
+import static net.eman3600.dndreams.entities.mobs.FacelessEntity.createFacelessAttributes;
 import static net.eman3600.dndreams.entities.mobs.TormentorEntity.createTormentorAttributes;
 import static net.eman3600.dndreams.entities.mobs.WardenRagdollEntity.createWardenRagdollAttributes;
 
@@ -132,6 +130,14 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<FacelessEntity> FACELESS = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "faceless"),
+            FabricEntityTypeBuilder.<FacelessEntity>create(SpawnGroup.MISC, FacelessEntity::new)
+                    .dimensions(new EntityDimensions(0.9f, 2.9f, false))
+                    .fireImmune()
+                    .build()
+    );
+
 
     public static final EntityType<WardenRagdollEntity> WARDEN_RAGDOLL = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "warden_ragdoll"),
@@ -152,10 +158,12 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(BLOOD_SKELETON, createBloodSkeletonAttributes());
         FabricDefaultAttributeRegistry.register(WARDEN_RAGDOLL, createWardenRagdollAttributes());
         FabricDefaultAttributeRegistry.register(TORMENTOR, createTormentorAttributes());
+        FabricDefaultAttributeRegistry.register(FACELESS, createFacelessAttributes());
     }
 
     public static void registerSpawns() {
 
         SpawnRestriction.register(TORMENTOR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TormentorEntity::isValidNaturalSpawn);
+        SpawnRestriction.register(FACELESS, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FacelessEntity::isValidNaturalSpawn);
     }
 }

@@ -8,7 +8,6 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
-import net.eman3600.dndreams.util.SightUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
@@ -159,10 +158,6 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
                     setCorporeal(false);
                 } else {
                     getTorment(player).markHaze();
-
-                    if (SightUtil.inView(player, this)) {
-                        getTorment(player).setFearDrowning();
-                    }
                 }
             }
         }
@@ -208,9 +203,9 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
     }
 
     @Override
-    public void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(new AnimationController<>(this, "idle", 5, this::idlePlayPredicate));
-        animationData.addAnimationController(new AnimationController<>(this, "attack", 2, this::attackPlayPredicate));
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController<>(this, "idle", 5, this::idlePlayPredicate));
+        data.addAnimationController(new AnimationController<>(this, "attack", 2, this::attackPlayPredicate));
     }
 
     @Override

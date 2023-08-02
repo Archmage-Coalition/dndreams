@@ -3,7 +3,9 @@ package net.eman3600.dndreams.util;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.minecraft.block.AbstractGlassBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.PaneBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -51,9 +53,11 @@ public class SightUtil {
             if (torment.getShroud() >= TormentComponent.MAX_SHROUD && target.world.getLightLevel(target.getBlockPos()) <= 0 && !viewer.hasStatusEffect(ModStatusEffects.HAUNTED)) {
                 return false;
             }
+
+            if (target.isInvisibleTo(player)) return false;
         }
 
-        return !target.hasStatusEffect(StatusEffects.INVISIBILITY) && (!(viewer instanceof PlayerEntity player) || !target.isInvisibleTo(player));
+        return !target.hasStatusEffect(StatusEffects.INVISIBILITY);
     }
 
     public static boolean viewBlocked(LivingEntity viewer, LivingEntity target) {
@@ -139,6 +143,6 @@ public class SightUtil {
 
     public static boolean blocksVision(BlockState state, World world, BlockPos pos) {
 
-        return state.getCollisionShape(world, pos) != VoxelShapes.empty() && state.isOpaque() && state.isSolidBlock(world, pos);
+        return state.getCollisionShape(world, pos) != VoxelShapes.empty() && !(state.getBlock() instanceof AbstractGlassBlock || state.getBlock() instanceof PaneBlock);
     }
 }

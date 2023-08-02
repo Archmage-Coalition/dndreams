@@ -137,6 +137,7 @@ ClientInitializer implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.WARDEN_RAGDOLL, WardenRagdollEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.TORMENTOR, TormentorEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.FACELESS, FacelessEntityRenderer::new);
 
         KeyInputHandler.registerBindings();
         KeyInputHandler.registerKeyInputs();

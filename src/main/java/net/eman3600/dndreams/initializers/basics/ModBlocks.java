@@ -1109,7 +1109,7 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     public static final Block SHADE_WEED = registerBlock("shade_weed",
-            new ShadePlantBlock(FabricBlockSettings.copy(Blocks.GRASS)
+            new ShadeWeedBlock(FabricBlockSettings.copy(Blocks.GRASS)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));

@@ -106,7 +106,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public void lowerSanity(float value) {
-        if (player.hasStatusEffect(ModStatusEffects.BRAINFREEZE)) return;
+        if (player.hasStatusEffect(ModStatusEffects.BRAINFREEZE) || truthActive) return;
 
         sanity -= value;
         normalize();
