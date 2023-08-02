@@ -82,7 +82,7 @@ public class ShadeRiftEntity extends Entity {
 
                 if (world.getBlockState(touchPos.add(player.getBlockPos())).isOf(ModBlocks.SHADE_MOSS)) {
 
-                    if (!player.hasStatusEffect(StatusEffects.DARKNESS) || player.getStatusEffect(StatusEffects.DARKNESS).getDuration() < 30) {
+                    if (!torment.isTruthActive() && (!player.hasStatusEffect(StatusEffects.DARKNESS) || player.getStatusEffect(StatusEffects.DARKNESS).getDuration() < 30)) {
                         player.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 60, 0, true, false, false));
                     }
                     torment.lowerPerMinute(40f);

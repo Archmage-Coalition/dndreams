@@ -6,7 +6,11 @@ import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.interfaces.ActivateableToolItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
+import net.eman3600.dndreams.items.tool_mirror.ModAxeItem;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
+import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -16,15 +20,18 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -33,11 +40,13 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class InstrumentOfTruthItem extends Item implements ActivateableToolItem, AirSwingItem {
 
@@ -138,7 +147,7 @@ public class InstrumentOfTruthItem extends Item implements ActivateableToolItem,
 
         if (hit instanceof LivingEntity target && getForm(stack) == InstrumentForm.KATANA && user.getAttackCooldownProgress(0.5f) > 0.9f) {
 
-            target.damage(DamageSource.magic(user, user), getMagicDamage(stack));
+            target.damage(DamageSourceAccess.magic(user), getMagicDamage(stack));
             target.timeUntilRegen = 0;
         } else if (getForm(stack) != InstrumentForm.AXE && getForm(stack).miningTool) {
 
@@ -148,12 +157,23 @@ public class InstrumentOfTruthItem extends Item implements ActivateableToolItem,
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (!world.isClient && isActive(stack) && entity instanceof PlayerEntity player) {
+        InstrumentForm form = getForm(stack);
+
+        if (!world.isClient && form.isActive() && entity instanceof PlayerEntity player) {
             TormentComponent torment = EntityComponents.TORMENT.get(player);
 
             if (!torment.isTruthActive()) {
+
                 setForm(stack, InstrumentForm.INACTIVE);
                 torment.setTruthActive(false);
+            } else if (selected && form.miningTool && form != InstrumentForm.AXE) {
+
+                EntityHitResult cast = AirSwingItem.castWithDistance(player, 3, e -> !e.isSpectator() && e.canHit());
+
+                if (cast != null && cast.getEntity() instanceof LivingEntity && cast.getEntity().getType() != EntityType.ARMOR_STAND) {
+
+                    setForm(stack, InstrumentForm.KATANA);
+                }
             }
         }
     }
@@ -161,6 +181,11 @@ public class InstrumentOfTruthItem extends Item implements ActivateableToolItem,
     @Override
     public UseAction getUseAction(ItemStack stack) {
         return getForm(stack) == InstrumentForm.STAFF ? UseAction.BOW : UseAction.NONE;
+    }
+
+    @Override
+    public int getMaxUseTime(ItemStack stack) {
+        return getForm(stack) == InstrumentForm.STAFF ? 72000 : 0;
     }
 
     public InstrumentForm getBestForm(World world, PlayerEntity player, InstrumentForm currentForm, @Nullable BlockState state) {
@@ -202,9 +227,43 @@ public class InstrumentOfTruthItem extends Item implements ActivateableToolItem,
             setHyper(stack, !isHyper(stack));
 
             return TypedActionResult.success(stack);
+        } else if (getForm(stack) == InstrumentForm.STAFF && !user.isSneaking()) {
+
+            user.setCurrentHand(hand);
+            return TypedActionResult.consume(stack);
         }
 
         return super.use(world, user, hand);
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        World world = context.getWorld();
+        ItemStack stack = context.getStack();
+        PlayerEntity player = context.getPlayer();
+        BlockPos pos = context.getBlockPos();
+        BlockState state = world.getBlockState(pos);
+
+        if (player != null && isActive(stack) && !player.isSneaking()) {
+
+            Optional<BlockState> optional = ModAxeItem.getStrippedState(state);
+
+            if (optional.isPresent()) {
+
+                world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                if (player instanceof ServerPlayerEntity) {
+                    Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity)player, pos, stack);
+                }
+
+                world.setBlockState(pos, optional.get(), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
+                world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, optional.get()));
+
+                setForm(stack, InstrumentForm.AXE);
+                return ActionResult.success(world.isClient);
+            }
+        }
+
+        return super.useOnBlock(context);
     }
 
     @Override
