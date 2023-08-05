@@ -3,7 +3,6 @@ package net.eman3600.dndreams.mixin;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
-import net.eman3600.dndreams.mixin_interfaces.EndermanEntityAccess;
 import net.eman3600.dndreams.mixin_interfaces.HudAccess;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
@@ -26,9 +25,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.UUID;
 
 @Mixin(EndermanEntity.class)
-public abstract class EndermanEntityMixin extends HostileEntity implements Angerable, EndermanEntityAccess {
+public abstract class EndermanEntityMixin extends HostileEntity implements Angerable {
 
     @Shadow @Nullable public abstract UUID getAngryAt();
+
+    @Shadow abstract boolean isPlayerStaring(PlayerEntity player);
 
     protected EndermanEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -51,7 +52,7 @@ public abstract class EndermanEntityMixin extends HostileEntity implements Anger
     @Inject(method = "playAngrySound", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FFZ)V"))
     private void dndreams$playAngrySound(CallbackInfo ci) {
 
-        if (world instanceof ClientWorldAccess access && isPlayerStaring(access.getPlayer()) && world.getScoreboard() != null && !WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
+        if (world instanceof ClientWorldAccess access && this.isPlayerStaring(access.getPlayer()) && world.getScoreboard() != null && !WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
 
             ((HudAccess)access.getClient().inGameHud).setDragonFlash(24);
         }

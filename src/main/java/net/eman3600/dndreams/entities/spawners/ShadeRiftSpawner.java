@@ -18,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
+@Deprecated
 public class ShadeRiftSpawner implements Spawner {
 
     private int cooldown = 0;
