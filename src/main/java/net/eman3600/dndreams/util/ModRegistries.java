@@ -84,7 +84,7 @@ public class ModRegistries {
         AttunementBurnSlot.putFuel(ModItems.SCULK_POWDER, 50);
         AttunementBurnSlot.putFuel(ModItems.DREAM_POWDER, 90);
         AttunementBurnSlot.putFuel(ModItems.STARDUST, 120);
-        AttunementBurnSlot.putFuel(ModItems.INFERNAL_RESIDUE, 20);
+        AttunementBurnSlot.putFuel(ModItems.INFERNAL_RESIDUE, 50);
         AttunementBurnSlot.putFuel(ModItems.NIGHTMARE_FUEL, 100);
         AttunementBurnSlot.putFuel(ModItems.CRYSTAL_MIX, 150);
         AttunementBurnSlot.putFuel(ModItems.WOOD_ASH, 5);

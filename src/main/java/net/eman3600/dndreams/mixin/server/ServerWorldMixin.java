@@ -4,13 +4,14 @@ import com.google.common.collect.ImmutableList;
 import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
 import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
-import net.eman3600.dndreams.entities.spawners.ShadeRiftSpawner;
+import net.eman3600.dndreams.entities.spawners.FacelessSpawner;
 import net.eman3600.dndreams.entities.spawners.TormentorSpawner;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.server.MinecraftServer;
@@ -48,6 +49,8 @@ public abstract class ServerWorldMixin extends World implements StructureWorldAc
     @Shadow @Final private List<Spawner> spawners;
 
     @Shadow public abstract List<ServerPlayerEntity> getPlayers();
+
+    @Shadow @Final private List<ServerPlayerEntity> players;
 
     protected ServerWorldMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, RegistryEntry<DimensionType> dimension, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed, int maxChainedNeighborUpdates) {
         super(properties, registryRef, dimension, profiler, isClient, debugWorld, seed, maxChainedNeighborUpdates);
@@ -100,7 +103,7 @@ public abstract class ServerWorldMixin extends World implements StructureWorldAc
         // New Spawners Added Here
         if (getRegistryKey() != ModDimensions.GATEWAY_DIMENSION_KEY) {
             tempList.add(new TormentorSpawner());
-            tempList.add(new ShadeRiftSpawner());
+            tempList.add(new FacelessSpawner());
         }
 
 
@@ -110,8 +113,13 @@ public abstract class ServerWorldMixin extends World implements StructureWorldAc
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;wakeSleepingPlayers()V"))
     private void dndreams$tick$wakeup(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
 
-        for (ServerPlayerEntity player: getPlayers()) {
+        this.players.stream().filter(LivingEntity::isSleeping).toList().forEach(player -> {
             EntityComponents.TORMENT.maybeGet(player).ifPresent(torment -> torment.lowerSanity(-40f));
-        }
+            player.getHungerManager().addExhaustion(32f);
+        });
+
+        /*for (ServerPlayerEntity player: getPlayers()) {
+            EntityComponents.TORMENT.maybeGet(player).ifPresent(torment -> torment.lowerSanity(-40f));
+        }*/
     }
 }

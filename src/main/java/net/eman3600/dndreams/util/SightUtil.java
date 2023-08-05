@@ -25,7 +25,7 @@ public class SightUtil {
 
         if (viewer.hasStatusEffect(StatusEffects.BLINDNESS)) return false;
 
-        if (viewBlocked(viewer, target)) return false;
+        if (directViewBlocked(viewer, target)) return false;
 
         return inViewCone(viewer, target) && canSee(viewer, target);
     }
@@ -58,6 +58,14 @@ public class SightUtil {
         }
 
         return !target.hasStatusEffect(StatusEffects.INVISIBILITY);
+    }
+
+    public static boolean directViewBlocked(LivingEntity viewer, LivingEntity target) {
+
+        Vec3d viewerEyes = viewer.getEyePos();
+        Vec3d targetEyes = target.getEyePos();
+
+        return isLineBlocked(viewer, viewer.world, viewerEyes, targetEyes);
     }
 
     public static boolean viewBlocked(LivingEntity viewer, LivingEntity target) {

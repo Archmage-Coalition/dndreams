@@ -5,6 +5,7 @@ import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
 import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
+import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
@@ -279,8 +280,21 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             markDirty();
         }
 
-        if (facelessCooldown > 0) {
-            facelessCooldown--;
+        Entity faceless = getFacelessEntity();
+
+        if (faceless == null) {
+            boolean bl = FacelessEntity.daylightAt(player.world, player.getBlockPos());
+            if (facelessCooldown < 2400 && bl) {
+                facelessCooldown = 2400;
+                markDirty();
+            } else if (facelessCooldown > 0 && !bl) {
+                if (player.world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY && facelessCooldown > 900)
+                    facelessCooldown = 900;
+                facelessCooldown--;
+                markDirty();
+            }
+        } else if (facelessCooldown < 400 && faceless != null) {
+            facelessCooldown = 400;
             markDirty();
         }
 
@@ -364,7 +378,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private boolean shouldShroud() {
 
         if (player.world instanceof ServerWorld serverWorld) {
-            return shouldShroud(serverWorld, player.getBlockPos());
+            return player.hasStatusEffect(ModStatusEffects.LOOMING) || shouldShroud(serverWorld, player.getBlockPos());
         }
 
         return false;
