@@ -5,7 +5,6 @@ import net.eman3600.dndreams.entities.ai.TormentorMeleeAttackGoal;
 import net.eman3600.dndreams.entities.ai.TormentorRangedAttackGoal;
 import net.eman3600.dndreams.entities.ai.TormentorTacticsGoal;
 import net.eman3600.dndreams.initializers.basics.ModItems;
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.minecraft.block.BlockState;
@@ -18,7 +17,6 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.OcelotEntity;
@@ -324,15 +322,6 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
         }
 
         super.onDeath(damageSource);
-    }
-
-    @Override
-    public boolean tryAttack(Entity target) {
-        boolean bl = super.tryAttack(target);
-        if (bl && this.getMainHandStack().isEmpty() && target instanceof LivingEntity) {
-            ((LivingEntity)target).addStatusEffect(new StatusEffectInstance(ModStatusEffects.HAUNTED, 25, 0, false, false, false), this);
-        }
-        return bl;
     }
 
     public static boolean isValidNaturalSpawn(EntityType<? extends TormentorEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
