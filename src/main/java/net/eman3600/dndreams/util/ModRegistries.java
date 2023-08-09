@@ -107,7 +107,6 @@ public class ModRegistries {
         MutandisItem.registerMutable("foliage", Blocks.OXEYE_DAISY);
         MutandisItem.registerMutable("foliage", Blocks.CORNFLOWER);
         MutandisItem.registerMutable("foliage", Blocks.LILY_OF_THE_VALLEY);
-        MutandisItem.registerMutable("foliage", ModBlocks.EMBER_MOSS);
 
         MutandisItem.registerMutable("sapling", Blocks.OAK_SAPLING);
         MutandisItem.registerMutable("sapling", Blocks.BIRCH_SAPLING);
@@ -145,6 +144,8 @@ public class ModRegistries {
         MutandisExtremisItem.registerMutable(Blocks.NETHER_WART);
         MutandisExtremisItem.registerMutable(Blocks.SUGAR_CANE);
         MutandisExtremisItem.registerMutable(Blocks.CACTUS);
+
+        MutandisExtremisItem.registerMutable(ModBlocks.EMBER_MOSS);
 
 
         MutandisOneirosItem.registerMutable(ModBlocks.DREAMWOOD_SAPLING);
