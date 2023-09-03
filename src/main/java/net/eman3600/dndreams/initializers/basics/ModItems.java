@@ -315,6 +315,9 @@ public class ModItems {
     public static final Item ANCIENT_SPARK = registerItem("ancient_spark", new AncientSparkItem(new FabricItemSettings()
             .group(ItemGroup.TOOLS).maxCount(1).maxDamage(64)).withTooltip(null, 1));
 
+    // Veiled Key
+    public static final Item VEILED_KEY = registerItem("veiled_key", new TooltipItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)).withTooltip(null, 1));
+
 
     // Celestium Swords & Tools
     public static final Item CELESTIUM_SWORD = registerItem("celestium_sword",

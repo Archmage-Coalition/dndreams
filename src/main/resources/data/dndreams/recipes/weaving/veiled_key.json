@@ -1,0 +1,13 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [
+    {
+      "item": "dndreams:shade_cloth"
+    }
+  ],
+  "result": {
+    "item": "dndreams:veiled_key",
+    "count": 1
+  },
+  "sanity_cost": 10
+}

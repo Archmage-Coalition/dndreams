@@ -63,6 +63,8 @@
   "item.dndreams.instrument_of_truth.tooltip.0": "§3When you forge the world a new truth,",
   "item.dndreams.instrument_of_truth.tooltip.1": "§3everything is black and white.",
   "item.dndreams.instrument_of_truth.use": "Press %s to deactivate",
+  "item.dndreams.veiled_key": "Veiled Key",
+  "item.dndreams.veiled_key.tooltip": "§3Unlocks the captive light.",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
