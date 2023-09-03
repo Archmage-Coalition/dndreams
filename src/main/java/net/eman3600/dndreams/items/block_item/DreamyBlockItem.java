@@ -23,5 +23,6 @@ public class DreamyBlockItem extends BlockItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         DreamyItem.dreamTooltip(world, tooltip);
+
     }
 }
