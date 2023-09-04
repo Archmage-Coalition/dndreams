@@ -293,7 +293,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
                 facelessCooldown--;
                 markDirty();
             }
-        } else if (facelessCooldown < 400 && faceless != null) {
+        } else if (facelessCooldown < 400) {
             facelessCooldown = 400;
             markDirty();
         }
