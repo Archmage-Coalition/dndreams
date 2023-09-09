@@ -20,9 +20,9 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
     private boolean notifiedClients = false;
 
     private final World world;
-    private Object provider;
 
     private static final int CUMULATIVE_CHANCE = 3;
+    private static final int HARD_CUMULATIVE_CHANCE = 5;
 
     public BloodMoonComponent(World world) {
         this.world = world;
@@ -66,7 +66,7 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
             } else if (world.random.nextInt(100) < chance) {
                 damnedNight = true;
             } else {
-                chance += CUMULATIVE_CHANCE;
+                chance += (world.getScoreboard() != null && WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) ? HARD_CUMULATIVE_CHANCE : CUMULATIVE_CHANCE;
             }
         }
         if (notifiedClients != isBloodMoon() && world.getRegistryKey() == World.OVERWORLD) {

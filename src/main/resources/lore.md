@@ -7,7 +7,7 @@ The power of solidity and order, embodied by the End, the Sun, and ice.
 The power of mind and soul, embodied by the Spirit World, the Moon, and the affliction.
 
 ## Wrath
-The power of hatred and retribution, embodied by the Nether, fire, and electricity.
+The power of hatred and retribution, embodied by the Nether, fire, and the crimson.
 
 # The Materials
 The many materials of the world reflect different elements and their nuances.
@@ -82,7 +82,7 @@ Once inside, Elrunez was able to fully embrace the madness of unreality and be t
 ???
 
 ## Instrument of Truth
-
+???
 
 
 # Bosses
