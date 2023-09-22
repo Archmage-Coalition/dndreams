@@ -94,7 +94,7 @@ This task has been taxing to the element of imagination and has neutralized it s
 ## The Wither, Hand of the Plague
 An amalgamation of failed simulacrums, the Wither is the embodiment of the decaying force of the affliction that created the skeletons. It cares only to infect intelligent life and was the main spreader of the decay. Once its corrupted purpose was served, it collapsed into a heap of bones and skulls.
 
-Reawakened by the player, the Wither's new purpose is to kill them and any other sapient beings nearby. When slain, it will drop its nether star: a crystalized power source formed from electrified souls.
+Reawakened by the player, the Wither's new purpose is to kill them and any other sapient beings nearby. When slain, it will drop its nether star: a crystalized power source formed from charged souls.
 
 ## Architects' Siege & The Wraith King
 The siege is begun by an influx of power in the ancient portal, twisted by madness to allow the spirits of the dead to come forth, twisted by sculk and madness. The portal, while stabilized by Elrunez, is tainted by insanity and will not become usable until the madness settles.

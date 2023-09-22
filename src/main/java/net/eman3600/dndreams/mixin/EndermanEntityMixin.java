@@ -12,6 +12,8 @@ import net.minecraft.entity.mob.Angerable;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -55,6 +57,7 @@ public abstract class EndermanEntityMixin extends HostileEntity implements Anger
         if (world instanceof ClientWorldAccess access && this.isPlayerStaring(access.getPlayer()) && world.getScoreboard() != null && !WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
 
             ((HudAccess)access.getClient().inGameHud).setDragonFlash(24);
+            world.playSound(access.getPlayer(), access.getPlayer().getBlockPos(), SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.HOSTILE, 1f, 1f);
         }
     }
 

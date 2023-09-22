@@ -11,6 +11,7 @@ import java.util.Random;
 
 public class CrownedBeamPacket {
     public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf packet, PacketSender sender) {
+        if (client.world == null) return;
         Vec3d vec = new Vec3d(packet.readDouble(), packet.readDouble(), packet.readDouble());
 
         boolean wicked = packet.readBoolean();
