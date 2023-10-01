@@ -130,7 +130,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public int getMaxTormentors() {
         float effective = getAttunedSanity();
 
-        return effective <= 5 ? 16 : effective <= 25 ? 6 : effective <= 50 ? 2 : 0;
+        return effective <= 5 ? 10 : effective <= 25 ? 6 : effective <= 50 ? 2 : 0;
     }
 
     @Override

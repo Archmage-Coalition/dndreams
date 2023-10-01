@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
+import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.mixin_interfaces.WardenEntityAccess;
 import net.minecraft.entity.Entity;
@@ -28,7 +29,7 @@ public abstract class WardenEntityMixin extends HostileEntity implements WardenE
 
     @Inject(method = "isValidTarget", at = @At("HEAD"), cancellable = true)
     private void dndreams$isValidTarget(Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        if (entity instanceof TormentorEntity) {
+        if (entity instanceof TormentorEntity || entity instanceof FacelessEntity) {
             cir.setReturnValue(false);
         }
     }

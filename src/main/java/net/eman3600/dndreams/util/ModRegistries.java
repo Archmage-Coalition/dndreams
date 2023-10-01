@@ -60,7 +60,7 @@ public class ModRegistries {
 
             TormentComponent torment = EntityComponents.TORMENT.get(player);
 
-            return (int)((1 - torment.getAttunedSanity()/100f) * 120 + 40);
+            return (int) ((1 - torment.getAttunedSanity() / 100f) * 120 + 40);
         });
 
         ItemStackAccess.registerRepairPredicate(ModTags.INSANITY_REPAIRING_TOOLS, (stack, player) -> {
@@ -181,7 +181,7 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() ? 2f : 0);
         TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
         TormentComponent.registerPredicate((player, torment) -> torment.getShroud() > 0 ? 2.5f : 0);
-        TormentComponent.registerPredicate(player -> player.hasStatusEffect(ModStatusEffects.HAUNTED) ? 180f : 0f);
+        TormentComponent.registerPredicate(player -> player.hasStatusEffect(ModStatusEffects.HAUNTED) ? 60f : 0f);
     }
 
     private static void registerInsanityMobAuras() {

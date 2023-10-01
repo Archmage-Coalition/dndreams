@@ -277,11 +277,8 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         if (dragonFlashTicks > 0) {
             RenderSystem.setShaderTexture(0, DRAGON_FLASH_IMAGE);
 
-            int n = scaledWidth / 2;
-            int m = scaledHeight / 2;
-
-            n -= 323;
-            m -= 207;
+            int n = scaledWidth / 2 - 323;
+            int m = scaledHeight / 2 - 207;
 
             float alpha = 1;
 
