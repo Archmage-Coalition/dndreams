@@ -1,5 +1,7 @@
 package net.eman3600.dndreams.blocks.crop;
 
+import dev.emi.trinkets.api.TrinketComponent;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
@@ -12,6 +14,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+
+import java.util.Optional;
 
 public class EmberMossBlock extends PlantBlock {
     public static final VoxelShape SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 11.0, 16.0);
@@ -77,11 +81,8 @@ public class EmberMossBlock extends PlantBlock {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity) {
-            for (ItemStack stack: entity.getArmorItems()) {
-                if (stack.isOf(ModItems.CORRUPT_LEGGINGS)) {
-                    return;
-                }
-            }
+            Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent((LivingEntity) entity);
+            if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.FLAME_CAPE)) return;
             if (!entity.isFireImmune()) {
                 entity.setFireTicks(entity.getFireTicks() + 2);
                 if (entity.getFireTicks() <= 0) {

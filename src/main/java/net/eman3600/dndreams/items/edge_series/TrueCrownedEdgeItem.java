@@ -24,6 +24,7 @@ public class TrueCrownedEdgeItem extends CrownedEdgeItem {
         return 8;
     }
 
+
     @Override
     public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit) {
         if (user.getAttackCooldownProgress(0.5f) > 0.9f) {

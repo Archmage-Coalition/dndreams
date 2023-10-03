@@ -40,9 +40,7 @@ import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
-import net.eman3600.dndreams.items.trinket.DissociationCharmItem;
-import net.eman3600.dndreams.items.trinket.FleetfootBandItem;
-import net.eman3600.dndreams.items.trinket.TruthGlassesItem;
+import net.eman3600.dndreams.items.trinket.*;
 import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
@@ -428,6 +426,10 @@ public class ModItems {
             new DissociationCharmItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item TRUTH_GLASSES = registerItem("truth_glasses",
             new TruthGlassesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+    public static final Item FLAME_CAPE = registerItem("flame_cape",
+            new FlameCapeItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+    public static final Item LAVA_STRIDERS = registerItem("lava_striders",
+            new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
     // Staves
     public static final Item SPARK_STAFF = registerItem("spark_staff",

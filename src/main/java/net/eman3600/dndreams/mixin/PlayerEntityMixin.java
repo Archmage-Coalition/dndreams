@@ -170,13 +170,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setAbsorptionAmount(F)V", shift = At.Shift.AFTER))
     private void dndreams$applyDamage$afterAbsorptionDamage(DamageSource source, float amount, CallbackInfo ci) {
-        if (getInventory().getArmorStack(2).isOf(ModItems.CORRUPT_CHESTPLATE)) {
-            addStatusEffect(new StatusEffectInstance(ModStatusEffects.BLOODLUST, (int) Math.ceil(amount * 40)));
-
-            if (source.getAttacker() instanceof LivingEntity attacker) {
-                attacker.setOnFireFor((int) Math.ceil(amount * 2));
-            }
-        }
 
         if (hasStatusEffect(ModStatusEffects.HEARTBLEED) && source.getAttacker() instanceof LivingEntity attacker) {
             float multiplier = 0.2f * (getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1);

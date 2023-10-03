@@ -75,10 +75,6 @@
   "item.dndreams.corrupt_chestplate": "Hellsteel Chestplate",
   "item.dndreams.corrupt_leggings": "Hellsteel Leggings",
   "item.dndreams.corrupt_boots": "Hellsteel Boots",
-  "item.dndreams.corrupt_helmet.tooltip": "§3Quickly puts out fire.",
-  "item.dndreams.corrupt_chestplate.tooltip": "§3Channels pain into rage.",
-  "item.dndreams.corrupt_leggings.tooltip": "§3Lets you walk through flames.",
-  "item.dndreams.corrupt_boots.tooltip": "§3Lets you walk on lava.",
   
   "item.dndreams.demonic_core": "Obsidian Vessel",
   "item.dndreams.demonic_core_charged": "Crimson Vessel",
@@ -259,6 +255,11 @@
   "item.dndreams.truth_glasses": "Truth Lenses",
   "item.dndreams.truth_glasses.tooltip.0": "§3See things how they really are",
   "item.dndreams.truth_glasses.tooltip.1": "§3and expand your mind.",
+  "item.dndreams.flame_cape": "Cloak of Flames",
+  "item.dndreams.flame_cape.tooltip.0": "§3Prevents ignition from open flames.",
+  "item.dndreams.flame_cape.tooltip.1": "§3Quickly extinguishes lasting fire.",
+  "item.dndreams.lava_striders": "Lava Striders",
+  "item.dndreams.lava_striders.tooltip": "§3Allows walking on lava.",
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
 

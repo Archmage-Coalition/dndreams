@@ -1,5 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
+import dev.emi.trinkets.api.TrinketComponent;
+import dev.emi.trinkets.api.TrinketsApi;
 import dev.onyxstudios.cca.api.v3.component.ComponentAccess;
 import net.eman3600.dndreams.cardinal_components.GatewayComponent;
 import net.eman3600.dndreams.initializers.basics.ModItems;
@@ -27,6 +29,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Optional;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput, ComponentAccess {
@@ -104,8 +108,11 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
 
     @Inject(method = "setOnFireFromLava", at = @At("HEAD"), cancellable = true)
     private void dndreams$setOnFireFromLava(CallbackInfo ci) {
-        if (ModArmorItem.isWearing((Entity)(Object)this, ModItems.CORRUPT_BOOTS) && this instanceof LivingEntityAccess access && access.hasNotBrokenLava()) {
-            ci.cancel();
+        if ((Object)this instanceof LivingEntity entity) {
+            Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent(entity);
+            if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS) && this instanceof LivingEntityAccess access && access.hasNotBrokenLava()) {
+                ci.cancel();
+            }
         }
     }
 

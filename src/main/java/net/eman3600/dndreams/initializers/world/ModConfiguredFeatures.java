@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.initializers.world;
 
+import com.google.common.collect.ImmutableList;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.minecraft.block.BlockState;
@@ -17,6 +18,7 @@ import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
 import net.minecraft.world.gen.foliage.SpruceFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
+import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
 import net.minecraft.world.gen.trunk.BendingTrunkPlacer;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
@@ -71,7 +73,9 @@ public class ModConfiguredFeatures {
                             new BendingTrunkPlacer(4, 2, 0, 3, UniformIntProvider.create(1, 2)),
                             new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(ModBlocks.SHADE_LEAVES.getDefaultState(), 1)),
                             new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(2), 50),
-                            new TwoLayersFeatureSize(1, 0, 1)).dirtProvider(BlockStateProvider.of(ModBlocks.SHADE_MOSS)).forceDirt().build());
+                            new TwoLayersFeatureSize(1, 0, 1))
+                            .dirtProvider(BlockStateProvider.of(ModBlocks.SHADE_MOSS)).forceDirt()
+                            .decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(ModBlocks.SHADE_MOSS)))).build());
 
 
 

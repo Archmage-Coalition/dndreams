@@ -1,5 +1,7 @@
 package net.eman3600.dndreams.mixin;
 
+import dev.emi.trinkets.api.TrinketComponent;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.cardinal_components.*;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
@@ -53,6 +55,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements LivingEntityAccess {
@@ -131,18 +134,27 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "fall", at = @At("HEAD"), cancellable = true)
     private void dndreams$fall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition, CallbackInfo ci) {
-        if (ModArmorItem.isWearing(this, ModItems.CORRUPT_BOOTS)) {
+        Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent((LivingEntity)(Object)this);
+        if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS)) {
             this.checkBlockCollision();
             if (isAtLavaSurface()) {
                 this.onLanding();
                 ci.cancel();
             }
         }
+//        if (ModArmorItem.isWearing(this, ModItems.CORRUPT_BOOTS)) {
+//            this.checkBlockCollision();
+//            if (isAtLavaSurface()) {
+//                this.onLanding();
+//                ci.cancel();
+//            }
+//        }
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void dndreams$tick$tail(CallbackInfo ci) {
-        if (ModArmorItem.isWearing(this, ModItems.CORRUPT_BOOTS)) {
+        Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent((LivingEntity)(Object)this);
+        if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS)) {
             updateLavaFloating();
             this.checkBlockCollision();
         }
@@ -150,7 +162,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "canWalkOnFluid", at = @At("RETURN"), cancellable = true)
     private void dndreams$canWalkOnFluid(FluidState state, CallbackInfoReturnable<Boolean> cir) {
-        if (ModArmorItem.isWearing(this, ModItems.CORRUPT_BOOTS) && state.isIn(FluidTags.LAVA) && hasNotBrokenLava()) {
+        Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent((LivingEntity)(Object)this);
+        if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS) && state.isIn(FluidTags.LAVA) && hasNotBrokenLava()) {
             cir.setReturnValue(true);
         }
     }
@@ -183,12 +196,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "baseTick", at = @At("HEAD"))
     public void dndreams$baseTick(CallbackInfo ci) {
-        for (ItemStack stack: getArmorItems()) {
-            if (stack.isOf(ModItems.CORRUPT_HELMET) && getFireTicks() > 60) {
-                setFireTicks(60);
-                break;
-            }
-        }
+        Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent((LivingEntity)(Object)this);
+        if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.FLAME_CAPE) && getFireTicks() > 60) setFireTicks(60);
 
         if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
             addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE, 0, true, true));

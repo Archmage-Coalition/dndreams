@@ -34,7 +34,6 @@ public class CorruptArmorItem extends ModArmorItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("tooltip.dndreams.corrupt_armor"));
-        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
 
         if (world instanceof ClientWorldAccess access && access.getPlayer() != null && wornPieces(access.getPlayer()) >= 4) {
             tooltip.add(Text.translatable("tooltip.dndreams.corrupt_armor.set_bonus"));
