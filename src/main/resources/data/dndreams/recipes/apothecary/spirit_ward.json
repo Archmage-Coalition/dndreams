@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "dndreams:hollow_tear"
+    "item": "dndreams:brilliance"
   },
   "corrupted": false,
-  "capacity": 3,
-  "cost": 300,
+  "capacity": 4,
+  "cost": 400,
   "effect": "dndreams:spirit_ward",
   "duration": 2100,
   "max_amplifier": 0

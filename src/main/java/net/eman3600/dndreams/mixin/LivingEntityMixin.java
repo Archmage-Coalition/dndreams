@@ -142,13 +142,6 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
                 ci.cancel();
             }
         }
-//        if (ModArmorItem.isWearing(this, ModItems.CORRUPT_BOOTS)) {
-//            this.checkBlockCollision();
-//            if (isAtLavaSurface()) {
-//                this.onLanding();
-//                ci.cancel();
-//            }
-//        }
     }
 
     @Inject(method = "tick", at = @At("TAIL"))

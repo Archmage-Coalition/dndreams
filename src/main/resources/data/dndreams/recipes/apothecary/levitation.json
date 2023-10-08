@@ -1,10 +1,10 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "dndreams:brilliance"
+    "item": "minecraft:phantom_membrane"
   },
   "corrupted": true,
-  "capacity": 4,
+  "capacity": 2,
   "cost": 400,
   "effect": "minecraft:levitation",
   "duration": 300

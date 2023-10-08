@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "dndreams:brilliance"
   },
-  "corrupted": false,
+  "corrupted": true,
   "capacity": 4,
   "cost": 400,
   "effect": "dndreams:grace",
