@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "dndreams:corrupt_ingot"
+    },
+    "#": {
+      "item": "dndreams:nightmare_fuel"
+    },
+    "M": {
+      "item": "dndreams:managold_ingot"
+    },
+    "S": {
+      "item": "dndreams:corrupt_scrap"
+    }
+  },
+  "pattern": [
+    "#M#",
+    "MXM",
+    "XSX"
+  ],
+  "result": {
+    "item": "dndreams:flame_cape"
+  }
+}

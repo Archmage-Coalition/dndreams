@@ -427,9 +427,9 @@ public class ModItems {
     public static final Item TRUTH_GLASSES = registerItem("truth_glasses",
             new TruthGlassesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item FLAME_CAPE = registerItem("flame_cape",
-            new FlameCapeItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+            new FlameCapeItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).fireproof()));
     public static final Item LAVA_STRIDERS = registerItem("lava_striders",
-            new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+            new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).fireproof()));
 
     // Staves
     public static final Item SPARK_STAFF = registerItem("spark_staff",

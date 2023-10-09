@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "dndreams:corrupt_ingot"
+    },
+    "#": {
+      "item": "dndreams:managold_ingot"
+    },
+    "C": {
+      "item": "minecraft:string"
+    },
+    "F": {
+      "item": "minecraft:warped_fungus"
+    },
+    "N": {
+      "item": "dndreams:nightmare_fuel"
+    }
+  },
+  "pattern": [
+    "FCF",
+    "N#N",
+    "XCX"
+  ],
+  "result": {
+    "item": "dndreams:lava_striders"
+  }
+}
