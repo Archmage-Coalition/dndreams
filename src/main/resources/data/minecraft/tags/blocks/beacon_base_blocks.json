@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "dndreams:managold_block",
+    "dndreams:corrupt_block",
+    "dndreams:celestium_block",
+    "dndreams:tormite_block",
+    "dndreams:vital_block",
+    "dndreams:pericharite_block",
+    "dndreams:silver_block"
+  ]
+}

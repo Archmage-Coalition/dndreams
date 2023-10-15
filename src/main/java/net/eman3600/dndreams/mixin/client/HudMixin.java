@@ -228,6 +228,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
             int innerU = 5;
             float sanity = component.getAttunedSanity();
+
             int treeU = sanity >= 85 ? 0 : sanity >= 65 ? 20 : sanity >= 45 ? 40 : sanity >= 25 ? 60 : sanity >= 5 ? 80 : 100;
             int treeV = EntityComponents.DREAMING.get(player).isDreaming() ? 90 : 70;
 

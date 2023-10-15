@@ -55,7 +55,7 @@ public class GlowBoltEntity extends ThrownEntity implements WaterIgnorant {
             if (hitResult instanceof BlockHitResult blockHit && getOwner() instanceof PlayerEntity player) {
                 BlockPos pos = blockHit.getBlockPos().offset(blockHit.getSide());
 
-                if (world.getBlockState(pos).canReplace(new ItemPlacementContext(new ItemUsageContext(player, player.getActiveHand(), blockHit)))) {
+                if (world.getBlockState(pos).canReplace(new ItemPlacementContext(new ItemUsageContext(player, player.getActiveHand(), blockHit))) && world.getFluidState(pos).isEmpty()) {
                     world.setBlockState(pos, ModBlocks.SHINE.getDefaultState(), Block.NOTIFY_LISTENERS);
                     world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, SoundCategory.BLOCKS, 1, 1, true);
                 }
