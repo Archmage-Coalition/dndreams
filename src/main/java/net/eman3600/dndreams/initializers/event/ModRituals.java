@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModInfusions;
 import net.eman3600.dndreams.rituals.*;
 import net.eman3600.dndreams.rituals.setup.Ritual;
@@ -23,6 +24,8 @@ public class ModRituals {
     public static final Ritual AMETHYST_SPROUT = register("amethyst_sprout", new AmethystSproutRitual());
     public static final Ritual SUMMON_STORM = register("summon_storm", new SummonStormRitual());
     public static final Ritual NIGHT_TERROR = register("night_terror", new NightTerrorRitual());
+
+    public static final Ritual GRACE_AURA = register("grace_aura", new EffectAuraRitual(ModStatusEffects.GRACE, 48, 1, 500, 5, new Ring(Ring.INNER_RING, CandleTuning.END)));
 
     public static final Ritual NATURE_INFUSION = register("nature_infusion", new InfusionRitual(3000, ModInfusions.NATURE, new Ring(Ring.INNER_RING, CandleTuning.OVERWORLD), new Ring(Ring.MIDDLE_RING, CandleTuning.OVERWORLD)));
     public static final Ritual INFERNAL_INFUSION = register("infernal_infusion", new InfusionRitual(3000, ModInfusions.INFERNAL, new Ring(Ring.INNER_RING, CandleTuning.NETHER), new Ring(Ring.MIDDLE_RING, CandleTuning.NETHER)));

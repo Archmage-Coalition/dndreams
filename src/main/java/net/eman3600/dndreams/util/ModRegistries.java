@@ -166,11 +166,11 @@ public class ModRegistries {
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.REDSTONE, EnhancementType.LENGTH, 100);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.CRYSTAL_MIX, EnhancementType.LENGTH, 100);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STARDUST, EnhancementType.LENGTH, 100);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STAR_FRUIT, EnhancementType.LENGTH, 100);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.GLOWSTONE_DUST, EnhancementType.AMPLIFIER, 200);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.REFINED_EVIL, EnhancementType.AMPLIFIER, 200);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STAR_FRUIT, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STARDUST, EnhancementType.AMPLIFIER, 200);
     }
 
     private static void registerInsanityPredicates() {
