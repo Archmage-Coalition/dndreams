@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.events.loot_conditions.AwakenedLootCondition;
+import net.eman3600.dndreams.events.loot_conditions.BloodMoonLootCondition;
 import net.eman3600.dndreams.events.loot_conditions.SanityLootCondition;
 import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.util.Identifier;
@@ -12,6 +13,7 @@ public class ModLootConditions {
 
     public static final LootConditionType SANITY = registerCondition("sanity", new LootConditionType(new SanityLootCondition.Serializer()));
     public static final LootConditionType AWAKENED = registerCondition("awakened", new LootConditionType(new AwakenedLootCondition.Serializer()));
+    public static final LootConditionType BLOOD_MOON = registerCondition("blood_moon", new LootConditionType(new BloodMoonLootCondition.Serializer()));
 
 
 
