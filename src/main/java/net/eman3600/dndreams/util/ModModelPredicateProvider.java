@@ -14,11 +14,6 @@ public class ModModelPredicateProvider {
         registerBow(ModItems.MANASTRING_BOW);
         registerBow(ModItems.MINDSTRING_BOW);
 
-        registerBloodlustItem(ModItems.CORRUPT_SWORD);
-        registerBloodlustItem(ModItems.CORRUPT_PICKAXE);
-        registerBloodlustItem(ModItems.CORRUPT_AXE);
-        registerBloodlustItem(ModItems.CORRUPT_SHOVEL);
-        registerBloodlustItem(ModItems.CORRUPT_HOE);
         registerBloodlustItem(ModItems.BLOODFLAME_VESSEL);
 
         registerRestoredItem(ModItems.CROWNED_EDGE);
