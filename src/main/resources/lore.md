@@ -78,10 +78,10 @@ Once inside, Elrunez was able to fully embrace the madness of unreality and be t
 
 
 # Artifacts
-## Crowned Edge
+## The Crowned Edge
 ???
 
-## Instrument of Truth
+## The Instrument of Truth
 ???
 
 
