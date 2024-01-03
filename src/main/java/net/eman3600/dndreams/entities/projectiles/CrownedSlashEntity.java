@@ -27,6 +27,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class CrownedSlashEntity extends BeamProjectileEntity {
@@ -205,10 +206,14 @@ public class CrownedSlashEntity extends BeamProjectileEntity {
     }
 
     public static float randomlyRoll(World world) {
-        int i = world.random.nextInt(4);
+        try {
+            int i = world.random.nextInt(4);
 
-        int j = i != 0 && i != 3 ? i * 60 : i == 0 ? 30 : 150;
+            int j = i != 0 && i != 3 ? i * 60 : i == 0 ? 30 : 150;
 
-        return j + 90;
+            return j + 90;
+        } catch (ConcurrentModificationException e) {
+            return 120;
+        }
     }
 }

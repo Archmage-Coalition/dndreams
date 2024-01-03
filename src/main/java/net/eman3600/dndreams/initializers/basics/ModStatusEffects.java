@@ -47,6 +47,8 @@ public class ModStatusEffects {
             .addAttributeModifier(EntityAttributes.GENERIC_ARMOR, "8009BFB0-DB59-4D20-9945-13D4E8C59DD2", -.5f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
             .addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, "8009BFB0-DB59-4D20-9945-13D4E8C59DD2", -.5f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
     public static StatusEffect STIFLED = register("stifled", new ModStatusEffect(StatusEffectCategory.HARMFUL, 0xb78d86));
+    public static StatusEffect AGONY = register("agony", new ModStatusEffect(StatusEffectCategory.HARMFUL, 15597568)
+            .addAttributeModifier(ModAttributes.PLAYER_RECLAMATION, "5cbc4a62-6e92-49c5-b2d6-b691b97ec644", -.25f, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 
     private static StatusEffect register(String name, StatusEffect entry) {
         return Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);

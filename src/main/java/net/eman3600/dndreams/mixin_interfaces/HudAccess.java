@@ -3,6 +3,7 @@ package net.eman3600.dndreams.mixin_interfaces;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.random.Random;
 
 public interface HudAccess {
     void setDragonFlash(int ticks);
@@ -14,7 +15,9 @@ public interface HudAccess {
         MORTAL(2),
         MORTAL_CONTAINER(2, true),
         REJUVENATION(3),
-        ROT(4);
+        ROT(4),
+        AGONY_1(5),
+        AGONY_2(6);
 
         private final int id;
         private final boolean container;
@@ -28,8 +31,10 @@ public interface HudAccess {
             this(id, false);
         }
 
-        public static CustomHeartType fromPlayerState(PlayerEntity player, InGameHud.HeartType type) {
+        public static CustomHeartType fromPlayerState(PlayerEntity player, InGameHud.HeartType type, Random random) {
             if (player == null) return NO_CHANGE;
+
+            if (player.hasStatusEffect(ModStatusEffects.AGONY)) return random.nextInt((int)player.getHealth() + 8) < 7 ? AGONY_1 : AGONY_2;
 
             if (type == InGameHud.HeartType.CONTAINER) return player.hasStatusEffect(ModStatusEffects.MORTAL) ? MORTAL_CONTAINER : NO_CHANGE;
             if (type == InGameHud.HeartType.ABSORBING) return NO_CHANGE;

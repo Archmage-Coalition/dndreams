@@ -298,7 +298,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Inject(method = "drawHeart", at = @At("HEAD"), cancellable = true)
     private void dndreams$drawHeart(MatrixStack matrices, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart, CallbackInfo ci) {
 
-        CustomHeartType customType = HudAccess.CustomHeartType.fromPlayerState(getCameraPlayer(), type);
+        CustomHeartType customType = HudAccess.CustomHeartType.fromPlayerState(getCameraPlayer(), type, this.random);
         if (customType != CustomHeartType.NO_CHANGE) {
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_HEARTS);
 
@@ -351,7 +351,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                     }
 
                     this.drawHeart(matrices, InGameHud.HeartType.CONTAINER, p, q, i, blinking, false);
-                    this.drawGloomHeart(matrices, CustomHeartType.ROT, p, q, hardcore, blinking && m * 2 < health, false);
+                    if (!player.hasStatusEffect(ModStatusEffects.AGONY)) this.drawGloomHeart(matrices, CustomHeartType.ROT, p, q, hardcore, blinking && m * 2 < health, false);
                 }
 
                 if (rot.getRot() % 2 == 1) {
@@ -368,7 +368,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
                         q -= 2;
                     }
 
-                    this.drawGloomHeart(matrices, CustomHeartType.ROT, p, q, hardcore, blinking && m * 2 < health, true);
+                    if (!player.hasStatusEffect(ModStatusEffects.AGONY)) this.drawGloomHeart(matrices, CustomHeartType.ROT, p, q, hardcore, blinking && m * 2 < health, true);
                 }
             }
         }

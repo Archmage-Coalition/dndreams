@@ -29,7 +29,7 @@ public class ModFeatures {
 
     public static final List<OreFeatureConfig.Target> CELESTIUM_ORES = List.of(
             OreFeatureConfig.createTarget(OreFeatures.BASE_END_STONE, ModBlocks.CELESTIUM_ORE.getDefaultState()),
-            OreFeatureConfig.createTarget(OreFeatures.BASE_MARBLE, ModBlocks.CELESTIUM_ORE.getDefaultState())
+            OreFeatureConfig.createTarget(OreFeatures.BASE_MARBLE, ModBlocks.CELESTIUM_MARBLE_ORE.getDefaultState())
     );
 
     // ORES REGISTRY

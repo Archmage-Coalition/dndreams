@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dndreams:celestium_ore"
+    "dndreams:celestium_ore",
+	"dndreams:celestium_marble_ore"
   ]
 }

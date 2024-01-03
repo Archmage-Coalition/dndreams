@@ -19,6 +19,7 @@ public class ModRituals {
 
     public static final Ritual CHARGE_DEMONIC_CORE = register("charge_demonic_core", new DemonicCoreRitual());
     public static final Ritual REPAIR_EDGE = register("repair_edge", new CraftingRitual(ModItems.CROWNED_EDGE, 1000, new Ring(Ring.INNER_RING, CandleTuning.OVERWORLD), new Ring(Ring.MIDDLE_RING, CandleTuning.END)));
+    public static final Ritual EMPOWER_EDGE = register("empower_edge", new CraftingRitual(ModItems.TRUE_CROWNED_EDGE, 2000, new Ring(Ring.INNER_RING, CandleTuning.OVERWORLD), new Ring(Ring.MIDDLE_RING, CandleTuning.END)));
 
     public static final Ritual AMETHYST_SOURCE = register("amethyst_source", new AmethystSourceRitual());
     public static final Ritual AMETHYST_SPROUT = register("amethyst_sprout", new AmethystSproutRitual());

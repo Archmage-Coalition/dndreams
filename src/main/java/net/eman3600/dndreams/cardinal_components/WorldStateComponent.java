@@ -5,7 +5,6 @@ import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.scoreboard.Scoreboard;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
 public class WorldStateComponent implements WorldStateComponentI {
@@ -41,27 +40,33 @@ public class WorldStateComponent implements WorldStateComponentI {
             return 1f;
         }
 
-        if (world instanceof ServerWorld serverWorld) {
+        /*if (world instanceof ServerWorld serverWorld) {
             World overworld = serverWorld.getServer().getWorld(World.OVERWORLD);
             if (overworld == null) return 0;
 
             BloodMoonComponent bloodMoon = WorldComponents.BLOOD_MOON.get(overworld);
 
             return bloodMoon.damnedNight() ? 1f : 0f;
-        }
+        }*/
 
         return 0;
     }
 
     private float getProperThunder() {
-        if (world instanceof ServerWorld serverWorld) {
+        Scoreboard board = world.getScoreboard();
+
+        if (board != null && !WorldComponents.BOSS_STATE.get(board).elrunezSlain()) {
+            return 1f;
+        }
+
+        /*if (world instanceof ServerWorld serverWorld) {
             World overworld = serverWorld.getServer().getWorld(World.OVERWORLD);
             if (overworld == null) return 0;
 
             BloodMoonComponent bloodMoon = WorldComponents.BLOOD_MOON.get(overworld);
 
             return Math.min(getProperRain(), bloodMoon.isBloodMoon() ? 1f : 0f);
-        }
+        }*/
 
         return 0;
     }

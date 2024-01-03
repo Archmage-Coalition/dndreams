@@ -117,6 +117,12 @@ public class ModBlocks {
                     .requiresTool(), UniformIntProvider.create(3, 6)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block CELESTIUM_MARBLE_ORE = registerBlock("celestium_marble_ore",
+            new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE_GRAY).strength(4.0f).resistance(8.0f)
+                    .sounds(BlockSoundGroup.STONE)
+                    .requiresTool(), UniformIntProvider.create(3, 6)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Some of the Ore Blocks
     public static final Block MANAGOLD_BLOCK = registerBlock("managold_block",

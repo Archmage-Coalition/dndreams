@@ -10,7 +10,6 @@ import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.items.ModArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModFoodComponents;
@@ -300,12 +299,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
 
 
-    /*@ModifyVariable(method = "damage", at = @At("HEAD"))
-    private float dndreams$damage$affliction(float amount) {
-        if (this.hasStatusEffect(ModStatusEffects.AFFLICTION) && !isUndead() && getType() != ModEntities.TORMENTOR) {
-            return (float) (amount * Math.pow(1.4f, this.getStatusEffect(ModStatusEffects.AFFLICTION).getAmplifier() + 1));
+    @ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
+    private float dndreams$damage$heartbleed(float amount) {
+        if (this.hasStatusEffect(ModStatusEffects.HEARTBLEED)) {
+            return (float) (amount * Math.pow(1.4f, this.getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1));
         } else return amount;
-    }*/
+    }
 
     @Inject(method = "modifyAppliedDamage", at = @At("RETURN"), cancellable = true)
     private void dndreams$modifyAppliedDamage(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
@@ -374,11 +373,11 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setAbsorptionAmount(F)V", shift = At.Shift.AFTER))
     private void dndreams$applyDamage$afterAbsorptionDamage(DamageSource source, float amount, CallbackInfo ci) {
-        if (hasStatusEffect(ModStatusEffects.HEARTBLEED) && source.getAttacker() instanceof LivingEntity attacker) {
+        /*if (hasStatusEffect(ModStatusEffects.HEARTBLEED) && source.getAttacker() instanceof LivingEntity attacker) {
             float multiplier = 0.2f * (getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1);
 
             attacker.heal(amount * multiplier);
-        }
+        }*/
 
         if (DamageSourceAccess.isAffliction(source)) {
 

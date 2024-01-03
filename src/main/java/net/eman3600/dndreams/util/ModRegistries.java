@@ -208,6 +208,7 @@ public class ModRegistries {
 
         registry.add(ModItems.NIGHTMARE_FUEL, 4800);
         registry.add(ModItems.ARCHFUEL, 3200);
+        registry.add(ModItems.INFERNAL_RESIDUE, 2400);
     }
 
     private static void registerStrippables() {

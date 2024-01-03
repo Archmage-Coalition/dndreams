@@ -22,7 +22,6 @@ public class TormiteArmorItem extends ModArmorItem {
         super.appendTooltip(stack, world, tooltip, context);
 
         tooltip.add(Text.translatable("tooltip.dndreams.tormite_armor"));
-        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
     }
 
     public static int wornPieces(Entity entity) {

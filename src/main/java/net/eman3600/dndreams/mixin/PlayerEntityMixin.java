@@ -5,7 +5,6 @@ import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.projectiles.TeslaSlashEntity;
-import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
@@ -23,7 +22,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -80,7 +78,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 .add(ModAttributes.PLAYER_REVIVAL, 1d)
                 .add(ModAttributes.PLAYER_RECLAMATION, 1d)
                 .add(ModAttributes.PLAYER_EVASION, 7d)
-                .add(ModAttributes.PLAYER_LUNGE, 1d));
+                .add(ModAttributes.PLAYER_LUNGE, .75d));
     }
 
     @Inject(method = "isBlockBreakingRestricted", at = @At("HEAD"), cancellable = true)
@@ -171,11 +169,11 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setAbsorptionAmount(F)V", shift = At.Shift.AFTER))
     private void dndreams$applyDamage$afterAbsorptionDamage(DamageSource source, float amount, CallbackInfo ci) {
 
-        if (hasStatusEffect(ModStatusEffects.HEARTBLEED) && source.getAttacker() instanceof LivingEntity attacker) {
+        /*if (hasStatusEffect(ModStatusEffects.HEARTBLEED) && source.getAttacker() instanceof LivingEntity attacker) {
             float multiplier = 0.2f * (getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1);
 
             attacker.heal(amount * multiplier);
-        }
+        }*/
 
         if (DamageSourceAccess.isAffliction(source)) {
 
