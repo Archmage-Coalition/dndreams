@@ -2,13 +2,5 @@
     "parent": "item/handheld",
     "textures": {
         "layer0": "dndreams:item/corrupt_axe"
-    },
-    "overrides": [
-        {
-            "predicate": {
-                "bloodlust": 1
-            },
-            "model": "dndreams:item/corrupt_axe_bloodlust"
-        }
-    ]
+    }
 }

@@ -2,13 +2,5 @@
     "parent": "item/handheld",
     "textures": {
         "layer0": "dndreams:item/corrupt_shovel"
-    },
-    "overrides": [
-        {
-            "predicate": {
-                "bloodlust": 1
-            },
-            "model": "dndreams:item/corrupt_shovel_bloodlust"
-        }
-    ]
+    }
 }
