@@ -3,7 +3,6 @@ package net.eman3600.dndreams.items.interfaces;
 import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
-import net.eman3600.dndreams.items.hellsteel.CorruptArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -33,7 +32,6 @@ public interface BloodlustItem {
             player.timeUntilRegen = 5;
             player.damage(CRIMSON_SACRIFICE, DAMAGE);
             int duration = bl ? 280 : 140;
-            duration += 40 * CorruptArmorItem.wornPieces(player);
             player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.BLOODLUST, duration));
 
             return TypedActionResult.consume(stack);

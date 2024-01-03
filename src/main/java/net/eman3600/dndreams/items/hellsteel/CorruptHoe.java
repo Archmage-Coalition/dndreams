@@ -1,10 +1,8 @@
 package net.eman3600.dndreams.items.hellsteel;
 
 import com.mojang.datafixers.util.Pair;
-import net.eman3600.dndreams.items.interfaces.BloodlustItem;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
@@ -14,8 +12,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -25,14 +21,9 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class CorruptHoe extends HoeItem implements BloodlustItem {
+public class CorruptHoe extends HoeItem {
     public CorruptHoe(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
-    }
-
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        return inflictBloodlust(world, user, user.getStackInHand(hand));
     }
 
     @Override
@@ -81,16 +72,7 @@ public class CorruptHoe extends HoeItem implements BloodlustItem {
     }
 
     @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (hasBloodlust(attacker)) {
-            target.setOnFireFor(5);
-        }
-
-        return super.postHit(stack, target, attacker);
-    }
-
-    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(getTooltipBloodlust(world));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
     }
 }
