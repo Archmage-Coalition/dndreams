@@ -18,7 +18,7 @@
                     {
                       "condition": "dndreams:sanity",
                       "entity": "this",
-					  "sanity": 25,
+					  "sanity": 5,
 					  "mad": true
                     }
                   ]
@@ -30,7 +30,8 @@
 				    {
 					  "condition": "dndreams:sanity",
                       "entity": "this",
-					  "sanity": 85
+					  "sanity": 25,
+					  "mad": true
 					}
                   ]
                 },

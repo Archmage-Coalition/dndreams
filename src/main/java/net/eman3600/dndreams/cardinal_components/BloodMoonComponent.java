@@ -14,7 +14,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
 
 public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedComponent {
-    private int chance = 100;
+    private int chance = 0;
     private long knownDay = -1;
     private boolean damnedNight = false;
     private boolean notifiedClients = false;
@@ -26,6 +26,7 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
 
     public BloodMoonComponent(World world) {
         this.world = world;
+        if (world != null && world.getLevelProperties() != null && world.getLevelProperties().isHardcore()) chance = 100;
     }
 
     private RegistryKey<DimensionType> getDimensionKey() {
