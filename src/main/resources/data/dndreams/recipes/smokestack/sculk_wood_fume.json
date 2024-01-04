@@ -1,7 +1,0 @@
-{
-  "type": "dndreams:smokestack",
-  "ingredient": {
-    "item": "dndreams:sculk_wood_planks"
-  },
-  "result": "dndreams:sculk_wood_fume"
-}

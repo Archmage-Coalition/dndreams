@@ -43,14 +43,6 @@ public class ModConfiguredFeatures {
                     new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
                     new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(Blocks.GRASS_BLOCK)).build());
 
-    public static final RegistryEntry<ConfiguredFeature<HugeFungusFeatureConfig, ?>> SCULK_WOOD_TREE =
-            ConfiguredFeatures.register("sculk_wood_tree", Feature.HUGE_FUNGUS,
-                    new HugeFungusFeatureConfig(Blocks.SCULK.getDefaultState(),
-                            ModBlocks.SCULK_WOOD_LOG.getDefaultState(),
-                            ModBlocks.SCULK_WOOD_LEAVES.getDefaultState(),
-                            ModBlocks.SCULK_LIGHT.getDefaultState(),
-                            true));
-
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> JAPANESE_MAPLE_TREE =
             ConfiguredFeatures.register("japanese_maple_tree", Feature.TREE, new TreeFeatureConfig.Builder(
                     BlockStateProvider.of(ModBlocks.JAPANESE_MAPLE_LOG),

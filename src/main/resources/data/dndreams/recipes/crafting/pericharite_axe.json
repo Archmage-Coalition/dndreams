@@ -7,13 +7,13 @@
   ],
   "key": {
     "#": {
-      "item": "dndreams:celestium"
+      "item": "dndreams:pericharite"
     },
     "X": {
-      "item": "dndreams:end_stick"
+      "item": "dndreams:silver_rod"
     }
   },
   "result": {
-    "item": "dndreams:celestium_axe"
+    "item": "dndreams:pericharite_axe"
   }
 }
