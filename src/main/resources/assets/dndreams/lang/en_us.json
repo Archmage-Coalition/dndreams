@@ -88,7 +88,7 @@
   "item.dndreams.mind_shears": "Mind Shears",
   "item.dndreams.mind_shears.tooltip": "§3Tear your mind to pieces.",
   "item.dndreams.crystal_feather": "Crystal Feather",
-  "item.dndreams.crystal_feather.tooltip": "§3Grants the dodge step ability.",
+  "item.dndreams.crystal_feather.tooltip": "§3Grants the dash ability.",
   "item.dndreams.crystal_feather.tooltip.used": "§cCannot be used again.",
   
   "item.dndreams.celestium_sword": "Celestium Sword",
@@ -96,6 +96,7 @@
   "item.dndreams.celestium_sword.tooltip.1": "§3Teleportation can be hazardous.",
   "item.dndreams.celestium_pickaxe": "Celestium Pickaxe",
   "item.dndreams.celestium_axe": "Celestium Axe",
+  "item.dndreams.celestium_axe.tooltip": "§3Pulls logs out of trees.",
   "item.dndreams.celestium_shovel": "Celestium Shovel",
   "item.dndreams.celestium_hoe": "Celestium Scythe",
   "item.dndreams.celestium_helmet": "Celestium Helmet",

@@ -149,7 +149,7 @@ ClientInitializer implements ClientModInitializer {
             if ((world instanceof ClientWorldAccess access)) {
                 try {
 
-                    if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) return true;
+                    if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY || world.getRegistryKey() == ModDimensions.GATEWAY_DIMENSION_KEY) return true;
                 } catch (Exception ignored) {}
 
                 return access.getClient().player.hasStatusEffect(ModStatusEffects.AETHER);
