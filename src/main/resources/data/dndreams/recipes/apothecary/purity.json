@@ -3,10 +3,9 @@
   "ingredient": {
     "item": "dndreams:golden_grass"
   },
-  "corrupted": true,
+  "corrupted": false,
   "capacity": 3,
   "cost": 400,
-  "effect": "dndreams:cleansing",
-  "duration": 1,
-  "max_amplifier": 0
+  "effect": "dndreams:purity",
+  "duration": 1
 }

@@ -31,6 +31,10 @@ public class InstantModStatusEffect extends InstantStatusEffect {
                     entity.damage(DamageSourceAccess.AFFLICTION, 2 * (1 + amplifier));
                 }
             });
+        } else if (this == ModStatusEffects.PURITY) {
+            EntityComponents.ROT.maybeGet(entity).ifPresent(rot -> {
+                rot.healRot(4 * (1 + amplifier));
+            });
         }
     }
 
@@ -52,6 +56,11 @@ public class InstantModStatusEffect extends InstantStatusEffect {
                         target.damage(AfflictionProjectileDamageSource.magic(source, attacker), i);
                     }
                 }
+            });
+        } else if (this == ModStatusEffects.PURITY) {
+            i = (int)(proximity * (double)(4 * (amplifier + 1)) + 0.5);
+            EntityComponents.ROT.maybeGet(target).ifPresent(rot -> {
+                rot.healRot(i);
             });
         }
     }
