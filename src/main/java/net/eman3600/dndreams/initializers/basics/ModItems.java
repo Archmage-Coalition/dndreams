@@ -12,6 +12,7 @@ import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
 import net.eman3600.dndreams.items.celestium.CelestiumAxeItem;
+import net.eman3600.dndreams.items.celestium.CelestiumPickaxeItem;
 import net.eman3600.dndreams.items.celestium.CelestiumSwordItem;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
@@ -322,7 +323,7 @@ public class ModItems {
             new CelestiumSwordItem(ModToolMaterials.CELESTIUM, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CELESTIUM_PICKAXE = registerItem("celestium_pickaxe",
-            new ModPickaxeItem(ModToolMaterials.CELESTIUM, 1, -2.8F,
+            new CelestiumPickaxeItem(ModToolMaterials.CELESTIUM, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_AXE = registerItem("celestium_axe",
             new CelestiumAxeItem(ModToolMaterials.CELESTIUM, 5.0F, -3F,
