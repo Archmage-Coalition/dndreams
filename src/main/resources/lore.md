@@ -16,7 +16,7 @@ The many materials of the world reflect different elements and their nuances.
 Memory dust is a mass of memory and soul, now incomprehensible but full of power. Dream powder is instead a mass of dreams. The two are so interconnected that they can flow between each other with the aid of flowing spirit.
 
 # The Affliction
-The affliction is the root of undeath, the source of madness and consumption, and the cause of the fall of Koinans. It manifests itself in several forms based on the various aspects of mind and soul.
+The affliction is the root of undeath, the source of madness and consumption, and the undoing of the Koinans. It manifests itself in several forms based on the various aspects of mind and soul.
 
 At its heart, the affliction is a plague born of necromantic origin, created by those who wished to utilize the power of mind and soul to live eternally and reach the Haven illegitimately.
 
@@ -78,10 +78,10 @@ Once inside, Elrunez was able to fully embrace the madness of unreality and be t
 
 
 # Artifacts
-## Crowned Edge
+## The Crowned Edge
 ???
 
-## Instrument of Truth
+## The Instrument of Truth
 ???
 
 
