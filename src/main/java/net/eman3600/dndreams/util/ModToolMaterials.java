@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 public enum ModToolMaterials implements ToolMaterial {
     RESONANT(3, 1561, 4.0F, 1.0F, 18,
             () -> Ingredient.ofItems(Items.DIAMOND)),
-    CORRUPT(3, 1299, 7.0F, 2.0F, 13,
+    CORRUPT(3, 1299, 8.0F, 2.0F, 13,
             () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
     CELESTIUM(4, 2145, 14.5F, 6.0F, 18,
             () -> Ingredient.ofItems(ModItems.CELESTIUM)),

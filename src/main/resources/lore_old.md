@@ -1,3 +1,20 @@
+# The Elements
+
+## Reality
+The power of solidity and order, embodied by the End, the Sun, and ice.
+
+## Imagination
+The power of mind and soul, embodied by the Spirit World, the Moon, and the affliction.
+
+## Wrath
+The power of hatred and retribution, embodied by the Nether, fire, and the crimson.
+
+# The Materials
+The many materials of the world reflect different elements and their nuances.
+
+## Mind Powders
+Memory dust is a mass of memory and soul, now incomprehensible but full of power. Dream powder is instead a mass of dreams. The two are so interconnected that they can flow between each other with the aid of flowing spirit.
+
 # The Affliction
 The affliction is the root of undeath, the source of madness and consumption, and the undoing of the Koinans. It manifests itself in several forms based on the various aspects of mind and soul.
 
