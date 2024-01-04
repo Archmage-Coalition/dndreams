@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "dndreams:pericharite"
+    },
+	"#": {
+      "item": "dndreams:silver_ingot"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "X X",
+    "# #"
+  ],
+  "result": {
+    "item": "dndreams:pericharite_leggings"
+  }
+}

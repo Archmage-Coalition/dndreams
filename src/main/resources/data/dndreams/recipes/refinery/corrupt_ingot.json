@@ -9,10 +9,10 @@
       "item": "dndreams:corrupt_scrap"
     },
 	{
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:copper_ingot"
     },
 	{
-      "item": "dndreams:infernal_residue"
+      "item": "minecraft:blaze_powder"
     }
   ],
   "result": {

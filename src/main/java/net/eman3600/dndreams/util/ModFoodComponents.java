@@ -15,13 +15,13 @@ public class ModFoodComponents {
 
 
 
-    public static final FoodComponent NIGHTMARE_FUEL = registerSanityFood(new FoodComponent.Builder().hunger(12).saturationModifier(1.0F)
+    public static final FoodComponent NIGHTMARE_FUEL = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(1.0F)
             .alwaysEdible().build(), -25);
     public static final FoodComponent SUCCULENT_APPLE = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.DREAMY, 400, 0), 1.0F)
             .alwaysEdible().build(), 8);
-    public static final FoodComponent DRAGONFRUIT = registerSanityFood(new FoodComponent.Builder().hunger(12).saturationModifier(2.5F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 0), 1.0F)
+    public static final FoodComponent DRAGONFRUIT = registerSanityFood(new FoodComponent.Builder().hunger(9).saturationModifier(2.5F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 140, 0), 1.0F)
             .alwaysEdible().build(), 3);
     public static final FoodComponent POISON_APPLE = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(0.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.POISON, 300, 1), 1.0F)

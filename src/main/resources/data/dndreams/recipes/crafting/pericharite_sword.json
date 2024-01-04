@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:pericharite"
+    },
+    "X": {
+      "item": "dndreams:silver_rod"
+    }
+  },
+  "result": {
+    "item": "dndreams:pericharite_sword"
+  }
+}

@@ -14,7 +14,7 @@ public class DragonfruitItem extends TooltipItem {
 
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return super.getMaxUseTime(stack) * 2;
+        return 48;
     }
 
     @Override

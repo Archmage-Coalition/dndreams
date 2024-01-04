@@ -1,0 +1,23 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "minecraft:blaze_rod"
+    },
+	{
+      "item": "dndreams:wood_ash"
+    },
+	{
+      "item": "minecraft:gold_nugget"
+    },
+	{
+      "item": "minecraft:gold_nugget"
+    }
+  ],
+  "result": {
+    "item": "minecraft:blaze_powder",
+    "count": 6
+  },
+  "cost": 50,
+  "refine_time": 100
+}
