@@ -5,13 +5,21 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -107,6 +115,37 @@ public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem {
             FallingBlockEntity.spawnFromBlock(world, pos, state);
         }
     }*/
+
+    @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack stack = user.getStackInHand(hand);
+
+        HitResult hit = user.raycast(12, 0, false);
+        if (hit.getType() == HitResult.Type.BLOCK) {
+            BlockHitResult result = (BlockHitResult) hit;
+
+            BlockPos pos = result.getBlockPos();
+            BlockState state = world.getBlockState(pos);
+
+            if ((isSuitableFor(state) || validFall(state)) && state.getHardness(world, pos) >= 0 && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
+
+                if (!world.isClient) {
+                    FallingBlockEntity.spawnFromBlock(world, pos, state);
+                    stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+                }
+                return TypedActionResult.success(stack);
+            }
+        }
+
+        return super.use(world, user, hand);
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        if (context.getPlayer() != null && context.getPlayer().isSneaking()) return ActionResult.PASS;
+
+        return super.useOnBlock(context);
+    }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {

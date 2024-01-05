@@ -322,7 +322,7 @@ public class ModItems {
             new CelestiumSwordItem(ModToolMaterials.CELESTIUM, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CELESTIUM_PICKAXE = registerItem("celestium_pickaxe",
-            new CelestiumPickaxeItem(ModToolMaterials.CELESTIUM, 1, -2.8F,
+            new CelestiumPickaxeItem(ModToolMaterials.CELESTIUM_SLOW, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_AXE = registerItem("celestium_axe",
             new CelestiumAxeItem(ModToolMaterials.CELESTIUM, 5.0F, -3F,

@@ -34,6 +34,6 @@ public class FidiFruitItem extends Item {
 
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return super.getMaxUseTime(stack) * 2;
+        return 48;
     }
 }
