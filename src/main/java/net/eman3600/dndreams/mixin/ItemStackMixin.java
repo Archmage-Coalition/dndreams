@@ -115,10 +115,8 @@ public abstract class ItemStackMixin implements ItemStackAccess {
 
     @Inject(method = "inventoryTick", at = @At("TAIL"))
     private void dndreams$inventoryTick$autoRepair(World world, Entity entity, int slot, boolean selected, CallbackInfo ci) {
-
-        if (isIn(ModTags.AUTO_REPAIRING_TOOLS) && isDamaged() && !world.isClient() && entity instanceof PlayerEntity player) {
-
-            ItemStack stack = (ItemStack)(Object)this;
+        ItemStack stack = (ItemStack)(Object)this;
+        if (isIn(ModTags.AUTO_REPAIRING_TOOLS) && isDamaged() && !world.isClient() && entity instanceof PlayerEntity player && player.getMainHandStack() != stack && player.getOffHandStack() != stack) {
 
             repairTicks++;
 
