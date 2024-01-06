@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.items.celestium;
 
 import net.eman3600.dndreams.items.interfaces.DivineWeaponItem;
+import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FallingBlock;
@@ -27,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem {
+public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem, ManaCostItem {
 
     public CelestiumAxeItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -39,7 +40,10 @@ public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem {
         if (world.isClient) return true;
         int broken = state.getHardness(world, pos) == 0.0f ? 0 : 1;
 
-        if (isLog(state) && !miner.isSneaking()) broken += chainBreak(world, pos, 20, miner);
+        if (isLog(state) && !miner.isSneaking() && miner instanceof PlayerEntity player && canAffordMana(player, stack)) {
+            broken += chainBreak(world, pos, 20, miner);
+            spendMana(player, stack);
+        }
 
         stack.damage(broken, miner, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
 
@@ -116,7 +120,7 @@ public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem {
             BlockPos pos = result.getBlockPos();
             BlockState state = world.getBlockState(pos);
 
-            if ((isSuitableFor(state) || isTree(state)) && state.getHardness(world, pos) >= 0 && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
+            if ((isSuitableFor(state) || isTree(state)) && state.getHardness(world, pos) >= 0 && world.getBlockEntity(pos) == null && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
 
                 if (!world.isClient) {
                     FallingBlockEntity.spawnFromBlock(world, pos, state);
@@ -140,6 +144,13 @@ public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.0"));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.1"));
+        tooltip.add(getTooltipMana(stack));
+    }
+
+    @Override
+    public int getBaseManaCost() {
+        return 7;
     }
 }
