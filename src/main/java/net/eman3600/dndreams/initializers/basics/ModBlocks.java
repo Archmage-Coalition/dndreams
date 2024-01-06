@@ -576,60 +576,60 @@ public class ModBlocks {
 
 
     // Nightshade Wood
-    public static final Block SHADE_LOG = registerBlock("shade_log",
+    public static final Block SHADE_LOG = registerDreamBlock("shade_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHADE_WOOD = registerBlock("shade_wood",
+    public static final Block SHADE_WOOD = registerDreamBlock("shade_wood",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block STRIPPED_SHADE_LOG = registerBlock("shade_stripped_log",
+    public static final Block STRIPPED_SHADE_LOG = registerDreamBlock("shade_stripped_log",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block STRIPPED_SHADE_WOOD = registerBlock("shade_stripped_wood",
+    public static final Block STRIPPED_SHADE_WOOD = registerDreamBlock("shade_stripped_wood",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    public static final Block SHADE_PLANKS = registerBlock("shade_planks",
+    public static final Block SHADE_PLANKS = registerDreamBlock("shade_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
-    public static final Block SHADE_LEAVES = registerBlock("shade_leaves",
+    public static final Block SHADE_LEAVES = registerDreamBlock("shade_leaves",
             new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
                     .nonOpaque().ticksRandomly().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
-    public static final Block SHADE_BUSH = registerBlock("shade_bush",
+    public static final Block SHADE_BUSH = registerDreamBlock("shade_bush",
             new ShadeSaplingBlock(FabricBlockSettings.copy(Blocks.AZALEA)
                     .breakInstantly().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
-    public static final Block SHADE_STAIRS = registerBlock("shade_stairs",
+    public static final Block SHADE_STAIRS = registerDreamBlock("shade_stairs",
             new ModStairsBlock(SHADE_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHADE_SLAB = registerBlock("shade_slab",
+    public static final Block SHADE_SLAB = registerDreamBlock("shade_slab",
             new SlabBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHADE_FENCE = registerBlock("shade_fence",
+    public static final Block SHADE_FENCE = registerDreamBlock("shade_fence",
             new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
-    public static final Block SHADE_FENCE_GATE = registerBlock("shade_fence_gate",
+    public static final Block SHADE_FENCE_GATE = registerDreamBlock("shade_fence_gate",
             new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f)
                     .sounds(BlockSoundGroup.WOOD)),
 
@@ -1032,17 +1032,17 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
-    public static final Block SHADE_WEED = registerBlock("shade_weed",
+    public static final Block SHADE_WEED = registerDreamBlock("shade_weed",
             new ShadeWeedBlock(FabricBlockSettings.copy(Blocks.GRASS)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
-    public static final Block SHADE_GRASS = registerBlock("shade_grass",
+    public static final Block SHADE_GRASS = registerDreamBlock("shade_grass",
             new ShadePlantBlock(FabricBlockSettings.copy(Blocks.GRASS)
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
-    public static final Block SHADE_FERN = registerBlock("shade_fern",
+    public static final Block SHADE_FERN = registerDreamBlock("shade_fern",
             new ShadePlantBlock(FabricBlockSettings.copy(Blocks.FERN)
                     .nonOpaque()),
 
