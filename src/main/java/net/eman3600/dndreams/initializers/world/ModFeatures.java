@@ -40,7 +40,7 @@ public class ModFeatures {
             ConfiguredFeatures.register("hellslate_ore_common",Feature.ORE, new OreFeatureConfig(HELLSLATE_ORES_COMMON, 7));
 
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> VITAL_ORE =
-            ConfiguredFeatures.register("vital_ore",Feature.ORE, new OreFeatureConfig(VITAL_ORES, 8));
+            ConfiguredFeatures.register("vital_ore",Feature.ORE, new OreFeatureConfig(VITAL_ORES, 3));
 
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> CELESTIUM_ORE =
             ConfiguredFeatures.register("celestium_ore",Feature.ORE, new OreFeatureConfig(CELESTIUM_ORES, 4));
