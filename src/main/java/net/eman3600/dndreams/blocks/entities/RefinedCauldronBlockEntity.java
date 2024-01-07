@@ -134,7 +134,7 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
             for (ItemEntity itemEntity: entities) {
                 ItemStack stack = itemEntity.getStack();
 
-                if ((boilingTime >= 80 && cauldronState == CauldronState.IDLE) || stack.isOf(ModItems.WOOD_ASH) || stack.isOf(ModItems.ARCHFUEL)) {
+                if ((boilingTime >= 80 && cauldronState == CauldronState.IDLE) || stack.isOf(ModItems.WOOD_ASH)) {
                     attemptAdd(stack, itemEntity, world);
                     markDirty();
                     world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
@@ -188,17 +188,9 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
     }
 
     private void attemptAdd(ItemStack stack, ItemEntity itemEntity, ServerWorld world) {
-        if (inventory.get(0).isOf(ModItems.WOOD_ASH)) inventory.clear();
         if (itemEntity instanceof ItemEntityAccess access && access.isUnbrewable()) return;
 
         if (stack.isOf(ModItems.WOOD_ASH)) {
-            reset(world);
-
-            stack.decrement(1);
-            if (stack.getCount() <= 0) itemEntity.kill();
-
-            return;
-        } else if (stack.isOf(ModItems.ARCHFUEL)) {
             ItemScatterer.spawn(world, pos.up(), explodeable());
             reset(world);
 
