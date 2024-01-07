@@ -4,8 +4,6 @@
     "minecraft:sculk",
     "minecraft:sculk_catalyst",
     "dndreams:hellsand",
-    "dndreams:hellsoil",
-    "#dndreams:sculk_wood_logs",
-    "dndreams:sculk_wood_planks"
+    "dndreams:hellsoil"
   ]
 }

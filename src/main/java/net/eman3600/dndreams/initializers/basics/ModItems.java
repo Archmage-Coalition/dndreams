@@ -154,7 +154,6 @@ public class ModItems {
     public static final Item FOUL_FUME = registerItem("foul_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item SAKURA_FUME = registerItem("sakura_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item JAPANESE_MAPLE_FUME = registerItem("japanese_maple_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item SCULK_WOOD_FUME = registerItem("sculk_wood_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item DREAMWOOD_FUME = registerItem("dreamwood_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item PRISTINE_FUME = registerItem("pristine_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
     public static final Item SHADE_FUME = registerItem("shade_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
@@ -323,7 +322,7 @@ public class ModItems {
             new CelestiumSwordItem(ModToolMaterials.CELESTIUM, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CELESTIUM_PICKAXE = registerItem("celestium_pickaxe",
-            new CelestiumPickaxeItem(ModToolMaterials.CELESTIUM, 1, -2.8F,
+            new CelestiumPickaxeItem(ModToolMaterials.CELESTIUM_SLOW, 1, -2.8F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_AXE = registerItem("celestium_axe",
             new CelestiumAxeItem(ModToolMaterials.CELESTIUM, 5.0F, -3F,

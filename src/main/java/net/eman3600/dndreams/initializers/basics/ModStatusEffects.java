@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.initializers.basics;
 
-import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mob_effects.InstantModStatusEffect;
@@ -12,6 +11,8 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+
+import static net.eman3600.dndreams.Initializer.MODID;
 
 public class ModStatusEffects {
     public static StatusEffect IMPENDING = register("impending", new InstantModStatusEffect(StatusEffectCategory.HARMFUL, 0x7700e0));
@@ -52,11 +53,11 @@ public class ModStatusEffects {
     public static StatusEffect PURITY = register("purity", new InstantModStatusEffect(StatusEffectCategory.BENEFICIAL, 13041151));
 
     private static StatusEffect register(String name, StatusEffect entry) {
-        return Registry.register(Registry.STATUS_EFFECT, new Identifier(Initializer.MODID, name), entry);
+        return Registry.register(Registry.STATUS_EFFECT, new Identifier(MODID, name), entry);
     }
 
     public static void registerEffects() {
-        System.out.println("Registering effects for " + Initializer.MODID);
+        System.out.println("Registering effects for " + MODID);
     }
 
     public static boolean shouldRestrict(PlayerEntity player) {

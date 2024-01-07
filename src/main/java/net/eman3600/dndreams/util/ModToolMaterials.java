@@ -15,6 +15,8 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(ModItems.CORRUPT_INGOT)),
     CELESTIUM(4, 2145, 14.5F, 6.0F, 18,
             () -> Ingredient.ofItems(ModItems.CELESTIUM)),
+    CELESTIUM_SLOW(4, 2145, 7F, 6.0F, 18,
+            () -> Ingredient.ofItems(ModItems.CELESTIUM)),
     VITAL(1, 575, 4.0F, 1.0F, 12,
             () -> Ingredient.ofItems(ModItems.VITAL_SHARD)),
     MANAGOLD(2, 32, 12.0F, 2.0F, 22,

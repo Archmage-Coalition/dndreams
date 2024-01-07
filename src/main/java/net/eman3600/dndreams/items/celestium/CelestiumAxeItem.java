@@ -1,24 +1,34 @@
 package net.eman3600.dndreams.items.celestium;
 
 import net.eman3600.dndreams.items.interfaces.DivineWeaponItem;
+import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem {
+public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem, ManaCostItem {
 
     public CelestiumAxeItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -28,49 +38,40 @@ public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem {
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
 
         if (world.isClient) return true;
+        int broken = state.getHardness(world, pos) == 0.0f ? 0 : 1;
 
-        if (validFall(state)) tryFall(world, pos.up(), 15);
-
-        return super.postMine(stack, world, state, pos, miner);
-    }
-
-    public void tryFall(World world, BlockPos pos, int tries) {
-        //if (tries <= 0 || world.isOutOfHeightLimit(pos) || !validFall(world.getBlockState(pos))) return;
-        if (tries <= 0 || world.isOutOfHeightLimit(pos) || !validLog(world.getBlockState(pos))) return;
-        System.out.println("Trying to fell block " + world.getBlockState(pos) + " at " + pos + " with " + tries + " tries remaining.");
-
-        if (fall(world, pos, 8)) for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                for (int k = -1; k < 2; k++) {
-                    tryFall(world, pos.add(i, k, j), tries - 1);
-                }
-            }
+        if (isLog(state) && !miner.isSneaking() && miner instanceof PlayerEntity player && canAffordMana(player, stack)) {
+            broken += chainBreak(world, pos, 20, miner);
+            spendMana(player, stack);
         }
+
+        stack.damage(broken, miner, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+
+        return true;
     }
 
-    private boolean validFall(BlockState state) {
+    private boolean isTree(BlockState state) {
         return state != null && (state.isIn(BlockTags.LEAVES) || state.isIn(BlockTags.LOGS) || state.isIn(BlockTags.WART_BLOCKS) || state.isOf(Blocks.MANGROVE_ROOTS));
     }
 
-    private boolean validLog(BlockState state) {
+    private boolean isLog(BlockState state) {
         return state != null && (state.isIn(BlockTags.LOGS) || state.isOf(Blocks.MANGROVE_ROOTS));
     }
 
-    public boolean fall(World world, BlockPos pos, int distance) {
-        if (distance <= 0) return false;
+    public int chainBreak(World world, BlockPos pos, int tries, LivingEntity miner) {
 
-        BlockState lower = world.getBlockState(pos.down());
-        if (validFall(lower)) {
-            fall(world, pos.down(), distance - 1);
-            //System.out.println("Passed check on block " + pos + " with " + (distance - 1) + " blocks remaining.");
-        }
+        int broken = 0;
+        for (Direction dir: Direction.values()) {
+            BlockPos offset = pos.offset(dir);
+            BlockState state = world.getBlockState(offset);
 
-        BlockState state = world.getBlockState(pos);
-        if (FallingBlock.canFallThrough(lower) && pos.getY() >= world.getBottomY()) {
-            FallingBlockEntity.spawnFromBlock(world, pos, state);
-            return true;
+            if (isTree(state)) {
+                world.breakBlock(offset, true, miner);
+                broken += state.getHardness(world, pos) == 0.0f ? 0 : 1;
+                if (tries > 0) broken += chainBreak(world, offset, tries - 1, miner);
+            }
         }
-        return false;
+        return broken;
     }
 
     /*public void tryFall(World world, BlockPos pos, int tries) {
@@ -109,9 +110,47 @@ public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem {
     }*/
 
     @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack stack = user.getStackInHand(hand);
+
+        HitResult hit = user.raycast(12, 0, false);
+        if (hit.getType() == HitResult.Type.BLOCK) {
+            BlockHitResult result = (BlockHitResult) hit;
+
+            BlockPos pos = result.getBlockPos();
+            BlockState state = world.getBlockState(pos);
+
+            if ((isSuitableFor(state) || isTree(state)) && state.getHardness(world, pos) >= 0 && world.getBlockEntity(pos) == null && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
+
+                if (!world.isClient) {
+                    FallingBlockEntity.spawnFromBlock(world, pos, state);
+                    stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+                }
+                return TypedActionResult.success(stack);
+            }
+        }
+
+        return super.use(world, user, hand);
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        if (context.getPlayer() != null && context.getPlayer().isSneaking()) return ActionResult.PASS;
+
+        return super.useOnBlock(context);
+    }
+
+    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.0"));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.1"));
+        tooltip.add(getTooltipMana(stack));
+    }
+
+    @Override
+    public int getBaseManaCost() {
+        return 7;
     }
 }

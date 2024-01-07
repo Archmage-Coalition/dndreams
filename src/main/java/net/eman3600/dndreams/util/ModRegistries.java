@@ -1,7 +1,5 @@
 package net.eman3600.dndreams.util;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
@@ -22,24 +20,19 @@ import net.eman3600.dndreams.util.data.EnhancementType;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Items;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.TagKey;
 
 public class ModRegistries {
-    public static final Object2ObjectMap<TagKey<Block>, Block> SCULK_TRANSFORM = new Object2ObjectOpenHashMap<>();
-
 
 
     public static void register() {
-        registerSculkTransform();
         registerFuels();
         registerFlammableBlocks();
         registerStrippables();
@@ -119,7 +112,6 @@ public class ModRegistries {
         MutandisItem.registerMutable("sapling", Blocks.FLOWERING_AZALEA);
         MutandisItem.registerMutable("sapling", ModBlocks.SAKURA_SAPLING);
         MutandisItem.registerMutable("sapling", ModBlocks.JAPANESE_MAPLE_SAPLING);
-        MutandisItem.registerMutable("sapling", ModBlocks.SCULK_WOOD_SAPLING);
 
         MutandisItem.registerMutable("crop", Blocks.WHEAT);
         MutandisItem.registerMutable("crop", Blocks.CARROTS);
@@ -177,7 +169,7 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> -.5f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.CELESTIUM));
         TormentComponent.registerPredicate((player, torment) -> torment.isAttuned() ? -3f : 0);
         TormentComponent.registerPredicate(player -> .5f * ModArmorMaterials.getEquipCount(player, ModArmorMaterials.TORMITE));
-        TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos(), player.world.getAmbientDarkness()) < 1 ? 4f : 0);
+        TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos(), player.world.getAmbientDarkness()) < 1 && !player.hasStatusEffect(StatusEffects.NIGHT_VISION) ? 4f : 0);
         TormentComponent.registerPredicate(player -> WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() ? 2f : 0);
         TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
         TormentComponent.registerPredicate((player, torment) -> torment.getShroud() > 0 ? 2.5f : 0);
@@ -194,13 +186,6 @@ public class ModRegistries {
         TormentComponent.registerInsanityMob(entity -> entity instanceof TormentorEntity tormentor && tormentor.isCorporeal(), 10f, 20f);
     }
 
-    private static void registerSculkTransform() {
-        SCULK_TRANSFORM.put(BlockTags.LOGS, ModBlocks.SCULK_WOOD_LOG);
-        SCULK_TRANSFORM.put(BlockTags.PLANKS, ModBlocks.SCULK_WOOD_PLANKS);
-        SCULK_TRANSFORM.put(BlockTags.LEAVES, ModBlocks.SCULK_WOOD_LEAVES);
-        SCULK_TRANSFORM.put(BlockTags.SAPLINGS, ModBlocks.SCULK_WOOD_SAPLING);
-    }
-
     private static void registerFuels() {
         Initializer.LOGGER.info("Registering fuels for " + Initializer.MODID);
 
@@ -208,7 +193,6 @@ public class ModRegistries {
 
         registry.add(ModItems.NIGHTMARE_FUEL, 4800);
         registry.add(ModItems.ARCHFUEL, 3200);
-        registry.add(ModItems.INFERNAL_RESIDUE, 2400);
     }
 
     private static void registerStrippables() {
@@ -217,9 +201,6 @@ public class ModRegistries {
 
         StrippableBlockRegistry.register(ModBlocks.SAKURA_WOOD, ModBlocks.STRIPPED_SAKURA_WOOD);
         StrippableBlockRegistry.register(ModBlocks.SAKURA_LOG, ModBlocks.STRIPPED_SAKURA_LOG);
-
-        StrippableBlockRegistry.register(ModBlocks.SCULK_WOOD, ModBlocks.STRIPPED_SCULK_WOOD);
-        StrippableBlockRegistry.register(ModBlocks.SCULK_WOOD_LOG, ModBlocks.STRIPPED_SCULK_WOOD_LOG);
 
         StrippableBlockRegistry.register(ModBlocks.JAPANESE_MAPLE_WOOD, ModBlocks.STRIPPED_JAPANESE_MAPLE_WOOD);
         StrippableBlockRegistry.register(ModBlocks.JAPANESE_MAPLE_LOG, ModBlocks.STRIPPED_JAPANESE_MAPLE_LOG);
@@ -311,7 +292,6 @@ public class ModRegistries {
         access.registerCompostable(.3f, ModBlocks.SAKURA_SAPLING);
         access.registerCompostable(.65f, ModBlocks.DREAMWOOD_SAPLING);
         access.registerCompostable(.3f, ModBlocks.JAPANESE_MAPLE_SAPLING);
-        access.registerCompostable(.65f, ModBlocks.SCULK_WOOD_SAPLING);
 
         access.registerCompostable(.3f, ModItems.APPLETHORN_SEEDS);
         access.registerCompostable(.65f, ModItems.SUCCULENT_APPLE);
