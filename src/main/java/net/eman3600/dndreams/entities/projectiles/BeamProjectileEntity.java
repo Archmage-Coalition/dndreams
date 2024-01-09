@@ -115,4 +115,9 @@ public class BeamProjectileEntity extends ProjectileEntity {
         this.setPosition(h, j, k);
         this.checkBlockCollision();
     }
+
+    @Override
+    public boolean isFireImmune() {
+        return true;
+    }
 }
