@@ -1,0 +1,13 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [
+    {
+      "item": "dndreams:crystal_spirit"
+    }
+  ],
+  "result": {
+    "item": "dndreams:spirit_vial",
+    "count": 1
+  },
+  "sanity_cost": 5
+}

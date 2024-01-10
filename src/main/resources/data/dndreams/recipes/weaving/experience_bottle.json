@@ -1,0 +1,13 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [
+    {
+      "item": "dndreams:crystal_spirit"
+    }
+  ],
+  "result": {
+    "item": "minecraft:experience_bottle",
+    "count": 1
+  },
+  "sanity_cost": 5
+}

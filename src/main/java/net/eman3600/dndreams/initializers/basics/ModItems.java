@@ -51,6 +51,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -616,6 +617,15 @@ public class ModItems {
     public static final Item BREW_LIQUID = registerItem("brew_liquid",
             new BrewThrownItem(new FabricItemSettings().group(ItemGroup.BREWING).maxCount(16), .25f, BrewLiquidEntity::new));
 
+    // Spring Vials
+    public static final Item WATER_VIAL = registerItem("water_vial",
+            new SpringVialItem(Fluids.WATER, 3694022, new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
+    public static final Item LAVA_VIAL = registerItem("lava_vial",
+            new SpringVialItem(Fluids.LAVA, 0xd65b11, new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
+    public static final Item SPIRIT_VIAL = registerItem("spirit_vial",
+            new SpringVialItem(ModFluids.STILL_FLOWING_SPIRIT, 0x00F0F0, new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
+    public static final Item SORROW_VIAL = registerItem("sorrow_vial",
+            new SpringVialItem(ModFluids.STILL_SORROW, 0x1E1C32, new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
 
 
 

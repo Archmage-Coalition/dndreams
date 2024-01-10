@@ -68,7 +68,7 @@ public class WeavingRecipe implements Recipe<Inventory> {
     @Override
     public boolean matches(Inventory inventory, World world) {
 
-        return isEmpty() ? inventory.isEmpty() : matchesInput(inventory, world) || matchesMold(inventory, world);
+        return isEmpty() ? inventory.isEmpty() : matchesInput(inventory, world) || (!mold.isEmpty() && matchesMold(inventory, world));
     }
 
     public boolean matchesMold(Inventory inventory, World world) {

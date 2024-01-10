@@ -17,7 +17,8 @@ public interface HudAccess {
         REJUVENATION(3),
         ROT(4),
         AGONY_1(5),
-        AGONY_2(6);
+        AGONY_2(6),
+        HEARTBLEED(7);
 
         private final int id;
         private final boolean container;
@@ -39,7 +40,7 @@ public interface HudAccess {
             if (type == InGameHud.HeartType.CONTAINER) return player.hasStatusEffect(ModStatusEffects.MORTAL) ? MORTAL_CONTAINER : NO_CHANGE;
             if (type == InGameHud.HeartType.ABSORBING) return NO_CHANGE;
 
-            return player.hasStatusEffect(ModStatusEffects.MORTAL) ? MORTAL : player.hasStatusEffect(ModStatusEffects.REJUVENATION) ? REJUVENATION : NO_CHANGE;
+            return player.hasStatusEffect(ModStatusEffects.MORTAL) ? MORTAL : player.hasStatusEffect(ModStatusEffects.HEARTBLEED) ? HEARTBLEED : player.hasStatusEffect(ModStatusEffects.REJUVENATION) ? REJUVENATION : NO_CHANGE;
         }
 
         public int getU() {

@@ -106,6 +106,14 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<SpringVialEntity> SPRING_VIAL = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "spring_vial"),
+            FabricEntityTypeBuilder.<SpringVialEntity>create(SpawnGroup.MISC, SpringVialEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build()
+    );
+
 
 
     public static final EntityType<BloodZombieEntity> BLOOD_ZOMBIE = Registry.register(
