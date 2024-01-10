@@ -1,10 +1,14 @@
 package net.eman3600.dndreams.entities.mobs;
 
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -44,5 +48,16 @@ public class BloodZombieEntity extends ZombieEntity {
     @Override
     protected ItemStack getSkull() {
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    public boolean tryAttack(Entity target) {
+        boolean bl = super.tryAttack(target);
+
+        if (bl && target instanceof LivingEntity entity) {
+            entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.HEARTBLEED, 240));
+        }
+
+        return bl;
     }
 }

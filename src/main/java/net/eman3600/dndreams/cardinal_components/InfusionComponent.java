@@ -23,7 +23,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class InfusionComponent implements InfusionComponentI {
     public static final int LINK_LENGTH = 40;
-    public static final int DODGE_COST = 5;
+    public static final int DODGE_COST = 4;
     public static final int DODGE_COOLDOWN = 24;
 
     private final PlayerEntity player;
