@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -56,8 +57,8 @@ public class SpringVialEntity extends ThrownItemEntity implements FlyingItemEnti
             color = 3694022;
         }
 
-        this.world.syncWorldEvent(WorldEvents.SPLASH_POTION_SPLASHED, this.getBlockPos(), color);
-        world.setBlockState(new BlockPos(hitResult.getPos()), fluid.getDefaultState().getBlockState(), Block.NOTIFY_ALL);
+        this.world.syncWorldEvent(WorldEvents.SPLASH_POTION_SPLASHED, this.getBlockPos(), PotionUtil.getColor(Potions.WATER));
+        if (world.getBlockState(getBlockPos()).isAir() || world.getBlockState(getBlockPos()).isIn(BlockTags.REPLACEABLE_PLANTS)) world.setBlockState(this.getBlockPos(), fluid.getDefaultState().getBlockState(), Block.NOTIFY_ALL);
 
         this.discard();
     }

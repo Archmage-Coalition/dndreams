@@ -16,6 +16,7 @@ import net.minecraft.world.Heightmap;
 import static net.eman3600.dndreams.Initializer.MODID;
 import static net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity.createBloodSkeletonAttributes;
 import static net.eman3600.dndreams.entities.mobs.BloodZombieEntity.createBloodZombieAttributes;
+import static net.eman3600.dndreams.entities.mobs.DreamSheepEntity.createDreamSheepAttributes;
 import static net.eman3600.dndreams.entities.mobs.FacelessEntity.createFacelessAttributes;
 import static net.eman3600.dndreams.entities.mobs.TormentorEntity.createTormentorAttributes;
 import static net.eman3600.dndreams.entities.mobs.WardenRagdollEntity.createWardenRagdollAttributes;
@@ -146,6 +147,14 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<DreamSheepEntity> DREAM_SHEEP = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "dream_sheep"),
+            FabricEntityTypeBuilder.<DreamSheepEntity>create(SpawnGroup.MISC, DreamSheepEntity::new)
+                    .dimensions(new EntityDimensions(0.9f, 2.9f, false))
+                    .trackRangeChunks(10)
+                    .build()
+    );
+
 
     public static final EntityType<WardenRagdollEntity> WARDEN_RAGDOLL = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "warden_ragdoll"),
@@ -167,6 +176,7 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(WARDEN_RAGDOLL, createWardenRagdollAttributes());
         FabricDefaultAttributeRegistry.register(TORMENTOR, createTormentorAttributes());
         FabricDefaultAttributeRegistry.register(FACELESS, createFacelessAttributes());
+        FabricDefaultAttributeRegistry.register(DREAM_SHEEP, createDreamSheepAttributes());
     }
 
     public static void registerSpawns() {
