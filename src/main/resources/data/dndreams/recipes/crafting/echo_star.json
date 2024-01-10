@@ -1,13 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " # ",
-    "###",
-    "# #"
+    "#X#",
+    "X#X",
+    "#X#"
   ],
   "key": {
     "#": {
       "item": "minecraft:echo_shard"
+    },
+    "X": {
+      "item": "dndreams:managold_ingot"
     }
   },
   "result": {

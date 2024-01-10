@@ -87,7 +87,7 @@ public class ModItems {
     public static final Item SHADE_CLOTH = registerItem("shade_cloth", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Pure Brilliance
-    public static final Item BRILLIANCE = registerItem("brilliance", new TooltipItem(new FabricItemSettings().group(ItemGroup.MATERIALS)).withTooltip(null, 1));
+    public static final Item BRILLIANCE = registerItem("brilliance", new MarbleSpreadItem(new FabricItemSettings().group(ItemGroup.MATERIALS)).withTooltip(null, 1));
 
     // Ravaged Flesh
     public static final Item RAVAGED_FLESH = registerItem("ravaged_flesh", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)
