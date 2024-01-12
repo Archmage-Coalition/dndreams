@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld_rod",
     "textures": {
-        "layer0": "dndreams:item/instrument_staff"
+        "layer0": "dndreams:item/atlas_staff"
     }
 }

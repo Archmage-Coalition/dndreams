@@ -398,17 +398,17 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Inject(method = "renderHeldItemTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;fill(Lnet/minecraft/client/util/math/MatrixStack;IIIII)V"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
     private void dndreams$renderHeldItemTooltip(MatrixStack matrices, CallbackInfo ci, MutableText mutableText, int i, int j, int k, int l) {
 
-        if (this.currentStack.isIn(ModTags.INSTRUMENTS)) {
+        if (this.currentStack.isIn(ModTags.ATLAS)) {
 
             //MutableText text = mutableText.formatted(Formatting.WHITE);
 
             String string = mutableText.getString();
 
-            this.getTextRenderer().draw(matrices, string, (float)(j + 1), (float)k, (l << 24));
-            this.getTextRenderer().draw(matrices, string, (float)(j - 1), (float)k, (l << 24));
-            this.getTextRenderer().draw(matrices, string, (float)j, (float)(k + 1), (l << 24));
-            this.getTextRenderer().draw(matrices, string, (float)j, (float)(k - 1), (l << 24));
-            this.getTextRenderer().draw(matrices, string, (float)j, (float)k, 0xFFFFFF + (l << 24));
+            this.getTextRenderer().draw(matrices, string, (float)(j + 1), (float)k      , 0xF1B56D + (l << 24));
+            this.getTextRenderer().draw(matrices, string, (float)(j - 1), (float)k      , 0xE7A360 + (l << 24));
+            this.getTextRenderer().draw(matrices, string, (float)j      , (float)(k + 1), 0xE7A360 + (l << 24));
+            this.getTextRenderer().draw(matrices, string, (float)j      , (float)(k - 1), 0xFFCE7F + (l << 24));
+            this.getTextRenderer().draw(matrices, string, (float)j      , (float)k      , 0x09608E + (l << 24));
 
             RenderSystem.disableBlend();
             this.client.getProfiler().pop();

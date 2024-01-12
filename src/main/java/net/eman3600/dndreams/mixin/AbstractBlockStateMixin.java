@@ -3,7 +3,7 @@ package net.eman3600.dndreams.mixin;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
-import net.eman3600.dndreams.items.InstrumentOfTruthItem;
+import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
@@ -76,7 +76,7 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
 
         ItemStack stack = player.getMainHandStack();
 
-        if (stack.getItem() instanceof InstrumentOfTruthItem item && item.isActive(stack)) {
+        if (stack.getItem() instanceof AtlasItem item && item.isActive(stack)) {
 
             item.setForm(stack, item.getBestForm(world, player, item.getForm(stack), world.getBlockState(pos)));
         }

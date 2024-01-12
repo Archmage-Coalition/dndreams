@@ -64,7 +64,7 @@ Once inside, Elrunez was able to fully embrace the madness of unreality and be t
 ## The Crowned Edge
 ???
 
-## The Instrument of Truth
+## The Atlas of Frosyni
 ???
 
 

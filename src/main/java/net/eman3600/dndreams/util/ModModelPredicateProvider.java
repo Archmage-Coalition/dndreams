@@ -25,7 +25,7 @@ public class ModModelPredicateProvider {
 
         registerItem(new Identifier("form"),
                 (stack, world, entity, seed) -> stack.hasNbt() ? (float)stack.getNbt().getInt("Form") * 0.1f : 0f,
-                ModItems.INSTRUMENT_OF_TRUTH);
+                ModItems.ATLAS);
     }
 
 

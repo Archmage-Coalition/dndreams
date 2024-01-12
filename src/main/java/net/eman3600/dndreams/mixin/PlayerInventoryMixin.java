@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.mixin;
 
-import net.eman3600.dndreams.items.InstrumentOfTruthItem;
+import net.eman3600.dndreams.items.AtlasItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -25,10 +25,10 @@ public abstract class PlayerInventoryMixin implements Inventory, Nameable {
 
         ItemStack stack = this.getMainHandStack();
 
-        if (stack.getItem() instanceof InstrumentOfTruthItem item && item.isActive(stack)) {
+        if (stack.getItem() instanceof AtlasItem item && item.isActive(stack)) {
 
             cir.setReturnValue(player.world.isClient ? stack : ItemStack.EMPTY);
-            item.setForm(stack, InstrumentOfTruthItem.InstrumentForm.INACTIVE);
+            item.setForm(stack, AtlasItem.InstrumentForm.INACTIVE);
         }
     }
 }

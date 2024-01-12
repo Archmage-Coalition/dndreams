@@ -48,9 +48,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class InstrumentOfTruthItem extends Item implements ActivateableToolItem, AirSwingItem {
+public class AtlasItem extends Item implements ActivateableToolItem, AirSwingItem {
 
-    public InstrumentOfTruthItem(Settings settings) {
+    public AtlasItem(Settings settings) {
         super(settings);
     }
 

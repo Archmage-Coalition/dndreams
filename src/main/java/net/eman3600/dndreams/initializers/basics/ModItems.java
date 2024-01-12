@@ -6,7 +6,7 @@ import net.eman3600.dndreams.entities.projectiles.BrewLiquidEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.items.CodexItem;
-import net.eman3600.dndreams.items.InstrumentOfTruthItem;
+import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.items.MysticStaffItem;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
@@ -490,9 +490,9 @@ public class ModItems {
             new TrueCrownedEdgeItem(ModToolMaterials.TRUE_EDGE, 5, -2.2F, 8,
                     new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).fireproof()));
 
-    // Instrument of Truth
-    public static final Item INSTRUMENT_OF_TRUTH = registerItem("instrument_of_truth",
-            new InstrumentOfTruthItem(new FabricItemSettings().group(ItemGroup.TOOLS).rarity(Rarity.EPIC).fireproof().maxCount(1)));
+    // The Atlas of Frosyni
+    public static final Item ATLAS = registerItem("atlas",
+            new AtlasItem(new FabricItemSettings().group(ItemGroup.TOOLS).rarity(Rarity.EPIC).fireproof().maxCount(1)));
 
 
 

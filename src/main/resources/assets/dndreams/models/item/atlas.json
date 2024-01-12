@@ -1,38 +1,38 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "dndreams:item/instrument_of_truth"
+        "layer0": "dndreams:item/atlas"
     },
     "overrides": [
         {
             "predicate": {
                 "form": 0.1
             },
-            "model": "dndreams:item/instrument_staff"
+            "model": "dndreams:item/atlas_staff"
         },
 		{
             "predicate": {
                 "form": 0.2
             },
-            "model": "dndreams:item/instrument_katana"
+            "model": "dndreams:item/atlas_katana"
         },
 		{
             "predicate": {
                 "form": 0.3
             },
-            "model": "dndreams:item/instrument_pickaxe"
+            "model": "dndreams:item/atlas_pickaxe"
         },
 		{
             "predicate": {
                 "form": 0.4
             },
-            "model": "dndreams:item/instrument_axe"
+            "model": "dndreams:item/atlas_axe"
         },
 		{
             "predicate": {
                 "form": 0.5
             },
-            "model": "dndreams:item/instrument_shovel"
+            "model": "dndreams:item/atlas_shovel"
         }
     ]
 }

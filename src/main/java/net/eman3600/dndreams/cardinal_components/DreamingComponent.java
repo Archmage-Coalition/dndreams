@@ -102,13 +102,13 @@ public class DreamingComponent implements DreamingComponentI {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
             EntityComponents.SHOCK.maybeGet(player).ifPresent(component -> component.setCushioned(true));
 
-            if (storedInv.contains(ModTags.INSTRUMENTS)) {
+            if (storedInv.contains(ModTags.ATLAS)) {
                 List<ItemStack> stacks = new ArrayList<>();
 
                 for (int i = 0; i < storedInv.size(); i++) {
                     ItemStack stack = storedInv.getStack(i);
 
-                    if (stack.isIn(ModTags.INSTRUMENTS)) stacks.add(stack);
+                    if (stack.isIn(ModTags.ATLAS)) stacks.add(stack);
                 }
 
                 DefaultedList<ItemStack> dreamStacks = DefaultedList.copyOf(ItemStack.EMPTY, stacks.toArray(new ItemStack[0]));

@@ -8,7 +8,7 @@ import net.eman3600.dndreams.entities.projectiles.TeslaSlashEntity;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
-import net.eman3600.dndreams.items.InstrumentOfTruthItem;
+import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.VariableMineSpeedItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
@@ -108,7 +108,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @ModifyConstant(method = "attack", constant = @Constant(floatValue = 1.5f))
     private float dndreams$attack$critDamage(float constant) {
 
-        if (getMainHandStack().getItem() instanceof InstrumentOfTruthItem item && item.getForm(getMainHandStack()) == InstrumentOfTruthItem.InstrumentForm.KATANA) {
+        if (getMainHandStack().getItem() instanceof AtlasItem item && item.getForm(getMainHandStack()) == AtlasItem.InstrumentForm.KATANA) {
 
             return 3f;
         }

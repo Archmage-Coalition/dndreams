@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "dndreams:item/instrument_shovel"
+        "layer0": "dndreams:item/atlas_pickaxe"
     }
 }

@@ -12,7 +12,7 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.items.InstrumentOfTruthItem;
+import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.Entity;
@@ -258,7 +258,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             inflictHaze(1);
         }
 
-        if (truthActive && !player.getInventory().containsAny(stack -> stack.getItem() instanceof InstrumentOfTruthItem item && item.isActive(stack))) {
+        if (truthActive && !player.getInventory().containsAny(stack -> stack.getItem() instanceof AtlasItem item && item.isActive(stack))) {
             setTruthActive(false);
         }
 
