@@ -2,21 +2,21 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
-      "item": "dndreams:nightmare_fuel"
+      "item": "dndreams:lotus_flower"
     },
-	{
+    {
+      "item": "dndreams:sakura_fume"
+    },
+    {
       "item": "dndreams:pristine_fume"
     },
-	{
-      "item": "dndreams:ember_moss"
-    },
-	{
+    {
       "item": "dndreams:distilled_spirit"
     },
-	{
-      "item": "minecraft:ghast_tear"
+	  {
+      "item": "dndreams:soul_soup"
     },
-	{
+	  {
       "item": "dndreams:succulent_apple"
     }
   ],

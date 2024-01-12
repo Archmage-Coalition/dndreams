@@ -60,7 +60,7 @@ public class ForceStaffItem extends TooltipItem implements ManaCostItem, MagicDa
 
     @Override
     public int getBaseManaCost() {
-        return 5;
+        return 4;
     }
 
     @Override

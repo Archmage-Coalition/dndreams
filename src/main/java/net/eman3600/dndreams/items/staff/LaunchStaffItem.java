@@ -5,7 +5,6 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
-import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.eman3600.dndreams.networking.packet_s2c.MotionUpdatePacket;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -76,6 +75,8 @@ public class LaunchStaffItem extends TooltipItem implements ManaCostItem {
             int cost = getManaCost(stack);
             charge = Math.min(charge, mana/cost);
 
+            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.NEUTRAL, 0.7f, 1.3f);
+
             if (!world.isClient) {
                 Vec3d vec = user.getRotationVecClient();
                 vec = vec.normalize().multiply(charge * .7);
@@ -89,8 +90,4 @@ public class LaunchStaffItem extends TooltipItem implements ManaCostItem {
         }
     }
 
-    @Override
-    public boolean allowThrifty() {
-        return false;
-    }
 }

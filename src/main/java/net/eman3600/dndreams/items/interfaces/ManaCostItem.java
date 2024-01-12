@@ -12,7 +12,11 @@ public interface ManaCostItem extends Vanishable {
     int getBaseManaCost();
 
     default int getManaCost(ItemStack stack) {
-        return Math.max(1, getBaseManaCost() - EnchantmentHelper.getLevel(ModEnchantments.THRIFTY, stack));
+        int cost = getBaseManaCost();
+        if (EnchantmentHelper.getLevel(ModEnchantments.THRIFTY, stack) > 0) {
+            cost = Math.max(1, Math.round(cost/2f));
+        }
+        return cost;
     }
 
     default boolean canAffordMana(PlayerEntity player, ItemStack stack) {
@@ -28,7 +32,4 @@ public interface ManaCostItem extends Vanishable {
             EntityComponents.MANA.get(player).useMana(getManaCost(stack));
     }
 
-    default boolean allowThrifty() {
-        return true;
-    }
 }

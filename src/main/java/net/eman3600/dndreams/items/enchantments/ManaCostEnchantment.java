@@ -11,6 +11,16 @@ public class ManaCostEnchantment extends AliasedEnchantment {
 
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
-        return stack.getItem() instanceof ManaCostItem item && item.allowThrifty();
+        return stack.getItem() instanceof ManaCostItem;
+    }
+
+    @Override
+    public int getMinPower(int level) {
+        return 16;
+    }
+
+    @Override
+    public int getMaxPower(int level) {
+        return 70;
     }
 }

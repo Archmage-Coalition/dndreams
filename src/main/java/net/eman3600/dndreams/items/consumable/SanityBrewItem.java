@@ -28,7 +28,7 @@ public class SanityBrewItem extends Item {
             }
 
             TormentComponent component = EntityComponents.TORMENT.get(player);
-            component.lowerMaxSanity(-35f);
+            component.lowerMaxSanity(-100f);
         }
 
         return stack;

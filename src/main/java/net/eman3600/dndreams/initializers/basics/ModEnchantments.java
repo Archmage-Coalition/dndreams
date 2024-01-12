@@ -14,7 +14,7 @@ import net.minecraft.util.registry.Registry;
 public class ModEnchantments {
 
     public static final Enchantment POTENCY = register("potency", new PotencyEnchantment(Enchantment.Rarity.COMMON, 4, EquipmentSlot.values()));
-    public static final Enchantment THRIFTY = register("thrifty", new ManaCostEnchantment(Enchantment.Rarity.UNCOMMON, 3, EquipmentSlot.values()));
+    public static final Enchantment THRIFTY = register("thrifty", new ManaCostEnchantment(Enchantment.Rarity.RARE, 1, EquipmentSlot.values()));
     public static final Enchantment WICKED = register("wicked", new CrownedEnchantment(Enchantment.Rarity.UNCOMMON, 1, EquipmentSlot.values()));
     public static final Enchantment PENETRATION = register("penetration", new PenetrationEnchantment(Enchantment.Rarity.RARE, 5, EquipmentSlot.values()));
     public static final Enchantment REPARATION = register("reparation", new AutoRepairEnchantment(Enchantment.Rarity.UNCOMMON, 3, EquipmentSlot.values()));
