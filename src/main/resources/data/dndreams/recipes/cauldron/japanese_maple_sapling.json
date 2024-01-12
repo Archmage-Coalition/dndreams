@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:lotus_flower"
+    },
+	  {
+      "item": "minecraft:glow_berries"
+    },
+	  {
+      "item": "minecraft:dried_kelp"
+    }
+  ],
+  "result": {
+    "item": "dndreams:japanese_maple_sapling",
+    "count": 1
+  },
+  "color": 11933472
+}

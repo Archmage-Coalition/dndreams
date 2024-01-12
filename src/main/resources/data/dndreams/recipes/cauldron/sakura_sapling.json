@@ -1,0 +1,19 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:lotus_flower"
+    },
+	  {
+      "item": "minecraft:sweet_berries"
+    },
+	  {
+      "item": "minecraft:honey_bottle"
+    }
+  ],
+  "result": {
+    "item": "dndreams:sakura_sapling",
+    "count": 1
+  },
+  "color": 15505898
+}
