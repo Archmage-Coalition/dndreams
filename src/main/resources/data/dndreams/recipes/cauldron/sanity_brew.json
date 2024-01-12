@@ -2,6 +2,9 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
+      "item": "dndreams:soul_soup"
+    },
+	  {
       "item": "dndreams:lotus_flower"
     },
     {
@@ -12,9 +15,6 @@
     },
     {
       "item": "dndreams:distilled_spirit"
-    },
-	  {
-      "item": "dndreams:soul_soup"
     },
 	  {
       "item": "dndreams:succulent_apple"
