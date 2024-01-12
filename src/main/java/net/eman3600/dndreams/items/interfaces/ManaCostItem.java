@@ -27,4 +27,8 @@ public interface ManaCostItem extends Vanishable {
         if (canAffordMana(player, stack))
             EntityComponents.MANA.get(player).useMana(getManaCost(stack));
     }
+
+    default boolean allowThrifty() {
+        return true;
+    }
 }

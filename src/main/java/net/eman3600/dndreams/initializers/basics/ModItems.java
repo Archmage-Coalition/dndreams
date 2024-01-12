@@ -431,6 +431,8 @@ public class ModItems {
             new FlameCapeItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).fireproof()));
     public static final Item LAVA_STRIDERS = registerItem("lava_striders",
             new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).fireproof()));
+    public static final Item SUBSTANCE_CLOAK = registerItem("substance_cloak",
+            new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
     // Staves
     public static final Item SPARK_STAFF = registerItem("spark_staff",
@@ -455,7 +457,7 @@ public class ModItems {
             new ForceStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(2173))
                     .withTooltip(null, 2));
     public static final Item LAUNCH_STAFF = registerItem("launch_staff",
-            new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(2173))
+            new LaunchStaffItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(2173))
                     .withTooltip(null, 1));
     public static final Item WINDWEAVE_STAFF = registerItem("windweave_staff",
             new TooltipItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).maxDamage(735))

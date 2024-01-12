@@ -71,7 +71,7 @@
   "item.dndreams.corrupt_pickaxe": "Hellsteel Pickaxe",
   "item.dndreams.corrupt_pickaxe.tooltip": "§3Smelts mined blocks.",
   "item.dndreams.corrupt_axe": "Hellsteel Axe",
-  "item.dndreams.corrupt_axe.tooltip": "§3Turns logs to charcoal.",
+  "item.dndreams.corrupt_axe.tooltip": "§3Lights fires.",
   "item.dndreams.corrupt_shovel": "Hellsteel Shovel",
   "item.dndreams.corrupt_shovel.tooltip": "§3Flattens soul sand.",
   "item.dndreams.corrupt_hoe": "Hellsteel Hoe",
@@ -273,6 +273,8 @@
   "item.dndreams.flame_cape.tooltip.1": "§3Quickly extinguishes lasting fire.",
   "item.dndreams.lava_striders": "Lava Striders",
   "item.dndreams.lava_striders.tooltip": "§3Allows walking on lava.",
+  "item.dndreams.substance_cloak": "Cloak of Substance",
+  "item.dndreams.substance_cloak.tooltip": "§3Grants immunity to Insubstantial",
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
 

@@ -11,6 +11,6 @@ public class ManaCostEnchantment extends AliasedEnchantment {
 
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
-        return stack.getItem() instanceof ManaCostItem;
+        return stack.getItem() instanceof ManaCostItem item && item.allowThrifty();
     }
 }

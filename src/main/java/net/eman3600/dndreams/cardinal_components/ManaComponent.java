@@ -7,6 +7,7 @@ import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
+import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -134,7 +135,7 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
         if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {
             player.timeUntilRegen = 1;
-            player.damage(DamageSource.MAGIC, (float)cost/2);
+            player.damage(DamageSourceAccess.AFFLICTION, (float)cost/2);
             return;
         }
         mana = Math.max(0, mana - cost);

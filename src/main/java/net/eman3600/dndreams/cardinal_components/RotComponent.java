@@ -2,6 +2,7 @@ package net.eman3600.dndreams.cardinal_components;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
@@ -153,7 +154,7 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
     public float getPassiveCleansing() {
 
         if (rotTicks >= 11) return 1;
-        if (entity.hasStatusEffect(StatusEffects.DARKNESS)) return 0;
+        if (entity.hasStatusEffect(StatusEffects.DARKNESS) || entity.hasStatusEffect(ModStatusEffects.LOOMING)) return 0;
         if (entity.world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY || entity.world.getRegistryKey() == ModDimensions.GATEWAY_DIMENSION_KEY) return 0;
         if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).getNightmareHaze() > 0.1f) return 0;
         if (getBloodMoonComponent().isBloodMoon()) return 0;

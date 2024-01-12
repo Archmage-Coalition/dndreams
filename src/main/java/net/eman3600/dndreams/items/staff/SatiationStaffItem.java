@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items.misc_tool;
+package net.eman3600.dndreams.items.staff;
 
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;

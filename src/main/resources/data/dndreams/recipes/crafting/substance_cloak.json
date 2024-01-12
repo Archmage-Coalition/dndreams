@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "dndreams:crystal_spirit"
+    },
+    "#": {
+      "item": "dndreams:nightmare_fuel"
+    },
+    "S": {
+      "item": "dndreams:mellifluous_hunger"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "XXX",
+    "XSX"
+  ],
+  "result": {
+    "item": "dndreams:substance_cloak"
+  }
+}

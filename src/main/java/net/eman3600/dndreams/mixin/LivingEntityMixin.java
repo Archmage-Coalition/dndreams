@@ -191,7 +191,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent((LivingEntity)(Object)this);
         if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.FLAME_CAPE) && getFireTicks() > 60) setFireTicks(60);
 
-        if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL)) {
+        if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !(trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.SUBSTANCE_CLOAK))) {
             addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE, 0, true, true));
         } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!isInsideWall() || isOnGround())) {
             removeStatusEffect(ModStatusEffects.INSUBSTANTIAL);

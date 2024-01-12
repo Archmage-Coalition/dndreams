@@ -11,14 +11,13 @@ public interface HudAccess {
     enum CustomHeartType {
 
         NO_CHANGE(0),
-        AFFLICTION(1),
+        HEARTBLEED(1),
         MORTAL(2),
         MORTAL_CONTAINER(2, true),
         REJUVENATION(3),
         ROT(4),
-        AGONY_1(5),
-        AGONY_2(6),
-        HEARTBLEED(7);
+        AGONY_1(5, true),
+        AGONY_2(6, true);
 
         private final int id;
         private final boolean container;

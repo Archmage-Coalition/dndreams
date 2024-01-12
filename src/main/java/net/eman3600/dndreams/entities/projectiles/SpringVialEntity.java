@@ -57,7 +57,7 @@ public class SpringVialEntity extends ThrownItemEntity implements FlyingItemEnti
             color = 3694022;
         }
 
-        this.world.syncWorldEvent(WorldEvents.SPLASH_POTION_SPLASHED, this.getBlockPos(), PotionUtil.getColor(Potions.WATER));
+        this.world.syncWorldEvent(WorldEvents.SPLASH_POTION_SPLASHED, this.getBlockPos(), color);
         if (world.getBlockState(getBlockPos()).isAir() || world.getBlockState(getBlockPos()).isIn(BlockTags.REPLACEABLE_PLANTS)) world.setBlockState(this.getBlockPos(), fluid.getDefaultState().getBlockState(), Block.NOTIFY_ALL);
 
         this.discard();
