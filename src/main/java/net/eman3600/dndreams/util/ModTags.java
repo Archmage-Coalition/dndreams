@@ -33,6 +33,7 @@ public class ModTags {
 
     public static final TagKey<Fluid> FLOWING_SPIRIT = ofFluid("flowing_spirit");
     public static final TagKey<Fluid> SORROW = ofFluid("sorrow");
+    public static final TagKey<Fluid> HYDRO = ofFluid("hydro");
 
     public static final TagKey<Biome> GEN_HELLSLATE = ofBiome("gen_hellslate");
     public static final TagKey<Biome> GEN_HELLSLATE_COMMON = ofBiome("gen_hellslate_common");

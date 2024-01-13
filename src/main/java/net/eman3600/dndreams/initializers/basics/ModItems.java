@@ -431,12 +431,14 @@ public class ModItems {
             new TruthGlassesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item FLAME_CAPE = registerItem("flame_cape",
             new FlameCapeItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).fireproof()));
-    public static final Item LAVA_STRIDERS = registerItem("lava_striders",
-            new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).fireproof()));
     public static final Item SUBSTANCE_CLOAK = registerItem("substance_cloak",
-            new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+            new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item REVIVE_CLOAK = registerItem("revive_cloak",
             new RevivalCloakItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)));
+    public static final Item WATER_STRIDERS = registerItem("water_striders",
+            new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+    public static final Item LAVA_STRIDERS = registerItem("lava_striders",
+            new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).fireproof()));
     public static final Item SKYSTEP_SOCKS = registerItem("skystep_socks",
             new AirJumpItem(3, new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
 

@@ -101,6 +101,12 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
         return instance.updateMovementInFluid(tag, speed) | instance.updateMovementInFluid(ModTags.SORROW, speed);
     }
 
+    @Inject(method = "updateWaterState", at = @At("TAIL"))
+    private void dndreams$updateWaterState(CallbackInfoReturnable<Boolean> cir) {
+        updateMovementInFluid(ModTags.FLOWING_SPIRIT, 0);
+        updateMovementInFluid(ModTags.HYDRO, 0);
+    }
+
     @Redirect(method = "updateSubmergedInWaterState", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z"))
     private boolean dndreams$updateSubmergedInWaterState$isSubmergedIn(Entity instance, TagKey<Fluid> fluidTag) {
         return instance.isSubmergedIn(fluidTag) | instance.isSubmergedIn(ModTags.SORROW);

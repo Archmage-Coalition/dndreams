@@ -29,5 +29,6 @@ public class AirJumpItem extends TrinketItem {
         super.appendTooltip(stack, world, tooltip, context);
 
         tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
+        tooltip.add(Text.translatable("tooltip.dndreams.horizontal_air"));
     }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "dndreams:lotus_flower"
+    },
+    "#": {
+      "item": "dndreams:permafrost"
+    },
+    "C": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "pattern": [
+    "C#C",
+    "X X"
+  ],
+  "result": {
+    "item": "dndreams:water_striders"
+  }
+}

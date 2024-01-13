@@ -10,6 +10,7 @@ public interface LivingEntityAccess {
     boolean isTrulyInsideWall();
 
     boolean hasNotBrokenLava();
+    boolean hasNotBrokenHydro();
 
     boolean shouldResist(float damage, DamageSource source);
 

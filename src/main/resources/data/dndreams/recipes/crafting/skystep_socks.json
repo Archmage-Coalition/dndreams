@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "#": {
+      "item": "dndreams:restrained_light"
+    },
+    "C": {
+      "item": "dndreams:celestium"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "pattern": [
+    "F F",
+    "C#C",
+    "X X"
+  ],
+  "result": {
+    "item": "dndreams:skystep_socks"
+  }
+}
