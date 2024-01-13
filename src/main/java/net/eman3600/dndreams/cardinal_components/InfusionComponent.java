@@ -268,16 +268,18 @@ public class InfusionComponent implements InfusionComponentI {
         if (access.isJumping() && jumpCooldown <= 0 && airJumps < getMaxJumps()) {
 
             jumpCooldown = 9;
+
             Vec3d velocity = player.getVelocity();
-            velocity = new Vec3d(velocity.x, access.getJumpVelocity() * 1.2f + player.getJumpBoostVelocityModifier(), velocity.z);
+            velocity = new Vec3d(velocity.x, ((LivingEntityAccess)player).getJumpVelocity() * 1.2f + player.getJumpBoostVelocityModifier(), velocity.z);
             if (player.isSprinting()) {
                 float f = player.getYaw() * 0.017453292f;
                 velocity = velocity.add(-MathHelper.sin(f) * 0.2f, 0.0, MathHelper.cos(f) * 0.2f);
             }
+
             player.setVelocity(velocity);
             player.velocityModified = true;
             player.velocityDirty = true;
-            AirJumpPacket.send();
+            AirJumpPacket.send(velocity);
         }
 
         if (player.isOnGround()) {
@@ -285,10 +287,14 @@ public class InfusionComponent implements InfusionComponentI {
         } else if (jumpCooldown > 0) jumpCooldown--;
     }
 
-    public void airJump() {
-        airJumps++;
-        player.fallDistance = 0;
-        access.setJumpingCooldown(10);
-        markDirty();
+    public boolean airJump() {
+        if (airJumps < getMaxJumps()) {
+            airJumps++;
+            player.fallDistance = 0;
+            access.setJumpingCooldown(10);
+            markDirty();
+            return true;
+        }
+        return false;
     }
 }
