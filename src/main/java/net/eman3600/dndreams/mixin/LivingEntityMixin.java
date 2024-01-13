@@ -115,6 +115,10 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Shadow public abstract double getAttributeValue(EntityAttribute attribute);
 
+    @Shadow protected boolean jumping;
+
+    @Shadow private int jumpingCooldown;
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -434,5 +438,20 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
                 cir.setReturnValue(false);
             }
         }
+    }
+
+    @Override
+    public boolean isJumping() {
+        return jumping;
+    }
+
+    @Override
+    public int getJumpingCooldown() {
+        return jumpingCooldown;
+    }
+
+    @Override
+    public void setJumpingCooldown(int jumpingCooldown) {
+        this.jumpingCooldown = jumpingCooldown;
     }
 }

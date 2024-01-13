@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dndreams:fleetfoot_band"
+    "dndreams:fleetfoot_band",
+    "dndreams:dragonfoot_band"
   ]
 }

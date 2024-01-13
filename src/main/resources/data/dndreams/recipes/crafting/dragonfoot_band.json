@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ",
+    "X#X",
+    " F "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:fleetfoot_band"
+    },
+	  "X": {
+      "item": "dndreams:celestium"
+    },
+	  "D": {
+      "item": "minecraft:dragon_breath"
+    },
+	  "F": {
+      "item": "dndreams:pristine_fume"
+    }
+  },
+  "result": {
+    "item": "dndreams:dragonfoot_band"
+  }
+}

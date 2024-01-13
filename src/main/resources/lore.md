@@ -27,7 +27,7 @@ The Haven is the upper layer of the Spirit World. It was once the land of the de
 
 When the affliction began to taint the Overworld, it escaped into the Haven where it took the denizens like a plague. The dead were twisted into the Enkantal, and the angels fell, becoming the Talei.
 
-During the Age of the Illagers, Elrunez the Archmage opened the long-sealed portal to the Haven and took control of it. Elrunez named himself the Nightmare Lord and takes up residence in the Soul Spire.
+During the Age of the Illagers, Elrunez the Archmage opened the long-sealed portal to the Haven and took control of it. Elrunez named himself lord of the Spirit World and took up residence in the Soul Spire.
 
 
 # The Affliction's Onset
@@ -45,7 +45,7 @@ Over time, the sculk amassed enough energy to form the wardens. As immense power
 
 When the Koinans attempted the process of powering the portal with a warden, the portal absorbed too much energy from the Warden and became overloaded, unequipped with the ability to contain it all. The portal convulsed and ruptured, scattering a terrible malady - the Affliction - all across both the Overworld and the Haven.
 
-All the Koinans within a mile were turned to zombies who continued to spread the blight. The souls of the dead in the Haven turned into the Enkantal, and the angels were corrupted to the Talei. Many of those whom survived fled to the Nether. In an act of desperation, they tried to construct simulacrums which could house their souls. These too failed, creating withering. The simulacrums turned to wither skeletons, while the Koinans turned to skeletons under the withering decay.
+All the Koinans within a mile were turned to zombies who continued to spread the blight. The souls of the dead in the Haven turned into the Enkantal, and the angels were corrupted to the Talei. Many of those whom survived fled to the Nether. In an act of desperation, they tried to construct simulacrums which could house their souls. These too failed, withering to bone. The simulacrums turned to wither skeletons, which spread the decay to the Koinans.
 
 ## The Aftermath of the Koinans
 All the structures of the Koinans were left for abandoned or house undead. The sculk was allowed to spread far through the caves in which they were produced. Opal, being the gemstone of the Haven, lost much of its holy energy and turned to rose quartz. Meanwhile, the divine metal of silver seemed to vanish from all record with the fall of angels.

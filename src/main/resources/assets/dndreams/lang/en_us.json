@@ -261,6 +261,8 @@
   "item.dndreams.sorrow_vial": "Springing Sorrow Vial",
   
   "item.dndreams.fleetfoot_band": "Fleetfoot Band",
+  "item.dndreams.dragonfoot_band": "Dragonfoot Band",
+  "item.dndreams.dragonfoot_band.tooltip": "§3Negates fall damage.",
   "item.dndreams.phantom_necklace": "Phantom Necklace",
   "item.dndreams.dissociation_charm": "Dissociation Charm",
   "item.dndreams.dissociation_charm.tooltip.0": "§3Prevents damage from teleportation.",
@@ -275,6 +277,9 @@
   "item.dndreams.lava_striders.tooltip": "§3Allows walking on lava.",
   "item.dndreams.substance_cloak": "Cloak of Substance",
   "item.dndreams.substance_cloak.tooltip": "§3Grants immunity to Insubstantial",
+  "item.dndreams.revive_cloak": "Cloak of Revival",
+  "item.dndreams.skystep_socks": "Angel Boots",
+  "item.dndreams.skystep_socks.tooltip": "§3Jump midair up to 3 times.",
   
   "item.dndreams.infusion_changer": "Pearl of Limitless Infusion",
 
@@ -361,8 +366,8 @@
   "command.dndreams.bloodmoon.get.tonight": "Tonight will have a dread moon.",
   "command.dndreams.bloodmoon.get.inactive": "The moon is normal tonight.",
   "command.dndreams.bloodmoon.set.now": "It is now a dread moon.",
-  "command.dndreams.bloodmoon.set.tonight": "It is now ordained the dread moon shall rise tonight.",
-  "command.dndreams.bloodmoon.set.inactive": "It is now ordained the moon shall be unstained.",
+  "command.dndreams.bloodmoon.set.tonight": "The dread moon shall rise tonight.",
+  "command.dndreams.bloodmoon.set.inactive": "The moon shall be unstained.",
   "command.dndreams.bloodmoon.set.wrong_dimension": "You cannot set that here.",
   
   "command.dndreams.slain.ender_dragon.true": "The Ender Dragon is dead.",

@@ -23,7 +23,7 @@ public interface PlayerEntityAccess {
             TrinketComponent trinket = optional.get();
 
 
-            if (trinket.isEquipped(ModItems.FLEETFOOT_BAND)) return true;
+            if (trinket.isEquipped(ModItems.FLEETFOOT_BAND) || trinket.isEquipped(ModItems.DRAGONFOOT_BAND) || trinket.isEquipped(ModItems.SKYSTEP_SOCKS)) return true;
         }
 
         return player.hasStatusEffect(ModStatusEffects.GRACE);
@@ -32,4 +32,6 @@ public interface PlayerEntityAccess {
     static boolean hasAerialMovement(LivingEntity entity) {
         return entity instanceof PlayerEntity player && hasAerialMovement(player);
     }
+
+
 }

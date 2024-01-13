@@ -6,6 +6,7 @@ import net.eman3600.dndreams.blocks.portal.GenericPortalAreaHelper;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -13,6 +14,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -39,6 +41,7 @@ public class LiquidSoulItem extends DrinkableItem {
         ItemStack stack = context.getStack();
         BlockPos pos = context.getBlockPos();
         BlockState state = context.getWorld().getBlockState(pos);
+        PlayerEntity player = context.getPlayer();
 
         BlockPos offset = pos.offset(context.getSide());
 
@@ -48,7 +51,7 @@ public class LiquidSoulItem extends DrinkableItem {
             GenericPortalAreaHelper helper = new GenericPortalAreaHelper(world, offset, axis, ((GenericPortalBlock)ModBlocks.WEAK_PORTAL).frameBlock, (GenericPortalBlock)ModBlocks.WEAK_PORTAL);
 
             if (helper.width > 1 && helper.height > 1) {
-                context.getPlayer().setStackInHand(context.getHand(), ItemUsage.exchangeStack(stack, context.getPlayer(), new ItemStack(Items.GLASS_BOTTLE), true));
+                if (player != null && !player.isCreative()) player.setStackInHand(context.getHand(), ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE), true));
                 helper.createPortal();
 
                 world.setBlockState(helper.getFrameCorner(), ModBlocks.DEEPSLATE_CORE.getDefaultState().with(DeepslateCoreBlock.AXIS, axis));
@@ -59,24 +62,30 @@ public class LiquidSoulItem extends DrinkableItem {
                 entity.init(helper);
                 BlockPos center = entity.getCenterPortal();
 
-                for (ServerPlayerEntity player : world.getPlayers()) {
+                for (ServerPlayerEntity player2 : world.getPlayers()) {
                     PacketByteBuf packet = PacketByteBufs.create();
 
                     packet.writeDouble(center.getX()); packet.writeDouble(center.getY()); packet.writeDouble(center.getZ());
                     packet.writeBoolean(entity.isForming());
                     packet.writeBoolean(true);
 
-                    ServerPlayNetworking.send(player, ModMessages.ANCIENT_PORTAL_SOUND_ID, packet);
+                    ServerPlayNetworking.send(player2, ModMessages.ANCIENT_PORTAL_SOUND_ID, packet);
                 }
 
                 return ActionResult.SUCCESS;
             }
         } else if (state.isOf(Blocks.REINFORCED_DEEPSLATE)) {
 
-            if (context.getPlayer() instanceof ServerPlayerEntity player) {
-                player.sendMessage(Text.translatable("item.dndreams.liquid_soul.needs_tuning"), true);
+            if (player instanceof ServerPlayerEntity player2) {
+                player2.sendMessage(Text.translatable("item.dndreams.liquid_soul.needs_tuning"), true);
             }
 
+            return ActionResult.SUCCESS;
+        } else if (context.getWorld().getBlockState(pos).getBlock() == ModBlocks.WORLD_FOUNTAIN && player != null) {
+            if (player instanceof ServerPlayerEntity player2) {
+                EntityComponents.GATEWAY.get(player2).enterGateway(0, true);
+            }
+            if (!player.isCreative()) player.setStackInHand(context.getHand(), ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE), true));
             return ActionResult.SUCCESS;
         }
 

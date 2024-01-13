@@ -1,5 +1,7 @@
 package net.eman3600.dndreams.cardinal_components;
 
+import dev.emi.trinkets.api.TrinketComponent;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.cardinal_components.interfaces.InfusionComponentI;
 import net.eman3600.dndreams.infusions.setup.Infusion;
 import net.eman3600.dndreams.infusions.setup.InfusionRegistry;
@@ -8,6 +10,9 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModInfusions;
+import net.eman3600.dndreams.items.trinket.AirJumpItem;
+import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
+import net.eman3600.dndreams.networking.packet_c2s.AirJumpPacket;
 import net.eman3600.dndreams.networking.packet_c2s.DodgePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,6 +24,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 public class InfusionComponent implements InfusionComponentI {
@@ -27,6 +33,7 @@ public class InfusionComponent implements InfusionComponentI {
     public static final int DODGE_COOLDOWN = 24;
 
     private final PlayerEntity player;
+    private final LivingEntityAccess access;
 
     /**
      * The player's current infusion.
@@ -40,12 +47,15 @@ public class InfusionComponent implements InfusionComponentI {
     private boolean hasDodge = false;
     private int dodgeCooldown = 0;
     private int iTicks = 0;
+    private int airJumps = 0;
+    private int jumpCooldown = 0;
 
     private boolean dirty = false;
 
 
     public InfusionComponent(PlayerEntity player) {
         this.player = player;
+        this.access = (LivingEntityAccess) player;
     }
 
     @Override
@@ -101,6 +111,7 @@ public class InfusionComponent implements InfusionComponentI {
         hasDodge = tag.getBoolean("has_dodge");
         dodgeCooldown = tag.getInt("dodge_cooldown");
         iTicks = tag.getInt("i_ticks");
+        airJumps = tag.getInt("air_jumps");
     }
 
     @Override
@@ -111,6 +122,7 @@ public class InfusionComponent implements InfusionComponentI {
         tag.putBoolean("has_dodge", hasDodge);
         tag.putInt("dodge_cooldown", dodgeCooldown);
         tag.putInt("i_ticks", iTicks);
+        tag.putInt("air_jumps", airJumps);
     }
 
     @Override
@@ -138,6 +150,11 @@ public class InfusionComponent implements InfusionComponentI {
 
         if (iTicks > 0) {
             iTicks--;
+            markDirty();
+        }
+
+        if (airJumps > 0 && player.isOnGround()) {
+            airJumps = 0;
             markDirty();
         }
 
@@ -225,5 +242,53 @@ public class InfusionComponent implements InfusionComponentI {
         }
     }
 
+    public int getMaxJumps() {
 
+        try {
+
+            int j = 0;
+            TrinketComponent trinkets = TrinketsApi.getTrinketComponent(player).get();
+
+            for (var pair: trinkets.getAllEquipped()) {
+                if (pair.getRight().getItem() instanceof AirJumpItem item) {
+                    j += item.jumps;
+                }
+            }
+
+            return j;
+        } catch (NullPointerException e) {
+            return 0;
+        }
+    }
+
+
+    @Override
+    public void clientTick() {
+
+        if (access.isJumping() && jumpCooldown <= 0 && airJumps < getMaxJumps()) {
+
+            jumpCooldown = 9;
+            Vec3d velocity = player.getVelocity();
+            velocity = new Vec3d(velocity.x, access.getJumpVelocity() * 1.2f + player.getJumpBoostVelocityModifier(), velocity.z);
+            if (player.isSprinting()) {
+                float f = player.getYaw() * 0.017453292f;
+                velocity = velocity.add(-MathHelper.sin(f) * 0.2f, 0.0, MathHelper.cos(f) * 0.2f);
+            }
+            player.setVelocity(velocity);
+            player.velocityModified = true;
+            player.velocityDirty = true;
+            AirJumpPacket.send();
+        }
+
+        if (player.isOnGround()) {
+            jumpCooldown = 8;
+        } else if (jumpCooldown > 0) jumpCooldown--;
+    }
+
+    public void airJump() {
+        airJumps++;
+        player.fallDistance = 0;
+        access.setJumpingCooldown(10);
+        markDirty();
+    }
 }
