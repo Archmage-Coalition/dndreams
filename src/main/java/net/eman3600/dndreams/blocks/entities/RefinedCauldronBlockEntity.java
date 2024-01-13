@@ -279,10 +279,6 @@ public class RefinedCauldronBlockEntity extends BlockEntity implements AbstractP
                     alterColor(-20, -20, -20);
                 } else if (distributionType == DistributionType.LINGERING) {
                     alterColor(20, 20, 20);
-                } else if (distributionType == DistributionType.LIQUID) {
-                    alterColor(-20, -20, 60);
-                } else if (distributionType == DistributionType.GAS) {
-                    alterColor(-20, 60, -10);
                 }
                 return;
             }

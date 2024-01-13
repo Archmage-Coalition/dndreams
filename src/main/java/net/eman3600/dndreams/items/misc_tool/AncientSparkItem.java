@@ -38,17 +38,6 @@ public class AncientSparkItem extends TooltipItem implements RitualRemainItem {
         if (spreadCharge(world, pos, 0) || spreadDischarge(world, pos, 0)) {
             world.playSound(null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 4.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
 
-            stack.damage(1, player, (p) -> {
-                p.sendToolBreakStatus(context.getHand());
-            });
-            return ActionResult.SUCCESS;
-        } else if (world.getBlockState(pos).getBlock() == ModBlocks.WORLD_FOUNTAIN) {
-            if (context.getPlayer() instanceof ServerPlayerEntity player2) {
-                EntityComponents.GATEWAY.get(player2).enterGateway(0, true);
-            }
-            stack.damage(1, player, (p) -> {
-                p.sendToolBreakStatus(context.getHand());
-            });
             return ActionResult.SUCCESS;
         }
 
@@ -108,11 +97,6 @@ public class AncientSparkItem extends TooltipItem implements RitualRemainItem {
 
     @Override
     public ItemStack getRitualRemains(Ritual ritual, SoulCandleBlockEntity entity, ItemStack stack) {
-        ItemStack clone = stack.copy();
-        clone.setDamage(clone.getDamage() + 8);
-
-        if (clone.getDamage() >= clone.getMaxDamage()) return ItemStack.EMPTY;
-
-        return clone;
+        return stack.copy();
     }
 }

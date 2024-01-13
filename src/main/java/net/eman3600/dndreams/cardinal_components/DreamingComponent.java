@@ -1,13 +1,13 @@
 package net.eman3600.dndreams.cardinal_components;
 
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketInventory;
-import dev.emi.trinkets.api.TrinketsApi;
+import dev.emi.trinkets.api.*;
+import dev.emi.trinkets.data.EntitySlotLoader;
 import net.eman3600.dndreams.cardinal_components.interfaces.DreamingComponentI;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.event.ModStats;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.networking.packet_s2c.DreamShiftPacket;
 import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -18,7 +18,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtDouble;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Vec3d;
@@ -35,8 +37,8 @@ public class DreamingComponent implements DreamingComponentI {
 
     private boolean dreaming = false;
     private Vec3d returnPos;
-    private PlayerInventory storedInv;
-    private Map<String, Map<String, TrinketInventory>> storedTrinkets = new HashMap<>();
+    private final PlayerInventory storedInv;
+    private final List<ItemStack> storedTrinkets;
     private boolean hasDreamt = false;
     private boolean congealed = false;
 
@@ -45,6 +47,7 @@ public class DreamingComponent implements DreamingComponentI {
         this.player = player;
         returnPos = player.getPos();
         storedInv = new PlayerInventory(player);
+        storedTrinkets = new ArrayList<>();
     }
 
     private TormentComponent torment() {
@@ -70,18 +73,6 @@ public class DreamingComponent implements DreamingComponentI {
         transferInventories(player.getInventory(), storedInv);
         transferInventories(storedInv, currInv);
         currInv.clear();
-
-        TrinketComponent trinketComponent = TrinketsApi.getTrinketComponent(player).get();
-        Map<String, Map<String, TrinketInventory>> trinkets = trinketComponent.getInventory();
-        Map<String, Map<String, TrinketInventory>> currTrinkets = new HashMap<>();
-
-        trinketComponent.clearModifiers();
-        transferInventories(currTrinkets, trinkets);
-        transferInventories(trinkets, storedTrinkets);
-        transferInventories(storedTrinkets, currTrinkets);
-        currTrinkets.clear();
-        trinketComponent.update();
-        TrinketsApi.TRINKET_COMPONENT.sync(player);
 
         player.clearStatusEffects();
         EntityComponents.ROT.get(player).setRot(0);
@@ -156,6 +147,40 @@ public class DreamingComponent implements DreamingComponentI {
             }
         }
 
+        for (int i = 0; i < storedTrinkets.size(); i++) {
+            if (player.getInventory().insertStack(storedTrinkets.get(i))) {
+                storedTrinkets.set(i, ItemStack.EMPTY);
+            } else {
+                ItemScatterer.spawn(player.world, player.getBlockPos(), DefaultedList.copyOf(ItemStack.EMPTY, storedTrinkets.toArray(new ItemStack[0])));
+
+                break;
+            }
+        }
+        storedTrinkets.clear();
+
+        TrinketComponent trinketComponent = TrinketsApi.getTrinketComponent(player).get();
+        Map<String, Map<String, TrinketInventory>> trinkets = trinketComponent.getInventory();
+
+        trinketComponent.clearModifiers();
+
+        for (String key: trinkets.keySet()) {
+
+            for (String key2: trinkets.get(key).keySet()) {
+
+                TrinketInventory instance = trinkets.get(key).get(key2);
+                for (int i = 0; i < instance.size(); i++) {
+
+                    storedTrinkets.add(instance.getStack(i).copy());
+                    instance.setStack(i, ItemStack.EMPTY);
+                    instance.markUpdate();
+                }
+            }
+        }
+
+        trinketComponent.update();
+        TrinketsApi.TRINKET_COMPONENT.sync(player);
+        EntitySlotLoader.SERVER.sync((ServerPlayerEntity) player);
+
         EntityComponents.DREAMING.sync(player);
     }
 
@@ -221,10 +246,16 @@ public class DreamingComponent implements DreamingComponentI {
         hasDreamt = tag.getBoolean("has_dreamt");
         congealed = tag.getBoolean("congealed");
 
-        NbtCompound nbt = tag.getCompound("stored_trinkets");
+        storedTrinkets.clear();
+        NbtList list = tag.getList("trinkets", NbtElement.COMPOUND_TYPE);
+        for (int i = 0; i < list.size(); i++) {
+            storedTrinkets.add(ItemStack.fromNbt(list.getCompound(i)));
+        }
+
+        /*NbtCompound nbt = tag.getCompound("stored_trinkets");
         for (String groupKey: nbt.getKeys()) {
             NbtCompound groupTag = nbt.getCompound(groupKey);
-            Map<String, TrinketInventory> groupSlots = storedTrinkets.get(groupKey);
+            Map<String, TrinketInventory> groupSlots = storedTrinketsOld.get(groupKey);
             if (groupSlots != null) {
                 for (String slotKey : groupTag.getKeys()) {
                     NbtCompound slotTag = groupTag.getCompound(slotKey);
@@ -255,7 +286,7 @@ public class DreamingComponent implements DreamingComponentI {
                     }
                 }
             }
-        }
+        }*/
     }
 
     @Override
@@ -266,9 +297,15 @@ public class DreamingComponent implements DreamingComponentI {
         tag.putBoolean("has_dreamt", hasDreamt);
         tag.putBoolean("congealed", congealed);
 
-        NbtCompound trinketsNbt = new NbtCompound();
+        NbtList trinkets = new NbtList();
+        for (ItemStack stack: storedTrinkets) {
+            trinkets.add(stack.writeNbt(new NbtCompound()));
+        }
+        tag.put("trinkets", trinkets);
 
-        for (Map.Entry<String, Map<String, TrinketInventory>> group : this.storedTrinkets.entrySet()) {
+        /*NbtCompound trinketsNbt = new NbtCompound();
+
+        for (Map.Entry<String, Map<String, TrinketInventory>> group : this.storedTrinketsOld.entrySet()) {
             NbtCompound groupTag = new NbtCompound();
             for (Map.Entry<String, TrinketInventory> slot : group.getValue().entrySet()) {
                 NbtCompound slotTag = new NbtCompound();
@@ -285,7 +322,7 @@ public class DreamingComponent implements DreamingComponentI {
             trinketsNbt.put(group.getKey(), groupTag);
         }
 
-        tag.put("stored_trinkets", trinketsNbt);
+        tag.put("stored_trinkets", trinketsNbt);*/
     }
 
     private NbtList toNbtList(double... values) {

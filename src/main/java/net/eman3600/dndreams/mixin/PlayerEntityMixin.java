@@ -1,10 +1,13 @@
 package net.eman3600.dndreams.mixin;
 
+import dev.emi.trinkets.api.TrinketComponent;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.blocks.energy.BonfireBlock;
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.projectiles.TeslaSlashEntity;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
@@ -210,5 +213,14 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 cir.setReturnValue(true);
             }
         }
+    }
+
+    @Inject(method = "handleFallDamage", at = @At("HEAD"), cancellable = true)
+    private void dndreams$handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
+
+        TrinketComponent trinkets = TrinketsApi.getTrinketComponent(this).get();
+
+        if (trinkets.isEquipped(ModItems.DRAGONFOOT_BAND) || (trinkets.isEquipped(ModItems.SKYSTEP_SOCKS) && fallDistance < 10)) cir.setReturnValue(false);
+
     }
 }

@@ -12,4 +12,10 @@ public interface LivingEntityAccess {
     boolean hasNotBrokenLava();
 
     boolean shouldResist(float damage, DamageSource source);
+
+    boolean isJumping();
+    int getJumpingCooldown();
+    void setJumpingCooldown(int jumpingCooldown);
+
+    float getJumpVelocity();
 }

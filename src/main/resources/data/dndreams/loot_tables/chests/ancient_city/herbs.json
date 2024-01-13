@@ -3,14 +3,14 @@
   "pools": [
     {
       "rolls": {
-		  "min": 1,
-		  "max": 2
-	  },
+		    "min": 1,
+		    "max": 2
+	    },
       "entries": [
         {
           "type": "minecraft:item",
           "name": "dndreams:amethyst_jar",
-		  "weight": 4,
+		      "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -23,10 +23,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "dndreams:foul_fume",
-		  "weight": 1,
+		      "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -39,10 +39,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "dndreams:sakura_fume",
-		  "weight": 1,
+		      "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -55,26 +55,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "dndreams:japanese_maple_fume",
-		  "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 1,
-                "max": 4
-              },
-              "add": true
-            }
-          ]
-        },
-		{
-          "type": "minecraft:item",
-          "name": "dndreams:sculk_wood_fume",
-		  "weight": 1,
+		      "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "dndreams:shade_cloth"
+    },
+    "#": {
+      "item": "dndreams:vital_oil"
+    },
+    "M": {
+      "item": "dndreams:sanity_thread"
+    },
+    "S": {
+      "item": "dndreams:withheld_agony"
+    }
+  },
+  "pattern": [
+    "#M#",
+    "MXM",
+    "XSX"
+  ],
+  "result": {
+    "item": "dndreams:revive_cloak"
+  }
+}
