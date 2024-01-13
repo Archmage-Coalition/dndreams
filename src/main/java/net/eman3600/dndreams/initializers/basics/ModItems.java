@@ -436,7 +436,7 @@ public class ModItems {
     public static final Item SUBSTANCE_CLOAK = registerItem("substance_cloak",
             new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item REVIVE_CLOAK = registerItem("revive_cloak",
-            new RevivalCloakItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+            new RevivalCloakItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)));
     public static final Item SKYSTEP_SOCKS = registerItem("skystep_socks",
             new AirJumpItem(3, new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
 
@@ -448,7 +448,7 @@ public class ModItems {
             new SnapStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(735))
                     .withTooltip(null, 1));
     public static final Item LIGHT_STAFF = registerItem("light_staff",
-            new LightStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1299))
+            new LightStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(1299))
                     .withTooltip(null, 3));
     public static final Item SEAR_STAFF = registerItem("sear_staff",
             new SearStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1299).fireproof())

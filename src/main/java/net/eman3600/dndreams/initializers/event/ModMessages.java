@@ -23,6 +23,7 @@ public class ModMessages {
     public static final Identifier ANCIENT_PORTAL_SOUND_ID = new Identifier(MODID, "ancient_portal_sound");
     public static final Identifier ENERGY_PARTICLE_ID = new Identifier(MODID, "energy_particle");
     public static final Identifier MOTION_UPDATE_ID = new Identifier(MODID, "motion_update");
+    public static final Identifier DREAM_SHIFT_ID = new Identifier(MODID, "dream_shift");
 
     public static void registerC2SPackets() {
         ServerPlayNetworking.registerGlobalReceiver(AIR_SWING_ID, AirSwingPacket::receive);
@@ -38,5 +39,6 @@ public class ModMessages {
         ClientPlayNetworking.registerGlobalReceiver(ANCIENT_PORTAL_SOUND_ID, AncientPortalSoundPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(ENERGY_PARTICLE_ID, EnergyParticlePacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(MOTION_UPDATE_ID, MotionUpdatePacket::receive);
+        ClientPlayNetworking.registerGlobalReceiver(DREAM_SHIFT_ID, DreamShiftPacket::receive);
     }
 }
