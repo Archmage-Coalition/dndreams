@@ -173,7 +173,7 @@ public class InfusionComponent implements InfusionComponentI {
 
     @Override
     public boolean canDodge() {
-        return hasDodge && dodgeCooldown <= 0 && player.isOnGround() && !player.hasStatusEffect(ModStatusEffects.STIFLED);
+        return hasDodge && dodgeCooldown <= 0 && !player.hasStatusEffect(ModStatusEffects.STIFLED);
     }
 
     @Override
@@ -211,15 +211,16 @@ public class InfusionComponent implements InfusionComponentI {
         if (mana.canAfford(DODGE_COST)) {
 
             Vec3d velocity = player.getVelocity();
+            double velY = player.isOnGround() ? 0.4 : velocity.y;
             velocity = velocity.subtract(0, velocity.y, 0);
 
             if (velocity.lengthSquared() <= .0025) {
                 velocity = Vec3d.fromPolar(0, player.getYaw());
             }
 
-            velocity = velocity.normalize().multiply(player.getAttributeValue(ModAttributes.PLAYER_LUNGE)).add(0, 0.4, 0);
+            velocity = velocity.normalize().multiply(player.getAttributeValue(ModAttributes.PLAYER_LUNGE));
 
-            player.setVelocityClient(velocity.x, velocity.y, velocity.z);
+            player.setVelocityClient(velocity.x, velY, velocity.z);
 
             DodgePacket.send(velocity);
         }
