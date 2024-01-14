@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.initializers.entity;
 
+import net.eman3600.dndreams.entities.misc.RisingBlockEntity;
 import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
 import net.eman3600.dndreams.entities.mobs.*;
 import net.eman3600.dndreams.entities.projectiles.*;
@@ -112,6 +113,14 @@ public class ModEntities {
             FabricEntityTypeBuilder.<SpringVialEntity>create(SpawnGroup.MISC, SpringVialEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
                     .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build()
+    );
+
+    public static final EntityType<RisingBlockEntity> RISING_BLOCK = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "rising_block"),
+            FabricEntityTypeBuilder.<RisingBlockEntity>create(SpawnGroup.MISC, RisingBlockEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.98f, 0.98f))
+                    .trackRangeChunks(10).trackedUpdateRate(20)
                     .build()
     );
 

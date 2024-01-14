@@ -37,6 +37,7 @@
     "EndPortalFeatureMixin",
     "EntityMixin",
     "ExplosionMixin",
+    "FallingBlockEntityMixin",
     "FarmlandBlockMixin",
     "FlintAndSteelItemMixin",
     "FluidBlockMixin",

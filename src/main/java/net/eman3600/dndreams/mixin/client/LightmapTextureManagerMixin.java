@@ -4,6 +4,7 @@ import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.mixin_interfaces.LightmapTextureManagerAccess;
 import net.fabricmc.api.EnvType;
@@ -38,6 +39,7 @@ public abstract class LightmapTextureManagerMixin implements LightmapTextureMana
     @Unique private final float SANITY_SHADOW = 30;
     @Unique private final float DARKNESS_THRESHOLD = 70;
     @Unique private final float HAUNTED = 110;
+    @Unique private final float CELESTIUM = 46;
 
     @Shadow @Final private NativeImage image;
 
@@ -76,6 +78,12 @@ public abstract class LightmapTextureManagerMixin implements LightmapTextureMana
                 z = brightenLight(z, haunt);
                 y = brightenLight(y, haunt);
                 x = brightenLight(x, haunt/2);
+            }
+
+            if (CelestiumArmorItem.wornPieces(access.getPlayer()) >= 4) {
+                z = brightenLight(z, CELESTIUM);
+                y = brightenLight(y, CELESTIUM);
+                x = brightenLight(x, CELESTIUM);
             }
 
             image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);

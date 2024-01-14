@@ -67,7 +67,7 @@ public class CelestiumPickaxeItem extends PickaxeItem implements ManaCostItem {
             BlockPos pos = result.getBlockPos();
             BlockState state = world.getBlockState(pos);
 
-            if ((isSuitableFor(state) || state.isIn(BlockTags.SHOVEL_MINEABLE)) && state.getHardness(world, pos) >= 0 && world.getBlockEntity(pos) == null && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
+            if (state.getHardness(world, pos) >= 0 && world.getBlockEntity(pos) == null && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
 
                 if (!world.isClient) {
                     FallingBlockEntity.spawnFromBlock(world, pos, state);

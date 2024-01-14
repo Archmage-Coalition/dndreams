@@ -110,30 +110,6 @@ public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem, ManaC
     }*/
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack stack = user.getStackInHand(hand);
-
-        HitResult hit = user.raycast(12, 0, false);
-        if (hit.getType() == HitResult.Type.BLOCK) {
-            BlockHitResult result = (BlockHitResult) hit;
-
-            BlockPos pos = result.getBlockPos();
-            BlockState state = world.getBlockState(pos);
-
-            if ((isSuitableFor(state) || isTree(state)) && state.getHardness(world, pos) >= 0 && world.getBlockEntity(pos) == null && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
-
-                if (!world.isClient) {
-                    FallingBlockEntity.spawnFromBlock(world, pos, state);
-                    stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-                }
-                return TypedActionResult.success(stack);
-            }
-        }
-
-        return super.use(world, user, hand);
-    }
-
-    @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         if (context.getPlayer() != null && context.getPlayer().isSneaking()) return ActionResult.PASS;
 
@@ -144,8 +120,7 @@ public class CelestiumAxeItem extends AxeItem implements DivineWeaponItem, ManaC
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.0"));
-        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.1"));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
         tooltip.add(getTooltipMana(stack));
     }
 
