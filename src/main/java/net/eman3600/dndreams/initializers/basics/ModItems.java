@@ -125,7 +125,7 @@ public class ModItems {
 
     // Gemstones
     public static final Item VITAL_SHARD = registerItem("vital_shard",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+            new VitalShardItem(2, 100, new FabricItemSettings().group(ItemGroup.MATERIALS)).withTooltip(null, 1));
     public static final Item CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item CRYSTAL_SPIRIT = registerItem("crystal_spirit",
