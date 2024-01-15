@@ -29,6 +29,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
+import net.minecraft.client.render.entity.FallingBlockEntityRenderer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -130,6 +131,7 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.BREW_GAS, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BREW_LIQUID, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SPRING_VIAL, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.RISING_BLOCK, FallingBlockEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.BLOOD_ZOMBIE, BloodZombieEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BLOOD_SKELETON, BloodSkeletonEntityRenderer::new);

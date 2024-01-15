@@ -85,7 +85,7 @@ public class LaunchStaffItem extends TooltipItem implements ManaCostItem {
                 MotionUpdatePacket.send((ServerPlayerEntity) player);
                 component.useMana(charge * cost);
                 player.getItemCooldownManager().set(this, user.hasStatusEffect(ModStatusEffects.GRACE) ? 60 : 16);
-                if (!player.isCreative()) stack.damage(1, user, p -> p.sendToolBreakStatus(player.getActiveHand()));
+                if (!player.isCreative()) stack.damage(charge, user, p -> p.sendToolBreakStatus(player.getActiveHand()));
             }
         }
     }

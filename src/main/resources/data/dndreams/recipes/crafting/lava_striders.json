@@ -4,7 +4,7 @@
     "X": {
       "item": "dndreams:corrupt_ingot"
     },
-    "#": {
+    "N": {
       "item": "dndreams:managold_ingot"
     },
     "C": {
@@ -13,7 +13,7 @@
     "F": {
       "item": "minecraft:warped_fungus"
     },
-    "N": {
+    "#": {
       "item": "dndreams:nightmare_fuel"
     }
   },

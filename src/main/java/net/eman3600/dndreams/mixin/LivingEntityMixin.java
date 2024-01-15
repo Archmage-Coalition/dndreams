@@ -10,6 +10,7 @@ import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModFoodComponents;
@@ -145,6 +146,13 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
                 ci.cancel();
             }
         }
+        if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.WATER_STRIDERS)) {
+            this.checkBlockCollision();
+            if (isAtHydroSurface()) {
+                this.onLanding();
+                ci.cancel();
+            }
+        }
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
@@ -154,12 +162,18 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
             updateLavaFloating();
             this.checkBlockCollision();
         }
+        if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.WATER_STRIDERS)) {
+            updateHydroFloating();
+            this.checkBlockCollision();
+        }
     }
 
     @Inject(method = "canWalkOnFluid", at = @At("RETURN"), cancellable = true)
     private void dndreams$canWalkOnFluid(FluidState state, CallbackInfoReturnable<Boolean> cir) {
         Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent((LivingEntity)(Object)this);
-        if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS) && state.isIn(FluidTags.LAVA) && hasNotBrokenLava()) {
+        if (trinketOptional.isPresent() &&
+                (trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS) && state.isIn(FluidTags.LAVA) && hasNotBrokenLava() ||
+                        trinketOptional.get().isEquipped(ModItems.WATER_STRIDERS) && state.isIn(ModTags.HYDRO) && hasNotBrokenHydro())) {
             cir.setReturnValue(true);
         }
     }
@@ -168,16 +182,41 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         return hasNotBrokenLava() && isInLava();
     }
 
+    private boolean isAtHydroSurface() {
+        return hasNotBrokenHydro() && isInHydro();
+    }
+
+    private boolean isInHydro() {
+        return !this.firstUpdate && (this.fluidHeight.getDouble(FluidTags.WATER) > 0.0 || this.fluidHeight.getDouble(ModTags.FLOWING_SPIRIT) > 0.0 || this.fluidHeight.getDouble(ModTags.SORROW) > 0.0);
+    }
+
     @Override
     public boolean hasNotBrokenLava() {
-        if ((Entity)this instanceof PlayerEntity player && player.isSneaking() && player.isInLava()) return false;
+        if (this.isSneaking() && this.isInLava()) return false;
         return this.fluidHeight.getDouble(FluidTags.LAVA) <= 0.7 && !isOnFire();
+    }
+
+    @Override
+    public boolean hasNotBrokenHydro() {
+        if (this.isSneaking() && isInHydro()) return false;
+        return this.fluidHeight.getDouble(ModTags.HYDRO) <= 0.7;
     }
 
     private void updateLavaFloating() {
         if (isAtLavaSurface()) {
             ShapeContext shapeContext = ShapeContext.of(this);
             if (!shapeContext.isAbove(FluidBlock.COLLISION_SHAPE, this.getBlockPos(), true) || this.world.getFluidState(this.getBlockPos().up()).isIn(FluidTags.LAVA)) {
+                this.setVelocity(this.getVelocity().multiply(0.5).add(0.0, 0.05, 0.0));
+            } else {
+                this.onGround = true;
+            }
+        }
+    }
+
+    private void updateHydroFloating() {
+        if (isAtHydroSurface()) {
+            ShapeContext shapeContext = ShapeContext.of(this);
+            if (!shapeContext.isAbove(FluidBlock.COLLISION_SHAPE, this.getBlockPos(), true) || this.world.getFluidState(this.getBlockPos().up()).isIn(ModTags.HYDRO)) {
                 this.setVelocity(this.getVelocity().multiply(0.5).add(0.0, 0.05, 0.0));
             } else {
                 this.onGround = true;
@@ -353,7 +392,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     private void dndreams$addStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
         StatusEffect status = effect.getEffectType();
 
-        if ((getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR) && status == StatusEffects.WITHER) {
+        if ((status == StatusEffects.WITHER && (getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR)) || (status == ModStatusEffects.HAUNTED && CelestiumArmorItem.wornPieces(this) >= 4)) {
             cir.setReturnValue(false);
         }
     }

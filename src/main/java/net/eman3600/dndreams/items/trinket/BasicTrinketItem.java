@@ -9,9 +9,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class LavaStriderItem extends TrinketItem {
+public class BasicTrinketItem extends TrinketItem {
 
-    public LavaStriderItem(Settings settings) {
+    public BasicTrinketItem(Settings settings) {
         super(settings);
     }
 

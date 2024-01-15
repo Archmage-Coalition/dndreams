@@ -10,10 +10,7 @@ import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.items.MysticStaffItem;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
-import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
-import net.eman3600.dndreams.items.celestium.CelestiumAxeItem;
-import net.eman3600.dndreams.items.celestium.CelestiumPickaxeItem;
-import net.eman3600.dndreams.items.celestium.CelestiumSwordItem;
+import net.eman3600.dndreams.items.celestium.*;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
@@ -128,7 +125,7 @@ public class ModItems {
 
     // Gemstones
     public static final Item VITAL_SHARD = registerItem("vital_shard",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+            new VitalShardItem(2, 100, new FabricItemSettings().group(ItemGroup.MATERIALS)).withTooltip(null, 1));
     public static final Item CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item CRYSTAL_SPIRIT = registerItem("crystal_spirit",
@@ -330,7 +327,7 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item CELESTIUM_SHOVEL = registerItem("celestium_shovel",
-            new ModShovelItem(ModToolMaterials.CELESTIUM, 1.5F, -3.0F,
+            new CelestiumShovelItem(ModToolMaterials.CELESTIUM, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_HOE = registerItem("celestium_hoe",
             new ScytheItem(ModToolMaterials.CELESTIUM, 6, -3.4F,
@@ -431,12 +428,14 @@ public class ModItems {
             new TruthGlassesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item FLAME_CAPE = registerItem("flame_cape",
             new FlameCapeItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).fireproof()));
-    public static final Item LAVA_STRIDERS = registerItem("lava_striders",
-            new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).fireproof()));
     public static final Item SUBSTANCE_CLOAK = registerItem("substance_cloak",
-            new LavaStriderItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+            new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item REVIVE_CLOAK = registerItem("revive_cloak",
             new RevivalCloakItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)));
+    public static final Item WATER_STRIDERS = registerItem("water_striders",
+            new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+    public static final Item LAVA_STRIDERS = registerItem("lava_striders",
+            new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1).fireproof()));
     public static final Item SKYSTEP_SOCKS = registerItem("skystep_socks",
             new AirJumpItem(3, new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
 
