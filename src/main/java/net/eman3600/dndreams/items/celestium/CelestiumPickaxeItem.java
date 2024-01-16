@@ -2,6 +2,7 @@ package net.eman3600.dndreams.items.celestium;
 
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
@@ -70,7 +71,8 @@ public class CelestiumPickaxeItem extends PickaxeItem implements ManaCostItem {
             if (state.getHardness(world, pos) >= 0 && world.getBlockEntity(pos) == null && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
 
                 if (!world.isClient) {
-                    FallingBlockEntity.spawnFromBlock(world, pos, state);
+                    FallingBlockEntity entity = FallingBlockEntity.spawnFromBlock(world, pos, state);
+                    entity.setHurtEntities(2f, state.isIn(BlockTags.ANVIL) || state.isOf(Blocks.POINTED_DRIPSTONE) ? 40 : 20);
                     stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
                 }
                 return TypedActionResult.success(stack);
