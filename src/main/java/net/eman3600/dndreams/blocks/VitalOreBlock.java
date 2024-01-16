@@ -1,6 +1,8 @@
 package net.eman3600.dndreams.blocks;
 
 import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
+import net.eman3600.dndreams.cardinal_components.InfusionComponent;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -20,14 +22,17 @@ import org.jetbrains.annotations.Nullable;
 
 public class VitalOreBlock extends OreBlock {
     public static final BooleanProperty REVEALED = BooleanProperty.of("revealed");
+    public final Block fakeBlock;
 
-    public VitalOreBlock(Settings settings) {
+    public VitalOreBlock(Block fakeBlock, Settings settings) {
         super(settings);
+        this.fakeBlock = fakeBlock;
         setDefaultState(getDefaultState().with(REVEALED, false));
     }
 
-    public VitalOreBlock(Settings settings, IntProvider experience) {
+    public VitalOreBlock(Block fakeBlock, Settings settings, IntProvider experience) {
         super(settings, experience);
+        this.fakeBlock = fakeBlock;
         setDefaultState(getDefaultState().with(REVEALED, false));
     }
 
@@ -39,7 +44,8 @@ public class VitalOreBlock extends OreBlock {
 
     @Override
     public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
-        updateRevealed(world, pos, 4, true);
+        InfusionComponent component = EntityComponents.INFUSION.get(player);
+        if (component.shouldSeeRose()) updateRevealed(world, pos, 4, true);
 
         super.onBlockBreakStart(state, world, pos, player);
     }
@@ -49,15 +55,15 @@ public class VitalOreBlock extends OreBlock {
         super.onStacksDropped(state, world, pos, stack, dropExperience && state.get(REVEALED));
     }
 
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        BloodMoonComponent moon = WorldComponents.BLOOD_MOON.get(world);
-        boolean revealed = state.get(REVEALED);
-
-        if (revealed != moon.isBloodMoon()) {
-            updateRevealed(world, pos, 4, !revealed);
-        }
-    }
+//    @Override
+//    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+//        BloodMoonComponent moon = WorldComponents.BLOOD_MOON.get(world);
+//        boolean revealed = state.get(REVEALED);
+//
+//        if (revealed != moon.isBloodMoon()) {
+//            updateRevealed(world, pos, 4, !revealed);
+//        }
+//    }
 
     private void updateRevealed(World world, BlockPos pos, int left, boolean revealed) {
         BlockState state = world.getBlockState(pos);

@@ -27,6 +27,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.Optional;
+
 public class InfusionComponent implements InfusionComponentI {
     public static final int LINK_LENGTH = 40;
     public static final int DODGE_COST = 4;
@@ -46,6 +48,7 @@ public class InfusionComponent implements InfusionComponentI {
     private boolean needsKit = true;
     private boolean hasDodge = false;
     private int dodgeCooldown = 0;
+    private boolean dodgeLanded = true;
     private int iTicks = 0;
     private int airJumps = 0;
     private int jumpCooldown = 0;
@@ -112,6 +115,7 @@ public class InfusionComponent implements InfusionComponentI {
         dodgeCooldown = tag.getInt("dodge_cooldown");
         iTicks = tag.getInt("i_ticks");
         airJumps = tag.getInt("air_jumps");
+        dodgeLanded = tag.getBoolean("dodge_landed");
     }
 
     @Override
@@ -123,6 +127,7 @@ public class InfusionComponent implements InfusionComponentI {
         tag.putInt("dodge_cooldown", dodgeCooldown);
         tag.putInt("i_ticks", iTicks);
         tag.putInt("air_jumps", airJumps);
+        tag.putBoolean("dodge_landed", dodgeLanded);
     }
 
     @Override
@@ -143,13 +148,18 @@ public class InfusionComponent implements InfusionComponentI {
             player.giveItemStack(new ItemStack(ModItems.BOOK_OF_DREAMS));
         }
 
-        if (hasDodge && dodgeCooldown > 0) {
+        if (dodgeCooldown > 0) {
             dodgeCooldown--;
             markDirty();
         }
 
         if (iTicks > 0) {
             iTicks--;
+            markDirty();
+        }
+
+        if (!dodgeLanded && player.isOnGround()) {
+            dodgeLanded = true;
             markDirty();
         }
 
@@ -173,7 +183,7 @@ public class InfusionComponent implements InfusionComponentI {
 
     @Override
     public boolean canDodge() {
-        return hasDodge && dodgeCooldown <= 0 && !player.hasStatusEffect(ModStatusEffects.STIFLED);
+        return hasDodge && dodgeCooldown <= 0 && dodgeLanded && !player.hasStatusEffect(ModStatusEffects.STIFLED);
     }
 
     @Override
@@ -181,6 +191,7 @@ public class InfusionComponent implements InfusionComponentI {
 
         hasDodge = allow;
         dodgeCooldown = 0;
+        dodgeLanded = true;
         markDirty();
     }
 
@@ -199,6 +210,11 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public boolean hasImmunity() {
         return iTicks > 0;
+    }
+
+    public boolean shouldSeeRose() {
+        Optional<TrinketComponent> optional = TrinketsApi.getTrinketComponent(player);
+        return optional.isPresent() && optional.get().isEquipped(ModItems.ROSE_GLASSES);
     }
 
     @Environment(EnvType.CLIENT)
@@ -236,6 +252,7 @@ public class InfusionComponent implements InfusionComponentI {
             mana.useMana(DODGE_COST);
             giveImmunity();
             dodgeCooldown = DODGE_COOLDOWN;
+            dodgeLanded = false;
 
             player.setVelocity(velocity);
 

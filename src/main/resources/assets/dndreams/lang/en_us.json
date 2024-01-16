@@ -268,6 +268,8 @@
   "item.dndreams.dissociation_charm": "Dissociation Charm",
   "item.dndreams.dissociation_charm.tooltip.0": "§3Prevents damage from teleportation.",
   "item.dndreams.dissociation_charm.tooltip.1": "§3Usually.",
+  "item.dndreams.rose_glasses": "Rose-Tinted Glasses",
+  "item.dndreams.rose_glasses.tooltip": "§3Reveals hidden ore.",
   "item.dndreams.truth_glasses": "Truth Lenses",
   "item.dndreams.truth_glasses.tooltip.0": "§3See things how they really are",
   "item.dndreams.truth_glasses.tooltip.1": "§3and expand your mind.",

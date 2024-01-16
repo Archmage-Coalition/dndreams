@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C C",
+    "#X#",
+    "M M"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:amethyst_shard"
+    },
+	  "X": {
+      "item": "minecraft:copper_ingot"
+    },
+	  "C": {
+      "item": "dndreams:sakura_fume"
+    },
+	  "M": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "dndreams:rose_glasses"
+  }
+}

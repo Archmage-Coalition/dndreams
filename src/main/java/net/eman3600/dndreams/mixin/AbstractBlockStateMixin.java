@@ -2,6 +2,7 @@ package net.eman3600.dndreams.mixin;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
+import net.eman3600.dndreams.blocks.VitalOreBlock;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.util.ModTags;
@@ -79,6 +80,15 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
         if (stack.getItem() instanceof AtlasItem item && item.isActive(stack)) {
 
             item.setForm(stack, item.getBestForm(world, player, item.getForm(stack), world.getBlockState(pos)));
+        }
+    }
+
+    @Inject(method = "getHardness", at = @At("HEAD"), cancellable = true)
+    private void dndreams$getHardness(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {
+
+        if (getBlock() instanceof VitalOreBlock block && !get(VitalOreBlock.REVEALED)) {
+
+            cir.setReturnValue(block.fakeBlock.getHardness());
         }
     }
 }

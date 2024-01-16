@@ -424,6 +424,8 @@ public class ModItems {
             new DragonfootBandItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item DISSOCIATION_CHARM = registerItem("dissociation_charm",
             new DissociationCharmItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+    public static final Item ROSE_GLASSES = registerItem("rose_glasses",
+            new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item TRUTH_GLASSES = registerItem("truth_glasses",
             new TruthGlassesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item FLAME_CAPE = registerItem("flame_cape",
