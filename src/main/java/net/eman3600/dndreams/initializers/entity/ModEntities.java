@@ -159,7 +159,7 @@ public class ModEntities {
     public static final EntityType<DreamSheepEntity> DREAM_SHEEP = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "dream_sheep"),
             FabricEntityTypeBuilder.<DreamSheepEntity>create(SpawnGroup.MISC, DreamSheepEntity::new)
-                    .dimensions(new EntityDimensions(0.9f, 2.9f, false))
+                    .dimensions(EntityType.SHEEP.getDimensions())
                     .trackRangeChunks(10)
                     .build()
     );
