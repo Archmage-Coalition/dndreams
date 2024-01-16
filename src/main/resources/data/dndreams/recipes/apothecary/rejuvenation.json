@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "dndreams:dragonfruit"
+    "item": "dndreams:vital_shard"
   },
   "corrupted": false,
-  "capacity": 5,
-  "cost": 600,
+  "capacity": 4,
+  "cost": 400,
   "effect": "dndreams:rejuvenation",
   "duration": 3600
 }

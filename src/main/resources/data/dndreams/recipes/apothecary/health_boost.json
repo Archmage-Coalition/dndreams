@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "dndreams:vital_shard"
+    "item": "dndreams:dragonfruit"
   },
   "corrupted": false,
-  "capacity": 4,
-  "cost": 400,
+  "capacity": 5,
+  "cost": 600,
   "effect": "minecraft:health_boost",
   "duration": 3600
 }

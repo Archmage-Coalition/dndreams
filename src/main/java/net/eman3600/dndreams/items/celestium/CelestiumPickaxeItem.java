@@ -60,7 +60,7 @@ public class CelestiumPickaxeItem extends PickaxeItem implements ManaCostItem {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
 
-        HitResult hit = user.raycast(12, 0, false);
+        HitResult hit = user.raycast(30, 0, false);
         if (hit.getType() == HitResult.Type.BLOCK) {
             BlockHitResult result = (BlockHitResult) hit;
 
