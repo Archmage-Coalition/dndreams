@@ -763,8 +763,10 @@
   "entity.dndreams.warden_ragdoll": "Warden",
   
   
-  "advancements.dndreams.main.root.title": "Demons and Dreams",
-  "advancements.dndreams.main.root.description": "Something will go here one day...",
+  "advancements.dndreams.root.title": "Demons and Dreams",
+  "advancements.dndreams.root.description": "Something will go here one day...",
+  "advancements.dndreams.insane.title": "You're not alone...",
+  "advancements.dndreams.insane.description": "Become fully insane.",
   
   
   "rei.dndreams.weaving": "Dream Weaving",

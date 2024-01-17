@@ -62,6 +62,7 @@ public class Initializer implements ModInitializer {
 		ModWorldGen.generate();
 
 		ModLootConditions.registerConditions();
+		ModCriterion.registerCriterion();
 		LootModifiers.modifyLootTables();
 
 		ModStats.registerStats();
