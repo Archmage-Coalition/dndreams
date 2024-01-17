@@ -1,0 +1,19 @@
+{
+  "parent": "block/cube",
+  "display": {
+      "firstperson_righthand": {
+          "rotation": [ 0, 135, 0 ],
+          "translation": [ 0, 0, 0 ],
+          "scale": [ 0.40, 0.40, 0.40 ]
+      }
+  },
+  "textures": {
+      "particle": "dndreams:block/insight_table_front",
+      "down": "dndreams:block/insight_table_bottom",
+      "up": "dndreams:block/insight_table_top",
+      "north": "dndreams:block/insight_table_front",
+      "east": "dndreams:block/insight_table_side",
+      "south": "dndreams:block/insight_table_back",
+      "west": "dndreams:block/insight_table_side"
+  }
+}

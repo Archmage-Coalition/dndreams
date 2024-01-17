@@ -22,6 +22,7 @@ public class ModBlockEntities {
     public static BlockEntityType<RefineryBlockEntity> REFINERY_ENTITY;
     public static BlockEntityType<RefinedCauldronBlockEntity> REFINED_CAULDRON_ENTITY;
     public static BlockEntityType<BonfireBlockEntity> BONFIRE_ENTITY;
+    public static BlockEntityType<InsightTableBlockEntity> INSIGHT_TABLE_ENTITY;
 
     public static void registerBlockEntities() {
 
@@ -56,5 +57,7 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(RefinedCauldronBlockEntity::new, ModBlocks.REFINED_CAULDRON).build());
         BONFIRE_ENTITY = registerEntity("bonfire",
                 FabricBlockEntityTypeBuilder.create(BonfireBlockEntity::new, ModBlocks.BONFIRE).build());
+        INSIGHT_TABLE_ENTITY = registerEntity("insight_table",
+                FabricBlockEntityTypeBuilder.create(InsightTableBlockEntity::new, ModBlocks.INSIGHT_TABLE).build());
     }
 }

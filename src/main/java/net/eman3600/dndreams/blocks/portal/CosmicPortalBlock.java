@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.blocks.energy;
+package net.eman3600.dndreams.blocks.portal;
 
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntity;
 import net.eman3600.dndreams.initializers.basics.ModItems;

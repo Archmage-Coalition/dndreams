@@ -4,6 +4,7 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.crop.*;
 import net.eman3600.dndreams.blocks.energy.*;
+import net.eman3600.dndreams.blocks.portal.CosmicPortalBlock;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritFenceBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritSlabBlock;
@@ -1092,6 +1093,11 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
+    // Insight Table
+    public static final Block INSIGHT_TABLE = registerBlock("insight_table",
+            new InsightTableBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 6.0f)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     // Ritual Candles
     public static final Block ECHO_CANDLE = registerBlock("echo_candle",

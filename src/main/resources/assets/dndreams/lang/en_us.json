@@ -293,9 +293,8 @@
   "item.dndreams.snap_staff": "Snapping Staff",
   "item.dndreams.snap_staff.tooltip": "§3Summons a line of fangs.",
   "item.dndreams.light_staff": "Illuminant Staff",
-  "item.dndreams.light_staff.tooltip.0": "§3Let there be light!",
-  "item.dndreams.light_staff.tooltip.1": "§3Creates temporary light.",
-  "item.dndreams.light_staff.tooltip.2": "§3Thrown lights make no noise.",
+  "item.dndreams.light_staff.tooltip.0": "§3Creates temporary light.",
+  "item.dndreams.light_staff.tooltip.1": "§3Thrown lights make no noise.",
   "item.dndreams.sear_staff": "Scorching Staff",
   "item.dndreams.sear_staff.tooltip": "§3Shoots fireballs.",
   "item.dndreams.ender_staff": "Ender Staff",
@@ -493,6 +492,7 @@
   "block.dndreams.silver_block": "Silver Block",
   
   "block.dndreams.dream_table": "Dream Weaver",
+  "block.dndreams.insight_table": "Insight Table",
 
   "block.dndreams.dreamwood_log": "Cakewood Log",
   "block.dndreams.dreamwood": "Cakewood",
@@ -767,6 +767,8 @@
   "advancements.dndreams.root.description": "Something will go here one day...",
   "advancements.dndreams.insane.title": "You're not alone...",
   "advancements.dndreams.insane.description": "Become fully insane.",
+  "advancements.dndreams.light_staff.title": "Let there be light!",
+  "advancements.dndreams.light_staff.description": "Use the Illuminant Staff.",
   
   
   "rei.dndreams.weaving": "Dream Weaving",

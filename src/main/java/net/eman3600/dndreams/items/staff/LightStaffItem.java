@@ -3,9 +3,11 @@ package net.eman3600.dndreams.items.staff;
 import net.eman3600.dndreams.entities.projectiles.GlowBoltEntity;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -39,6 +41,8 @@ public class LightStaffItem extends TooltipItem implements ManaCostItem {
                 GlowBoltEntity bolt = new GlowBoltEntity(user, world);
                 bolt.setVelocity(user, Math.max(user.getPitch() - 7.5f, -90f), user.getYaw(), 0.0f, 1.4f, 0.3f);
                 world.spawnEntity(bolt);
+
+                Criteria.SHOT_CROSSBOW.trigger((ServerPlayerEntity) user, stack);
             }
 
             return TypedActionResult.success(stack, world.isClient());

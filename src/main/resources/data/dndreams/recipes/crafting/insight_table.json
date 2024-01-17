@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "#A#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:smooth_basalt"
+    },
+	  "X": {
+      "item": "minecraft:amethyst_shard"
+    },
+	  "A": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "item": "dndreams:insight_table"
+  }
+}
