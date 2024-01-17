@@ -3,11 +3,13 @@ package net.eman3600.dndreams.mob_effects;
 import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.event.ModCriterion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public class ModStatusEffect extends StatusEffect {
 
@@ -21,6 +23,10 @@ public class ModStatusEffect extends StatusEffect {
     @Override
     public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         super.onApplied(entity, attributes, amplifier);
+
+        if (this == ModStatusEffects.THIRD_EYE && entity instanceof ServerPlayerEntity player) {
+            ModCriterion.INSANITY.trigger(player);
+        }
     }
 
     @Override

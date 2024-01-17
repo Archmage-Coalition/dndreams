@@ -2,6 +2,7 @@ package net.eman3600.dndreams.cardinal_components;
 
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.eman3600.dndreams.blocks.VitalOreBlock;
 import net.eman3600.dndreams.cardinal_components.interfaces.InfusionComponentI;
 import net.eman3600.dndreams.infusions.setup.Infusion;
 import net.eman3600.dndreams.infusions.setup.InfusionRegistry;
@@ -16,6 +17,7 @@ import net.eman3600.dndreams.networking.packet_c2s.AirJumpPacket;
 import net.eman3600.dndreams.networking.packet_c2s.DodgePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.Block;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -24,15 +26,20 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class InfusionComponent implements InfusionComponentI {
     public static final int LINK_LENGTH = 40;
     public static final int DODGE_COST = 4;
     public static final int DODGE_COOLDOWN = 24;
+    public static final int ROSE_COOLDOWN = 60;
+    public static final int ROSE_RANGE = 20;
 
     private final PlayerEntity player;
     private final LivingEntityAccess access;
@@ -52,6 +59,9 @@ public class InfusionComponent implements InfusionComponentI {
     private int iTicks = 0;
     private int airJumps = 0;
     private int jumpCooldown = 0;
+    private boolean roseGlasses = false;
+    private int roseCooldown = 0;
+    private final List<BlockPos> revealedQuartz = new ArrayList<>();
 
     private boolean dirty = false;
 
@@ -303,6 +313,43 @@ public class InfusionComponent implements InfusionComponentI {
         if (player.isOnGround()) {
             jumpCooldown = 8;
         } else if (jumpCooldown > 0) jumpCooldown--;
+
+        if (roseGlasses != shouldSeeRose()) {
+
+            roseGlasses = !roseGlasses;
+            updateRose();
+        }
+
+        if (roseGlasses && roseCooldown-- <= 0) {
+
+            roseCooldown = ROSE_COOLDOWN;
+            updateRose();
+        }
+    }
+
+    private void updateRose() {
+
+        for (BlockPos pos: revealedQuartz) {
+
+            if (player.world.canSetBlock(pos)) player.world.setBlockState(pos, player.world.getBlockState(pos).getBlock().getDefaultState());
+        }
+
+        revealedQuartz.clear();
+
+        if (roseGlasses) {
+
+            BlockPos playerPos = player.getBlockPos();
+
+            for (int i = -ROSE_RANGE; i <= ROSE_RANGE; i++) for (int j = -ROSE_RANGE; j <= ROSE_RANGE; j++) for (int k = -ROSE_RANGE; k <= ROSE_RANGE; k++) {
+
+                BlockPos pos = playerPos.add(i, j, k);
+                if (player.world.getBlockState(pos).getBlock() instanceof VitalOreBlock && !player.world.getBlockState(pos).get(VitalOreBlock.REVEALED)) {
+
+                    player.world.setBlockState(pos, player.world.getBlockState(pos).with(VitalOreBlock.REVEALED, true));
+                    revealedQuartz.add(pos);
+                }
+            }
+        }
     }
 
     public boolean airJump() {

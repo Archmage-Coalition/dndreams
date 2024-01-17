@@ -11,6 +11,7 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.event.ModCriterion;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.util.Function2;
@@ -21,6 +22,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -305,6 +307,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
         if (dirty) {
             EntityComponents.TORMENT.sync(player);
+            ModCriterion.INSANITY.trigger((ServerPlayerEntity) player);
             dirty = false;
         }
     }
