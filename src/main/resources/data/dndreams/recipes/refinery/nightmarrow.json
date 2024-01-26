@@ -1,0 +1,17 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "minecraft:bone"
+    },
+    {
+      "item": "dndreams:subdued_madness"
+    }
+  ],
+  "result": {
+    "item": "dndreams:nightmarrow",
+    "count": 1
+  },
+  "cost": 100,
+  "refine_time": 100
+}
