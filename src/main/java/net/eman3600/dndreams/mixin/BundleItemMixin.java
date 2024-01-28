@@ -17,6 +17,6 @@ public abstract class BundleItemMixin extends Item {
 
     @Inject(method = "getItemOccupancy", at = @At(value = "RETURN"), cancellable = true)
     private static void dndreams$getItemOccupancy(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        if (!stack.isOf(Items.BUNDLE) && cir.getReturnValue() < 64) cir.setReturnValue(64);
+        if (!stack.isOf(Items.BUNDLE) && cir.getReturnValue() > 1) cir.setReturnValue(1);
     }
 }
