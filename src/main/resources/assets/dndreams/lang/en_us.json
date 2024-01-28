@@ -313,6 +313,8 @@
   "item.dndreams.satiation_staff": "Satiation Staff",
   "item.dndreams.satiation_staff.tooltip": "§3Lets you feast on your mind.",
   "item.dndreams.mystic_staff": "Mystic Staff",
+  "item.dndreams.ascend_grip": "Worldly Grip",
+  "item.dndreams.ascend_grip.tooltip": "§3Lets you pull yourself back up.",
   
   
   "tooltip.dndreams.mana_cost": "§dMana Cost: %s",

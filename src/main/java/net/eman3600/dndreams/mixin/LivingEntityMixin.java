@@ -10,6 +10,7 @@ import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.items.AscendItem;
 import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
@@ -236,7 +237,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
         if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !(trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.SUBSTANCE_CLOAK))) {
             addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE, 0, true, true));
-        } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!isInsideWall() || isOnGround())) {
+        } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!AscendItem.isInBlock(this) || isOnGround())) {
             removeStatusEffect(ModStatusEffects.INSUBSTANTIAL);
         }
         EntityComponents.SHOCK.maybeGet(this).ifPresent(component -> {

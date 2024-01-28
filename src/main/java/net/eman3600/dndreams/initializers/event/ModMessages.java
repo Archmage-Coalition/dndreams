@@ -2,6 +2,7 @@ package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.networking.packet_c2s.AirJumpPacket;
 import net.eman3600.dndreams.networking.packet_c2s.AirSwingPacket;
+import net.eman3600.dndreams.networking.packet_c2s.AscendPacket;
 import net.eman3600.dndreams.networking.packet_c2s.DodgePacket;
 import net.eman3600.dndreams.networking.packet_s2c.*;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -15,6 +16,7 @@ public class ModMessages {
     public static final Identifier AIR_SWING_ID = new Identifier(MODID, "air_swing");
     public static final Identifier DODGE_ID = new Identifier(MODID, "dodge");
     public static final Identifier AIR_JUMP_ID = new Identifier(MODID, "air_jump");
+    public static final Identifier ASCEND_ID = new Identifier(MODID, "ascend");
 
     public static final Identifier DRAGON_FLASH_ID = new Identifier(MODID, "dragon_flash");
     public static final Identifier CROWNED_SLASH_ID = new Identifier(MODID, "crowned_slash");
@@ -29,6 +31,7 @@ public class ModMessages {
         ServerPlayNetworking.registerGlobalReceiver(AIR_SWING_ID, AirSwingPacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(DODGE_ID, DodgePacket::receive);
         ServerPlayNetworking.registerGlobalReceiver(AIR_JUMP_ID, AirJumpPacket::receive);
+        ServerPlayNetworking.registerGlobalReceiver(ASCEND_ID, AscendPacket::receive);
     }
 
     public static void registerS2CPackets() {

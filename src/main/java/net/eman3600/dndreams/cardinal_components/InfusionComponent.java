@@ -11,10 +11,13 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModInfusions;
+import net.eman3600.dndreams.items.AscendItem;
 import net.eman3600.dndreams.items.trinket.AirJumpItem;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.networking.packet_c2s.AirJumpPacket;
+import net.eman3600.dndreams.networking.packet_c2s.AscendPacket;
 import net.eman3600.dndreams.networking.packet_c2s.DodgePacket;
+import net.eman3600.dndreams.networking.packet_s2c.MotionUpdatePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -22,6 +25,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -61,6 +65,7 @@ public class InfusionComponent implements InfusionComponentI {
     private int jumpCooldown = 0;
     private boolean roseGlasses = false;
     private int roseCooldown = 0;
+    private int ascendState = 0;
     private final List<BlockPos> revealedQuartz = new ArrayList<>();
 
     private boolean dirty = false;
@@ -126,6 +131,7 @@ public class InfusionComponent implements InfusionComponentI {
         iTicks = tag.getInt("i_ticks");
         airJumps = tag.getInt("air_jumps");
         dodgeLanded = tag.getBoolean("dodge_landed");
+        ascendState = tag.getInt("ascend_state");
     }
 
     @Override
@@ -138,6 +144,7 @@ public class InfusionComponent implements InfusionComponentI {
         tag.putInt("i_ticks", iTicks);
         tag.putInt("air_jumps", airJumps);
         tag.putBoolean("dodge_landed", dodgeLanded);
+        tag.putInt("ascend_state", ascendState);
     }
 
     @Override
@@ -175,6 +182,19 @@ public class InfusionComponent implements InfusionComponentI {
 
         if (airJumps > 0 && player.isOnGround()) {
             airJumps = 0;
+            markDirty();
+        }
+
+        if (ascendState == 1 && (AscendItem.isInBlock(player) || player.getY() > player.world.getTopY())) {
+            ascendState = 2;
+            markDirty();
+        } else if (ascendState == 2 && (!AscendItem.isInBlock(player) || player.isOnGround() || player.getY() > player.world.getTopY())) {
+            ascendState = 0;
+            Vec3d velocity = new Vec3d(0, .6d, 0);
+            player.setVelocity(velocity);
+            player.velocityModified = true;
+            player.velocityDirty = true;
+            MotionUpdatePacket.send((ServerPlayerEntity) player);
             markDirty();
         }
 
@@ -314,6 +334,15 @@ public class InfusionComponent implements InfusionComponentI {
             jumpCooldown = 8;
         } else if (jumpCooldown > 0) jumpCooldown--;
 
+        if (ascendState > 0) {
+            Vec3d velocity = new Vec3d(0, .8f, 0);
+
+            player.setVelocity(velocity);
+            player.velocityDirty = true;
+            player.velocityModified = true;
+            AscendPacket.send(velocity);
+        }
+
         if (roseGlasses != shouldSeeRose()) {
 
             roseGlasses = !roseGlasses;
@@ -361,5 +390,14 @@ public class InfusionComponent implements InfusionComponentI {
             return true;
         }
         return false;
+    }
+
+    public int getAscendState() {
+        return ascendState;
+    }
+
+    public void setAscending() {
+        ascendState = 1;
+        markDirty();
     }
 }

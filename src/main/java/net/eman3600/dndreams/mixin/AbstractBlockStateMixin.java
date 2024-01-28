@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import net.eman3600.dndreams.blocks.VitalOreBlock;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.*;
@@ -60,6 +61,8 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
                 Entity entity = esc.getEntity();
                 if (entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !world.getBlockState(pos).isIn(ModTags.SUBSTANTIAL) && !entity.getType().isIn(ModTags.SUBSTANTIAL_ENTITIES)) {
                     cir.setReturnValue(VoxelShapes.empty());
+                } else if (EntityComponents.INFUSION.isProvidedBy(entity) && EntityComponents.INFUSION.get(entity).getAscendState() > 0) {
+                    cir.setReturnValue(VoxelShapes.empty());
                 }
             }
         }
@@ -68,6 +71,8 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
     @Inject(method = "onEntityCollision", at = @At("HEAD"), cancellable = true)
     private void dndreams$onEntityCollision(World world, BlockPos pos, Entity entity, CallbackInfo ci) {
         if (entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !world.getBlockState(pos).isIn(ModTags.SUBSTANTIAL)) {
+            ci.cancel();
+        } else if (EntityComponents.INFUSION.isProvidedBy(entity) && EntityComponents.INFUSION.get(entity).getAscendState() > 0) {
             ci.cancel();
         }
     }

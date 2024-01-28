@@ -5,10 +5,7 @@ import net.eman3600.dndreams.entities.projectiles.BrewLingeringEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewLiquidEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
-import net.eman3600.dndreams.items.CodexItem;
-import net.eman3600.dndreams.items.AtlasItem;
-import net.eman3600.dndreams.items.MysticStaffItem;
-import net.eman3600.dndreams.items.TooltipItem;
+import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.celestium.*;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
@@ -474,6 +471,9 @@ public class ModItems {
                     .withTooltip(null, 1));
     public static final Item SATIATION_STAFF = registerItem("satiation_staff",
             new SatiationStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(735))
+                    .withTooltip(null, 1));
+    public static final Item ASCEND_GRIP = registerItem("ascend_grip",
+            new AscendItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(735))
                     .withTooltip(null, 1));
 
 
