@@ -17,6 +17,7 @@
     "BoatEntityMixin",
     "BrewingRegistryMixin",
     "BucketItemMixin",
+    "BundleItemMixin",
     "CakeBlockMixin",
     "CampfireBlockMixin",
     "ChorusFlowerBlockMixin",

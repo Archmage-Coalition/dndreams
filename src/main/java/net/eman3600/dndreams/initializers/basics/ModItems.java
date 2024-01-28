@@ -193,16 +193,16 @@ public class ModItems {
             new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(ModStatusEffects.LIFEMANA, 600), new StatusEffectInstance(ModStatusEffects.THIRD_EYE, 1800)));
     public static final Item NATURES_GOSPEL = registerItem("natures_gospel",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
     public static final Item INFERNAL_ANIMUS = registerItem("infernal_animus",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
     public static final Item TRACE_OF_OTHERWHERE = registerItem("trace_of_otherwhere",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
     public static final Item GHOST_OF_LIGHT = registerItem("ghost_of_light",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
+            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
                     true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
 
     // Ingots
@@ -508,13 +508,13 @@ public class ModItems {
 
     // Special Brews
     public static final Item SLEEPING_BREW = registerItem("sleeping_brew",
-            new SleepingBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
+            new SleepingBrewItem(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
 
     public static final Item SANITY_BREW = registerItem("sanity_brew",
-            new SanityBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
+            new SanityBrewItem(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
 
     public static final Item MANIFEST_BREW = registerItem("manifest_brew",
-            new ManifestBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.EPIC).recipeRemainder(Items.GLASS_BOTTLE)));
+            new ManifestBrewItem(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.EPIC).recipeRemainder(Items.GLASS_BOTTLE)));
 
     public static final Item DREAM_EYE = registerItem("dream_eye",
             new DreamEye(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));

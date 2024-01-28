@@ -438,42 +438,17 @@
   "attribute.dndreams.name.player.lunge": "Dodge Distance",
   
   
-  "item.minecraft.potion.effect.void_flow": "Potion of Unstable Mana",
-  "item.minecraft.splash_potion.effect.void_flow": "Splash Potion of Unstable Mana",
-  "item.minecraft.lingering_potion.effect.void_flow": "Lingering Potion of Unstable Mana",
-  "item.minecraft.tipped_arrow.effect.void_flow": "Arrow of Unstable Mana",
-  
   "item.minecraft.potion.effect.dreamy": "Potion of Flowing Magic",
   "item.minecraft.splash_potion.effect.dreamy": "Splash Potion of Flowing Magic",
   "item.minecraft.lingering_potion.effect.dreamy": "Lingering Potion of Flowing Magic",
   "item.minecraft.tipped_arrow.effect.dreamy": "Arrow of Flowing Magic",
   
-  "item.minecraft.potion.effect.spirit_ward": "Potion of Warding",
-  "item.minecraft.splash_potion.effect.spirit_ward": "Splash Potion of Warding",
-  "item.minecraft.lingering_potion.effect.spirit_ward": "Lingering Potion of Warding",
-  "item.minecraft.tipped_arrow.effect.spirit_ward": "Arrow of Warding",
-  
   "item.minecraft.potion.effect.memory": "Potion of Thoughtfulness",
   "item.minecraft.splash_potion.effect.memory": "Splash Potion of Thoughtfulness",
   "item.minecraft.lingering_potion.effect.memory": "Lingering Potion of Thoughtfulness",
   "item.minecraft.tipped_arrow.effect.memory": "Arrow of Thoughtfulness",
-  
-  "item.minecraft.potion.effect.silence": "Potion of Silence",
-  "item.minecraft.splash_potion.effect.silence": "Splash Potion of Silence",
-  "item.minecraft.lingering_potion.effect.silence": "Lingering Potion of Silence",
-  "item.minecraft.tipped_arrow.effect.silence": "Arrow of Silence",
-  
-  "item.minecraft.potion.effect.lifemana": "Potion of Soulcasting",
-  "item.minecraft.splash_potion.effect.lifemana": "Splash Potion of Soulcasting",
-  "item.minecraft.lingering_potion.effect.lifemana": "Lingering Potion of Soulcasting",
-  "item.minecraft.tipped_arrow.effect.lifemana": "Arrow of Soulcasting",
-  
-  "item.minecraft.potion.effect.decay": "Potion of Decay",
-  "item.minecraft.splash_potion.effect.decay": "Splash Potion of Decay",
-  "item.minecraft.lingering_potion.effect.decay": "Lingering Potion of Decay",
-  "item.minecraft.tipped_arrow.effect.decay": "Arrow of Decay",
 
-
+  
   "block.dndreams.marble": "Marble",
   "block.dndreams.polished_marble": "Polished Marble",
   "block.dndreams.golden_grass_block": "Golden Grass Block",
