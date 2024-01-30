@@ -4,6 +4,7 @@ import net.eman3600.dndreams.cardinal_components.*;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.mixin_interfaces.ItemEntityAccess;
 import net.eman3600.dndreams.recipes.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
@@ -97,7 +98,9 @@ public class ModCallbacks {
                 ReviveComponent revive = EntityComponents.REVIVE.get(newPlayer);
                 revive.deathReset();
 
-
+                if (newPlayer.getServer() != null && newPlayer.getServer().getGameRules().getBoolean(ModGameRules.DO_SANITY_TAX)) {
+                    torment.lowerMaxSanity(TormentComponent.THREAD_VALUE);
+                }
             }
         });
 

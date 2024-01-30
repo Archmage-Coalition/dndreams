@@ -11,6 +11,7 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModInfusions;
+import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.items.AscendItem;
 import net.eman3600.dndreams.items.trinket.AirJumpItem;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
@@ -33,6 +34,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.GameRules;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -163,6 +165,11 @@ public class InfusionComponent implements InfusionComponentI {
             markDirty();
 
             player.giveItemStack(new ItemStack(ModItems.BOOK_OF_DREAMS));
+            GameRules rules = player.world.getGameRules();
+
+            if (rules.getBoolean(ModGameRules.DO_SANITY_TAX) && !rules.getBoolean(GameRules.KEEP_INVENTORY)) {
+                rules.get(GameRules.KEEP_INVENTORY).set(true, ((ServerWorld)player.world).getServer());
+            }
         }
 
         if (dodgeCooldown > 0) {

@@ -384,6 +384,10 @@
   "command.dndreams.slain.wither.false": "The Wither lives.",
   "command.dndreams.slain.elrunez.true": "Elrunez is dead.",
   "command.dndreams.slain.elrunez.false": "Elrunez lives.",
+
+
+  "gamerule.doSanityTax": "Lose Sanity on Death",
+  "gamerule.doSanityTax.description": "If enabled, so is keepInventory. Players lose their maximum sanity when they die.",
   
   
   "enchantment.dndreams.potency": "Potency",

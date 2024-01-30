@@ -8,6 +8,7 @@ import net.eman3600.dndreams.initializers.event.*;
 import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.world.ModFeatures;
+import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.integration.commands.ModCommands;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
@@ -81,6 +82,7 @@ public class Initializer implements ModInitializer {
 		ModCallbacks.registerCallbacks();
 
 		ModCommands.registerCommands();
+		ModGameRules.registerRules();
 
 		GeckoLib.initialize();
 	}
