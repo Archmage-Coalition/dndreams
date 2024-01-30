@@ -1,0 +1,20 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "minecraft:bone_block"
+    },
+	  {
+      "item": "dndreams:sculk_powder"
+    },
+	  {
+      "item": "dndreams:nightmare_fuel"
+    }
+  ],
+  "result": {
+    "item": "minecraft:skeleton_skull",
+    "count": 1
+  },
+  "cost": 200,
+  "refine_time": 400
+}
