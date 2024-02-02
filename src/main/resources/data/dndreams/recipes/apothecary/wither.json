@@ -4,7 +4,7 @@
     "item": "minecraft:wither_rose"
   },
   "corrupted": false,
-  "capacity": 6,
+  "capacity": 3,
   "cost": 800,
   "effect": "minecraft:wither",
   "duration": 400
