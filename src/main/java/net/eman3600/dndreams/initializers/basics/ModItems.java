@@ -412,6 +412,8 @@ public class ModItems {
             new ManastringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
     public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
             new MindstringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(2145)));
+    public static final Item BLOODY_CARBINE = registerItem("bloody_carbine",
+            new Item(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(1299)));
 
     // Magic Arrows
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
