@@ -247,6 +247,8 @@
   "item.dndreams.mindstring_bow.tooltip": "§3Fire off your mind.",
   "item.dndreams.brewstring_bow": "Witchwound Bow",
   "item.dndreams.managold_arrow": "Managold Arrow",
+  "item.dndreams.bloody_carbine": "Bloody Carbine",
+  "item.dndreams.bloody_carbine.tooltip": "§3Fires a piercing laser.",
   
   "item.dndreams.vital_heart": "Life Crystal",
   "item.dndreams.vital_heart.tooltip": "You can feel it beating.",
@@ -336,6 +338,7 @@
   "tooltip.dndreams.mana_buffer": "§eDurability is protected by mana.",
   "tooltip.dndreams.sanity_repair": "§eRepaires faster while you're sane.",
   "tooltip.dndreams.insanity_repair": "§eRepaires faster while you're insane.",
+  "tooltip.dndreams.sacrifice": "§4Costs life.",
   
   
   "death.attack.crimson_sacrifice": "%s snuffed out their lifeforce",

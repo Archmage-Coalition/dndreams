@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#R#",
+    "X X",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:nightmarrow"
+    },
+    "X": {
+      "item": "dndreams:infernal_residue"
+    },
+    "R": {
+      "item": "dndreams:vital_shard"
+    }
+  },
+  "result": {
+    "item": "dndreams:bloody_carbine",
+	  "count": 1
+  }
+}

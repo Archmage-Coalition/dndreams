@@ -2,7 +2,9 @@ package net.eman3600.dndreams.util;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
+import net.eman3600.dndreams.items.magic_bow.BloodyCarbineItem;
 import net.eman3600.dndreams.items.magic_bow.MagicBowItem;
+import net.eman3600.dndreams.items.magic_bow.MagicCrossbowItem;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
 import net.minecraft.item.Item;
@@ -13,6 +15,7 @@ public class ModModelPredicateProvider {
     public static void registerModModels() {
         registerBow(ModItems.MANASTRING_BOW);
         registerBow(ModItems.MINDSTRING_BOW);
+        registerBow(ModItems.BLOODY_CARBINE);
 
         registerBloodlustItem(ModItems.BLOODFLAME_VESSEL);
 
@@ -38,6 +41,8 @@ public class ModModelPredicateProvider {
     private static void registerBow(Item bow) {
         if (bow instanceof MagicBowItem bowItem)
             registerMagicBow(bowItem);
+        else if (bow instanceof MagicCrossbowItem crossbowItem)
+            registerMagicCrossbow(crossbowItem);
     }
 
     private static void registerMagicBow(MagicBowItem bow) {
@@ -55,6 +60,26 @@ public class ModModelPredicateProvider {
         ModelPredicateProviderRegistry.register(bow, new Identifier("pulling"),
                 (stack, world, entity, seed) -> entity != null && entity.isUsingItem()
                         && entity.getActiveItem() == stack ? 1.0f : 0.0f);
+    }
+
+    private static void registerMagicCrossbow(MagicCrossbowItem crossbow) {
+        ModelPredicateProviderRegistry.register(crossbow, new Identifier("pull"),
+                (stack, world, entity, seed) -> {
+                    if (entity == null) {
+                        return 0.0f;
+                    }
+                    if (entity.getActiveItem() != stack) {
+                        return 0.0f;
+                    }
+                    return (float)(stack.getMaxUseTime() - entity.getItemUseTimeLeft()) / crossbow.pullTime(stack);
+                });
+
+        ModelPredicateProviderRegistry.register(crossbow, new Identifier("pulling"),
+                (stack, world, entity, seed) -> entity != null && entity.isUsingItem()
+                        && entity.getActiveItem() == stack ? 1.0f : 0.0f);
+
+        ModelPredicateProviderRegistry.register(crossbow, new Identifier("charged"),
+                (stack, world, entity, seed) -> MagicCrossbowItem.isCharged(stack) ? 1 : 0);
     }
 
 

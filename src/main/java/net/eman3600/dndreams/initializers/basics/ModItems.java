@@ -22,6 +22,7 @@ import net.eman3600.dndreams.items.creative.InfusionPearlItem;
 import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
 import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.hellsteel.*;
+import net.eman3600.dndreams.items.magic_bow.BloodyCarbineItem;
 import net.eman3600.dndreams.items.magic_bow.ManastringBowItem;
 import net.eman3600.dndreams.items.magic_bow.MindstringBowItem;
 import net.eman3600.dndreams.items.managold.ManagoldArmorItem;
@@ -412,6 +413,8 @@ public class ModItems {
             new ManastringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
     public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
             new MindstringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(2145)));
+    public static final Item BLOODY_CARBINE = registerItem("bloody_carbine",
+            new BloodyCarbineItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(1299)).withTooltip(null, 1).withTooltip("tooltip.dndreams.sacrifice", 1));
 
     // Magic Arrows
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
@@ -652,7 +655,7 @@ public class ModItems {
         return Registry.register(Registry.ITEM, new Identifier(MODID, name), item);
     }
 
-    public static void registerItems() {
+    public static void registerAllItems() {
         System.out.println("Registering items for " + MODID);
     }
 }
