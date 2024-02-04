@@ -154,14 +154,14 @@ public class ModRegistries {
     private static void registerApothecary() {
         RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.LIQUID_VOID, 2, 100);
         RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.WITHER_BUD, 2, 100);
-        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.DISTILLED_SPIRIT, 3, 150);
+        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.LOST_DREAM, 3, 150);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.REDSTONE, EnhancementType.LENGTH, 100);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.CRYSTAL_MIX, EnhancementType.LENGTH, 100);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.STAR_FRUIT, EnhancementType.LENGTH, 100);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.GLOWSTONE_DUST, EnhancementType.AMPLIFIER, 200);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.REFINED_EVIL, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.NIGHTMARROW, EnhancementType.AMPLIFIER, 200);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.STARDUST, EnhancementType.AMPLIFIER, 200);
     }
 
@@ -296,6 +296,7 @@ public class ModRegistries {
         access.registerCompostable(.3f, ModItems.APPLETHORN_SEEDS);
         access.registerCompostable(.65f, ModItems.SUCCULENT_APPLE);
         access.registerCompostable(.65f, ModItems.POISON_APPLE);
+        access.registerCompostable(.65f, ModItems.CAKE_APPLE);
         access.registerCompostable(1f, ModItems.DRAGONFRUIT);
         access.registerCompostable(.65f, ModItems.STAR_FRUIT);
         access.registerCompostable(.3f, ModItems.WITHER_BLOSSOM_SEEDS);

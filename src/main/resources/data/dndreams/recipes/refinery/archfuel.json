@@ -4,11 +4,11 @@
     {
       "item": "minecraft:charcoal"
     },
-	{
+	  {
       "item": "dndreams:wood_ash"
     },
-	{
-      "item": "dndreams:foul_fume"
+	  {
+      "item": "minecraft:red_mushroom"
     }
   ],
   "result": {

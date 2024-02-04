@@ -2,19 +2,19 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
-      "item": "dndreams:soul_soup"
+      "item": "dndreams:crystal_mix"
     },
 	  {
       "item": "dndreams:lotus_flower"
     },
     {
-      "item": "dndreams:sakura_fume"
+      "item": "dndreams:sakura_petals"
     },
     {
-      "item": "dndreams:pristine_fume"
+      "item": "dndreams:gold_fruit"
     },
     {
-      "item": "dndreams:distilled_spirit"
+      "item": "dndreams:lost_dream"
     },
 	  {
       "item": "dndreams:succulent_apple"

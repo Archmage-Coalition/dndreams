@@ -60,7 +60,8 @@ public class BloodyCarbineItem extends MagicCrossbowItem {
 
                     vec = vec.add(angle);
 
-                    Box box = Box.of(vec, .5, .5, .5);
+                    Box box = Box.of(vec, 1, 1, 1);
+                    Box box2 = Box.of(vec, .5, .5, .5);
 
                     List<LivingEntity> entities = world.getEntitiesByClass(LivingEntity.class, box, (e) -> e != user);
                     for (LivingEntity entity : entities) {
@@ -69,7 +70,7 @@ public class BloodyCarbineItem extends MagicCrossbowItem {
                         entity.takeKnockback(0.4f, MathHelper.sin(user.getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(user.getYaw() * ((float) Math.PI / 180)));
                     }
 
-                    if (world.getBlockCollisions(null, box).iterator().hasNext()) {
+                    if (world.getBlockCollisions(null, box2).iterator().hasNext()) {
                         break;
                     }
                 }
@@ -93,7 +94,7 @@ public class BloodyCarbineItem extends MagicCrossbowItem {
 
             setCharged(stack, true);
             SoundCategory soundCategory = user instanceof PlayerEntity ? SoundCategory.PLAYERS : SoundCategory.HOSTILE;
-            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_CROSSBOW_LOADING_END, soundCategory, 1.0f, 1.0f / (world.getRandom().nextFloat() * 0.5f + 1.0f) + 0.2f);
+            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_BEACON_POWER_SELECT, soundCategory, 1.0f, (world.getRandom().nextFloat() * 0.5f + 1.0f) + 0.2f);
         }
     }
 }

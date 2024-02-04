@@ -2,16 +2,16 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
-      "item": "dndreams:refined_evil"
+      "item": "minecraft:coal"
     },
 	{
-      "item": "dndreams:dreamwood_fume"
+      "item": "dndreams:cloud"
     },
 	{
-      "item": "dndreams:distilled_spirit"
+      "item": "dndreams:lost_dream"
     },
 	{
-      "item": "dndreams:mutandis_extremis"
+      "item": "minecraft:lapis_lazuli"
     }
   ],
   "result": {

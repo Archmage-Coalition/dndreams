@@ -5,10 +5,7 @@
     {
       "item": "minecraft:end_stone"
     },
-	{
-      "item": "dndreams:pristine_fume"
-    },
-	{
+	  {
       "item": "dndreams:liquid_void"
     }
   ],

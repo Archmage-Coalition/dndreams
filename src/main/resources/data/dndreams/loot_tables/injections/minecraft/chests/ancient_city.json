@@ -12,32 +12,27 @@
           "name": "dndreams:chests/ancient_city/gemstones",
 		  "weight": 2
         },
-		{
+		    {
           "type": "minecraft:loot_table",
           "name": "dndreams:chests/ancient_city/powders",
 		  "weight": 2
         },
-		{
+		    {
           "type": "minecraft:loot_table",
           "name": "dndreams:chests/ancient_city/nightmare",
 		  "weight": 1
         },
-		{
+		    {
           "type": "minecraft:loot_table",
           "name": "dndreams:chests/ancient_city/lights",
 		  "weight": 2
         },
-		{
+		    {
           "type": "minecraft:loot_table",
           "name": "dndreams:chests/ancient_city/illager",
 		  "weight": 3
         },
-		{
-          "type": "minecraft:loot_table",
-          "name": "dndreams:chests/ancient_city/herbs",
-		  "weight": 2
-        },
-		{
+		    {
           "type": "minecraft:alternatives",
 		  "weight": 2,
           "children": [
