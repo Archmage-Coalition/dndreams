@@ -1,11 +1,11 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "dndreams:mellifluous_hunger"
+    "item": "minecraft:rotten_flesh"
   },
-  "corrupted": true,
-  "capacity": 4,
-  "cost": 400,
+  "corrupted": false,
+  "capacity": 2,
+  "cost": 250,
   "effect": "minecraft:hunger",
   "duration": 1200
 }

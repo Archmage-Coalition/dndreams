@@ -79,6 +79,7 @@
     "client.ItemColorsMixin",
     "client.LightmapTextureManagerMixin",
     "client.MinecraftClientMixin",
+    "client.PlayerEntityRendererMixin",
     "client.WorldRendererMixin"
   ],
   "injectors": {

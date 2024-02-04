@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "dndreams:item/mellifluous_hunger"
+        "layer0": "dndreams:item/cake_apple"
     }
 }

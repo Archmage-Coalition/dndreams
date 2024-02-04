@@ -5,13 +5,13 @@
       "item": "minecraft:phantom_membrane"
     },
     "#": {
-      "item": "dndreams:restrained_light"
+      "item": "dndreams:brilliance"
     },
     "C": {
       "item": "dndreams:celestium"
     },
     "F": {
-      "item": "minecraft:feather"
+      "item": "dndreams:cloud"
     }
   },
   "pattern": [

@@ -4,19 +4,19 @@
     {
       "item": "dndreams:nightmare_fuel"
     },
-	{
-      "item": "dndreams:infernal_residue"
+	  {
+      "item": "dndreams:permafrost"
     },
-	{
+	  {
       "item": "minecraft:cake"
     },
-	{
+	  {
       "item": "dndreams:succulent_apple"
     }
   ],
   "result": {
-    "item": "dndreams:mellifluous_hunger",
-    "count": 2
+    "item": "dndreams:cake_apple",
+    "count": 1
   },
   "cost": 250,
   "refine_time": 300,

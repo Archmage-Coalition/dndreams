@@ -176,7 +176,7 @@
 			  "condition": "minecraft:random_chance"
 			}
           ],
-          "name": "minecraft:gold_nugget"
+          "name": "dndreams:gold_fruit"
         }
       ],
       "rolls": 1.0

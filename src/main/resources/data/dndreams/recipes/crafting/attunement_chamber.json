@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "X#X",
-    "#F#",
+    "# #",
     "R#R"
   ],
   "key": {
@@ -11,9 +11,6 @@
     },
 	"X": {
       "item": "minecraft:gold_ingot"
-    },
-	"F": {
-      "item": "dndreams:foul_fume"
     },
 	"R": {
       "item": "minecraft:redstone"

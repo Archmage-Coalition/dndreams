@@ -150,26 +150,15 @@ public class ModItems {
 
     // Amethyst Jars, Fumes, & Essences
     public static final Item AMETHYST_JAR = registerItem("amethyst_jar", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
-    public static final Item FOUL_FUME = registerItem("foul_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item SAKURA_FUME = registerItem("sakura_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item JAPANESE_MAPLE_FUME = registerItem("japanese_maple_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item DREAMWOOD_FUME = registerItem("dreamwood_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item PRISTINE_FUME = registerItem("pristine_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item SHADE_FUME = registerItem("shade_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item STAR_FUME = registerItem("star_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item SAKURA_PETALS = registerItem("sakura_petals", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item CLOUD = registerItem("cloud", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item GOLD_FRUIT = registerItem("gold_fruit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.GOLD_FRUIT)));
+    public static final Item SHADE_FUME = registerItem("shade_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    public static final Item REFINED_EVIL = registerItem("refined_evil", new TooltipItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)).withTooltip(null, 1));
-    public static final Item DROP_OF_LUCK = registerItem("drop_of_luck", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item MELLIFLUOUS_HUNGER = registerItem("mellifluous_hunger", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item DISTILLED_SPIRIT = registerItem("distilled_spirit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item HOLLOW_TEAR = registerItem("hollow_tear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item PERMAFROST = registerItem("permafrost", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item CAKE_APPLE = registerItem("cake_apple", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.CAKE_APPLE)));
+    public static final Item LOST_DREAM = registerItem("lost_dream", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item PERMAFROST = registerItem("permafrost", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    public static final Item ENTANGLED_EARTH = registerItem("entangled_earth", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item IMPRISONED_FEAR = registerItem("imprisoned_fear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item STOLEN_WIT = registerItem("stolen_wit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item RESTRAINED_LIGHT = registerItem("restrained_light", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item WITHHELD_AGONY = registerItem("withheld_agony", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
     // Lotus, Wither Bud, & Dragonfruit
     public static final Item LOTUS_FLOWER = registerItem("lotus_flower",
@@ -186,22 +175,7 @@ public class ModItems {
     // Bottled Stuff
     public static final Item VITAL_OIL = registerItem("vital_oil",
             new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
-                    false, new StatusEffectInstance(StatusEffects.REGENERATION, 400), new StatusEffectInstance(StatusEffects.INSTANT_HEALTH,1, 1)));
-    public static final Item SOUL_SOUP = registerItem("soul_soup",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(ModStatusEffects.LIFEMANA, 600), new StatusEffectInstance(ModStatusEffects.THIRD_EYE, 1800)));
-    public static final Item NATURES_GOSPEL = registerItem("natures_gospel",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
-    public static final Item INFERNAL_ANIMUS = registerItem("infernal_animus",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
-    public static final Item TRACE_OF_OTHERWHERE = registerItem("trace_of_otherwhere",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
-    public static final Item GHOST_OF_LIGHT = registerItem("ghost_of_light",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
+                    false, new StatusEffectInstance(StatusEffects.REGENERATION, 1200), new StatusEffectInstance(StatusEffects.INSTANT_HEALTH,1, 1), new StatusEffectInstance(ModStatusEffects.REJUVENATION,1200, 1)));
 
     // Ingots
     public static final Item CORRUPT_SCRAP = registerItem("corrupt_scrap",

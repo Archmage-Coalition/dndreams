@@ -8,16 +8,16 @@
     "#": {
       "item": "minecraft:echo_shard"
     },
-	"X": {
+	  "X": {
       "item": "dndreams:shade_cloth"
     },
-	"C": {
-      "item": "dndreams:mellifluous_hunger"
+	  "C": {
+      "item": "dndreams:subdued_madness"
     },
-	"D": {
-      "item": "dndreams:imprisoned_fear"
+	  "D": {
+      "item": "dndreams:wither_bud"
     },
-	"M": {
+	  "M": {
       "item": "dndreams:charged_shard"
     }
   },

@@ -9,11 +9,11 @@
     "#": {
       "item": "dndreams:nightmare_fuel"
     },
-	"X": {
+	  "X": {
       "item": "dndreams:dream_powder"
     },
-	"S": {
-      "item": "dndreams:distilled_spirit"
+	  "S": {
+      "item": "dndreams:lost_dream"
     }
   },
   "result": {

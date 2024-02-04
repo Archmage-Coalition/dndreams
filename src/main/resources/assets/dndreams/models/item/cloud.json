@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "dndreams:item/dreamwood_fume"
+        "layer0": "dndreams:item/cloud"
     }
 }
