@@ -15,7 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
 public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
-    private static final int MAX_XP_BONUS = 50;
+    private static final int MAX_XP_BONUS = 25;
     private static final int REGEN_REQUIRE = 60;
     public static final int MANA_FRAMES = 324;
 

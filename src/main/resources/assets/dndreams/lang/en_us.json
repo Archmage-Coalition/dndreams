@@ -244,6 +244,9 @@
   "item.dndreams.echo_star": "Echo Core",
   "item.dndreams.echo_star.tooltip": "It calls out to you...",
   "item.dndreams.echo_star.tooltip.spent": "It is silent.",
+  "item.dndreams.celestium_heart": "Celestial Heart",
+  "item.dndreams.celestium_heart.tooltip": "It holds a divine vitality.",
+  "item.dndreams.celestium_heart.tooltip.spent": "You can't take any more.",
   
   "item.dndreams.flowing_spirit_bucket": "Bucket of Flowing Thought",
   "item.dndreams.sorrow_bucket": "Bucket of Torrential Sorrow",

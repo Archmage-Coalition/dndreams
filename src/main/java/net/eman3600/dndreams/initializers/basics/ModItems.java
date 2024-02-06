@@ -526,6 +526,10 @@ public class ModItems {
             new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
                     1, ModAttributes.PLAYER_MAX_MANA, 25d));
 
+    public static final Item CELESTIUM_HEART = registerItem("celestium_heart",
+            new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
+                    1, EntityAttributes.GENERIC_MAX_HEALTH, 10d));
+
     // Crystal Feather
     public static final Item CRYSTAL_FEATHER = registerItem("crystal_feather",
             new CrystalFeatherItem(new FabricItemSettings().group(ItemGroup.TOOLS)));

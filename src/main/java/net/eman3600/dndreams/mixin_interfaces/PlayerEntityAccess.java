@@ -33,5 +33,20 @@ public interface PlayerEntityAccess {
         return entity instanceof PlayerEntity player && hasAerialMovement(player);
     }
 
+    static int getExperienceOf(int level) {
+        if (level >= 32) {
+            return (int)(4.5 * level * level - 162.5 * level + 2220);
+        }
+        if (level >= 17) {
+            return (int)(2.5 * level * level - 40.5 + 360);
+        }
+        return level * level + 6 * level;
+    }
+
+    static int getExperienceBetween(int level, int excludedLevel) {
+
+        return Math.max(0, getExperienceOf(level) - getExperienceOf(excludedLevel));
+    }
+
 
 }

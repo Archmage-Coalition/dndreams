@@ -11,6 +11,7 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
+import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.VariableMineSpeedItem;
@@ -68,6 +69,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Shadow public abstract float getMovementSpeed();
 
     @Shadow public abstract void increaseStat(Stat<?> stat, int amount);
+
+    @Shadow public int totalExperience;
+
+    @Shadow public int experienceLevel;
+
+    @Shadow public abstract void addExperienceLevels(int levels);
+
+    @Shadow public float experienceProgress;
+
+    @Shadow public abstract void addExperience(int experience);
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -223,4 +234,17 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         if (trinkets.isEquipped(ModItems.DRAGONFOOT_BAND) || (trinkets.isEquipped(ModItems.SKYSTEP_SOCKS) && fallDistance < 10)) cir.setReturnValue(false);
 
     }
+
+    @Inject(method = "getXpToDrop", at = @At("HEAD"), cancellable = true)
+    private void dndreams$getXpToDrop(CallbackInfoReturnable<Integer> cir) {
+
+        if (this.world.getGameRules().getBoolean(ModGameRules.DO_SANITY_TAX)) {
+
+
+            int i = Math.min(PlayerEntityAccess.getExperienceBetween(this.experienceLevel / 2, this.experienceLevel / 4), 10000);
+            cir.setReturnValue(i);
+        }
+    }
+
+
 }
