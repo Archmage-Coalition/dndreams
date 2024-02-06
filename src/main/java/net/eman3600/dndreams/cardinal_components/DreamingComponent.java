@@ -205,8 +205,6 @@ public class DreamingComponent implements DreamingComponentI {
             changeDimension(false);
         } else if (!dreaming && getDimension() == ModDimensions.DREAM_TYPE_KEY) {
             changeDimension(true);
-        } else if (dreaming) {
-            torment().lowerPerMinute(10f);
         }
     }
 

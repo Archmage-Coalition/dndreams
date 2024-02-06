@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "#R#",
-    "X X",
+    "XTX",
     " # "
   ],
   "key": {
@@ -12,8 +12,11 @@
     "X": {
       "item": "dndreams:infernal_residue"
     },
+    "T": {
+      "item": "dndreams:demonic_core_charged"
+    },
     "R": {
-      "item": "dndreams:vital_shard"
+      "item": "dndreams:obsidian_chunk"
     }
   },
   "result": {

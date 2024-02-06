@@ -153,8 +153,6 @@ public class ModItems {
     public static final Item SAKURA_PETALS = registerItem("sakura_petals", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item CLOUD = registerItem("cloud", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item GOLD_FRUIT = registerItem("gold_fruit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.GOLD_FRUIT)));
-    public static final Item SHADE_FUME = registerItem("shade_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
-
     public static final Item CAKE_APPLE = registerItem("cake_apple", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.CAKE_APPLE)));
     public static final Item LOST_DREAM = registerItem("lost_dream", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item PERMAFROST = registerItem("permafrost", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));

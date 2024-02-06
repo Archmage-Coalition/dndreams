@@ -4,11 +4,14 @@
     {
       "item": "dndreams:sakura_petals"
     },
-	{
+	  {
       "item": "minecraft:snowball"
     },
-	{
+	  {
       "item": "dndreams:icy_needle"
+    },
+	  {
+      "item": "minecraft:lapis_lazuli"
     }
   ],
   "result": {

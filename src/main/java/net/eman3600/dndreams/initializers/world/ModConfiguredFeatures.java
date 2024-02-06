@@ -66,8 +66,7 @@ public class ModConfiguredFeatures {
                             new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(ModBlocks.SHADE_LEAVES.getDefaultState(), 1)),
                             new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(2), 50),
                             new TwoLayersFeatureSize(1, 0, 1))
-                            .dirtProvider(BlockStateProvider.of(ModBlocks.SHADE_MOSS)).forceDirt()
-                            .decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(ModBlocks.SHADE_MOSS)))).build());
+                            .dirtProvider(BlockStateProvider.of(ModBlocks.SHADE_MOSS)).build());
 
 
 

@@ -609,8 +609,8 @@ public class ModBlocks {
                     .nonOpaque().ticksRandomly().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
-    public static final Block SHADE_BUSH = registerDreamBlock("shade_bush",
-            new ShadeSaplingBlock(FabricBlockSettings.copy(Blocks.AZALEA)
+    public static final Block SHADE_SHROOM = registerDreamBlock("shade_shroom",
+            new ShadeShroomBlock(FabricBlockSettings.copy(Blocks.RED_MUSHROOM)
                     .breakInstantly().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));

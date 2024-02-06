@@ -75,6 +75,7 @@
     "client.ClientWorldMixin",
     "client.GameOptionsMixin",
     "client.GameRendererMixin",
+    "client.HeldItemRendererMixin",
     "client.HudMixin",
     "client.ItemColorsMixin",
     "client.LightmapTextureManagerMixin",
