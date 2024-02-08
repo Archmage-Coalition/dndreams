@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.entities.renderers;
+package net.eman3600.dndreams.entities.renderers.features;
 
 import net.eman3600.dndreams.entities.mobs.DreamSheepEntity;
 import net.eman3600.dndreams.entities.models.DreamSheepEntityModel;

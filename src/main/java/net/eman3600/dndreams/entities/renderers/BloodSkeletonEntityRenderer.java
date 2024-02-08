@@ -1,11 +1,9 @@
 package net.eman3600.dndreams.entities.renderers;
 
+import net.eman3600.dndreams.entities.renderers.features.BloodSkeletonOverlayFeatureRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.SkeletonEntityRenderer;
-import net.minecraft.client.render.entity.StrayEntityRenderer;
-import net.minecraft.client.render.entity.feature.StrayOverlayFeatureRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
-import net.minecraft.client.render.entity.model.SkeletonEntityModel;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.util.Identifier;
 

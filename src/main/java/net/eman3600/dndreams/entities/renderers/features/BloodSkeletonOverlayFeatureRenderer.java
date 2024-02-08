@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.entities.renderers;
+package net.eman3600.dndreams.entities.renderers.features;
 
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
