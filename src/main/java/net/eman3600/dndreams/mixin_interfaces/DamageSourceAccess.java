@@ -42,8 +42,9 @@ public interface DamageSourceAccess {
 
 
     DamageSource ELECTRIC = create("dndreams.electric", true, false).setUnblockable();
-    DamageSource SHOCK = create("dndreams.shock", true, false).setUnblockable();
+    DamageSource SHOCK = create("dndreams.shock", true, false).setUnblockable().setBypassesArmor().setBypassesProtection();
     DamageSource ROT = new DamageSource("dndreams.rot").setOutOfWorld().setBypassesArmor().setBypassesProtection().setUnblockable();
     DamageSource AFFLICTION = create("dndreams.affliction", false, true).setUsesMagic().setBypassesArmor();
+    DamageSource INSANITY = create("dndreams.insanity", false, true).setBypassesArmor().setBypassesProtection().setUnblockable();
     DamageSource CURSED_FLAME = create("dndreams.cursed_flame", false, true).setBypassesArmor().setFire();
 }

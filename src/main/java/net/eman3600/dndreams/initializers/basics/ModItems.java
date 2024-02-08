@@ -26,6 +26,8 @@ import net.eman3600.dndreams.items.magic_bow.BloodyCarbineItem;
 import net.eman3600.dndreams.items.magic_bow.ManastringBowItem;
 import net.eman3600.dndreams.items.magic_bow.MindstringBowItem;
 import net.eman3600.dndreams.items.managold.ManagoldArmorItem;
+import net.eman3600.dndreams.items.misc_armor.CloudWingsItem;
+import net.eman3600.dndreams.items.misc_armor.EvergaleItem;
 import net.eman3600.dndreams.items.misc_tool.*;
 import net.eman3600.dndreams.items.pericharite.PerichariteArmorItem;
 import net.eman3600.dndreams.items.pericharite.PerichariteShovelItem;
@@ -151,9 +153,11 @@ public class ModItems {
     // Amethyst Jars, Fumes, & Essences
     public static final Item AMETHYST_JAR = registerItem("amethyst_jar", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item SAKURA_PETALS = registerItem("sakura_petals", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item RAW_FROG = registerItem("raw_frog", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.RAW_FROG)));
+    public static final Item COOKED_FROG = registerItem("cooked_frog", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.COOKED_FROG)));
     public static final Item CLOUD = registerItem("cloud", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
-    public static final Item GOLD_FRUIT = registerItem("gold_fruit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.GOLD_FRUIT)));
-    public static final Item CAKE_APPLE = registerItem("cake_apple", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).food(ModFoodComponents.CAKE_APPLE)));
+    public static final Item GOLD_FRUIT = registerItem("gold_fruit", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLD_FRUIT)));
+    public static final Item CAKE_APPLE = registerItem("cake_apple", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.CAKE_APPLE)));
     public static final Item LOST_DREAM = registerItem("lost_dream", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item PERMAFROST = registerItem("permafrost", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
@@ -416,6 +420,12 @@ public class ModItems {
     public static final Item SKYSTEP_SOCKS = registerItem("skystep_socks",
             new AirJumpItem(3, new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
 
+    // Unique Armors
+    public static final Item CLOUD_WINGS = registerItem("cloud_wings",
+            new CloudWingsItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxDamage(216)).withTooltip(null, 1));
+    public static final Item EVERGALE = registerItem("evergale",
+            new EvergaleItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxDamage(451)).withTooltip(null, 3));
+
     // Staves
     public static final Item SPARK_STAFF = registerItem("spark_staff",
             new SparkStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1561))
@@ -526,6 +536,10 @@ public class ModItems {
             new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
                     1, ModAttributes.PLAYER_MAX_MANA, 25d));
 
+    public static final Item BLAZE_SPIRIT = registerItem("blaze_spirit",
+            new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
+                    1, ModAttributes.PLAYER_MANA_REGEN, 2d));
+
     public static final Item CELESTIUM_HEART = registerItem("celestium_heart",
             new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
                     1, EntityAttributes.GENERIC_MAX_HEALTH, 10d));
@@ -537,6 +551,11 @@ public class ModItems {
     // Fruit of Fidi
     public static final Item FIDI_FRUIT = registerItem("fidi_fruit",
             new FidiFruitItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.DRAGONFRUIT)));
+
+
+    // Essences
+    public static final Item ESSENCE_IMAGINATION = registerItem("essence_imagination",
+            new EssenceItem(1, new FabricItemSettings().group(ItemGroup.TOOLS)).withTooltip(null, 1));
 
 
 
@@ -618,11 +637,6 @@ public class ModItems {
     public static final Item SORROW_VIAL = registerItem("sorrow_vial",
             new SpringVialItem(ModFluids.STILL_SORROW, 0x1E1C32, new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
 
-
-
-    // CREATIVE ONLY
-    public static final Item INFUSION_CHANGER = registerItem("infusion_changer",
-            new InfusionPearlItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
 
     /*
      * Item Registration

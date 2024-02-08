@@ -17,6 +17,10 @@ public class ModFoodComponents {
 
     public static final FoodComponent NIGHTMARE_FUEL = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(1.0F)
             .alwaysEdible().build(), -25);
+    public static final FoodComponent RAW_FROG = registerSanityFood(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F)
+            .build(), -6);
+    public static final FoodComponent COOKED_FROG = registerSanityFood(new FoodComponent.Builder().hunger(7).saturationModifier(0.8F)
+            .build(), 4.5f);
     public static final FoodComponent GOLD_FRUIT = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(2.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 600, 0), 1.0F)
             .alwaysEdible().build(), 6);

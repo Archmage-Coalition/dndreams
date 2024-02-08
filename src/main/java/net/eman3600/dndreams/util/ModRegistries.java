@@ -22,6 +22,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.CreeperEntity;
@@ -63,7 +64,7 @@ public class ModRegistries {
             return (int)(torment.getAttunedSanity()/100f * 70 + 10);
         });
 
-        ItemStackAccess.registerRepairPredicate(ModTags.GROUND_REPAIRING_TOOLS, (stack, player) -> player.isOnGround() ? 160 : -1);
+        ItemStackAccess.registerRepairPredicate(ModTags.GROUND_REPAIRING_TOOLS, (stack, player) -> (!player.isFallFlying() || player.getEquippedStack(EquipmentSlot.CHEST) != stack) && (player.isOnGround() || stack.getDamage() + 1 < stack.getMaxDamage()) ? 160 : -1);
     }
 
     public static void registerEnergyFuels() {

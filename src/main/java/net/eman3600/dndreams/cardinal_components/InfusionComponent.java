@@ -13,15 +13,17 @@ import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModInfusions;
 import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.items.AscendItem;
+import net.eman3600.dndreams.items.interfaces.AirSwingItem;
+import net.eman3600.dndreams.items.misc_armor.EvergaleItem;
 import net.eman3600.dndreams.items.trinket.AirJumpItem;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.networking.packet_c2s.AirJumpPacket;
 import net.eman3600.dndreams.networking.packet_c2s.AscendPacket;
 import net.eman3600.dndreams.networking.packet_c2s.DodgePacket;
+import net.eman3600.dndreams.networking.packet_c2s.GaleBoostPacket;
 import net.eman3600.dndreams.networking.packet_s2c.MotionUpdatePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -68,6 +70,8 @@ public class InfusionComponent implements InfusionComponentI {
     private boolean roseGlasses = false;
     private int roseCooldown = 0;
     private int ascendState = 0;
+    private int galeCharge = 0;
+    private int galeCooldown = 0;
     private final List<BlockPos> revealedQuartz = new ArrayList<>();
 
     private boolean dirty = false;
@@ -134,6 +138,8 @@ public class InfusionComponent implements InfusionComponentI {
         airJumps = tag.getInt("air_jumps");
         dodgeLanded = tag.getBoolean("dodge_landed");
         ascendState = tag.getInt("ascend_state");
+        galeCharge = tag.getInt("gale_charge");
+        galeCooldown = tag.getInt("gale_cooldown");
     }
 
     @Override
@@ -147,6 +153,8 @@ public class InfusionComponent implements InfusionComponentI {
         tag.putInt("air_jumps", airJumps);
         tag.putBoolean("dodge_landed", dodgeLanded);
         tag.putInt("ascend_state", ascendState);
+        tag.putInt("gale_charge", galeCharge);
+        tag.putInt("gale_cooldown", galeCooldown);
     }
 
     @Override
@@ -202,6 +210,18 @@ public class InfusionComponent implements InfusionComponentI {
             player.velocityModified = true;
             player.velocityDirty = true;
             MotionUpdatePacket.send((ServerPlayerEntity) player);
+            markDirty();
+        }
+
+        if (galeCharge > 0) {
+
+            galeCharge--;
+            markDirty();
+        }
+
+        if (galeCooldown > 0) {
+
+            galeCooldown--;
             markDirty();
         }
 
@@ -320,7 +340,7 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public void clientTick() {
 
-        if (access.isJumping() && jumpCooldown <= 0 && airJumps < getMaxJumps()) {
+        if (access.isJumping() && !player.isFallFlying() && jumpCooldown <= 0 && airJumps < getMaxJumps()) {
 
             jumpCooldown = 9;
 
@@ -335,6 +355,19 @@ public class InfusionComponent implements InfusionComponentI {
             player.velocityModified = true;
             player.velocityDirty = true;
             AirJumpPacket.send(velocity);
+        } else if (access.isJumping() && EvergaleItem.isUsing(player)) {
+
+            Vec3d velocity = player.getVelocity().add(AirSwingItem.rayZVector(player.getYaw(), player.getPitch()).multiply(EvergaleItem.ACCELERATION));
+
+            if (velocity.lengthSquared() > 16) {
+
+                velocity = velocity.normalize().multiply(4);
+            }
+
+            player.setVelocity(velocity);
+            player.velocityModified = true;
+            player.velocityDirty = true;
+            GaleBoostPacket.send(velocity);
         }
 
         if (player.isOnGround()) {
@@ -399,6 +432,17 @@ public class InfusionComponent implements InfusionComponentI {
         return false;
     }
 
+    public boolean galeBoost() {
+
+        if (EvergaleItem.isUsing(player)) {
+            galeCharge = 5;
+            markDirty();
+            return true;
+        }
+
+        return false;
+    }
+
     public int getAscendState() {
         return ascendState;
     }
@@ -406,5 +450,17 @@ public class InfusionComponent implements InfusionComponentI {
     public void setAscending() {
         ascendState = 1;
         markDirty();
+    }
+
+    public boolean isGaleBoosted() {
+        return galeCharge > 0;
+    }
+
+    public boolean canGaleRepair() {
+        return galeCooldown <= 0;
+    }
+
+    public void setGaleCooling() {
+        galeCooldown = 50;
     }
 }

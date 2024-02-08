@@ -7,6 +7,7 @@ import net.eman3600.dndreams.items.magic_bow.MagicBowItem;
 import net.eman3600.dndreams.items.magic_bow.MagicCrossbowItem;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
+import net.minecraft.item.ElytraItem;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
@@ -29,6 +30,10 @@ public class ModModelPredicateProvider {
         registerItem(new Identifier("form"),
                 (stack, world, entity, seed) -> stack.hasNbt() ? (float)stack.getNbt().getInt("Form") * 0.1f : 0f,
                 ModItems.ATLAS);
+
+        registerItem(new Identifier("broken"),
+                (stack, world, entity, seed) -> ElytraItem.isUsable(stack) ? 0.0f : 1.0f,
+                ModItems.EVERGALE);
     }
 
 

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "X#X",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:nightmare_fuel"
+    },
+    "X": {
+      "item": "minecraft:blaze_powder"
+    }
+  },
+  "result": {
+    "item": "dndreams:blaze_spirit"
+  }
+}

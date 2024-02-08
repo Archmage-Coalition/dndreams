@@ -1,0 +1,20 @@
+{
+  "type": "dndreams:cauldron",
+  "ingredients": [
+    {
+      "item": "dndreams:subdued_madness"
+    },
+	{
+      "item": "dndreams:permafrost"
+    },
+	{
+      "item": "dndreams:lotus_flower"
+    }
+  ],
+  "result": {
+    "item": "dndreams:essence_imagination",
+    "count": 1
+  },
+  "real_only": true,
+  "color": 15378403
+}

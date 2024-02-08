@@ -14,6 +14,7 @@ import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.event.ModCriterion;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.items.AtlasItem;
+import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.util.Function2;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.Entity;
@@ -356,7 +357,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
         if (sanity < -cost/2) {
 
-            EntityComponents.ROT.get(player).inflictRot(MathHelper.ceil(-sanity));
+            player.timeUntilRegen = 5;
+            player.damage(DamageSourceAccess.INSANITY, MathHelper.ceil(-sanity));
         }
 
         normalize();

@@ -225,6 +225,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
     }
 
+    @Inject(method = "getPreferredEquipmentSlot", at = @At("HEAD"), cancellable = true)
+    private static void dndreams$getPreferredEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> cir) {
+
+        if (stack.isOf(ModItems.CLOUD_WINGS) || stack.isOf(ModItems.EVERGALE)) cir.setReturnValue(EquipmentSlot.CHEST);
+    }
+
 
 
 

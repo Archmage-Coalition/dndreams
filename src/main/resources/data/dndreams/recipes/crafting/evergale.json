@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DHD",
+    "#X#",
+    "D D"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:sanity_thread"
+    },
+    "X": {
+      "item": "minecraft:elytra"
+    },
+    "D": {
+      "item": "dndreams:lost_dream"
+    },
+    "H": {
+      "item": "dndreams:shade_cloth"
+    }
+  },
+  "result": {
+    "item": "dndreams:evergale"
+  }
+}

@@ -3,17 +3,17 @@
   "pattern": [
     "#X#",
     "# #",
-    "#X#"
+    "# #"
   ],
   "key": {
     "#": {
-      "item": "minecraft:cobbled_deepslate"
+      "item": "dndreams:cloud"
     },
-	"X": {
-      "item": "minecraft:iron_nugget"
+    "X": {
+      "item": "minecraft:phantom_membrane"
     }
   },
   "result": {
-    "item": "dndreams:smokestack"
+    "item": "dndreams:cloud_wings"
   }
 }
