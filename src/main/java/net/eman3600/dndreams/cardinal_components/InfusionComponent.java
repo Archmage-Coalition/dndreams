@@ -71,7 +71,6 @@ public class InfusionComponent implements InfusionComponentI {
     private int roseCooldown = 0;
     private int ascendState = 0;
     private int galeCharge = 0;
-    private int galeCooldown = 0;
     private final List<BlockPos> revealedQuartz = new ArrayList<>();
 
     private boolean dirty = false;
@@ -139,7 +138,6 @@ public class InfusionComponent implements InfusionComponentI {
         dodgeLanded = tag.getBoolean("dodge_landed");
         ascendState = tag.getInt("ascend_state");
         galeCharge = tag.getInt("gale_charge");
-        galeCooldown = tag.getInt("gale_cooldown");
     }
 
     @Override
@@ -154,7 +152,6 @@ public class InfusionComponent implements InfusionComponentI {
         tag.putBoolean("dodge_landed", dodgeLanded);
         tag.putInt("ascend_state", ascendState);
         tag.putInt("gale_charge", galeCharge);
-        tag.putInt("gale_cooldown", galeCooldown);
     }
 
     @Override
@@ -216,12 +213,6 @@ public class InfusionComponent implements InfusionComponentI {
         if (galeCharge > 0) {
 
             galeCharge--;
-            markDirty();
-        }
-
-        if (galeCooldown > 0) {
-
-            galeCooldown--;
             markDirty();
         }
 
@@ -454,13 +445,5 @@ public class InfusionComponent implements InfusionComponentI {
 
     public boolean isGaleBoosted() {
         return galeCharge > 0;
-    }
-
-    public boolean canGaleRepair() {
-        return galeCooldown <= 0;
-    }
-
-    public void setGaleCooling() {
-        galeCooldown = 50;
     }
 }

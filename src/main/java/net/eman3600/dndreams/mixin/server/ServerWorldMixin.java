@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
 import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
 import net.eman3600.dndreams.entities.mobs.BloodZombieEntity;
+import net.eman3600.dndreams.entities.spawners.FacelessSpawner;
 import net.eman3600.dndreams.entities.spawners.ShadeRiftSpawner;
 import net.eman3600.dndreams.entities.spawners.TormentorSpawner;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;

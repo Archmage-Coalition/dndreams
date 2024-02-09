@@ -57,5 +57,8 @@ public abstract class ItemMixin {
         if (stack.isIn(ModTags.INSANITY_REPAIRING_TOOLS)) {
             tooltip.add(Text.translatable("tooltip.dndreams.insanity_repair"));
         }
+        if (stack.isIn(ModTags.GROUND_REPAIRING_TOOLS) || stack.isIn(ModTags.FAST_GROUND_REPAIRING_TOOLS)) {
+            tooltip.add(Text.translatable("tooltip.dndreams.ground_repair"));
+        }
     }
 }

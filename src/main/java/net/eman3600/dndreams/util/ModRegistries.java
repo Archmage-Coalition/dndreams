@@ -64,7 +64,9 @@ public class ModRegistries {
             return (int)(torment.getAttunedSanity()/100f * 70 + 10);
         });
 
-        ItemStackAccess.registerRepairPredicate(ModTags.GROUND_REPAIRING_TOOLS, (stack, player) -> (!player.isFallFlying() || player.getEquippedStack(EquipmentSlot.CHEST) != stack) && (player.isOnGround() || stack.getDamage() + 1 < stack.getMaxDamage()) ? 160 : -1);
+        ItemStackAccess.registerRepairPredicate(ModTags.GROUND_REPAIRING_TOOLS, (stack, player) -> (!player.isFallFlying() && player.getEquippedStack(EquipmentSlot.CHEST) == stack) && (player.isOnGround() || stack.getDamage() + 1 < stack.getMaxDamage()) ? 80 : -1);
+
+        ItemStackAccess.registerRepairPredicate(ModTags.FAST_GROUND_REPAIRING_TOOLS, (stack, player) -> (!player.isFallFlying() && player.getEquippedStack(EquipmentSlot.CHEST) == stack) && (player.isOnGround() || stack.getDamage() + 1 < stack.getMaxDamage()) ? 15 : -1);
     }
 
     public static void registerEnergyFuels() {

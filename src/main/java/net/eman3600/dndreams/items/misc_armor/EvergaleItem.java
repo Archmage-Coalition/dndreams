@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-public class EvergaleItem extends TooltipItem implements FabricElytraItem, ManaCostItem {
+public class EvergaleItem extends TooltipItem implements FabricElytraItem {
 
     public static double ACCELERATION = .07;
 
@@ -85,30 +85,5 @@ public class EvergaleItem extends TooltipItem implements FabricElytraItem, ManaC
 
     public static boolean isUsing(PlayerEntity player) {
         return player.isFallFlying() && player.getEquippedStack(EquipmentSlot.CHEST).isOf(ModItems.EVERGALE);
-    }
-
-    @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        super.inventoryTick(stack, world, entity, slot, selected);
-
-        if (!world.isClient && stack.getDamage() > 0 && entity instanceof PlayerEntity player && !player.isFallFlying() && player.isOnGround() && player.getEquippedStack(EquipmentSlot.CHEST) == stack && canAffordMana(player, stack)) {
-
-            stack.setDamage(stack.getDamage() - 2);
-            spendMana(player, stack);
-
-            if (!canAffordMana(player, stack)) {
-                EntityComponents.INFUSION.get(player).setGaleCooling();
-            }
-        }
-    }
-
-    @Override
-    public int getBaseManaCost() {
-        return 1;
-    }
-
-    @Override
-    public boolean canAffordMana(PlayerEntity player, ItemStack stack) {
-        return ManaCostItem.super.canAffordMana(player, stack) && EntityComponents.INFUSION.get(player).canGaleRepair();
     }
 }

@@ -424,7 +424,7 @@ public class ModItems {
     public static final Item CLOUD_WINGS = registerItem("cloud_wings",
             new CloudWingsItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxDamage(216)).withTooltip(null, 1));
     public static final Item EVERGALE = registerItem("evergale",
-            new EvergaleItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxDamage(451)).withTooltip(null, 3));
+            new EvergaleItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxDamage(1561)).withTooltip(null, 2));
 
     // Staves
     public static final Item SPARK_STAFF = registerItem("spark_staff",
