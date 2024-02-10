@@ -784,6 +784,20 @@
   "rei.dndreams.apothecary.capacity": "Capacity: %s",
   "rei.dndreams.apothecary.cost": "Power Cost: %s",
 
+  "item.dndreams.cloud_sword": "Cloud Sword",
+  "item.dndreams.cloud_sword.tooltip": "?",
+  "item.dndreams.cloud_pickaxe": "Cloud Pickaxe",
+  "item.dndreams.cloud_pickaxe.tooltip": "?",
+  "item.dndreams.cloud_axe": "Cloud Axe",
+  "item.dndreams.cloud_axe.tooltip": "?",
+  "item.dndreams.cloud_shovel": "Cloud Shovel",
+  "item.dndreams.cloud_shovel.tooltip": "?",
+  "item.dndreams.cloud_hoe": "Cloud Hoe",
+  "item.dndreams.cloud_hoe.tooltip": "?",
+  "item.dndreams.cloud_helmet": "Cloud Helmet",
+  "item.dndreams.cloud_chestplate": "Cloud Chestplate",
+  "item.dndreams.cloud_leggings": "Cloud Leggings",
+  "item.dndreams.cloud_boots": "Cloud Boots",
 
   "stat.dndreams.enter_dream": "Times Dreamt",
   

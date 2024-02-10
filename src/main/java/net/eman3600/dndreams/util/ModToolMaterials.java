@@ -28,7 +28,9 @@ public enum ModToolMaterials implements ToolMaterial {
     CROWNED_EDGE(4, 3122, 12.0F, 3.0F, 18,
             () -> Ingredient.ofItems(ModItems.SCULK_POWDER)),
     TRUE_EDGE(4, 6244, 26.0F, 6.0F, 18,
-            () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL));
+            () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
+    CLOUD(4, 1562, 12.0F, 6.0F, 18,
+            () -> Ingredient.ofItems(ModItems.CLOUD));
 
     private final int miningLevel;
     private final int itemDurability;

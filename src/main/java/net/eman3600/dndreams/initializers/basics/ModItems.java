@@ -206,9 +206,6 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).maxCount(1).fireproof()));
 
 
-
-
-
     // Managold Gear
     public static final Item MANAGOLD_SWORD = registerItem("managold_sword",
             new SwordItem(ModToolMaterials.MANAGOLD, 3, -2.2F,
@@ -636,6 +633,35 @@ public class ModItems {
             new SpringVialItem(ModFluids.STILL_FLOWING_SPIRIT, 0x00F0F0, new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
     public static final Item SORROW_VIAL = registerItem("sorrow_vial",
             new SpringVialItem(ModFluids.STILL_SORROW, 0x1E1C32, new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
+
+    // Cloud Gear
+    public static final Item CLOUD_SWORD = registerItem("cloud_sword",
+            new SwordItem(ModToolMaterials.CLOUD, 3, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CLOUD_PICKAXE = registerItem("cloud_pickaxe",
+            new ModPickaxeItem(ModToolMaterials.CLOUD, 1, -2.8F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item CLOUD_AXE = registerItem("cloud_axe",
+            new ModAxeItem(ModToolMaterials.CLOUD, 5.0F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item CLOUD_SHOVEL = registerItem("cloud_shovel",
+            new ModShovelItem(ModToolMaterials.CLOUD, 1.5F, -3F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item CLOUD_HOE = registerItem("cloud_hoe",
+            new ModHoeItem(ModToolMaterials.CLOUD, -4, 0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item CLOUD_HELMET = registerItem("cloud_helmet",
+            new ArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
+    public static final Item CLOUD_CHESTPLATE = registerItem("cloud_chestplate",
+            new ArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
+    public static final Item CLOUD_LEGGINGS = registerItem("cloud_leggings",
+            new ArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
+    public static final Item CLOUD_BOOTS = registerItem("cloud_boots",
+            new ArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
 
 
     /*
