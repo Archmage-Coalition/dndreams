@@ -26,6 +26,7 @@ public class CelestiumArmorItem extends ModArmorItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 
+        super.appendTooltip(stack, world, tooltip, context);
         if (world instanceof ClientWorldAccess access && access.getPlayer() != null && wornPieces(access.getPlayer()) >= 4) {
             tooltip.add(Text.translatable("tooltip.dndreams.celestium_armor.set_bonus.0"));
             tooltip.add(Text.translatable("tooltip.dndreams.celestium_armor.set_bonus.1"));
