@@ -39,4 +39,15 @@ public abstract class MagicCrossbowItem extends TooltipItem {
         NbtCompound nbtCompound = stack.getNbt();
         return nbtCompound != null && nbtCompound.getBoolean("Charged");
     }
+
+    public static void setCharges(ItemStack stack, int charges) {
+        NbtCompound nbtCompound = stack.getOrCreateNbt();
+        nbtCompound.putInt("Charges", charges);
+        nbtCompound.putBoolean("Charged", charges > 0);
+    }
+
+    public static int getCharges(ItemStack stack) {
+        NbtCompound nbtCompound = stack.getNbt();
+        return nbtCompound != null && nbtCompound.contains("Charges") ? nbtCompound.getInt("Charges") : 0;
+    }
 }

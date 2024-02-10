@@ -5,7 +5,9 @@ import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
+import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.networking.packet_s2c.BloodyLaserPacket;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,6 +17,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -22,12 +25,14 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BloodyCarbineItem extends MagicCrossbowItem {
+public class BloodyCarbineItem extends MagicCrossbowItem implements MagicDamageItem {
 
     public static int RANGE = 25;
+    public static int MAX_CHARGES = 3;
 
     public BloodyCarbineItem(Settings settings) {
         super(settings);
@@ -44,6 +49,8 @@ public class BloodyCarbineItem extends MagicCrossbowItem {
         ItemStack stack = user.getStackInHand(hand);
 
         if (isCharged(stack)) {
+
+            int charges = getCharges(stack);
 
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.NEUTRAL, 0.7f, 1.3f);
 
@@ -66,7 +73,7 @@ public class BloodyCarbineItem extends MagicCrossbowItem {
                     List<LivingEntity> entities = world.getEntitiesByClass(LivingEntity.class, box, (e) -> e != user);
                     for (LivingEntity entity : entities) {
                         entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.HEARTBLEED, 200));
-                        entity.damage(BloodlustItem.hemorrhage(user), 8f);
+                        entity.damage(BloodlustItem.hemorrhage(user), getMagicDamage(stack));
                         entity.takeKnockback(0.4f, MathHelper.sin(user.getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(user.getYaw() * ((float) Math.PI / 180)));
                     }
 
@@ -74,9 +81,11 @@ public class BloodyCarbineItem extends MagicCrossbowItem {
                         break;
                     }
                 }
+
+                user.getItemCooldownManager().set(this, 5);
             }
 
-            setCharged(stack, false);
+            setCharges(stack, charges - 1);
             return TypedActionResult.consume(stack);
         }
 
@@ -92,9 +101,48 @@ public class BloodyCarbineItem extends MagicCrossbowItem {
             user.timeUntilRegen = 5;
             user.damage(BloodlustItem.CRIMSON_SACRIFICE, 4);
 
-            setCharged(stack, true);
+            setCharges(stack, MAX_CHARGES);
             SoundCategory soundCategory = user instanceof PlayerEntity ? SoundCategory.PLAYERS : SoundCategory.HOSTILE;
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_BEACON_POWER_SELECT, soundCategory, 1.0f, (world.getRandom().nextFloat() * 0.5f + 1.0f) + 0.2f);
         }
+    }
+
+    @Override
+    public float getBaseMagicDamage() {
+        return 5;
+    }
+
+    @Override
+    public int getItemBarStep(ItemStack stack) {
+
+        if (isCharged(stack)) {
+            int charges = getCharges(stack);
+
+            return charges * 13 / MAX_CHARGES;
+        }
+
+        return super.getItemBarStep(stack);
+    }
+
+    @Override
+    public int getItemBarColor(ItemStack stack) {
+
+        if (isCharged(stack)) {
+            return 0xd30037;
+        }
+
+        return super.getItemBarColor(stack);
+    }
+
+    @Override
+    public boolean isItemBarVisible(ItemStack stack) {
+        return super.isItemBarVisible(stack) || isCharged(stack);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+
+        tooltip.add(getTooltipMagicDamage(stack));
     }
 }
