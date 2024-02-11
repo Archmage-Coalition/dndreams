@@ -74,6 +74,14 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<StrifeEntity> STRIFE = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "strife"),
+            FabricEntityTypeBuilder.<StrifeEntity>create(SpawnGroup.MISC, StrifeEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .build()
+    );
+
 
 
     public static final EntityType<BrewSplashEntity> BREW_SPLASH = Registry.register(

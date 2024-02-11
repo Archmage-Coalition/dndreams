@@ -78,6 +78,7 @@ ClientInitializer implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.COSMIC_PORTAL, RenderLayer.getEndPortal());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BONFIRE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.STRIFE_FIRE, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SNOWBELL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LOTUS, RenderLayer.getCutout());
@@ -127,6 +128,7 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.TESLA_SLASH, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SPARK_BOLT, SparkBoltEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.GLOW_BOLT, GlowBoltEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.STRIFE, StrifeEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.BREW_SPLASH, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BREW_LINGERING, FlyingItemEntityRenderer::new);

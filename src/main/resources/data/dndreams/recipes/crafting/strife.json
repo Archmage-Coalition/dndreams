@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "dndreams:corrupt_ingot"
+    },
+	  "X": {
+      "item": "dndreams:nightmarrow"
+    },
+	  "C": {
+      "item": "dndreams:demonic_core_charged"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "XCX",
+    "#X#"
+  ],
+  "result": {
+    "item": "dndreams:strife"
+  }
+}

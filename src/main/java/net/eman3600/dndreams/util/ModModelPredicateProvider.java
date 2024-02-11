@@ -34,6 +34,10 @@ public class ModModelPredicateProvider {
         registerItem(new Identifier("broken"),
                 (stack, world, entity, seed) -> ElytraItem.isUsable(stack) ? 0.0f : 1.0f,
                 ModItems.EVERGALE);
+
+        registerItem(new Identifier("charged"),
+                (stack, world, entity, seed) -> MagicCrossbowItem.isCharged(stack) ? 1.0f : 0.0f,
+                ModItems.STRIFE);
     }
 
 

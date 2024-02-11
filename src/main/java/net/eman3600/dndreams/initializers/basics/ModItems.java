@@ -11,6 +11,7 @@ import net.eman3600.dndreams.items.celestium.*;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
+import net.eman3600.dndreams.items.cloud.CloudArmorItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewThrownItem;
@@ -387,7 +388,9 @@ public class ModItems {
     public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
             new MindstringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(2145)));
     public static final Item BLOODY_CARBINE = registerItem("bloody_carbine",
-            new BloodyCarbineItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(1299)).withTooltip(null, 1).withTooltip("tooltip.dndreams.sacrifice", 1));
+            new BloodyCarbineItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(735)).withTooltip(null, 1).withTooltip("tooltip.dndreams.sacrifice", 1));
+    public static final Item STRIFE = registerItem("strife",
+            new StrifeItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(735)).withTooltip(null, 1).withTooltip("tooltip.dndreams.sacrifice", 1));
 
     // Magic Arrows
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
@@ -648,20 +651,20 @@ public class ModItems {
             new ModShovelItem(ModToolMaterials.CLOUD, 1.5F, -3F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CLOUD_HOE = registerItem("cloud_hoe",
-            new ModHoeItem(ModToolMaterials.CLOUD, -4, 0F,
+            new ModHoeItem(ModToolMaterials.CLOUD, -3, 0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CLOUD_HELMET = registerItem("cloud_helmet",
-            new ArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.HEAD,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
+            new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CLOUD_CHESTPLATE = registerItem("cloud_chestplate",
-            new ArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.CHEST,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
+            new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CLOUD_LEGGINGS = registerItem("cloud_leggings",
-            new ArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.LEGS,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
+            new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CLOUD_BOOTS = registerItem("cloud_boots",
-            new ArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.FEET,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).fireproof()));
+            new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
 
 
     /*

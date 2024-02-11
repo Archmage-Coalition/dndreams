@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -16,11 +17,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CelestiumArmorItem extends ModArmorItem {
+public class CelestiumArmorItem extends ArmorItem {
     public CelestiumArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
-        super(material, slot, settings, (builder, uUID) -> {
-            builder.put(EntityAttributes.GENERIC_MOVEMENT_SPEED, new EntityAttributeModifier(uUID, "Movement speed bonus", .025, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-        });
+        super(material, slot, settings);
     }
 
     @Override

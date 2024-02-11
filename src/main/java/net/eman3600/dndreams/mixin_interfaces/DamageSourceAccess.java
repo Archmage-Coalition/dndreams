@@ -3,6 +3,7 @@ package net.eman3600.dndreams.mixin_interfaces;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.EntityDamageSource;
+import net.minecraft.entity.damage.ProjectileDamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 
 public interface DamageSourceAccess {
@@ -34,6 +35,10 @@ public interface DamageSourceAccess {
 
     static DamageSource magic(Entity attacker) {
         return new EntityDamageSource("dndreams.direct_magic", attacker).setBypassesArmor().setUsesMagic();
+    }
+
+    static DamageSource fire(Entity projectile, Entity attacker) {
+        return new ProjectileDamageSource("dndreams.fire", projectile, attacker).setFire();
     }
 
     default boolean isTransethereal() {

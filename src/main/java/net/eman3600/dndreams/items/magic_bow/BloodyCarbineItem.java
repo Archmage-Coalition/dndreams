@@ -58,7 +58,7 @@ public class BloodyCarbineItem extends MagicCrossbowItem implements MagicDamageI
 
                 Vec3d vec = user.getEyePos();
 
-                if (!user.isCreative()) stack.damage(1, user, e -> e.sendToolBreakStatus(hand));
+                if (!user.isCreative() && charges <= 1) stack.damage(1, user, e -> e.sendToolBreakStatus(hand));
 
                 BloodyLaserPacket.send((ServerWorld) world, vec, user.getPitch(), user.getYaw());
                 Vec3d angle = AirSwingItem.rayZVector(user.getYaw(), user.getPitch());

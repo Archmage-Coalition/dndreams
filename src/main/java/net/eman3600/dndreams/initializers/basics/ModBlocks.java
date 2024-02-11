@@ -43,6 +43,9 @@ public class ModBlocks {
                     .luminance(s -> (s.get(ShineBlock.LIGHT) * 3) + 6)
                     .ticksRandomly()));
 
+    public static final Block STRIFE_FIRE = registerBlock("strife_fire",
+            new StrifeFireBlock(FabricBlockSettings.copyOf(Blocks.SOUL_FIRE)));
+
     // Marble
     public static final Block MARBLE = registerBlock("marble",
             new Block(FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_WHITE).strength(0.75f)

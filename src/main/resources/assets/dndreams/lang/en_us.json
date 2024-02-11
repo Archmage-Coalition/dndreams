@@ -10,7 +10,7 @@
   "item.dndreams.pericharite": "Pericharite",
   "item.dndreams.end_chunk":  "Refined End Stone",
   "item.dndreams.end_stick":  "End Stick",
-  "item.dndreams.obsidian_chunk":  "Refined Obsidian",
+  "item.dndreams.obsidian_chunk":  "Metallic Obsidian",
   "item.dndreams.obsidian_stick":  "Obsidian Stick",
   "item.dndreams.silver_rod":  "Silver Rod",
   "item.dndreams.sculk_powder":  "Memory Dust",
@@ -239,6 +239,8 @@
   "item.dndreams.managold_arrow": "Managold Arrow",
   "item.dndreams.bloody_carbine": "Bloody Carbine",
   "item.dndreams.bloody_carbine.tooltip": "§3Fires sanguine lasers.",
+  "item.dndreams.strife": "Sanguine Strife",
+  "item.dndreams.strife.tooltip": "§3Bursts into lingering flames.",
   
   "item.dndreams.vital_heart": "Life Crystal",
   "item.dndreams.vital_heart.tooltip": "You can feel it beating.",
@@ -380,6 +382,9 @@
   "death.attack.dndreams.direct_magic": "%1$s was killed by magic",
   "death.attack.dndreams.direct_magic.player": "%1$s was killed by %2$s using magic",
   "death.attack.dndreams.direct_magic.item": "%1$s was killed by %2$s using %3$s",
+  "death.attack.dndreams.fire": "%1$s was incinerated",
+  "death.attack.dndreams.fire.player": "%1$s was incinerated by %2$s",
+  "death.attack.dndreams.fire.item": "%1$s was incinerated by %2$s using %3$s",
   
   
   "command.dndreams.bloodmoon.get.now": "There is currently a dread moon.",
@@ -487,6 +492,9 @@
   
   "block.dndreams.dream_table": "Dream Weaver",
   "block.dndreams.insight_table": "Insight Table",
+
+  "block.dndreams.shine": "Shine",
+  "block.dndreams.strife_fire": "Sanguine Fire",
 
   "block.dndreams.dreamwood_log": "Cakewood Log",
   "block.dndreams.dreamwood": "Cakewood",
@@ -676,6 +684,7 @@
   "block.dndreams.snowbell": "Snowbell",
   "block.dndreams.lotus": "Lotus",
   "block.dndreams.ember_moss": "Ember Moss",
+  "block.dndreams.ember_moss.tooltip": "§3Spreads like wildfire.",
   "block.dndreams.frazzled_moss": "Frazzled Moss",
   "block.dndreams.wither_blossom": "Wither Blossom",
   "block.dndreams.applethorn": "Applethorn",

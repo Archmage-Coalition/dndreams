@@ -20,7 +20,7 @@ public class InstantModStatusEffect extends InstantStatusEffect {
         if (this == ModStatusEffects.SILENCE && entity.isPlayer()) {
             EntityComponents.TORMENT.get(entity).lowerSanity(-20f * (amplifier + 1));
         } else if (this == ModStatusEffects.IMPENDING && entity.isPlayer()) {
-            EntityComponents.TORMENT.get(entity).lowerSanity(20f * (amplifier + 1));
+            EntityComponents.TORMENT.get(entity).lowerSanity(30f * (amplifier + 1));
         } else if (this == ModStatusEffects.IMMOLATION) {
             entity.setOnFireFor(14 * (amplifier + 1));
         } else if (this == ModStatusEffects.CLEANSING) {
