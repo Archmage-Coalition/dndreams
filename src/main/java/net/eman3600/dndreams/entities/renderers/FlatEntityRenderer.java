@@ -1,7 +1,5 @@
 package net.eman3600.dndreams.entities.renderers;
 
-import net.eman3600.dndreams.entities.projectiles.SparkBoltEntity;
-import net.eman3600.dndreams.entities.projectiles.StrifeEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -9,6 +7,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Matrix3f;
@@ -17,23 +16,25 @@ import net.minecraft.util.math.Vec3f;
 
 import static net.eman3600.dndreams.Initializer.MODID;
 
-public class StrifeEntityRenderer extends EntityRenderer<StrifeEntity> {
-    private static final Identifier TEXTURE = new Identifier(MODID, "textures/entity/projectile/strife.png");
-    private static final RenderLayer LAYER = RenderLayer.getEntityCutoutNoCull(TEXTURE);
+public class FlatEntityRenderer extends EntityRenderer<Entity> {
+    private final Identifier texture;
+    private final RenderLayer layer;
 
     private static final float SCALE = 0.75f;
 
-    public StrifeEntityRenderer(EntityRendererFactory.Context context) {
+    public FlatEntityRenderer(EntityRendererFactory.Context context, Identifier texture) {
         super(context);
+        this.texture = texture;
+        this.layer = RenderLayer.getEntityCutoutNoCull(texture);
     }
 
     @Override
-    protected int getBlockLight(StrifeEntity entity, BlockPos blockPos) {
+    protected int getBlockLight(Entity entity, BlockPos blockPos) {
         return 15;
     }
 
     @Override
-    public void render(StrifeEntity entity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+    public void render(Entity entity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         matrixStack.push();
         matrixStack.scale(SCALE, SCALE, SCALE);
         matrixStack.multiply(this.dispatcher.getRotation());
@@ -41,7 +42,7 @@ public class StrifeEntityRenderer extends EntityRenderer<StrifeEntity> {
         MatrixStack.Entry entry = matrixStack.peek();
         Matrix4f matrix4f = entry.getPositionMatrix();
         Matrix3f matrix3f = entry.getNormalMatrix();
-        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(LAYER);
+        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(layer);
         produceVertex(vertexConsumer, matrix4f, matrix3f, i, 0.0f, 0, 0, 1);
         produceVertex(vertexConsumer, matrix4f, matrix3f, i, 1.0f, 0, 1, 1);
         produceVertex(vertexConsumer, matrix4f, matrix3f, i, 1.0f, 1, 1, 0);
@@ -55,7 +56,7 @@ public class StrifeEntityRenderer extends EntityRenderer<StrifeEntity> {
     }
 
     @Override
-    public Identifier getTexture(StrifeEntity entity) {
-        return TEXTURE;
+    public Identifier getTexture(Entity entity) {
+        return texture;
     }
 }

@@ -4,6 +4,7 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.integration.rei.DnDreamsREIPlugin;
 import net.eman3600.dndreams.recipes.ApothecaryRecipe;
 import net.minecraft.recipe.Ingredient;
@@ -18,7 +19,7 @@ public class ApothecaryDisplay implements Display {
 
     public ApothecaryDisplay(ApothecaryRecipe recipe) {
         this.input = EntryIngredients.ofIngredients(recipe.getIngredients());
-        this.output = Collections.singletonList(EntryIngredients.ofIngredient(Ingredient.EMPTY));
+        this.output = Collections.singletonList(EntryIngredients.ofIngredient(Ingredient.ofItems(ModItems.BREW_INGESTED, ModItems.BREW_SPLASH, ModItems.BREW_LINGERING)));
         this.RECIPE = recipe;
     }
 

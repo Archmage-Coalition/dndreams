@@ -12,13 +12,17 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.thrown.ThrownEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import static net.eman3600.dndreams.Initializer.MODID;
+
 public class SparkBoltEntity extends ThrownEntity implements WaterIgnorant {
 
+    public static final Identifier TEXTURE = new Identifier(MODID, "textures/entity/projectile/spark_bolt.png");
     private static final TrackedData<Float> DAMAGE = DataTracker.registerData(SparkBoltEntity.class, TrackedDataHandlerRegistry.FLOAT);
 
 

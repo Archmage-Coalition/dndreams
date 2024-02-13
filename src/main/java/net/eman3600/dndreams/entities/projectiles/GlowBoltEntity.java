@@ -13,13 +13,18 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import static net.eman3600.dndreams.Initializer.MODID;
+
 public class GlowBoltEntity extends ThrownEntity implements WaterIgnorant {
+
+    public static final Identifier TEXTURE = new Identifier(MODID, "textures/entity/projectile/glow_bolt.png");
 
     public GlowBoltEntity(EntityType<? extends ThrownEntity> entityType, World world) {
         super(entityType, world);

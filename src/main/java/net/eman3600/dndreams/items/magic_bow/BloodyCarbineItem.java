@@ -109,7 +109,7 @@ public class BloodyCarbineItem extends MagicCrossbowItem implements MagicDamageI
 
     @Override
     public float getBaseMagicDamage() {
-        return 5;
+        return 7;
     }
 
     @Override

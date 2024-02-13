@@ -3,6 +3,9 @@ package net.eman3600.dndreams;
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.BonfireBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
+import net.eman3600.dndreams.entities.projectiles.GlowBoltEntity;
+import net.eman3600.dndreams.entities.projectiles.SparkBoltEntity;
+import net.eman3600.dndreams.entities.projectiles.StrifeEntity;
 import net.eman3600.dndreams.entities.renderers.*;
 import net.eman3600.dndreams.events.KeyInputHandler;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
@@ -30,10 +33,13 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
+import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.FallingBlockEntityRenderer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+
+import static net.eman3600.dndreams.Initializer.MODID;
 
 public class
 ClientInitializer implements ClientModInitializer {
@@ -126,9 +132,9 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.CROWNED_SLASH, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CROWNED_BEAM, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.TESLA_SLASH, EmptyEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.SPARK_BOLT, SparkBoltEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.GLOW_BOLT, GlowBoltEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.STRIFE, StrifeEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SPARK_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, SparkBoltEntity.TEXTURE));
+        EntityRendererRegistry.register(ModEntities.GLOW_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, GlowBoltEntity.TEXTURE));
+        EntityRendererRegistry.register(ModEntities.STRIFE, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, StrifeEntity.TEXTURE));
 
         EntityRendererRegistry.register(ModEntities.BREW_SPLASH, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BREW_LINGERING, FlyingItemEntityRenderer::new);
