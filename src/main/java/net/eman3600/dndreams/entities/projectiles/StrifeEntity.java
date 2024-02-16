@@ -90,7 +90,7 @@ public class StrifeEntity extends ThrownEntity implements WaterIgnorant {
 
     @Override
     protected float getGravity() {
-        return 0.04f;
+        return 0.06f;
     }
 
     @Override

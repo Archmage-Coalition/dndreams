@@ -32,7 +32,7 @@ public class StrifeItem extends TooltipItem {
             if (!world.isClient) {
 
                 StrifeEntity flame = new StrifeEntity(user, world);
-                flame.setVelocity(user, Math.max(user.getPitch() - 7.5f, -90f), user.getYaw(), 0.0f, 1.4f, 0.3f);
+                flame.setVelocity(user, Math.max(user.getPitch() - 7.5f, -90f), user.getYaw(), 0.0f, .8f, 0.3f);
                 world.spawnEntity(flame);
 
                 user.getItemCooldownManager().set(this, 5);

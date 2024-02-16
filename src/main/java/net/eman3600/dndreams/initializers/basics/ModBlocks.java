@@ -6,6 +6,7 @@ import net.eman3600.dndreams.blocks.crop.*;
 import net.eman3600.dndreams.blocks.energy.*;
 import net.eman3600.dndreams.blocks.portal.CosmicPortalBlock;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
+import net.eman3600.dndreams.blocks.redstone.CosmicEggBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritFenceBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritSlabBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritStairsBlock;
@@ -173,6 +174,12 @@ public class ModBlocks {
     // Bonfire
     public static final Block BONFIRE = registerBlock("bonfire",
             new BonfireBlock(FabricBlockSettings.copyOf(Blocks.CAMPFIRE)));
+
+    // Cosmic Egg
+    public static final Block COSMIC_EGG = registerBlock("cosmic_egg",
+            new CosmicEggBlock(FabricBlockSettings.copy(Blocks.DRAGON_EGG).strength(2f, 9f).requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
 
     // Spirit Slates
     public static final Block SPIRIT_STONE = registerBlock("spirit_stone",

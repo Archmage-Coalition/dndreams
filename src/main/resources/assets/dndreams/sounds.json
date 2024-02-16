@@ -1,0 +1,8 @@
+{
+  "music.dread_moon": {
+    "category": "music",
+    "sounds": [
+      {"name":"dndreams:music/dread_moon", "stream":true}
+    ]
+  }
+}
