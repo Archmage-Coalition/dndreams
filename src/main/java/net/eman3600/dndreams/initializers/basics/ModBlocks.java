@@ -64,6 +64,57 @@ public class ModBlocks {
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block MARBLE_SLAB = registerBlock("marble_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.STONE_SLAB).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_STAIRS = registerBlock("marble_stairs",
+            new StairsBlock(MARBLE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE_STAIRS).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_WALL = registerBlock("marble_wall",
+            new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_PRESSURE_PLATE = registerBlock("marble_pressure_plate",
+            new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, FabricBlockSettings.copy(Blocks.STONE_PRESSURE_PLATE).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
+    public static final Block MARBLE_BUTTON = registerBlock("marble_button",
+            new StoneButtonBlock(FabricBlockSettings.copy(Blocks.STONE_BUTTON).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
+
+    public static final Block MARBLE_BRICKS = registerBlock("marble_bricks",
+            new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block CHISELED_MARBLE = registerBlock("chiseled_marble",
+            new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_BRICK_SLAB = registerBlock("marble_brick_slab",
+            new SpiritSlabBlock(FabricBlockSettings.copy(Blocks.STONE_SLAB).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_BRICK_STAIRS = registerBlock("marble_brick_stairs",
+            new SpiritStairsBlock(MARBLE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE_STAIRS).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_BRICK_WALL = registerBlock("marble_brick_wall",
+            new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Hellsteel Block
     public static final Block CORRUPT_BLOCK = registerBlock("corrupt_block",

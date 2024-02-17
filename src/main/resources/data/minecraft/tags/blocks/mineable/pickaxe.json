@@ -31,6 +31,16 @@
     "dndreams:haven_stone_brick_stairs",
     "dndreams:haven_stone_brick_wall",
     "#dndreams:marbles",
+    "dndreams:marble_slab",
+    "dndreams:marble_stairs",
+    "dndreams:marble_wall",
+    "dndreams:marble_pressure_plate",
+    "dndreams:marble_button",
+    "dndreams:marble_bricks",
+    "dndreams:chiseled_marble",
+    "dndreams:marble_brick_slab",
+    "dndreams:marble_brick_stairs",
+    "dndreams:marble_brick_wall",
     "#dndreams:pristine"
   ]
 }

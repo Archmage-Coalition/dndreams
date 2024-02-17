@@ -473,6 +473,16 @@
 
   
   "block.dndreams.marble": "Marble",
+  "block.dndreams.marble_stairs": "Marble Stairs",
+  "block.dndreams.marble_slab": "Marble Slab",
+  "block.dndreams.marble_wall": "Marble Wall",
+  "block.dndreams.marble_button": "Marble Button",
+  "block.dndreams.marble_pressure_plate": "Marble Pressure Plate",
+  "block.dndreams.marble_bricks": "Marble Bricks",
+  "block.dndreams.chiseled_marble": "Chiseled Marble",
+  "block.dndreams.marble_brick_stairs": "Marble Brick Stairs",
+  "block.dndreams.marble_brick_slab": "Marble Brick Slab",
+  "block.dndreams.marble_brick_wall": "Marble Brick Wall",
   "block.dndreams.polished_marble": "Polished Marble",
   "block.dndreams.golden_grass_block": "Golden Grass Block",
   "block.dndreams.golden_grass": "Golden Grass",
