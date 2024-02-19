@@ -54,6 +54,12 @@ public class ModBlocks {
                     .requiresTool()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block GILDED_MARBLE = registerBlock("gilded_marble",
+            new Block(FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_YELLOW).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
     public static final Block GOLDEN_GRASS_BLOCK = registerBlock("golden_grass_block",
             new MarbleSpreadableBlock(FabricBlockSettings.copy(MARBLE).ticksRandomly()),
 
