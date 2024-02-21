@@ -48,13 +48,13 @@ public abstract class LightmapTextureManagerMixin implements LightmapTextureMana
     @Inject(method = "update", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/NativeImage;setColor(III)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void dndreams$update(float delta, CallbackInfo ci, ClientWorld clientWorld, float f, float g, float h, float i, float j, float l, float k, Vec3f vec3f, float m, Vec3f vec3f2, int n, int o, float p, float q, float r, float s, float t, boolean bl, float v, Vec3f vec3f5, int w, int x, int y, int z) {
 
-        if (ClientInitializer.drawAether(clientWorld)) {
+        /*if (ClientInitializer.drawAether(clientWorld)) {
             z = recalculatedLight(z);
             y = recalculatedLight(y);
             x = recalculatedLight(x);
 
             image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
-        } else if (clientWorld instanceof ClientWorldAccess access) {
+        } else */if (clientWorld instanceof ClientWorldAccess access) {
             float strength = (float)(EntityComponents.TORMENT.get(access.getPlayer()).getShroud()) / TormentComponent.MAX_SHROUD * DEPTHS;
 
             z = recalculatedLight(z, strength);

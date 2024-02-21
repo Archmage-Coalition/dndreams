@@ -62,7 +62,7 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "spark_bolt"),
             FabricEntityTypeBuilder.<SparkBoltEntity>create(SpawnGroup.MISC, SparkBoltEntity::new)
                     .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
@@ -70,7 +70,7 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "glow_bolt"),
             FabricEntityTypeBuilder.<GlowBoltEntity>create(SpawnGroup.MISC, GlowBoltEntity::new)
                     .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(32).trackedUpdateRate(10)
                     .build()
     );
 
@@ -78,7 +78,7 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "strife"),
             FabricEntityTypeBuilder.<StrifeEntity>create(SpawnGroup.MISC, StrifeEntity::new)
                     .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
@@ -88,7 +88,7 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "brew_splash"),
             FabricEntityTypeBuilder.<BrewSplashEntity>create(SpawnGroup.MISC, BrewSplashEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
@@ -96,7 +96,7 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "brew_lingering"),
             FabricEntityTypeBuilder.<BrewLingeringEntity>create(SpawnGroup.MISC, BrewLingeringEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
@@ -120,7 +120,7 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "spring_vial"),
             FabricEntityTypeBuilder.<SpringVialEntity>create(SpawnGroup.MISC, SpringVialEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
