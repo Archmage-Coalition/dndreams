@@ -1188,6 +1188,14 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
+    //cloud stuff
+    public static final Block CLOUD_ORE = registerBlock("cloud_ore",
+            new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE_GRAY).strength(4.0f).resistance(8.0f)
+                    .sounds(BlockSoundGroup.WOOL)
+                    .requiresTool(), UniformIntProvider.create(3, 6)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
     private static boolean never(BlockState blockState, BlockView blockView, BlockPos blockPos) {
         return false;
     }
