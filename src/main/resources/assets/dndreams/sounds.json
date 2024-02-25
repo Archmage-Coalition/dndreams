@@ -4,5 +4,11 @@
     "sounds": [
       {"name":"dndreams:music/dread_moon", "stream":true}
     ]
+  },
+  "tunes.triumph": {
+    "category": "master",
+    "sounds": [
+      {"name":"dndreams:tunes/triumph", "stream":true}
+    ]
   }
 }

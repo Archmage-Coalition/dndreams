@@ -45,7 +45,7 @@ Over time, the sculk amassed enough energy to form the wardens. As immense power
 
 When the Koinans attempted the process of powering the portal with a warden, the portal absorbed too much energy from the Warden and became overloaded, unequipped with the ability to contain it all. The portal convulsed and ruptured, scattering a terrible malady - the Affliction - all across both the Overworld and the Haven.
 
-All the Koinans within a mile were turned to zombies who continued to spread the blight. The souls of the dead in the Haven turned into the Enkantal, and the angels were corrupted to the Talei. Many of those whom survived fled to the Nether. In an act of desperation, they tried to construct simulacrums which could house their souls. These too failed, withering to bone. The simulacrums turned to wither skeletons, which spread the decay to the Koinans.
+All the Koinans within a mile were turned to zombies who continued to spread the blight. The souls of the dead in the Haven turned into the Enkantal, which began to attack the angels. Many of those whom survived fled to the Nether. In an act of desperation, they tried to construct simulacrums which could house their souls. These too failed, withering to bone. The simulacrums turned to wither skeletons, which spread the decay to the Koinans.
 
 ## The Aftermath of the Koinans
 All the structures of the Koinans were left for abandoned or house undead. The sculk was allowed to spread far through the caves in which they were produced. Opal, being the gemstone of the Haven, lost much of its holy energy and turned to rose quartz. Meanwhile, the divine metal of silver seemed to vanish from all record with the fall of angels.
@@ -55,9 +55,9 @@ The illager race evolved long after the fall of the Koinans. The zombies could s
 ## The Lord of Torment
 Elrunez was a powerful illager archmage. The details of his rise to power among illagers remain a mystery, but his insights into new forms of magic are not. He developed a way to unravel his own sanity and inflict upon himself a madness that let him see the congealing shadows.
 
-Using the threads of his own sanity, Elrunez was able to reinforce the ancient portal frame against overloading. After properly tuning the portal frame, he used a warden to fuel the portal, which managed to remain stable after overloading. However, the portal remained overconcentrated and, rather than leading to the Haven, the portal let out the spirits of those taken by sculk. This lasted until the portal's energy reached stable levels, at which point Elrunez entered.
+Using the threads of his own sanity, Elrunez was able to reinforce the ancient portal frame against overloading. After properly tuning the portal frame, he used a warden to fuel the portal, which managed to remain stable after overloading. However, the portal remained over-concentrated and, rather than leading to the Haven, the portal let out the spirits of those taken by sculk. This lasted until the portal's energy reached stable levels, at which point Elrunez entered.
 
-Once inside, Elrunez was able to fully embrace the madness of unreality and be taken by torment, crowning himself the Lord of Torment. He then sealed the ancient portal and began locking it with the essence of 4 powerful Keepers, ensuring himself the last of all lords.
+Once inside, Elrunez staged a coup on the angelic thrown, managing to overthrow Aktina. Elrunez then banished the angels not loyal to him, who escaped to the End, where they now reside. Aktina, however, was locked away alongside the power to reopen the portal to the Haven. As such, the portal was sealed.
 
 
 # Artifacts
@@ -79,7 +79,7 @@ An amalgamation of failed simulacrums, the Wither is the embodiment of the decay
 
 Reawakened by the player, the Wither's new purpose is to kill them and any other sapient beings nearby. When slain, it will drop its nether star: a crystalized power source formed from charged souls.
 
-## Architects' Siege & The Wraith King
+## Architects' Siege & The Fallen Sentinel of the Deep
 The siege is begun by an influx of power in the ancient portal, twisted by madness to allow the spirits of the dead to come forth, twisted by sculk and madness. The portal, while stabilized by Elrunez, is tainted by insanity and will not become usable until the madness settles.
 
 The energy stolen from the warden by the ancient portal eventually retakes the shape of the warden, now an entity only of mind, soul, and madness. Destroying this entity will stabilize the portal.
