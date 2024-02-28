@@ -37,6 +37,7 @@ public class ModArmorItem extends ArmorItem {
             if (stack.isOf(item)) return true;
         }
         return false;
+
     }
 
 
