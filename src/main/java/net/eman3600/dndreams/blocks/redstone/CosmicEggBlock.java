@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.blocks.redstone;
 
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,6 +16,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
+
+import java.util.List;
 
 public class CosmicEggBlock extends FallingBlock {
 
@@ -49,6 +52,28 @@ public class CosmicEggBlock extends FallingBlock {
 
     private void teleport(BlockState state, World world, BlockPos pos) {
         WorldBorder worldBorder = world.getWorldBorder();
+
+        BlockPos focusPos = null;
+
+        for (int i = -16; i <= 16; i++) for (int j = -8; j <= 8; j++) for (int k = -16; k <= 16; k++) {
+
+            BlockPos blockPos = pos.add(i, j, k);
+            BlockState focusState = world.getBlockState(blockPos);
+
+            if (focusState.isOf(ModBlocks.COSMIC_FOCUS) && world.isAir(blockPos.up()) && world.isAir((blockPos.up(2)))) {
+
+                if (focusPos == null || focusPos.getSquaredDistance(pos) > blockPos.getSquaredDistance(pos)) focusPos = blockPos;
+            }
+        }
+
+        if (focusPos != null) {
+
+            world.setBlockState(focusPos.up(2), state, Block.NOTIFY_LISTENERS);
+            world.removeBlock(pos, false);
+            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_SHULKER_TELEPORT, SoundCategory.BLOCKS, 1, .8f);
+            return;
+        }
+
         for (int i = 0; i < 1000; ++i) {
             BlockPos blockPos = pos.add(world.random.nextInt(16) - world.random.nextInt(16), world.random.nextInt(8) - world.random.nextInt(8), world.random.nextInt(16) - world.random.nextInt(16));
             if (!world.getBlockState(blockPos).isAir() || !worldBorder.contains(blockPos)) continue;

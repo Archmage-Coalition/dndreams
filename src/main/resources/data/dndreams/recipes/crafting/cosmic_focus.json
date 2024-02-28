@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "#",
+    "V"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:chorus_focus"
+    },
+	  "X": {
+      "item": "minecraft:redstone"
+    },
+	  "V": {
+      "item": "dndreams:liquid_void"
+    }
+  },
+  "result": {
+    "item": "dndreams:cosmic_focus"
+  }
+}

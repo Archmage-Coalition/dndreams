@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#E#",
+    "#R#",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:end_stone"
+    },
+	  "X": {
+      "item": "minecraft:purpur_block"
+    },
+	  "R": {
+      "item": "dndreams:charged_shard"
+    },
+	  "E": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "result": {
+    "item": "dndreams:chorus_focus"
+  }
+}
