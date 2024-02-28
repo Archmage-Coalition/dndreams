@@ -66,7 +66,7 @@ public class CosmicEggBlock extends FallingBlock {
             }
         }
 
-        if (focusPos != null) {
+        if (focusPos != null && worldBorder.contains(focusPos)) {
 
             world.setBlockState(focusPos.up(2), state, Block.NOTIFY_LISTENERS);
             world.removeBlock(pos, false);
