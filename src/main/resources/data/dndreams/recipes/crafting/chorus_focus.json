@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "#E#",
-    "#R#",
+    "MEM",
+    "#X#",
     "#X#"
   ],
   "key": {
     "#": {
-      "item": "minecraft:end_stone"
+      "item": "minecraft:smooth_basalt"
     },
 	  "X": {
-      "item": "minecraft:purpur_block"
+      "item": "dndreams:celestium"
     },
-	  "R": {
-      "item": "dndreams:charged_shard"
+	  "M": {
+      "item": "dndreams:managold_ingot"
     },
 	  "E": {
       "item": "minecraft:ender_eye"
