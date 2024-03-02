@@ -71,16 +71,6 @@ public class CosmicEggBlock extends FallingBlock {
             world.setBlockState(focusPos.up(2), state, Block.NOTIFY_LISTENERS);
             world.removeBlock(pos, false);
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_SHULKER_TELEPORT, SoundCategory.BLOCKS, 1, .8f);
-            return;
-        }
-
-        for (int i = 0; i < 1000; ++i) {
-            BlockPos blockPos = pos.add(world.random.nextInt(16) - world.random.nextInt(16), world.random.nextInt(8) - world.random.nextInt(8), world.random.nextInt(16) - world.random.nextInt(16));
-            if (!world.getBlockState(blockPos).isAir() || !worldBorder.contains(blockPos)) continue;
-            world.setBlockState(blockPos, state, Block.NOTIFY_LISTENERS);
-            world.removeBlock(pos, false);
-            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_SHULKER_TELEPORT, SoundCategory.BLOCKS, 1, .8f);
-            return;
         }
     }
 

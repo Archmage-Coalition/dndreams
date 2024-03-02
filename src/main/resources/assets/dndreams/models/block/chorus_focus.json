@@ -1,6 +1,8 @@
 {
-  "parent": "block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "dndreams:block/chorus_focus"
+    "bottom": "dndreams:block/chorus_focus_bottom",
+    "side": "dndreams:block/chorus_focus_side",
+    "top": "dndreams:block/chorus_focus_top"
   }
 }
