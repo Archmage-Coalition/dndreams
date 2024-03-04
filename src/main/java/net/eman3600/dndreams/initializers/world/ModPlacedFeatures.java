@@ -52,7 +52,7 @@ public class ModPlacedFeatures {
             ModFeatures.CELESTIUM_ORE, OreFeatures.modifiersWithCount(5, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(10), YOffset.aboveBottom(80))));
 
     public static final RegistryEntry<PlacedFeature> CLOUD_ORE_PLACED = PlacedFeatures.register("cloud_ore_placed",
-            ModFeatures.CLOUD_ORE, OreFeatures.modifiersWithCount(90, HeightRangePlacementModifier.);
+            ModFeatures.CLOUD_ORE, OreFeatures.modifiersWithCount(90, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(10), YOffset.aboveBottom(80))));
 
 
 
