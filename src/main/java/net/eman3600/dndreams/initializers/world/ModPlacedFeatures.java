@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.initializers.world;
 
 import com.mojang.authlib.minecraft.client.MinecraftClient;
+import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.world.OreFeatures;
 import net.eman3600.dndreams.world.feature.haven.SmallIslandFeature;
 import net.eman3600.dndreams.world.feature.haven.StarSmallIslandFeature;
@@ -12,8 +13,12 @@ import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.heightprovider.HeightProvider;
 import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.eman3600.dndreams.Initializer.MODID;
 
@@ -51,11 +56,15 @@ public class ModPlacedFeatures {
     public static final RegistryEntry<PlacedFeature> CELESTIUM_ORE_PLACED = PlacedFeatures.register("celestium_ore_placed",
             ModFeatures.CELESTIUM_ORE, OreFeatures.modifiersWithCount(5, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(10), YOffset.aboveBottom(80))));
 
-    public static final RegistryEntry<PlacedFeature> CLOUD_ORE_PLACED = PlacedFeatures.register("cloud_ore_placed",
-            ModFeatures.CLOUD_ORE, OreFeatures.modifiersWithCount(90, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(10), YOffset.aboveBottom(80))));
+    public static final RegistryEntry<PlacedFeature> CLOUD_ORE_PLACED;
 
+    static {
+        List<PlacementModifier> modifiers = new ArrayList<>(OreFeatures.modifiersWithCount(105, HeightRangePlacementModifier.trapezoid(YOffset.fixed(80), YOffset.fixed(384))));
+        modifiers.add(PlacedFeatures.wouldSurvive(ModBlocks.CLOUD_ORE));
 
-
+        CLOUD_ORE_PLACED = PlacedFeatures.register("cloud_ore_placed",
+                ModFeatures.CLOUD_ORE, modifiers.stream().toList());
+    }
 
 
     public static final BCLFeature<SmallIslandFeature, DefaultFeatureConfig> SMALL_ISLAND = registerRawGen("small_island", inlineBuild("small_island", new SmallIslandFeature()), 50);

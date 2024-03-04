@@ -50,7 +50,7 @@ public class ModFeatures {
             ConfiguredFeatures.register("celestium_ore",Feature.ORE, new OreFeatureConfig(CELESTIUM_ORES, 4));
 
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> CLOUD_ORE =
-            ConfiguredFeatures.register("cloud_ore", Feature.ORE, new OreFeatureConfig(CLOUD_ORES, 4));
+            ConfiguredFeatures.register("cloud_ore", Feature.ORE, new OreFeatureConfig(CLOUD_ORES, 6));
 
 
 

@@ -28,6 +28,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
@@ -1199,7 +1200,7 @@ public class ModBlocks {
 
     //cloud stuff
     public static final Block CLOUD_ORE = registerBlock("cloud_ore",
-            new OreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE)),
+            new CloudOreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE), UniformIntProvider.create(1, 5)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
