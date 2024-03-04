@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.initializers.world;
 
+import com.mojang.authlib.minecraft.client.MinecraftClient;
 import net.eman3600.dndreams.world.OreFeatures;
 import net.eman3600.dndreams.world.feature.haven.SmallIslandFeature;
 import net.eman3600.dndreams.world.feature.haven.StarSmallIslandFeature;
@@ -9,6 +10,7 @@ import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.heightprovider.HeightProvider;
 import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
@@ -48,6 +50,9 @@ public class ModPlacedFeatures {
 
     public static final RegistryEntry<PlacedFeature> CELESTIUM_ORE_PLACED = PlacedFeatures.register("celestium_ore_placed",
             ModFeatures.CELESTIUM_ORE, OreFeatures.modifiersWithCount(5, HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(10), YOffset.aboveBottom(80))));
+
+    public static final RegistryEntry<PlacedFeature> CLOUD_ORE_PLACED = PlacedFeatures.register("cloud_ore_placed",
+            ModFeatures.CLOUD_ORE, OreFeatures.modifiersWithCount(90, HeightRangePlacementModifier.);
 
 
 

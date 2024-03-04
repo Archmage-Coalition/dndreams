@@ -1190,9 +1190,7 @@ public class ModBlocks {
 
     //cloud stuff
     public static final Block CLOUD_ORE = registerBlock("cloud_ore",
-            new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE_GRAY).strength(4.0f).resistance(8.0f)
-                    .sounds(BlockSoundGroup.WOOL)
-                    .requiresTool(), UniformIntProvider.create(3, 6)),
+            new OreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE)),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 

@@ -637,7 +637,7 @@ public class ModItems {
     public static final Item SORROW_VIAL = registerItem("sorrow_vial",
             new SpringVialItem(ModFluids.STILL_SORROW, 0x1E1C32, new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
 
-    // Cloud Gear
+    // Cloud stuff
     public static final Item CLOUD_SWORD = registerItem("cloud_sword",
             new SwordItem(ModToolMaterials.CLOUD, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
@@ -665,7 +665,6 @@ public class ModItems {
     public static final Item CLOUD_BOOTS = registerItem("cloud_boots",
             new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
-
 
     /*
      * Item Registration
