@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MEM",
+    "#X#",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:smooth_basalt"
+    },
+	  "X": {
+      "item": "dndreams:celestium"
+    },
+	  "M": {
+      "item": "dndreams:managold_ingot"
+    },
+	  "E": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "result": {
+    "item": "dndreams:chorus_focus"
+  }
+}

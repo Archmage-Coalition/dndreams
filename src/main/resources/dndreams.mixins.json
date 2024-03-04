@@ -21,6 +21,7 @@
     "CakeBlockMixin",
     "CampfireBlockMixin",
     "ChorusFlowerBlockMixin",
+    "ChorusFruitItemMixin",
     "ChorusPlantBlockMixin",
     "ChorusPlantFeatureMixin",
     "ComposterBlockMixin",
