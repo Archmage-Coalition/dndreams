@@ -13,7 +13,7 @@ import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModFluids;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
-import net.eman3600.dndreams.initializers.event.ModCallbacks;
+import net.eman3600.dndreams.initializers.event.ModClientCallbacks;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
@@ -117,7 +117,7 @@ ClientInitializer implements ClientModInitializer {
         //1e1c32
 
         ModModelPredicateProvider.registerModModels();
-        ModCallbacks.registerClientCallbacks();
+        ModClientCallbacks.registerClientCallbacks();
 
 
         ModMessages.registerS2CPackets();
