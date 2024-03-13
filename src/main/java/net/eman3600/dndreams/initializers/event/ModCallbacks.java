@@ -1,8 +1,6 @@
 package net.eman3600.dndreams.initializers.event;
 
 import net.eman3600.dndreams.cardinal_components.*;
-import net.eman3600.dndreams.entities.renderers.features.ModElytraFeatureRenderer;
-import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
@@ -10,36 +8,25 @@ import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.mixin_interfaces.ItemEntityAccess;
 import net.eman3600.dndreams.recipes.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRenderEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRendererRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.minecraft.client.render.entity.PlayerEntityRenderer;
-import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.Map;
 import java.util.Optional;
-
-import static net.eman3600.dndreams.Initializer.MODID;
 
 public class ModCallbacks {
 
@@ -134,26 +121,6 @@ public class ModCallbacks {
 
         EntityElytraEvents.ALLOW.register(entity -> !entity.hasStatusEffect(ModStatusEffects.GRACE));
         EntitySleepEvents.ALLOW_RESETTING_TIME.register(player -> !WorldComponents.BLOOD_MOON.get(player.getWorld()).damnedNight());
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static void registerClientCallbacks() {
-
-        LivingEntityFeatureRenderEvents.ALLOW_CAPE_RENDER.register(player -> {
-
-            ItemStack stack = player.getEquippedStack(EquipmentSlot.CHEST);
-            return !stack.isOf(ModItems.CLOUD_WINGS) && !stack.isOf(ModItems.EVERGALE);
-        });
-
-
-        LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, entityRenderer, registrationHelper, context) -> {
-
-            if (entityRenderer instanceof PlayerEntityRenderer r) {
-
-                registrationHelper.register(new ModElytraFeatureRenderer<>(r, context.getModelLoader(), ModItems.CLOUD_WINGS, new Identifier(MODID, "textures/models/cloud_wings.png")));
-                registrationHelper.register(new ModElytraFeatureRenderer<>(r, context.getModelLoader(), ModItems.EVERGALE, new Identifier(MODID, "textures/models/evergale.png")));
-            }
-        });
     }
 
 

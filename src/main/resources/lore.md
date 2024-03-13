@@ -25,9 +25,9 @@ The Dream World is the land the mind taps when asleep, scratching the surface an
 ## The (Forsaken) Haven
 The Haven is the upper layer of the Spirit World. It was once the land of the dead, at least those benevolent, and it was thought that the secrets to immortality can be found there. It was also home to angels.
 
-When the affliction began to taint the Overworld, it escaped into the Haven where it took the denizens like a plague. The dead were twisted into the Enkantal, and the angels fell, becoming the Talei.
+When the affliction began to taint the Overworld, it escaped into the Haven where it took the denizens like a plague. The dead were twisted into the Enkantal, beginning a ceaseless battle against the angels of the realm.
 
-During the Age of the Illagers, Elrunez the Archmage opened the long-sealed portal to the Haven and took control of it. Elrunez named himself lord of the Spirit World and took up residence in the Soul Spire.
+During the Age of the Illagers, Elrunez the Archmage opened the long-sealed portal to the Haven and took control of it. In a complicated coup, Elrunez banished the angels who stood against him and crowned himself Lord of the Spirit World. The angels he banished alongside Aktina, the former ruler of the Spirit World, were known as the Katharei, and those loyal to Elrunez became the Talei.
 
 
 # The Affliction's Onset
