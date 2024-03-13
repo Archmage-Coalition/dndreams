@@ -1204,6 +1204,11 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
+    public static final Block DEEPSLATE_CLOUD_ORE = registerBlock("deepslate_cloud_ore",
+            new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
     private static boolean never(BlockState blockState, BlockView blockView, BlockPos blockPos) {
         return false;
     }

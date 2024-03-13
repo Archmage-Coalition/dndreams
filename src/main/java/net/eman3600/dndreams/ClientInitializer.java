@@ -39,8 +39,6 @@ import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-import static net.eman3600.dndreams.Initializer.MODID;
-
 public class
 ClientInitializer implements ClientModInitializer {
     @Override
@@ -150,6 +148,8 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.TORMENTOR, TormentorEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.FACELESS, FacelessEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.DREAM_SHEEP, DreamSheepEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MANAGOLD_ARROW, ManagoldArrowRenderer::new);
+
 
         KeyInputHandler.registerBindings();
         KeyInputHandler.registerKeyInputs();

@@ -33,7 +33,8 @@ public class ModFeatures {
     );
 
     public static final List<OreFeatureConfig.Target> CLOUD_ORES = List.of(
-            OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, ModBlocks.CLOUD_ORE.getDefaultState())
+            OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, ModBlocks.CLOUD_ORE.getDefaultState()),
+            OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_CLOUD_ORE.getDefaultState())
     );
 
     // ORES REGISTRY

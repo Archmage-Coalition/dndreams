@@ -183,8 +183,13 @@ public class ModEntities {
     );
 
 
-
-
+    public static final EntityType<ManagoldArrowEntity> MANAGOLD_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "managold_arrow"),
+            FabricEntityTypeBuilder.<ManagoldArrowEntity>create(SpawnGroup.MISC, ManagoldArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .build()
+    );
 
 
     public static void registerEntities() {

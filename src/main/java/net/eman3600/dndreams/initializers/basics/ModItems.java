@@ -394,7 +394,7 @@ public class ModItems {
 
     // Magic Arrows
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
-            new Item(new FabricItemSettings().group(ItemGroup.COMBAT)));
+            new ArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Trinkets
     public static final Item FLEETFOOT_BAND = registerItem("fleetfoot_band",
