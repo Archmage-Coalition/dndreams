@@ -27,6 +27,7 @@ import net.eman3600.dndreams.items.magic_bow.BloodyCarbineItem;
 import net.eman3600.dndreams.items.magic_bow.ManastringBowItem;
 import net.eman3600.dndreams.items.magic_bow.MindstringBowItem;
 import net.eman3600.dndreams.items.managold.ManagoldArmorItem;
+import net.eman3600.dndreams.items.managold.ManagoldArrowItem;
 import net.eman3600.dndreams.items.misc_armor.CloudWingsItem;
 import net.eman3600.dndreams.items.misc_armor.EvergaleItem;
 import net.eman3600.dndreams.items.misc_tool.*;
@@ -394,7 +395,7 @@ public class ModItems {
 
     // Magic Arrows
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
-            new ArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+            new ManagoldArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Trinkets
     public static final Item FLEETFOOT_BAND = registerItem("fleetfoot_band",
