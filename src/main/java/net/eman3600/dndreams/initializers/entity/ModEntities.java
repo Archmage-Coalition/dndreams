@@ -20,7 +20,6 @@ import static net.eman3600.dndreams.entities.mobs.BloodZombieEntity.createBloodZ
 import static net.eman3600.dndreams.entities.mobs.DreamSheepEntity.createDreamSheepAttributes;
 import static net.eman3600.dndreams.entities.mobs.FacelessEntity.createFacelessAttributes;
 import static net.eman3600.dndreams.entities.mobs.TormentorEntity.createTormentorAttributes;
-import static net.eman3600.dndreams.entities.mobs.WardenRagdollEntity.createWardenRagdollAttributes;
 
 public class ModEntities {
     public static final EntityType<ShadeRiftEntity> SHADE_RIFT = Registry.register(
@@ -173,16 +172,6 @@ public class ModEntities {
     );
 
 
-    public static final EntityType<WardenRagdollEntity> WARDEN_RAGDOLL = Registry.register(
-            Registry.ENTITY_TYPE, new Identifier(MODID, "warden_ragdoll"),
-            FabricEntityTypeBuilder.<WardenRagdollEntity>create(SpawnGroup.MISC, WardenRagdollEntity::new)
-                    .dimensions(EntityType.WARDEN.getDimensions())
-                    .fireImmune()
-                    .trackRangeBlocks(16)
-                    .build()
-    );
-
-
     public static final EntityType<ManagoldArrowEntity> MANAGOLD_ARROW = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "managold_arrow"),
             FabricEntityTypeBuilder.<ManagoldArrowEntity>create(SpawnGroup.MISC, ManagoldArrowEntity::new)
@@ -195,7 +184,6 @@ public class ModEntities {
     public static void registerEntities() {
         FabricDefaultAttributeRegistry.register(BLOOD_ZOMBIE, createBloodZombieAttributes());
         FabricDefaultAttributeRegistry.register(BLOOD_SKELETON, createBloodSkeletonAttributes());
-        FabricDefaultAttributeRegistry.register(WARDEN_RAGDOLL, createWardenRagdollAttributes());
         FabricDefaultAttributeRegistry.register(TORMENTOR, createTormentorAttributes());
         FabricDefaultAttributeRegistry.register(FACELESS, createFacelessAttributes());
         FabricDefaultAttributeRegistry.register(DREAM_SHEEP, createDreamSheepAttributes());
