@@ -10,6 +10,7 @@ import net.eman3600.dndreams.recipes.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
 import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.entity.Entity;
@@ -17,6 +18,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
@@ -118,6 +120,8 @@ public class ModCallbacks {
                 e.printStackTrace();
             }
         });
+
+        ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> damageSource.isOutOfWorld() || !(entity instanceof WardenEntity));
 
         EntityElytraEvents.ALLOW.register(entity -> !entity.hasStatusEffect(ModStatusEffects.GRACE));
         EntitySleepEvents.ALLOW_RESETTING_TIME.register(player -> !WorldComponents.BLOOD_MOON.get(player.getWorld()).damnedNight());
