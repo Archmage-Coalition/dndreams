@@ -121,7 +121,14 @@ public class ModCallbacks {
             }
         });
 
-        ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> damageSource.isOutOfWorld() || !(entity instanceof WardenEntity));
+        ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> {
+            if (!damageSource.isOutOfWorld() && entity instanceof WardenEntity e) {
+
+                e.setHealth(1f);
+                return false;
+            }
+            return true;
+        });
 
         EntityElytraEvents.ALLOW.register(entity -> !entity.hasStatusEffect(ModStatusEffects.GRACE));
         EntitySleepEvents.ALLOW_RESETTING_TIME.register(player -> !WorldComponents.BLOOD_MOON.get(player.getWorld()).damnedNight());
