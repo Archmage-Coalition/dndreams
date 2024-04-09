@@ -69,6 +69,7 @@ public class Initializer implements ModInitializer {
 		ModStats.registerStats();
 		ModTags.registerTags();
 		ModRegistries.register();
+		ModSoundEvents.registerSounds();
 
 		ModParticles.registerParticles();
 		ModEntities.registerEntities();

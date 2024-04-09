@@ -5,6 +5,7 @@ import net.eman3600.dndreams.entities.projectiles.BrewLingeringEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewLiquidEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
+import net.eman3600.dndreams.initializers.event.ModSoundEvents;
 import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.celestium.*;
@@ -666,6 +667,9 @@ public class ModItems {
     public static final Item CLOUD_BOOTS = registerItem("cloud_boots",
             new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.FEET,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
+
+    public static final Item MUSIC_DISC_STORM = registerItem("music_disc_storm",
+            new MusicDiscItem(15, ModSoundEvents.RECORD_STORM, new FabricItemSettings().group(ItemGroup.MISC), 240));
 
     /*
      * Item Registration

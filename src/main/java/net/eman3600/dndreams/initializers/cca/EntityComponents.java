@@ -7,6 +7,7 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.*;
+import net.eman3600.dndreams.initializers.event.ModSoundEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.raid.RaiderEntity;
@@ -24,6 +25,7 @@ public class EntityComponents implements EntityComponentInitializer {
     public static final ComponentKey<ShockComponent> SHOCK = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "shock"), ShockComponent.class);
     public static final ComponentKey<WardenComponent> WARDEN = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "warden"), WardenComponent.class);
     public static final ComponentKey<RotComponent> ROT = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "rot"), RotComponent.class);
+    public static final ComponentKey<MusicTrackerComponent> MUSIC_TRACKER = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "music_tracker"), MusicTrackerComponent.class);
 
 
 
@@ -32,6 +34,9 @@ public class EntityComponents implements EntityComponentInitializer {
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
+
+        ModSoundEvents.registerSoundtrack();
+
         registry.registerForPlayers(MANA, ManaComponent::new, RespawnCopyStrategy.INVENTORY);
         registry.registerForPlayers(TORMENT, TormentComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(DREAMING, DreamingComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
@@ -40,6 +45,7 @@ public class EntityComponents implements EntityComponentInitializer {
         registry.registerForPlayers(STAT_BOON, StatBoonComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(PERM_ITEM, PermItemComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(REVIVE, ReviveComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerForPlayers(MUSIC_TRACKER, MusicTrackerComponent::new, RespawnCopyStrategy.NEVER_COPY);
         registry.registerFor(LivingEntity.class, SHOCK, ShockComponent::new);
         registry.registerFor(LivingEntity.class, ROT, RotComponent::new);
 

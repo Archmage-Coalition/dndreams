@@ -11,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 public interface WardenEntityAccess {
 
 
+
     static void hauntClosePlayers(ServerWorld world, Vec3d pos, @Nullable Entity entity, int duration, int range) {
         StatusEffectInstance statusEffectInstance = new StatusEffectInstance(ModStatusEffects.HAUNTED, duration, 0, false, false);
         StatusEffectUtil.addEffectToPlayersWithinDistance(world, entity, pos, range, statusEffectInstance, Math.max(1, duration - 20));

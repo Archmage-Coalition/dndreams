@@ -72,7 +72,8 @@
       "dndreams:revive",
       "dndreams:shock",
       "dndreams:warden",
-      "dndreams:rot"
+      "dndreams:rot",
+      "dndreams:music_tracker"
     ]
   }
 }

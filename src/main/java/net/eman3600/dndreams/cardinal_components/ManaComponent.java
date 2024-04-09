@@ -10,7 +10,6 @@ import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
@@ -25,8 +24,8 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     private float manaFrame = 0;
 
-    public ManaComponent(PlayerEntity playerIn) {
-        player = playerIn;
+    public ManaComponent(PlayerEntity player) {
+        this.player = player;
     }
 
     @Override

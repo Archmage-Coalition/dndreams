@@ -67,6 +67,9 @@
   "item.dndreams.atlas.use": "Press %s to deactivate",
   "item.dndreams.veiled_key": "Veiled Key",
   "item.dndreams.veiled_key.tooltip": "§3Frees the captive light.",
+
+  "item.dndreams.music_disc_storm": "Music Disc",
+  "item.dndreams.music_disc_storm.desc": "Eman3600 - Storm on the Starry Sea",
   
   "item.dndreams.corrupt_sword": "Hellsteel Sword",
   "item.dndreams.corrupt_sword.tooltip": "§3Lights mobs ablaze.",
@@ -832,5 +835,6 @@
   "key.dndreams.dodge": "Dash",
   "container.repair.expensive": "Beyond repair!",
 
-  "dndreams.subtitles.music.dread_moon": "So the Moon Cried Out"
+  "dndreams.subtitles.music.dread_moon": "Music Plays",
+  "dndreams.subtitles.record.storm": "Record Plays"
 }

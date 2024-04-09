@@ -10,5 +10,11 @@
     "sounds": [
       {"name":"dndreams:tunes/triumph", "stream":true}
     ]
+  },
+  "record.storm": {
+    "category": "record",
+    "sounds": [
+      {"name":"dndreams:record/storm", "stream":false}
+    ]
   }
 }
