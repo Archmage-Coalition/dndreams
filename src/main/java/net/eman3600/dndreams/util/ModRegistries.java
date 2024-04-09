@@ -295,6 +295,15 @@ public class ModRegistries {
         access.registerCompostable(.3f, ModBlocks.SAKURA_SAPLING);
         access.registerCompostable(.65f, ModBlocks.DREAMWOOD_SAPLING);
         access.registerCompostable(.3f, ModBlocks.JAPANESE_MAPLE_SAPLING);
+        access.registerCompostable(.3f, ModBlocks.PRISTINE_SAPLING);
+        access.registerCompostable(.3f, ModBlocks.SHADE_SHROOM);
+        access.registerCompostable(.3f, ModBlocks.STAR_SAPLING);
+        access.registerCompostable(.3f, ModBlocks.SAKURA_LEAVES);
+        access.registerCompostable(.65f, ModBlocks.DREAMWOOD_LEAVES);
+        access.registerCompostable(.3f, ModBlocks.JAPANESE_MAPLE_LEAVES);
+        access.registerCompostable(.3f, ModBlocks.PRISTINE_LEAVES);
+        access.registerCompostable(.3f, ModBlocks.SHADE_LEAVES);
+        access.registerCompostable(.3f, ModBlocks.STAR_LEAVES);
 
         access.registerCompostable(.3f, ModItems.APPLETHORN_SEEDS);
         access.registerCompostable(.65f, ModItems.SUCCULENT_APPLE);
