@@ -3,10 +3,13 @@ package net.eman3600.dndreams.entities.projectiles;
 import net.eman3600.dndreams.entities.WaterIgnorant;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -64,6 +67,9 @@ public class GlowBoltEntity extends ThrownEntity implements WaterIgnorant {
                     world.setBlockState(pos, ModBlocks.SHINE.getDefaultState(), Block.NOTIFY_LISTENERS);
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, SoundCategory.BLOCKS, 1, 1);
                 }
+            } else if (hitResult instanceof EntityHitResult entityHit && entityHit.getEntity() instanceof LivingEntity target) {
+
+                target.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 200));
             }
 
             this.discard();

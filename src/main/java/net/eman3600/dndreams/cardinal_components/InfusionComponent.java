@@ -417,6 +417,7 @@ public class InfusionComponent implements InfusionComponentI {
             airJumps++;
             player.fallDistance = 0;
             access.setJumpingCooldown(10);
+
             markDirty();
             return true;
         }

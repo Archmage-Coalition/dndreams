@@ -100,7 +100,7 @@ public abstract class AbstractBrewItem extends Item {
                     else if (effect.isBeneficial()) {
                         duration *= (Math.pow(2.5, length));
                     } else {
-                        duration *= (Math.pow(1.5, length));
+                        duration *= (Math.pow(1.75, length));
                     }
 
                     int amp = Math.min(amplifier, recipe.maxAmplifier);

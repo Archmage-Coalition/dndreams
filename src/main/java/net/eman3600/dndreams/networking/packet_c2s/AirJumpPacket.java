@@ -4,6 +4,7 @@ import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
+import net.eman3600.dndreams.networking.packet_s2c.GoldenLandPacket;
 import net.eman3600.dndreams.networking.packet_s2c.MotionUpdatePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -26,6 +27,7 @@ public class AirJumpPacket {
         if (component.airJump()) {
 
             player.setVelocity(packet.readDouble(), packet.readDouble(), packet.readDouble());
+            GoldenLandPacket.send(player.getWorld(), player.getPos(), player.getYaw());
         }
     }
 

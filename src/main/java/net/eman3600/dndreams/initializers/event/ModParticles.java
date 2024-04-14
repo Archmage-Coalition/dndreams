@@ -20,6 +20,7 @@ public class ModParticles {
     public static final DefaultParticleType DIAMOND_SPARK = FabricParticleTypes.simple();
     public static final DefaultParticleType GLOW_SPARK = FabricParticleTypes.simple();
     public static final DefaultParticleType BLOODY_LASER = FabricParticleTypes.simple();
+    public static final DefaultParticleType GOLDEN_LAND = FabricParticleTypes.simple();
 
     public static final DefaultParticleType COSMIC_CANDLE_FLAME = FabricParticleTypes.simple();
     public static final DefaultParticleType ECHO_CANDLE_FLAME = FabricParticleTypes.simple();
@@ -40,6 +41,7 @@ public class ModParticles {
         registerParticle("diamond_spark", DIAMOND_SPARK);
         registerParticle("glow_spark", GLOW_SPARK);
         registerParticle("bloody_laser", BLOODY_LASER);
+        registerParticle("golden_land", GOLDEN_LAND);
 
         registerParticle("cosmic_candle_flame", COSMIC_CANDLE_FLAME);
         registerParticle("echo_candle_flame", ECHO_CANDLE_FLAME);
@@ -62,6 +64,7 @@ public class ModParticles {
         ParticleFactoryRegistry.getInstance().register(DIAMOND_SPARK, DiamondSparkParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(GLOW_SPARK, GlowSparkParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(BLOODY_LASER, CrownedSlashParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(GOLDEN_LAND, GoldenLandParticle.Factory::new);
 
         ParticleFactoryRegistry.getInstance().register(COSMIC_CANDLE_FLAME, FlameParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ECHO_CANDLE_FLAME, FlameParticle.Factory::new);

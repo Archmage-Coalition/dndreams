@@ -25,6 +25,7 @@ public class ModMessages {
     public static final Identifier MOTION_UPDATE_ID = new Identifier(MODID, "motion_update");
     public static final Identifier DREAM_SHIFT_ID = new Identifier(MODID, "dream_shift");
     public static final Identifier BLOODY_LASER_ID = new Identifier(MODID, "bloody_laser");
+    public static final Identifier GOLDEN_LAND_ID = new Identifier(MODID, "golden_land");
 
     public static void registerC2SPackets() {
         ServerPlayNetworking.registerGlobalReceiver(AIR_SWING_ID, AirSwingPacket::receive);
@@ -44,5 +45,6 @@ public class ModMessages {
         ClientPlayNetworking.registerGlobalReceiver(MOTION_UPDATE_ID, MotionUpdatePacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(DREAM_SHIFT_ID, DreamShiftPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(BLOODY_LASER_ID, BloodyLaserPacket::receive);
+        ClientPlayNetworking.registerGlobalReceiver(GOLDEN_LAND_ID, GoldenLandPacket::receive);
     }
 }
