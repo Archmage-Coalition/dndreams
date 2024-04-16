@@ -2,15 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "#X#",
-    "X#X",
+    "XNX",
     "#X#"
   ],
   "key": {
     "#": {
-      "item": "dndreams:nightmare_fuel"
+      "item": "dndreams:sculk_powder"
     },
     "X": {
       "item": "minecraft:blaze_powder"
+    },
+    "N": {
+      "item": "dndreams:nightmare_fuel"
     }
   },
   "result": {

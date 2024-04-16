@@ -53,11 +53,11 @@ All the structures of the Koinans were left for abandoned or house undead. The s
 The illager race evolved long after the fall of the Koinans. The zombies could sense their intelligence and attempted to convert them, but they were more resistant to the affliction than the Koinans. They discovered some of the remains of the Koinans, including the ancient cities, but they were mostly unsuccessful with rebuilding them.
 
 ## The Lord of Torment
-Elrunez was a powerful illager archmage. The details of his rise to power among illagers remain a mystery, but his insights into new forms of magic are not. He developed a way to unravel his own sanity and inflict upon himself a madness that let him see the congealing shadows.
+Elrunez was a powerful mage among the illagers. The details of his rise to power among illagers remain a mystery, but his insights into new forms of magic are not. He developed a way to unravel his own sanity and inflict upon himself a madness that let him see the congealing shadows. With this, he discovered the Formless Flame and took it for himself, achieving magical dominance among his peers.
 
 Using the threads of his own sanity, Elrunez was able to reinforce the ancient portal frame against overloading. After properly tuning the portal frame, he used a warden to fuel the portal, which managed to remain stable after overloading. However, the portal remained over-concentrated and, rather than leading to the Haven, the portal let out the spirits of those taken by sculk. This lasted until the portal's energy reached stable levels, at which point Elrunez entered.
 
-Once inside, Elrunez staged a coup on the angelic thrown, managing to overthrow Aktina. Elrunez then banished the angels not loyal to him, who escaped to the End, where they now reside. Aktina, however, was locked away alongside the power to reopen the portal to the Haven. As such, the portal was sealed.
+Once inside, Elrunez staged a coup on the angelic throne, managing to overthrow Aktina. Elrunez then banished the angels not loyal to him, who escaped to the End, where they now reside. Aktina, however, was locked away alongside the power to reopen the portal to the Haven. As such, the portal was sealed.
 
 
 # Artifacts

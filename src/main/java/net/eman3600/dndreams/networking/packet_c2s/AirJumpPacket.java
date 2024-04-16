@@ -15,6 +15,8 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -27,6 +29,7 @@ public class AirJumpPacket {
         if (component.airJump()) {
 
             player.setVelocity(packet.readDouble(), packet.readDouble(), packet.readDouble());
+            player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_AMETHYST_BLOCK_STEP, SoundCategory.BLOCKS, 1, 1);
             GoldenLandPacket.send(player.getWorld(), player.getPos(), player.getYaw());
         }
     }

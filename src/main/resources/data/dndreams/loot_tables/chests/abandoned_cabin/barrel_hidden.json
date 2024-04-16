@@ -10,7 +10,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:amethyst_shard",
-		  "weight": 2,
+		      "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -23,10 +23,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "minecraft:iron_ingot",
-		  "weight": 2,
+		      "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -39,10 +39,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "minecraft:gold_ingot",
-		  "weight": 2,
+		      "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -55,10 +55,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "minecraft:gunpowder",
-		  "weight": 2,
+		      "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -71,10 +71,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "minecraft:emerald",
-		  "weight": 2,
+		      "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -87,10 +87,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "minecraft:lapis_lazuli",
-		  "weight": 2,
+		      "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",
