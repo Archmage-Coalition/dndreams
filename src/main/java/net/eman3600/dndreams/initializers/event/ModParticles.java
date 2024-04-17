@@ -15,6 +15,7 @@ import net.minecraft.util.registry.Registry;
 public class ModParticles {
     public static final DefaultParticleType CROWNED_SLASH = FabricParticleTypes.simple();
     public static final DefaultParticleType CROWNED_BEAM = FabricParticleTypes.simple();
+    public static final DefaultParticleType CROWNED_BEAM_WEAK = FabricParticleTypes.simple();
     public static final DefaultParticleType CROWNED_WICKED = FabricParticleTypes.simple();
     public static final DefaultParticleType TESLA_SLASH = FabricParticleTypes.simple();
     public static final DefaultParticleType DIAMOND_SPARK = FabricParticleTypes.simple();
@@ -36,6 +37,7 @@ public class ModParticles {
     public static void registerParticles() {
         registerParticle("crowned_slash", CROWNED_SLASH);
         registerParticle("crowned_beam", CROWNED_BEAM);
+        registerParticle("crowned_beam_weak", CROWNED_BEAM_WEAK);
         registerParticle("crowned_wicked", CROWNED_WICKED);
         registerParticle("tesla_slash", TESLA_SLASH);
         registerParticle("diamond_spark", DIAMOND_SPARK);
@@ -59,6 +61,7 @@ public class ModParticles {
     public static void registerParticleFactories() {
         ParticleFactoryRegistry.getInstance().register(CROWNED_SLASH, CrownedSlashParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(CROWNED_BEAM, CrownedBeamParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(CROWNED_BEAM_WEAK, CrownedBeamParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(CROWNED_WICKED, CrownedWickedParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(TESLA_SLASH, CrownedSlashParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(DIAMOND_SPARK, DiamondSparkParticle.Factory::new);

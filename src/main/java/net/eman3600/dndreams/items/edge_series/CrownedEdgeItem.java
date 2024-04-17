@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.items.edge_series;
 
+import net.eman3600.dndreams.entities.projectiles.CrownedBeamEntity;
 import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
 import net.eman3600.dndreams.items.enchantments.AliasedEnchantment;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
@@ -32,6 +33,29 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
 
     @Override
     public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @javax.annotation.Nullable Entity hit) {
+        if (user.getAttackCooldownProgress(0.5f) > 0.9f) {
+
+            if (canAffordMana(user, stack)) {
+                if (hit == null) {
+                    stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+                }
+
+                world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, user.getSoundCategory(), 1.0f, 1.5f);
+
+
+                float roll = CrownedSlashEntity.randomlyRoll(world);
+
+                spendMana(user, stack);
+
+                CrownedBeamEntity beam = new CrownedBeamEntity(user, world);
+                beam.initFromStack(stack, roll);
+                world.spawnEntity(beam);
+            }
+        }
+    }
+
+    /*@Override
+    public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @javax.annotation.Nullable Entity hit) {
         if (canAffordMana(user, stack) && user.getAttackCooldownProgress(0.5f) > 0.9f) {
             spendMana(user, stack);
 
@@ -45,7 +69,7 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
             slash.initFromStack(stack, CrownedSlashEntity.randomlyRoll(world));
             world.spawnEntity(slash);
         }
-    }
+    }*/
 
     @Override
     public int getBaseManaCost() {

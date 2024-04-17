@@ -389,7 +389,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Redirect(method = "damage", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/LivingEntity;timeUntilRegen:I", opcode = Opcodes.PUTFIELD))
     public void dndreams$damage$shortenIFrames(LivingEntity instance, int value) {
         if (this.hasStatusEffect(ModStatusEffects.MORTAL)) {
-            instance.timeUntilRegen = 14;
+            instance.timeUntilRegen = 16;
         } else {
             instance.timeUntilRegen = value;
         }

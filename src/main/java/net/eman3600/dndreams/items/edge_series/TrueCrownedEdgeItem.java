@@ -23,28 +23,4 @@ public class TrueCrownedEdgeItem extends CrownedEdgeItem {
     public int getBaseManaCost() {
         return 8;
     }
-
-
-    @Override
-    public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit) {
-        if (user.getAttackCooldownProgress(0.5f) > 0.9f) {
-
-            if (canAffordMana(user, stack)) {
-                if (hit == null) {
-                    stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-                }
-
-                world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, user.getSoundCategory(), 1.0f, 1.5f);
-
-
-                float roll = CrownedSlashEntity.randomlyRoll(world);
-
-                spendMana(user, stack);
-
-                CrownedBeamEntity beam = new CrownedBeamEntity(user, world);
-                beam.initFromStack(stack, roll);
-                world.spawnEntity(beam);
-            }
-        }
-    }
 }
