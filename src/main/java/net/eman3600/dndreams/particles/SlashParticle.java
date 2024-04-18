@@ -6,9 +6,9 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
-public class CrownedSlashParticle extends SpriteBillboardParticle {
-    protected CrownedSlashParticle(ClientWorld level, double xCoord, double yCoord, double zCoord,
-                                   SpriteProvider spriteSet, double xd, double yd, double zd) {
+public class SlashParticle extends SpriteBillboardParticle {
+    protected SlashParticle(ClientWorld level, double xCoord, double yCoord, double zCoord,
+                            SpriteProvider spriteSet, double xd, double yd, double zd) {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
         this.velocityMultiplier = 0F;
@@ -56,7 +56,7 @@ public class CrownedSlashParticle extends SpriteBillboardParticle {
 
         public Particle createParticle(DefaultParticleType particleType, ClientWorld level, double x, double y, double z,
                                        double dx, double dy, double dz) {
-            return new CrownedSlashParticle(level, x, y, z, this.sprites, dx, dy, dz);
+            return new SlashParticle(level, x, y, z, this.sprites, dx, dy, dz);
         }
     }
 }

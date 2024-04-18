@@ -59,14 +59,14 @@ public class ModParticles {
 
     @Environment(EnvType.CLIENT)
     public static void registerParticleFactories() {
-        ParticleFactoryRegistry.getInstance().register(CROWNED_SLASH, CrownedSlashParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(CROWNED_BEAM, CrownedBeamParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(CROWNED_BEAM_WEAK, CrownedBeamParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(CROWNED_WICKED, CrownedWickedParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(TESLA_SLASH, CrownedSlashParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(CROWNED_SLASH, SlashParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(CROWNED_BEAM, BeamParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(CROWNED_BEAM_WEAK, BeamParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(CROWNED_WICKED, ExtendedBeamParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(TESLA_SLASH, ExtendedBeamParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(DIAMOND_SPARK, DiamondSparkParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(GLOW_SPARK, GlowSparkParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(BLOODY_LASER, CrownedSlashParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(BLOODY_LASER, SlashParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(GOLDEN_LAND, GoldenLandParticle.Factory::new);
 
         ParticleFactoryRegistry.getInstance().register(COSMIC_CANDLE_FLAME, FlameParticle.Factory::new);

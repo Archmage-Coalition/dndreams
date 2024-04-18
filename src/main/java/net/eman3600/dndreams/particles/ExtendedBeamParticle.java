@@ -6,17 +6,14 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
-public class CrownedBeamParticle extends SpriteBillboardParticle {
-    protected CrownedBeamParticle(ClientWorld level, double xCoord, double yCoord, double zCoord,
-                                  SpriteProvider spriteSet, double xd, double yd, double zd) {
+public class ExtendedBeamParticle extends SpriteBillboardParticle {
+    protected ExtendedBeamParticle(ClientWorld level, double xCoord, double yCoord, double zCoord,
+                                   SpriteProvider spriteSet, double xd, double yd, double zd) {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
         this.velocityMultiplier = 0F;
-//        this.x = xd;
-//        this.y = yd;
-//        this.z = zd;
         this.scale *= 0.75F;
-        this.maxAge = 15;
+        this.maxAge = 25;
         this.setSpriteForAge(spriteSet);
 
         this.red = 1f;
@@ -57,7 +54,7 @@ public class CrownedBeamParticle extends SpriteBillboardParticle {
 
         public Particle createParticle(DefaultParticleType particleType, ClientWorld level, double x, double y, double z,
                                        double dx, double dy, double dz) {
-            return new CrownedBeamParticle(level, x, y, z, this.sprites, dx, dy, dz);
+            return new ExtendedBeamParticle(level, x, y, z, this.sprites, dx, dy, dz);
         }
     }
 }
