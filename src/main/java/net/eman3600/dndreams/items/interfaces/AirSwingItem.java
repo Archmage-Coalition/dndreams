@@ -15,6 +15,14 @@ import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public interface AirSwingItem {
+    /**
+     * Called when the item is swung at the air or at an entity.
+     * @param user The user swinging the item.
+     * @param hand The hand holding the item.
+     * @param world The world of the user.
+     * @param stack The item stack being swung.
+     * @param hit The entity hit, or null if swinging at the air.
+     */
     void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit);
 
     static Vec3d rayZVector(float yaw, float pitch) {

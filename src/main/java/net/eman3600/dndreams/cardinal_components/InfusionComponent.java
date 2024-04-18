@@ -187,12 +187,12 @@ public class InfusionComponent implements InfusionComponentI {
             markDirty();
         }
 
-        if (!dodgeLanded && player.isOnGround()) {
+        if (!dodgeLanded && (player.isOnGround() || player.isTouchingWater())) {
             dodgeLanded = true;
             markDirty();
         }
 
-        if (airJumps > 0 && player.isOnGround()) {
+        if (airJumps > 0 && (player.isOnGround() || player.isTouchingWater())) {
             airJumps = 0;
             markDirty();
         }
@@ -363,6 +363,8 @@ public class InfusionComponent implements InfusionComponentI {
 
         if (player.isOnGround()) {
             jumpCooldown = 8;
+        } else if (player.isTouchingWater()) {
+            jumpCooldown = 2;
         } else if (jumpCooldown > 0) jumpCooldown--;
 
         if (ascendState > 0) {
