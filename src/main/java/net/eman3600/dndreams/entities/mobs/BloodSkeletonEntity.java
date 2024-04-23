@@ -61,7 +61,7 @@ public class BloodSkeletonEntity extends SkeletonEntity {
     protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
         PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
         if (persistentProjectileEntity instanceof ArrowEntity) {
-            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(ModStatusEffects.HEARTBLEED, 240));
+            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(ModStatusEffects.HEARTBLEED, 240, 1));
         }
         return persistentProjectileEntity;
     }

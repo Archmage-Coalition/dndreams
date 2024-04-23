@@ -352,7 +352,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
     private float dndreams$damage$heartbleed(float amount) {
         if (this.hasStatusEffect(ModStatusEffects.HEARTBLEED)) {
-            return (float) (amount * Math.pow(1.4f, this.getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1));
+            return (float) (amount * Math.pow(1.2f, this.getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1));
         } else return amount;
     }
 

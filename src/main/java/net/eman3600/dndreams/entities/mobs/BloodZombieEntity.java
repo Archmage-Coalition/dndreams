@@ -55,7 +55,7 @@ public class BloodZombieEntity extends ZombieEntity {
         boolean bl = super.tryAttack(target);
 
         if (bl && target instanceof LivingEntity entity) {
-            entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.HEARTBLEED, 240));
+            entity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.HEARTBLEED, 240, 1));
         }
 
         return bl;
