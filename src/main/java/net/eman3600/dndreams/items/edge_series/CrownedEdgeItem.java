@@ -2,11 +2,13 @@ package net.eman3600.dndreams.items.edge_series;
 
 import net.eman3600.dndreams.entities.projectiles.CrownedBeamEntity;
 import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
+import net.eman3600.dndreams.initializers.basics.ModEnchantments;
 import net.eman3600.dndreams.items.enchantments.AliasedEnchantment;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -89,7 +91,6 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
     public float getBaseMagicDamage() {
         return magicDamage;
     }
-
 
     public static class CrownedEnchantment extends AliasedEnchantment {
         public CrownedEnchantment(Rarity weight, int maxLevel, EquipmentSlot[] slotTypes) {
