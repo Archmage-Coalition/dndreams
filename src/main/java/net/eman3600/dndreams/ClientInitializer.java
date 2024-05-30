@@ -150,6 +150,7 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.FACELESS, FacelessEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.DREAM_SHEEP, DreamSheepEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.MANAGOLD_ARROW, ManagoldArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SKYBOUND_ARROW, SkyboundArrowRenderer::new);
 
 
         KeyInputHandler.registerBindings();

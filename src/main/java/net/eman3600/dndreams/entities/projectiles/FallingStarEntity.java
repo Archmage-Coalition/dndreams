@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.entities.projectiles;
 
 import net.eman3600.dndreams.initializers.entity.ModEntities;
+import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.minecraft.entity.Entity;
@@ -93,6 +94,12 @@ public class FallingStarEntity extends BeamProjectileEntity {
 
                 if (getLife() > DURATION) {
                     kill();
+                }
+            }
+
+            if (this.world.isClient) {
+                for (int i = 0; i < 2; ++i) {
+                    this.world.addParticle(ModParticles.CROWNED_SLASH, this.getParticleX(0.5), this.getRandomBodyY() - 0.25, this.getParticleZ(0.5), (this.random.nextDouble() - 0.5) * 2.0, -this.random.nextDouble(), (this.random.nextDouble() - 0.5) * 2.0);
                 }
             }
 

@@ -52,6 +52,7 @@
     "MagmaBlockMixin",
     "MiningToolItemMixin",
     "MobEntityMixin",
+    "PersistentProjectileEntityMixin",
     "PlantBlockMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",

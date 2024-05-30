@@ -13,6 +13,7 @@ import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.items.cloud.CloudArmorItem;
+import net.eman3600.dndreams.items.cloud.SkyboundArrowItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewThrownItem;
@@ -20,7 +21,6 @@ import net.eman3600.dndreams.items.consumable.permanent.AttributePermItem;
 import net.eman3600.dndreams.items.consumable.permanent.CrystalFeatherItem;
 import net.eman3600.dndreams.items.consumable.permanent.FidiFruitItem;
 import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
-import net.eman3600.dndreams.items.creative.InfusionPearlItem;
 import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
 import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.hellsteel.*;
@@ -397,6 +397,8 @@ public class ModItems {
     // Magic Arrows
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
             new ManagoldArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item SKYBOUND_ARROW = registerItem("skybound_arrow",
+            new SkyboundArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Trinkets
     public static final Item FLEETFOOT_BAND = registerItem("fleetfoot_band",

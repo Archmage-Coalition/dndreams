@@ -185,6 +185,16 @@ public class ModEntities {
             FabricEntityTypeBuilder.<ManagoldArrowEntity>create(SpawnGroup.MISC, ManagoldArrowEntity::new)
                     .dimensions(EntityType.ARROW.getDimensions())
                     .fireImmune()
+                    .trackRangeChunks(4)
+                    .build()
+    );
+
+    public static final EntityType<SkyboundArrowEntity> SKYBOUND_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "skybound_arrow"),
+            FabricEntityTypeBuilder.<SkyboundArrowEntity>create(SpawnGroup.MISC, SkyboundArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
                     .build()
     );
 
