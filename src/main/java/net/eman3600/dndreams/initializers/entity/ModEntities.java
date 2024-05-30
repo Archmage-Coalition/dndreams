@@ -57,6 +57,14 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<FallingStarEntity> FALLING_STAR = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "falling_star"),
+            FabricEntityTypeBuilder.<FallingStarEntity>create(SpawnGroup.MISC, FallingStarEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
+                    .build()
+    );
+
     public static final EntityType<SparkBoltEntity> SPARK_BOLT = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "spark_bolt"),
             FabricEntityTypeBuilder.<SparkBoltEntity>create(SpawnGroup.MISC, SparkBoltEntity::new)

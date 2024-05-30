@@ -6,13 +6,13 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
 public class BeamProjectileEntity extends ProjectileEntity {
@@ -96,14 +96,12 @@ public class BeamProjectileEntity extends ProjectileEntity {
     public void tick() {
         super.tick();
 
-        Vec3d velocity = this.getVelocity();
-        Vec3d vec3d3 = this.getPos();
-        HitResult hitResult = this.world.raycast(new RaycastContext(vec3d3, vec3d3.add(velocity), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this));
+        HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
         if (hitResult.getType() != HitResult.Type.MISS) {
             onCollision(hitResult);
         }
 
-        velocity = this.getVelocity();
+        Vec3d velocity = this.getVelocity();
         double e = velocity.x;
         double f = velocity.y;
         double g = velocity.z;

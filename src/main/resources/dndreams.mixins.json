@@ -62,6 +62,7 @@
     "SonicBoomTaskMixin",
     "ThrownEntityMixin",
     "WardenEntityMixin",
+    "WitchEntityMixin",
     "WorldMixin",
     "server.MinecraftServerMixin",
     "server.ServerWorldMixin"

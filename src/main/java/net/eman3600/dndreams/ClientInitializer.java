@@ -3,6 +3,7 @@ package net.eman3600.dndreams;
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.BonfireBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
+import net.eman3600.dndreams.entities.projectiles.FallingStarEntity;
 import net.eman3600.dndreams.entities.projectiles.GlowBoltEntity;
 import net.eman3600.dndreams.entities.projectiles.SparkBoltEntity;
 import net.eman3600.dndreams.entities.projectiles.StrifeEntity;
@@ -30,7 +31,6 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
@@ -134,6 +134,7 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.SPARK_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, SparkBoltEntity.TEXTURE));
         EntityRendererRegistry.register(ModEntities.GLOW_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, GlowBoltEntity.TEXTURE));
         EntityRendererRegistry.register(ModEntities.STRIFE, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, StrifeEntity.TEXTURE));
+        EntityRendererRegistry.register(ModEntities.FALLING_STAR, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, FallingStarEntity.TEXTURE));
 
         EntityRendererRegistry.register(ModEntities.BREW_SPLASH, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BREW_LINGERING, FlyingItemEntityRenderer::new);
