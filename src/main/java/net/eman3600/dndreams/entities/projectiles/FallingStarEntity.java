@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -32,6 +33,7 @@ public class FallingStarEntity extends BeamProjectileEntity {
     public static final int MAX_DISTANCE = 30;
     public static final float SPEED = 2.5f;
     public static TrackedData<Integer> LIFE = DataTracker.registerData(FallingStarEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private int phaseTicks = 1;
 
     public static final Identifier TEXTURE = new Identifier(MODID, "textures/entity/projectile/falling_star.png");
 
@@ -69,6 +71,7 @@ public class FallingStarEntity extends BeamProjectileEntity {
         setPitch(pitch);
 
         target = target.add(AirSwingItem.rayZVector(yaw, pitch).multiply(-distance));
+        phaseTicks = MathHelper.ceil(distance / SPEED);
 
         setPosition(target);
     }
@@ -91,6 +94,7 @@ public class FallingStarEntity extends BeamProjectileEntity {
                 velocityDirty = true;
 
                 tickLife();
+                noClip = --phaseTicks > 0;
 
                 if (getLife() > DURATION) {
                     kill();
@@ -106,6 +110,20 @@ public class FallingStarEntity extends BeamProjectileEntity {
         } catch (NullPointerException e) {
             kill();
         }
+    }
+
+    @Override
+    protected void onBlockHit(BlockHitResult blockHitResult) {
+        if (phaseTicks > 0) return;
+
+        super.onBlockHit(blockHitResult);
+    }
+
+    @Override
+    protected void checkBlockCollision() {
+        if (phaseTicks > 0) return;
+
+        super.checkBlockCollision();
     }
 
     @Override
@@ -138,9 +156,8 @@ public class FallingStarEntity extends BeamProjectileEntity {
 
         DataTracker tracker = getDataTracker();
 
-        if (nbt.contains("Life")) {
-            tracker.set(LIFE, nbt.getInt("Life"));
-        }
+        nbt.putInt("Life", tracker.get(LIFE));
+        nbt.putInt("PhaseTicks", phaseTicks);
     }
 
     @Override
@@ -149,7 +166,8 @@ public class FallingStarEntity extends BeamProjectileEntity {
 
         DataTracker tracker = getDataTracker();
 
-        nbt.putInt("Life", tracker.get(LIFE));
+        tracker.set(LIFE, nbt.getInt("Life"));
+        phaseTicks = nbt.getInt("PhaseTicks");
     }
 
     public static float randomlyDistance(World world) {
