@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "ZYZ",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:sculk_powder"
+    },
+    "X": {
+      "item": "minecraft:arrow"
+    },
+    "Y": {
+      "item": "minecraft:leather"
+    },
+    "Z": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "dndreams:magic_quiver"
+  }
+}

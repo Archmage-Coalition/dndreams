@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "#": {
-      "item": "minecraft:stick"
+      "item": "dndreams:end_stick"
     },
     "X": {
-      "item": "minecraft:amethyst_shard"
+      "item": "dndreams:celestium"
     },
     "Y": {
-      "item": "dndreams:cloud"
+      "item": "dndreams:sakura_petals"
     }
   },
   "pattern": [
@@ -18,6 +18,6 @@
   ],
   "result": {
     "count": 8,
-    "item": "dndreams:skybound_arrow"
+    "item": "dndreams:storm_arrow"
   }
 }

@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.initializers.entity;
 
-import dev.architectury.platform.Mod;
 import net.eman3600.dndreams.entities.misc.RisingBlockEntity;
 import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
 import net.eman3600.dndreams.entities.mobs.*;
@@ -181,6 +180,24 @@ public class ModEntities {
     );
 
 
+    public static final EntityType<ManatwineArrowEntity> MANATWINE_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "manatwine_arrow"),
+            FabricEntityTypeBuilder.<ManatwineArrowEntity>create(SpawnGroup.MISC, ManatwineArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
+                    .build()
+    );
+
+    public static final EntityType<MindstrungArrowEntity> MINDSTRUNG_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "mindstrung_arrow"),
+            FabricEntityTypeBuilder.<MindstrungArrowEntity>create(SpawnGroup.MISC, MindstrungArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
+                    .build()
+    );
+
     public static final EntityType<ManagoldArrowEntity> MANAGOLD_ARROW = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "managold_arrow"),
             FabricEntityTypeBuilder.<ManagoldArrowEntity>create(SpawnGroup.MISC, ManagoldArrowEntity::new)
@@ -215,6 +232,15 @@ public class ModEntities {
 //                    .trackRangeChunks(4)
 //                    .build()
 //    );
+
+    public static final EntityType<StormArrowEntity> STORM_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "storm_arrow"),
+            FabricEntityTypeBuilder.<StormArrowEntity>create(SpawnGroup.MISC, StormArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
+                    .build()
+    );
 
 
     public static void registerEntities() {

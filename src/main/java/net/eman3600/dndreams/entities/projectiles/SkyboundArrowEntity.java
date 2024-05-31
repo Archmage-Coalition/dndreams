@@ -11,7 +11,6 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 
 public class SkyboundArrowEntity extends PersistentProjectileEntity implements GravityProjectileEntity {
-    private static final double BLAST_RANGE = 5d;
 
     private double ascension = 0d;
 
@@ -21,10 +20,6 @@ public class SkyboundArrowEntity extends PersistentProjectileEntity implements G
 
     public SkyboundArrowEntity(World world, LivingEntity owner) {
         super(ModEntities.SKYBOUND_ARROW, owner, world);
-    }
-
-    public SkyboundArrowEntity(World world, double x, double y, double z) {
-        super(ModEntities.SKYBOUND_ARROW, x, y, z, world);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package net.eman3600.dndreams;
 
-import dev.architectury.platform.Mod;
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.BonfireBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
@@ -151,8 +150,11 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.TORMENTOR, TormentorEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.FACELESS, FacelessEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.DREAM_SHEEP, DreamSheepEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MANATWINE_ARROW, ManatwineArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MINDSTRUNG_ARROW, MindstrungArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.MANAGOLD_ARROW, ManagoldArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.SKYBOUND_ARROW, SkyboundArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.STORM_ARROW, StormArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.DREADFUL_ARROW, DreadfulArrowRenderer::new);
 
 

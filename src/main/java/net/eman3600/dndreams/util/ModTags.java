@@ -52,6 +52,7 @@ public class ModTags {
     public static final TagKey<Item> DREAM_EXCLUSIVE = ofItem("dream_exclusive");
     public static final TagKey<Item> CORRUPTORS = ofItem("corruptors");
     public static final TagKey<Item> ATLAS = ofItem("atlas_items");
+    public static final TagKey<Item> QUIVERS = ofItem("quivers");
 
     public static final TagKey<EntityType<?>> SUBSTANTIAL_ENTITIES = ofEntity("substantial");
     public static final TagKey<EntityType<?>> GLOOM_ENTITIES = ofEntity("gloom");

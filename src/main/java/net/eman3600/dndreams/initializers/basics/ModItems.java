@@ -25,9 +25,7 @@ import net.eman3600.dndreams.items.dreadful.DreadfulArrowItem;
 import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
 import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.hellsteel.*;
-import net.eman3600.dndreams.items.magic_bow.BloodyCarbineItem;
-import net.eman3600.dndreams.items.magic_bow.ManastringBowItem;
-import net.eman3600.dndreams.items.magic_bow.MindstringBowItem;
+import net.eman3600.dndreams.items.magic_bow.*;
 import net.eman3600.dndreams.items.managold.ManagoldArmorItem;
 import net.eman3600.dndreams.items.managold.ManagoldArrowItem;
 import net.eman3600.dndreams.items.misc_armor.CloudWingsItem;
@@ -395,13 +393,24 @@ public class ModItems {
     public static final Item STRIFE = registerItem("strife",
             new StrifeItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(735)).withTooltip(null, 1).withTooltip("tooltip.dndreams.sacrifice", 1));
 
-    // Magic Arrows
+    // Magic Arrows & Quivers
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
             new ManagoldArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item SKYBOUND_ARROW = registerItem("skybound_arrow",
             new SkyboundArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item STORM_ARROW = registerItem("storm_arrow",
+            new StormArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item DREADFUL_ARROW = registerItem("dreadful_arrow",
             new DreadfulArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+
+    public static final Item MAGIC_QUIVER = registerItem("magic_quiver",
+            new MagicQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)));
+    public static final Item MANAGOLD_QUIVER = registerItem("managold_quiver",
+            new ManagoldQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
+    public static final Item SKYBOUND_QUIVER = registerItem("skybound_quiver",
+            new SkyboundQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 2));
+    public static final Item STORM_QUIVER = registerItem("storm_quiver",
+            new StormQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
 
     // Trinkets
     public static final Item FLEETFOOT_BAND = registerItem("fleetfoot_band",
