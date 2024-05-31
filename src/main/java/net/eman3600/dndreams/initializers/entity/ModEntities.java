@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.initializers.entity;
 
+import dev.architectury.platform.Mod;
 import net.eman3600.dndreams.entities.misc.RisingBlockEntity;
 import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
 import net.eman3600.dndreams.entities.mobs.*;
@@ -197,6 +198,23 @@ public class ModEntities {
                     .trackRangeChunks(4)
                     .build()
     );
+
+    public static final EntityType<DreadfulArrowEntity> DREADFUL_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "dreadful_arrow"),
+            FabricEntityTypeBuilder.<DreadfulArrowEntity>create(SpawnGroup.MISC, DreadfulArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions()).
+                    fireImmune().
+                    build()
+    );
+
+//    public static final EntityType<DreadfulArrowEntity> DREADFUL_ARROW = Registry.register(
+//            Registry.ENTITY_TYPE, new Identifier(MODID, "dreadful_arrow"),
+//            FabricEntityTypeBuilder.<SkyboundArrowEntity>create(SpawnGroup.MISC, SkyboundArrowEntity::new)
+//                    .dimensions(EntityType.ARROW.getDimensions())
+//                    .fireImmune()
+//                    .trackRangeChunks(4)
+//                    .build()
+//    );
 
 
     public static void registerEntities() {

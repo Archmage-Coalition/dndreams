@@ -1,5 +1,6 @@
 package net.eman3600.dndreams;
 
+import dev.architectury.platform.Mod;
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.BonfireBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
@@ -8,6 +9,7 @@ import net.eman3600.dndreams.entities.projectiles.GlowBoltEntity;
 import net.eman3600.dndreams.entities.projectiles.SparkBoltEntity;
 import net.eman3600.dndreams.entities.projectiles.StrifeEntity;
 import net.eman3600.dndreams.entities.renderers.*;
+import net.eman3600.dndreams.entities.renderers.features.DreadfulArrowRenderer;
 import net.eman3600.dndreams.events.KeyInputHandler;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
@@ -151,6 +153,7 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.DREAM_SHEEP, DreamSheepEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.MANAGOLD_ARROW, ManagoldArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.SKYBOUND_ARROW, SkyboundArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.DREADFUL_ARROW, DreadfulArrowRenderer::new);
 
 
         KeyInputHandler.registerBindings();
