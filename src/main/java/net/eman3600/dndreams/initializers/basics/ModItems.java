@@ -404,7 +404,7 @@ public class ModItems {
             new DreadfulArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     public static final Item MAGIC_QUIVER = registerItem("magic_quiver",
-            new MagicQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)));
+            new MagicQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
     public static final Item MANAGOLD_QUIVER = registerItem("managold_quiver",
             new ManagoldQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
     public static final Item SKYBOUND_QUIVER = registerItem("skybound_quiver",

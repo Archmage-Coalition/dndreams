@@ -44,6 +44,13 @@ public class StormArrowEntity extends PersistentProjectileEntity implements Grav
         pickupType = rain ? PickupPermission.DISALLOWED : pickupType;
     }
 
+    public StormArrowEntity(World world, Vec3d pos, boolean rain) {
+        super(ModEntities.STORM_ARROW, pos.x, pos.y, pos.z, world);
+
+        dataTracker.set(RAIN, rain);
+        pickupType = rain ? PickupPermission.DISALLOWED : pickupType;
+    }
+
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
@@ -91,7 +98,7 @@ public class StormArrowEntity extends PersistentProjectileEntity implements Grav
 
         for (int i = 0; i < arrows; i++) {
 
-            StormArrowEntity arrow = new StormArrowEntity(world, getOwner() instanceof LivingEntity e ? e : null, true);
+            StormArrowEntity arrow = getOwner() instanceof LivingEntity e ? new StormArrowEntity(world, e, true) : new StormArrowEntity(world, getPos(), true);
 
             Vec3d target = getPos().add(randomOffset(), randomOffset(), randomOffset());
             int distance = world.random.nextBetween(MIN_DISTANCE, MAX_DISTANCE) + (SPACING * i);

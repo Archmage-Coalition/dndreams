@@ -1,22 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "#X#",
-    "ZYZ",
-    "#X#"
+    "#ZW",
+    "XYX",
+    "WX#"
   ],
   "key": {
     "#": {
-      "item": "dndreams:sculk_powder"
+      "item": "minecraft:nether_wart"
     },
     "X": {
-      "item": "minecraft:arrow"
-    },
-    "Y": {
       "item": "minecraft:leather"
     },
+    "Y": {
+      "item": "minecraft:ender_eye"
+    },
     "Z": {
-      "item": "minecraft:diamond"
+      "item": "dndreams:sculk_powder"
+    },
+    "W": {
+      "item": "minecraft:arrow"
     }
   },
   "result": {
