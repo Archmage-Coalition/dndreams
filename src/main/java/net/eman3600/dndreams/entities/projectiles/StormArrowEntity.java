@@ -94,8 +94,6 @@ public class StormArrowEntity extends PersistentProjectileEntity implements Grav
     private void rainArrows(double velocity, boolean critical) {
         int arrows = MathHelper.ceil((world.random.nextBetween(MIN_ARROWS, MAX_ARROWS) + world.random.nextDouble()) * velocity);
 
-        System.out.println("Impact velocity: " + velocity);
-
         for (int i = 0; i < arrows; i++) {
 
             StormArrowEntity arrow = getOwner() instanceof LivingEntity e ? new StormArrowEntity(world, e, true) : new StormArrowEntity(world, getPos(), true);
