@@ -40,6 +40,13 @@ public class SkyboundArrowEntity extends PersistentProjectileEntity implements G
     }
 
     @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+
+        ascension = nbt.getDouble("Ascension");
+    }
+
+    @Override
     public void tick() {
         super.tick();
 
@@ -48,13 +55,6 @@ public class SkyboundArrowEntity extends PersistentProjectileEntity implements G
         if (!world.isClient && ascension > 400) {
             discard();
         }
-    }
-
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-
-        ascension = nbt.getDouble("Ascension");
     }
 
     @Override
