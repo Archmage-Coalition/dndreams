@@ -69,10 +69,8 @@ Once inside, Elrunez staged a coup on the angelic throne, managing to overthrow 
 
 
 # Bosses
-## Pnevma, Ender Dragon
-The Ender Dragon was constructed by Elrunez to drown out the force of reality. Made of nightmares and madness, Pnevma plagues the End and suppresses the World Fountain by sponging up its energy. The dragon thusly can withstand the force of reality and even wield it despite being an entity of insanity. This has dried up the minds of the endermen living in the End, stealing their wits and binding them to the will of Pnevma.
-
-This task has been taxing to the element of imagination and has neutralized it somewhat. This has prevented the creation of dream powder.
+## Pnevma, the Ender Dragon
+The Ender Dragon was constructed by Elrunez to control the World Fountain. By stopping the cosmic flows of the fountain, Pnevma has left the world and its fate to stagnate, and she has stolen the wits of the endermen. Only by slaying Pnevma and freeing the flow may the world have even a chance of being saved from the affliction.
 
 ## The Wither, Hand of the Plague
 An amalgamation of failed simulacrums, the Wither is the embodiment of the decaying force of the affliction that created the skeletons. It cares only to infect intelligent life and was the main spreader of the decay. Once its corrupted purpose was served, it collapsed into a heap of bones and skulls.

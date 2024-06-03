@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#XZ",
+    "XYX",
+    "ZX#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:crystal_mix"
+    },
+    "X": {
+      "item": "dndreams:storm_arrow"
+    },
+    "Y": {
+      "item": "dndreams:magic_quiver"
+    },
+    "Z": {
+      "item": "dndreams:brilliance"
+    }
+  },
+  "result": {
+    "item": "dndreams:storm_quiver"
+  }
+}

@@ -801,6 +801,11 @@
   "entity.dndreams.faceless": "The Faceless",
   "entity.dndreams.dream_sheep": "Dream Sheep",
   "entity.dndreams.warden_ragdoll": "Warden",
+  "entity.dndreams.managold_arrow": "Pulse Arrow",
+  "entity.dndreams.skybound_arrow": "Skybound Arrow",
+  "entity.dndreams.storm_arrow": "Celestial Arrow",
+  "entity.dndreams.manatwine_arrow": "Manatwine Arrow",
+  "entity.dndreams.mindstrung_arrow": "Mindstrung Arrow",
   
   
   "advancements.dndreams.root.title": "Demons and Dreams",
