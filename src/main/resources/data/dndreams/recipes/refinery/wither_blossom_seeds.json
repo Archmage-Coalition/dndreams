@@ -1,0 +1,18 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "minecraft:nether_star"
+    }
+  ],
+  "result": {
+    "item": "dndreams:wither_blossom_seeds",
+    "count": 16
+  },
+  "byproduct": {
+    "item": "minecraft:quartz",
+    "count": 4
+  },
+  "cost": 300,
+  "refine_time": 200
+}

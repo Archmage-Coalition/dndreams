@@ -162,6 +162,7 @@ public class ModItems {
     public static final Item CAKE_APPLE = registerItem("cake_apple", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.CAKE_APPLE)));
     public static final Item LOST_DREAM = registerItem("lost_dream", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item PERMAFROST = registerItem("permafrost", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item FULGAR_BUD = registerItem("fulgar_bud", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
 
     // Lotus, Wither Bud, & Dragonfruit
