@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.screens;
 
 import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
-import net.eman3600.dndreams.screens.slot.JarSlot;
 import net.eman3600.dndreams.screens.slot.GenericOutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -23,7 +22,7 @@ public class RefineryScreenHandler extends ScreenHandler {
 
     public RefineryScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
         super(ModScreenHandlerTypes.REFINERY, syncId);
-        checkSize(inventory, 7);
+        checkSize(inventory, 6);
         this.inventory = inventory;
         this.delegate = delegate;
 
@@ -34,7 +33,6 @@ public class RefineryScreenHandler extends ScreenHandler {
         addSlot(new Slot(inventory, 3, 50, 43));
         addSlot(new GenericOutputSlot(inventory, 4, 120, 25));
         addSlot(new GenericOutputSlot(inventory, 5, 120, 43));
-        addSlot(new JarSlot(inventory, 6, 85, 59));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);

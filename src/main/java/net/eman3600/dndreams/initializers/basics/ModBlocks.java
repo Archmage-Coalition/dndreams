@@ -11,7 +11,9 @@ import net.eman3600.dndreams.blocks.redstone.CosmicFocusBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritFenceBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritSlabBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritStairsBlock;
-import net.eman3600.dndreams.blocks.spreadable.*;
+import net.eman3600.dndreams.blocks.spreadable.HavenSpreadableBlock;
+import net.eman3600.dndreams.blocks.spreadable.MarbleSpreadableBlock;
+import net.eman3600.dndreams.blocks.spreadable.ShadeMossBlock;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
@@ -28,7 +30,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
@@ -1148,13 +1149,6 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
-
-    // Smokestack
-    public static final Block SMOKESTACK = registerBlock("smokestack",
-            new SmokestackBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(1.0f, 6.0f)
-                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)),
-
-            new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     // Refinery
     public static final Block REFINERY = registerBlock("refinery",

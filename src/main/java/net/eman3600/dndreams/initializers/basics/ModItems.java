@@ -152,8 +152,6 @@ public class ModItems {
     // Wood Ash
     public static final Item WOOD_ASH = registerItem("wood_ash", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Amethyst Jars, Fumes, & Essences
-    public static final Item AMETHYST_JAR = registerItem("amethyst_jar", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item SAKURA_PETALS = registerItem("sakura_petals", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item RAW_FROG = registerItem("raw_frog", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.RAW_FROG)));
     public static final Item COOKED_FROG = registerItem("cooked_frog", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.COOKED_FROG)));
