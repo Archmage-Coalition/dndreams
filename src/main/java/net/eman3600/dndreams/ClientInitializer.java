@@ -142,8 +142,9 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.SPRING_VIAL, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.RISING_BLOCK, FallingBlockEntityRenderer::new);
 
-        EntityRendererRegistry.register(ModEntities.BLOOD_ZOMBIE, BloodZombieEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BLOOD_SKELETON, BloodSkeletonEntityRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.SHAMBLER, ShamblerEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.TORMENTOR, TormentorEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.FACELESS, FacelessEntityRenderer::new);

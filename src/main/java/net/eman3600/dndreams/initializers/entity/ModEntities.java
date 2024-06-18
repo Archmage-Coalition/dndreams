@@ -16,9 +16,9 @@ import net.minecraft.world.Heightmap;
 
 import static net.eman3600.dndreams.Initializer.MODID;
 import static net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity.createBloodSkeletonAttributes;
-import static net.eman3600.dndreams.entities.mobs.BloodZombieEntity.createBloodZombieAttributes;
 import static net.eman3600.dndreams.entities.mobs.DreamSheepEntity.createDreamSheepAttributes;
 import static net.eman3600.dndreams.entities.mobs.FacelessEntity.createFacelessAttributes;
+import static net.eman3600.dndreams.entities.mobs.ShamblerEntity.createShamblerAttributes;
 import static net.eman3600.dndreams.entities.mobs.TormentorEntity.createTormentorAttributes;
 
 public class ModEntities {
@@ -141,17 +141,17 @@ public class ModEntities {
 
 
 
-    public static final EntityType<BloodZombieEntity> BLOOD_ZOMBIE = Registry.register(
-            Registry.ENTITY_TYPE, new Identifier(MODID, "blood_moon/blood_zombie"),
-            FabricEntityTypeBuilder.<BloodZombieEntity>create(SpawnGroup.MONSTER, BloodZombieEntity::new)
-                    .dimensions(EntityType.ZOMBIE.getDimensions())
-                    .build()
-    );
-
     public static final EntityType<BloodSkeletonEntity> BLOOD_SKELETON = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "blood_moon/blood_skeleton"),
             FabricEntityTypeBuilder.<BloodSkeletonEntity>create(SpawnGroup.MONSTER, BloodSkeletonEntity::new)
                     .dimensions(EntityType.STRAY.getDimensions())
+                    .build()
+    );
+
+    public static final EntityType<ShamblerEntity> SHAMBLER = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "shambler"),
+            FabricEntityTypeBuilder.<ShamblerEntity>create(SpawnGroup.MONSTER, ShamblerEntity::new)
+                    .dimensions(EntityType.ZOMBIE.getDimensions())
                     .build()
     );
 
@@ -253,8 +253,8 @@ public class ModEntities {
 
 
     public static void registerEntities() {
-        FabricDefaultAttributeRegistry.register(BLOOD_ZOMBIE, createBloodZombieAttributes());
         FabricDefaultAttributeRegistry.register(BLOOD_SKELETON, createBloodSkeletonAttributes());
+        FabricDefaultAttributeRegistry.register(SHAMBLER, createShamblerAttributes());
         FabricDefaultAttributeRegistry.register(TORMENTOR, createTormentorAttributes());
         FabricDefaultAttributeRegistry.register(FACELESS, createFacelessAttributes());
         FabricDefaultAttributeRegistry.register(DREAM_SHEEP, createDreamSheepAttributes());

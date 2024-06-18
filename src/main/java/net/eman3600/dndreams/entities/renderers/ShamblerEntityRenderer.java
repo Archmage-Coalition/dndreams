@@ -8,10 +8,10 @@ import net.minecraft.util.Identifier;
 
 import static net.eman3600.dndreams.Initializer.MODID;
 
-public class BloodZombieEntityRenderer extends ZombieEntityRenderer {
-    private static final Identifier TEXTURE = new Identifier(MODID, "textures/entity/blood_moon/blood_zombie.png");
+public class ShamblerEntityRenderer extends ZombieEntityRenderer {
+    private static final Identifier TEXTURE = new Identifier(MODID, "textures/entity/shambler.png");
 
-    public BloodZombieEntityRenderer(EntityRendererFactory.Context context) {
+    public ShamblerEntityRenderer(EntityRendererFactory.Context context) {
         super(context);
     }
 
