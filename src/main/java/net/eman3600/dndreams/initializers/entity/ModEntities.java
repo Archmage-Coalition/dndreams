@@ -216,6 +216,15 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<GhostArrowEntity> GHOST_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "ghost_arrow"),
+            FabricEntityTypeBuilder.<GhostArrowEntity>create(SpawnGroup.MISC, GhostArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
+                    .build()
+    );
+
     public static final EntityType<DreadfulArrowEntity> DREADFUL_ARROW = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "dreadful_arrow"),
             FabricEntityTypeBuilder.<DreadfulArrowEntity>create(SpawnGroup.MISC, DreadfulArrowEntity::new)

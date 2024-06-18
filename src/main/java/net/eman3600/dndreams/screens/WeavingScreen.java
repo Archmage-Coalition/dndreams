@@ -11,15 +11,15 @@ import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
     private static final Identifier TEXTURE = new Identifier(Initializer.MODID, "textures/gui/container/weaving.png");
@@ -29,7 +29,8 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
     private int scrollOffset;
     private boolean canCraft;
     private final WeavingScreenHandler handler;
-    private Map<Integer, Ingredient> missingIngredients = new HashMap<>();
+    private List<Ingredient> missingIngredients = new ArrayList<>();
+    private float time = 0;
 
     public WeavingScreen(WeavingScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -51,7 +52,7 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
         }
 
         this.renderBackground(matrices);
-        this.drawMissingItems(matrices, delta, mouseX, mouseY);
+        time += delta;
         super.render(matrices, mouseX, mouseY, delta);
 
         this.drawMouseoverTooltip(matrices, mouseX, mouseY);
@@ -69,8 +70,47 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
             if (!handler.trulyMatches()) {
 
                 this.drawTexture(matrices, i + 139, j + 29, 24, 220, 24, 24);
+
+                WeavingRecipe recipe = handler.getCurrentRecipe();
+                int bitmask = handler.getInputSlotStates(recipe);
+
+                int missingItems = (bitmask >> 4 & 1) + (bitmask >> 5 & 1);
+                int filledSlots = (bitmask & 1) + (bitmask >> 1 & 1);
+
+                int slotIndex = (bitmask & 1) == 1 ? 1 : 0;
+                int ingredientIndex = (bitmask >> 4 & 1) == 1 ? 0 : 1;
+
+                while (missingItems > 0 && filledSlots < 2) {
+
+                    drawMissingIngredient(matrices, i, j, slotIndex++, recipe.input.get(ingredientIndex++));
+
+                    missingItems--;
+                    filledSlots++;
+                }
+
+                if ((bitmask & 1) == 1 && (bitmask >> 2 & 1) == 0) {
+                    drawWrongIngredientOverlay(matrices, i, j, 0);
+                }
+                if ((bitmask >> 1 & 1) == 1 && (bitmask >> 3 & 1) == 0) {
+                    drawWrongIngredientOverlay(matrices, i, j, 1);
+                }
             }
         }
+    }
+
+    private void drawMissingIngredient(MatrixStack matrices, int i, int j, int slot, Ingredient ingredient) {
+        this.drawTexture(matrices, i + 20, j + 33 + 18 * slot, 48, 220, 16, 16);
+
+        ItemStack[] stacks = ingredient.getMatchingStacks();
+        ItemStack stack = stacks[(int)time % stacks.length];
+
+        itemRenderer.renderGuiItemIcon(stack, i + 20, j + 33 + 18 * slot);
+
+        RenderSystem.setShaderTexture(0, TEXTURE);
+    }
+
+    private void drawWrongIngredientOverlay(MatrixStack matrices, int i, int j, int slot) {
+        this.drawTexture(matrices, i + 20, j + 33 + 18 * slot, 64, 220, 16, 16);
     }
 
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
@@ -107,6 +147,8 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
         int n = this.scrollOffset + 12;
         this.renderRecipeBackground(matrices, mouseX, mouseY, l, m, n);
         this.renderRecipeIcons(l, m, n);
+
+        this.drawMissingItems(matrices, delta, mouseX, mouseY);
     }
 
     protected boolean isClickOutsideBounds(double mouseX, double mouseY, int left, int top, int button) {

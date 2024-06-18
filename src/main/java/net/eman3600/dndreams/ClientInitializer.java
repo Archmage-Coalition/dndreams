@@ -151,6 +151,7 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.MANATWINE_ARROW, ManatwineArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.MINDSTRUNG_ARROW, MindstrungArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.MANAGOLD_ARROW, ManagoldArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.GHOST_ARROW, GhostArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.SKYBOUND_ARROW, SkyboundArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.STORM_ARROW, StormArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.DREADFUL_ARROW, DreadfulArrowRenderer::new);

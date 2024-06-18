@@ -22,6 +22,8 @@ import net.eman3600.dndreams.items.consumable.permanent.CrystalFeatherItem;
 import net.eman3600.dndreams.items.consumable.permanent.FidiFruitItem;
 import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
 import net.eman3600.dndreams.items.dreadful.DreadfulArrowItem;
+import net.eman3600.dndreams.items.dreadful.GhostArrowItem;
+import net.eman3600.dndreams.items.dreadful.StrifeItem;
 import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
 import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.hellsteel.*;
@@ -395,6 +397,8 @@ public class ModItems {
     // Magic Arrows & Quivers
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
             new ManagoldArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item GHOST_ARROW = registerItem("ghost_arrow",
+            new GhostArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item SKYBOUND_ARROW = registerItem("skybound_arrow",
             new SkyboundArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item STORM_ARROW = registerItem("storm_arrow",
@@ -406,6 +410,8 @@ public class ModItems {
             new MagicQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
     public static final Item MANAGOLD_QUIVER = registerItem("managold_quiver",
             new ManagoldQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
+    public static final Item GHOST_QUIVER = registerItem("ghost_quiver",
+            new GhostQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 2));
     public static final Item SKYBOUND_QUIVER = registerItem("skybound_quiver",
             new SkyboundQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 2));
     public static final Item STORM_QUIVER = registerItem("storm_quiver",

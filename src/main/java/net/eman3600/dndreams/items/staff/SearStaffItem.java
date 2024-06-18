@@ -54,7 +54,7 @@ public class SearStaffItem extends TooltipItem implements ManaCostItem {
 
     @Override
     public int getBaseManaCost() {
-        return 7;
+        return 4;
     }
 
     @Override

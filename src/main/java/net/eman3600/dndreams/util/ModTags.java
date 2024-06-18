@@ -57,6 +57,7 @@ public class ModTags {
     public static final TagKey<EntityType<?>> SUBSTANTIAL_ENTITIES = ofEntity("substantial");
     public static final TagKey<EntityType<?>> GLOOM_ENTITIES = ofEntity("gloom");
     public static final TagKey<EntityType<?>> ROT_IMMUNE_ENTITIES = ofEntity("rot_immune");
+    public static final TagKey<EntityType<?>> GLOOM_PROJECTILE_ENTITIES = ofEntity("gloom_projectiles");
 
     /* TAG REGISTRIES */
     private static TagKey<Block> ofBlock(String id) {

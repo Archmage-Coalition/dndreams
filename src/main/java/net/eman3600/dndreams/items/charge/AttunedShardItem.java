@@ -115,4 +115,17 @@ public class AttunedShardItem extends AbstractChargeItem {
             stacks.add(stack);
         }
     }
+
+    public static ItemStack ofCharge(int charge) {
+        if (charge <= 0) {
+            return new ItemStack(Items.AMETHYST_SHARD);
+        }
+        if (charge >= 500) {
+            return new ItemStack(ModItems.CHARGED_SHARD);
+        }
+        ItemStack stack = new ItemStack(ModItems.ATTUNED_SHARD);
+        ((AttunedShardItem)ModItems.ATTUNED_SHARD).charge(stack, charge);
+
+        return stack;
+    }
 }

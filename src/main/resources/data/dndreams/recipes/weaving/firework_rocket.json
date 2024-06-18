@@ -12,5 +12,6 @@
   "mold": {
 	  "item": "minecraft:firework_rocket"
   },
-  "sanity_cost": 1.5
+  "sanity_cost": 1.5,
+  "preserve_mold": true
 }

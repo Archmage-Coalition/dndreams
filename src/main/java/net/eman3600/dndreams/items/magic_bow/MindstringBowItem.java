@@ -29,7 +29,7 @@ public class MindstringBowItem extends MagicBowItem implements SanityCostItem {
     }
 
     public int pullTime() {
-        return 10;
+        return 13;
     }
 
     @Override

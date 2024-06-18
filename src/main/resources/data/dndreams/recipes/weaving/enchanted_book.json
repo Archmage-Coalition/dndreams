@@ -15,5 +15,6 @@
   "mold": {
 	  "item": "minecraft:enchanted_book"
   },
-  "sanity_cost": 15
+  "sanity_cost": 15,
+  "preserve_mold": true
 }

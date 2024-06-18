@@ -70,11 +70,12 @@ public class WeavingResultSlot extends Slot {
         this.onCrafted(stack);
         List<WeavingRecipe> list = player.world.getRecipeManager().getAllMatches(ModRecipeTypes.WEAVING, this.input, player.world);
 
-        list.stream().filter(recipe -> recipe.output.isOf(stack.getItem())).forEach(recipe -> EntityComponents.TORMENT.get(player).spendSanity(recipe.sanityCost));
+        WeavingRecipe recipe = list.stream().filter(r -> r.output.isOf(stack.getItem())).toList().get(0);
+        EntityComponents.TORMENT.get(player).spendSanity(recipe.sanityCost);
 
         DefaultedList<ItemStack> defaultedList = player.world.getRecipeManager().getRemainingStacks(ModRecipeTypes.WEAVING, this.input, player.world);
 
-        for(int i = 1; i < defaultedList.size(); ++i) {
+        for(int i = recipe.preserveMold ? 1 : 0; i < defaultedList.size(); ++i) {
             ItemStack itemStack = this.input.getStack(i);
             ItemStack itemStack2 = defaultedList.get(i);
             if (!itemStack.isEmpty()) {

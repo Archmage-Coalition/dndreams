@@ -1,6 +1,7 @@
-package net.eman3600.dndreams.items;
+package net.eman3600.dndreams.items.dreadful;
 
 import net.eman3600.dndreams.entities.projectiles.StrifeEntity;
+import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.BloodlustItem;
 import net.eman3600.dndreams.items.magic_bow.MagicCrossbowItem;
 import net.minecraft.entity.player.PlayerEntity;
