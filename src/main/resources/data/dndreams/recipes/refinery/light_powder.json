@@ -1,0 +1,14 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    }
+  ],
+  "result": {
+    "item": "dndreams:light_powder",
+    "count": 4
+  },
+  "cost": 25,
+  "refine_time": 50
+}

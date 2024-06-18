@@ -34,7 +34,6 @@
   "item.dndreams.brilliance.tooltip":  "§3Blinding perfection.",
   "item.dndreams.ravaged_flesh":  "Ravaged Flesh",
   "item.dndreams.infernal_residue":  "Dreadful Wisps",
-  "item.dndreams.tainted_pearl":  "Accursed Pearl",
   "item.dndreams.lotus_flower": "Lotus Flower",
   "item.dndreams.succulent_apple": "Succulent Apple",
   "item.dndreams.poison_apple": "Rotten Apple",
@@ -58,6 +57,13 @@
   "item.dndreams.nightmarrow": "Nightmarrow",
   "item.dndreams.fulgar_bud": "Fulgar Crystal",
   "item.dndreams.demon_ash": "Demonic Ash",
+  "item.dndreams.demon_ash.tooltip": "§3It emanates a menacing aura.",
+
+  "item.dndreams.tainted_pearl":  "Accursed Pearl",
+  "item.dndreams.tainted_pearl.tooltip":  "§3It wants to take you somewhere.",
+  "item.dndreams.light_powder":  "Spark Powder",
+  "item.dndreams.light_powder.tooltip.0":  "§3Emits light.",
+  "item.dndreams.light_powder.tooltip.1":  "§3Can be thrown.",
   
   "item.dndreams.resonant_pickaxe": "Resonant Pickaxe",
   "item.dndreams.resonant_pickaxe.tooltip": "§3Mines all blocks at the same speed.",

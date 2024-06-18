@@ -393,7 +393,7 @@ public class InfusionComponent implements InfusionComponentI {
 
         for (BlockPos pos: revealedQuartz) {
 
-            if (player.world.canSetBlock(pos)) player.world.setBlockState(pos, player.world.getBlockState(pos).getBlock().getDefaultState());
+            if (player.world.canSetBlock(pos) && player.world.getBlockState(pos).getBlock() instanceof VitalOreBlock) player.world.setBlockState(pos, player.world.getBlockState(pos).with(VitalOreBlock.GLASSES, false));
         }
 
         revealedQuartz.clear();
@@ -407,7 +407,7 @@ public class InfusionComponent implements InfusionComponentI {
                 BlockPos pos = playerPos.add(i, j, k);
                 if (player.world.getBlockState(pos).getBlock() instanceof VitalOreBlock && !player.world.getBlockState(pos).get(VitalOreBlock.REVEALED)) {
 
-                    player.world.setBlockState(pos, player.world.getBlockState(pos).with(VitalOreBlock.REVEALED, true));
+                    player.world.setBlockState(pos, player.world.getBlockState(pos).with(VitalOreBlock.GLASSES, true));
                     revealedQuartz.add(pos);
                 }
             }

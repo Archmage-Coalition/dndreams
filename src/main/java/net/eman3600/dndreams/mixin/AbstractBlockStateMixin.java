@@ -91,7 +91,7 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
     @Inject(method = "getHardness", at = @At("HEAD"), cancellable = true)
     private void dndreams$getHardness(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {
 
-        if (getBlock() instanceof VitalOreBlock block && !get(VitalOreBlock.REVEALED)) {
+        if (getBlock() instanceof VitalOreBlock block && !get(VitalOreBlock.REVEALED) && !get(VitalOreBlock.GLASSES)) {
 
             cir.setReturnValue(block.fakeBlock.getHardness());
         }

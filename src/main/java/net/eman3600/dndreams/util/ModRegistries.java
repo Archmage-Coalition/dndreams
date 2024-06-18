@@ -84,6 +84,7 @@ public class ModRegistries {
         AttunementBurnSlot.putFuel(ModItems.NIGHTMARE_FUEL, 100);
         AttunementBurnSlot.putFuel(ModItems.CRYSTAL_MIX, 150);
         AttunementBurnSlot.putFuel(ModItems.WOOD_ASH, 5);
+        AttunementBurnSlot.putFuel(ModItems.LIGHT_POWDER, 8);
     }
 
     private static void registerMutables() {
