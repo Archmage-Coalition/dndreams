@@ -313,6 +313,7 @@ public class ModRegistries {
         access.registerCompostable(1f, ModItems.DRAGONFRUIT);
         access.registerCompostable(.65f, ModItems.GOLD_FRUIT);
         access.registerCompostable(.65f, ModItems.STAR_FRUIT);
+        access.registerCompostable(.65f, ModItems.WITHER_BUD);
         access.registerCompostable(.3f, ModItems.WITHER_BLOSSOM_SEEDS);
         access.registerCompostable(.5f, ModItems.DRAGONFRUIT_SEEDS);
         access.registerCompostable(.3f, ModItems.SAKURA_PETALS);

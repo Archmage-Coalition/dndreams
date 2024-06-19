@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.entities.mobs;
 
-import net.eman3600.dndreams.entities.ai.ShamblerSpeedGoal;
+import net.eman3600.dndreams.entities.ai.ShamblerHiveGoal;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.minecraft.entity.Entity;
@@ -20,18 +20,18 @@ import net.minecraft.world.World;
 
 public class ShamblerEntity extends ZombieEntity {
 
-    public final ShamblerSpeedGoal speedGoal = new ShamblerSpeedGoal(this);
+    public final ShamblerHiveGoal hiveGoal = new ShamblerHiveGoal(this);
 
     public ShamblerEntity(EntityType<? extends ZombieEntity> entityType, World world) {
         super(entityType, world);
 
-        goalSelector.add(0, speedGoal);
+        goalSelector.add(0, hiveGoal);
     }
 
     public ShamblerEntity(World world) {
         super(ModEntities.SHAMBLER, world);
 
-        goalSelector.add(0, speedGoal);
+        goalSelector.add(0, hiveGoal);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ShamblerEntity extends ZombieEntity {
     }
 
     public static DefaultAttributeContainer.Builder createShamblerAttributes() {
-        return createZombieAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 30).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 50.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21f).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0).add(EntityAttributes.GENERIC_ARMOR, 6);
+        return createZombieAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 30).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21f).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0).add(EntityAttributes.GENERIC_ARMOR, 6);
     }
 
     @Override
@@ -75,9 +75,9 @@ public class ShamblerEntity extends ZombieEntity {
 
     @Override
     public void onDeath(DamageSource damageSource) {
-        for (ShamblerEntity entity: speedGoal.getNearbyShamblers()) {
+        for (ShamblerEntity entity: hiveGoal.getNearbyShamblers()) {
             if (entity.getTarget() != null) {
-                entity.speedGoal.updateSpeed(false);
+                entity.hiveGoal.updateHive(false);
             }
         }
 

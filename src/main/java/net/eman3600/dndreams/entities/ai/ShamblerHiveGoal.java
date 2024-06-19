@@ -11,14 +11,14 @@ import net.minecraft.util.math.Vec3d;
 import java.util.List;
 import java.util.UUID;
 
-public class ShamblerSpeedGoal extends Goal {
+public class ShamblerHiveGoal extends Goal {
 
     private final ShamblerEntity shambler;
     private int cooldown = 0;
-    private int previousPartners = 0;
+    private int hiveSize = 0;
     private static final UUID uuid = UUID.fromString("378ee489-fc77-4af5-aa9b-88cc20f43af5");
 
-    public ShamblerSpeedGoal(ShamblerEntity shambler) {
+    public ShamblerHiveGoal(ShamblerEntity shambler) {
         this.shambler = shambler;
     }
 
@@ -31,7 +31,7 @@ public class ShamblerSpeedGoal extends Goal {
     public void start() {
         super.start();
 
-        updateSpeed(true);
+        updateHive(true);
     }
 
     private int getGroupRange(int partners) {
@@ -45,7 +45,7 @@ public class ShamblerSpeedGoal extends Goal {
 
     public List<ShamblerEntity> getNearbyShamblers() {
 
-        return getNearbyShamblers(previousPartners);
+        return getNearbyShamblers(hiveSize);
     }
 
     @Override
@@ -54,27 +54,41 @@ public class ShamblerSpeedGoal extends Goal {
 
         if (cooldown <= 0 && shambler.getTarget() != null) {
 
-            updateSpeed(true);
+            updateHive(true);
         }
     }
 
-    public void updateSpeed(boolean allowRally) {
+    public void updateHive(boolean allowRally) {
 
         cooldown = 50;
 
-        int size = previousPartners;
+        int size = hiveSize;
 
         List<ShamblerEntity> partners;
         do {
             partners = getNearbyShamblers(size);
         } while (size < (size = partners.size()));
 
-        if (size > previousPartners && allowRally) {
+        if (size > hiveSize && allowRally) {
             rally(partners);
         }
 
-        previousPartners = size;
+        hiveSize = size;
 
+        updateAttributes(size);
+    }
+
+    private void rally(List<ShamblerEntity> partners) {
+        for (ShamblerEntity entity : partners) {
+            if (entity.hiveGoal.hiveSize < partners.size()) {
+                entity.hiveGoal.hiveSize = partners.size();
+
+                entity.hiveGoal.updateAttributes(partners.size());
+            }
+        }
+    }
+
+    private void updateAttributes(int partners) {
         EntityAttributeInstance attributes = shambler.getAttributes().getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
         if (attributes != null) {
             EntityAttributeModifier previous = attributes.getModifier(uuid);
@@ -82,29 +96,25 @@ public class ShamblerSpeedGoal extends Goal {
                 attributes.removeModifier(previous);
             }
 
-            attributes.addTemporaryModifier(new EntityAttributeModifier(uuid, "Shamble", speedValue(size), EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+            attributes.addTemporaryModifier(new EntityAttributeModifier(uuid, "Hive", speedValue(partners), EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
         }
-    }
 
-    private void rally(List<ShamblerEntity> partners) {
-        for (ShamblerEntity entity : partners) {
-            if (entity.speedGoal.previousPartners < partners.size()) {
-                entity.speedGoal.previousPartners = partners.size();
-
-                EntityAttributeInstance attributes = entity.getAttributes().getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-                if (attributes != null) {
-                    EntityAttributeModifier previous = attributes.getModifier(uuid);
-                    if (previous != null) {
-                        attributes.removeModifier(previous);
-                    }
-
-                    attributes.addTemporaryModifier(new EntityAttributeModifier(uuid, "Shamble", speedValue(partners.size()), EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-                }
+        attributes = shambler.getAttributes().getCustomInstance(EntityAttributes.GENERIC_FOLLOW_RANGE);
+        if (attributes != null) {
+            EntityAttributeModifier previous = attributes.getModifier(uuid);
+            if (previous != null) {
+                attributes.removeModifier(previous);
             }
+
+            attributes.addTemporaryModifier(new EntityAttributeModifier(uuid, "Hive", followValue(partners), EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
         }
     }
 
     private float speedValue(int partners) {
         return Math.min(partners * .15f, .9f);
+    }
+
+    private float followValue(int partners) {
+        return Math.min(partners * .25f, 2.5f);
     }
 }
