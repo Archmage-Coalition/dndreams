@@ -19,6 +19,15 @@ The same force that twisted soul to sculk twisted dream to madness. The shadows 
 # The Other Realms
 The many realms of the world are split into 2 categories: the Physical Realms and the Spirit World.
 
+## The Overworld
+The Overworld is the primary realm of the world. It is where the Vesicans originated and fell, and it was hurt the worst by the onset of the affliction.
+
+## The Nether
+The Nether is the demonic home world and a hellish reflection of the Overworld.
+
+## The End
+The End was once home to dragons, but they have long since perished (cause currently undecided; probably genocide). Now, the only dragon to remain is Pnevma, the Ender Dragon, and even she was synthetically created. The End is resultingly now barren, except for the gardens of marble populated by the angels that Elrunez banished there.
+
 ## Dream World
 The Dream World is the land the mind taps when asleep, scratching the surface and experiencing within it nonsense. Methods exist to enter the Dream World while still lucid. The Dream World is the lower layer of the Spirit World.
 

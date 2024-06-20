@@ -31,7 +31,7 @@ public class MagicQuiverItem extends TooltipItem {
             new StatusEffectInstance(ModStatusEffects.IMMOLATION, 1, 1),
             new StatusEffectInstance(ModStatusEffects.HEARTBLEED, 140)
     };
-    private static final float TIP_CHANCE = .3f;
+    private static final float TIP_CHANCE = .7f;
 
     public MagicQuiverItem(Settings settings) {
         super(settings);
