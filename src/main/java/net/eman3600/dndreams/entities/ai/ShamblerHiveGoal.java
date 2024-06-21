@@ -24,7 +24,7 @@ public class ShamblerHiveGoal extends Goal {
 
     @Override
     public boolean canStart() {
-        return shambler.getTarget() != null;
+        return true;
     }
 
     @Override
@@ -76,6 +76,10 @@ public class ShamblerHiveGoal extends Goal {
         hiveSize = size;
 
         updateAttributes(size);
+    }
+
+    public int getHiveSize() {
+        return hiveSize;
     }
 
     private void rally(List<ShamblerEntity> partners) {

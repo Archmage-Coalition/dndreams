@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.entities.mobs;
 
 import net.eman3600.dndreams.entities.ai.ShamblerHiveGoal;
+import net.eman3600.dndreams.entities.ai.WanderTowardsHiveGoal;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.minecraft.entity.Entity;
@@ -37,6 +38,8 @@ public class ShamblerEntity extends ZombieEntity {
     @Override
     protected void initGoals() {
         super.initGoals();
+
+        goalSelector.add(6, new WanderTowardsHiveGoal(this, 1d));
     }
 
     public static boolean canSpawn(EntityType<ShamblerEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
