@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.items.magic_bow;
 
 import net.eman3600.dndreams.entities.projectiles.MindstrungArrowEntity;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.items.interfaces.SanityCostItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -51,5 +52,10 @@ public class MindstringBowItem extends MagicBowItem implements SanityCostItem {
     public PersistentProjectileEntity createDefaultArrow(World world, ItemStack stack, LivingEntity shooter) {
 
         return new MindstrungArrowEntity(world, shooter);
+    }
+
+    @Override
+    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
+        return ingredient.isOf(ModItems.NIGHTMARE_FUEL);
     }
 }

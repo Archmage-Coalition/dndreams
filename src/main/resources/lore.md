@@ -39,7 +39,7 @@ When the affliction began to taint the Overworld, it escaped into the Haven wher
 During the Age of the Illagers, Elrunez the Archmage opened the long-sealed portal to the Haven and took control of it. In a complicated coup, Elrunez banished the angels who stood against him and crowned himself Lord of the Spirit World. The angels he banished alongside Aktina, the former ruler of the Spirit World, were known as the Katharei, and those loyal to Elrunez became the Talei.
 
 
-# The Affliction's Onset
+# The Affliction's Onset [Deprecated]
 The Vesicans were a race of humanoids adept in construction of tools and structures. They lasted an unknown amount of time, but what is known is that they were destroyed by their negligence.
 
 ## The Spark
