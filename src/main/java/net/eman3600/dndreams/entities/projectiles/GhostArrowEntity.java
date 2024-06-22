@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -62,6 +63,11 @@ public class GhostArrowEntity extends PersistentProjectileEntity implements Grav
         }
 
         super.tick();
+
+        if (this.world.isClient && !this.inGround) {
+            this.world.addParticle(ParticleTypes.FALLING_OBSIDIAN_TEAR, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+        }
+
         BlockPos blockPos = getBlockPos();
         Vec3d fullPos = getPos();
         VoxelShape collision = world.getBlockState(blockPos).getCollisionShape(world, blockPos);

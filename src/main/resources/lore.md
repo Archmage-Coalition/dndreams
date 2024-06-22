@@ -26,7 +26,7 @@ The Overworld is the primary realm of the world. It is where the Vesicans origin
 The Nether is the demonic home world and a hellish reflection of the Overworld.
 
 ## The End
-The End was once home to dragons, but they have long since perished (cause currently undecided; probably genocide). Now, the only dragon to remain is Pnevma, the Ender Dragon, and even she was synthetically created. The End is resultingly now barren, except for the gardens of marble populated by the angels that Elrunez banished there.
+The End was once home to dragons, but they have long since perished (cause currently undecided; probably genocide). Now, the only dragon to remain is Pnevma, the Ender Dragon, and even she was synthetically created. The End is resultingly now barren, except for the gardens of marble populated by the angels that Elrunez banished there. It contains the World Fountain, from which fate and change flows.
 
 ## Dream World
 The Dream World is the land the mind taps when asleep, scratching the surface and experiencing within it nonsense. Methods exist to enter the Dream World while still lucid. The Dream World is the lower layer of the Spirit World.
