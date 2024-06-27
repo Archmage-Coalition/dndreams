@@ -73,13 +73,7 @@ public class CosmicFountainBlock extends BlockWithEntity {
         try {
             CosmicFountainBlockEntity entity = (CosmicFountainBlockEntity) world.getBlockEntity(pos);
 
-            ItemStack stack = player.getStackInHand(hand);
             assert entity != null;
-            if (state.get(FUNCTIONAL) && stack.getItem() == ModItems.LIQUID_SOUL && entity.addPower(500)) {
-                player.setStackInHand(hand, ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
-                return ActionResult.SUCCESS;
-            }
-
             if (!world.isClient) {
                 if (state.get(FUNCTIONAL)) {
                     player.sendMessage(Text.translatable("block.dndreams.cosmic_fountain.power", entity.getPower(), entity.getMaxPower(), entity.getRate()), true);

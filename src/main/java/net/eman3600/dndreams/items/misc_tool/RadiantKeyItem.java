@@ -2,7 +2,6 @@ package net.eman3600.dndreams.items.misc_tool;
 
 import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
-import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.TooltipItem;
 import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
 import net.eman3600.dndreams.rituals.setup.Ritual;
@@ -12,7 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -21,10 +19,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class AncientSparkItem extends TooltipItem implements RitualRemainItem {
+public class RadiantKeyItem extends TooltipItem implements RitualRemainItem {
     private static Random random = new Random();
 
-    public AncientSparkItem(Settings settings) {
+    public RadiantKeyItem(Settings settings) {
         super(settings);
     }
 
@@ -88,11 +86,6 @@ public class AncientSparkItem extends TooltipItem implements RitualRemainItem {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public boolean hasGlint(ItemStack stack) {
-        return true;
     }
 
     @Override

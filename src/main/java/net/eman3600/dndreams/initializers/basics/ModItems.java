@@ -95,11 +95,14 @@ public class ModItems {
     public static final Item RAVAGED_FLESH = registerItem("ravaged_flesh", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)
             .food(ModFoodComponents.RAVAGED_FLESH)));
 
-    // World Flow
+    // Cosmic Fluid
     public static final Item LIQUID_VOID = registerItem("liquid_void",
             new LiquidVoidItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON)));
 
-    // Liquid Soul
+    // Congealed Soul
+    public static final Item SOUL = registerItem("soul",
+            new SoulItem(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.RARE)).withTooltip(null, 1));
+
     public static final Item LIQUID_SOUL = registerItem("liquid_soul",
             new LiquidSoulItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE)));
 
@@ -120,6 +123,9 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
     public static final Item OBSIDIAN_STICK = registerItem("obsidian_stick",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
+
+    public static final Item DRAGON_BONE = registerItem("dragon_bone",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     public static final Item END_CHUNK = registerItem("end_chunk", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item END_STICK = registerItem("end_stick", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
@@ -160,7 +166,7 @@ public class ModItems {
     public static final Item CLOUD = registerItem("cloud", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item GOLD_FRUIT = registerItem("gold_fruit", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLD_FRUIT)));
     public static final Item CAKE_APPLE = registerItem("cake_apple", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.CAKE_APPLE)));
-    public static final Item LOST_DREAM = registerItem("lost_dream", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item LOST_DREAM = registerItem("lost_dream", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).rarity(Rarity.RARE)));
     public static final Item PERMAFROST = registerItem("permafrost", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item FULGAR_BUD = registerItem("fulgar_bud", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
@@ -285,8 +291,8 @@ public class ModItems {
             new FabricItemSettings().group(ItemGroup.TOOLS).fireproof().maxCount(1).maxDamage(256)).withTooltip(null, 1));
 
     // Ancient Portal Activation
-    public static final Item ANCIENT_SPARK = registerItem("ancient_spark", new AncientSparkItem(new FabricItemSettings()
-            .group(ItemGroup.TOOLS).maxCount(1)).withTooltip(null, 1));
+    public static final Item RADIANT_KEY = registerItem("radiant_key", new RadiantKeyItem(new FabricItemSettings()
+            .group(ItemGroup.TOOLS).maxCount(1).rarity(Rarity.UNCOMMON)).withTooltip(null, 1));
 
     // Veiled Key
     public static final Item VEILED_KEY = registerItem("veiled_key", new TooltipItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)).withTooltip(null, 1));

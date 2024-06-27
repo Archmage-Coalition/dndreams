@@ -2,7 +2,7 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
-      "item": "dndreams:liquid_soul"
+      "item": "dndreams:soul"
     },
 	{
       "item": "dndreams:cake_apple"
