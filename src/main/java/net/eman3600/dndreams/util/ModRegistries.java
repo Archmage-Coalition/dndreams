@@ -4,6 +4,7 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModItems;
@@ -29,6 +30,7 @@ import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Items;
+import net.minecraft.world.LightType;
 
 public class ModRegistries {
 
@@ -50,18 +52,17 @@ public class ModRegistries {
 
     private static void registerRepairPredicates() {
 
-        ItemStackAccess.registerRepairPredicate(ModTags.SANITY_REPAIRING_TOOLS, (stack, player) -> {
+        ItemStackAccess.registerRepairPredicate(ModTags.SUNLIGHT_REPAIRING_TOOLS, (stack, player) -> {
 
-            TormentComponent torment = EntityComponents.TORMENT.get(player);
-
-            return (int) ((1 - torment.getAttunedSanity() / 100f) * 120 + 40);
+            return player.world.getLightLevel(LightType.SKY, player.getBlockPos()) >= 13 && player.world.isDay() ? 50 : -1;
         });
 
         ItemStackAccess.registerRepairPredicate(ModTags.INSANITY_REPAIRING_TOOLS, (stack, player) -> {
 
             TormentComponent torment = EntityComponents.TORMENT.get(player);
+            float sanity = torment.getAttunedSanity();
 
-            return (int)(torment.getAttunedSanity()/100f * 70 + 10);
+            return sanity < 45 ? (int)(sanity/100f * 70 + 10) : -1;
         });
 
         ItemStackAccess.registerRepairPredicate(ModTags.GROUND_REPAIRING_TOOLS, (stack, player) -> (!player.isFallFlying() && player.getEquippedStack(EquipmentSlot.CHEST) == stack) && (player.isOnGround() || stack.getDamage() + 1 < stack.getMaxDamage()) ? 80 : -1);
@@ -84,7 +85,7 @@ public class ModRegistries {
         AttunementBurnSlot.putFuel(ModItems.NIGHTMARE_FUEL, 100);
         AttunementBurnSlot.putFuel(ModItems.CRYSTAL_MIX, 150);
         AttunementBurnSlot.putFuel(ModItems.WOOD_ASH, 5);
-        AttunementBurnSlot.putFuel(ModItems.LIGHT_POWDER, 8);
+        AttunementBurnSlot.putFuel(ModItems.FLAME_POWDER, 8);
     }
 
     private static void registerMutables() {
@@ -184,10 +185,11 @@ public class ModRegistries {
         TormentComponent.registerInsanityMob(LivingEntity::isUndead, 4f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), -3f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && !WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), 6f, 10f);
-        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 15f, 40f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 20f, 40f);
         TormentComponent.registerInsanityMob(entity -> entity instanceof MerchantEntity, -10f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.CAT, -5f, 16f);
         TormentComponent.registerInsanityMob(entity -> entity instanceof TormentorEntity tormentor && tormentor.isCorporeal(), 10f, 20f);
+        TormentComponent.registerInsanityMob(entity -> entity instanceof FacelessEntity faceless && faceless.isCorporeal(), 10f, 20f);
     }
 
     private static void registerFuels() {

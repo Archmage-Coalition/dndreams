@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "dndreams:block/dragon_bone_block_top",
+    "side": "dndreams:block/dragon_bone_block_side"
+  }
+}

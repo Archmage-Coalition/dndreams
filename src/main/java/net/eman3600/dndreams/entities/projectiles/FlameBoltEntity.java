@@ -1,14 +1,14 @@
 package net.eman3600.dndreams.entities.projectiles;
 
 import net.eman3600.dndreams.entities.WaterIgnorant;
-import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.FireBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -24,25 +24,48 @@ import net.minecraft.world.World;
 
 import static net.eman3600.dndreams.Initializer.MODID;
 
-public class GlowBoltEntity extends ThrownEntity implements WaterIgnorant {
+public class FlameBoltEntity extends ThrownEntity implements WaterIgnorant {
 
-    public static final Identifier TEXTURE = new Identifier(MODID, "textures/entity/projectile/glow_bolt.png");
+    public static final Identifier TEXTURE = new Identifier(MODID, "textures/entity/projectile/flame_bolt.png");
 
-    public GlowBoltEntity(EntityType<? extends ThrownEntity> entityType, World world) {
+    public FlameBoltEntity(EntityType<? extends ThrownEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public GlowBoltEntity(LivingEntity owner, World world) {
-        super(ModEntities.GLOW_BOLT, owner, world);
+    public FlameBoltEntity(LivingEntity owner, World world) {
+        super(ModEntities.FLAME_BOLT, owner, world);
     }
 
-    public GlowBoltEntity(World world, double x, double y, double z) {
-        super(ModEntities.GLOW_BOLT, x, y, z, world);
+    public FlameBoltEntity(World world, double x, double y, double z) {
+        super(ModEntities.FLAME_BOLT, x, y, z, world);
     }
 
     @Override
     protected void initDataTracker() {
 
+    }
+
+    @Override
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        Entity entity = entityHitResult.getEntity();
+
+        if (entity == getOwner()) return;
+
+        entity.setOnFireFor(4);
+    }
+
+    @Override
+    protected void onBlockHit(BlockHitResult blockHitResult) {
+        super.onBlockHit(blockHitResult);
+
+        BlockPos pos = blockHitResult.getBlockPos().offset(blockHitResult.getSide());
+        BlockState state = FireBlock.getState(world, pos);
+
+        if (getOwner() instanceof PlayerEntity player && world.getBlockState(pos).canReplace(new ItemPlacementContext(new ItemUsageContext(player, player.getActiveHand(), blockHitResult))) && world.getFluidState(pos).isEmpty() && state.canPlaceAt(world, pos)) {
+            world.setBlockState(pos, state, Block.NOTIFY_LISTENERS);
+            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1, 1);
+        }
     }
 
     @Override
@@ -57,25 +80,12 @@ public class GlowBoltEntity extends ThrownEntity implements WaterIgnorant {
 
         if (!this.world.isClient) {
             this.world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
-
-            if (hitResult instanceof BlockHitResult blockHit && getOwner() instanceof PlayerEntity player) {
-                BlockPos pos = blockHit.getBlockPos().offset(blockHit.getSide());
-
-                if (world.getBlockState(pos).canReplace(new ItemPlacementContext(new ItemUsageContext(player, player.getActiveHand(), blockHit))) && world.getFluidState(pos).isEmpty()) {
-                    world.setBlockState(pos, ModBlocks.SHINE.getDefaultState(), Block.NOTIFY_LISTENERS);
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_AMETHYST_BLOCK_PLACE, SoundCategory.BLOCKS, 1, 1);
-                }
-            } else if (hitResult instanceof EntityHitResult entityHit && entityHit.getEntity() instanceof LivingEntity target) {
-
-                target.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 200));
-            }
-
             this.discard();
         }
     }
 
     @Override
     protected float getGravity() {
-        return 0.04f;
+        return 0.055f;
     }
 }

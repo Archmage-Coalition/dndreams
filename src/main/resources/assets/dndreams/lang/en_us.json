@@ -65,9 +65,9 @@
 
   "item.dndreams.tainted_pearl":  "Accursed Pearl",
   "item.dndreams.tainted_pearl.tooltip":  "§3It wants to take you somewhere.",
-  "item.dndreams.light_powder":  "Spark Powder",
-  "item.dndreams.light_powder.tooltip.0":  "§3Emits light.",
-  "item.dndreams.light_powder.tooltip.1":  "§3Can be thrown.",
+  "item.dndreams.flame_powder":  "Spark Powder",
+  "item.dndreams.flame_powder.tooltip.0":  "§3Sparks a fire.",
+  "item.dndreams.flame_powder.tooltip.1":  "§3Can be thrown.",
   
   "item.dndreams.resonant_pickaxe": "Resonant Pickaxe",
   "item.dndreams.resonant_pickaxe.tooltip": "§3Mines all blocks at the same speed.",
@@ -391,8 +391,8 @@
   "tooltip.dndreams.dream_origin": "§3They said this didn't exist,",
   "tooltip.dndreams.dream_origin_2": "§3and they were probably right.",
   "tooltip.dndreams.mana_buffer": "§eDurability is protected by mana.",
-  "tooltip.dndreams.sanity_repair": "§eRepairs faster while you're sane.",
-  "tooltip.dndreams.insanity_repair": "§eRepairs faster while you're insane.",
+  "tooltip.dndreams.sunlight_repair": "§eRepairs while in sunlight.",
+  "tooltip.dndreams.insanity_repair": "§eRepairs while you're insane.",
   "tooltip.dndreams.ground_repair": "§eRepairs while on your back.",
   "tooltip.dndreams.sacrifice": "§4Costs life.",
   
@@ -535,6 +535,7 @@
   "block.dndreams.polished_marble": "Polished Marble",
   "block.dndreams.golden_grass_block": "Golden Grass Block",
   "block.dndreams.golden_grass": "Golden Grass",
+  "block.dndreams.dragon_bone_block": "Dragon Bone Block",
   
   "block.dndreams.corrupt_block": "Hellsteel Block",
   "block.dndreams.hellslate": "Hellslate Ore",

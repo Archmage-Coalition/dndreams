@@ -1,5 +1,5 @@
 # The Affliction
-The affliction is the root of undeath, the source of madness and consumption, and the undoing of the ancient Vesican empire. It manifests itself in several forms based on the various aspects of mind and soul.
+The affliction is the root of undeath, the source of madness and corruption, and the undoing of the ancient Vesican empire. It manifests itself in several forms based on the various aspects of mind and soul.
 
 At its heart, the affliction is a plague born of necromantic origin, created by those who wished to utilize the power of mind and soul to live eternally and reach the Haven illegitimately.
 

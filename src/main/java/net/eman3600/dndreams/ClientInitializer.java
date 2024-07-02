@@ -3,10 +3,7 @@ package net.eman3600.dndreams;
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.BonfireBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
-import net.eman3600.dndreams.entities.projectiles.FallingStarEntity;
-import net.eman3600.dndreams.entities.projectiles.GlowBoltEntity;
-import net.eman3600.dndreams.entities.projectiles.SparkBoltEntity;
-import net.eman3600.dndreams.entities.projectiles.StrifeEntity;
+import net.eman3600.dndreams.entities.projectiles.*;
 import net.eman3600.dndreams.entities.renderers.*;
 import net.eman3600.dndreams.entities.renderers.features.DreadfulArrowRenderer;
 import net.eman3600.dndreams.events.KeyInputHandler;
@@ -132,6 +129,7 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.TESLA_SLASH, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SPARK_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, SparkBoltEntity.TEXTURE));
         EntityRendererRegistry.register(ModEntities.GLOW_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, GlowBoltEntity.TEXTURE));
+        EntityRendererRegistry.register(ModEntities.FLAME_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, FlameBoltEntity.TEXTURE));
         EntityRendererRegistry.register(ModEntities.STRIFE, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, StrifeEntity.TEXTURE));
         EntityRendererRegistry.register(ModEntities.FALLING_STAR, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, FallingStarEntity.TEXTURE));
 

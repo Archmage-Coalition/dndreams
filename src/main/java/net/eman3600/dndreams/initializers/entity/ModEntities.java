@@ -81,6 +81,14 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<FlameBoltEntity> FLAME_BOLT = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "flame_bolt"),
+            FabricEntityTypeBuilder.<FlameBoltEntity>create(SpawnGroup.MISC, FlameBoltEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
+                    .trackRangeBlocks(32).trackedUpdateRate(10)
+                    .build()
+    );
+
     public static final EntityType<StrifeEntity> STRIFE = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "strife"),
             FabricEntityTypeBuilder.<StrifeEntity>create(SpawnGroup.MISC, StrifeEntity::new)

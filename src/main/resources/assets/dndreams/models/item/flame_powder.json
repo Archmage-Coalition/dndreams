@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "dndreams:item/light_powder"
+        "layer0": "dndreams:item/flame_powder"
     }
 }

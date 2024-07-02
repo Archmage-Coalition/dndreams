@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.mixin.client;
 
-import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
@@ -37,7 +36,7 @@ public abstract class LightmapTextureManagerMixin implements LightmapTextureMana
     @Unique private final float SHADOW = 26;
     @Unique private final float DEPTHS = 40;
     @Unique private final float SANITY_SHADOW = 30;
-    @Unique private final float DARKNESS_THRESHOLD = 70;
+    @Unique private final float DARKNESS_THRESHOLD = 65;
     @Unique private final float HAUNTED = 110;
     @Unique private final float CELESTIUM = 46;
 

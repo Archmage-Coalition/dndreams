@@ -45,7 +45,7 @@ public class ModTags {
     public static final TagKey<Item> SMELTING_TOOLS = ofItem("smelting_tools");
     public static final TagKey<Item> AUTO_REPAIRING_TOOLS = ofItem("auto_repairing_tools");
     public static final TagKey<Item> MANA_BUFFERING_TOOLS = ofItem("mana_buffering_tools");
-    public static final TagKey<Item> SANITY_REPAIRING_TOOLS = ofItem("sanity_repairing_tools");
+    public static final TagKey<Item> SUNLIGHT_REPAIRING_TOOLS = ofItem("sunlight_repairing_tools");
     public static final TagKey<Item> INSANITY_REPAIRING_TOOLS = ofItem("insanity_repairing_tools");
     public static final TagKey<Item> GROUND_REPAIRING_TOOLS = ofItem("ground_repairing_tools");
     public static final TagKey<Item> FAST_GROUND_REPAIRING_TOOLS = ofItem("fast_ground_repairing_tools");

@@ -546,8 +546,8 @@ public class ModItems {
             new TaintedPearlItem(new FabricItemSettings().group(ItemGroup.MISC)));
 
     // Spark Powder
-    public static final Item LIGHT_POWDER = registerItem("light_powder",
-            new LightPowderItem(new FabricItemSettings().group(ItemGroup.TOOLS)).withTooltip(null, 2));
+    public static final Item FLAME_POWDER = registerItem("flame_powder",
+            new FlamePowderItem(new FabricItemSettings().group(ItemGroup.TOOLS)).withTooltip(null, 2));
 
     // Codex Memorium
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
