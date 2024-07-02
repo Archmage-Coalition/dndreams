@@ -158,16 +158,16 @@ public class ModRegistries {
 
     private static void registerApothecary() {
         RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.LIQUID_VOID, 2, 100);
-        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.WITHER_BUD, 2, 100);
+        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.STARDUST, 2, 100);
         RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.LOST_DREAM, 3, 150);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.REDSTONE, EnhancementType.LENGTH, 100);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.CRYSTAL_MIX, EnhancementType.LENGTH, 100);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STAR_FRUIT, EnhancementType.LENGTH, 100);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.SILVER_NUGGET, EnhancementType.LENGTH, 100);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.GLOWSTONE_DUST, EnhancementType.AMPLIFIER, 200);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.NIGHTMARROW, EnhancementType.AMPLIFIER, 200);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STARDUST, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.RAVAGED_FLESH, EnhancementType.AMPLIFIER, 200);
     }
 
     private static void registerInsanityPredicates() {
@@ -199,6 +199,7 @@ public class ModRegistries {
 
         registry.add(ModItems.NIGHTMARE_FUEL, 4800);
         registry.add(ModItems.ARCHFUEL, 3200);
+        registry.add(ModItems.FLAME_POWDER, 800);
     }
 
     private static void registerStrippables() {

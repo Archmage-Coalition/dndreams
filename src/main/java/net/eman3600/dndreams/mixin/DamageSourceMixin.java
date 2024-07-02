@@ -35,6 +35,6 @@ public abstract class DamageSourceMixin implements DamageSourceAccess {
     }
     @Override
     public boolean isAffliction() {
-        return affliction || (getAttacker() instanceof LivingEntity entity && entity.getType().isIn(ModTags.GLOOM_ENTITIES)) || (getSource() instanceof ProjectileEntity projectile && projectile.getType().isIn(ModTags.GLOOM_PROJECTILE_ENTITIES));
+        return affliction || (Object) this == DamageSource.WITHER || (getAttacker() instanceof LivingEntity entity && entity.getType().isIn(ModTags.GLOOM_ENTITIES)) || (getSource() instanceof ProjectileEntity projectile && projectile.getType().isIn(ModTags.GLOOM_PROJECTILE_ENTITIES));
     }
 }

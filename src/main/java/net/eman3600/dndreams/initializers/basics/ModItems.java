@@ -103,9 +103,6 @@ public class ModItems {
     public static final Item SOUL = registerItem("soul",
             new SoulItem(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.RARE)).withTooltip(null, 1));
 
-    public static final Item LIQUID_SOUL = registerItem("liquid_soul",
-            new LiquidSoulItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE)));
-
     // Nightmare Fuel
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
             new TooltipItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL).fireproof()).withTooltip(null, 2));
@@ -135,7 +132,7 @@ public class ModItems {
 
     // Gemstones
     public static final Item VITAL_SHARD = registerItem("vital_shard",
-            new VitalShardItem(2, 100, new FabricItemSettings().group(ItemGroup.MATERIALS)).withTooltip(null, 1));
+            new WitherCureItem(40, new FabricItemSettings().group(ItemGroup.MATERIALS)).withTooltip(null, 1));
     public static final Item CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item CRYSTAL_SPIRIT = registerItem("crystal_spirit",

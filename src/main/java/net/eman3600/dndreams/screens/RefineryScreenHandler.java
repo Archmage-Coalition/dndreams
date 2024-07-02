@@ -47,12 +47,8 @@ public class RefineryScreenHandler extends ScreenHandler {
         if (slot.hasStack()) {
             ItemStack itemStack2 = slot.getStack();
             itemStack = itemStack2.copy();
-            if (index < 7) {
-                if (!this.insertItem(itemStack2, 7, 42, true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (this.slots.get(6).canInsert(itemStack2)) {
-                if (!this.insertItem(itemStack2, 6, 7, false)) {
+            if (index < 6) {
+                if (!this.insertItem(itemStack2, 6, 41, true)) {
                     return ItemStack.EMPTY;
                 }
             } else {

@@ -74,6 +74,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     public TormentComponent(PlayerEntity playerIn) {
         player = playerIn;
+
+        if (player.world != null && player.world.getLevelProperties() != null && player.world.getLevelProperties().isHardcore()) setMaxSanity(82.5f);
     }
 
     @Override
