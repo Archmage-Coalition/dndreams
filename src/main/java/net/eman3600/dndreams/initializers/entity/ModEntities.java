@@ -260,6 +260,17 @@ public class ModEntities {
     );
 
 
+    public static final EntityType<VariableLightningEntity> CUSTOM_LIGHTNING = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "custom_lightning"),
+            FabricEntityTypeBuilder.<VariableLightningEntity>create(SpawnGroup.MISC, VariableLightningEntity::new)
+                    .disableSaving()
+                    .dimensions(EntityType.LIGHTNING_BOLT.getDimensions())
+                    .trackRangeChunks(16)
+                    .trackedUpdateRate(Integer.MAX_VALUE)
+                    .build()
+    );
+
+
     public static void registerEntities() {
         FabricDefaultAttributeRegistry.register(BLOOD_SKELETON, createBloodSkeletonAttributes());
         FabricDefaultAttributeRegistry.register(SHAMBLER, createShamblerAttributes());

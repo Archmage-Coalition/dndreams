@@ -30,10 +30,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.EmptyEntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.FallingBlockEntityRenderer;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.client.render.entity.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -154,6 +151,8 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.SKYBOUND_ARROW, SkyboundArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.STORM_ARROW, StormArrowRenderer::new);
         EntityRendererRegistry.register(ModEntities.DREADFUL_ARROW, DreadfulArrowRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.CUSTOM_LIGHTNING, LightningEntityRenderer::new);
 
 
         KeyInputHandler.registerBindings();

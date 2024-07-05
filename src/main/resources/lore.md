@@ -1,19 +1,19 @@
 # The Affliction
 The affliction is the root of undeath, the source of madness and corruption, and the undoing of the ancient Vesican empire. It manifests itself in several forms based on the various aspects of mind and soul.
 
-At its heart, the affliction is a plague born of necromantic origin, created by those who wished to utilize the power of mind and soul to live eternally and reach the Haven illegitimately.
-
-## Zombification
-The affliction turned the souls of the Vesicans rancid and consumed them until all that was left were zombified husks. Much of intelligent life has been zombified. But some intelligent life still prevails
-
-## Wither
-Withering is a horrid rot of the flesh that is responsible for the skeleton varieties and the soul aggregates of the Nether.
+The affliction is also known by another name: the Formless Flame. It is ultimately the soul of a great demon, which was woven into the streams of the World Fountain. Sometimes the soul itself is referred to as the Formless Flame instead of the affliction as a whole.
 
 ## Sculk
-The first form of the affliction, sculk is soul twisted into a cancer that taints the world. Enough soul has been concentrated in the depths of the mountains to create Wardens, titans containing a nearly limitless supply of raw, concentrated soul, always hungering for more.
+The first form of the affliction, sculk is a soul-eating cancer that taints the world. Enough soul has been concentrated in the depths of the mountains to create Wardens, titans containing a nearly limitless supply of raw, concentrated soul, always hungering for more. Nothing distinct remains within the sculk, having reduced the souls consumed into a mixture of pointless memories.
 
 ## Madness
-The same force that twisted soul to sculk twisted dream to madness. The shadows have congealed into terrible monsters that haunt the world, looking for those whose minds have been bent toward imagination enough to interact with them.
+The affliction haunts the world, weighing down on the few souls that remain. It can be resisted to some degree, but once it is let in, it can be very difficult to shut out again. The affliction is a madness that tugs on and rots the soul until it is unrecognizable.
+
+## Wither
+Withering is the outward rotting of the flesh that follows the rotting of the soul.
+
+## Undead
+All who have lost the battle against madness have their souls consumed by the affliction, becoming undead slaves to the affliction's will. Some completely lose their minds while others completely lose their flesh, but in both cases, only the semblance of life remains. For most, it is incurable.
 
 
 # The Other Realms
@@ -26,7 +26,7 @@ The Overworld is the primary realm of the world. It is where the Vesicans origin
 The Nether is the demonic home world and a hellish reflection of the Overworld.
 
 ## The End
-The End was once home to dragons, but they have long since perished (cause currently undecided; probably genocide). Now, the only dragon to remain is Pnevma, the Ender Dragon, and even she was synthetically created. The End is resultingly now barren, except for the gardens of marble populated by the angels that Elrunez banished there. It contains the World Fountain, from which fate and change flows.
+The End was once home to dragons, but they have long since perished (cause currently undecided; probably genocide). Now, the only dragon to remain is Pnevma, the Ender Dragon, and even she was synthetically created. The End is, as a result, now barren, except for the gardens of marble populated by the angels that Elrunez banished there. It contains the World Fountain, from which fate and change flows.
 
 ## Dream World
 The Dream World is the land the mind taps when asleep, scratching the surface and experiencing within it nonsense. Methods exist to enter the Dream World while still lucid. The Dream World is the lower layer of the Spirit World.
