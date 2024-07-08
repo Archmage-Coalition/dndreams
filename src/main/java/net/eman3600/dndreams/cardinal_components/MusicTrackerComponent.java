@@ -52,6 +52,18 @@ public class MusicTrackerComponent implements MusicTrackerComponentI {
         markDirty();
     }
 
+    public boolean shouldUseCustomMusic() {
+        return track >= 0;
+    }
+
+    public MusicSound getCustomMusic() {
+        try {
+            return musicPredicates.get(track).musicTrack;
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+    }
+
     @Override
     public void readFromNbt(NbtCompound tag) {
         track = tag.getInt("track");

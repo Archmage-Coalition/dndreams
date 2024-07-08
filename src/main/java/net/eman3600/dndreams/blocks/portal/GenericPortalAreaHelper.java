@@ -141,7 +141,10 @@ public class GenericPortalAreaHelper {
     }
 
     public void createPortal() {
-        BlockState blockState = portalBlock.getDefaultState().with(GenericPortalBlock.AXIS, this.axis);
+        createPortalOf(portalBlock.getDefaultState().with(GenericPortalBlock.AXIS, this.axis));
+    }
+
+    public void createPortalOf(BlockState blockState) {
         assert this.lowerCorner != null;
         BlockPos.iterate(this.lowerCorner, this.lowerCorner.offset(Direction.UP, this.height - 1).offset(this.negativeDir, this.width - 1)).forEach(blockPos -> this.world.setBlockState(blockPos, blockState, Block.NOTIFY_LISTENERS | Block.FORCE_STATE));
     }

@@ -6,6 +6,7 @@ import net.eman3600.dndreams.blocks.crop.*;
 import net.eman3600.dndreams.blocks.energy.*;
 import net.eman3600.dndreams.blocks.portal.CosmicPortalBlock;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
+import net.eman3600.dndreams.blocks.portal.UnchargedNetherPortalBlock;
 import net.eman3600.dndreams.blocks.redstone.CosmicEggBlock;
 import net.eman3600.dndreams.blocks.redstone.CosmicFocusBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritFenceBlock;
@@ -1101,6 +1102,9 @@ public class ModBlocks {
 
     public static final Block MORTAL_PORTAL = registerBlock("mortal_portal",
             new GenericPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), CHARGED_DEEPSLATE));
+
+    public static final Block UNCHARGED_NETHER_PORTAL = registerBlock("uncharged_nether_portal",
+            new UnchargedNetherPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), Blocks.OBSIDIAN));
 
 
     // Nightshade Moss

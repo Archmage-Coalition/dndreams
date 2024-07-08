@@ -737,6 +737,8 @@
   "block.dndreams.horde_portal": "Overloaded Ancient Portal",
   "block.dndreams.overhell_portal": "Ancient Portal",
   "block.dndreams.mortal_portal": "Mortal Portal",
+  "block.dndreams.uncharged_nether_portal": "Incomplete Nether Portal",
+  "block.dndreams.uncharged_nether_portal.not_enough_mana": "You need more mana to charge the portal.",
   
   "block.dndreams.managold_block": "Managold Block",
   "block.dndreams.tormite_block": "Tormite Block",

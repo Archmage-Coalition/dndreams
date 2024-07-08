@@ -5,6 +5,12 @@
       {"name":"dndreams:music/dread_moon", "stream":true}
     ]
   },
+  "music.insanity": {
+    "category": "music",
+    "sounds": [
+      {"name":"dndreams:music/insanity", "stream":true}
+    ]
+  },
   "tunes.triumph": {
     "category": "master",
     "sounds": [
