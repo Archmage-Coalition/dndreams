@@ -698,6 +698,8 @@ public class ModItems {
 
     public static final Item MUSIC_DISC_STORM = registerItem("music_disc_storm",
             new MusicDiscItem(15, ModSoundEvents.RECORD_STORM, new FabricItemSettings().group(ItemGroup.MISC), 240));
+    public static final Item MUSIC_DISC_MIRE_MENTAL = registerItem("music_disc_mire_mental",
+            new MusicDiscItem(14, ModSoundEvents.RECORD_MIRE_MENTAL, new FabricItemSettings().group(ItemGroup.MISC), 255));
 
     /*
      * Item Registration

@@ -18,7 +18,9 @@ public class ModSoundEvents {
     public static final MusicSound PLAYER_DREAD_MOON = new MusicSound(MUSIC_DREAD_MOON, 0, 0, true);
     public static final SoundEvent MUSIC_INSANITY = registerSound("music.insanity");
     public static final MusicSound PLAYER_INSANITY = new MusicSound(MUSIC_INSANITY, 0, 0, true);
+
     public static final SoundEvent RECORD_STORM = registerSound("record.storm");
+    public static final SoundEvent RECORD_MIRE_MENTAL = registerSound("record.mire_mental");
 
 
     private static SoundEvent registerSound(String id) {

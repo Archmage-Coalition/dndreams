@@ -5,15 +5,21 @@ import net.eman3600.dndreams.ClientInitializer;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.mixin_interfaces.MusicTrackerAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.VertexBuffer;
 import net.minecraft.client.render.*;
+import net.minecraft.client.render.chunk.ChunkBuilder;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.item.Item;
+import net.minecraft.item.MusicDiscItem;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Matrix4f;
+import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -41,6 +47,8 @@ public abstract class WorldRendererMixin {
     @Shadow @Nullable private VertexBuffer starsBuffer;
 
     @Shadow public abstract void tick();
+
+    @Shadow public abstract void addBuiltChunk(ChunkBuilder.BuiltChunk chunk);
 
     @Inject(method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/world/ClientWorld;getMoonPhase()I"))
     private void dndreams$renderSky$changeMoon(MatrixStack matrices, Matrix4f projectionMatrix, float tickDelta, Camera camera, boolean bl, Runnable runnable, CallbackInfo info) {
@@ -104,6 +112,17 @@ public abstract class WorldRendererMixin {
 
         if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
             RenderSystem.setShaderColor(.365f, .052f, .485f, 1f);
+        }
+    }
+
+    @Inject(method = "processWorldEvent", at = @At("HEAD"))
+    private void dndreams$processWorldEvent$pauseMusic(int eventId, BlockPos pos, int data, CallbackInfo ci) {
+        if (eventId == WorldEvents.MUSIC_DISC_PLAYED) {
+            Item item = Item.byRawId(data);
+
+            if (item instanceof MusicDiscItem disc && this.client.getMusicTracker() instanceof MusicTrackerAccess access) {
+                access.stopFor(disc);
+            }
         }
     }
 

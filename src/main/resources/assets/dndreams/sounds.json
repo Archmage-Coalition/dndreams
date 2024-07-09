@@ -22,5 +22,11 @@
     "sounds": [
       {"name":"dndreams:record/storm", "stream":false}
     ]
+  },
+  "record.mire_mental": {
+    "category": "record",
+    "sounds": [
+      {"name":"dndreams:record/mire_mental", "stream":false}
+    ]
   }
 }

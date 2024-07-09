@@ -87,6 +87,7 @@
     "client.ItemColorsMixin",
     "client.LightmapTextureManagerMixin",
     "client.MinecraftClientMixin",
+    "client.MusicTrackerMixin",
     "client.PlayerEntityRendererMixin",
     "client.WorldRendererMixin"
   ],
