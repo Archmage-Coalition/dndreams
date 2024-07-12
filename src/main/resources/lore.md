@@ -1,7 +1,7 @@
 # The Affliction
 The affliction is the root of undeath, the source of madness and corruption, and the undoing of the ancient Vesican empire. It manifests itself in several forms based on the various aspects of mind and soul.
 
-The affliction is also known by another name: the Formless Flame. It is ultimately the soul of a great demon, which was woven into the streams of the World Fountain. Sometimes the soul itself is referred to as the Formless Flame instead of the affliction as a whole.
+The heart of the affliction is known as the Formless Flame. It is a primordial, demonic energy that attempts to burn down the natural order, and the mind and soul with it.
 
 ## Sculk
 The first form of the affliction, sculk is a soul-eating cancer that taints the world. Enough soul has been concentrated in the depths of the mountains to create Wardens, titans containing a nearly limitless supply of raw, concentrated soul, always hungering for more. Nothing distinct remains within the sculk, having reduced the souls consumed into a mixture of pointless memories.
@@ -39,7 +39,7 @@ When the affliction began to taint the Overworld, it escaped into the Haven wher
 During the Age of the Illagers, Elrunez the Archmage opened the long-sealed portal to the Haven and took control of it. In a complicated coup, Elrunez banished the angels who stood against him and crowned himself Lord of the Spirit World. The angels he banished alongside Aktina, the former ruler of the Spirit World, were known as the Katharei, and those loyal to Elrunez became the Talei.
 
 
-# The Fall of the Vesicans
+# The Fall of the Vesicans [Deprecated]
 The Vesicans were a race of humanoids adept in construction of tools and structures. They lasted an arbitrary amount of time, and their fall was caused by their arrogance.
 
 ## The War on Demons
@@ -64,7 +64,7 @@ Once inside, Elrunez staged a coup on the angelic throne, managing to overthrow 
 
 # Artifacts
 ## The Crowned Edge
-???
+This magical blade was forged by Elrunez himself from the flow of the World Fountain. Contained within is an ancient draconic marrow, which infuses the weapon with the death magic that defeated the angels.
 
 ## The Atlas of Frosyni
 ???
