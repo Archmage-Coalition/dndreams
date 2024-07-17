@@ -399,7 +399,10 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     private void dndreams$addStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
         StatusEffect status = effect.getEffectType();
 
-        if ((status == StatusEffects.WITHER && (getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR)) || (status == ModStatusEffects.HAUNTED && CelestiumArmorItem.wornPieces(this) >= 4)) {
+        if ((status == StatusEffects.WITHER && (getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR
+                || (getType() == EntityType.PLAYER && TrinketsApi.getTrinketComponent((PlayerEntity)(Object)this).isPresent()
+                && TrinketsApi.getTrinketComponent((PlayerEntity)(Object)this).get().isEquipped(ModItems.LIFE_GIVING_AMULET))))
+                || (status == ModStatusEffects.HAUNTED && CelestiumArmorItem.wornPieces(this) >= 4)){
             cir.setReturnValue(false);
         }
     }

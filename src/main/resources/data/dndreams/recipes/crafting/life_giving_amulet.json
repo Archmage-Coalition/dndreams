@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#C#",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:rose_quartz"
+    },
+	  "X": {
+      "item": "dndreams:prayer_bead"
+    },
+	  "C": {
+      "item": "minecraft:dragon_breath"
+    }
+  },
+  "result": {
+    "item": "dndreams:life_giving_amulet"
+  }
+}
