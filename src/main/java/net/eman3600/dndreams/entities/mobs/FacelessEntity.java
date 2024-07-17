@@ -1,7 +1,9 @@
 package net.eman3600.dndreams.entities.mobs;
 
+import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.ai.faceless.FacelessStalkingGoal;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.util.SightUtil;
 import net.minecraft.block.BlockState;
@@ -191,8 +193,10 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
                     for (ServerPlayerEntity player : serverWorld.getPlayers()) {
 
                         TormentComponent torment = getTorment(player);
+                        boolean hasFearlessShades = TrinketsApi.getTrinketComponent(player)
+                                .get().isEquipped(ModItems.FEARLESS_SHADES);
 
-                        if (player.isCreative() || player.isSpectator() || torment.isTruthActive()) continue;
+                        if (player.isCreative() || player.isSpectator() || torment.isTruthActive() || hasFearlessShades) continue;
 
                         if (SightUtil.inView(player, this)) {
                             torment.setFearDrowning();

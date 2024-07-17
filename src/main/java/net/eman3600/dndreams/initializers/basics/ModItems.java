@@ -433,6 +433,8 @@ public class ModItems {
             new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item TRUTH_GLASSES = registerItem("truth_glasses",
             new TruthGlassesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+    public static final Item FEARLESS_SHADES = registerItem("fearless_shades",
+            new FearlessShadesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item FLAME_CAPE = registerItem("flame_cape",
             new FlameCapeItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).fireproof()));
     public static final Item SUBSTANCE_CLOAK = registerItem("substance_cloak",
