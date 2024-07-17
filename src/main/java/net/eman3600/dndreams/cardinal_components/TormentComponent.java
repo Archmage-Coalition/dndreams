@@ -36,6 +36,7 @@ import java.util.*;
 import java.util.function.Function;
 
 public class TormentComponent implements TormentComponentI, AutoSyncedComponent, ServerTickingComponent {
+    private static final int MAX_TENSION = 50;
     private float maxSanity = 100;
     private float sanity = 100;
     public static final float THREAD_VALUE = 3.5f;
@@ -59,6 +60,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private boolean nightmareHaze = false;
     private int fearDrowning = 0;
     private int facelessCooldown = 20;
+    private int tension = 0;
     @Nullable private Entity facelessEntity = null;
     @Nullable private UUID facelessID = null;
 
@@ -204,6 +206,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         shroud = tag.getInt("shroud");
         haunt = tag.getInt("haunt");
         facelessCooldown = tag.getInt("faceless_cooldown");
+        tension = tag.getInt("tension");
         truthActive = tag.getBoolean("truth_active");
         fearDrowning = tag.getInt("fear_drowning");
         if (tag.containsUuid("faceless")) {
@@ -220,8 +223,10 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("shroud", shroud);
         tag.putInt("haunt", haunt);
         tag.putInt("faceless_cooldown", facelessCooldown);
+        tag.putInt("tension", tension);
         tag.putBoolean("truth_active", truthActive);
         tag.putInt("fear_drowning", fearDrowning);
+        tag.putFloat("prevalence", getFacelessPrevalence());
         if (this.facelessID != null) {
             tag.putUuid("faceless", this.facelessID);
         }
@@ -289,12 +294,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
         if (faceless == null) {
             boolean bl = FacelessEntity.daylightAt(player.world, player.getBlockPos());
-            if (facelessCooldown < 2400 && bl) {
-                facelessCooldown = 2400;
+
+            if (bl && tension > 0) {
+                tension = 0;
                 markDirty();
-            } else if (facelessCooldown > 0 && !bl) {
-                if (player.world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY && facelessCooldown > 900)
-                    facelessCooldown = 900;
+            }
+            if (facelessCooldown > 0) {
                 facelessCooldown--;
                 markDirty();
             }
@@ -449,6 +454,33 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public void setFacelessCooldown(int facelessCooldown) {
         this.facelessCooldown = facelessCooldown;
         markDirty();
+    }
+
+    @Override
+    public int getTension() {
+        return tension;
+    }
+
+    @Override
+    public int getEffectiveTension() {
+        return player.hasStatusEffect(ModStatusEffects.LOOMING) ? MAX_TENSION : tension;
+    }
+
+    @Override
+    public void addTension(int tension) {
+        this.tension = MathHelper.clamp(tension + this.tension, 0, MAX_TENSION);
+        normalize();
+    }
+
+    @Override
+    public float getFacelessPrevalence() {
+        float sanityScore = (85 - getAttunedSanity())/85;
+        sanityScore *= sanityScore;
+
+        float score = (tension + 60 * sanityScore)/120;
+        score *= score * .5f;
+
+        return score;
     }
 
     @Nullable

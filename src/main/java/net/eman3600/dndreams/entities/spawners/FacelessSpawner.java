@@ -46,7 +46,7 @@ public class FacelessSpawner implements Spawner {
 
         BlockPos playerPos = player.getBlockPos();
 
-        if (component.getAttunedSanity() < 65 && component.getFacelessCooldown() <= 0 && component.getFacelessEntity() == null) {
+        if (component.getAttunedSanity() < 85 && component.getFacelessCooldown() <= 0 && component.getFacelessEntity() == null && player.world.random.nextFloat() < component.getFacelessPrevalence()) {
 
             int j = random.nextBetween(2, 6);
 
@@ -62,11 +62,14 @@ public class FacelessSpawner implements Spawner {
                     world.spawnEntityAndPassengers(faceless);
                     component.setFacelessEntity(faceless);
                     component.setFacelessCooldown(2400);
+                    component.addTension(-5);
                     spawns++;
                     cooldown += 200;
                     break;
                 }
             }
+        } else {
+            component.addTension(1);
         }
 
         return spawns;
