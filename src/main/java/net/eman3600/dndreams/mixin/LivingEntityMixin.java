@@ -12,6 +12,7 @@ import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.items.AscendItem;
 import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
+import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModFoodComponents;
@@ -402,7 +403,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         if ((status == StatusEffects.WITHER && (getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR
                 || (getType() == EntityType.PLAYER && TrinketsApi.getTrinketComponent((PlayerEntity)(Object)this).isPresent()
                 && TrinketsApi.getTrinketComponent((PlayerEntity)(Object)this).get().isEquipped(ModItems.LIFE_GIVING_AMULET))))
-                || (status == ModStatusEffects.HAUNTED && CelestiumArmorItem.wornPieces(this) >= 4)){
+                || (status == ModStatusEffects.HAUNTED && CelestiumArmorItem.wornPieces(this) >= 4) || ((status == ModStatusEffects.HEARTBLEED || status == ModStatusEffects.SMOTE) && TormiteArmorItem.wornPieces(this) >= 4)){
             cir.setReturnValue(false);
         }
     }

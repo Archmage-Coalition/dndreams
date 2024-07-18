@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C C",
+    "#X#",
+    "M M"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:amethyst_shard"
+    },
+	  "X": {
+      "item": "dndreams:managold_ingot"
+    },
+	  "C": {
+      "item": "dndreams:liquid_void"
+    },
+	  "M": {
+      "item": "dndreams:celestium"
+    }
+  },
+  "result": {
+    "item": "dndreams:fearless_shades"
+  }
+}

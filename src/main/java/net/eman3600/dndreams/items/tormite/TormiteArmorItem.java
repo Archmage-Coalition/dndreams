@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.items.tormite;
 
 import net.eman3600.dndreams.items.ModArmorItem;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -22,6 +23,9 @@ public class TormiteArmorItem extends ModArmorItem {
         super.appendTooltip(stack, world, tooltip, context);
 
         tooltip.add(Text.translatable("tooltip.dndreams.tormite_armor"));
+        if (world instanceof ClientWorldAccess access && access.getPlayer() != null && wornPieces(access.getPlayer()) >= 4) {
+            tooltip.add(Text.translatable("tooltip.dndreams.tormite_armor.set_bonus"));
+        }
     }
 
     public static int wornPieces(Entity entity) {
