@@ -1,10 +1,15 @@
 package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.entities.projectiles.GravityProjectileEntity;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,5 +33,15 @@ public abstract class PersistentProjectileEntityMixin extends ProjectileEntity {
         }
 
         return instance.hasNoGravity();
+    }
+
+    @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getCollisionShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/util/shape/VoxelShape;"))
+    private VoxelShape dndreams$tick$modifyCollisionShape(BlockState instance, BlockView blockView, BlockPos blockPos) {
+
+        if (this instanceof GravityProjectileEntity entity && entity.penetratesBlocks()) {
+            return VoxelShapes.empty();
+        }
+
+        return instance.getCollisionShape(blockView, blockPos);
     }
 }

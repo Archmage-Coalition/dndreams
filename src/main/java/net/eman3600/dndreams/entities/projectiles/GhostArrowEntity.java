@@ -8,12 +8,7 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 
 public class GhostArrowEntity extends PersistentProjectileEntity implements GravityProjectileEntity {
@@ -68,19 +63,6 @@ public class GhostArrowEntity extends PersistentProjectileEntity implements Grav
             this.world.addParticle(ParticleTypes.FALLING_OBSIDIAN_TEAR, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
         }
 
-        BlockPos blockPos = getBlockPos();
-        Vec3d fullPos = getPos();
-        VoxelShape collision = world.getBlockState(blockPos).getCollisionShape(world, blockPos);
-        endNoClip: {
-            for (Box box : collision.getBoundingBoxes()) {
-                if (!box.offset(blockPos).contains(fullPos)) continue;
-
-                break endNoClip;
-            }
-
-            noClip = false;
-        }
-
 
         time++;
 
@@ -95,6 +77,11 @@ public class GhostArrowEntity extends PersistentProjectileEntity implements Grav
     }
 
     @Override
+    public boolean penetratesBlocks() {
+        return true;
+    }
+
+    @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         setPierceLevel((byte) 16);
 
@@ -105,7 +92,7 @@ public class GhostArrowEntity extends PersistentProjectileEntity implements Grav
     }
 
     @Override
-    protected void onBlockHit(BlockHitResult blockHitResult) {
-        noClip = true;
+    protected void checkBlockCollision() {
+        // Lol no
     }
 }
