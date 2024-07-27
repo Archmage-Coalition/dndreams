@@ -168,6 +168,13 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
+    // Dragon Bone Block
+    public static final Block DRAGON_BONE_BLOCK = registerBlock("dragon_bone_block",
+            new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
     // Celestium Block
     public static final Block CELESTIUM_BLOCK = registerBlock("celestium_block",
             new Block(FabricBlockSettings.of(Material.METAL, MapColor.PALE_YELLOW).strength(4.0f).resistance(9.0f)
