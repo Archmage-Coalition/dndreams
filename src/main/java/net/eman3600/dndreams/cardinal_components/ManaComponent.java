@@ -99,6 +99,10 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         return (int)regenRate;
     }
 
+    public float getPartialMana(int maxMana) {
+        return regenTime > 0 && mana < maxMana ? (float)(regenTime)/REGEN_REQUIRE : 0f;
+    }
+
     @Override
     public int getManaMax() {
         if (player.hasStatusEffect(ModStatusEffects.LIFEMANA)) {

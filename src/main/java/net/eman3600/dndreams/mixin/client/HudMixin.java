@@ -188,14 +188,14 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
         EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
             if (!manaComponent.shouldRender()) return;
 
-            int mana = manaComponent.getMana();
             int maxMana = manaComponent.getManaMax();
+            float mana = manaComponent.getMana() + manaComponent.getPartialMana(maxMana);
             int vPos = manaComponent.getManaFrame() * 6;
 
             RenderSystem.setShaderTexture(0, DNDREAMS_GUI_MANA_BAR);
             RenderSystem.setShaderColor(1, 1, 1, 1.0f);
             drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, MANA_HEIGHT, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
-            drawTexture(matrices, xPos + 1, yPos + 1, 0, vPos, (int)((MANA_WIDTH - 2) * Math.min((float)mana / maxMana, 1f)), MANA_HEIGHT - 2, 230, 1944);
+            drawTexture(matrices, xPos + 1, yPos + 1, 0, vPos, (int)((MANA_WIDTH - 2) * Math.min(mana / maxMana, 1f)), MANA_HEIGHT - 2, 230, 1944);
             if (player.hasStatusEffect(ModStatusEffects.SUPPRESSED)) {
                 drawTexture(matrices, xPos, yPos, MANA_WIDTH - 2, 0, MANA_WIDTH, MANA_HEIGHT, 230, 1944);
             }
