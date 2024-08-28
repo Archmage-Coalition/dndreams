@@ -74,9 +74,9 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
     @Unique private static final int REVIVE_X_OFFSET = TORMENT_X_OFFSET + TORMENT_WIDTH + 8;
 
-    @Unique private static final int REVIVE_Y_OFFSET = TORMENT_Y_OFFSET;
+    @Unique private static final int REVIVE_Y_OFFSET = TORMENT_Y_OFFSET + 6;
 
-    @Unique private static final int REVIVE_Y_BIG_OFFSET = TORMENT_Y_BIG_OFFSET;
+    @Unique private static final int REVIVE_Y_BIG_OFFSET = TORMENT_Y_BIG_OFFSET + 6;
 
     @Unique
     private static final int REVIVE_WIDTH = 16;
