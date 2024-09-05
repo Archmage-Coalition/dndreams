@@ -1,0 +1,16 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [
+    {
+      "item": "dndreams:brilliance"
+    },
+    {
+      "item": "dndreams:dragon_bone"
+    }
+  ],
+  "result": {
+    "item": "dndreams:radiant_key",
+    "count": 1
+  },
+  "sanity_cost": 20
+}

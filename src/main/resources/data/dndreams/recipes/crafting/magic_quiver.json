@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#ZW",
+    "XYX",
+    "WX#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:nether_wart"
+    },
+    "X": {
+      "item": "minecraft:leather"
+    },
+    "Y": {
+      "item": "minecraft:ender_eye"
+    },
+    "Z": {
+      "item": "dndreams:sculk_powder"
+    },
+    "W": {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result": {
+    "item": "dndreams:magic_quiver"
+  }
+}

@@ -4,11 +4,13 @@ import net.eman3600.dndreams.cardinal_components.*;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.mixin_interfaces.ItemEntityAccess;
 import net.eman3600.dndreams.recipes.TransmutationRecipe;
 import net.eman3600.dndreams.util.ItemInFlowingSpiritCallback;
 import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.entity.Entity;
@@ -16,6 +18,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
@@ -97,7 +100,9 @@ public class ModCallbacks {
                 ReviveComponent revive = EntityComponents.REVIVE.get(newPlayer);
                 revive.deathReset();
 
-
+                if (newPlayer.getServer() != null && newPlayer.getServer().getGameRules().getBoolean(ModGameRules.DO_SANITY_TAX)) {
+                    torment.lowerMaxSanity(TormentComponent.THREAD_VALUE);
+                }
             }
         });
 
@@ -114,6 +119,15 @@ public class ModCallbacks {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        });
+
+        ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> {
+            if (!damageSource.isOutOfWorld() && entity instanceof WardenEntity e) {
+
+                e.setHealth(1f);
+                return false;
+            }
+            return true;
         });
 
         EntityElytraEvents.ALLOW.register(entity -> !entity.hasStatusEffect(ModStatusEffects.GRACE));

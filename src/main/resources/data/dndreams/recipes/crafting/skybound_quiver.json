@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#XZ",
+    "XYX",
+    "ZX#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:dream_powder"
+    },
+    "X": {
+      "item": "dndreams:skybound_arrow"
+    },
+    "Y": {
+      "item": "dndreams:magic_quiver"
+    },
+    "Z": {
+      "item": "dndreams:lost_dream"
+    }
+  },
+  "result": {
+    "item": "dndreams:skybound_quiver"
+  }
+}

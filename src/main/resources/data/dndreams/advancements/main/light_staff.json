@@ -1,0 +1,37 @@
+{
+  "parent": "dndreams:main/root",
+  "criteria": {
+    "let_there_be": {
+      "conditions": {
+        "item": {
+          "items": [
+            "dndreams:light_staff"
+          ]
+        }
+      },
+      "trigger": "minecraft:shot_crossbow"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.dndreams.light_staff.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "dndreams:light_staff",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.dndreams.light_staff.title"
+    }
+  },
+  "requirements": [
+    [
+      "let_there_be"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

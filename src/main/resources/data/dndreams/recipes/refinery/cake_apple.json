@@ -1,0 +1,24 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:nightmare_fuel"
+    },
+	  {
+      "item": "dndreams:permafrost"
+    },
+	  {
+      "item": "minecraft:cake"
+    },
+	  {
+      "item": "dndreams:succulent_apple"
+    }
+  ],
+  "result": {
+    "item": "dndreams:cake_apple",
+    "count": 1
+  },
+  "cost": 250,
+  "refine_time": 300,
+  "dream_only": true
+}

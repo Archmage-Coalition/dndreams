@@ -1,0 +1,15 @@
+{
+  "category": "dndreams:deprecated",
+  "name": "Tormentors",
+  "icon": "dndreams:nightmare_fuel",
+  "pages": [
+	{
+      "type": "patchouli:text",
+      "text": "They attack those with dwindling insanity and can be found almost anywhere. They are fairly resilient and work best in groups."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "dndreams:tormentor"
+    }
+  ]
+}

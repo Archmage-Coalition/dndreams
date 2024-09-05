@@ -7,7 +7,7 @@
         {
           "type": "minecraft:item",
           "name": "dndreams:icy_needle",
-		  "weight": 1,
+		      "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -22,7 +22,7 @@
         }
       ]
     },
-	{
+	  {
       "rolls": 1,
       "entries": [
         {

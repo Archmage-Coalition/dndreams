@@ -76,7 +76,18 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
         for (int i = 0; i < itemsInside(inventory); i++) {
             try {
-                if (!input.get(i).test(inventory.getStack(i))) return false;
+                boolean bl = true;
+
+                for (Ingredient ingredient : input) {
+                    if (ingredient.test(inventory.getStack(i))) {
+                        bl = false;
+                        break;
+                    }
+                }
+
+                if (bl) {
+                    return false;
+                }
             } catch (IndexOutOfBoundsException e) {
                 return false;
             }

@@ -2,21 +2,18 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
-      "item": "dndreams:distilled_spirit"
+      "item": "dndreams:lost_dream"
     },
-	{
-      "item": "dndreams:hollow_tear"
-    },
-	{
+	  {
       "item": "dndreams:nightmare_fuel"
     },
-	{
+	  {
       "item": "dndreams:lotus_flower"
     },
-	{
+	  {
       "item": "dndreams:icy_needle"
     },
-	{
+	  {
       "item": "dndreams:dream_powder"
     }
   ],

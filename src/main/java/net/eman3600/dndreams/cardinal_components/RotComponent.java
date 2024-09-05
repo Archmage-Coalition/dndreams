@@ -159,8 +159,8 @@ public class RotComponent implements AutoSyncedComponent, ServerTickingComponent
         if (entity instanceof PlayerEntity player && EntityComponents.TORMENT.get(player).getNightmareHaze() > 0.1f) return 0;
         if (getBloodMoonComponent().isBloodMoon()) return 0;
         if (entity.world instanceof ServerWorld server && TormentComponent.shouldShroud(server, entity.getBlockPos())) return 0;
+        //if (entity.world.getRegistryKey() == World.NETHER) return 0.05f;
         if (entity.world.getRegistryKey() == World.END && entity.world.getScoreboard() != null) return WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain() ? 1 : 0;
-        if (entity.world.getRegistryKey() == World.NETHER) return 0.05f;
         if (entity.world.getLightLevel(LightType.SKY, entity.getBlockPos()) >= 12) return entity.world.isDay() ? 1 : 0.2f;
 
         return 0.01f;

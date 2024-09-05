@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "dndreams:block/insight_table",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "dndreams:block/insight_table"
+    },
+    "facing=south": {
+      "model": "dndreams:block/insight_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "dndreams:block/insight_table",
+      "y": 270
+    }
+  }
+}

@@ -172,11 +172,11 @@
               "condition": "minecraft:survives_explosion"
             },
 			{
-			  "chance": 0.2,
+			  "chance": 0.1,
 			  "condition": "minecraft:random_chance"
 			}
           ],
-          "name": "minecraft:gold_nugget"
+          "name": "dndreams:gold_fruit"
         }
       ],
       "rolls": 1.0

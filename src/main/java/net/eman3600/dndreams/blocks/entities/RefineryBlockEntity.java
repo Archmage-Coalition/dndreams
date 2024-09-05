@@ -1,7 +1,6 @@
 package net.eman3600.dndreams.blocks.entities;
 
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
-import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
 import net.eman3600.dndreams.recipes.RefineryRecipe;
 import net.eman3600.dndreams.screens.RefineryScreenHandler;
@@ -40,7 +39,7 @@ public class RefineryBlockEntity extends BlockEntity implements AbstractPowerRec
     private int requiredTicks = 0;
     private RefineryRecipe recipe = null;
     private final DefaultedList<ItemStack> inventory =
-            DefaultedList.ofSize(7, ItemStack.EMPTY);
+            DefaultedList.ofSize(6, ItemStack.EMPTY);
     private final PropertyDelegate delegate = new PropertyDelegate() {
         @Override
         public int get(int index) {
@@ -310,13 +309,6 @@ public class RefineryBlockEntity extends BlockEntity implements AbstractPowerRec
         refineTicks = 0;
 
         if (canCraft()) {
-            int jars = recipe.jarsRequired(ImplementedInventory.of(inventory));
-
-            if (jars > 0) {
-                inventory.get(6).decrement(jars);
-            } else if (jars < 0) {
-                inventory.set(6, merge(inventory.get(6), new ItemStack(ModItems.AMETHYST_JAR, -jars)));
-            }
 
             for (int i = 0; i < 4; i++) {
                 if (!inventory.get(i).isEmpty()) inventory.get(i).decrement(1);
@@ -356,9 +348,6 @@ public class RefineryBlockEntity extends BlockEntity implements AbstractPowerRec
 
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
-        if (slot == 6 && side != Direction.UP) {
-            return stack.isOf(ModItems.AMETHYST_JAR);
-        }
 
         return slot < 4 && side == Direction.UP;
     }

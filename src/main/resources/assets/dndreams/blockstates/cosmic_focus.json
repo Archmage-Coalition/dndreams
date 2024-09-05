@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "dndreams:block/cosmic_focus"
+    },
+    "powered=true": {
+      "model": "dndreams:block/cosmic_focus_on"
+    }
+  }
+}

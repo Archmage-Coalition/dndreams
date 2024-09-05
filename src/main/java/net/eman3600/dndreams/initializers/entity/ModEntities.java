@@ -16,11 +16,10 @@ import net.minecraft.world.Heightmap;
 
 import static net.eman3600.dndreams.Initializer.MODID;
 import static net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity.createBloodSkeletonAttributes;
-import static net.eman3600.dndreams.entities.mobs.BloodZombieEntity.createBloodZombieAttributes;
 import static net.eman3600.dndreams.entities.mobs.DreamSheepEntity.createDreamSheepAttributes;
 import static net.eman3600.dndreams.entities.mobs.FacelessEntity.createFacelessAttributes;
+import static net.eman3600.dndreams.entities.mobs.ShamblerEntity.createShamblerAttributes;
 import static net.eman3600.dndreams.entities.mobs.TormentorEntity.createTormentorAttributes;
-import static net.eman3600.dndreams.entities.mobs.WardenRagdollEntity.createWardenRagdollAttributes;
 
 public class ModEntities {
     public static final EntityType<ShadeRiftEntity> SHADE_RIFT = Registry.register(
@@ -58,11 +57,19 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<FallingStarEntity> FALLING_STAR = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "falling_star"),
+            FabricEntityTypeBuilder.<FallingStarEntity>create(SpawnGroup.MISC, FallingStarEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
+                    .build()
+    );
+
     public static final EntityType<SparkBoltEntity> SPARK_BOLT = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "spark_bolt"),
             FabricEntityTypeBuilder.<SparkBoltEntity>create(SpawnGroup.MISC, SparkBoltEntity::new)
                     .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
@@ -70,7 +77,23 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "glow_bolt"),
             FabricEntityTypeBuilder.<GlowBoltEntity>create(SpawnGroup.MISC, GlowBoltEntity::new)
                     .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(32).trackedUpdateRate(10)
+                    .build()
+    );
+
+    public static final EntityType<FlameBoltEntity> FLAME_BOLT = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "flame_bolt"),
+            FabricEntityTypeBuilder.<FlameBoltEntity>create(SpawnGroup.MISC, FlameBoltEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
+                    .trackRangeBlocks(32).trackedUpdateRate(10)
+                    .build()
+    );
+
+    public static final EntityType<StrifeEntity> STRIFE = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "strife"),
+            FabricEntityTypeBuilder.<StrifeEntity>create(SpawnGroup.MISC, StrifeEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.375f, 0.375f))
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
@@ -80,7 +103,7 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "brew_splash"),
             FabricEntityTypeBuilder.<BrewSplashEntity>create(SpawnGroup.MISC, BrewSplashEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
@@ -88,7 +111,7 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "brew_lingering"),
             FabricEntityTypeBuilder.<BrewLingeringEntity>create(SpawnGroup.MISC, BrewLingeringEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
@@ -112,7 +135,7 @@ public class ModEntities {
             Registry.ENTITY_TYPE, new Identifier(MODID, "spring_vial"),
             FabricEntityTypeBuilder.<SpringVialEntity>create(SpawnGroup.MISC, SpringVialEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
-                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .trackRangeBlocks(10).trackedUpdateRate(10)
                     .build()
     );
 
@@ -126,17 +149,17 @@ public class ModEntities {
 
 
 
-    public static final EntityType<BloodZombieEntity> BLOOD_ZOMBIE = Registry.register(
-            Registry.ENTITY_TYPE, new Identifier(MODID, "blood_moon/blood_zombie"),
-            FabricEntityTypeBuilder.<BloodZombieEntity>create(SpawnGroup.MONSTER, BloodZombieEntity::new)
-                    .dimensions(EntityType.ZOMBIE.getDimensions())
-                    .build()
-    );
-
     public static final EntityType<BloodSkeletonEntity> BLOOD_SKELETON = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "blood_moon/blood_skeleton"),
             FabricEntityTypeBuilder.<BloodSkeletonEntity>create(SpawnGroup.MONSTER, BloodSkeletonEntity::new)
                     .dimensions(EntityType.STRAY.getDimensions())
+                    .build()
+    );
+
+    public static final EntityType<ShamblerEntity> SHAMBLER = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "shambler"),
+            FabricEntityTypeBuilder.<ShamblerEntity>create(SpawnGroup.MONSTER, ShamblerEntity::new)
+                    .dimensions(EntityType.ZOMBIE.getDimensions())
                     .build()
     );
 
@@ -165,24 +188,92 @@ public class ModEntities {
     );
 
 
-    public static final EntityType<WardenRagdollEntity> WARDEN_RAGDOLL = Registry.register(
-            Registry.ENTITY_TYPE, new Identifier(MODID, "warden_ragdoll"),
-            FabricEntityTypeBuilder.<WardenRagdollEntity>create(SpawnGroup.MISC, WardenRagdollEntity::new)
-                    .dimensions(EntityType.WARDEN.getDimensions())
+    public static final EntityType<ManatwineArrowEntity> MANATWINE_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "manatwine_arrow"),
+            FabricEntityTypeBuilder.<ManatwineArrowEntity>create(SpawnGroup.MISC, ManatwineArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
                     .fireImmune()
-                    .trackRangeBlocks(16)
+                    .trackRangeChunks(4)
+                    .build()
+    );
+
+    public static final EntityType<MindstrungArrowEntity> MINDSTRUNG_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "mindstrung_arrow"),
+            FabricEntityTypeBuilder.<MindstrungArrowEntity>create(SpawnGroup.MISC, MindstrungArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
+                    .build()
+    );
+
+    public static final EntityType<ManagoldArrowEntity> MANAGOLD_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "managold_arrow"),
+            FabricEntityTypeBuilder.<ManagoldArrowEntity>create(SpawnGroup.MISC, ManagoldArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
+                    .build()
+    );
+
+    public static final EntityType<SkyboundArrowEntity> SKYBOUND_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "skybound_arrow"),
+            FabricEntityTypeBuilder.<SkyboundArrowEntity>create(SpawnGroup.MISC, SkyboundArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
+                    .build()
+    );
+
+    public static final EntityType<GhostArrowEntity> GHOST_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "ghost_arrow"),
+            FabricEntityTypeBuilder.<GhostArrowEntity>create(SpawnGroup.MISC, GhostArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
+                    .build()
+    );
+
+    public static final EntityType<DreadfulArrowEntity> DREADFUL_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "dreadful_arrow"),
+            FabricEntityTypeBuilder.<DreadfulArrowEntity>create(SpawnGroup.MISC, DreadfulArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions()).
+                    fireImmune().
+                    build()
+    );
+
+//    public static final EntityType<DreadfulArrowEntity> DREADFUL_ARROW = Registry.register(
+//            Registry.ENTITY_TYPE, new Identifier(MODID, "dreadful_arrow"),
+//            FabricEntityTypeBuilder.<SkyboundArrowEntity>create(SpawnGroup.MISC, SkyboundArrowEntity::new)
+//                    .dimensions(EntityType.ARROW.getDimensions())
+//                    .fireImmune()
+//                    .trackRangeChunks(4)
+//                    .build()
+//    );
+
+    public static final EntityType<StormArrowEntity> STORM_ARROW = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "storm_arrow"),
+            FabricEntityTypeBuilder.<StormArrowEntity>create(SpawnGroup.MISC, StormArrowEntity::new)
+                    .dimensions(EntityType.ARROW.getDimensions())
+                    .fireImmune()
+                    .trackRangeChunks(4)
                     .build()
     );
 
 
-
-
+    public static final EntityType<VariableLightningEntity> CUSTOM_LIGHTNING = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "custom_lightning"),
+            FabricEntityTypeBuilder.<VariableLightningEntity>create(SpawnGroup.MISC, VariableLightningEntity::new)
+                    .disableSaving()
+                    .dimensions(EntityType.LIGHTNING_BOLT.getDimensions())
+                    .trackRangeChunks(16)
+                    .trackedUpdateRate(Integer.MAX_VALUE)
+                    .build()
+    );
 
 
     public static void registerEntities() {
-        FabricDefaultAttributeRegistry.register(BLOOD_ZOMBIE, createBloodZombieAttributes());
         FabricDefaultAttributeRegistry.register(BLOOD_SKELETON, createBloodSkeletonAttributes());
-        FabricDefaultAttributeRegistry.register(WARDEN_RAGDOLL, createWardenRagdollAttributes());
+        FabricDefaultAttributeRegistry.register(SHAMBLER, createShamblerAttributes());
         FabricDefaultAttributeRegistry.register(TORMENTOR, createTormentorAttributes());
         FabricDefaultAttributeRegistry.register(FACELESS, createFacelessAttributes());
         FabricDefaultAttributeRegistry.register(DREAM_SHEEP, createDreamSheepAttributes());

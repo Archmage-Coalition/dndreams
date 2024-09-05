@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.initializers.basics;
 
-import net.eman3600.dndreams.blocks.entities.SmokestackBlockEntity;
 import net.eman3600.dndreams.blocks.entities.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
@@ -18,10 +17,10 @@ public class ModBlockEntities {
     public static BlockEntityType<AttunementChamberBlockEntity> ATTUNEMENT_CHAMBER_ENTITY;
     public static BlockEntityType<SoulCandleBlockEntity> SOUL_CANDLE_ENTITY;
     public static BlockEntityType<EchoCandleBlockEntity> ECHO_CANDLE_ENTITY;
-    public static BlockEntityType<SmokestackBlockEntity> SMOKESTACK_ENTITY;
     public static BlockEntityType<RefineryBlockEntity> REFINERY_ENTITY;
     public static BlockEntityType<RefinedCauldronBlockEntity> REFINED_CAULDRON_ENTITY;
     public static BlockEntityType<BonfireBlockEntity> BONFIRE_ENTITY;
+    public static BlockEntityType<InsightTableBlockEntity> INSIGHT_TABLE_ENTITY;
 
     public static void registerBlockEntities() {
 
@@ -48,13 +47,13 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(SoulCandleBlockEntity::new, ModBlocks.SOUL_CANDLE).build());
         ECHO_CANDLE_ENTITY = registerEntity("echo_candle",
                 FabricBlockEntityTypeBuilder.create(EchoCandleBlockEntity::new, ModBlocks.ECHO_CANDLE).build());
-        SMOKESTACK_ENTITY = registerEntity("smokestack",
-                FabricBlockEntityTypeBuilder.create(SmokestackBlockEntity::new, ModBlocks.SMOKESTACK).build());
         REFINERY_ENTITY = registerEntity("refinery",
                 FabricBlockEntityTypeBuilder.create(RefineryBlockEntity::new, ModBlocks.REFINERY).build());
         REFINED_CAULDRON_ENTITY = registerEntity("refined_cauldron",
                 FabricBlockEntityTypeBuilder.create(RefinedCauldronBlockEntity::new, ModBlocks.REFINED_CAULDRON).build());
         BONFIRE_ENTITY = registerEntity("bonfire",
                 FabricBlockEntityTypeBuilder.create(BonfireBlockEntity::new, ModBlocks.BONFIRE).build());
+        INSIGHT_TABLE_ENTITY = registerEntity("insight_table",
+                FabricBlockEntityTypeBuilder.create(InsightTableBlockEntity::new, ModBlocks.INSIGHT_TABLE).build());
     }
 }

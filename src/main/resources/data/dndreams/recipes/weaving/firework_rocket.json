@@ -1,0 +1,17 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    }
+  ],
+  "result": {
+    "item": "minecraft:firework_rocket",
+    "count": 3
+  },
+  "mold": {
+	  "item": "minecraft:firework_rocket"
+  },
+  "sanity_cost": 1.5,
+  "preserve_mold": true
+}

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#R#",
+    "XTX",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:nightmarrow"
+    },
+    "X": {
+      "item": "dndreams:infernal_residue"
+    },
+    "T": {
+      "item": "dndreams:demonic_core_charged"
+    },
+    "R": {
+      "item": "dndreams:obsidian_chunk"
+    }
+  },
+  "result": {
+    "item": "dndreams:bloody_carbine",
+	  "count": 1
+  }
+}

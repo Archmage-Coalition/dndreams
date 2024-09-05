@@ -10,7 +10,7 @@
         {
           "type": "minecraft:item",
           "name": "dndreams:nightmare_fuel",
-		  "weight": 3,
+		      "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -23,10 +23,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "dndreams:infernal_residue",
-		  "weight": 3,
+		      "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -39,10 +39,10 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
-          "name": "dndreams:liquid_soul",
-		  "weight": 1,
+          "name": "dndreams:soul",
+		      "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",

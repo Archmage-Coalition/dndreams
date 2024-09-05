@@ -91,7 +91,7 @@ public class BossStateComponent implements BossStateComponentI, AutoSyncedCompon
         elrunezSlain = tag.getBoolean("elrunez_slain");
 
         setDifficulty();
-        WorldComponents.BOSS_STATE.sync(scoreboard);
+        //WorldComponents.BOSS_STATE.sync(scoreboard);
     }
 
     @Override

@@ -1,7 +1,7 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "dndreams:golden_grass"
+    "item": "dndreams:gold_fruit"
   },
   "corrupted": false,
   "capacity": 3,

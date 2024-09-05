@@ -1,7 +1,9 @@
 package net.eman3600.dndreams.entities.mobs;
 
+import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.ai.faceless.FacelessStalkingGoal;
+import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.util.SightUtil;
 import net.minecraft.block.BlockState;
@@ -56,6 +58,7 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
 
     public static TrackedData<Boolean> WOVEN = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<Boolean> CORPOREAL = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    public static TrackedData<Boolean> HAS_EYES = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<String> PHASE = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.STRING);
     public static TrackedData<Integer> HIDDEN_TIME = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public static TrackedData<Integer> RANDOM_TIME = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -122,6 +125,7 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
         super.initDataTracker();
         this.getDataTracker().startTracking(WOVEN, false);
         this.getDataTracker().startTracking(CORPOREAL, true);
+        this.getDataTracker().startTracking(HAS_EYES, true);
         this.getDataTracker().startTracking(PHASE, "haunting");
         this.getDataTracker().startTracking(HIDDEN_TIME, -1);
         this.getDataTracker().startTracking(RANDOM_TIME, 0);
@@ -179,7 +183,7 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
 
                 if (squaredDistanceTo(victim) < 1024) setDespawnCounter(0);
 
-                if (getSanity(victim) >= 65 || (isCorporeal() && daylightAt(serverWorld, getBlockPos())) || daylightAt(serverWorld, victim.getBlockPos()) || (age % 200 == 0 && isOutdated(victim))) {
+                if (getSanity(victim) >= 85 || (isCorporeal() && daylightAt(serverWorld, getBlockPos())) || daylightAt(serverWorld, victim.getBlockPos()) || (age % 200 == 0 && isOutdated(victim))) {
                     discard();
                     return;
                 }
@@ -189,8 +193,10 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
                     for (ServerPlayerEntity player : serverWorld.getPlayers()) {
 
                         TormentComponent torment = getTorment(player);
+                        boolean hasFearlessShades = TrinketsApi.getTrinketComponent(player)
+                                .get().isEquipped(ModItems.FEARLESS_SHADES);
 
-                        if (player.isCreative() || player.isSpectator() || torment.isTruthActive()) continue;
+                        if (player.isCreative() || player.isSpectator() || torment.isTruthActive() || hasFearlessShades) continue;
 
                         if (SightUtil.inView(player, this)) {
                             torment.setFearDrowning();
@@ -290,6 +296,7 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
 
         nbt.putBoolean(WOVEN_KEY, tracker.get(WOVEN));
         nbt.putBoolean(CORPOREAL_KEY, tracker.get(CORPOREAL));
+        nbt.putBoolean("HasEyes", tracker.get(HAS_EYES));
         nbt.putInt("HiddenTime", tracker.get(HIDDEN_TIME));
         nbt.putInt("RandomTime", tracker.get(RANDOM_TIME));
         nbt.putString("Phase", tracker.get(PHASE));
@@ -311,6 +318,7 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
         if (nbt.contains(CORPOREAL_KEY)) {
             tracker.set(CORPOREAL, nbt.getBoolean(CORPOREAL_KEY));
         }
+        tracker.set(HAS_EYES, nbt.getBoolean("HasEyes"));
         if (nbt.contains("Phase")) {
             tracker.set(PHASE, nbt.getString("Phase"));
         }

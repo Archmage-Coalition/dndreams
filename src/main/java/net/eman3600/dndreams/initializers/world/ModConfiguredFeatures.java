@@ -38,7 +38,7 @@ public class ModConfiguredFeatures {
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> SAKURA_TREE =
             ConfiguredFeatures.register("sakura_tree", Feature.TREE, new TreeFeatureConfig.Builder(
                     BlockStateProvider.of(ModBlocks.SAKURA_LOG),
-                    new StraightTrunkPlacer(3, 4, 3),
+                    new StraightTrunkPlacer(6, 4, 3),
                     BlockStateProvider.of(ModBlocks.SAKURA_LEAVES),
                     new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
                     new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(Blocks.GRASS_BLOCK)).build());
@@ -66,15 +66,14 @@ public class ModConfiguredFeatures {
                             new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(ModBlocks.SHADE_LEAVES.getDefaultState(), 1)),
                             new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(2), 50),
                             new TwoLayersFeatureSize(1, 0, 1))
-                            .dirtProvider(BlockStateProvider.of(ModBlocks.SHADE_MOSS)).forceDirt()
-                            .decorators(ImmutableList.of(new AlterGroundTreeDecorator(BlockStateProvider.of(ModBlocks.SHADE_MOSS)))).build());
+                            .dirtProvider(BlockStateProvider.of(ModBlocks.SHADE_MOSS)).build());
 
 
 
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> HAVEN_TREE =
             ConfiguredFeatures.register("haven_tree", Feature.TREE, new TreeFeatureConfig.Builder(
                     BlockStateProvider.of(ModBlocks.HAVEN_LOG),
-                    new StraightTrunkPlacer(3, 4, 3),
+                    new StraightTrunkPlacer(6, 4, 3),
                     BlockStateProvider.of(ModBlocks.HAVEN_LEAVES),
                     new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
                     new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(ModBlocks.HAVEN_DIRT)).build());
@@ -90,7 +89,7 @@ public class ModConfiguredFeatures {
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> STAR_TREE =
             ConfiguredFeatures.register("star_tree", Feature.TREE, new TreeFeatureConfig.Builder(
                     BlockStateProvider.of(ModBlocks.STAR_LOG),
-                    new StraightTrunkPlacer(3, 4, 3),
+                    new StraightTrunkPlacer(6, 4, 3),
                     BlockStateProvider.of(ModBlocks.STAR_LEAVES),
                     new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 4),
                     new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(ModBlocks.HAVEN_DIRT)).build());

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "minecraft:gold_nugget",
+  "ingredients": [
+    {
+      "item": "dndreams:gold_fruit"
+    }
+  ],
+  "result": {
+    "item": "minecraft:gold_nugget",
+    "count": 2
+  }
+}

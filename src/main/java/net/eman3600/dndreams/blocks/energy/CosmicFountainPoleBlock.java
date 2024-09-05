@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.blocks.energy;
 
 import net.eman3600.dndreams.blocks.entities.CosmicFountainPoleBlockEntity;
+import net.eman3600.dndreams.blocks.portal.CosmicPortalBlock;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.minecraft.block.*;

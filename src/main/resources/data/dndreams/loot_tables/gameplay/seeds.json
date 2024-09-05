@@ -8,7 +8,7 @@
           "type": "minecraft:item",
           "name": "dndreams:snowbell_seeds"
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "dndreams:applethorn_seeds",
           "conditions": [
@@ -20,7 +20,7 @@
             }
           ]
         },
-		{
+		    {
           "type": "minecraft:item",
           "name": "dndreams:lotus_seeds",
           "conditions": [

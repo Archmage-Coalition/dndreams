@@ -15,6 +15,7 @@ public class CrownedBeamPacket {
         Vec3d vec = new Vec3d(packet.readDouble(), packet.readDouble(), packet.readDouble());
 
         boolean wicked = packet.readBoolean();
+        boolean weak = packet.readBoolean();
 
         if (wicked) {
             Random random = new Random();
@@ -25,6 +26,6 @@ public class CrownedBeamPacket {
             }
         }
 
-        client.world.addParticle(ModParticles.CROWNED_BEAM, true, vec.x, vec.y, vec.z, 0, 0, 0);
+        client.world.addParticle(weak ? ModParticles.CROWNED_BEAM_WEAK : ModParticles.CROWNED_BEAM, true, vec.x, vec.y, vec.z, 0, 0, 0);
     }
 }

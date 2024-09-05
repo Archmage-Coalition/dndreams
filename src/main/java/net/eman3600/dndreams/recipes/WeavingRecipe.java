@@ -23,14 +23,16 @@ public class WeavingRecipe implements Recipe<Inventory> {
     public final DefaultedList<Ingredient> input;
     public final Ingredient mold;
     public final float sanityCost;
+    public final boolean preserveMold;
 
-    public WeavingRecipe(Identifier id, String group, ItemStack output, Ingredient mold, DefaultedList<Ingredient> input, float sanityCost) {
+    public WeavingRecipe(Identifier id, String group, ItemStack output, Ingredient mold, DefaultedList<Ingredient> input, float sanityCost, boolean preserveMold) {
         this.id = id;
         this.group = group;
         this.output = output;
         this.input = input;
         this.mold = mold;
         this.sanityCost = sanityCost;
+        this.preserveMold = preserveMold;
     }
 
     public Identifier getId() {
@@ -68,7 +70,7 @@ public class WeavingRecipe implements Recipe<Inventory> {
     @Override
     public boolean matches(Inventory inventory, World world) {
 
-        return isEmpty() ? inventory.isEmpty() : matchesInput(inventory, world) || (!mold.isEmpty() && matchesMold(inventory, world));
+        return isEmpty() ? inventory.isEmpty() : matchesMold(inventory, world) && (!mold.isEmpty() || matchesInput(inventory, world));
     }
 
     public boolean matchesMold(Inventory inventory, World world) {
@@ -140,8 +142,9 @@ public class WeavingRecipe implements Recipe<Inventory> {
                 ItemStack itemStack = RefineryRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
 
                 float cost = MathHelper.clamp(JsonHelper.getFloat(jsonObject, "sanity_cost", 5), 0, 100);
+                boolean preserveMold = JsonHelper.getBoolean(jsonObject, "preserve_mold", false);
 
-                return new WeavingRecipe(identifier, string, itemStack, getMold(jsonObject), defaultedList, cost);
+                return new WeavingRecipe(identifier, string, itemStack, getMold(jsonObject), defaultedList, cost, preserveMold);
             }
         }
 
@@ -177,7 +180,8 @@ public class WeavingRecipe implements Recipe<Inventory> {
 
             ItemStack itemStack = packetByteBuf.readItemStack();
             float cost = packetByteBuf.readFloat();
-            return new WeavingRecipe(identifier, string, itemStack, mold, defaultedList, cost);
+            boolean preserveMold = packetByteBuf.readBoolean();
+            return new WeavingRecipe(identifier, string, itemStack, mold, defaultedList, cost, preserveMold);
         }
 
         public void write(PacketByteBuf packetByteBuf, WeavingRecipe recipe) {
@@ -192,6 +196,7 @@ public class WeavingRecipe implements Recipe<Inventory> {
 
             packetByteBuf.writeItemStack(recipe.output);
             packetByteBuf.writeFloat(recipe.sanityCost);
+            packetByteBuf.writeBoolean(recipe.preserveMold);
         }
     }
 }

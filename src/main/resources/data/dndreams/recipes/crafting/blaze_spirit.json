@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "XNX",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:sculk_powder"
+    },
+    "X": {
+      "item": "minecraft:blaze_powder"
+    },
+    "N": {
+      "item": "dndreams:nightmare_fuel"
+    }
+  },
+  "result": {
+    "item": "dndreams:blaze_spirit"
+  }
+}

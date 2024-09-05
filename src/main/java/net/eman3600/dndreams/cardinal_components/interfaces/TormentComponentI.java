@@ -37,4 +37,12 @@ public interface TormentComponentI extends Component {
     boolean canAfford(float cost);
 
     void spendSanity(float cost);
+
+    int getTension();
+
+    int getEffectiveTension();
+
+    void addTension(int tension);
+
+    float getFacelessPrevalence();
 }

@@ -1,7 +1,7 @@
 {
   "type": "dndreams:apothecary",
   "ingredient": {
-    "item": "dndreams:mellifluous_hunger"
+    "item": "dndreams:subdued_madness"
   },
   "corrupted": false,
   "capacity": 4,

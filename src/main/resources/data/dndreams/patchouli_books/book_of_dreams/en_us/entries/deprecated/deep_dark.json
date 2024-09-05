@@ -1,0 +1,63 @@
+{
+  "category": "dndreams:deprecated",
+  "name": "The Deep Dark",
+  "icon": "minecraft:sculk_shrieker",
+  "pages": [
+	{
+      "type": "patchouli:text",
+      "text": "These regions deep in the caves are coated by an ancient affliction; a malady of mind and soul - of demons and dreams. It is a deep reservoir of magic, but any venture there is a risk."
+    },
+	{
+      "type": "patchouli:image",
+	  "images": [
+	    "dndreams:textures/gui/refs/deep_darkness.png"
+	  ],
+	  "border": true,
+      "text": "The Deep Dark absorbs ambient light, making it pitch black."
+    },
+	{
+      "type": "patchouli:text",
+      "text": "The ancient cities are the heart of the affliction and contain valuable materials. They and the rest of the Deep Dark are guarded by the sculk."
+    },
+	{
+	  "type": "patchouli:crafting",
+      "title": "Scorched Pearl",
+	  "recipe": "dndreams:crafting/tainted_pearl",
+      "text": "The stain of affliction guides the pearl towards the nearest afflicted city."
+	},
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:sculk_catalyst",
+      "text": "The catalyst absorbs the energy of that which dies near it, spreading the affliction to nearby earth and wood."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:sculk_sensor",
+      "text": "The sculk is blind but can detect sound. Sneak around the sensors to avoid detection. Even the sounds of building and eating can be heard. If they hear you, they will notify nearby shriekers."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:white_wool",
+      "text": "Wool blocks occlude sound, preventing sensors from detecting through them. They can be placed and broken safely as well, and your footsteps are muffled when atop them."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:sculk_shrieker",
+      "text": "If notified of your presence, the shrieker will let out a wail that calls the sculk to channel its power into forming a powerful mass of sculk and soul known as the Warden."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "minecraft:warden",
+	  "text": "The Warden cannot be slain. It can only be evaded."
+    },
+	{
+      "type": "patchouli:text",
+      "text": "The Warden is blind but has excellent hearing and can use echolocation. If it notices you move, it will begin pursuit. If you must escape, use its blindness to your advantage."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "dndreams:sculk_powder",
+      "text": "The memory dust is a powerful source of magic, formed from the amalgamated energies of the absorbed. It can be extracted by breaking sculk sensors, shriekers, and catalysts."
+    }
+  ]
+}

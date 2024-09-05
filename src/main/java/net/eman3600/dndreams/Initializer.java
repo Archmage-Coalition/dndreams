@@ -8,6 +8,7 @@ import net.eman3600.dndreams.initializers.event.*;
 import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.initializers.world.ModFeatures;
+import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.integration.commands.ModCommands;
 import net.eman3600.dndreams.items.tool_mirror.ModHoeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
@@ -43,7 +44,7 @@ public class Initializer implements ModInitializer {
 		ModAttributes.registerAttributes();
 
 		ModBlocks.registerBlocks();
-		ModItems.registerItems();
+		ModItems.registerAllItems();
 		ModEnchantments.registerEnchants();
 		ModFluids.registerFluids();
 		ModHoeItem.injectTillActions();
@@ -62,11 +63,13 @@ public class Initializer implements ModInitializer {
 		ModWorldGen.generate();
 
 		ModLootConditions.registerConditions();
+		ModCriterion.registerCriterion();
 		LootModifiers.modifyLootTables();
 
 		ModStats.registerStats();
 		ModTags.registerTags();
 		ModRegistries.register();
+		ModSoundEvents.registerSounds();
 
 		ModParticles.registerParticles();
 		ModEntities.registerEntities();
@@ -80,6 +83,7 @@ public class Initializer implements ModInitializer {
 		ModCallbacks.registerCallbacks();
 
 		ModCommands.registerCommands();
+		ModGameRules.registerRules();
 
 		GeckoLib.initialize();
 	}

@@ -2,10 +2,10 @@
   "type": "dndreams:cauldron",
   "ingredients": [
     {
-      "item": "dndreams:liquid_soul"
+      "item": "dndreams:soul"
     },
 	{
-      "item": "dndreams:mellifluous_hunger"
+      "item": "dndreams:nightmare_fuel"
     },
 	{
       "item": "minecraft:bone_block"

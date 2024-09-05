@@ -160,11 +160,7 @@ public class GatewayComponent implements GatewayComponentI {
     public boolean hasFoughtPhantomLord() {
         EntityComponents.GATEWAY.sync(player);
 
-        try {
-            return foughtPhantomLord || WorldComponents.BOSS_STATE.get(((ServerWorld)player.getWorld()).getScoreboard()).dragonSlain();
-        } catch (ClassCastException | NullPointerException e) {
-            return foughtPhantomLord;
-        }
+        return foughtPhantomLord;
     }
 
     public void exitGateway(boolean success) {

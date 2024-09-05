@@ -10,12 +10,11 @@ import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mob_effects.ModStatusEffect;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
 public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
-    private static final int MAX_XP_BONUS = 50;
+    private static final int MAX_XP_BONUS = 25;
     private static final int REGEN_REQUIRE = 60;
     public static final int MANA_FRAMES = 324;
 
@@ -25,8 +24,8 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
 
     private float manaFrame = 0;
 
-    public ManaComponent(PlayerEntity playerIn) {
-        player = playerIn;
+    public ManaComponent(PlayerEntity player) {
+        this.player = player;
     }
 
     @Override
@@ -98,6 +97,10 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
         }
 
         return (int)regenRate;
+    }
+
+    public float getPartialMana(int maxMana) {
+        return regenTime > 0 && mana < maxMana ? (float)(regenTime)/REGEN_REQUIRE : 0f;
     }
 
     @Override

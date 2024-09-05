@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#XZ",
+    "XYX",
+    "ZX#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:redstone"
+    },
+    "X": {
+      "item": "minecraft:spectral_arrow"
+    },
+    "Y": {
+      "item": "dndreams:magic_quiver"
+    },
+    "Z": {
+      "item": "dndreams:gold_fruit"
+    }
+  },
+  "result": {
+    "item": "dndreams:spectral_quiver"
+  }
+}

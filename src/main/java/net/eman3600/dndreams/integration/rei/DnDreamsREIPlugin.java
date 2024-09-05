@@ -16,15 +16,16 @@ import net.eman3600.dndreams.items.consumable.MutandisExtremisItem;
 import net.eman3600.dndreams.items.consumable.MutandisItem;
 import net.eman3600.dndreams.items.consumable.MutandisOneirosItem;
 import net.eman3600.dndreams.recipes.*;
+import net.eman3600.dndreams.screens.slot.AttunementBurnSlot;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
 
 public class DnDreamsREIPlugin implements REIClientPlugin {
+    public static final CategoryIdentifier<AttunementDisplay> ATTUNEMENT = CategoryIdentifier.of(new Identifier(Initializer.MODID, "attunement"));
     public static final CategoryIdentifier<TransmutationDisplay> TRANSMUTATION = CategoryIdentifier.of(new Identifier(Initializer.MODID, "transmutation"));
-    public static final CategoryIdentifier<SmokestackDisplay> SMOKESTACK = CategoryIdentifier.of(new Identifier(Initializer.MODID, "smokestack"));
     public static final CategoryIdentifier<MutandisDisplay> MUTANDIS = CategoryIdentifier.of(new Identifier(Initializer.MODID, "mutandis"));
     public static final CategoryIdentifier<WeavingDisplay> WEAVING = CategoryIdentifier.of(new Identifier(Initializer.MODID, "weaving"));
     public static final CategoryIdentifier<RefineryDisplay> REFINERY = CategoryIdentifier.of(new Identifier(Initializer.MODID, "refinery"));
@@ -34,9 +35,6 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
-        registry.add(new SmokestackCategory());
-        registry.addWorkstations(SMOKESTACK, SmokestackCategory.ICON);
-        registry.addWorkstations(SMOKESTACK, EntryStacks.of(Blocks.SMOKER));
         registry.add(new RefineryCategory());
         registry.addWorkstations(REFINERY, RefineryCategory.ICON);
         registry.add(new WeavingCategory());
@@ -48,6 +46,9 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         registry.add(new RitualCategory());
         registry.addWorkstations(RITUAL, RitualCategory.ICON);
         registry.addWorkstations(RITUAL, EntryStacks.of(ModBlocks.ECHO_CANDLE));
+
+        registry.add(new AttunementCategory());
+        registry.addWorkstations(ATTUNEMENT, AttunementCategory.ICON);
 
         registry.add(new MutandisCategory());
         registry.addWorkstations(MUTANDIS, MutandisCategory.ICON);
@@ -70,7 +71,6 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(TransmutationRecipe.class, TransmutationDisplay::new);
-        registry.registerFiller(SmokestackRecipe.class, SmokestackDisplay::new);
         registry.registerFiller(WeavingRecipe.class, WeavingDisplay::new);
         registry.registerFiller(RefineryRecipe.class, RefineryDisplay::new);
         registry.registerFiller(CauldronRecipe.class, CauldronDisplay::new);
@@ -87,6 +87,10 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         }
         for (Block out: MutandisOneirosItem.fullMutables) {
             registry.add(new MutandisDisplay(EntryStacks.of(ModItems.MUTANDIS_ONEIROS), EntryStacks.of(out)));
+        }
+
+        for (ItemConvertible item : AttunementBurnSlot.ITEM_TO_ENERGY.keySet()) {
+            registry.add(new AttunementDisplay(EntryStacks.of(item), AttunementBurnSlot.ITEM_TO_ENERGY.getOrDefault(item, 0)));
         }
 
 

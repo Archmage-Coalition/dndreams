@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#XZ",
+    "XYX",
+    "ZX#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:managold_ingot"
+    },
+    "X": {
+      "item": "dndreams:managold_arrow"
+    },
+    "Y": {
+      "item": "dndreams:magic_quiver"
+    },
+    "Z": {
+      "item": "dndreams:nightmare_fuel"
+    }
+  },
+  "result": {
+    "item": "dndreams:managold_quiver"
+  }
+}

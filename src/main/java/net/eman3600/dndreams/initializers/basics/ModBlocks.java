@@ -4,11 +4,17 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.*;
 import net.eman3600.dndreams.blocks.crop.*;
 import net.eman3600.dndreams.blocks.energy.*;
+import net.eman3600.dndreams.blocks.portal.CosmicPortalBlock;
 import net.eman3600.dndreams.blocks.portal.GenericPortalBlock;
+import net.eman3600.dndreams.blocks.portal.UnchargedNetherPortalBlock;
+import net.eman3600.dndreams.blocks.redstone.CosmicEggBlock;
+import net.eman3600.dndreams.blocks.redstone.CosmicFocusBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritFenceBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritSlabBlock;
 import net.eman3600.dndreams.blocks.spirtloggable.SpiritStairsBlock;
-import net.eman3600.dndreams.blocks.spreadable.*;
+import net.eman3600.dndreams.blocks.spreadable.HavenSpreadableBlock;
+import net.eman3600.dndreams.blocks.spreadable.MarbleSpreadableBlock;
+import net.eman3600.dndreams.blocks.spreadable.ShadeMossBlock;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.world.ModConfiguredFeatures;
 import net.eman3600.dndreams.items.block_item.DreamyBlockItem;
@@ -42,9 +48,18 @@ public class ModBlocks {
                     .luminance(s -> (s.get(ShineBlock.LIGHT) * 3) + 6)
                     .ticksRandomly()));
 
+    public static final Block STRIFE_FIRE = registerBlock("strife_fire",
+            new StrifeFireBlock(FabricBlockSettings.copyOf(Blocks.SOUL_FIRE)));
+
     // Marble
     public static final Block MARBLE = registerBlock("marble",
             new Block(FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_WHITE).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)
+                    .requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block GILDED_MARBLE = registerBlock("gilded_marble",
+            new Block(FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_YELLOW).strength(0.75f)
                     .sounds(BlockSoundGroup.CALCITE)
                     .requiresTool()),
 
@@ -59,6 +74,57 @@ public class ModBlocks {
                     .nonOpaque()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
+    public static final Block MARBLE_SLAB = registerBlock("marble_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.STONE_SLAB).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_STAIRS = registerBlock("marble_stairs",
+            new StairsBlock(MARBLE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE_STAIRS).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_WALL = registerBlock("marble_wall",
+            new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_PRESSURE_PLATE = registerBlock("marble_pressure_plate",
+            new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, FabricBlockSettings.copy(Blocks.STONE_PRESSURE_PLATE).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
+    public static final Block MARBLE_BUTTON = registerBlock("marble_button",
+            new StoneButtonBlock(FabricBlockSettings.copy(Blocks.STONE_BUTTON).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
+
+    public static final Block MARBLE_BRICKS = registerBlock("marble_bricks",
+            new Block(FabricBlockSettings.copy(Blocks.STONE_BRICKS).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block CHISELED_MARBLE = registerBlock("chiseled_marble",
+            new Block(FabricBlockSettings.copy(Blocks.CHISELED_STONE_BRICKS).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_BRICK_SLAB = registerBlock("marble_brick_slab",
+            new SpiritSlabBlock(FabricBlockSettings.copy(Blocks.STONE_SLAB).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_BRICK_STAIRS = registerBlock("marble_brick_stairs",
+            new SpiritStairsBlock(MARBLE.getDefaultState(), FabricBlockSettings.copy(Blocks.STONE_STAIRS).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+    public static final Block MARBLE_BRICK_WALL = registerBlock("marble_brick_wall",
+            new WallBlock(FabricBlockSettings.copy(Blocks.STONE_BRICK_WALL).strength(0.75f)
+                    .sounds(BlockSoundGroup.CALCITE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     // Hellsteel Block
     public static final Block CORRUPT_BLOCK = registerBlock("corrupt_block",
@@ -99,6 +165,13 @@ public class ModBlocks {
     public static final Block DEEPSLATE_VITAL_ORE = registerBlock("deepslate_vital_ore",
             new VitalOreBlock(Blocks.DEEPSLATE, FabricBlockSettings.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
                     .requiresTool(), UniformIntProvider.create(2, 6)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    // Dragon Bone Block
+    public static final Block DRAGON_BONE_BLOCK = registerBlock("dragon_bone_block",
+            new PillarBlock(FabricBlockSettings.copy(Blocks.BONE_BLOCK)
+                    .requiresTool()),
 
             new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
@@ -169,6 +242,20 @@ public class ModBlocks {
     // Bonfire
     public static final Block BONFIRE = registerBlock("bonfire",
             new BonfireBlock(FabricBlockSettings.copyOf(Blocks.CAMPFIRE)));
+
+    // Cosmic Egg
+    public static final Block COSMIC_EGG = registerBlock("cosmic_egg",
+            new CosmicEggBlock(FabricBlockSettings.copy(Blocks.DRAGON_EGG).strength(2f, 9f).requiresTool()),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
+    public static final Block COSMIC_FOCUS = registerBlock("cosmic_focus",
+            new CosmicFocusBlock(FabricBlockSettings.copy(Blocks.END_STONE_BRICKS)),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
+    public static final Block CHORUS_FOCUS = registerBlock("chorus_focus",
+            new Block(FabricBlockSettings.copy(Blocks.END_STONE_BRICKS)),
+
+            new FabricItemSettings().group(ItemGroup.REDSTONE));
 
     // Spirit Slates
     public static final Block SPIRIT_STONE = registerBlock("spirit_stone",
@@ -608,8 +695,8 @@ public class ModBlocks {
                     .nonOpaque().ticksRandomly().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
-    public static final Block SHADE_BUSH = registerDreamBlock("shade_bush",
-            new ShadeSaplingBlock(FabricBlockSettings.copy(Blocks.AZALEA)
+    public static final Block SHADE_SHROOM = registerDreamBlock("shade_shroom",
+            new ShadeShroomBlock(FabricBlockSettings.copy(Blocks.RED_MUSHROOM)
                     .breakInstantly().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
@@ -1023,6 +1110,9 @@ public class ModBlocks {
     public static final Block MORTAL_PORTAL = registerBlock("mortal_portal",
             new GenericPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), CHARGED_DEEPSLATE));
 
+    public static final Block UNCHARGED_NETHER_PORTAL = registerBlock("uncharged_nether_portal",
+            new UnchargedNetherPortalBlock(FabricBlockSettings.copy(Blocks.NETHER_PORTAL).nonOpaque(), Blocks.OBSIDIAN));
+
 
     // Nightshade Moss
     public static final Block SHADE_MOSS = registerDreamBlock("shade_moss",
@@ -1071,13 +1161,6 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
 
-    // Smokestack
-    public static final Block SMOKESTACK = registerBlock("smokestack",
-            new SmokestackBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(1.0f, 6.0f)
-                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)),
-
-            new FabricItemSettings().group(ItemGroup.DECORATIONS));
-
     // Refinery
     public static final Block REFINERY = registerBlock("refinery",
             new RefineryBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 6.0f)
@@ -1092,6 +1175,11 @@ public class ModBlocks {
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
+    // Insight Table
+    public static final Block INSIGHT_TABLE = registerBlock("insight_table",
+            new InsightTableBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.0f, 6.0f)),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     // Ritual Candles
     public static final Block ECHO_CANDLE = registerBlock("echo_candle",
@@ -1114,6 +1202,17 @@ public class ModBlocks {
                     .luminance(RitualCandleBlock::luminence).breakInstantly()),
 
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
+
+    //cloud stuff
+    public static final Block CLOUD_ORE = registerBlock("cloud_ore",
+            new CloudOreBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE), UniformIntProvider.create(1, 5)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
+
+    public static final Block DEEPSLATE_CLOUD_ORE = registerBlock("deepslate_cloud_ore",
+            new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE)),
+
+            new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS));
 
     private static boolean never(BlockState blockState, BlockView blockView, BlockPos blockPos) {
         return false;

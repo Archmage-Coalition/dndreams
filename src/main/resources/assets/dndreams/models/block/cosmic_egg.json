@@ -1,0 +1,7 @@
+{
+    "parent": "block/dragon_egg",
+    "textures": {
+        "particle": "dndreams:block/cosmic_egg",
+        "all": "dndreams:block/cosmic_egg"
+    }
+}

@@ -17,6 +17,7 @@ public class MarbleGardenBiome extends EndBiome.Config {
     @Override
     protected void addCustomBuildData(BCLBiomeBuilder builder) {
         builder
+                .genChance(.15f)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.PRISTINE_PLACED)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.GOLDEN_GRASS)
                 .spawn(EntityType.ENDERMAN, 10, 1, 2);

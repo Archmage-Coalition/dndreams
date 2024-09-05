@@ -17,7 +17,7 @@
     "announce_to_chat": false,
     "background": "dndreams:textures/gui/advancements/sculk.png",
     "description": {
-      "translate": "advancements.dndreams.main.root.description"
+      "translate": "advancements.dndreams.root.description"
     },
     "frame": "task",
     "hidden": false,
@@ -26,7 +26,7 @@
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.dndreams.main.root.title"
+      "translate": "advancements.dndreams.root.title"
     }
   },
   "requirements": [

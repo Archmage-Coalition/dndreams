@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P#P",
+    "PXP",
+    "D D"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:sanity_thread"
+    },
+    "X": {
+      "item": "minecraft:elytra"
+    },
+    "D": {
+      "item": "dndreams:lost_dream"
+    },
+    "P": {
+      "item": "dndreams:pericharite"
+    }
+  },
+  "result": {
+    "item": "dndreams:evergale"
+  }
+}

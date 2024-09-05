@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "dndreams:block/uncharged_nether_portal_ns"
+    },
+    "axis=z": {
+      "model": "dndreams:block/uncharged_nether_portal_ew"
+    }
+  }
+}

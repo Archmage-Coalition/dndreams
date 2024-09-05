@@ -1,0 +1,13 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [
+    {
+      "tag": "minecraft:sand"
+    }
+  ],
+  "result": {
+    "item": "minecraft:dirt",
+    "count": 1
+  },
+  "sanity_cost": 0.5
+}

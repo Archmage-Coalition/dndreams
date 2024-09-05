@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:bone"
+    },
+    "X": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "Y": {
+      "item": "dndreams:nightmare_fuel"
+    }
+  },
+  "pattern": [
+    "X",
+    "#",
+    "Y"
+  ],
+  "result": {
+    "count": 8,
+    "item": "dndreams:ghost_arrow"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "dndreams:refinery",
+  "ingredients": [
+    {
+      "item": "dndreams:flowing_spirit_bucket"
+    },
+	  {
+      "item": "dndreams:cloud"
+    },
+	  {
+      "item": "dndreams:shade_shroom"
+    },
+	  {
+      "item": "dndreams:sakura_petals"
+    }
+  ],
+  "result": {
+    "item": "dndreams:lost_dream",
+    "count": 3
+  },
+  "byproduct": {
+    "item": "dndreams:sorrow_bucket",
+    "count": 1
+  },
+  "cost": 250,
+  "refine_time": 600,
+  "dream_only": true
+}

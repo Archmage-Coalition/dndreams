@@ -3,13 +3,16 @@ package net.eman3600.dndreams;
 import net.eman3600.dndreams.blocks.entities.CosmicPortalBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.BonfireBlockEntityRenderer;
 import net.eman3600.dndreams.blocks.renderer.RefinedCauldronBlockEntityRenderer;
+import net.eman3600.dndreams.entities.projectiles.*;
 import net.eman3600.dndreams.entities.renderers.*;
+import net.eman3600.dndreams.entities.renderers.features.DreadfulArrowRenderer;
 import net.eman3600.dndreams.events.KeyInputHandler;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModFluids;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
+import net.eman3600.dndreams.initializers.event.ModClientCallbacks;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.event.ModScreenHandlerTypes;
@@ -17,7 +20,6 @@ import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.screens.AttunementScreen;
 import net.eman3600.dndreams.screens.RefineryScreen;
-import net.eman3600.dndreams.screens.SmokestackScreen;
 import net.eman3600.dndreams.screens.WeavingScreen;
 import net.eman3600.dndreams.util.ModModelPredicateProvider;
 import net.fabricmc.api.ClientModInitializer;
@@ -28,9 +30,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.EmptyEntityRenderer;
-import net.minecraft.client.render.entity.FallingBlockEntityRenderer;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.client.render.entity.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -40,7 +40,6 @@ ClientInitializer implements ClientModInitializer {
     public void onInitializeClient() {
         HandledScreens.register(ModScreenHandlerTypes.WEAVING, WeavingScreen::new);
         HandledScreens.register(ModScreenHandlerTypes.ATTUNEMENT, AttunementScreen::new);
-        HandledScreens.register(ModScreenHandlerTypes.SMOKESTACK, SmokestackScreen::new);
         HandledScreens.register(ModScreenHandlerTypes.REFINERY, RefineryScreen::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DREAMWOOD_LEAVES, RenderLayer.getCutout());
@@ -56,7 +55,7 @@ ClientInitializer implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SAKURA_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.JAPANESE_MAPLE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PRISTINE_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHADE_BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHADE_SHROOM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HAVEN_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PINE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.STAR_SAPLING, RenderLayer.getCutout());
@@ -74,9 +73,11 @@ ClientInitializer implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HORDE_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HAVEN_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MORTAL_PORTAL, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.UNCHARGED_NETHER_PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.COSMIC_PORTAL, RenderLayer.getEndPortal());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BONFIRE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.STRIFE_FIRE, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SNOWBELL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LOTUS, RenderLayer.getCutout());
@@ -111,10 +112,11 @@ ClientInitializer implements ClientModInitializer {
         //1e1c32
 
         ModModelPredicateProvider.registerModModels();
+        ModClientCallbacks.registerClientCallbacks();
 
 
         ModMessages.registerS2CPackets();
-
+        ModParticles.registerParticleTextures();
         ModParticles.registerParticleFactories();
 
 
@@ -123,8 +125,11 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.CROWNED_SLASH, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CROWNED_BEAM, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.TESLA_SLASH, EmptyEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.SPARK_BOLT, SparkBoltEntityRenderer::new);
-        EntityRendererRegistry.register(ModEntities.GLOW_BOLT, GlowBoltEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SPARK_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, SparkBoltEntity.TEXTURE));
+        EntityRendererRegistry.register(ModEntities.GLOW_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, GlowBoltEntity.TEXTURE));
+        EntityRendererRegistry.register(ModEntities.FLAME_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, FlameBoltEntity.TEXTURE));
+        EntityRendererRegistry.register(ModEntities.STRIFE, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, StrifeEntity.TEXTURE));
+        EntityRendererRegistry.register(ModEntities.FALLING_STAR, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, FallingStarEntity.TEXTURE));
 
         EntityRendererRegistry.register(ModEntities.BREW_SPLASH, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BREW_LINGERING, FlyingItemEntityRenderer::new);
@@ -133,13 +138,23 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.SPRING_VIAL, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.RISING_BLOCK, FallingBlockEntityRenderer::new);
 
-        EntityRendererRegistry.register(ModEntities.BLOOD_ZOMBIE, BloodZombieEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.BLOOD_SKELETON, BloodSkeletonEntityRenderer::new);
 
-        EntityRendererRegistry.register(ModEntities.WARDEN_RAGDOLL, WardenRagdollEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SHAMBLER, ShamblerEntityRenderer::new);
+
         EntityRendererRegistry.register(ModEntities.TORMENTOR, TormentorEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.FACELESS, FacelessEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.DREAM_SHEEP, DreamSheepEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MANATWINE_ARROW, ManatwineArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MINDSTRUNG_ARROW, MindstrungArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MANAGOLD_ARROW, ManagoldArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.GHOST_ARROW, GhostArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.SKYBOUND_ARROW, SkyboundArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.STORM_ARROW, StormArrowRenderer::new);
+        EntityRendererRegistry.register(ModEntities.DREADFUL_ARROW, DreadfulArrowRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.CUSTOM_LIGHTNING, LightningEntityRenderer::new);
+
 
         KeyInputHandler.registerBindings();
         KeyInputHandler.registerKeyInputs();

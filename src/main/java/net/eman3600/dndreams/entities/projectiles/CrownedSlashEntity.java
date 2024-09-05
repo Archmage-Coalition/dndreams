@@ -2,6 +2,7 @@ package net.eman3600.dndreams.entities.projectiles;
 
 import net.eman3600.dndreams.events.damage_sources.AfflictionProjectileDamageSource;
 import net.eman3600.dndreams.initializers.basics.ModEnchantments;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
@@ -16,6 +17,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -138,8 +140,16 @@ public class CrownedSlashEntity extends BeamProjectileEntity {
 
                                 target.timeUntilRegen = 1;
 
-                                if (target instanceof LivingEntity livingEntity) livingEntity.takeKnockback(0.4f, MathHelper.sin(getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getYaw() * ((float) Math.PI / 180)));
-                                target.damage(getDataTracker().get(WICKED) ? AfflictionProjectileDamageSource.magic(this, getOwner()) : DamageSource.magic(this, getOwner()), this.getDamage());
+                                if (target instanceof LivingEntity livingEntity) {
+                                    livingEntity.takeKnockback(0.4f, MathHelper.sin(getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getYaw() * ((float) Math.PI / 180)));
+
+                                    if (dataTracker.get(WICKED)) {
+                                        livingEntity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.MORTAL, 200));
+                                    }
+                                }
+                                target.damage(DamageSource.magic(this, getOwner()), this.getDamage());
+
+
                             }
                         }
 

@@ -3,7 +3,9 @@ package net.eman3600.dndreams.mixin;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import net.eman3600.dndreams.blocks.VitalOreBlock;
+import net.eman3600.dndreams.entities.projectiles.GravityProjectileEntity;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.*;
@@ -54,11 +56,14 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
     @Inject(at = @At("RETURN"), method = "getCollisionShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;", cancellable = true)
     private void dndreams$getCollisionShape(BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
         VoxelShape blockShape = cir.getReturnValue();
-        if(!blockShape.isEmpty() && context instanceof EntityShapeContext) {
-            EntityShapeContext esc = (EntityShapeContext)context;
+        if(!blockShape.isEmpty() && context instanceof EntityShapeContext esc) {
             if(esc.getEntity() != null) {
                 Entity entity = esc.getEntity();
                 if (entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !world.getBlockState(pos).isIn(ModTags.SUBSTANTIAL) && !entity.getType().isIn(ModTags.SUBSTANTIAL_ENTITIES)) {
+                    cir.setReturnValue(VoxelShapes.empty());
+                } else if (entity instanceof GravityProjectileEntity gravityProj && gravityProj.penetratesBlocks()) {
+                    cir.setReturnValue(VoxelShapes.empty());
+                } else if (EntityComponents.INFUSION.isProvidedBy(entity) && EntityComponents.INFUSION.get(entity).getAscendState() > 0) {
                     cir.setReturnValue(VoxelShapes.empty());
                 }
             }
@@ -68,6 +73,10 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
     @Inject(method = "onEntityCollision", at = @At("HEAD"), cancellable = true)
     private void dndreams$onEntityCollision(World world, BlockPos pos, Entity entity, CallbackInfo ci) {
         if (entity instanceof LivingEntity livingEntity && livingEntity.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !world.getBlockState(pos).isIn(ModTags.SUBSTANTIAL)) {
+            ci.cancel();
+        } else if (entity instanceof GravityProjectileEntity gravityProj && gravityProj.penetratesBlocks()) {
+            ci.cancel();
+        } else if (EntityComponents.INFUSION.isProvidedBy(entity) && EntityComponents.INFUSION.get(entity).getAscendState() > 0) {
             ci.cancel();
         }
     }
@@ -86,7 +95,7 @@ public abstract class AbstractBlockStateMixin extends State<Block, BlockState> {
     @Inject(method = "getHardness", at = @At("HEAD"), cancellable = true)
     private void dndreams$getHardness(BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {
 
-        if (getBlock() instanceof VitalOreBlock block && !get(VitalOreBlock.REVEALED)) {
+        if (getBlock() instanceof VitalOreBlock block && !get(VitalOreBlock.REVEALED) && !get(VitalOreBlock.GLASSES)) {
 
             cir.setReturnValue(block.fakeBlock.getHardness());
         }

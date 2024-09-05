@@ -4,6 +4,7 @@ import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.ai.TormentorMeleeAttackGoal;
 import net.eman3600.dndreams.entities.ai.TormentorRangedAttackGoal;
 import net.eman3600.dndreams.entities.ai.TormentorTacticsGoal;
+import net.eman3600.dndreams.entities.projectiles.MindstrungArrowEntity;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
@@ -25,7 +26,6 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvent;
@@ -349,8 +349,7 @@ public class TormentorEntity extends HostileEntity implements IAnimatable, Sanit
 
     @Override
     public void attack(LivingEntity target, float pullProgress) {
-        ItemStack itemStack = new ItemStack(Items.ARROW);
-        PersistentProjectileEntity persistentProjectileEntity = ProjectileUtil.createArrowProjectile(this, itemStack, pullProgress);
+        PersistentProjectileEntity persistentProjectileEntity = new MindstrungArrowEntity(world, this);
         double d = target.getX() - this.getX();
         double e = target.getBodyY(0.3333333333333333) - persistentProjectileEntity.getY();
         double f = target.getZ() - this.getZ();

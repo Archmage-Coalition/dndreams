@@ -2,13 +2,16 @@
   "type": "dndreams:refinery",
   "ingredients": [
     {
-      "item": "dndreams:sakura_fume"
+      "item": "dndreams:sakura_petals"
     },
-	{
+	  {
       "item": "minecraft:snowball"
     },
-	{
+	  {
       "item": "dndreams:icy_needle"
+    },
+	  {
+      "item": "minecraft:lapis_lazuli"
     }
   ],
   "result": {

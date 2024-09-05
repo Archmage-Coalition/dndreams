@@ -10,7 +10,9 @@ import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
+import net.eman3600.dndreams.items.AscendItem;
 import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
+import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModFoodComponents;
@@ -224,6 +226,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
     }
 
+    @Inject(method = "getPreferredEquipmentSlot", at = @At("HEAD"), cancellable = true)
+    private static void dndreams$getPreferredEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> cir) {
+
+        if (stack.isOf(ModItems.CLOUD_WINGS) || stack.isOf(ModItems.EVERGALE)) cir.setReturnValue(EquipmentSlot.CHEST);
+    }
+
 
 
 
@@ -236,7 +244,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
         if (isSubmergedIn(ModTags.FLOWING_SPIRIT) && !hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !(trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.SUBSTANCE_CLOAK))) {
             addStatusEffect(new StatusEffectInstance(ModStatusEffects.INSUBSTANTIAL, Integer.MAX_VALUE, 0, true, true));
-        } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!isInsideWall() || isOnGround())) {
+        } else if (hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) && !isSubmergedIn(ModTags.FLOWING_SPIRIT) && (!AscendItem.isInBlock(this) || isOnGround())) {
             removeStatusEffect(ModStatusEffects.INSUBSTANTIAL);
         }
         EntityComponents.SHOCK.maybeGet(this).ifPresent(component -> {
@@ -345,7 +353,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
     private float dndreams$damage$heartbleed(float amount) {
         if (this.hasStatusEffect(ModStatusEffects.HEARTBLEED)) {
-            return (float) (amount * Math.pow(1.4f, this.getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1));
+            return (float) (amount * Math.pow(1.2f, this.getStatusEffect(ModStatusEffects.HEARTBLEED).getAmplifier() + 1));
         } else return amount;
     }
 
@@ -382,7 +390,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Redirect(method = "damage", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/LivingEntity;timeUntilRegen:I", opcode = Opcodes.PUTFIELD))
     public void dndreams$damage$shortenIFrames(LivingEntity instance, int value) {
         if (this.hasStatusEffect(ModStatusEffects.MORTAL)) {
-            instance.timeUntilRegen = 14;
+            instance.timeUntilRegen = 16;
         } else {
             instance.timeUntilRegen = value;
         }
@@ -392,7 +400,10 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     private void dndreams$addStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
         StatusEffect status = effect.getEffectType();
 
-        if ((status == StatusEffects.WITHER && (getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR)) || (status == ModStatusEffects.HAUNTED && CelestiumArmorItem.wornPieces(this) >= 4)) {
+        if ((status == StatusEffects.WITHER && (getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR
+                || (getType() == EntityType.PLAYER && TrinketsApi.getTrinketComponent((PlayerEntity)(Object)this).isPresent()
+                && TrinketsApi.getTrinketComponent((PlayerEntity)(Object)this).get().isEquipped(ModItems.LIFE_GIVING_AMULET))))
+                || (status == ModStatusEffects.HAUNTED && CelestiumArmorItem.wornPieces(this) >= 4) || ((status == ModStatusEffects.HEARTBLEED || status == ModStatusEffects.SMOTE) && TormiteArmorItem.wornPieces(this) >= 4)){
             cir.setReturnValue(false);
         }
     }

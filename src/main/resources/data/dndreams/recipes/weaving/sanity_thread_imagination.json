@@ -1,0 +1,13 @@
+{
+  "type": "dndreams:weaving",
+  "ingredients": [
+    {
+      "item": "dndreams:essence_imagination"
+    }
+  ],
+  "result": {
+    "item": "dndreams:sanity_thread",
+    "count": 1
+  },
+  "sanity_cost": 2.5
+}

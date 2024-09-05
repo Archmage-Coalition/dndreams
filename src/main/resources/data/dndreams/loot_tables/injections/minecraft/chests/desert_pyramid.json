@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "dndreams:music_disc_storm"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.25
+        },
+        {
+          "condition": "minecraft:location_check",
+          "predicate": {
+            "dimension": "dndreams:dream"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -2,8 +2,11 @@
   "replace": false,
   "values": [
     "dndreams:haven_stone_wall",
+    "dndreams:haven_stone_brick_wall",
     "dndreams:sorrow_brick_wall",
-	"dndreams:spirit_stone_wall",
-    "dndreams:spirit_stone_brick_wall"
+	  "dndreams:spirit_stone_wall",
+    "dndreams:spirit_stone_brick_wall",
+    "dndreams:marble_wall",
+    "dndreams:marble_brick_wall"
   ]
 }

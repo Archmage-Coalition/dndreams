@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:cloud"
+    },
+    "X": {
+      "item": "minecraft:phantom_membrane"
+    }
+  },
+  "result": {
+    "item": "dndreams:cloud_wings"
+  }
+}

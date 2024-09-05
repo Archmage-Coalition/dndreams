@@ -32,6 +32,11 @@ public class ModFeatures {
             OreFeatureConfig.createTarget(OreFeatures.BASE_MARBLE, ModBlocks.CELESTIUM_MARBLE_ORE.getDefaultState())
     );
 
+    public static final List<OreFeatureConfig.Target> CLOUD_ORES = List.of(
+            OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, ModBlocks.CLOUD_ORE.getDefaultState()),
+            OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_CLOUD_ORE.getDefaultState())
+    );
+
     // ORES REGISTRY
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> HELLSLATE_ORE =
             ConfiguredFeatures.register("hellslate_ore",Feature.ORE, new OreFeatureConfig(HELLSLATE_ORES, 4));
@@ -44,6 +49,9 @@ public class ModFeatures {
 
     public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> CELESTIUM_ORE =
             ConfiguredFeatures.register("celestium_ore",Feature.ORE, new OreFeatureConfig(CELESTIUM_ORES, 4));
+
+    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> CLOUD_ORE =
+            ConfiguredFeatures.register("cloud_ore", Feature.ORE, new OreFeatureConfig(CLOUD_ORES, 6));
 
 
 

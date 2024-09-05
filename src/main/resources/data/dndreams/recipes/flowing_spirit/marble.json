@@ -1,0 +1,10 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "dndreams:pristine_wood"
+  },
+  "result": {
+    "item": "dndreams:marble",
+    "count": 4
+  }
+}

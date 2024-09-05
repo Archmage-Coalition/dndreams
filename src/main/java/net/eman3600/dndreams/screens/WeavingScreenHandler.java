@@ -22,9 +22,8 @@ import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class WeavingScreenHandler extends ScreenHandler {
 
@@ -237,27 +236,74 @@ public class WeavingScreenHandler extends ScreenHandler {
         return !result.isEmpty();
     }
 
-    public Map<Integer, Ingredient> getMissingIngredients() {
+    public List<Ingredient> getMissingIngredients() {
 
-        Map<Integer, Ingredient> map = new HashMap<>();
+        List<Ingredient> list = new ArrayList<>(2);
 
         if (getSelectedRecipe() >= 0) {
             WeavingRecipe recipe = availableRecipes.get(getSelectedRecipe());
 
-            if (!recipe.mold.isEmpty() && input.getStack(0).isEmpty()) {
-
-                map.put(0, recipe.mold);
-            }
-            if (recipe.input.size() > 0 && input.getStack(1).isEmpty()) {
-
-                map.put(1, recipe.input.get(0));
-            }
-            if (recipe.input.size() > 1 && input.getStack(2).isEmpty()) {
-
-                map.put(2, recipe.input.get(1));
+            for (Ingredient ingredient : recipe.input) {
+                if (!isInputPresent(ingredient)) {
+                    list.add(ingredient);
+                }
             }
         }
 
-        return map;
+        return list;
+    }
+
+    public WeavingRecipe getCurrentRecipe() {
+        if (getSelectedRecipe() >= 0) {
+            return availableRecipes.get(getSelectedRecipe());
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Determines the state of the slots in regard to the current recipe:
+     * Ingredient 2 Missing, Ingredient 1 Missing, Slot 2 Match, Slot 1 Match, Slot 2 Present, Slot 1 Present
+     * @return A bitmask representing the recipe state of the input.
+     */
+    public int getInputSlotStates(WeavingRecipe recipe) {
+        int mask = 0;
+
+        if (!input.getStack(1).isEmpty()) mask |= 0b000001;
+        if (!input.getStack(2).isEmpty()) mask |= 0b000010;
+
+        Ingredient ingredient;
+
+        if (recipe.input.size() > 0) {
+            ingredient = recipe.input.get(0);
+
+            if (ingredient.test(input.getStack(1))) {
+                mask |= 0b000100;
+            } else if (ingredient.test(input.getStack(2))) {
+                mask |= 0b001000;
+            } else {
+                mask |= 0b010000;
+            }
+        }
+
+        if (recipe.input.size() > 1) {
+            ingredient = recipe.input.get(1);
+
+            if (ingredient.test(input.getStack(1))) {
+                mask |= 0b000100;
+            } else if (ingredient.test(input.getStack(2))) {
+                mask |= 0b001000;
+            } else {
+                mask |= 0b100000;
+            }
+        }
+
+        return mask;
+    }
+
+    private boolean isInputPresent(Ingredient ingredient) {
+        if (ingredient.isEmpty()) return true;
+
+        return ingredient.test(input.getStack(1)) || ingredient.test(input.getStack(2));
     }
 }

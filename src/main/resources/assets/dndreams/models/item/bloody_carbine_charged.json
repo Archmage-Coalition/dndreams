@@ -1,0 +1,6 @@
+{
+    "parent": "item/crossbow",
+    "textures": {
+        "layer0": "dndreams:item/bloody_carbine_charged"
+    }
+}

@@ -1,0 +1,31 @@
+{
+  "category": "dndreams:intro",
+  "name": "Amethyst",
+  "icon": "minecraft:amethyst_shard",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The geodes found within the caves contain great catalysts for magical power."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:amethyst_shard",
+      "text": "Found in seagrass, lotus seeds can be planted on water. When grown, you can harvest a lotus flower."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "dndreams:lotus_flower",
+      "text": "The lotus flower has many restorative properties and can be eaten."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "dndreams:snowbell_seeds",
+      "text": "Found in grass, snowbell seeds can be planted on dirt. When grown, you can harvest a snowball and some icy needles."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "dndreams:icy_needle",
+      "text": "The icy needle, while simple in appearance, is a useful source of ice magic and may help snap you out of your visions."
+    }
+  ]
+}

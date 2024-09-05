@@ -45,16 +45,19 @@ public class ModTags {
     public static final TagKey<Item> SMELTING_TOOLS = ofItem("smelting_tools");
     public static final TagKey<Item> AUTO_REPAIRING_TOOLS = ofItem("auto_repairing_tools");
     public static final TagKey<Item> MANA_BUFFERING_TOOLS = ofItem("mana_buffering_tools");
-    public static final TagKey<Item> SANITY_REPAIRING_TOOLS = ofItem("sanity_repairing_tools");
+    public static final TagKey<Item> SUNLIGHT_REPAIRING_TOOLS = ofItem("sunlight_repairing_tools");
     public static final TagKey<Item> INSANITY_REPAIRING_TOOLS = ofItem("insanity_repairing_tools");
     public static final TagKey<Item> GROUND_REPAIRING_TOOLS = ofItem("ground_repairing_tools");
+    public static final TagKey<Item> FAST_GROUND_REPAIRING_TOOLS = ofItem("fast_ground_repairing_tools");
     public static final TagKey<Item> DREAM_EXCLUSIVE = ofItem("dream_exclusive");
     public static final TagKey<Item> CORRUPTORS = ofItem("corruptors");
     public static final TagKey<Item> ATLAS = ofItem("atlas_items");
+    public static final TagKey<Item> QUIVERS = ofItem("quivers");
 
     public static final TagKey<EntityType<?>> SUBSTANTIAL_ENTITIES = ofEntity("substantial");
     public static final TagKey<EntityType<?>> GLOOM_ENTITIES = ofEntity("gloom");
     public static final TagKey<EntityType<?>> ROT_IMMUNE_ENTITIES = ofEntity("rot_immune");
+    public static final TagKey<EntityType<?>> GLOOM_PROJECTILE_ENTITIES = ofEntity("gloom_projectiles");
 
     /* TAG REGISTRIES */
     private static TagKey<Block> ofBlock(String id) {

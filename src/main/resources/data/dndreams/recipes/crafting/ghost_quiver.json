@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#XZ",
+    "XYX",
+    "ZX#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:sanity_thread"
+    },
+    "X": {
+      "item": "dndreams:ghost_arrow"
+    },
+    "Y": {
+      "item": "dndreams:magic_quiver"
+    },
+    "Z": {
+      "item": "minecraft:ghast_tear"
+    }
+  },
+  "result": {
+    "item": "dndreams:ghost_quiver"
+  }
+}

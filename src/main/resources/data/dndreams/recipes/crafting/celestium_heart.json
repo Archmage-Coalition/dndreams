@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:celestium"
+    },
+    "X": {
+      "item": "dndreams:vital_oil"
+    }
+  },
+  "result": {
+    "item": "dndreams:celestium_heart"
+  }
+}

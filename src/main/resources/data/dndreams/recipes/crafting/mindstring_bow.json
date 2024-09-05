@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " #X",
+    " #D",
     "# X",
-    " #X"
+    " #D"
   ],
   "key": {
     "#": {
@@ -11,6 +11,9 @@
     },
     "X": {
       "item": "dndreams:sanity_thread"
+    },
+    "D": {
+      "item": "dndreams:cloud"
     }
   },
   "result": {

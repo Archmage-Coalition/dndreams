@@ -1,0 +1,32 @@
+{
+  "music.dread_moon": {
+    "category": "music",
+    "sounds": [
+      {"name":"dndreams:music/dread_moon", "stream":true}
+    ]
+  },
+  "music.insanity": {
+    "category": "music",
+    "sounds": [
+      {"name":"dndreams:music/insanity", "stream":true}
+    ]
+  },
+  "tunes.triumph": {
+    "category": "master",
+    "sounds": [
+      {"name":"dndreams:tunes/triumph", "stream":true}
+    ]
+  },
+  "record.storm": {
+    "category": "record",
+    "sounds": [
+      {"name":"dndreams:record/storm", "stream":false}
+    ]
+  },
+  "record.mire_mental": {
+    "category": "record",
+    "sounds": [
+      {"name":"dndreams:record/mire_mental", "stream":false}
+    ]
+  }
+}

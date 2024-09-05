@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sculk_sensor"
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:sculk",
+		  "functions": [
+			{
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 6.0,
+                "min": 2.0
+              },
+              "function": "minecraft:set_count"
+			}
+		  ]
+        },
+		{
+          "type": "minecraft:item",
+          "name": "minecraft:bone",
+		  "functions": [
+			{
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 8.0,
+                "min": 4.0
+              },
+              "function": "minecraft:set_count"
+			}
+		  ]
+        }
+      ]
+    }
+  ]
+}

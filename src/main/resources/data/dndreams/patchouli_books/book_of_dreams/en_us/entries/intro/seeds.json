@@ -1,0 +1,35 @@
+{
+  "category": "dndreams:intro",
+  "name": "Mystical Seeds",
+  "icon": "dndreams:lotus_seeds",
+  "pages": [
+	{
+      "type": "patchouli:text",
+      "text": "Found throughout the world are mystical seeds with strange properties."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "dndreams:lotus_seeds",
+      "text": "Found in seagrass, lotus seeds can be planted on water. When grown, you can harvest a lotus flower.",
+      "link_recipe": true
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "dndreams:lotus_flower",
+      "text": "The lotus flower has many restorative properties and can be eaten.",
+      "link_recipe": true
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "dndreams:snowbell_seeds",
+      "text": "Found in grass, snowbell seeds can be planted on dirt. When grown, you can harvest a snowball and some icy needles.",
+      "link_recipe": true
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "dndreams:icy_needle",
+      "text": "The icy needle, while simple in appearance, is a useful source of ice magic and may help snap you out of your visions.",
+      "link_recipe": true
+    }
+  ]
+}

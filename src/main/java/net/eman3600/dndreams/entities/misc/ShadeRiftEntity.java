@@ -293,7 +293,7 @@ public class ShadeRiftEntity extends Entity {
             if (i >= 31) {
                 world.setBlockState(surfacePos, ModBlocks.SHADE_WEED.getDefaultState(), Block.NOTIFY_LISTENERS);
             } else if (i <= 1) {
-                world.setBlockState(surfacePos, ModBlocks.SHADE_BUSH.getDefaultState(), Block.NOTIFY_LISTENERS);
+                world.setBlockState(surfacePos, ModBlocks.SHADE_SHROOM.getDefaultState(), Block.NOTIFY_LISTENERS);
             }/* else if (i == 2) {
                 BlockState bush = ModBlocks.SHADE_BUSH.getDefaultState();
                 ShadeSaplingBlock sapling = (ShadeSaplingBlock)ModBlocks.SHADE_BUSH;
@@ -327,7 +327,7 @@ public class ShadeRiftEntity extends Entity {
             world.setBlockState(surfacePos, Blocks.GRASS.getDefaultState(), Block.NOTIFY_LISTENERS);
         } else if (surfaceState.isOf(ModBlocks.SHADE_FERN)) {
             world.setBlockState(surfacePos, Blocks.FERN.getDefaultState(), Block.NOTIFY_LISTENERS);
-        } else if (surfaceState.isOf(ModBlocks.SHADE_WEED) || surfaceState.isOf(ModBlocks.SHADE_BUSH)) {
+        } else if (surfaceState.isOf(ModBlocks.SHADE_WEED) || surfaceState.isOf(ModBlocks.SHADE_SHROOM)) {
             world.removeBlock(surfacePos, false);
         }
 

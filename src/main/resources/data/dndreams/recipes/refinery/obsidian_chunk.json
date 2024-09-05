@@ -5,10 +5,10 @@
     {
       "item": "minecraft:obsidian"
     },
-	{
-      "item": "dndreams:japanese_maple_fume"
+	  {
+      "item": "minecraft:iron_ingot"
     },
-	{
+	  {
       "item": "minecraft:lava_bucket"
     }
   ],

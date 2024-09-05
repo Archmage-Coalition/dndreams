@@ -4,19 +4,21 @@ import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.onyxstudios.cca.api.v3.component.ComponentAccess;
 import net.eman3600.dndreams.cardinal_components.GatewayComponent;
+import net.eman3600.dndreams.entities.projectiles.VariableLightningEntity;
 import net.eman3600.dndreams.initializers.basics.ModItems;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
-import net.eman3600.dndreams.items.ModArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.server.command.CommandOutput;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Nameable;
 import net.minecraft.util.math.Vec3d;
@@ -54,9 +56,11 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
 
     @Shadow public abstract void resetPortalCooldown();
 
+    @Shadow public abstract boolean damage(DamageSource source, float amount);
+
     @Inject(method = "isInvulnerableTo", at = @At("RETURN"), cancellable = true)
     private void dndreams$isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
-        if ((Object)this instanceof LivingEntity living && (living.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) || EntityComponents.SHOCK.get(living).isCushioned())) {
+        if ((Object)this instanceof LivingEntity living && (living.hasStatusEffect(ModStatusEffects.INSUBSTANTIAL) || EntityComponents.SHOCK.get(living).isCushioned() || (EntityComponents.INFUSION.isProvidedBy(living) && EntityComponents.INFUSION.get(living).getAscendState() > 0))) {
             cir.setReturnValue(cir.getReturnValue() || damageSource == DamageSource.IN_WALL || damageSource == DamageSource.FALL);
         }
     }
@@ -126,6 +130,16 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
     private void dndreams$isFireImmune(CallbackInfoReturnable<Boolean> cir) {
         if ((Object)this instanceof LivingEntity living && living.hasStatusEffect(ModStatusEffects.FLAME_GUARD)) {
             cir.setReturnValue(true);
+        }
+    }
+
+    @Inject(method = "onStruckByLightning", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"), cancellable = true)
+    private void dndreams$onStruckByLightning(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
+
+        if (lightning instanceof VariableLightningEntity bolt) {
+
+            this.damage(DamageSource.LIGHTNING_BOLT, bolt.getDamage());
+            ci.cancel();
         }
     }
 

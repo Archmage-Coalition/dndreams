@@ -5,15 +5,15 @@ import net.eman3600.dndreams.entities.projectiles.BrewLingeringEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewLiquidEntity;
 import net.eman3600.dndreams.entities.projectiles.BrewSplashEntity;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
-import net.eman3600.dndreams.items.CodexItem;
-import net.eman3600.dndreams.items.AtlasItem;
-import net.eman3600.dndreams.items.MysticStaffItem;
-import net.eman3600.dndreams.items.TooltipItem;
+import net.eman3600.dndreams.initializers.event.ModSoundEvents;
+import net.eman3600.dndreams.items.*;
 import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.celestium.*;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.charge.TuningItem;
+import net.eman3600.dndreams.items.cloud.CloudArmorItem;
+import net.eman3600.dndreams.items.cloud.SkyboundArrowItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewThrownItem;
@@ -21,13 +21,17 @@ import net.eman3600.dndreams.items.consumable.permanent.AttributePermItem;
 import net.eman3600.dndreams.items.consumable.permanent.CrystalFeatherItem;
 import net.eman3600.dndreams.items.consumable.permanent.FidiFruitItem;
 import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
-import net.eman3600.dndreams.items.creative.InfusionPearlItem;
+import net.eman3600.dndreams.items.dreadful.DreadfulArrowItem;
+import net.eman3600.dndreams.items.dreadful.GhostArrowItem;
+import net.eman3600.dndreams.items.dreadful.StrifeItem;
 import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
 import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
 import net.eman3600.dndreams.items.hellsteel.*;
-import net.eman3600.dndreams.items.magic_bow.ManastringBowItem;
-import net.eman3600.dndreams.items.magic_bow.MindstringBowItem;
+import net.eman3600.dndreams.items.magic_bow.*;
 import net.eman3600.dndreams.items.managold.ManagoldArmorItem;
+import net.eman3600.dndreams.items.managold.ManagoldArrowItem;
+import net.eman3600.dndreams.items.misc_armor.CloudWingsItem;
+import net.eman3600.dndreams.items.misc_armor.EvergaleItem;
 import net.eman3600.dndreams.items.misc_tool.*;
 import net.eman3600.dndreams.items.pericharite.PerichariteArmorItem;
 import net.eman3600.dndreams.items.pericharite.PerichariteShovelItem;
@@ -91,13 +95,13 @@ public class ModItems {
     public static final Item RAVAGED_FLESH = registerItem("ravaged_flesh", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)
             .food(ModFoodComponents.RAVAGED_FLESH)));
 
-    // World Flow
+    // Cosmic Fluid
     public static final Item LIQUID_VOID = registerItem("liquid_void",
             new LiquidVoidItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON)));
 
-    // Liquid Soul
-    public static final Item LIQUID_SOUL = registerItem("liquid_soul",
-            new LiquidSoulItem(new FabricItemSettings().group(ItemGroup.BREWING).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE)));
+    // Congealed Soul
+    public static final Item SOUL = registerItem("soul",
+            new SoulItem(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.RARE)).withTooltip(null, 1));
 
     // Nightmare Fuel
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
@@ -117,6 +121,9 @@ public class ModItems {
     public static final Item OBSIDIAN_STICK = registerItem("obsidian_stick",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).fireproof()));
 
+    public static final Item DRAGON_BONE = registerItem("dragon_bone",
+            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
     public static final Item END_CHUNK = registerItem("end_chunk", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item END_STICK = registerItem("end_stick", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
@@ -125,7 +132,7 @@ public class ModItems {
 
     // Gemstones
     public static final Item VITAL_SHARD = registerItem("vital_shard",
-            new VitalShardItem(2, 100, new FabricItemSettings().group(ItemGroup.MATERIALS)).withTooltip(null, 1));
+            new WitherCureItem(40, new FabricItemSettings().group(ItemGroup.MATERIALS)).withTooltip(null, 1));
     public static final Item CELESTIUM = registerItem("celestium",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
     public static final Item CRYSTAL_SPIRIT = registerItem("crystal_spirit",
@@ -135,6 +142,9 @@ public class ModItems {
 
     // Infernal Residue
     public static final Item INFERNAL_RESIDUE = registerItem("infernal_residue", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+
+    // Nightmarrow
+    public static final Item NIGHTMARROW = registerItem("nightmarrow", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
     // Archfuel
     public static final Item ARCHFUEL = registerItem("archfuel", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
@@ -147,28 +157,16 @@ public class ModItems {
     // Wood Ash
     public static final Item WOOD_ASH = registerItem("wood_ash", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    // Amethyst Jars, Fumes, & Essences
-    public static final Item AMETHYST_JAR = registerItem("amethyst_jar", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
-    public static final Item FOUL_FUME = registerItem("foul_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item SAKURA_FUME = registerItem("sakura_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item JAPANESE_MAPLE_FUME = registerItem("japanese_maple_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item DREAMWOOD_FUME = registerItem("dreamwood_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item PRISTINE_FUME = registerItem("pristine_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item SHADE_FUME = registerItem("shade_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item STAR_FUME = registerItem("star_fume", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
+    public static final Item SAKURA_PETALS = registerItem("sakura_petals", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item RAW_FROG = registerItem("raw_frog", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.RAW_FROG)));
+    public static final Item COOKED_FROG = registerItem("cooked_frog", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.COOKED_FROG)));
+    public static final Item CLOUD = registerItem("cloud", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item GOLD_FRUIT = registerItem("gold_fruit", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.GOLD_FRUIT)));
+    public static final Item CAKE_APPLE = registerItem("cake_apple", new Item(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.CAKE_APPLE)));
+    public static final Item LOST_DREAM = registerItem("lost_dream", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).rarity(Rarity.RARE)));
+    public static final Item PERMAFROST = registerItem("permafrost", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
+    public static final Item FULGAR_BUD = registerItem("fulgar_bud", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS)));
 
-    public static final Item REFINED_EVIL = registerItem("refined_evil", new TooltipItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)).withTooltip(null, 1));
-    public static final Item DROP_OF_LUCK = registerItem("drop_of_luck", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item MELLIFLUOUS_HUNGER = registerItem("mellifluous_hunger", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item DISTILLED_SPIRIT = registerItem("distilled_spirit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item HOLLOW_TEAR = registerItem("hollow_tear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item PERMAFROST = registerItem("permafrost", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-
-    public static final Item ENTANGLED_EARTH = registerItem("entangled_earth", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item IMPRISONED_FEAR = registerItem("imprisoned_fear", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item STOLEN_WIT = registerItem("stolen_wit", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item RESTRAINED_LIGHT = registerItem("restrained_light", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
-    public static final Item WITHHELD_AGONY = registerItem("withheld_agony", new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(AMETHYST_JAR)));
 
     // Lotus, Wither Bud, & Dragonfruit
     public static final Item LOTUS_FLOWER = registerItem("lotus_flower",
@@ -185,22 +183,7 @@ public class ModItems {
     // Bottled Stuff
     public static final Item VITAL_OIL = registerItem("vital_oil",
             new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE),
-                    false, new StatusEffectInstance(StatusEffects.REGENERATION, 400), new StatusEffectInstance(StatusEffects.INSTANT_HEALTH,1, 1)));
-    public static final Item SOUL_SOUP = registerItem("soul_soup",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(ModStatusEffects.LIFEMANA, 600), new StatusEffectInstance(ModStatusEffects.THIRD_EYE, 1800)));
-    public static final Item NATURES_GOSPEL = registerItem("natures_gospel",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
-    public static final Item INFERNAL_ANIMUS = registerItem("infernal_animus",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
-    public static final Item TRACE_OF_OTHERWHERE = registerItem("trace_of_otherwhere",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
-    public static final Item GHOST_OF_LIGHT = registerItem("ghost_of_light",
-            new DrinkableItem(new FabricItemSettings().group(ItemGroup.MATERIALS).recipeRemainder(Items.GLASS_BOTTLE).rarity(Rarity.RARE),
-                    true, new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 7)));
+                    false, new StatusEffectInstance(StatusEffects.REGENERATION, 1200), new StatusEffectInstance(StatusEffects.INSTANT_HEALTH,1, 1), new StatusEffectInstance(ModStatusEffects.REJUVENATION,1200, 1)));
 
     // Ingots
     public static final Item CORRUPT_SCRAP = registerItem("corrupt_scrap",
@@ -227,9 +210,6 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).maxCount(1).fireproof()));
     public static final Item DEMONIC_CORE_CHARGED = registerItem("demonic_core_charged",
             new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).maxCount(1).fireproof()));
-
-
-
 
 
     // Managold Gear
@@ -308,8 +288,8 @@ public class ModItems {
             new FabricItemSettings().group(ItemGroup.TOOLS).fireproof().maxCount(1).maxDamage(256)).withTooltip(null, 1));
 
     // Ancient Portal Activation
-    public static final Item ANCIENT_SPARK = registerItem("ancient_spark", new AncientSparkItem(new FabricItemSettings()
-            .group(ItemGroup.TOOLS).maxCount(1)).withTooltip(null, 1));
+    public static final Item RADIANT_KEY = registerItem("radiant_key", new RadiantKeyItem(new FabricItemSettings()
+            .group(ItemGroup.TOOLS).maxCount(1).rarity(Rarity.UNCOMMON)).withTooltip(null, 1));
 
     // Veiled Key
     public static final Item VEILED_KEY = registerItem("veiled_key", new TooltipItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)).withTooltip(null, 1));
@@ -412,10 +392,35 @@ public class ModItems {
             new ManastringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(752)));
     public static final Item MINDSTRING_BOW = registerItem("mindstring_bow",
             new MindstringBowItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(2145)));
+    public static final Item BLOODY_CARBINE = registerItem("bloody_carbine",
+            new BloodyCarbineItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(735)).withTooltip(null, 1).withTooltip("tooltip.dndreams.sacrifice", 1));
+    public static final Item STRIFE = registerItem("strife",
+            new StrifeItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(735)).withTooltip(null, 1).withTooltip("tooltip.dndreams.sacrifice", 1));
 
-    // Magic Arrows
+    // Magic Arrows & Quivers
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
-            new Item(new FabricItemSettings().group(ItemGroup.COMBAT)));
+            new ManagoldArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item GHOST_ARROW = registerItem("ghost_arrow",
+            new GhostArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item SKYBOUND_ARROW = registerItem("skybound_arrow",
+            new SkyboundArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item STORM_ARROW = registerItem("storm_arrow",
+            new StormArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item DREADFUL_ARROW = registerItem("dreadful_arrow",
+            new DreadfulArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+
+    public static final Item MAGIC_QUIVER = registerItem("magic_quiver",
+            new MagicQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
+    public static final Item SPECTRAL_QUIVER = registerItem("spectral_quiver",
+            new SpectralQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
+    public static final Item MANAGOLD_QUIVER = registerItem("managold_quiver",
+            new ManagoldQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
+    public static final Item GHOST_QUIVER = registerItem("ghost_quiver",
+            new GhostQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 2));
+    public static final Item SKYBOUND_QUIVER = registerItem("skybound_quiver",
+            new SkyboundQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 2));
+    public static final Item STORM_QUIVER = registerItem("storm_quiver",
+            new StormQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
 
     // Trinkets
     public static final Item FLEETFOOT_BAND = registerItem("fleetfoot_band",
@@ -424,10 +429,14 @@ public class ModItems {
             new DragonfootBandItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item DISSOCIATION_CHARM = registerItem("dissociation_charm",
             new DissociationCharmItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+    public static final Item LIFE_GIVING_AMULET = registerItem("life_giving_amulet",
+            new LifeGivingAmuletItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)));
     public static final Item ROSE_GLASSES = registerItem("rose_glasses",
             new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item TRUTH_GLASSES = registerItem("truth_glasses",
             new TruthGlassesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+    public static final Item FEARLESS_SHADES = registerItem("fearless_shades",
+            new FearlessShadesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item FLAME_CAPE = registerItem("flame_cape",
             new FlameCapeItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).fireproof()));
     public static final Item SUBSTANCE_CLOAK = registerItem("substance_cloak",
@@ -441,6 +450,12 @@ public class ModItems {
     public static final Item SKYSTEP_SOCKS = registerItem("skystep_socks",
             new AirJumpItem(3, new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
 
+    // Unique Armors
+    public static final Item CLOUD_WINGS = registerItem("cloud_wings",
+            new CloudWingsItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxDamage(216)).withTooltip(null, 1));
+    public static final Item EVERGALE = registerItem("evergale",
+            new EvergaleItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxDamage(1561)).withTooltip(null, 2));
+
     // Staves
     public static final Item SPARK_STAFF = registerItem("spark_staff",
             new SparkStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1561))
@@ -450,7 +465,7 @@ public class ModItems {
                     .withTooltip(null, 1));
     public static final Item LIGHT_STAFF = registerItem("light_staff",
             new LightStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(1299))
-                    .withTooltip(null, 3));
+                    .withTooltip(null, 2));
     public static final Item SEAR_STAFF = registerItem("sear_staff",
             new SearStaffItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(1299).fireproof())
                     .withTooltip(null, 1));
@@ -471,6 +486,9 @@ public class ModItems {
                     .withTooltip(null, 1));
     public static final Item SATIATION_STAFF = registerItem("satiation_staff",
             new SatiationStaffItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(735))
+                    .withTooltip(null, 1));
+    public static final Item ASCEND_GRIP = registerItem("ascend_grip",
+            new AscendItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(735))
                     .withTooltip(null, 1));
 
 
@@ -505,13 +523,13 @@ public class ModItems {
 
     // Special Brews
     public static final Item SLEEPING_BREW = registerItem("sleeping_brew",
-            new SleepingBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
+            new SleepingBrewItem(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
 
     public static final Item SANITY_BREW = registerItem("sanity_brew",
-            new SanityBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
+            new SanityBrewItem(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.UNCOMMON).recipeRemainder(Items.GLASS_BOTTLE)));
 
     public static final Item MANIFEST_BREW = registerItem("manifest_brew",
-            new ManifestBrewItem(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.EPIC).recipeRemainder(Items.GLASS_BOTTLE)));
+            new ManifestBrewItem(new FabricItemSettings().group(ItemGroup.BREWING).rarity(Rarity.EPIC).recipeRemainder(Items.GLASS_BOTTLE)));
 
     public static final Item DREAM_EYE = registerItem("dream_eye",
             new DreamEye(new FabricItemSettings().group(ItemGroup.MISC).maxCount(1)));
@@ -527,6 +545,10 @@ public class ModItems {
     // Tainted Pearl
     public static final Item TAINTED_PEARL = registerItem("tainted_pearl",
             new TaintedPearlItem(new FabricItemSettings().group(ItemGroup.MISC)));
+
+    // Spark Powder
+    public static final Item FLAME_POWDER = registerItem("flame_powder",
+            new FlamePowderItem(new FabricItemSettings().group(ItemGroup.TOOLS)).withTooltip(null, 2));
 
     // Codex Memorium
     public static final Item BOOK_OF_DREAMS = registerItem("book_of_dreams",
@@ -548,6 +570,14 @@ public class ModItems {
             new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
                     1, ModAttributes.PLAYER_MAX_MANA, 25d));
 
+    public static final Item BLAZE_SPIRIT = registerItem("blaze_spirit",
+            new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
+                    1, ModAttributes.PLAYER_MANA_REGEN, 2d));
+
+    public static final Item CELESTIUM_HEART = registerItem("celestium_heart",
+            new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
+                    1, EntityAttributes.GENERIC_MAX_HEALTH, 10d));
+
     // Crystal Feather
     public static final Item CRYSTAL_FEATHER = registerItem("crystal_feather",
             new CrystalFeatherItem(new FabricItemSettings().group(ItemGroup.TOOLS)));
@@ -555,6 +585,11 @@ public class ModItems {
     // Fruit of Fidi
     public static final Item FIDI_FRUIT = registerItem("fidi_fruit",
             new FidiFruitItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.DRAGONFRUIT)));
+
+
+    // Essences
+    public static final Item ESSENCE_IMAGINATION = registerItem("essence_imagination",
+            new EssenceItem(1, new FabricItemSettings().group(ItemGroup.TOOLS)).withTooltip(null, 1));
 
 
 
@@ -636,11 +671,39 @@ public class ModItems {
     public static final Item SORROW_VIAL = registerItem("sorrow_vial",
             new SpringVialItem(ModFluids.STILL_SORROW, 0x1E1C32, new FabricItemSettings().group(ItemGroup.MISC).maxCount(16)));
 
+    // Cloud stuff
+    public static final Item CLOUD_SWORD = registerItem("cloud_sword",
+            new SwordItem(ModToolMaterials.CLOUD, 3, -2.4F,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CLOUD_PICKAXE = registerItem("cloud_pickaxe",
+            new ModPickaxeItem(ModToolMaterials.CLOUD, 1, -2.8F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item CLOUD_AXE = registerItem("cloud_axe",
+            new ModAxeItem(ModToolMaterials.CLOUD, 5.0F, -3.0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item CLOUD_SHOVEL = registerItem("cloud_shovel",
+            new ModShovelItem(ModToolMaterials.CLOUD, 1.5F, -3F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item CLOUD_HOE = registerItem("cloud_hoe",
+            new ModHoeItem(ModToolMaterials.CLOUD, -3, 0F,
+                    new FabricItemSettings().group(ItemGroup.TOOLS)));
+    public static final Item CLOUD_HELMET = registerItem("cloud_helmet",
+            new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.HEAD,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CLOUD_CHESTPLATE = registerItem("cloud_chestplate",
+            new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.CHEST,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CLOUD_LEGGINGS = registerItem("cloud_leggings",
+            new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.LEGS,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item CLOUD_BOOTS = registerItem("cloud_boots",
+            new CloudArmorItem(ModArmorMaterials.CLOUD, EquipmentSlot.FEET,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
 
-
-    // CREATIVE ONLY
-    public static final Item INFUSION_CHANGER = registerItem("infusion_changer",
-            new InfusionPearlItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+    public static final Item MUSIC_DISC_STORM = registerItem("music_disc_storm",
+            new MusicDiscItem(15, ModSoundEvents.RECORD_STORM, new FabricItemSettings().group(ItemGroup.MISC), 240));
+    public static final Item MUSIC_DISC_MIRE_MENTAL = registerItem("music_disc_mire_mental",
+            new MusicDiscItem(14, ModSoundEvents.RECORD_MIRE_MENTAL, new FabricItemSettings().group(ItemGroup.MISC), 255));
 
     /*
      * Item Registration
@@ -649,7 +712,7 @@ public class ModItems {
         return Registry.register(Registry.ITEM, new Identifier(MODID, name), item);
     }
 
-    public static void registerItems() {
+    public static void registerAllItems() {
         System.out.println("Registering items for " + MODID);
     }
 }

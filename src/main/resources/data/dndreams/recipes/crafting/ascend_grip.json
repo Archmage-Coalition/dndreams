@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SXT",
+    "###",
+    " # "
+  ],
+  "key": {
+    "X": {
+      "item": "dndreams:dream_powder"
+    },
+	  "#": {
+      "item": "minecraft:amethyst_shard"
+    },
+	  "S": {
+      "item": "minecraft:string"
+    },
+	  "T": {
+      "item": "dndreams:infernal_residue"
+    }
+  },
+  "result": {
+    "item": "dndreams:ascend_grip",
+	"count": 1
+  }
+}

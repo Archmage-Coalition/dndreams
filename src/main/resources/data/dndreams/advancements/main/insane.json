@@ -1,0 +1,35 @@
+{
+  "parent": "dndreams:main/root",
+  "criteria": {
+    "go_crazy": {
+      "conditions": {
+        "sanity": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      "trigger": "dndreams:insanity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.dndreams.insane.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "dndreams:nightmare_fuel"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.dndreams.insane.title"
+    }
+  },
+  "requirements": [
+    [
+      "go_crazy"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

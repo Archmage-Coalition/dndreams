@@ -2,14 +2,13 @@
   "replace": false,
   "values": [
     "#dndreams:dreamwood",
-	"#dndreams:sakura",
+	  "#dndreams:sakura",
     "#dndreams:japanese_maple",
     "#dndreams:pristine",
     "#dndreams:shade",
     "#dndreams:haven",
     "#dndreams:pine",
     "#dndreams:star",
-    "dndreams:bonfire",
-    "dndreams:shade_bush"
+    "dndreams:shade_shroom"
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#C#",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:vital_shard"
+    },
+	  "X": {
+      "item": "minecraft:lapis_lazuli"
+    },
+	  "C": {
+      "item": "minecraft:dragon_breath"
+    }
+  },
+  "result": {
+    "item": "dndreams:life_giving_amulet"
+  }
+}

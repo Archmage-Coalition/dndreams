@@ -1,0 +1,9 @@
+{
+  "type": "dndreams:transmutation",
+  "ingredient": {
+    "item": "dndreams:wither_bud"
+  },
+  "result": {
+    "item": "minecraft:wither_rose"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "dndreams:end_stick"
+    },
+    "X": {
+      "item": "dndreams:celestium"
+    },
+    "Y": {
+      "item": "dndreams:sakura_petals"
+    }
+  },
+  "pattern": [
+    "X",
+    "#",
+    "Y"
+  ],
+  "result": {
+    "count": 8,
+    "item": "dndreams:storm_arrow"
+  }
+}

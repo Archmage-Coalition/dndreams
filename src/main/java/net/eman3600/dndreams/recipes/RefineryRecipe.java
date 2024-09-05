@@ -4,9 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -66,48 +65,9 @@ public class RefineryRecipe implements Recipe<Inventory> {
         return this.input;
     }
 
-    public int jarsRequired(Inventory inventory) {
-        int jars = 0;
-
-        if (output.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars += output.getCount();
-        if (!byproduct.isEmpty() && byproduct.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars += byproduct.getCount();
-
-        for (int i = 0; i < inventory.size(); i++) {
-            if (inventory.getStack(i).getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars--;
-        }
-
-        return jars;
-    }
-
-    public int jarsRequired() {
-        int jars = 0;
-
-        if (output.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars += output.getCount();
-        if (!byproduct.isEmpty() && byproduct.getItem().getRecipeRemainder() == ModItems.AMETHYST_JAR) jars += byproduct.getCount();
-
-        main: for (Ingredient ingredient : input) {
-            ItemStack[] stacks = ingredient.getMatchingStacks();
-
-            for (ItemStack stack : stacks) {
-                if (stack.getItem().getRecipeRemainder() != ModItems.AMETHYST_JAR) {
-                    continue main;
-                }
-            }
-
-            jars--;
-        }
-
-        return jars;
-    }
-
     @Override
     public boolean matches(Inventory inventory, World world) {
         if (dreamOnly && world.getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) return false;
-
-        int jars = jarsRequired(inventory);
-        int jarsPresent = inventory.getStack(6).isOf(ModItems.AMETHYST_JAR) ? inventory.getStack(6).getCount() : 0;
-
-        if (jarsPresent < jars || jarsPresent > 64 + jars) return false;
 
         RecipeMatcher recipeMatcher = new RecipeMatcher();
         int i = 0;

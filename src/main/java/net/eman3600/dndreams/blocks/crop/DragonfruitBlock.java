@@ -46,10 +46,9 @@ public class DragonfruitBlock extends BeetrootsBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        float f;
         int i = this.getAge(state);
         boolean reverse = state.get(AGELESS);
-        if (world.getBaseLightLevel(pos, 0) >= 9 && random.nextInt((int)(25.0f / (f = CropBlock.getAvailableMoisture(this, world, pos))) + 1) == 0) {
+        if (world.getBaseLightLevel(pos, 0) >= 9 && random.nextInt((int)(25.0f / CropBlock.getAvailableMoisture(this, world, pos)) + 1) == 0) {
             int age = MathHelper.clamp(i + (reverse ? -1 : 1), 0, 3);
             if (age == 0) reverse = false;
             else if (age == 3) reverse = true;

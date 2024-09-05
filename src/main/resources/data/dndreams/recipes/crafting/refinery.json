@@ -1,21 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "BXB",
-    "#R#",
+    "B#B",
+    "#X#",
     "B#B"
   ],
   "key": {
     "#": {
       "item": "minecraft:terracotta"
     },
-	"X": {
-      "item": "dndreams:foul_fume"
-    },
-	"R": {
+	  "X": {
       "item": "dndreams:charged_shard"
     },
-	"B": {
+	  "B": {
       "item": "minecraft:brick"
     }
   },

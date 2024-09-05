@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XQX",
+    "#V#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:smooth_basalt"
+    },
+	  "X": {
+      "item": "minecraft:redstone"
+    },
+	  "Q": {
+      "item": "minecraft:quartz"
+    },
+	  "V": {
+      "item": "dndreams:liquid_void"
+    }
+  },
+  "result": {
+    "item": "dndreams:cosmic_focus"
+  }
+}

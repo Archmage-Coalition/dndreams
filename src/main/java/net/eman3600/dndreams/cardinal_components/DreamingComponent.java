@@ -93,7 +93,7 @@ public class DreamingComponent implements DreamingComponentI {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 4), player);
             EntityComponents.SHOCK.maybeGet(player).ifPresent(component -> component.setCushioned(true));
 
-            if (storedInv.contains(ModTags.ATLAS)) {
+            if (storedInv.contains(ModTags.ATLAS) && congealed) {
                 List<ItemStack> stacks = new ArrayList<>();
 
                 for (int i = 0; i < storedInv.size(); i++) {
@@ -205,8 +205,6 @@ public class DreamingComponent implements DreamingComponentI {
             changeDimension(false);
         } else if (!dreaming && getDimension() == ModDimensions.DREAM_TYPE_KEY) {
             changeDimension(true);
-        } else if (dreaming) {
-            torment().lowerPerMinute(10f);
         }
     }
 

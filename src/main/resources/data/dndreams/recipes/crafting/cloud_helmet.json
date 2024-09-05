@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "C C",
+    "   "
+  ],
+  "key": {
+    "C": {
+      "item": "dndreams:cloud"
+    }
+  },
+  "result": {
+    "item": "dndreams:cloud_helmet"
+  }
+}

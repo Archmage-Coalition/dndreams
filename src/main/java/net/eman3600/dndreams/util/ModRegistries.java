@@ -4,6 +4,7 @@ import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.eman3600.dndreams.entities.mobs.TormentorEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.basics.ModItems;
@@ -22,12 +23,14 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Items;
+import net.minecraft.world.LightType;
 
 public class ModRegistries {
 
@@ -49,21 +52,22 @@ public class ModRegistries {
 
     private static void registerRepairPredicates() {
 
-        ItemStackAccess.registerRepairPredicate(ModTags.SANITY_REPAIRING_TOOLS, (stack, player) -> {
+        ItemStackAccess.registerRepairPredicate(ModTags.SUNLIGHT_REPAIRING_TOOLS, (stack, player) -> {
 
-            TormentComponent torment = EntityComponents.TORMENT.get(player);
-
-            return (int) ((1 - torment.getAttunedSanity() / 100f) * 120 + 40);
+            return player.world.getLightLevel(LightType.SKY, player.getBlockPos()) >= 13 && player.world.isDay() ? 50 : -1;
         });
 
         ItemStackAccess.registerRepairPredicate(ModTags.INSANITY_REPAIRING_TOOLS, (stack, player) -> {
 
             TormentComponent torment = EntityComponents.TORMENT.get(player);
+            float sanity = torment.getAttunedSanity();
 
-            return (int)(torment.getAttunedSanity()/100f * 70 + 10);
+            return sanity < 45 ? (int)(sanity/100f * 70 + 10) : -1;
         });
 
-        ItemStackAccess.registerRepairPredicate(ModTags.GROUND_REPAIRING_TOOLS, (stack, player) -> player.isOnGround() ? 160 : -1);
+        ItemStackAccess.registerRepairPredicate(ModTags.GROUND_REPAIRING_TOOLS, (stack, player) -> (!player.isFallFlying() && player.getEquippedStack(EquipmentSlot.CHEST) == stack) && (player.isOnGround() || stack.getDamage() + 1 < stack.getMaxDamage()) ? 80 : -1);
+
+        ItemStackAccess.registerRepairPredicate(ModTags.FAST_GROUND_REPAIRING_TOOLS, (stack, player) -> (!player.isFallFlying() && player.getEquippedStack(EquipmentSlot.CHEST) == stack) && (player.isOnGround() || stack.getDamage() + 1 < stack.getMaxDamage()) ? 15 : -1);
     }
 
     public static void registerEnergyFuels() {
@@ -81,6 +85,7 @@ public class ModRegistries {
         AttunementBurnSlot.putFuel(ModItems.NIGHTMARE_FUEL, 100);
         AttunementBurnSlot.putFuel(ModItems.CRYSTAL_MIX, 150);
         AttunementBurnSlot.putFuel(ModItems.WOOD_ASH, 5);
+        AttunementBurnSlot.putFuel(ModItems.FLAME_POWDER, 8);
     }
 
     private static void registerMutables() {
@@ -153,16 +158,16 @@ public class ModRegistries {
 
     private static void registerApothecary() {
         RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.LIQUID_VOID, 2, 100);
-        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.WITHER_BUD, 2, 100);
-        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.DISTILLED_SPIRIT, 3, 150);
+        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.STARDUST, 2, 100);
+        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.LOST_DREAM, 3, 150);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.REDSTONE, EnhancementType.LENGTH, 100);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.CRYSTAL_MIX, EnhancementType.LENGTH, 100);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STAR_FRUIT, EnhancementType.LENGTH, 100);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.SILVER_NUGGET, EnhancementType.LENGTH, 100);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.GLOWSTONE_DUST, EnhancementType.AMPLIFIER, 200);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.REFINED_EVIL, EnhancementType.AMPLIFIER, 200);
-        RefinedCauldronBlockEntity.registerEnhancement(ModItems.STARDUST, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.NIGHTMARROW, EnhancementType.AMPLIFIER, 200);
+        RefinedCauldronBlockEntity.registerEnhancement(ModItems.RAVAGED_FLESH, EnhancementType.AMPLIFIER, 200);
     }
 
     private static void registerInsanityPredicates() {
@@ -180,10 +185,11 @@ public class ModRegistries {
         TormentComponent.registerInsanityMob(LivingEntity::isUndead, 4f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), -3f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.ENDERMAN && !WorldComponents.BOSS_STATE.get(entity.world.getScoreboard()).dragonSlain(), 6f, 10f);
-        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 15f, 40f);
+        TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.WARDEN, 20f, 40f);
         TormentComponent.registerInsanityMob(entity -> entity instanceof MerchantEntity, -10f, 10f);
         TormentComponent.registerInsanityMob(entity -> entity.getType() == EntityType.CAT, -5f, 16f);
         TormentComponent.registerInsanityMob(entity -> entity instanceof TormentorEntity tormentor && tormentor.isCorporeal(), 10f, 20f);
+        TormentComponent.registerInsanityMob(entity -> entity instanceof FacelessEntity faceless && faceless.isCorporeal(), 10f, 20f);
     }
 
     private static void registerFuels() {
@@ -193,6 +199,7 @@ public class ModRegistries {
 
         registry.add(ModItems.NIGHTMARE_FUEL, 4800);
         registry.add(ModItems.ARCHFUEL, 3200);
+        registry.add(ModItems.FLAME_POWDER, 800);
     }
 
     private static void registerStrippables() {
@@ -292,14 +299,32 @@ public class ModRegistries {
         access.registerCompostable(.3f, ModBlocks.SAKURA_SAPLING);
         access.registerCompostable(.65f, ModBlocks.DREAMWOOD_SAPLING);
         access.registerCompostable(.3f, ModBlocks.JAPANESE_MAPLE_SAPLING);
+        access.registerCompostable(.3f, ModBlocks.PRISTINE_SAPLING);
+        access.registerCompostable(.3f, ModBlocks.SHADE_SHROOM);
+        access.registerCompostable(.3f, ModBlocks.STAR_SAPLING);
+        access.registerCompostable(.3f, ModBlocks.SAKURA_LEAVES);
+        access.registerCompostable(.65f, ModBlocks.DREAMWOOD_LEAVES);
+        access.registerCompostable(.3f, ModBlocks.JAPANESE_MAPLE_LEAVES);
+        access.registerCompostable(.3f, ModBlocks.PRISTINE_LEAVES);
+        access.registerCompostable(.3f, ModBlocks.SHADE_LEAVES);
+        access.registerCompostable(.3f, ModBlocks.STAR_LEAVES);
 
         access.registerCompostable(.3f, ModItems.APPLETHORN_SEEDS);
         access.registerCompostable(.65f, ModItems.SUCCULENT_APPLE);
         access.registerCompostable(.65f, ModItems.POISON_APPLE);
+        access.registerCompostable(.65f, ModItems.CAKE_APPLE);
         access.registerCompostable(1f, ModItems.DRAGONFRUIT);
+        access.registerCompostable(.65f, ModItems.GOLD_FRUIT);
         access.registerCompostable(.65f, ModItems.STAR_FRUIT);
+        access.registerCompostable(.65f, ModItems.WITHER_BUD);
         access.registerCompostable(.3f, ModItems.WITHER_BLOSSOM_SEEDS);
         access.registerCompostable(.5f, ModItems.DRAGONFRUIT_SEEDS);
+        access.registerCompostable(.3f, ModItems.SAKURA_PETALS);
+
+        access.registerCompostable(.65f, ModBlocks.SHADE_MOSS);
+        access.registerCompostable(.3f, ModBlocks.SHADE_WEED);
+        access.registerCompostable(.3f, ModBlocks.SHADE_GRASS);
+        access.registerCompostable(.3f, ModBlocks.SHADE_FERN);
     }
 
     private static void registerShockPredicates() {
