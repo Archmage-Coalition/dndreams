@@ -30,7 +30,7 @@ public class FacelessSpawner implements Spawner {
         if (cooldown > 0) return 0;
 
         Random random = world.random;
-        cooldown += (5 + random.nextInt(10)) * 20;
+        cooldown += (30 + random.nextInt(16)) * 20;
 
         Optional<ServerPlayerEntity> potential = world.getPlayers().stream().findAny();
         if (potential.isEmpty()) return 0;

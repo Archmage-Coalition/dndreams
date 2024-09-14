@@ -474,13 +474,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     @Override
     public float getFacelessPrevalence() {
-        float sanityScore = (85 - getAttunedSanity())/85;
-        sanityScore *= sanityScore;
+        float sanityScore = (90 - getAttunedSanity())/90;
+        float t = getEffectiveTension() * 0.002f * (1 + sanityScore * 2);
 
-        float score = (tension + 60 * sanityScore)/120;
-        score *= score * .5f;
+        sanityScore *= sanityScore/3;
 
-        return score;
+        return MathHelper.clamp(sanityScore + t, 0.002f, 0.6f);
     }
 
     @Nullable
