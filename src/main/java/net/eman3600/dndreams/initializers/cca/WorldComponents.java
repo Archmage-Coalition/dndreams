@@ -9,6 +9,7 @@ import dev.onyxstudios.cca.api.v3.world.WorldComponentInitializer;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
 import net.eman3600.dndreams.cardinal_components.BossStateComponent;
+import net.eman3600.dndreams.cardinal_components.DarkStormComponent;
 import net.eman3600.dndreams.cardinal_components.WorldStateComponent;
 import net.minecraft.util.Identifier;
 
@@ -16,6 +17,7 @@ public class WorldComponents implements WorldComponentInitializer, ScoreboardCom
     public static final ComponentKey<BloodMoonComponent> BLOOD_MOON = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "blood_moon"), BloodMoonComponent.class);
     public static final ComponentKey<WorldStateComponent> WORLD_STATE = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "world_state"), WorldStateComponent.class);
     public static final ComponentKey<BossStateComponent> BOSS_STATE = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "boss_state"), BossStateComponent.class);
+    public static final ComponentKey<DarkStormComponent> DARK_STORM = ComponentRegistry.getOrCreate(new Identifier(Initializer.MODID, "dark_storm"), DarkStormComponent.class);
 
 
 
@@ -27,9 +29,7 @@ public class WorldComponents implements WorldComponentInitializer, ScoreboardCom
 
     @Override
     public void registerScoreboardComponentFactories(ScoreboardComponentFactoryRegistry registry) {
-        registry.registerScoreboardComponent(BOSS_STATE, (scoreboard, server) -> server == null
-                ? new BossStateComponent(scoreboard, null)
-                : new BossStateComponent(scoreboard, server)
-        );
+        registry.registerScoreboardComponent(BOSS_STATE, BossStateComponent::new);
+        registry.registerScoreboardComponent(DARK_STORM, DarkStormComponent::new);
     }
 }

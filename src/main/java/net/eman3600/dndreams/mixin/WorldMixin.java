@@ -66,7 +66,7 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
     @Inject(method = "initWeatherGradients", at = @At("HEAD"), cancellable = true)
     private void injectInitWeatherGradients(CallbackInfo info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
             info.cancel();
         } else if (usesCustomState()) {
             WorldStateComponent state = getWorldState();
@@ -78,7 +78,7 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
     private void injectRainGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
             info.setReturnValue(0f);
         } else if (usesCustomState()) {
 
@@ -90,7 +90,7 @@ public abstract class WorldMixin implements net.minecraft.world.WorldAccess, Wor
 
     @Inject(method = "getThunderGradient", at = @At("HEAD"), cancellable = true)
     private void injectThunderGradient(float delta, CallbackInfoReturnable<Float> info) {
-        if (getDimensionKey() == ModDimensions.DREAM_TYPE_KEY || getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
+        if (getDimensionKey() == ModDimensions.GATEWAY_TYPE_KEY) {
             info.setReturnValue(0f);
         } else if (usesCustomState()) {
 

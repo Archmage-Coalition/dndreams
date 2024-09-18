@@ -115,7 +115,7 @@ public abstract class WorldRendererMixin {
     @Inject(method = "renderWeather", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderTexture(ILnet/minecraft/util/Identifier;)V", shift = At.Shift.AFTER))
     private void dndreams$renderWeather(LightmapTextureManager manager, float tickDelta, double cameraX, double cameraY, double cameraZ, CallbackInfo ci) {
 
-        if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY) {
+        if (world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY || world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY) {
             RenderSystem.setShaderColor(.365f, .052f, .485f, 1f);
         }
     }

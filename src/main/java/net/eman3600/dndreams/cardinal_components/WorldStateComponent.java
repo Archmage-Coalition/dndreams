@@ -7,6 +7,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 public class WorldStateComponent implements WorldStateComponentI {
 
     private final World world;
@@ -20,7 +22,7 @@ public class WorldStateComponent implements WorldStateComponentI {
 
     @Override
     public boolean isCustom() {
-        return world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY;
+        return world.getRegistryKey() == ModDimensions.HAVEN_DIMENSION_KEY || world.getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY;
     }
 
     @Override
@@ -33,48 +35,16 @@ public class WorldStateComponent implements WorldStateComponentI {
         return thunderGradient;
     }
 
-    private float getProperRain() {
-        Scoreboard board = world.getScoreboard();
-
-        if (board != null && !WorldComponents.BOSS_STATE.get(board).elrunezSlain()) {
-            return 1f;
-        }
-
-        /*if (world instanceof ServerWorld serverWorld) {
-            World overworld = serverWorld.getServer().getWorld(World.OVERWORLD);
-            if (overworld == null) return 0;
-
-            BloodMoonComponent bloodMoon = WorldComponents.BLOOD_MOON.get(overworld);
-
-            return bloodMoon.damnedNight() ? 1f : 0f;
-        }*/
-
-        return 0;
-    }
-
-    private float getProperThunder() {
-        Scoreboard board = world.getScoreboard();
-
-        if (board != null && !WorldComponents.BOSS_STATE.get(board).elrunezSlain()) {
-            return 1f;
-        }
-
-        /*if (world instanceof ServerWorld serverWorld) {
-            World overworld = serverWorld.getServer().getWorld(World.OVERWORLD);
-            if (overworld == null) return 0;
-
-            BloodMoonComponent bloodMoon = WorldComponents.BLOOD_MOON.get(overworld);
-
-            return Math.min(getProperRain(), bloodMoon.isBloodMoon() ? 1f : 0f);
-        }*/
-
-        return 0;
-    }
-
     @Override
     public void serverTick() {
 
-        float properRain = getProperRain();
+        DarkStormComponent storm = getStorm();
+
+        if (storm != null && storm.disabled() && !world.getPlayers().isEmpty()) {
+            storm.startState(0);
+        }
+
+        float properRain = storm != null && storm.shouldRain() ? 1f : 0f;
 
         if (rainGradient < properRain) {
             rainGradient = Math.min(properRain, rainGradient + 0.01f);
@@ -84,7 +54,7 @@ public class WorldStateComponent implements WorldStateComponentI {
             markDirty();
         }
 
-        float properThunder = getProperThunder();
+        float properThunder = storm != null && storm.shouldThunder() ? 1f : 0f;
 
         if (thunderGradient < properThunder) {
             thunderGradient = Math.min(properThunder, thunderGradient + 0.01f);
@@ -122,5 +92,15 @@ public class WorldStateComponent implements WorldStateComponentI {
 
     public void markDirty() {
         dirty = true;
+    }
+
+    @Nullable
+    private DarkStormComponent getStorm() {
+        Scoreboard board = world.getScoreboard();
+
+        if (board != null) {
+            return WorldComponents.DARK_STORM.get(board);
+        }
+        return null;
     }
 }

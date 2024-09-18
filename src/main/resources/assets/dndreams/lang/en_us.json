@@ -466,6 +466,12 @@
   "command.dndreams.slain.elrunez.true": "Elrunez is dead.",
   "command.dndreams.slain.elrunez.false": "Elrunez lives.",
 
+  "command.dndreams.storm.reset": "The nightmare storm has been reset.",
+  "command.dndreams.storm.clear": "The nightmare storm is clear.",
+  "command.dndreams.storm.onset": "The nightmare storm is beginning.",
+  "command.dndreams.storm.storming": "The nightmare storm is raging.",
+  "command.dndreams.storm.invalid": "Invalid state",
+
 
   "gamerule.doSanityTax": "Lose Sanity on Death",
   "gamerule.doSanityTax.description": "If enabled, so is keepInventory. Players lose their maximum sanity when they die.",

@@ -9,6 +9,7 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
 import net.eman3600.dndreams.cardinal_components.BossStateComponent;
+import net.eman3600.dndreams.cardinal_components.DarkStormComponent;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandSource;
@@ -40,6 +41,7 @@ public class ModCommands {
     }
 
     public static CommandSuggestions bossSuggestions = new CommandSuggestions(List.of("wither", "ender_dragon", "elrunez"));
+    public static CommandSuggestions stormSuggestions = new CommandSuggestions(List.of("reset", "clear", "onset", "storming"));
 
 
     public static void displayFeedback(CommandContext<ServerCommandSource> context, String string, boolean sendToOps, Object... args) {
@@ -73,13 +75,12 @@ public class ModCommands {
             case "elrunez" -> boss.elrunezSlain();
             default -> false;
         };
+    }
 
-        /*return switch(slain) {
-             case "wither" -> "Wither slain: " + boss.witherSlain();
-             case "ender_dragon" -> "Ender Dragon slain: " + boss.dragonSlain();
-             case "elrunez" -> "Elrunez slain: " + boss.elrunezSlain();
-             default -> "Invalid boss!";
-        };*/
+    protected static String displayStormState(CommandContext<ServerCommandSource> context, String state) {
+        ServerWorld world = context.getSource().getWorld();
+
+        return "storm." + state;
     }
 
     protected static void setBossSlain(CommandContext<ServerCommandSource> context, String boss, boolean slain) {
@@ -98,6 +99,31 @@ public class ModCommands {
         }
 
         displayFeedback(context, displayBossSlain(context, boss), setSomething);
+
+    }
+
+    protected static void setStormState(CommandContext<ServerCommandSource> context, String state) {
+        ServerWorld world = context.getSource().getWorld();
+        DarkStormComponent storm = WorldComponents.DARK_STORM.get(world.getScoreboard());
+
+        switch (state) {
+            case "reset":
+                storm.startState(-1);
+                break;
+            case "clear":
+                storm.startState(0);
+                break;
+            case "onset":
+                storm.startState(1);
+                break;
+            case "storming":
+                storm.startState(2);
+                break;
+            default:
+                displayError(context, "storm.invalid");
+        }
+
+        displayFeedback(context, displayStormState(context, state), true);
 
     }
 
@@ -147,8 +173,18 @@ public class ModCommands {
                 return 0;
             })))));
 
+            LiteralArgumentBuilder<ServerCommandSource> darkStorm = CommandManager.literal("storm").requires((context) -> context.hasPermissionLevel(2));
 
-            root.then(bloodMoon).then(slain);
+            darkStorm.then(CommandManager.argument("state", StringArgumentType.word()).suggests(stormSuggestions).executes(context -> {
+                String state = context.getArgument("state", String.class);
+
+                setStormState(context, state);
+
+                return 0;
+            }));
+
+
+            root.then(bloodMoon).then(slain).then(darkStorm);
             dispatcher.register(root);
         });
     }
