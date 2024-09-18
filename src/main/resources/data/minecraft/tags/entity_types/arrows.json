@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "dndreams:manatwine_arrow",
+    "dndreams:mindstrung_arrow",
+    "dndreams:managold_arrow",
+    "dndreams:skybound_arrow",
+    "dndreams:ghost_arrow",
+    "dndreams:dreadful_arrow",
+    "dndreams:storm_arrow"
+  ]
+}
