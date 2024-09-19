@@ -1,18 +1,22 @@
 package net.eman3600.dndreams.integration.commands;
 
 import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.arguments.FloatArgumentType;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
-import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
-import net.eman3600.dndreams.cardinal_components.BossStateComponent;
-import net.eman3600.dndreams.cardinal_components.DarkStormComponent;
+import net.eman3600.dndreams.cardinal_components.*;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandSource;
+import net.minecraft.command.EntitySelector;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
@@ -41,7 +45,7 @@ public class ModCommands {
     }
 
     public static CommandSuggestions bossSuggestions = new CommandSuggestions(List.of("wither", "ender_dragon", "elrunez"));
-    public static CommandSuggestions stormSuggestions = new CommandSuggestions(List.of("reset", "clear", "onset", "storming"));
+    public static CommandSuggestions stormSuggestions = new CommandSuggestions(List.of("reset", "clear", "onset", "storming", "recovery"));
 
 
     public static void displayFeedback(CommandContext<ServerCommandSource> context, String string, boolean sendToOps, Object... args) {
@@ -107,31 +111,112 @@ public class ModCommands {
         DarkStormComponent storm = WorldComponents.DARK_STORM.get(world.getScoreboard());
 
         switch (state) {
-            case "reset":
-                storm.startState(-1);
-                break;
-            case "clear":
-                storm.startState(0);
-                break;
-            case "onset":
-                storm.startState(1);
-                break;
-            case "storming":
-                storm.startState(2);
-                break;
-            default:
+            case "reset" -> storm.startState(-1);
+            case "clear" -> storm.startState(0);
+            case "onset" -> storm.startState(1);
+            case "storming" -> storm.startState(2);
+            case "recovery" -> storm.startState(3);
+            default -> {
                 displayError(context, "storm.invalid");
+                return;
+            }
         }
 
         displayFeedback(context, displayStormState(context, state), true);
 
     }
 
+    protected static void setPlayerMana(CommandContext<ServerCommandSource> context, PlayerEntity player, int amount) {
+        ManaComponent mana = EntityComponents.MANA.get(player);
+
+        mana.setMana(amount);
+
+        displayFeedback(context, "mana.set", true, player.getDisplayName(), mana.getMana());
+    }
+
+    protected static void addPlayerMana(CommandContext<ServerCommandSource> context, PlayerEntity player, int amount) {
+        ManaComponent mana = EntityComponents.MANA.get(player);
+
+        mana.setMana(mana.getMana() + amount);
+
+        displayFeedback(context, "mana.set", true, player.getDisplayName(), mana.getMana());
+    }
+
+    protected static int getPlayerMana(CommandContext<ServerCommandSource> context, PlayerEntity player) {
+        ManaComponent mana = EntityComponents.MANA.get(player);
+
+        displayFeedback(context, "mana.get", true, player.getDisplayName(), mana.getMana());
+
+        return mana.getMana();
+    }
+
+    protected static float getPlayerSanity(CommandContext<ServerCommandSource> context, PlayerEntity player) {
+        TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+        displayFeedback(context, "sanity.get", true, player.getDisplayName(), torment.getSanity());
+
+        return torment.getSanity();
+    }
+
+    protected static float getPlayerMaxSanity(CommandContext<ServerCommandSource> context, PlayerEntity player) {
+        TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+        displayFeedback(context, "sanity.get_max", true, player.getDisplayName(), torment.getMaxSanity());
+
+        return torment.getMaxSanity();
+    }
+
+    protected static void setPlayerSanity(CommandContext<ServerCommandSource> context, PlayerEntity player, float amount) {
+        TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+        torment.setSanity(amount);
+
+        displayFeedback(context, "sanity.set", true, player.getDisplayName(), torment.getSanity());
+    }
+
+    protected static void addPlayerSanity(CommandContext<ServerCommandSource> context, PlayerEntity player, float amount) {
+        TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+        torment.lowerSanity(-amount);
+
+        displayFeedback(context, "sanity.set", true, player.getDisplayName(), torment.getSanity());
+    }
+
+    protected static void setPlayerMaxSanity(CommandContext<ServerCommandSource> context, PlayerEntity player, float amount) {
+        TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+        torment.setMaxSanity(amount);
+
+        displayFeedback(context, "sanity.set_max", true, player.getDisplayName(), torment.getMaxSanity());
+    }
+
+    protected static void addPlayerMaxSanity(CommandContext<ServerCommandSource> context, PlayerEntity player, float amount) {
+        TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+        torment.lowerMaxSanity(-amount);
+
+        displayFeedback(context, "sanity.set_max", true, player.getDisplayName(), torment.getMaxSanity());
+    }
+
+    protected static void resetAcharosCooldown(CommandContext<ServerCommandSource> context, PlayerEntity player) {
+        TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+        if (torment.getFacelessCooldown() > 0) {
+            torment.setFacelessCooldown(0);
+            displayFeedback(context, "sanity.reset_cooldown", true, player.getDisplayName());
+        } else {
+            displayFeedback(context, "sanity.reset_cooldown.no_effect", true, player.getDisplayName());
+        }
+    }
+
     public static void registerCommands() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+
             LiteralArgumentBuilder<ServerCommandSource> root = CommandManager.literal("dndreams");
 
-            LiteralArgumentBuilder<ServerCommandSource> bloodMoon = CommandManager.literal("bloodmoon").requires((context) -> context.hasPermissionLevel(2));
+
+
+            LiteralArgumentBuilder<ServerCommandSource> bloodMoon = CommandManager.literal("dreadmoon").requires((context) -> context.hasPermissionLevel(2));
 
             bloodMoon.then(CommandManager.literal("get").executes((context -> {
                 displayFeedback(context, displayBloodMoonTime(context), false);
@@ -155,6 +240,9 @@ public class ModCommands {
                 return 0;
             }))));
 
+
+
+
             LiteralArgumentBuilder<ServerCommandSource> slain = CommandManager.literal("slain").requires((context) -> context.hasPermissionLevel(2));
 
             slain.then(CommandManager.literal("get").then(CommandManager.argument("boss", StringArgumentType.word()).executes(((context) -> {
@@ -173,6 +261,9 @@ public class ModCommands {
                 return 0;
             })))));
 
+
+
+
             LiteralArgumentBuilder<ServerCommandSource> darkStorm = CommandManager.literal("storm").requires((context) -> context.hasPermissionLevel(2));
 
             darkStorm.then(CommandManager.argument("state", StringArgumentType.word()).suggests(stormSuggestions).executes(context -> {
@@ -184,7 +275,122 @@ public class ModCommands {
             }));
 
 
-            root.then(bloodMoon).then(slain).then(darkStorm);
+
+
+            LiteralArgumentBuilder<ServerCommandSource> mana = CommandManager.literal("mana").requires(context -> context.hasPermissionLevel(2));
+
+            mana.then(CommandManager.literal("set").then(CommandManager.argument("target", EntityArgumentType.players()).then(CommandManager.argument("amount", IntegerArgumentType.integer(0)).executes(context -> {
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+                int amount = context.getArgument("amount", Integer.class);
+
+                for (PlayerEntity player: selector.getPlayers(context.getSource())) {
+
+                    setPlayerMana(context, player, amount);
+                }
+
+                return 0;
+            }))));
+
+            mana.then(CommandManager.literal("add").then(CommandManager.argument("target", EntityArgumentType.players()).then(CommandManager.argument("amount", IntegerArgumentType.integer()).executes(context -> {
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+                int amount = context.getArgument("amount", Integer.class);
+
+                for (PlayerEntity player: selector.getPlayers(context.getSource())) {
+
+                    addPlayerMana(context, player, amount);
+                }
+
+                return 0;
+            }))));
+
+            mana.then(CommandManager.literal("get").then(CommandManager.argument("target", EntityArgumentType.player()).executes(context -> {
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+
+                PlayerEntity player = selector.getPlayer(context.getSource());
+
+                return getPlayerMana(context, player);
+            })).executes(context -> getPlayerMana(context, context.getSource().getPlayerOrThrow())));
+
+
+
+
+            LiteralArgumentBuilder<ServerCommandSource> sanity = CommandManager.literal("sanity").requires(context -> context.hasPermissionLevel(2));
+
+            sanity.then(CommandManager.literal("set").then(CommandManager.argument("target", EntityArgumentType.players()).then(CommandManager.argument("amount", FloatArgumentType.floatArg(0, 100)).executes(context -> {
+                float amount = context.getArgument("amount", Float.class);
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+
+                for (PlayerEntity player: selector.getPlayers(context.getSource())) {
+
+                    setPlayerSanity(context, player, amount);
+                }
+
+                return 0;
+            }))));
+
+            sanity.then(CommandManager.literal("add").then(CommandManager.argument("target", EntityArgumentType.players()).then(CommandManager.argument("amount", FloatArgumentType.floatArg()).executes(context -> {
+                float amount = context.getArgument("amount", Float.class);
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+
+                for (PlayerEntity player: selector.getPlayers(context.getSource())) {
+
+                    addPlayerSanity(context, player, amount);
+                }
+
+                return 0;
+            }))));
+
+            sanity.then(CommandManager.literal("set_max").then(CommandManager.argument("target", EntityArgumentType.players()).then(CommandManager.argument("amount", FloatArgumentType.floatArg(30, 100)).executes(context -> {
+                float amount = context.getArgument("amount", Float.class);
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+
+                for (PlayerEntity player: selector.getPlayers(context.getSource())) {
+
+                    setPlayerMaxSanity(context, player, amount);
+                }
+
+                return 0;
+            }))));
+
+            sanity.then(CommandManager.literal("add_max").then(CommandManager.argument("target", EntityArgumentType.players()).then(CommandManager.argument("amount", FloatArgumentType.floatArg()).executes(context -> {
+                float amount = context.getArgument("amount", Float.class);
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+
+                for (PlayerEntity player: selector.getPlayers(context.getSource())) {
+
+                    addPlayerMaxSanity(context, player, amount);
+                }
+
+                return 0;
+            }))));
+
+            sanity.then(CommandManager.literal("get").then(CommandManager.argument("target", EntityArgumentType.player()).executes(context -> {
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+
+                return (int) getPlayerSanity(context, selector.getPlayer(context.getSource()));
+            })).executes(context -> (int) getPlayerSanity(context, context.getSource().getPlayerOrThrow())));
+
+            sanity.then(CommandManager.literal("get_max").then(CommandManager.argument("target", EntityArgumentType.player()).executes(context -> {
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+
+                return (int) getPlayerMaxSanity(context, selector.getPlayer(context.getSource()));
+            })).executes(context -> (int) getPlayerMaxSanity(context, context.getSource().getPlayerOrThrow())));
+
+            sanity.then(CommandManager.literal("reset_cooldown").then(CommandManager.argument("target", EntityArgumentType.player()).executes(context -> {
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+
+                resetAcharosCooldown(context, selector.getPlayer(context.getSource()));
+
+                return 0;
+            })).executes(context -> {
+                resetAcharosCooldown(context, context.getSource().getPlayerOrThrow());
+
+                return 0;
+            }));
+
+
+
+            root.then(bloodMoon).then(slain).then(darkStorm).then(mana).then(sanity);
             dispatcher.register(root);
         });
     }

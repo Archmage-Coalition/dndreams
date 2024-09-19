@@ -224,7 +224,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             int skipV2 = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentMaxPercent));
             int skipV = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentPercent));
 
-            int mainU = player.hasStatusEffect(ModStatusEffects.BRAINFREEZE) ? 30 : 0;
+            int mainU = component.isInStorm() ? 90 : player.hasStatusEffect(ModStatusEffects.BRAINFREEZE) ? 30 : 0;
 
             int innerU = 5;
             float sanity = component.getAttunedSanity();

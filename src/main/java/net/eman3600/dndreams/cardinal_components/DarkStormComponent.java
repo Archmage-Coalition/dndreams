@@ -68,7 +68,7 @@ public class DarkStormComponent implements AutoSyncedComponent, ServerTickingCom
     public void startState(int state) {
         if (server == null) return;
 
-        if (state > 2) {
+        if (state > 3) {
             startState(0);
             return;
         }
@@ -82,19 +82,31 @@ public class DarkStormComponent implements AutoSyncedComponent, ServerTickingCom
             if (WorldComponents.BOSS_STATE.get(scoreboard).elrunezSlain()) stateTicks *= 2;
         } else if (state == 1) {
             stateTicks = 900;
-        } else {
+        } else if (state == 2) {
             stateTicks = random.nextBetween(4800, 9600);
             if (server.isHardcore()) stateTicks *= 2;
+        } else {
+            stateTicks = 100;
         }
 
         markDirty();
     }
 
     public boolean shouldRain() {
-        return state == 2 || (state == 1 && stateTicks < 100);
+        return state > 1 || (state == 1 && stateTicks < 100);
     }
 
     public boolean shouldThunder() {
         return state == 2;
+    }
+
+    public float windStrength() {
+        if (state == 2) {
+            return 1f;
+        } else if (state == 1) {
+            return 1f - (stateTicks/900f);
+        } else if (state == 3) {
+            return stateTicks/100f;
+        }else return 0f;
     }
 }

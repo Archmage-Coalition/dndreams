@@ -29,6 +29,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -53,6 +54,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private int shroud = 0;
     private int haunt = 0;
     private boolean truthActive = false;
+    private boolean inStorm = false;
     private boolean dirty = false;
     /**
      * When set to true, the next tick will see the nightmare haze increase instead of decrease. Should be set to true every tick when the haze needs to be maintained.
@@ -193,7 +195,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     private void normalize() {
         maxSanity = MathHelper.clamp(maxSanity, LOWEST_MAX_SANITY, MAX_SANITY);
-        sanity = MathHelper.clamp(sanity, MIN_SANITY, getMaxSanity());
+        sanity = inStorm ? 0f : MathHelper.clamp(sanity, MIN_SANITY, getMaxSanity());
         markDirty();
     }
 
@@ -208,6 +210,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         facelessCooldown = tag.getInt("faceless_cooldown");
         tension = tag.getInt("tension");
         truthActive = tag.getBoolean("truth_active");
+        inStorm = tag.getBoolean("in_storm");
         fearDrowning = tag.getInt("fear_drowning");
         if (tag.containsUuid("faceless")) {
             this.facelessID = tag.getUuid("faceless");
@@ -225,6 +228,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("faceless_cooldown", facelessCooldown);
         tag.putInt("tension", tension);
         tag.putBoolean("truth_active", truthActive);
+        tag.putBoolean("in_storm", inStorm);
         tag.putInt("fear_drowning", fearDrowning);
         tag.putFloat("prevalence", getFacelessPrevalence());
         if (this.facelessID != null) {
@@ -272,6 +276,14 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             setTruthActive(false);
         }
 
+        if (inStorm) {
+            RegistryKey<World> dim = player.world.getRegistryKey();
+            DarkStormComponent storm = WorldComponents.DARK_STORM.get(player.world.getScoreboard());
+
+            if ((dim != ModDimensions.DREAM_DIMENSION_KEY && dim != ModDimensions.HAVEN_DIMENSION_KEY) || isAttuned() || truthActive || storm.windStrength() < 0.9f) {
+                setInStorm(false);
+            }
+        }
 
         boolean shouldShroud = shouldShroud();
         if (shroud < MAX_SHROUD && shouldShroud) {
@@ -343,6 +355,15 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         }
     }
 
+    public boolean isInStorm() {
+        return inStorm;
+    }
+
+    public void setInStorm(boolean inStorm) {
+        this.inStorm = inStorm;
+        markDirty();
+    }
+
     @Override
     public int getShroud() {
         return shroud;
@@ -390,7 +411,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private boolean shouldShroud() {
 
         if (player.world instanceof ServerWorld serverWorld) {
-            return player.hasStatusEffect(ModStatusEffects.LOOMING) || shouldShroud(serverWorld, player.getBlockPos());
+            return inStorm || player.hasStatusEffect(ModStatusEffects.LOOMING) || shouldShroud(serverWorld, player.getBlockPos());
         }
 
         return false;

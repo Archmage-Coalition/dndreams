@@ -1,10 +1,14 @@
 package net.eman3600.dndreams.cardinal_components;
 
 import net.eman3600.dndreams.cardinal_components.interfaces.WorldStateComponentI;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
+import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -40,28 +44,45 @@ public class WorldStateComponent implements WorldStateComponentI {
 
         DarkStormComponent storm = getStorm();
 
-        if (storm != null && storm.disabled() && !world.getPlayers().isEmpty()) {
-            storm.startState(0);
-        }
+        if (storm != null) {
 
-        float properRain = storm != null && storm.shouldRain() ? 1f : 0f;
+            if (storm.disabled() && !world.getPlayers().isEmpty()) {
+                storm.startState(0);
+            }
 
-        if (rainGradient < properRain) {
-            rainGradient = Math.min(properRain, rainGradient + 0.01f);
-            markDirty();
-        } else if (rainGradient > properRain) {
-            rainGradient = Math.max(properRain, rainGradient - 0.01f);
-            markDirty();
-        }
+            float properRain = storm.shouldRain() ? 1f : 0f;
 
-        float properThunder = storm != null && storm.shouldThunder() ? 1f : 0f;
+            if (rainGradient < properRain) {
+                rainGradient = Math.min(properRain, rainGradient + 0.01f);
+                markDirty();
+            } else if (rainGradient > properRain) {
+                rainGradient = Math.max(properRain, rainGradient - 0.01f);
+                markDirty();
+            }
 
-        if (thunderGradient < properThunder) {
-            thunderGradient = Math.min(properThunder, thunderGradient + 0.01f);
-            markDirty();
-        } else if (thunderGradient > properThunder) {
-            thunderGradient = Math.max(properThunder, thunderGradient - 0.01f);
-            markDirty();
+            float properThunder = storm.shouldThunder() ? 1f : 0f;
+
+            if (thunderGradient < properThunder) {
+                thunderGradient = Math.min(properThunder, thunderGradient + 0.01f);
+                markDirty();
+            } else if (thunderGradient > properThunder) {
+                thunderGradient = Math.max(properThunder, thunderGradient - 0.01f);
+                markDirty();
+            }
+
+            if (storm.shouldThunder() && isCustom()) {
+
+                for (ServerPlayerEntity player: ((ServerWorld)world).getPlayers()) {
+
+                    TormentComponent torment = EntityComponents.TORMENT.get(player);
+                    if (torment.isAttuned() || torment.isTruthActive() || player.hasStatusEffect(ModStatusEffects.BRAINFREEZE)) continue;
+
+                    torment.lowerPerSecond(20f);
+                    if (!torment.isInStorm() && torment.getSanity() <= 0f) {
+                        torment.setInStorm(true);
+                    }
+                }
+            }
         }
 
         if (dirty) {
