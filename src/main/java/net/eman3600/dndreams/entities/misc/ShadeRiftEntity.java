@@ -1,9 +1,11 @@
 package net.eman3600.dndreams.entities.misc;
 
 import net.eman3600.dndreams.blocks.spreadable.ShadeMossBlock;
+import net.eman3600.dndreams.cardinal_components.DarkStormComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.Block;
@@ -48,7 +50,7 @@ public class ShadeRiftEntity extends Entity {
     public static TrackedData<Integer> MAX_SHADES = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public static TrackedData<Integer> DELAY_TICKS = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
-    private List<List<ReplacedState>> replacedStates = new ArrayList<>();
+    private final List<List<ReplacedState>> replacedStates = new ArrayList<>();
 
     public ShadeRiftEntity(EntityType<?> type, World world) {
         super(type, world);
@@ -66,33 +68,12 @@ public class ShadeRiftEntity extends Entity {
 
         if (world.isClient) return;
 
-        boolean shouldRecede = true;
-        Box box = SEARCH_BOX.offset(getPos());
-        for (PlayerEntity player: world.getNonSpectatingEntities(PlayerEntity.class, box)) {
+        DarkStormComponent storm = WorldComponents.DARK_STORM.get(world.getScoreboard());
 
-            TormentComponent torment = EntityComponents.TORMENT.get(player);
-
-            if (torment.getAttunedSanity() < 25) {
-                shouldRecede = false;
-            }
-
-            for (BlockPos touchPos: TOUCH_OFFSETS) {
-
-                if (world.getBlockState(touchPos.add(player.getBlockPos())).isOf(ModBlocks.SHADE_MOSS)) {
-
-                    /*if (!torment.isTruthActive() && (!player.hasStatusEffect(StatusEffects.DARKNESS) || player.getStatusEffect(StatusEffects.DARKNESS).getDuration() < 30)) {
-                        player.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 60, 0, true, false, false));
-                    }*/
-                    torment.lowerPerMinute(40f);
-                    break;
-                }
-            }
-        }
+        boolean shouldRecede = !storm.shouldRain();
 
         if (getDataTracker().get(DELAY_TICKS) > 0) tickDown();
         else {
-
-
 
             if (getDataTracker().get(RECEDING) || shouldRecede) {
 

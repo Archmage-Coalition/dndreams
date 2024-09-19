@@ -104,8 +104,8 @@ public abstract class ServerWorldMixin extends World implements StructureWorldAc
         // New Spawners Added Here
         if (getRegistryKey() != ModDimensions.GATEWAY_DIMENSION_KEY) {
             tempList.add(new TormentorSpawner());
-            if (getRegistryKey() != ModDimensions.HAVEN_DIMENSION_KEY) tempList.add(new FacelessSpawner());
-            tempList.add(new ShadeRiftSpawner());
+            if (getRegistryKey() != ModDimensions.HAVEN_DIMENSION_KEY && getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY) tempList.add(new FacelessSpawner());
+            else tempList.add(new ShadeRiftSpawner());
         }
 
 

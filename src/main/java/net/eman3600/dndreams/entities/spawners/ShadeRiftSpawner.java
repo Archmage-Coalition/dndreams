@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.entities.spawners;
 
+import net.eman3600.dndreams.cardinal_components.DarkStormComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
@@ -46,13 +47,11 @@ public class ShadeRiftSpawner implements Spawner {
         int spawns = 0;
         if (player.isSpectator()) return 0;
 
-        TormentComponent component = EntityComponents.TORMENT.getNullable(player);
-
-        if (component == null) return 0;
+        DarkStormComponent component = WorldComponents.DARK_STORM.get(world.getScoreboard());
 
         BlockPos playerPos = player.getBlockPos();
 
-        if (component.getAttunedSanity() < 5) {
+        if (component.windStrength() >= 1f) {
 
             int j = random.nextBetween(2, 6);
 
