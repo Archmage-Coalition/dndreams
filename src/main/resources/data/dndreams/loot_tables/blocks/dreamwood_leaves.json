@@ -171,10 +171,10 @@
             {
               "condition": "minecraft:survives_explosion"
             },
-			{
-			  "chance": 0.2,
-			  "condition": "minecraft:random_chance"
-			}
+            {
+              "chance": 0.1,
+              "condition": "minecraft:random_chance"
+            }
           ],
           "name": "dndreams:dream_powder"
         }

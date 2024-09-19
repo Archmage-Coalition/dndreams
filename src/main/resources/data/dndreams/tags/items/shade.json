@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#dndreams:shade_logs",
+    "dndreams:shade_planks",
+    "dndreams:shade_stairs",
+    "dndreams:shade_slab",
+    "dndreams:shade_fence",
+    "dndreams:shade_fence_gate"
+  ]
+}

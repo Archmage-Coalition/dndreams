@@ -6,15 +6,12 @@
     },
     "#": {
       "item": "dndreams:nightmare_fuel"
-    },
-    "S": {
-      "item": "dndreams:cake_apple"
     }
   },
   "pattern": [
     "#X#",
     "XXX",
-    "XSX"
+    "X X"
   ],
   "result": {
     "item": "dndreams:substance_cloak"
