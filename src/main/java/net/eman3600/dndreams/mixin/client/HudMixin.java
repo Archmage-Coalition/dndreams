@@ -224,7 +224,7 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             int skipV2 = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentMaxPercent));
             int skipV = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentPercent));
 
-            int mainU = component.isInStorm() ? 90 : player.hasStatusEffect(ModStatusEffects.BRAINFREEZE) ? 30 : 0;
+            int mainU = player.hasStatusEffect(ModStatusEffects.BRAINFREEZE) ? 30 : 0;
 
             int innerU = 5;
             float sanity = component.getAttunedSanity();
@@ -239,6 +239,9 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             if (component.isTruthActive()) {
 
                 drawTexture(matrices, tormentXPos, tormentYPos, 60, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
+            } else if (component.isInStorm()) {
+                drawTexture(matrices, tormentXPos, tormentYPos, 90, 0, TORMENT_WIDTH, TORMENT_HEIGHT);
+                drawTexture(matrices, tormentInnerX, tormentInnerY, 20 * component.getStaticFrame(), 110, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT);
             } else {
 
                 drawTexture(matrices, tormentXPos, tormentYPos, mainU, 0, TORMENT_WIDTH, TORMENT_HEIGHT);

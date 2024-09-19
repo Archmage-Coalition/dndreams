@@ -31,11 +31,6 @@ public class ShadeRiftSpawner implements Spawner {
         --cooldown;
         if (cooldown > 0) return 0;
 
-        if (world.getScoreboard() == null || !WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
-            cooldown = 900;
-            return 0;
-        }
-
         Random random = world.random;
         cooldown += (5 + random.nextInt(10)) * 20;
 

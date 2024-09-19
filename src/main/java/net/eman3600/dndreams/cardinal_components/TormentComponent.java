@@ -2,6 +2,7 @@ package net.eman3600.dndreams.cardinal_components;
 
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
+import dev.onyxstudios.cca.api.v3.component.tick.ClientTickingComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
 import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
@@ -36,7 +37,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Function;
 
-public class TormentComponent implements TormentComponentI, AutoSyncedComponent, ServerTickingComponent {
+public class TormentComponent implements TormentComponentI, AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
     private static final int MAX_TENSION = 50;
     private float maxSanity = 100;
     private float sanity = 100;
@@ -56,6 +57,9 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private boolean truthActive = false;
     private boolean inStorm = false;
     private boolean dirty = false;
+
+    private int staticFrame = 0;
+    public static final int STATIC_FRAMES = 8;
     /**
      * When set to true, the next tick will see the nightmare haze increase instead of decrease. Should be set to true every tick when the haze needs to be maintained.
      */
@@ -330,6 +334,17 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
             ModCriterion.INSANITY.trigger((ServerPlayerEntity) player);
             dirty = false;
         }
+    }
+
+    @Override
+    public void clientTick() {
+        if (inStorm) {
+            staticFrame = (staticFrame + 1) % STATIC_FRAMES;
+        }
+    }
+
+    public int getStaticFrame() {
+        return staticFrame;
     }
 
     @Override
