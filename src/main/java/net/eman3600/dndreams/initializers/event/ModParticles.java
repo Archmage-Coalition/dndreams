@@ -32,6 +32,7 @@ public class ModParticles {
     public static final DefaultParticleType SOUL_CANDLE_FLAME = FabricParticleTypes.simple();
     public static final DefaultParticleType COSMIC_ENERGY = FabricParticleTypes.simple();
     public static final DefaultParticleType SOUL_ENERGY = FabricParticleTypes.simple();
+    public static final DefaultParticleType BLACK_WIND = FabricParticleTypes.simple();
 
     public static final DefaultParticleType CAULDRON_BUBBLE = FabricParticleTypes.simple();
     public static final DefaultParticleType CAULDRON_SPARKLE = FabricParticleTypes.simple();
@@ -55,6 +56,7 @@ public class ModParticles {
 
         registerParticle("cosmic_energy", COSMIC_ENERGY);
         registerParticle("soul_energy", SOUL_ENERGY);
+        registerParticle("black_wind", BLACK_WIND);
 
         registerParticle("cauldron_bubble", CAULDRON_BUBBLE);
         registerParticle("cauldron_sparkle", CAULDRON_SPARKLE);
@@ -80,6 +82,8 @@ public class ModParticles {
 
         ParticleFactoryRegistry.getInstance().register(COSMIC_ENERGY, EnchantGlyphParticle.EnchantFactory::new);
         ParticleFactoryRegistry.getInstance().register(SOUL_ENERGY, EnchantGlyphParticle.EnchantFactory::new);
+
+        ParticleFactoryRegistry.getInstance().register(BLACK_WIND, BlackWindParticle.Factory::new);
 
         ParticleFactoryRegistry.getInstance().register(CAULDRON_BUBBLE, CauldronBubbleParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(CAULDRON_SPARKLE, CauldronSparkleParticle.Factory::new);

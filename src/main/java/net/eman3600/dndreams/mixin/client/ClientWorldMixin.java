@@ -1,15 +1,26 @@
 package net.eman3600.dndreams.mixin.client;
 
+import net.eman3600.dndreams.cardinal_components.DarkStormComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.cardinal_components.WorldStateComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.BlockStateParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
@@ -22,7 +33,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -33,6 +47,8 @@ public abstract class ClientWorldMixin extends World implements ClientWorldAcces
     @Shadow @Final private MinecraftClient client;
 
     @Shadow public abstract void setTimeOfDay(long timeOfDay);
+
+    @Shadow public abstract Scoreboard getScoreboard();
 
     protected ClientWorldMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, RegistryEntry<DimensionType> dimension, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed, int maxChainedNeighborUpdates) {
         super(properties, registryRef, dimension, profiler, isClient, debugWorld, seed, maxChainedNeighborUpdates);
@@ -50,6 +66,19 @@ public abstract class ClientWorldMixin extends World implements ClientWorldAcces
             return false;
         } else {
             return instance.getBoolean(rule);
+        }
+    }
+
+    @Inject(method = "randomBlockDisplayTick", at = @At(value = "TAIL"), locals = LocalCapture.CAPTURE_FAILHARD)
+    private void dndreams$randomBlockDisplayTick(int centerX, int centerY, int centerZ, int radius, Random random, Block block, BlockPos.Mutable pos, CallbackInfo ci, int i, int j, int k, BlockState blockState) {
+
+        WorldStateComponent worldState = WorldComponents.WORLD_STATE.get(this);
+        DarkStormComponent storm = WorldComponents.DARK_STORM.get(getScoreboard());
+
+        float strength = storm.windStrength();
+
+        if (!blockState.isFullCube(this, pos) && worldState.isCustom() && (random.nextFloat() * 5f) < (strength * strength)) {
+            this.addParticle(ModParticles.BLACK_WIND, (double)i + 0.5, (double)j + 0.5, (double)k + 0.5, strength * storm.getWindX() + (random.nextFloat() * .1f - .05f), -0.1 - (.2 * strength) + (random.nextFloat() * .1f - .05f), strength * storm.getWindY() + (random.nextFloat() * .1f - .05f));
         }
     }
 

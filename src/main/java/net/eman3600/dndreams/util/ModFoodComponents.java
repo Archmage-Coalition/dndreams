@@ -27,10 +27,10 @@ public class ModFoodComponents {
     public static final FoodComponent SUCCULENT_APPLE = registerSanityFood(new FoodComponent.Builder().hunger(6).saturationModifier(1.0F)
             .statusEffect(new StatusEffectInstance(ModStatusEffects.DREAMY, 400, 0), 1.0F)
             .alwaysEdible().build(), 8);
-    public static final FoodComponent CAKE_APPLE = registerSanityFood(new FoodComponent.Builder().hunger(12).saturationModifier(0.75F)
-            .statusEffect(new StatusEffectInstance(ModStatusEffects.DREAMY, 1800, 0), 1.0F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 1800, 0), 1.0F)
-            .alwaysEdible().build(), 10);
+    public static final FoodComponent CAKE_APPLE = registerSanityFood(new FoodComponent.Builder().hunger(14).saturationModifier(0.75F)
+            .statusEffect(new StatusEffectInstance(ModStatusEffects.DREAMY, 2400, 0), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 2400, 0), 1.0F)
+            .alwaysEdible().build(), 15);
     public static final FoodComponent DRAGONFRUIT = registerSanityFood(new FoodComponent.Builder().hunger(9).saturationModifier(2.5F)
             .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 140, 0), 1.0F)
             .alwaysEdible().build(), 3);

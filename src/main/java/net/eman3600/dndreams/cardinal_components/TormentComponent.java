@@ -58,7 +58,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private boolean inStorm = false;
     private boolean dirty = false;
 
-    private int staticFrame = 0;
+    private float staticFrame = 0;
+    private static final float STATIC_FRAME_RATE = 0.5f;
     public static final int STATIC_FRAMES = 8;
     /**
      * When set to true, the next tick will see the nightmare haze increase instead of decrease. Should be set to true every tick when the haze needs to be maintained.
@@ -143,7 +144,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     public int getMaxTormentors() {
         float effective = getAttunedSanity();
 
-        return effective <= 5 ? 10 : effective <= 25 ? 6 : effective <= 50 ? 2 : 0;
+        return inStorm ? 20 : effective < 5 ? 10 : effective < 25 ? 6 : effective < 45 ? 2 : 0;
     }
 
     @Override
@@ -339,12 +340,12 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public void clientTick() {
         if (inStorm) {
-            staticFrame = (staticFrame + 1) % STATIC_FRAMES;
+            staticFrame = (staticFrame + STATIC_FRAME_RATE) % STATIC_FRAMES;
         }
     }
 
     public int getStaticFrame() {
-        return staticFrame;
+        return (int) staticFrame;
     }
 
     @Override
