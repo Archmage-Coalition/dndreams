@@ -1,5 +1,7 @@
 package net.eman3600.dndreams.util;
 
+import dev.emi.trinkets.api.TrinketComponent;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.blocks.entities.RefinedCauldronBlockEntity;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
@@ -179,6 +181,17 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
         TormentComponent.registerPredicate((player, torment) -> torment.getShroud() > 0 ? 2.5f : 0);
         TormentComponent.registerPredicate(player -> player.hasStatusEffect(ModStatusEffects.HAUNTED) ? 60f : 0f);
+        TormentComponent.registerPredicate((player, torment) -> {
+            TrinketComponent component = TrinketsApi.getTrinketComponent(player).get();
+
+            if (component.isEquipped(ModItems.MAD_SANITY_CHARM)) {
+                int threads = (int)((100f - torment.getMaxSanity())/3.5f);
+
+                return -10f - threads * 2.5f;
+            }
+
+            return 0f;
+        });
     }
 
     private static void registerInsanityMobAuras() {

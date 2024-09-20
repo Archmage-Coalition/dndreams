@@ -72,7 +72,7 @@ public abstract class WorldRendererMixin {
                     RenderSystem.disableTexture();
                     //BackgroundRenderer.setFogBlack();
 
-                    RenderSystem.setShaderColor(1, 1, 1, 1);
+                    RenderSystem.setShaderColor(1, 1, 1, 1F);
                     BackgroundRenderer.clearFog();
                     this.starsBuffer.bind();
                     this.starsBuffer.draw(matrices.peek().getPositionMatrix(), projectionMatrix, GameRenderer.getPositionShader());

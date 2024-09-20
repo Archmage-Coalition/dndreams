@@ -428,15 +428,17 @@ public class ModItems {
     public static final Item DRAGONFOOT_BAND = registerItem("dragonfoot_band",
             new DragonfootBandItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item DISSOCIATION_CHARM = registerItem("dissociation_charm",
-            new DissociationCharmItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
+            new TooltipTrinketItem(new FabricItemSettings().group(ItemGroup.TRANSPORTATION).maxCount(1)));
     public static final Item LIFE_GIVING_AMULET = registerItem("life_giving_amulet",
             new LifeGivingAmuletItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)));
+    public static final Item MAD_SANITY_CHARM = registerItem("mad_sanity_charm",
+            new TooltipTrinketItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item ROSE_GLASSES = registerItem("rose_glasses",
             new BasicTrinketItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item TRUTH_GLASSES = registerItem("truth_glasses",
             new TruthGlassesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item FEARLESS_SHADES = registerItem("fearless_shades",
-            new FearlessShadesItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+            new FearlessShadesItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)));
     public static final Item FLAME_CAPE = registerItem("flame_cape",
             new FlameCapeItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).fireproof()));
     public static final Item SUBSTANCE_CLOAK = registerItem("substance_cloak",

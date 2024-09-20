@@ -24,7 +24,7 @@ public class BlackWindParticle extends SpriteBillboardParticle {
         this.collidesWithWorld = false;
 
         this.velocityMultiplier = 1f;
-        this.maxAge = level.random.nextBetween(60, 100);
+        this.maxAge = 60;
         this.scale *= level.random.nextBetween(50, 80)/100f;
         this.setSpriteForAge(spriteSet);
 

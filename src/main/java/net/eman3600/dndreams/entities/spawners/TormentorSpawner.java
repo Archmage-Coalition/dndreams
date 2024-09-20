@@ -38,7 +38,7 @@ public class TormentorSpawner implements Spawner {
 
             BlockPos playerPos = player.getBlockPos();
 
-            if (component.getAttunedSanity() <= 50) {
+            if (component.getMaxTormentors() > 0) {
 
                 int j = random.nextBetween(1, component.getMaxTormentors());
 

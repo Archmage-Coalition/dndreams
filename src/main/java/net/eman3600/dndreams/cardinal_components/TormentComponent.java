@@ -463,7 +463,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     }
 
     public static boolean canSpawnShade(ServerWorld world, BlockPos pos) {
-        Box searchRegion = Box.from(Vec3d.of(pos)).expand(80, 70, 80);
+        Box searchRegion = Box.from(Vec3d.of(pos)).expand(30, 30, 30);
 
         return world.getNonSpectatingEntities(ShadeRiftEntity.class, searchRegion).isEmpty();
     }

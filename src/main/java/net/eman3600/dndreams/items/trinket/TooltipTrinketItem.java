@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DissociationCharmItem extends TrinketItem {
-    public DissociationCharmItem(Settings settings) {
+public class TooltipTrinketItem extends TrinketItem {
+    public TooltipTrinketItem(Settings settings) {
         super(settings);
     }
 

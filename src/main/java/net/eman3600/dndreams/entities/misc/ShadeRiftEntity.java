@@ -2,9 +2,7 @@ package net.eman3600.dndreams.entities.misc;
 
 import net.eman3600.dndreams.blocks.spreadable.ShadeMossBlock;
 import net.eman3600.dndreams.cardinal_components.DarkStormComponent;
-import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
-import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.util.ModTags;
@@ -40,9 +38,6 @@ public class ShadeRiftEntity extends Entity {
     public static final int SEARCH_RANGE = 48;
     private static final Box SEARCH_BOX = new Box(-SEARCH_RANGE,-SEARCH_RANGE,-SEARCH_RANGE,SEARCH_RANGE,SEARCH_RANGE,SEARCH_RANGE);
 
-    public static final int TOUCH_RANGE = 2;
-    public static final List<BlockPos> TOUCH_OFFSETS = BlockPos.stream(-TOUCH_RANGE, -TOUCH_RANGE, -TOUCH_RANGE, TOUCH_RANGE, TOUCH_RANGE, TOUCH_RANGE).map(BlockPos::toImmutable).toList();
-
     public static TrackedData<Boolean> RECEDING = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<Boolean> FIRST_SPREAD = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<Integer> BLOCKS_LEFT = DataTracker.registerData(ShadeRiftEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -71,6 +66,11 @@ public class ShadeRiftEntity extends Entity {
         DarkStormComponent storm = WorldComponents.DARK_STORM.get(world.getScoreboard());
 
         boolean shouldRecede = !storm.shouldRain();
+
+        Box box = SEARCH_BOX.offset(getPos());
+        if (world.getNonSpectatingEntities(PlayerEntity.class, box).isEmpty()) {
+            shouldRecede = true;
+        }
 
         if (getDataTracker().get(DELAY_TICKS) > 0) tickDown();
         else {

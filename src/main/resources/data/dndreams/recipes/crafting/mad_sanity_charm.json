@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "# #",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:sanity_thread"
+    },
+	  "X": {
+      "item": "minecraft:enchanted_golden_apple"
+    }
+  },
+  "result": {
+    "item": "dndreams:mad_sanity_charm"
+  }
+}
