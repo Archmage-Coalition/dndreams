@@ -332,7 +332,7 @@
   "item.dndreams.life_giving_amulet.tooltip.0": "§3Grants immunity to Withering.",
   "item.dndreams.life_giving_amulet.tooltip.1": "§3Also increases reclamation.",
   "item.dndreams.mad_sanity_charm": "Charm of Enduring Thought",
-  "item.dndreams.mad_sanity_charm.tooltip.0": "§3Greatly regenerates sanity.",
+  "item.dndreams.mad_sanity_charm.tooltip.0": "§3Greatly replenishes sanity over time.",
   "item.dndreams.mad_sanity_charm.tooltip.1": "§3Resonates with a torn mind.",
   "item.dndreams.rose_glasses": "Rose-Tinted Glasses",
   "item.dndreams.rose_glasses.tooltip": "§3Reveals hidden ore.",
