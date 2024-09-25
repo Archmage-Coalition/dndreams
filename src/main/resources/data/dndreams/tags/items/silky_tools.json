@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "dndreams:cloud_sword",
+    "dndreams:cloud_pickaxe",
+    "dndreams:cloud_axe",
+    "dndreams:cloud_shovel",
+    "dndreams:cloud_hoe"
+  ]
+}

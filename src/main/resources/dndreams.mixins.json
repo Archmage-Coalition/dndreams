@@ -47,6 +47,7 @@
     "HoglinEntityMixin",
     "ItemEntityMixin",
     "ItemMixin",
+    "ItemPredicateMixin",
     "ItemStackMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",

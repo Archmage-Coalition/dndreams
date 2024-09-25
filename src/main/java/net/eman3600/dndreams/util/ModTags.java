@@ -43,6 +43,7 @@ public class ModTags {
     public static final TagKey<Structure> ENSHROUDED = ofStructure("enshrouded");
 
     public static final TagKey<Item> SMELTING_TOOLS = ofItem("smelting_tools");
+    public static final TagKey<Item> SILKY_TOOLS = ofItem("silky_tools");
     public static final TagKey<Item> AUTO_REPAIRING_TOOLS = ofItem("auto_repairing_tools");
     public static final TagKey<Item> MANA_BUFFERING_TOOLS = ofItem("mana_buffering_tools");
     public static final TagKey<Item> SUNLIGHT_REPAIRING_TOOLS = ofItem("sunlight_repairing_tools");
