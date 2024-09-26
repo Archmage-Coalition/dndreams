@@ -123,7 +123,25 @@ public class ModCommands {
         }
 
         displayFeedback(context, displayStormState(context, state), true);
+    }
+    protected static void setStormState(CommandContext<ServerCommandSource> context, String state, int ticks) {
+        ServerWorld world = context.getSource().getWorld();
+        DarkStormComponent storm = WorldComponents.DARK_STORM.get(world.getScoreboard());
 
+        switch (state) {
+            case "reset" -> storm.startState(-1);
+            case "clear" -> storm.startState(0);
+            case "onset" -> storm.startState(1);
+            case "storming" -> storm.startState(2);
+            case "recovery" -> storm.startState(3);
+            default -> {
+                displayError(context, "storm.invalid");
+                return;
+            }
+        }
+        storm.setStateTime(ticks);
+
+        displayFeedback(context, displayStormState(context, state), true);
     }
 
     protected static void setPlayerMana(CommandContext<ServerCommandSource> context, PlayerEntity player, int amount) {
@@ -272,7 +290,14 @@ public class ModCommands {
                 setStormState(context, state);
 
                 return 0;
-            }));
+            }).then(CommandManager.argument("ticks", IntegerArgumentType.integer(0, 72000)).executes(context -> {
+                String state = context.getArgument("state", String.class);
+                int ticks = context.getArgument("ticks", Integer.class);
+
+                setStormState(context, state, ticks);
+
+                return 0;
+            })));
 
 
 

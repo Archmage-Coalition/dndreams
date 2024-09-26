@@ -101,6 +101,13 @@ public class DarkStormComponent implements AutoSyncedComponent, ServerTickingCom
         markDirty();
     }
 
+    public void setStateTime(int ticks) {
+        this.stateTicks = ticks;
+    }
+    public int getStateTime() {
+        return this.stateTicks;
+    }
+
     public boolean shouldRain() {
         return state > 1 || (state == 1 && stateTicks < 100);
     }

@@ -160,8 +160,8 @@ public class ModRegistries {
 
     private static void registerApothecary() {
         RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.LIQUID_VOID, 2, 100);
-        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.STARDUST, 2, 100);
         RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.LOST_DREAM, 3, 150);
+        RefinedCauldronBlockEntity.registerCapacityModifier(ModItems.STARDUST, 2, 100);
 
         RefinedCauldronBlockEntity.registerEnhancement(Items.REDSTONE, EnhancementType.LENGTH, 100);
         RefinedCauldronBlockEntity.registerEnhancement(ModItems.CRYSTAL_MIX, EnhancementType.LENGTH, 100);
