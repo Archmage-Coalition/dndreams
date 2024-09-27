@@ -2,36 +2,39 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-		  "type": "minecraft:item",
-		  "conditions": [
-			{
-			  "condition": "minecraft:survives_explosion"
-			}
-		  ],
-		  "functions": [
-			{
-			  "add": false,
-			  "count": 2.0,
-			  "function": "minecraft:set_count"
-			}
-		  ],
-		  "name": "minecraft:charcoal"
-		}
-      ],
-      "rolls": 1.0
-    },
-	{
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-		  "type": "minecraft:item",
-		  "name": "dndreams:broken_vital_sword"
-		}
-      ],
-      "rolls": 1.0
-    }
+		"bonus_rolls": 0.0,
+		"entries": [
+		  {
+			"type": "minecraft:alternatives",
+			"children": [
+			  {
+				"type": "minecraft:item",
+				"conditions": [
+				  {
+					"block": "dndreams:bonfire",
+					"condition": "minecraft:block_state_property",
+					"properties": {
+					  "soul": "true"
+					}
+				  }
+				],
+				"name": "minecraft:soul_soil"
+			  },
+			  {
+				"type": "minecraft:item",
+				"functions": [
+                {
+                  "add": false,
+                  "count": 2.0,
+                  "function": "minecraft:set_count"
+                }
+				],
+				"name": "minecraft:charcoal"
+			  }
+			]
+	    }
+	  ],
+	  "rolls": 1.0
+	}
   ]
 }

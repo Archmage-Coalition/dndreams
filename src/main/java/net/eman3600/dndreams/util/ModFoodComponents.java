@@ -31,6 +31,9 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(ModStatusEffects.DREAMY, 2400, 0), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 2400, 0), 1.0F)
             .alwaysEdible().build(), 15);
+    public static final FoodComponent CAKEWOOD_LEAVES = registerSanityFood(new FoodComponent.Builder().hunger(1).saturationModifier(0.5F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 160, 0), 1.0F)
+            .alwaysEdible().snack().build(), 1.5f);
     public static final FoodComponent DRAGONFRUIT = registerSanityFood(new FoodComponent.Builder().hunger(9).saturationModifier(2.5F)
             .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 140, 0), 1.0F)
             .alwaysEdible().build(), 3);

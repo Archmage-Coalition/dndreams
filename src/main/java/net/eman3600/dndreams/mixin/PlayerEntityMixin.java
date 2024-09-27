@@ -142,17 +142,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         cir.setReturnValue(f);
     }
 
-    @Inject(method = "findRespawnPosition", at = @At("HEAD"), cancellable = true)
-    private static void dndreams$findRespawnPosition(ServerWorld world, BlockPos pos, float angle, boolean forced, boolean alive, CallbackInfoReturnable<Optional<Vec3d>> cir) {
-        BlockState state = world.getBlockState(pos);
-        Block block = state.getBlock();
-        if (block instanceof BonfireBlock && state.get(Properties.LIT)) {
-            Optional<Vec3d> optional = RespawnAnchorBlock.findRespawnPosition(EntityType.PLAYER, world, pos);
-
-            cir.setReturnValue(optional);
-        }
-    }
-
 
     @Inject(method = "applyDamage", at = @At("HEAD"), cancellable = true)
     private void dndreams$applyDamage$absorbShock(DamageSource source, float amount, CallbackInfo ci) {

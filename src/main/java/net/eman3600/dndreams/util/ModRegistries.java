@@ -187,7 +187,7 @@ public class ModRegistries {
             if (component.isEquipped(ModItems.MAD_SANITY_CHARM)) {
                 int threads = (int)((100f - torment.getMaxSanity())/3.5f);
 
-                return -10f - threads * 2.5f;
+                return -5f - threads * 1.5f;
             }
 
             return 0f;

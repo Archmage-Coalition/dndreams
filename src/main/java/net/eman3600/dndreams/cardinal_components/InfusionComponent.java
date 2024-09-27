@@ -4,13 +4,10 @@ import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.blocks.VitalOreBlock;
 import net.eman3600.dndreams.cardinal_components.interfaces.InfusionComponentI;
-import net.eman3600.dndreams.infusions.setup.Infusion;
-import net.eman3600.dndreams.infusions.setup.InfusionRegistry;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
-import net.eman3600.dndreams.initializers.entity.ModInfusions;
 import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.items.AscendItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
@@ -52,10 +49,7 @@ public class InfusionComponent implements InfusionComponentI {
     private final PlayerEntity player;
     private final LivingEntityAccess access;
 
-    /**
-     * The player's current infusion.
-     */
-    private Infusion infusion = ModInfusions.NONE;
+
     /**
      * How long the player has left being linked to their bonfire.
      */
@@ -81,54 +75,12 @@ public class InfusionComponent implements InfusionComponentI {
         this.access = (LivingEntityAccess) player;
     }
 
-    @Override
-    public Infusion getInfusion() {
-        return infusion;
-    }
-
-    @Override
-    public boolean infused() {
-        return infusion.hasPower;
-    }
-
-    @Override
-    public void setInfusion(Infusion change) {
-        infusion = change;
-        markDirty();
-    }
-
-    @Override
-    public void setLinkTicks(int amount) {
-        linkTicks = amount;
-
-        markDirty();
-    }
-
-    @Override
-    public boolean linkedToBonfire() {
-        return linkTicks > 0;
-    }
-
-    @Override
-    public boolean tryResist(DamageSource source, float amount) {
-        float cost = amount * .2f;
-        TormentComponent torment = getTorment();
-
-        if (torment.getSanity() >= cost && infusion.resistantTo(amount, source, player)) {
-            torment.lowerSanity(cost);
-            return true;
-        }
-
-        return false;
-    }
-
     private TormentComponent getTorment() {
         return EntityComponents.TORMENT.get(player);
     }
 
     @Override
     public void readFromNbt(NbtCompound tag) {
-        infusion = Infusion.ofID(Identifier.tryParse(tag.getString("infusion")));
         linkTicks = tag.getInt("link_ticks");
         needsKit = tag.getBoolean("needs_kit");
         hasDodge = tag.getBoolean("has_dodge");
@@ -142,7 +94,6 @@ public class InfusionComponent implements InfusionComponentI {
 
     @Override
     public void writeToNbt(NbtCompound tag) {
-        tag.putString("infusion", InfusionRegistry.REGISTRY.getId(infusion).toString());
         tag.putInt("link_ticks", linkTicks);
         tag.putBoolean("needs_kit", needsKit);
         tag.putBoolean("has_dodge", hasDodge);
@@ -156,10 +107,6 @@ public class InfusionComponent implements InfusionComponentI {
 
     @Override
     public void serverTick() {
-        if (player.world instanceof ServerWorld serverWorld) {
-            infusion.serverTick(serverWorld, this, player);
-        }
-
         if (linkTicks > 0) {
             linkTicks--;
             markDirty();

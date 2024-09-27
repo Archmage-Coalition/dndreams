@@ -1,47 +1,32 @@
 {
   "variants": {
-    "facing=east,lit=false": {
-      "model": "minecraft:block/campfire_off",
-      "y": 270
-    },
-    "facing=east,lit=true,strong=true": {
+    "facing=east,strong=true": {
       "model": "dndreams:block/bonfire",
       "y": 270
     },
-    "facing=north,lit=false": {
-      "model": "minecraft:block/campfire_off",
-      "y": 180
-    },
-    "facing=north,lit=true,strong=true": {
+    "facing=north,strong=true": {
       "model": "dndreams:block/bonfire",
       "y": 180
     },
-    "facing=south,lit=false": {
-      "model": "minecraft:block/campfire_off"
-    },
-    "facing=south,lit=true,strong=true": {
+    "facing=south,strong=true": {
       "model": "dndreams:block/bonfire"
     },
-    "facing=west,lit=false": {
-      "model": "minecraft:block/campfire_off",
-      "y": 90
-    },
-    "facing=west,lit=true,strong=true": {
+    "facing=west,strong=true": {
       "model": "dndreams:block/bonfire",
       "y": 90
     },
-    "facing=east,lit=true,strong=false": {
+    "facing=east,strong=false": {
       "model": "dndreams:block/bonfire_weak",
       "y": 270
     },
-    "facing=north,lit=true,strong=false": {
+    "facing=north,strong=false": {
       "model": "dndreams:block/bonfire_weak",
       "y": 180
     },
-    "facing=south,lit=true,strong=false": {
+    "facing=south,strong=false": {
       "model": "dndreams:block/bonfire_weak"
     },
-    "facing=west,lit=true,strong=false": {
+    "facing=west,strong=false": {
       "model": "dndreams:block/bonfire_weak",
       "y": 90
     }

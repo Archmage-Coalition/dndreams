@@ -105,7 +105,7 @@ public class ModItems {
 
     // Nightmare Fuel
     public static final Item NIGHTMARE_FUEL = registerItem("nightmare_fuel",
-            new TooltipItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL).fireproof()).withTooltip(null, 2));
+            new NightmareFuelItem(new FabricItemSettings().group(ItemGroup.FOOD).food(ModFoodComponents.NIGHTMARE_FUEL).fireproof()).withTooltip(null, 2));
 
     // Subdued Madness
     public static final Item SUBDUED_MADNESS = registerItem("subdued_madness",
@@ -497,13 +497,6 @@ public class ModItems {
 
 
 
-
-    // Vital Sword
-    public static final Item VITAL_SWORD = registerItem("vital_sword",
-            new VitalSwordItem(ModToolMaterials.VITAL, 3, -2.4F,
-                    new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON)));
-    public static final Item BROKEN_VITAL_SWORD = registerItem("broken_vital_sword",
-            new Item(new FabricItemSettings().group(ItemGroup.MATERIALS).maxCount(1).rarity(Rarity.UNCOMMON)));
 
     // Shattered Sword
     public static final Item SHATTERED_SWORD = registerItem("shattered_sword",

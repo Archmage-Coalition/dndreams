@@ -241,7 +241,7 @@ public class ModBlocks {
 
     // Bonfire
     public static final Block BONFIRE = registerBlock("bonfire",
-            new BonfireBlock(FabricBlockSettings.copyOf(Blocks.CAMPFIRE)));
+            new BonfireBlock(FabricBlockSettings.of(Material.WOOD, MapColor.SPRUCE_BROWN).strength(2.0f).sounds(BlockSoundGroup.WOOD).luminance(15).nonOpaque()));
 
     // Cosmic Egg
     public static final Block COSMIC_EGG = registerBlock("cosmic_egg",
@@ -413,7 +413,7 @@ public class ModBlocks {
             new LeavesBlock(FabricBlockSettings.copy(Blocks.AZALEA_LEAVES)
                     .nonOpaque().ticksRandomly().suffocates((state, world, pos) -> false).blockVision((state, world, pos) -> false)),
 
-            new FabricItemSettings().group(ItemGroup.DECORATIONS));
+            new FabricItemSettings().group(ItemGroup.DECORATIONS).food(ModFoodComponents.CAKEWOOD_LEAVES));
     public static final Block DREAMWOOD_SAPLING = registerDreamBlock("dreamwood_sapling",
             new DreamSaplingBlock(new DreamwoodSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING)
                     .nonOpaque()),

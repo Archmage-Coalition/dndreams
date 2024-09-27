@@ -51,24 +51,4 @@ public class VitalSwordItem extends SwordItem implements AirSwingItem {
             world.spawnParticles(ParticleTypes.HEART, vec.x, vec.y + .5, vec.z, 3, .5, .5, .5, 1);
         }
     }
-
-    @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        World world = context.getWorld();
-        BlockPos pos = context.getBlockPos();
-        BlockState state = world.getBlockState(pos);
-        ItemStack stack = context.getStack();
-
-        if (state.getBlock() instanceof CampfireBlock && !state.get(Properties.WATERLOGGED) && (world.getDimension().bedWorks() || world.getDimension().respawnAnchorWorks())) {
-            Direction dir = state.get(Properties.HORIZONTAL_FACING);
-
-            world.setBlockState(pos, ModBlocks.BONFIRE.getDefaultState().with(Properties.HORIZONTAL_FACING, dir), Block.NOTIFY_ALL);
-
-            if (!context.getPlayer().isCreative()) stack.decrement(1);
-            return ActionResult.SUCCESS;
-        }
-
-
-        return ActionResult.PASS;
-    }
 }

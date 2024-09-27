@@ -24,7 +24,7 @@ public class BonfireBlockEntityRenderer implements BlockEntityRenderer<BonfireBl
 
     public BonfireBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
         this.itemRenderer = ctx.getItemRenderer();
-        stack = ModItems.VITAL_SWORD.getDefaultStack();
+        stack = ItemStack.EMPTY;
     }
 
 

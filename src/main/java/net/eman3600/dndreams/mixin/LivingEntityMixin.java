@@ -381,9 +381,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Override
     public boolean shouldResist(float damage, DamageSource source) {
-        if ((Object)this instanceof PlayerEntity player) {
-            return EntityComponents.INFUSION.get(player).tryResist(source, damage);
-        }
+
         return false;
     }
 
