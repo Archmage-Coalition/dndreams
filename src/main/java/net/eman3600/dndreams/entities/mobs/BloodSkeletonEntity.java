@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.entities.mobs;
 
+import net.eman3600.dndreams.entities.projectiles.DreadfulArrowEntity;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.minecraft.block.Blocks;
@@ -32,10 +33,7 @@ public class BloodSkeletonEntity extends SkeletonEntity {
     }
 
     public static boolean canSpawn(EntityType<StrayEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        BlockPos blockPos = pos;
-        while (world.getBlockState(blockPos = blockPos.up()).isOf(Blocks.POWDER_SNOW)) {
-        }
-        return StrayEntity.canSpawnInDark(type, world, spawnReason, pos, random) && (spawnReason == SpawnReason.SPAWNER || world.isSkyVisible(blockPos.down()));
+        return StrayEntity.canSpawnInDark(type, world, spawnReason, pos, random) && (spawnReason == SpawnReason.SPAWNER || world.isSkyVisible(pos.down()));
     }
 
     @Override
@@ -59,10 +57,6 @@ public class BloodSkeletonEntity extends SkeletonEntity {
 
     @Override
     protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
-        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
-        if (persistentProjectileEntity instanceof ArrowEntity) {
-            ((ArrowEntity)persistentProjectileEntity).addEffect(new StatusEffectInstance(ModStatusEffects.HEARTBLEED, 240, 1));
-        }
-        return persistentProjectileEntity;
+        return new DreadfulArrowEntity(world, this, 240, 1);
     }
 }

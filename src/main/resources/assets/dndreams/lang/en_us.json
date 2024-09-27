@@ -169,6 +169,21 @@
   "item.dndreams.tormite_leggings.tooltip": "§3Idk yet",
   "item.dndreams.tormite_boots": "Tormite Boots",
   "item.dndreams.tormite_boots.tooltip": "§3Idk yet",
+
+  "item.dndreams.cloud_sword": "Cloud Sword",
+  "item.dndreams.cloud_sword.tooltip": "?",
+  "item.dndreams.cloud_pickaxe": "Cloud Pickaxe",
+  "item.dndreams.cloud_pickaxe.tooltip": "?",
+  "item.dndreams.cloud_axe": "Cloud Axe",
+  "item.dndreams.cloud_axe.tooltip": "?",
+  "item.dndreams.cloud_shovel": "Cloud Shovel",
+  "item.dndreams.cloud_shovel.tooltip": "?",
+  "item.dndreams.cloud_hoe": "Cloud Hoe",
+  "item.dndreams.cloud_hoe.tooltip": "?",
+  "item.dndreams.cloud_helmet": "Cloud Helmet",
+  "item.dndreams.cloud_chestplate": "Cloud Chestplate",
+  "item.dndreams.cloud_leggings": "Cloud Leggings",
+  "item.dndreams.cloud_boots": "Cloud Boots",
   
   "item.dndreams.silver_ingot": "Silver Ingot",
   "item.dndreams.raw_silver": "Raw Silver",
@@ -210,7 +225,6 @@
   
   "item.dndreams.wood_ash": "Wood Ash",
   "item.dndreams.cloud": "Cloud",
-  "item.dndreams.shade_fume": "Fragrance of Solitude",
   
   "item.dndreams.cake_apple": "Frosted Apple",
   "item.dndreams.lost_dream": "Lost Dream",
@@ -271,6 +285,8 @@
   "item.dndreams.ghost_arrow": "Ghostly Arrow",
   "item.dndreams.ghost_arrow.tooltip.0": "§3Pierces infinitely.",
   "item.dndreams.ghost_arrow.tooltip.1": "§2Damage x1.2",
+  "item.dndreams.dreadful_arrow": "Dreadful Arrow",
+  "item.dndreams.dreadful_arrow.tooltip": "§3Inflicts heartbleed and pierces a foe.",
   "item.dndreams.magic_quiver": "Magic Quiver",
   "item.dndreams.magic_quiver.tooltip": "§3Arrows are often tipped.",
   "item.dndreams.spectral_quiver": "Spectral Quiver",
@@ -285,6 +301,8 @@
   "item.dndreams.ghost_quiver": "Ghostly Quiver",
   "item.dndreams.ghost_quiver.tooltip.0": "§3Arrows pierce infinitely.",
   "item.dndreams.ghost_quiver.tooltip.1": "§2Arrow Damage x1.2",
+  "item.dndreams.dreadful_quiver": "Dreadful Quiver",
+  "item.dndreams.dreadful_quiver.tooltip": "§3Arrows inflict heartbleed and pierce a foe.",
   
   "item.dndreams.vital_heart": "Life Crystal",
   "item.dndreams.vital_heart.tooltip": "You can feel it beating.",
@@ -577,6 +595,9 @@
   "block.dndreams.hellslate": "Hellslate Ore",
   "block.dndreams.hellsand": "Hellslate Sand",
   "block.dndreams.hellsoil": "Hellslate Soil",
+
+  "block.dndreams.cloud_ore": "Cloud Ore",
+  "block.dndreams.deepslate_cloud_ore": "Deepslate Cloud Ore",
   
   "block.dndreams.vital_ore": "Rose Quartz Ore",
   "block.dndreams.deepslate_vital_ore": "Deepslate Rose Quartz Ore",
@@ -902,24 +923,6 @@
   "rei.dndreams.apothecary.capacity": "Capacity: %s",
   "rei.dndreams.apothecary.cost": "Power Cost: %s",
 
-  "item.dndreams.cloud_sword": "Cloud Sword",
-  "item.dndreams.cloud_sword.tooltip": "?",
-  "item.dndreams.cloud_pickaxe": "Cloud Pickaxe",
-  "item.dndreams.cloud_pickaxe.tooltip": "?",
-  "item.dndreams.cloud_axe": "Cloud Axe",
-  "item.dndreams.cloud_axe.tooltip": "?",
-  "item.dndreams.cloud_shovel": "Cloud Shovel",
-  "item.dndreams.cloud_shovel.tooltip": "?",
-  "item.dndreams.cloud_hoe": "Cloud Hoe",
-  "item.dndreams.cloud_hoe.tooltip": "?",
-  "item.dndreams.cloud_helmet": "Cloud Helmet",
-  "item.dndreams.cloud_chestplate": "Cloud Chestplate",
-  "item.dndreams.cloud_leggings": "Cloud Leggings",
-  "item.dndreams.cloud_boots": "Cloud Boots",
-  "block.dndreams.cloud_ore": "Cloud Ore",
-  "block.dndream.deepslate_cloud_ore": "Deepslate Cloud Ore",
-
-  "item.dndreams.dreadful_arrow": "Dreadful Arrow",
 
   "stat.dndreams.enter_dream": "Times Dreamt",
   

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#XZ",
+    "XYX",
+    "ZX#"
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:nightmarrow"
+    },
+    "X": {
+      "item": "dndreams:dreadful_arrow"
+    },
+    "Y": {
+      "item": "dndreams:magic_quiver"
+    },
+    "Z": {
+      "item": "dndreams:shade_cloth"
+    }
+  },
+  "result": {
+    "item": "dndreams:dreadful_quiver"
+  }
+}

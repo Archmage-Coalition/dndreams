@@ -400,14 +400,14 @@ public class ModItems {
     // Magic Arrows & Quivers
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",
             new ManagoldArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
+    public static final Item DREADFUL_ARROW = registerItem("dreadful_arrow",
+            new DreadfulArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item GHOST_ARROW = registerItem("ghost_arrow",
             new GhostArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item SKYBOUND_ARROW = registerItem("skybound_arrow",
             new SkyboundArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item STORM_ARROW = registerItem("storm_arrow",
             new StormArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
-    public static final Item DREADFUL_ARROW = registerItem("dreadful_arrow",
-            new DreadfulArrowItem(new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     public static final Item MAGIC_QUIVER = registerItem("magic_quiver",
             new MagicQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
@@ -415,6 +415,8 @@ public class ModItems {
             new SpectralQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
     public static final Item MANAGOLD_QUIVER = registerItem("managold_quiver",
             new ManagoldQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
+    public static final Item DREADFUL_QUIVER = registerItem("dreadful_quiver",
+            new DreadfulQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 1));
     public static final Item GHOST_QUIVER = registerItem("ghost_quiver",
             new GhostQuiverItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1)).withTooltip(null, 2));
     public static final Item SKYBOUND_QUIVER = registerItem("skybound_quiver",
