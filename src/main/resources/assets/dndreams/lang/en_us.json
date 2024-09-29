@@ -798,7 +798,7 @@
   
   "block.dndreams.flowing_bedrock": "Flowing Bedrock",
   "block.dndreams.world_fountain": "World Fountain",
-  "block.dndreams.bonfire": "Coiled Campfire",
+  "block.dndreams.bonfire": "Ritual Fire",
   "block.dndreams.cosmic_egg": "Redstone Egg",
   "block.dndreams.chorus_focus": "Chorus Focus",
   "block.dndreams.cosmic_focus": "Cosmic Focus",
@@ -833,16 +833,14 @@
   
   "ritual.dndreams.error.unknown": "Unknown Rite",
   "ritual.dndreams.error.improper": "Improper Casting Conditions",
-  "ritual.dndreams.error.rings": "Improper Candle Rings",
-  "ritual.dndreams.error.powerless": "Not Enough Power",
   
   "ritual.dndreams.waystone": "Bind Waystone",
   "ritual.dndreams.waystone_simple": "Rebind Waystone",
   "ritual.dndreams.taglock": "Take Taglock",
   "ritual.dndreams.taglock_relocated": "Swipe Taglock",
   "ritual.dndreams.charge_demonic_core": "Charge Vessel",
-  "ritual.dndreams.repair_edge": "Spirit Repair",
-  "ritual.dndreams.empower_edge": "Empowerment",
+  "ritual.dndreams.crowned_edge": "Spirit Repair",
+  "ritual.dndreams.true_crowned_edge": "Empowerment",
   "ritual.dndreams.amethyst_source": "Bud Amethyst",
   "ritual.dndreams.amethyst_sprout": "Sprout Amethyst",
   "ritual.dndreams.summon_storm": "Conjure Storm",

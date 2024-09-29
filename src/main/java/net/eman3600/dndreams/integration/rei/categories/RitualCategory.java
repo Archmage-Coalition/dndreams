@@ -22,7 +22,7 @@ import java.util.List;
 
 public class RitualCategory implements DisplayCategory<RitualDisplay> {
     public static final Text TITLE = Text.translatable("rei.dndreams.ritual");
-    public static final EntryStack<ItemStack> ICON = EntryStacks.of(ModBlocks.SOUL_CANDLE);
+    public static final EntryStack<ItemStack> ICON = EntryStacks.of(ModBlocks.BONFIRE);
 
     @Override
     public CategoryIdentifier<? extends RitualDisplay> getCategoryIdentifier() {
@@ -46,7 +46,7 @@ public class RitualCategory implements DisplayCategory<RitualDisplay> {
 
     @Override
     public int getDisplayWidth(RitualDisplay display) {
-        return 130;
+        return 170;
     }
 
     @Override
@@ -74,13 +74,12 @@ public class RitualCategory implements DisplayCategory<RitualDisplay> {
             }
         }
 
-        if (!display.RECIPE.getOutput().isOf(ModBlocks.SOUL_CANDLE.asItem())) {
+        if (!display.RECIPE.getOutput().isEmpty()) {
             widgets.add(Widgets.createArrow(new Point(bounds.getCenterX() + 3, bounds.getCenterY() - 8)));
             widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 3 + 30, bounds.getCenterY() - 7)).entries(output.get(0)));
         }
 
         widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 38), Text.translatable(display.RECIPE.getRitual().getTranslationKey())).color(0xFF404040, 0xFFBBBBBB).noShadow());
-        widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() + 33), Text.translatable("rei.dndreams.ritual.cost", display.RECIPE.getRitual().cost())).color(0xFF404040, 0xFFBBBBBB).noShadow());
 
         return widgets;
     }

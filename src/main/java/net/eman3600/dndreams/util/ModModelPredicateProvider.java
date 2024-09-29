@@ -23,10 +23,6 @@ public class ModModelPredicateProvider {
         registerRestoredItem(ModItems.CROWNED_EDGE);
         registerRestoredItem(ModItems.TRUE_CROWNED_EDGE);
 
-        registerItem(new Identifier("bound"),
-                (stack, world, entity, seed) -> (stack.hasNbt() && stack.getNbt().contains("bound")) ? 1f : 0f,
-                ModItems.TAGLOCK);
-
         registerItem(new Identifier("form"),
                 (stack, world, entity, seed) -> stack.hasNbt() ? (float)stack.getNbt().getInt("Form") * 0.1f : 0f,
                 ModItems.ATLAS);

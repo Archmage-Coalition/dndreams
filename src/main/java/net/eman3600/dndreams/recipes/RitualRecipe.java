@@ -2,8 +2,9 @@ package net.eman3600.dndreams.recipes;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
-import net.eman3600.dndreams.rituals.setup.Ritual;
+import net.eman3600.dndreams.rituals.Ritual;
 import net.eman3600.dndreams.rituals.setup.RitualRegistry;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -18,12 +19,14 @@ public class RitualRecipe implements Recipe<Inventory> {
 
     private final Identifier id;
     final DefaultedList<Ingredient> input;
+    final Ingredient focus;
     final ItemStack icon;
     public final Identifier ritualID;
 
-    public RitualRecipe(Identifier id, DefaultedList<Ingredient> input, ItemStack output, Identifier ritualID) {
+    public RitualRecipe(Identifier id, DefaultedList<Ingredient> input, Ingredient focus, ItemStack output, Identifier ritualID) {
         this.id = id;
         this.input = input;
+        this.focus = focus;
         this.icon = output;
         this.ritualID = ritualID;
     }
@@ -72,6 +75,10 @@ public class RitualRecipe implements Recipe<Inventory> {
         return this.icon;
     }
 
+    public Ingredient getFocus() {
+        return this.focus;
+    }
+
     public DefaultedList<Ingredient> getIngredients() {
         return input;
     }
@@ -90,11 +97,20 @@ public class RitualRecipe implements Recipe<Inventory> {
 
         public RitualRecipe read(Identifier identifier, JsonObject jsonObject) {
             DefaultedList<Ingredient> ingredients = getIngredients(JsonHelper.getArray(jsonObject, "ingredients"));
-            ItemStack itemStack = RefineryRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result"));
+
+            if (ingredients.size() != 4) {
+                throw new JsonParseException("Ritual has wrong number of ingredients: " + ingredients.size());
+            }
+
+            ItemStack itemStack = RefineryRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result", null));
+
+            JsonObject focusJson = JsonHelper.getObject(jsonObject, "focus", null);
+
+            Ingredient focus = focusJson == null ? Ingredient.EMPTY : Ingredient.fromJson(focusJson);
 
             Identifier ritual = Identifier.tryParse(jsonObject.get("ritual").getAsString());
 
-            return new RitualRecipe(identifier, ingredients, itemStack, ritual);
+            return new RitualRecipe(identifier, ingredients, focus, itemStack, ritual);
 
         }
 
@@ -119,10 +135,12 @@ public class RitualRecipe implements Recipe<Inventory> {
                 ingredients.set(j, Ingredient.fromPacket(packetByteBuf));
             }
 
+            Ingredient focus = Ingredient.fromPacket(packetByteBuf);
+
             ItemStack itemStack = packetByteBuf.readItemStack();
             Identifier ritual = Identifier.tryParse(packetByteBuf.readString());
 
-            return new RitualRecipe(identifier, ingredients, itemStack, ritual);
+            return new RitualRecipe(identifier, ingredients, focus, itemStack, ritual);
         }
 
         public void write(PacketByteBuf packetByteBuf, RitualRecipe recipe) {
@@ -131,6 +149,8 @@ public class RitualRecipe implements Recipe<Inventory> {
             for (Ingredient ingredient : recipe.input) {
                 ingredient.write(packetByteBuf);
             }
+
+            recipe.focus.write(packetByteBuf);
 
             packetByteBuf.writeItemStack(recipe.icon);
             packetByteBuf.writeString(recipe.ritualID.toString());

@@ -1,0 +1,25 @@
+{
+  "type": "dndreams:ritual",
+  "ritual": "dndreams:crowned_edge",
+  "ingredients": [
+    {
+      "item": "dndreams:subdued_madness"
+    },
+	  {
+      "item": "minecraft:dragon_breath"
+    },
+	  {
+      "item": "dndreams:soul"
+    },
+	  {
+      "item": "minecraft:ghast_tear"
+    }
+  ],
+  "result": {
+    "item": "dndreams:crowned_edge",
+    "count": 1
+  },
+  "focus": {
+	  "item": "dndreams:shattered_sword"
+  }
+}

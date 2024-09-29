@@ -1,16 +1,12 @@
 package net.eman3600.dndreams.initializers.event;
 
-import net.eman3600.dndreams.initializers.basics.ModItems;
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
-import net.eman3600.dndreams.rituals.*;
-import net.eman3600.dndreams.rituals.setup.Ritual;
-import net.eman3600.dndreams.rituals.setup.Ritual.Ring;
-import net.eman3600.dndreams.rituals.setup.Ritual.CandleTuning;
+import net.eman3600.dndreams.rituals.Ritual;
 import net.eman3600.dndreams.rituals.setup.RitualRegistry;
 
 public class ModRituals {
 
-
+    public static final Ritual CROWNED_EDGE = register("crowned_edge", new Ritual());
+    public static final Ritual TRUE_CROWNED_EDGE = register("true_crowned_edge", new Ritual());
 
     public static void registerRituals() {}
 

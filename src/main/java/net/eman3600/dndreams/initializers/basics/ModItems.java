@@ -11,7 +11,6 @@ import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.celestium.*;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
-import net.eman3600.dndreams.items.charge.TuningItem;
 import net.eman3600.dndreams.items.cloud.CloudArmorItem;
 import net.eman3600.dndreams.items.cloud.SkyboundArrowItem;
 import net.eman3600.dndreams.items.consumable.*;
@@ -43,7 +42,6 @@ import net.eman3600.dndreams.items.tool_mirror.ModPickaxeItem;
 import net.eman3600.dndreams.items.tool_mirror.ModShovelItem;
 import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
 import net.eman3600.dndreams.items.trinket.*;
-import net.eman3600.dndreams.rituals.setup.Ritual;
 import net.eman3600.dndreams.util.ModArmorMaterials;
 import net.eman3600.dndreams.util.ModFoodComponents;
 import net.eman3600.dndreams.util.ModToolMaterials;
@@ -617,25 +615,6 @@ public class ModItems {
             new AttunedShardItem(500, new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item CHARGED_SHARD = registerItem("charged_shard",
             new ChargedShardItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
-
-    // Waystone
-    public static final Item WAYSTONE = registerItem("waystone",
-            new WaystoneItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(32)));
-    public static final Item TAGLOCK = registerItem("taglock",
-            new TaglockItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(16)));
-
-    // Tuning Shards
-    public static final Item OVERWORLD_TUNER = registerItem("overworld_tuner",
-            new TuningItem(Ritual.CandleTuning.OVERWORLD,
-                   new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
-
-    public static final Item NETHER_TUNER = registerItem("nether_tuner",
-            new TuningItem(Ritual.CandleTuning.NETHER,
-                    new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
-
-    public static final Item END_TUNER = registerItem("end_tuner",
-            new TuningItem(Ritual.CandleTuning.END,
-                    new FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(32)));
 
 
 

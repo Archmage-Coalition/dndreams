@@ -15,10 +15,12 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.intprovider.IntProvider;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -49,6 +51,13 @@ public abstract class BlockMixin extends AbstractBlock {
                     stackList.remove(drop);
                 }
             }
+        }
+    }
+
+    @Inject(method = "dropExperienceWhenMined", at = @At("HEAD"), cancellable = true)
+    private void dndreams$dropExperienceWhenMined(ServerWorld world, BlockPos pos, ItemStack tool, IntProvider experience, CallbackInfo ci) {
+        if (tool.isIn(ModTags.SILKY_TOOLS)) {
+            ci.cancel();
         }
     }
 }

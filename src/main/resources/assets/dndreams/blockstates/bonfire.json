@@ -1,33 +1,18 @@
 {
   "variants": {
-    "facing=east,strong=true": {
+    "facing=east": {
       "model": "dndreams:block/bonfire",
       "y": 270
     },
-    "facing=north,strong=true": {
+    "facing=north": {
       "model": "dndreams:block/bonfire",
       "y": 180
     },
-    "facing=south,strong=true": {
+    "facing=south": {
       "model": "dndreams:block/bonfire"
     },
-    "facing=west,strong=true": {
+    "facing=west": {
       "model": "dndreams:block/bonfire",
-      "y": 90
-    },
-    "facing=east,strong=false": {
-      "model": "dndreams:block/bonfire_weak",
-      "y": 270
-    },
-    "facing=north,strong=false": {
-      "model": "dndreams:block/bonfire_weak",
-      "y": 180
-    },
-    "facing=south,strong=false": {
-      "model": "dndreams:block/bonfire_weak"
-    },
-    "facing=west,strong=false": {
-      "model": "dndreams:block/bonfire_weak",
       "y": 90
     }
   }

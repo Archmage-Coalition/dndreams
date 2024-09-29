@@ -45,7 +45,6 @@ public class DnDreamsREIPlugin implements REIClientPlugin {
         registry.addWorkstations(APOTHECARY, ApothecaryCategory.ICON);
         registry.add(new RitualCategory());
         registry.addWorkstations(RITUAL, RitualCategory.ICON);
-        registry.addWorkstations(RITUAL, EntryStacks.of(ModBlocks.ECHO_CANDLE));
 
         registry.add(new AttunementCategory());
         registry.addWorkstations(ATTUNEMENT, AttunementCategory.ICON);

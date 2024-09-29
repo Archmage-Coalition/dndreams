@@ -1,10 +1,8 @@
 package net.eman3600.dndreams.items.misc_tool;
 
-import net.eman3600.dndreams.blocks.entities.SoulCandleBlockEntity;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.items.TooltipItem;
-import net.eman3600.dndreams.items.interfaces.RitualRemainItem;
-import net.eman3600.dndreams.rituals.setup.Ritual;
+import net.eman3600.dndreams.rituals.Ritual;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +17,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class RadiantKeyItem extends TooltipItem implements RitualRemainItem {
+public class RadiantKeyItem extends TooltipItem {
     private static Random random = new Random();
 
     public RadiantKeyItem(Settings settings) {
@@ -86,10 +84,5 @@ public class RadiantKeyItem extends TooltipItem implements RitualRemainItem {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public ItemStack getRitualRemains(Ritual ritual, SoulCandleBlockEntity entity, ItemStack stack) {
-        return stack.copy();
     }
 }

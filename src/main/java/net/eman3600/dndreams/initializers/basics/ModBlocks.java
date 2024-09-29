@@ -241,7 +241,9 @@ public class ModBlocks {
 
     // Bonfire
     public static final Block BONFIRE = registerBlock("bonfire",
-            new BonfireBlock(FabricBlockSettings.of(Material.WOOD, MapColor.SPRUCE_BROWN).strength(2.0f).sounds(BlockSoundGroup.WOOD).luminance(15).nonOpaque()));
+            new BonfireBlock(FabricBlockSettings.of(Material.WOOD, MapColor.SPRUCE_BROWN).strength(2.0f).sounds(BlockSoundGroup.WOOD).luminance(15).nonOpaque()),
+
+            new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     // Cosmic Egg
     public static final Block COSMIC_EGG = registerBlock("cosmic_egg",
@@ -1182,20 +1184,6 @@ public class ModBlocks {
             new FabricItemSettings().group(ItemGroup.DECORATIONS));
 
     // Ritual Candles
-    public static final Block ECHO_CANDLE = registerBlock("echo_candle",
-            new EchoCandleBlock(ModParticles.ECHO_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).strength(0.1f).sounds(BlockSoundGroup.CANDLE)
-                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)
-                    .luminance(RitualCandleBlock::luminence).breakInstantly()),
-
-            new FabricItemSettings().group(ItemGroup.DECORATIONS));
-
-    public static final Block SOUL_CANDLE = registerBlock("soul_candle",
-            new SoulCandleBlock(ModParticles.SOUL_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).strength(0.1f).sounds(BlockSoundGroup.CANDLE)
-                    .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)
-                    .luminance(RitualCandleBlock::luminence).breakInstantly()),
-
-            new FabricItemSettings().group(ItemGroup.DECORATIONS));
-
     public static final Block COSMIC_CANDLE = registerBlock("cosmic_candle",
             new RitualCandleBlock(ModParticles.COSMIC_CANDLE_FLAME, FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).strength(0.1f).sounds(BlockSoundGroup.CANDLE)
                     .nonOpaque().suffocates(ModBlocks::never).blockVision(ModBlocks::never)

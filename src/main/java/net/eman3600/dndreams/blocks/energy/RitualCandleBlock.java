@@ -69,7 +69,7 @@ public class RitualCandleBlock extends BlockWithEntity {
     }*/
 
     public static boolean canBeLit(BlockState state) {
-        if (state.getBlock() instanceof RitualCandleBlock block && block != ModBlocks.ECHO_CANDLE) {
+        if (state.getBlock() instanceof RitualCandleBlock block) {
             return !state.get(LIT);
         }
         return false;

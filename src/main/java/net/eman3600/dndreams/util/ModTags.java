@@ -51,6 +51,7 @@ public class ModTags {
     public static final TagKey<Item> GROUND_REPAIRING_TOOLS = ofItem("ground_repairing_tools");
     public static final TagKey<Item> FAST_GROUND_REPAIRING_TOOLS = ofItem("fast_ground_repairing_tools");
     public static final TagKey<Item> DREAM_EXCLUSIVE = ofItem("dream_exclusive");
+    public static final TagKey<Item> RITUAL_FOCI = ofItem("ritual_foci");
     public static final TagKey<Item> CORRUPTORS = ofItem("corruptors");
     public static final TagKey<Item> ATLAS = ofItem("atlas_items");
     public static final TagKey<Item> QUIVERS = ofItem("quivers");

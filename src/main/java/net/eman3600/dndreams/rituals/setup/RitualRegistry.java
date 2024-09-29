@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.rituals.setup;
 
 import com.mojang.serialization.Lifecycle;
+import net.eman3600.dndreams.rituals.Ritual;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.*;
 
