@@ -1,0 +1,25 @@
+{
+  "type": "dndreams:ritual",
+  "ritual": "dndreams:true_crowned_edge",
+  "ingredients": [
+    {
+      "item": "dndreams:shade_cloth"
+    },
+	  {
+      "item": "dndreams:ravaged_flesh"
+    },
+	  {
+      "item": "dndreams:fidi_fruit"
+    },
+	  {
+      "item": "dndreams:pericharite"
+    }
+  ],
+  "result": {
+    "item": "dndreams:true_crowned_edge",
+    "count": 1
+  },
+  "focus": {
+	  "item": "dndreams:crowned_edge"
+  }
+}

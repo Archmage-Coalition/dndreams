@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "dndreams:shattered_sword",
+	  "dndreams:crowned_edge",
+	  "dndreams:true_crowned_edge",
+	  "dndreams:demonic_core",
+	  "dndreams:demonic_core_charged"
+  ]
+}
