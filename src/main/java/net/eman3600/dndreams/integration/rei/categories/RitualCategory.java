@@ -46,7 +46,7 @@ public class RitualCategory implements DisplayCategory<RitualDisplay> {
 
     @Override
     public int getDisplayWidth(RitualDisplay display) {
-        return 170;
+        return 164;
     }
 
     @Override
@@ -58,9 +58,32 @@ public class RitualCategory implements DisplayCategory<RitualDisplay> {
         List<EntryIngredient> output = display.getOutputEntries();
 
         int columns = MathHelper.ceil(inputs.size() / 3f);
-        int i = 0;
 
-        for (int row = 0; row < 3; row++) {
+        for (int i = 0; i < 4; i++) {
+
+            EntryIngredient ingredient;
+            try {
+                ingredient = inputs.get(i);
+            } catch (IndexOutOfBoundsException e) {
+                ingredient = EntryIngredient.empty();
+            }
+
+            int x = bounds.getCenterX() + 8 - 24 - 36 + (36 * (i % 2));
+            int y = bounds.getCenterY() - 25 + (36 * (i / 2));
+
+            widgets.add(Widgets.createSlot(new Point(x, y)).entries(ingredient));
+        }
+
+        if (!display.RECIPE.getFocus().isEmpty()) {
+            EntryIngredient ingredient = inputs.get(4);
+
+            int x = bounds.getCenterX() + 8 - 24 - 36 + 18;
+            int y = bounds.getCenterY() - 25 + 18;
+
+            widgets.add(Widgets.createSlot(new Point(x, y)).entries(ingredient));
+        }
+
+        /*for (int row = 0; row < 3; row++) {
             for (int col = 0; col < columns; col++) {
                 EntryIngredient ingredient;
                 try {
@@ -72,11 +95,11 @@ public class RitualCategory implements DisplayCategory<RitualDisplay> {
 
                 widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 3 - 24 - (18 * (columns - col - 1)), bounds.getCenterY() - 25 + (row * 18))).entries(ingredient));
             }
-        }
+        }*/
 
         if (!display.RECIPE.getOutput().isEmpty()) {
-            widgets.add(Widgets.createArrow(new Point(bounds.getCenterX() + 3, bounds.getCenterY() - 8)));
-            widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 3 + 30, bounds.getCenterY() - 7)).entries(output.get(0)));
+            widgets.add(Widgets.createArrow(new Point(bounds.getCenterX() + 8, bounds.getCenterY() - 8)));
+            widgets.add(Widgets.createSlot(new Point(bounds.getCenterX() + 8 + 30, bounds.getCenterY() - 7)).entries(output.get(0)));
         }
 
         widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), bounds.getCenterY() - 38), Text.translatable(display.RECIPE.getRitual().getTranslationKey())).color(0xFF404040, 0xFFBBBBBB).noShadow());

@@ -1,6 +1,7 @@
 package net.eman3600.dndreams.rituals;
 
 import net.eman3600.dndreams.blocks.entities.BonfireBlockEntity;
+import net.eman3600.dndreams.recipes.RitualRecipe;
 import net.eman3600.dndreams.rituals.setup.RitualRegistry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -8,7 +9,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.RegistryEntry;
 
-public class Ritual {
+public abstract class Ritual {
     private final RegistryEntry.Reference<Ritual> entry;
 
 
@@ -37,7 +38,5 @@ public class Ritual {
      * Called when the ritual is cast by the Bonfire.
      * @return Whether the casting succeeded and should consume the materials.
      * */
-    public boolean onCast(ServerWorld world, BlockPos pos, BonfireBlockEntity blockEntity) {
-        return true;
-    }
+    public abstract boolean onCast(ServerWorld world, BlockPos pos, BonfireBlockEntity blockEntity, RitualRecipe recipe);
 }

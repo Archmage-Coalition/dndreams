@@ -52,12 +52,18 @@ public class RitualRecipe implements Recipe<Inventory> {
         RecipeMatcher recipeMatcher = new RecipeMatcher();
         int i = 0;
 
-        for(int j = 0; j < inventory.size(); ++j) {
+        for(int j = 0; j < 4; ++j) {
             ItemStack itemStack = inventory.getStack(j);
             if (!itemStack.isEmpty()) {
                 ++i;
                 recipeMatcher.addInput(itemStack, 1);
             }
+        }
+
+        if (!getFocus().isEmpty()) {
+            ItemStack itemStack = inventory.getStack(4);
+
+            if (!getFocus().test(itemStack)) return false;
         }
 
         return i == this.input.size() && recipeMatcher.match(this, null);

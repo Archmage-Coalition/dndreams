@@ -83,6 +83,8 @@ public class BonfireBlock extends BlockWithEntity {
 
                 world.setBlockState(pos, newState, Block.NOTIFY_ALL);
 
+                return ActionResult.SUCCESS;
+
             } else if (stack.isIn(ModTags.RITUAL_FOCI) && entity.getRitualFocus().isEmpty()) {
 
                 if (!world.isClient) {

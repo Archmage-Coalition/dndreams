@@ -349,6 +349,12 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     }
 
 
+    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
+    private void dndreams$damage$tormiteNullify(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if ((amount <= 2.25f || (amount <= 4.25f && !source.bypassesArmor())) && TormiteArmorItem.wornPieces(this) >= 4 && !source.isOutOfWorld() && source instanceof DamageSourceAccess access && !access.isAffliction() && !access.isElectric()) {
+            cir.setReturnValue(false);
+        }
+    }
 
     @ModifyVariable(method = "damage", at = @At("HEAD"), argsOnly = true)
     private float dndreams$damage$heartbleed(float amount) {
@@ -401,7 +407,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         if ((status == StatusEffects.WITHER && (getType() == EntityType.WARDEN || getType() == ModEntities.TORMENTOR
                 || (getType() == EntityType.PLAYER && TrinketsApi.getTrinketComponent((PlayerEntity)(Object)this).isPresent()
                 && TrinketsApi.getTrinketComponent((PlayerEntity)(Object)this).get().isEquipped(ModItems.LIFE_GIVING_AMULET))))
-                || (status == ModStatusEffects.HAUNTED && CelestiumArmorItem.wornPieces(this) >= 4) || ((status == ModStatusEffects.HEARTBLEED || status == ModStatusEffects.SMOTE) && TormiteArmorItem.wornPieces(this) >= 4)){
+                || (status == ModStatusEffects.HAUNTED && CelestiumArmorItem.wornPieces(this) >= 4) || ((status == ModStatusEffects.HEARTBLEED) && TormiteArmorItem.wornPieces(this) >= 4)){
             cir.setReturnValue(false);
         }
     }

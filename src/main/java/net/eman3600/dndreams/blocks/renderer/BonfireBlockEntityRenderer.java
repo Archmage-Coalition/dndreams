@@ -84,7 +84,7 @@ public class BonfireBlockEntityRenderer implements BlockEntityRenderer<BonfireBl
         Direction direction = entity.getCachedState().get(BonfireBlock.FACING);
         DefaultedList<ItemStack> defaultedList = entity.getRitualItems();
         int r = (int)entity.getPos().asLong();
-        for (int i = 0; i < defaultedList.size(); ++i) {
+        for (int i = 0; i < 4; ++i) {
             ItemStack itemStack = defaultedList.get(i);
             if (itemStack == ItemStack.EMPTY) continue;
             matrices.push();

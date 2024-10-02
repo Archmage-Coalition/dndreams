@@ -2,6 +2,11 @@ package net.eman3600.dndreams.blocks.entities;
 
 import net.eman3600.dndreams.blocks.energy.BonfireBlock;
 import net.eman3600.dndreams.initializers.basics.ModBlockEntities;
+import net.eman3600.dndreams.initializers.event.ModRecipeTypes;
+import net.eman3600.dndreams.recipes.RefineryRecipe;
+import net.eman3600.dndreams.recipes.RitualRecipe;
+import net.eman3600.dndreams.rituals.Ritual;
+import net.eman3600.dndreams.util.inventory.ImplementedInventory;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -25,14 +30,17 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 import static net.eman3600.dndreams.blocks.energy.BonfireBlock.STRONG;
 
 public class BonfireBlockEntity extends BlockEntity
-        implements Clearable {
+        implements Clearable, ImplementedInventory {
 
     private int delayTicks = 0;
-    private final DefaultedList<ItemStack> ritualItems = DefaultedList.ofSize(4, ItemStack.EMPTY);
-    private ItemStack ritualFocus = ItemStack.EMPTY;
+    private final DefaultedList<ItemStack> ritualItems = DefaultedList.ofSize(5, ItemStack.EMPTY);
+
+    private RitualRecipe recipe = null;
 
     public BonfireBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BONFIRE_ENTITY, pos, state);
@@ -60,6 +68,27 @@ public class BonfireBlockEntity extends BlockEntity
 
             if (delayTicks <= 0) {
                 world.setBlockState(pos, getCachedState().with(STRONG, false));
+
+                if (recipe == null) {
+                    Optional<RitualRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.RITUAL, this, world);
+
+                    optional.ifPresent(ritualRecipe -> recipe = ritualRecipe);
+                }
+
+                if (recipe != null) {
+
+                    Ritual ritual = recipe.getRitual();
+
+                    if (ritual.onCast(world, pos, this, recipe)) {
+
+                        clearBase();
+                    } else {
+
+                        removeItems();
+                    }
+
+                    recipe = null;
+                }
             }
         }
     }
@@ -95,9 +124,6 @@ public class BonfireBlockEntity extends BlockEntity
         super.writeNbt(nbt);
         nbt.putInt("DelayTicks", delayTicks);
         Inventories.writeNbt(nbt, this.ritualItems, true);
-        NbtCompound focus = new NbtCompound();
-        this.ritualFocus.writeNbt(focus);
-        nbt.put("FocusItem", focus);
     }
 
     @Override
@@ -106,13 +132,32 @@ public class BonfireBlockEntity extends BlockEntity
         this.delayTicks = nbt.getInt("DelayTicks");
         this.ritualItems.clear();
         Inventories.readNbt(nbt, this.ritualItems);
-        this.ritualFocus = ItemStack.fromNbt(nbt.getCompound("FocusItem"));
+    }
+
+    @Override
+    public DefaultedList<ItemStack> getItems() {
+
+        return this.ritualItems;
     }
 
     @Override
     public void clear() {
         this.ritualItems.clear();
-        this.ritualFocus = ItemStack.EMPTY;
+
+        this.recipe = null;
+
+        if (getCachedState().get(STRONG)) {
+            this.delayTicks = 0;
+            world.setBlockState(pos, getCachedState().with(STRONG, false));
+        }
+
+        updateListeners();
+    }
+
+    public void clearBase() {
+        for (int i = 0; i < 4; i++) {
+            this.ritualItems.set(i, ItemStack.EMPTY);
+        }
         updateListeners();
     }
 
@@ -121,7 +166,7 @@ public class BonfireBlockEntity extends BlockEntity
     }
 
     public int nextAvailableSlot() {
-        for (int i = 0; i < ritualItems.size(); i++) {
+        for (int i = 0; i < 4; i++) {
             if (ritualItems.get(i).isEmpty()) {
                 return i;
             }
@@ -135,23 +180,38 @@ public class BonfireBlockEntity extends BlockEntity
         if (world == null) return;
 
         ItemScatterer.spawn(world, pos, getRitualItems());
-        ItemScatterer.spawn(world, pos, DefaultedList.ofSize(1, getRitualFocus()));
 
         clear();
     }
 
     public ItemStack getRitualFocus() {
-        return ritualFocus;
+        return ritualItems.get(4);
     }
 
     public void setRitualFocus(ItemStack stack) {
-        this.ritualFocus = stack;
-        updateListeners();
+        setRitualItem(stack, 4);
+        testForRitual();
     }
 
     public void setRitualItem(ItemStack stack, int slot) {
         this.ritualItems.set(slot, stack);
+        testForRitual();
         updateListeners();
+    }
+
+    public void testForRitual() {
+
+        if (world == null || world.isClient) return;
+
+        Optional<RitualRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.RITUAL, this, world);
+
+        if (optional.isPresent()) {
+
+            this.recipe = optional.get();
+            this.delayTicks = 100;
+
+            this.world.setBlockState(pos, getCachedState().with(STRONG, true));
+        }
     }
 
     @Nullable
@@ -169,9 +229,6 @@ public class BonfireBlockEntity extends BlockEntity
     public NbtCompound toInitialChunkDataNbt() {
         NbtCompound nbtCompound = new NbtCompound();
         Inventories.writeNbt(nbtCompound, this.ritualItems, true);
-        NbtCompound focusNbt = new NbtCompound();
-        this.ritualFocus.writeNbt(focusNbt);
-        nbtCompound.put("FocusItem", focusNbt);
         return nbtCompound;
     }
 }
