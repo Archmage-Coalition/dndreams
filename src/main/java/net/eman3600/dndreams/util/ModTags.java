@@ -60,6 +60,7 @@ public class ModTags {
     public static final TagKey<EntityType<?>> GLOOM_ENTITIES = ofEntity("gloom");
     public static final TagKey<EntityType<?>> ROT_IMMUNE_ENTITIES = ofEntity("rot_immune");
     public static final TagKey<EntityType<?>> GLOOM_PROJECTILE_ENTITIES = ofEntity("gloom_projectiles");
+    public static final TagKey<EntityType<?>> CHIP_IMMUNE_ENEMIES = ofEntity("ignores_chip_damage");
 
     /* TAG REGISTRIES */
     private static TagKey<Block> ofBlock(String id) {
