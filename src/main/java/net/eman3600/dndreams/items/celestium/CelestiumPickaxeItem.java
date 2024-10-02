@@ -58,31 +58,6 @@ public class CelestiumPickaxeItem extends PickaxeItem implements ManaCostItem {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack stack = user.getStackInHand(hand);
-
-        HitResult hit = user.raycast(30, 0, false);
-        if (hit.getType() == HitResult.Type.BLOCK) {
-            BlockHitResult result = (BlockHitResult) hit;
-
-            BlockPos pos = result.getBlockPos();
-            BlockState state = world.getBlockState(pos);
-
-            if (state.getHardness(world, pos) >= 0 && world.getBlockEntity(pos) == null && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
-
-                if (!world.isClient) {
-                    FallingBlockEntity entity = FallingBlockEntity.spawnFromBlock(world, pos, state);
-                    entity.setHurtEntities(2f, state.isIn(BlockTags.ANVIL) || state.isOf(Blocks.POINTED_DRIPSTONE) ? 40 : 20);
-                    stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-                }
-                return TypedActionResult.success(stack);
-            }
-        }
-
-        return super.use(world, user, hand);
-    }
-
-    @Override
     public int getBaseManaCost() {
         return 3;
     }
@@ -91,8 +66,7 @@ public class CelestiumPickaxeItem extends PickaxeItem implements ManaCostItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.0"));
-        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.1"));
+        tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
         tooltip.add(getTooltipMana(stack));
     }
 }
