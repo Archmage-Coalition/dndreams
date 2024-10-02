@@ -353,7 +353,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void dndreams$damage$tormiteNullify(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if ((amount <= 1.25f || (amount <= (1.25f + 0.175f * this.getArmor()) && !source.bypassesArmor())) && (TormiteArmorItem.wornPieces(this) >= 4 || this.getType().isIn(ModTags.CHIP_IMMUNE_ENEMIES)) && !this.hasStatusEffect(ModStatusEffects.HEARTBLEED) && !source.isOutOfWorld() && source instanceof DamageSourceAccess access && !access.isAffliction() && !access.isElectric()) {
+        if ((amount <= 1.25f || (amount <= (1.25f + 0.175f * this.getArmor()) && !source.bypassesArmor())) && (TormiteArmorItem.wornPieces(this) >= 4 || this.getType().isIn(ModTags.CHIP_IMMUNE_ENEMIES)) && !this.hasStatusEffect(ModStatusEffects.HEARTBLEED) && !this.hasStatusEffect(ModStatusEffects.MORTAL) && !source.isOutOfWorld() && source instanceof DamageSourceAccess access && !access.isAffliction() && !access.isElectric()) {
             cir.setReturnValue(false);
         }
     }
