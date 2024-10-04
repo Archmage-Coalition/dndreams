@@ -351,8 +351,15 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     }
 
 
+
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void dndreams$damage$tormiteNullify(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        // Cancels damage if the expression evaluates to true
+        // Expression evaluates to true if all of the following are met:
+        // 1. The damage is small enough to be chip damage
+        // 2. Something gives this entity chip damage immunity
+        // 3. The entity has neither heartbleed nor mortality
+        // 4. The damage source is not out of world, affliction, or electric
         if ((amount <= 1.25f || (amount <= (1.25f + 0.175f * this.getArmor()) && !source.bypassesArmor())) && (TormiteArmorItem.wornPieces(this) >= 4 || this.getType().isIn(ModTags.CHIP_IMMUNE_ENEMIES)) && !this.hasStatusEffect(ModStatusEffects.HEARTBLEED) && !this.hasStatusEffect(ModStatusEffects.MORTAL) && !source.isOutOfWorld() && source instanceof DamageSourceAccess access && !access.isAffliction() && !access.isElectric()) {
             cir.setReturnValue(false);
         }

@@ -833,23 +833,14 @@
   
   "ritual.dndreams.error.unknown": "Unknown Rite",
   "ritual.dndreams.error.improper": "Improper Casting Conditions",
+  "ritual.dndreams.error.not_overworld": "Cannot be cast outside Overworld",
+  "ritual.dndreams.error.damned_night": "The dread moon is already impending",
+  "ritual.dndreams.error.dread_moon": "A dread moon is already occurring",
   
-  "ritual.dndreams.waystone": "Bind Waystone",
-  "ritual.dndreams.waystone_simple": "Rebind Waystone",
-  "ritual.dndreams.taglock": "Take Taglock",
-  "ritual.dndreams.taglock_relocated": "Swipe Taglock",
   "ritual.dndreams.charge_demonic_core": "Charge Vessel",
+  "ritual.dndreams.dread_moon": "Stained Night",
   "ritual.dndreams.crowned_edge": "Spirit Repair",
   "ritual.dndreams.true_crowned_edge": "Empowerment",
-  "ritual.dndreams.amethyst_source": "Bud Amethyst",
-  "ritual.dndreams.amethyst_sprout": "Sprout Amethyst",
-  "ritual.dndreams.summon_storm": "Conjure Storm",
-  "ritual.dndreams.night_terror": "Night Terror",
-  "ritual.dndreams.nature_infusion": "Infusion - Nature",
-  "ritual.dndreams.infernal_infusion": "Infusion - Infernal",
-  "ritual.dndreams.otherwhere_infusion": "Infusion - Otherwhere",
-  "ritual.dndreams.spirit_infusion": "Infusion - Spirit",
-  "ritual.dndreams.grace_aura": "Grace of Stars",
   
   
   "infusion.dndreams.none": "None",

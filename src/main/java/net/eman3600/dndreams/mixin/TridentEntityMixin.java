@@ -27,6 +27,8 @@ public abstract class TridentEntityMixin extends PersistentProjectileEntity impl
 
     @Shadow @Final private static TrackedData<Boolean> ENCHANTED;
 
+    @Shadow protected abstract boolean isOwnerAlive();
+
     protected TridentEntityMixin(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
         super(entityType, world);
     }

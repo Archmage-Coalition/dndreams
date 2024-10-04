@@ -1,0 +1,18 @@
+{
+  "type": "dndreams:ritual",
+  "ritual": "dndreams:dread_moon",
+  "ingredients": [
+    {
+      "item": "dndreams:infernal_residue"
+    },
+	  {
+      "item": "dndreams:infernal_residue"
+    },
+	  {
+      "item": "dndreams:liquid_void"
+    },
+	  {
+      "item": "dndreams:subdued_madness"
+    }
+  ]
+}

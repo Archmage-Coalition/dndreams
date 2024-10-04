@@ -2,6 +2,7 @@ package net.eman3600.dndreams.mixin;
 
 import net.eman3600.dndreams.mixin_interfaces.DrownedEntityAccess;
 import net.eman3600.dndreams.mixin_interfaces.TridentEntityAccess;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -33,7 +34,7 @@ public abstract class DrownedEntityMixin extends ZombieEntity implements RangedA
 
         if (stack.isOf(Items.TRIDENT) && tridentEntity instanceof TridentEntityAccess access) {
             access.setTridentStack(stack);
-            tridentEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
+            tridentEntity.pickupType = EnchantmentHelper.getLoyalty(stack) > 0 ? PersistentProjectileEntity.PickupPermission.DISALLOWED : PersistentProjectileEntity.PickupPermission.ALLOWED;
         }
     }
 

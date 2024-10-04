@@ -39,4 +39,12 @@ public abstract class Ritual {
      * @return Whether the casting succeeded and should consume the materials.
      * */
     public abstract boolean onCast(ServerWorld world, BlockPos pos, BonfireBlockEntity blockEntity, RitualRecipe recipe);
+
+    /**
+     * Called after a ritual fails to get the error message.
+     * @return The translation key for the error message.
+     */
+    public String getErrorTranslation(ServerWorld world, BlockPos pos, BonfireBlockEntity blockEntity, RitualRecipe recipe) {
+        return "ritual.dndreams.error.improper";
+    }
 }

@@ -14,6 +14,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -22,10 +23,12 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.Clearable;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -83,6 +86,13 @@ public class BonfireBlockEntity extends BlockEntity
 
                         clearBase();
                     } else {
+
+                        Box box = new Box(pos).expand(12f);
+                        Text errorText = Text.translatable(ritual.getErrorTranslation(world, pos, this, recipe));
+
+                        for (PlayerEntity player : world.getNonSpectatingEntities(PlayerEntity.class, box)) {
+                            player.sendMessage(errorText, true);
+                        }
 
                         removeItems();
                     }

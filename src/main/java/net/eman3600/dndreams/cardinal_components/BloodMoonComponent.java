@@ -49,6 +49,10 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
         this.damnedNight = damnedNight;
     }
 
+    public void resetChance() {
+        this.chance = 0;
+    }
+
     @Override
     public boolean damnedNight() {
         if (getDimensionKey() == DimensionTypes.OVERWORLD) {
@@ -74,7 +78,6 @@ public class BloodMoonComponent implements BloodMoonComponentI, AutoSyncedCompon
         if (notifiedClients != isBloodMoon() && world.getRegistryKey() == World.OVERWORLD) {
             notifiedClients = isBloodMoon();
             if (notifiedClients) ((ServerWorld)world).getServer().getPlayerManager().getPlayerList().forEach(player -> player.sendMessageToClient(Text.translatable("message.dndreams.blood_moon"), false));
-            System.out.println("The current time is " + world.getTimeOfDay());
         }
         WorldComponents.BLOOD_MOON.sync(world);
     }
