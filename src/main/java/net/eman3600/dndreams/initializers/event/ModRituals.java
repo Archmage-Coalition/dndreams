@@ -9,6 +9,7 @@ public class ModRituals {
 
     public static final Ritual CROWNED_EDGE = register("crowned_edge", new CraftingRitual());
     public static final Ritual TRUE_CROWNED_EDGE = register("true_crowned_edge", new CraftingRitual());
+    public static final Ritual CHARGE_DEMONIC_CORE = register("charge_demonic_core", new CraftingRitual());
     public static final Ritual DREAD_MOON = register("dread_moon", new DreadMoonRitual());
 
     public static void registerRituals() {}

@@ -2,6 +2,7 @@ package net.eman3600.dndreams.mixin;
 
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.eman3600.dndreams.blocks.entities.BonfireBlockEntity;
 import net.eman3600.dndreams.cardinal_components.*;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
@@ -32,6 +33,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -134,6 +136,15 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
             WorldComponents.BOSS_STATE.get(world.getScoreboard()).flagWitherSlain(true);
         } else if ((Entity)this instanceof MerchantEntity) {
             EntityComponents.TORMENT.maybeGet(damageSource.getAttacker()).ifPresent(torment -> torment.lowerSanity(15));
+        } else if ((Entity)this instanceof AnimalEntity e && e.isBaby() && !world.isClient) {
+
+            for (BlockPos pos : BlockPos.iterateOutwards(getBlockPos(), 7, 7, 7)) {
+
+                if (world.getBlockEntity(pos) instanceof BonfireBlockEntity bonfire) {
+
+                    bonfire.onSacrifice((ServerWorld) world);
+                }
+            }
         }
     }
 

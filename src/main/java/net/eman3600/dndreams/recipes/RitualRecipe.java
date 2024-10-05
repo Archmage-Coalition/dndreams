@@ -22,13 +22,15 @@ public class RitualRecipe implements Recipe<Inventory> {
     final Ingredient focus;
     final ItemStack icon;
     public final Identifier ritualID;
+    public final boolean requiresSacrifice;
 
-    public RitualRecipe(Identifier id, DefaultedList<Ingredient> input, Ingredient focus, ItemStack output, Identifier ritualID) {
+    public RitualRecipe(Identifier id, DefaultedList<Ingredient> input, Ingredient focus, ItemStack output, Identifier ritualID, boolean requiresSacrifice) {
         this.id = id;
         this.input = input;
         this.focus = focus;
         this.icon = output;
         this.ritualID = ritualID;
+        this.requiresSacrifice = requiresSacrifice;
     }
 
     public Identifier getId() {
@@ -116,7 +118,9 @@ public class RitualRecipe implements Recipe<Inventory> {
 
             Identifier ritual = Identifier.tryParse(jsonObject.get("ritual").getAsString());
 
-            return new RitualRecipe(identifier, ingredients, focus, itemStack, ritual);
+            boolean requiresSacrifice = JsonHelper.getBoolean(jsonObject, "sacrifice", false);
+
+            return new RitualRecipe(identifier, ingredients, focus, itemStack, ritual, requiresSacrifice);
 
         }
 
@@ -146,7 +150,9 @@ public class RitualRecipe implements Recipe<Inventory> {
             ItemStack itemStack = packetByteBuf.readItemStack();
             Identifier ritual = Identifier.tryParse(packetByteBuf.readString());
 
-            return new RitualRecipe(identifier, ingredients, focus, itemStack, ritual);
+            boolean requiresSacrifice = packetByteBuf.readBoolean();
+
+            return new RitualRecipe(identifier, ingredients, focus, itemStack, ritual, requiresSacrifice);
         }
 
         public void write(PacketByteBuf packetByteBuf, RitualRecipe recipe) {
@@ -160,6 +166,8 @@ public class RitualRecipe implements Recipe<Inventory> {
 
             packetByteBuf.writeItemStack(recipe.icon);
             packetByteBuf.writeString(recipe.ritualID.toString());
+
+            packetByteBuf.writeBoolean(recipe.requiresSacrifice);
         }
     }
 

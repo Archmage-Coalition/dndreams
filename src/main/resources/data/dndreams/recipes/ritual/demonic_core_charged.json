@@ -1,0 +1,26 @@
+{
+  "type": "dndreams:ritual",
+  "ritual": "dndreams:charge_demonic_core",
+  "ingredients": [
+    {
+      "item": "minecraft:nether_wart"
+    },
+	  {
+      "item": "dndreams:ember_moss"
+    },
+	  {
+      "item": "dndreams:wood_ash"
+    },
+	  {
+      "item": "dndreams:crystal_mix"
+    }
+  ],
+  "result": {
+    "item": "dndreams:demonic_core_charged",
+    "count": 1
+  },
+  "focus": {
+	  "item": "dndreams:demonic_core"
+  },
+  "sacrifice": true
+}

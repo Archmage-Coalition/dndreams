@@ -70,7 +70,6 @@ public class BonfireBlockEntity extends BlockEntity
             updateListeners();
 
             if (delayTicks <= 0) {
-                world.setBlockState(pos, getCachedState().with(STRONG, false));
 
                 if (recipe == null) {
                     Optional<RitualRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.RITUAL, this, world);
@@ -82,24 +81,66 @@ public class BonfireBlockEntity extends BlockEntity
 
                     Ritual ritual = recipe.getRitual();
 
-                    if (ritual.onCast(world, pos, this, recipe)) {
-
-                        clearBase();
+                    if (recipe.requiresSacrifice) {
+                        delayTicks = 100;
+                        updateListeners();
                     } else {
 
-                        Box box = new Box(pos).expand(12f);
-                        Text errorText = Text.translatable(ritual.getErrorTranslation(world, pos, this, recipe));
+                        if (ritual.onCast(world, pos, this, recipe)) {
 
-                        for (PlayerEntity player : world.getNonSpectatingEntities(PlayerEntity.class, box)) {
-                            player.sendMessage(errorText, true);
+                            clearBase();
+                        } else {
+
+                            Box box = new Box(pos).expand(12f);
+                            Text errorText = Text.translatable(ritual.getErrorTranslation(world, pos, this, recipe));
+
+                            for (PlayerEntity player : world.getNonSpectatingEntities(PlayerEntity.class, box)) {
+                                player.sendMessage(errorText, true);
+                            }
+
+                            removeItems();
                         }
 
-                        removeItems();
+                        recipe = null;
+                        world.setBlockState(pos, getCachedState().with(STRONG, false));
                     }
+                } else {
 
-                    recipe = null;
+                    delayTicks = 100;
                 }
             }
+        }
+    }
+
+    public void onSacrifice(ServerWorld world) {
+
+        if (recipe == null) {
+            Optional<RitualRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(ModRecipeTypes.RITUAL, this, world);
+
+            optional.ifPresent(ritualRecipe -> recipe = ritualRecipe);
+        }
+
+        if (recipe != null && recipe.requiresSacrifice) {
+
+            Ritual ritual = recipe.getRitual();
+
+            if (ritual.onCast(world, pos, this, recipe)) {
+
+                clearBase();
+            } else {
+
+                Box box = new Box(pos).expand(12f);
+                Text errorText = Text.translatable(ritual.getErrorTranslation(world, pos, this, recipe));
+
+                for (PlayerEntity player : world.getNonSpectatingEntities(PlayerEntity.class, box)) {
+                    player.sendMessage(errorText, true);
+                }
+
+                removeItems();
+            }
+
+            recipe = null;
+            world.setBlockState(pos, getCachedState().with(STRONG, false));
         }
     }
 
