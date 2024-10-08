@@ -395,6 +395,10 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         return sanity >= cost/2;
     }
 
+    public boolean canFullyAfford(float cost) {
+        return sanity >= cost;
+    }
+
     @Override
     public void spendSanity(float cost) {
         sanity -= cost;

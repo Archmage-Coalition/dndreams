@@ -2,6 +2,7 @@ package net.eman3600.dndreams.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.eman3600.dndreams.Initializer;
+import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.recipes.WeavingRecipe;
 import net.minecraft.client.MinecraftClient;
@@ -23,6 +24,8 @@ import java.util.List;
 
 public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
     private static final Identifier TEXTURE = new Identifier(Initializer.MODID, "textures/gui/container/weaving.png");
+    private static final int TORMENT_INNER_WIDTH = 20;
+    private static final int TORMENT_INNER_HEIGHT = 20;
     private final PlayerEntity player;
     private float scrollAmount;
     private boolean mouseClicked;
@@ -69,7 +72,7 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
 
             if (!handler.trulyMatches()) {
 
-                this.drawTexture(matrices, i + 139, j + 29, 24, 220, 24, 24);
+                this.drawTexture(matrices, i + 139, j + 45, 24, 220, 24, 24);
 
                 WeavingRecipe recipe = handler.getCurrentRecipe();
                 int bitmask = handler.getInputSlotStates(recipe);
@@ -125,20 +128,29 @@ public class WeavingScreen extends HandledScreen<WeavingScreenHandler> {
             float sanity = torment.getSanity();
             float maxSanity = torment.getMaxSanity();
             float sanityCost = handler.getSanityCost();
-            int sanityPixels = (int)(sanity * .12f);
-            int sanityPixelsCeil = MathHelper.ceil(sanity * .12f);
-            int maxSanityPixels = (int)(maxSanity * .12f);
-            int costPixels = MathHelper.ceil(sanityCost * .12f);
 
-            int startX = 38 + i;
-            int startY = 35 + j;
+            float tormentMaxPercent = (maxSanity / TormentComponent.MAX_SANITY);
+            float tormentPercent = (sanity / TormentComponent.MAX_SANITY);
+            float costPercent = (sanityCost / TormentComponent.MAX_SANITY);
+            int skipV2 = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentMaxPercent));
+            int skipV = MathHelper.ceil((TORMENT_INNER_HEIGHT) * (1f - tormentPercent));
 
-            int costV = torment.canAfford(sanityCost) ? 220 - sanityPixelsCeil : 232 - costPixels;
-            int costY = torment.canAfford(sanityCost) ? 12 - sanityPixelsCeil : 12 - costPixels;
+            int skipV3 = MathHelper.ceil((TORMENT_INNER_HEIGHT) * costPercent);
 
-            this.drawTexture(matrices, startX, startY + 12 - maxSanityPixels, 0, 232 + 12 - maxSanityPixels, 12, maxSanityPixels);
-            this.drawTexture(matrices, startX, startY + 12 - sanityPixels, 0, 220 + 12 - sanityPixels, 12, sanityPixels);
-            this.drawTexture(matrices, startX, startY + costY, 12, costV + 12, 12, costPixels);
+            int startX = 136 + i;
+            int startY = 10 + j;
+
+            this.drawTexture(matrices, startX, startY, 16, 166, 30, 30);
+
+            boolean canAfford = torment.canFullyAfford(sanityCost);
+
+            int costU = canAfford ? 86 : 106;
+            int costV = canAfford ? 166 + skipV : 186 - skipV3;
+            int costY = canAfford ? startY + 5 + skipV : startY + 25 - skipV3;
+
+            this.drawTexture(matrices, startX + 5, startY + 5 + skipV2, 66, 166 + skipV2, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV2);
+            this.drawTexture(matrices, startX + 5, startY + 5 + skipV, 46, 166 + skipV, TORMENT_INNER_WIDTH, TORMENT_INNER_HEIGHT - skipV);
+            this.drawTexture(matrices, startX + 5, costY, costU, costV, TORMENT_INNER_WIDTH, skipV3);
         });
         int k = (int)(41.0f * this.scrollAmount);
         this.drawTexture(matrices, i + 119, j + 15 + k, 176 + (this.shouldScroll() ? 0 : 12), 0, 12, 15);

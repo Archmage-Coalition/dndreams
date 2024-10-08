@@ -54,7 +54,6 @@ public class Initializer implements ModInitializer {
 		ModFeatures.registerFeatures();
 
 		ModRituals.registerRituals();
-		ModStaves.registerStaves();
 
 		ModBlockEntities.registerBlockEntities();
 		ModRecipeTypes.registerTypes();

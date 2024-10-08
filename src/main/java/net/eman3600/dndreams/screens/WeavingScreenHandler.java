@@ -48,7 +48,7 @@ public class WeavingScreenHandler extends ScreenHandler {
         this.context = context;
         this.player = playerInventory.player;
 
-        this.addSlot(new WeavingResultSlot(playerInventory.player, this.input, this.result, this, 0, 143, 33));
+        this.addSlot(new WeavingResultSlot(playerInventory.player, this.input, this.result, this, 0, 143, 49));
 
         int i;
         int j;
@@ -216,7 +216,7 @@ public class WeavingScreenHandler extends ScreenHandler {
     }
 
     public boolean canPlayerAffordSanity(float cost) {
-        return EntityComponents.TORMENT.get(player).canAfford(cost);
+        return EntityComponents.TORMENT.get(player).canFullyAfford(cost);
     }
 
     public boolean trulyMatches() {

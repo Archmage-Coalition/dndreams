@@ -4,7 +4,6 @@ import net.eman3600.dndreams.cardinal_components.ManaComponent;
 import net.eman3600.dndreams.initializers.basics.ModEnchantments;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
-import net.eman3600.dndreams.items.MysticStaffItem;
 import net.eman3600.dndreams.items.interfaces.ActivateableToolItem;
 import net.eman3600.dndreams.items.interfaces.UnbreakableItem;
 import net.eman3600.dndreams.mixin_interfaces.ItemStackAccess;
@@ -95,13 +94,6 @@ public abstract class ItemStackMixin implements ItemStackAccess {
 
         if (player != null && ModStatusEffects.shouldRestrict(player)) {
             cir.setReturnValue(ActionResult.PASS);
-        }
-    }
-
-    @Inject(method = "getMaxDamage", at = @At("HEAD"), cancellable = true)
-    private void dndreams$getMaxDamage(CallbackInfoReturnable<Integer> cir) {
-        if (getItem() instanceof MysticStaffItem item) {
-            cir.setReturnValue(item.getStaffMaxDamage((ItemStack)(Object)this));
         }
     }
 
