@@ -56,12 +56,11 @@ public class FacelessSpawner implements Spawner {
 
                 if (attemptPos != null && !FacelessEntity.daylightAt(world, attemptPos) && world.getNonSpectatingEntities(PlayerEntity.class, new Box(attemptPos.getX() - PLAYER_DISTANCE, attemptPos.getY() - PLAYER_DISTANCE, attemptPos.getZ() - PLAYER_DISTANCE, attemptPos.getX() + PLAYER_DISTANCE, attemptPos.getY() + PLAYER_DISTANCE, attemptPos.getZ() + PLAYER_DISTANCE)).size() <= 0) {
 
-                    FacelessEntity faceless = new FacelessEntity(world, player);
+                    FacelessEntity faceless = new FacelessEntity(world, player, "observation");
 
                     faceless.refreshPositionAndAngles(attemptPos, 0, 0);
                     world.spawnEntityAndPassengers(faceless);
                     component.setFacelessEntity(faceless);
-                    component.setFacelessCooldown(2400);
                     component.addTension(-5);
                     spawns++;
                     cooldown += 200;

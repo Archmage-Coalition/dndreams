@@ -17,6 +17,7 @@ import net.minecraft.block.entity.CampfireBlockEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -168,5 +169,10 @@ public class BonfireBlock extends BlockWithEntity {
             ItemScatterer.spawn(world, pos, DefaultedList.ofSize(1, entity.getRitualFocus()));
         }
         super.onStateReplaced(state, world, pos, newState, moved);
+    }
+
+    @Override
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return false;
     }
 }

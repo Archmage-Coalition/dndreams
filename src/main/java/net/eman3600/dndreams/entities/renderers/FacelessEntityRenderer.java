@@ -2,6 +2,7 @@ package net.eman3600.dndreams.entities.renderers;
 
 import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.eman3600.dndreams.entities.models.FacelessEntityModel;
+import net.eman3600.dndreams.entities.renderers.features.FacelessEyesRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -31,6 +32,10 @@ public class FacelessEntityRenderer extends GeoEntityRenderer<FacelessEntity> {
         this.shadowOpacity = 0f;
 
         this.heldItemRenderer = renderManager.getHeldItemRenderer();
+        FacelessEyesRenderer eyesRenderer = new FacelessEyesRenderer(this);
+
+        this.addLayer(eyesRenderer);
+
     }
 
     @Override
