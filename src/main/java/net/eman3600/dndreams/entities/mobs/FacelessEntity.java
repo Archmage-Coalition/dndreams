@@ -60,6 +60,7 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
     public static TrackedData<Boolean> CORPOREAL = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<Boolean> HAS_EYES = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<String> STATE = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.STRING);
+    public static TrackedData<String> VICTIM_STRING = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.STRING);
 
     @Nullable
     private FacelessState state;
@@ -86,6 +87,7 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
         if (entity instanceof PlayerEntity player) {
             this.victimUuid = entity.getUuid();
             this.victimEntity = player;
+            getDataTracker().set(VICTIM_STRING, victimUuid.toString());
         }
     }
 
@@ -103,12 +105,18 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
             }
 
             this.state = newState;
+            getDataTracker().set(STATE, stateName);
         } else if (this.state != null) {
             this.state.onEnd(goalSelector, targetSelector);
             this.state = null;
+            getDataTracker().set(STATE, "none");
         }
+    }
 
-        getDataTracker().set(STATE, stateName);
+    private boolean isStateUnsynced() {
+        String name = dataTracker.get(STATE);
+
+        return state == null && !name.equals("none") || (state != null && !name.equals(state.getName()));
     }
 
     @Nullable
@@ -121,6 +129,10 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
             return this.victimEntity;
         }
         return null;
+    }
+
+    public boolean isVictim(PlayerEntity player) {
+        return (player.getUuid().equals(this.victimUuid) || player.getUuid().toString().equals(getDataTracker().get(VICTIM_STRING))) && !player.isRemoved();
     }
 
     @Override
@@ -143,6 +155,7 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
         this.getDataTracker().startTracking(CORPOREAL, true);
         this.getDataTracker().startTracking(HAS_EYES, true);
         this.getDataTracker().startTracking(STATE, "none");
+        this.getDataTracker().startTracking(VICTIM_STRING, "");
     }
 
     public static DefaultAttributeContainer.Builder createFacelessAttributes() {
@@ -183,6 +196,10 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
     @Override
     public void tick() {
         super.tick();
+
+        if (isStateUnsynced()) {
+            setState(dataTracker.get(STATE));
+        }
 
         if (world instanceof ServerWorld serverWorld) {
 
@@ -247,7 +264,7 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
 
     @Override
     public boolean canView(PlayerEntity player) {
-        return state == null ? (isCorporeal() && getSanity(player) < 85) : state.canView(player);
+        return state == null ? (getSanity(player) < 85) : state.canView(player);
     }
 
     @Override
@@ -332,6 +349,8 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
         if (nbt.containsUuid("Victim")) {
             this.victimUuid = nbt.getUuid("Victim");
         }
+
+        tracker.set(VICTIM_STRING, this.victimUuid == null ? "" : this.victimUuid.toString());
 
         NbtCompound stateNbt = nbt.getCompound("State");
         setState(stateNbt.getString("Type"));

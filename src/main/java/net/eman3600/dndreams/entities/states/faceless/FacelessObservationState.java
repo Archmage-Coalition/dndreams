@@ -39,7 +39,7 @@ public class FacelessObservationState implements FacelessState {
 
     @Override
     public boolean canView(PlayerEntity player) {
-        return player == faceless.getVictim();
+        return faceless.isVictim(player);
     }
 
     @Override
