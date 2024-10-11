@@ -3,14 +3,13 @@ package net.eman3600.dndreams.entities.states.faceless;
 import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
 import org.jetbrains.annotations.Nullable;
 
-public class FacelessObservationState implements FacelessState {
+public class FacelessEngagementState implements FacelessState {
 
     private final FacelessEntity entity;
 
-    public FacelessObservationState(FacelessEntity entity) {
+    public FacelessEngagementState(FacelessEntity entity) {
         this.entity = entity;
     }
 
@@ -26,28 +25,23 @@ public class FacelessObservationState implements FacelessState {
     }
 
     @Override
-    public void onSeen() {
-        entity.resetStateTicks();
-    }
-
-    @Override
     public FacelessEntity getMob() {
         return entity;
     }
 
     @Override
     public String getName() {
-        return "observation";
+        return "engagement";
     }
 
     @Override
     public boolean canView(PlayerEntity player) {
-        return entity.isVictim(player);
+        return true;
     }
 
     @Override
     public boolean shouldVanish() {
-        return false;
+        return getSanity() >= 5f;
     }
 
     @Override
@@ -57,12 +51,12 @@ public class FacelessObservationState implements FacelessState {
 
     @Override
     public float renderedClarity(PlayerEntity player) {
-        return 0.1f;
+        return 1f;
     }
 
     @Override
     @Nullable
     public String getNextState() {
-        return getSanity() >= 5 ? null : "engagement";
+        return null;
     }
 }

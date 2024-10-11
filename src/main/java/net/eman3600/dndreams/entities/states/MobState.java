@@ -14,7 +14,4 @@ public interface MobState<T extends MobEntity> {
     String getName();
 
     default void tick() {}
-
-    default void writeNbt(NbtCompound nbt) {}
-    default void readNbt(NbtCompound nbt) {}
 }

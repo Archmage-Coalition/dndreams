@@ -8,6 +8,7 @@ import net.eman3600.dndreams.cardinal_components.interfaces.TormentComponentI;
 import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
 import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.eman3600.dndreams.entities.mobs.TormentorEntity;
+import net.eman3600.dndreams.events.torment.FacelessEvent;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
@@ -73,6 +74,8 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     private static final List<Function<PlayerEntity, Float>> INSANITY_PREDICATES = new ArrayList<>();
     private static final Map<Function<LivingEntity, Boolean>, InsanityRangePair> MOBS_TO_INSANITY = new HashMap<>();
+
+    private static final List<FacelessEvent> FACELESS_EVENTS = new ArrayList<>();
 
     private final PlayerEntity player;
 
@@ -353,7 +356,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     @Override
     public boolean isAttuned() {
         try {
-            return !truthActive && (WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END)) || player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD);
+            return !truthActive && (WorldComponents.BOSS_STATE.get(player.world.getScoreboard()).dragonSlain() && (player.world.getRegistryKey() == World.END)) || player.hasStatusEffect(ModStatusEffects.SPIRIT_WARD) || player.isCreative();
         } catch (NullPointerException e) {
             return false;
         }
@@ -572,5 +575,36 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     public void markHaze() {
         nightmareHaze = true;
+    }
+
+    private List<FacelessEvent> getValidEvents() {
+        List<FacelessEvent> validEvents = new ArrayList<>();
+        float sanity = getAttunedSanity();
+
+        for (FacelessEvent event : FACELESS_EVENTS) {
+            if (event.canOccur(sanity)) {
+                validEvents.add(event);
+            }
+        }
+
+        return validEvents;
+    }
+
+    public int triggerFacelessEvent() {
+
+        if (player.world.isClient) return 0;
+
+        List<FacelessEvent> validEvents = getValidEvents();
+
+        if (validEvents.size() == 0) return 0;
+
+        FacelessEvent event = validEvents.get(player.world.random.nextInt(validEvents.size()));
+
+        return event.attempt(player, (ServerWorld) player.world, this);
+    }
+
+    static {
+        FACELESS_EVENTS.add(FacelessEvent.OBSERVATION);
+        FACELESS_EVENTS.add(FacelessEvent.ENGAGEMENT);
     }
 }

@@ -501,8 +501,12 @@
   "command.dndreams.sanity.set_max": "Set %1$s's maximum sanity to %2$s",
   "command.dndreams.sanity.get": "%1$s has %2$s sanity",
   "command.dndreams.sanity.get_max": "%1$s has %2$s maximum sanity",
-  "command.dndreams.sanity.reset_cooldown": "Ended %s's Acharos cooldown",
-  "command.dndreams.sanity.reset_cooldown.no_effect": "%s had no Acharos cooldown",
+
+  "command.dndreams.acharos.reset_cooldown": "Ended %s's Acharos cooldown",
+  "command.dndreams.acharos.reset_cooldown.no_effect": "%s had no Acharos cooldown",
+  "command.dndreams.acharos.event": "Triggered an Acharos event",
+  "command.dndreams.acharos.event.failure": "Acharos failed to spawn",
+  "command.dndreams.acharos.event.sunlight": "Cannot spawn Acharos because %s is in sunlight",
 
 
   "gamerule.doSanityTax": "Lose Sanity on Death",

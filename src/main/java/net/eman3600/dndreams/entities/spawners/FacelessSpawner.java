@@ -3,6 +3,7 @@ package net.eman3600.dndreams.entities.spawners;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.entities.misc.ShadeRiftEntity;
 import net.eman3600.dndreams.entities.mobs.FacelessEntity;
+import net.eman3600.dndreams.events.torment.FacelessEvent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.minecraft.entity.SpawnReason;
@@ -32,60 +33,46 @@ public class FacelessSpawner implements Spawner {
         Random random = world.random;
         cooldown += (30 + random.nextInt(16)) * 20;
 
-        Optional<ServerPlayerEntity> potential = world.getPlayers().stream().findAny();
-        if (potential.isEmpty()) return 0;
-
-        ServerPlayerEntity player = potential.get();
-
         int spawns = 0;
-        if (player.isSpectator()) return 0;
 
-        TormentComponent component = EntityComponents.TORMENT.getNullable(player);
+        for (ServerPlayerEntity player : world.getPlayers()) {
 
-        if (component == null) return 0;
+            if (player.isSpectator()) continue;
 
-        BlockPos playerPos = player.getBlockPos();
+            TormentComponent component = EntityComponents.TORMENT.getNullable(player);
 
-        if (component.getAttunedSanity() < 85 && component.getFacelessCooldown() <= 0 && component.getFacelessEntity() == null && player.world.random.nextFloat() < component.getFacelessPrevalence()) {
+            if (component == null || FacelessEntity.daylightAt(player.world, player.getBlockPos())) continue;
 
-            int j = random.nextBetween(2, 6);
+            if (component.getAttunedSanity() < 85 && component.getFacelessCooldown() <= 0 && component.getFacelessEntity() == null && player.world.random.nextFloat() < component.getFacelessPrevalence()) {
 
-            for (int i = 0; i < j; i++) {
+                spawns += component.triggerFacelessEvent();
 
-                BlockPos attemptPos = findSpawnFrom(world, world.random, playerPos);
+                if (spawns > 0) {
 
-                if (attemptPos != null && !FacelessEntity.daylightAt(world, attemptPos) && world.getNonSpectatingEntities(PlayerEntity.class, new Box(attemptPos.getX() - PLAYER_DISTANCE, attemptPos.getY() - PLAYER_DISTANCE, attemptPos.getZ() - PLAYER_DISTANCE, attemptPos.getX() + PLAYER_DISTANCE, attemptPos.getY() + PLAYER_DISTANCE, attemptPos.getZ() + PLAYER_DISTANCE)).size() <= 0) {
-
-                    FacelessEntity faceless = new FacelessEntity(world, player, "observation");
-
-                    faceless.refreshPositionAndAngles(attemptPos, 0, 0);
-                    world.spawnEntityAndPassengers(faceless);
-                    component.setFacelessEntity(faceless);
                     component.addTension(-5);
-                    spawns++;
-                    cooldown += 200;
-                    break;
+                } else {
+
+                    component.addTension(1);
                 }
+            } else {
+                component.addTension(1);
             }
-        } else {
-            component.addTension(1);
         }
 
         return spawns;
     }
 
     @Nullable
-    private BlockPos findSpawnFrom(ServerWorld world, Random random, BlockPos center) {
+    public static BlockPos findSpawnFrom(ServerWorld world, Random random, BlockPos center) {
         BlockPos choice = center.add(random.nextBetween(-24, 24), random.nextBetween(-10, 10), random.nextBetween(-24, 24));
 
         return findValidSpawn(world, choice, 40);
     }
 
     @Nullable
-    private BlockPos findValidSpawn(ServerWorld world, BlockPos choice, int iterationsLeft) {
+    private static BlockPos findValidSpawn(ServerWorld world, BlockPos choice, int iterationsLeft) {
 
         if (choice.getY() >= world.getTopY() || iterationsLeft <= 0) {
-            cooldown -= 80;
             return null;
         } else if (!SpawnHelper.isClearForSpawn(world, choice, world.getBlockState(choice), world.getFluidState(choice), ModEntities.SHADE_RIFT) || !ShadeRiftEntity.isValidNaturalSpawn(ModEntities.SHADE_RIFT, world, SpawnReason.NATURAL, choice, world.random)) {
             return findValidSpawn(world, choice.add(0, world.isAir(choice) ? -1 : 1, 0), iterationsLeft - 1);

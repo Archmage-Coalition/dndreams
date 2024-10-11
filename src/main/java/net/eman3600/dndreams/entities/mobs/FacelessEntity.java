@@ -2,6 +2,7 @@ package net.eman3600.dndreams.entities.mobs;
 
 import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.entities.states.faceless.FacelessEngagementState;
 import net.eman3600.dndreams.entities.states.faceless.FacelessObservationState;
 import net.eman3600.dndreams.entities.states.faceless.FacelessState;
 import net.eman3600.dndreams.initializers.basics.ModItems;
@@ -61,6 +62,8 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
     public static TrackedData<Boolean> HAS_EYES = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static TrackedData<String> STATE = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.STRING);
     public static TrackedData<String> VICTIM_STRING = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.STRING);
+    public static TrackedData<Integer> STATE_TICKS = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public static TrackedData<Boolean> SEEN = DataTracker.registerData(FacelessEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     @Nullable
     private FacelessState state;
@@ -94,6 +97,9 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
     public void setState(String stateName) {
 
         String formerState = this.state == null ? "none" : this.state.getName();
+
+        resetStateTicks();
+        setSeen(false);
 
         if (STATE_MAP.containsKey(stateName)) {
 
@@ -156,6 +162,8 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
         this.getDataTracker().startTracking(HAS_EYES, true);
         this.getDataTracker().startTracking(STATE, "none");
         this.getDataTracker().startTracking(VICTIM_STRING, "");
+        this.getDataTracker().startTracking(STATE_TICKS, 0);
+        this.getDataTracker().startTracking(SEEN, false);
     }
 
     public static DefaultAttributeContainer.Builder createFacelessAttributes() {
@@ -219,6 +227,30 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
                     return;
                 }
 
+                if (state != null) {
+                    getDataTracker().set(STATE_TICKS, getStateTicks() + 1);
+                    state.tick();
+
+                    if (state.shouldVanish()) {
+                        discard();
+                        return;
+                    }
+
+                    if (!isSeen()) {
+                        if (SightUtil.inView(victim, this)) {
+
+                            setSeen(true);
+                            state.onSeen();
+                        }
+                    }
+
+                    String nextState = state.getNextState();
+
+                    if (nextState != null) {
+                        setState(nextState);
+                    }
+                }
+
                 if (isCorporeal() && !getDataTracker().get(HAS_EYES)) {
 
                     for (ServerPlayerEntity player : serverWorld.getPlayers()) {
@@ -264,12 +296,12 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
 
     @Override
     public boolean canView(PlayerEntity player) {
-        return state == null ? (getSanity(player) < 85) : state.canView(player);
+        return player != null && (state == null ? (getSanity(player) < 85) : state.canView(player));
     }
 
     @Override
     public boolean isInvisibleTo(PlayerEntity player) {
-        return !canView(player);
+        return !isWoven() && !canView(player);
     }
 
     @Override
@@ -280,6 +312,19 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
     @Override
     public float renderedClarity(PlayerEntity player) {
         return getTorment(player).isTruthActive() ? 1f : state == null ? 0.8f : state.renderedClarity(player);
+    }
+
+    public void setSeen(boolean seen) {
+        getDataTracker().set(SEEN, seen);
+    }
+    public void resetStateTicks() {
+        getDataTracker().set(STATE_TICKS, 0);
+    }
+    public boolean isSeen() {
+        return getDataTracker().get(SEEN);
+    }
+    public int getStateTicks() {
+        return getDataTracker().get(STATE_TICKS);
     }
 
     public static boolean isValidNaturalSpawn(EntityType<? extends FacelessEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
@@ -317,20 +362,14 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
         nbt.putBoolean(WOVEN_KEY, tracker.get(WOVEN));
         nbt.putBoolean(CORPOREAL_KEY, tracker.get(CORPOREAL));
         nbt.putBoolean("HasEyes", tracker.get(HAS_EYES));
+        nbt.putBoolean("Seen", tracker.get(SEEN));
+        nbt.putInt("StateTicks", tracker.get(STATE_TICKS));
 
         if (this.victimUuid != null) {
             nbt.putUuid("Victim", this.victimUuid);
         }
 
-        NbtCompound stateNbt = new NbtCompound();
-
-        if (state != null) {
-            state.writeNbt(stateNbt);
-        }
-
-        stateNbt.putString("Type", getDataTracker().get(STATE));
-
-        nbt.put("State", stateNbt);
+        nbt.putString("State", getDataTracker().get(STATE));
     }
 
     @Override
@@ -346,18 +385,15 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
             tracker.set(CORPOREAL, nbt.getBoolean(CORPOREAL_KEY));
         }
         tracker.set(HAS_EYES, nbt.getBoolean("HasEyes"));
+        tracker.set(SEEN, nbt.getBoolean("Seen"));
+        tracker.set(STATE_TICKS, nbt.getInt("StateTicks"));
         if (nbt.containsUuid("Victim")) {
             this.victimUuid = nbt.getUuid("Victim");
         }
 
         tracker.set(VICTIM_STRING, this.victimUuid == null ? "" : this.victimUuid.toString());
 
-        NbtCompound stateNbt = nbt.getCompound("State");
-        setState(stateNbt.getString("Type"));
-
-        if (state != null) {
-            state.readNbt(stateNbt);
-        }
+        setState(nbt.getString("State"));
     }
 
     @Override
@@ -422,5 +458,6 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
 
     static {
         STATE_MAP.put("observation", FacelessObservationState::new);
+        STATE_MAP.put("engagement", FacelessEngagementState::new);
     }
 }

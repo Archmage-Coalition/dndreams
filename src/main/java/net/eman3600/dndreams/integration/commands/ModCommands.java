@@ -10,12 +10,14 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.eman3600.dndreams.cardinal_components.*;
+import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.EntitySelector;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -221,10 +223,33 @@ public class ModCommands {
 
         if (torment.getFacelessCooldown() > 0) {
             torment.setFacelessCooldown(0);
-            displayFeedback(context, "sanity.reset_cooldown", true, player.getDisplayName());
+            displayFeedback(context, "acharos.reset_cooldown", true, player.getDisplayName());
         } else {
-            displayFeedback(context, "sanity.reset_cooldown.no_effect", true, player.getDisplayName());
+            displayFeedback(context, "acharos.reset_cooldown.no_effect", true, player.getDisplayName());
         }
+    }
+
+    protected static int acharosEvent(CommandContext<ServerCommandSource> context, PlayerEntity player) {
+        TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+        if (FacelessEntity.daylightAt(player.world, player.getBlockPos())) {
+            displayError(context, "acharos.event.sunlight", player.getDisplayName());
+            return 0;
+        }
+        Entity priorEntity = torment.getFacelessEntity();
+
+        int spawns = torment.triggerFacelessEvent();
+
+        if (spawns > 0) {
+            displayFeedback(context, "acharos.event", true);
+            if (priorEntity != null) {
+                priorEntity.discard();
+            }
+        } else {
+            displayError(context, "acharos.event.failure");
+        }
+
+        return spawns;
     }
 
     public static void registerCommands() {
@@ -401,7 +426,12 @@ public class ModCommands {
                 return (int) getPlayerMaxSanity(context, selector.getPlayer(context.getSource()));
             })).executes(context -> (int) getPlayerMaxSanity(context, context.getSource().getPlayerOrThrow())));
 
-            sanity.then(CommandManager.literal("reset_cooldown").then(CommandManager.argument("target", EntityArgumentType.player()).executes(context -> {
+
+
+
+            LiteralArgumentBuilder<ServerCommandSource> acharos = CommandManager.literal("acharos").requires(context -> context.hasPermissionLevel(2));
+
+            acharos.then(CommandManager.literal("reset_cooldown").then(CommandManager.argument("target", EntityArgumentType.player()).executes(context -> {
                 EntitySelector selector = context.getArgument("target", EntitySelector.class);
 
                 resetAcharosCooldown(context, selector.getPlayer(context.getSource()));
@@ -413,9 +443,18 @@ public class ModCommands {
                 return 0;
             }));
 
+            acharos.then(CommandManager.literal("event").then(CommandManager.argument("target", EntityArgumentType.player()).executes(context -> {
+                EntitySelector selector = context.getArgument("target", EntitySelector.class);
+
+                return acharosEvent(context, selector.getPlayer(context.getSource()));
+            })).executes(context -> {
+
+                return acharosEvent(context, context.getSource().getPlayerOrThrow());
+            }));
 
 
-            root.then(bloodMoon).then(slain).then(darkStorm).then(mana).then(sanity);
+
+            root.then(bloodMoon).then(slain).then(darkStorm).then(mana).then(sanity).then(acharos);
             dispatcher.register(root);
         });
     }
