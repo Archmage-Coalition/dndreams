@@ -10,6 +10,7 @@ import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.util.SightUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -454,6 +455,11 @@ public class FacelessEntity extends HostileEntity implements IAnimatable, Sanity
         if (!isCorporeal()) return;
 
         super.playStepSound(pos, state);
+    }
+
+    @Override
+    public float getEyeHeight(EntityPose pose) {
+        return getDimensions(pose).height * 0.9f;
     }
 
     static {

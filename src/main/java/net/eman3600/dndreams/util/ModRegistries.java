@@ -181,6 +181,7 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
         TormentComponent.registerPredicate((player, torment) -> torment.getShroud() > 0 ? 2.5f : 0);
         TormentComponent.registerPredicate(player -> player.hasStatusEffect(ModStatusEffects.HAUNTED) ? 60f : 0f);
+        TormentComponent.registerPredicate(player -> player.hasStatusEffect(StatusEffects.NIGHT_VISION) ? -3f : 0f);
         TormentComponent.registerPredicate((player, torment) -> {
             TrinketComponent component = TrinketsApi.getTrinketComponent(player).get();
 

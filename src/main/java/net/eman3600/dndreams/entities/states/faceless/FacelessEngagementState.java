@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.entities.states.faceless;
 
+import net.eman3600.dndreams.entities.ai.faceless.LookAtVictimGoal;
 import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,12 +17,12 @@ public class FacelessEngagementState implements FacelessState {
 
     @Override
     public void onStart(GoalSelector goalSelector, GoalSelector targetSelector) {
-
+        goalSelector.add(8, new LookAtVictimGoal(this.entity, true));
     }
 
     @Override
     public void onEnd(GoalSelector goalSelector, GoalSelector targetSelector) {
-
+        goalSelector.clear();
     }
 
     @Override

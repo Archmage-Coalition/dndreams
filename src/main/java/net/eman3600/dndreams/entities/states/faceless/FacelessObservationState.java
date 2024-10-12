@@ -1,9 +1,9 @@
 package net.eman3600.dndreams.entities.states.faceless;
 
+import net.eman3600.dndreams.entities.ai.faceless.LookAtVictimGoal;
 import net.eman3600.dndreams.entities.mobs.FacelessEntity;
 import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
 import org.jetbrains.annotations.Nullable;
 
 public class FacelessObservationState implements FacelessState {
@@ -17,12 +17,12 @@ public class FacelessObservationState implements FacelessState {
 
     @Override
     public void onStart(GoalSelector goalSelector, GoalSelector targetSelector) {
-
+        goalSelector.add(8, new LookAtVictimGoal(this.entity, false));
     }
 
     @Override
     public void onEnd(GoalSelector goalSelector, GoalSelector targetSelector) {
-
+        goalSelector.clear();
     }
 
     @Override

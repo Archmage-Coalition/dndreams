@@ -104,7 +104,7 @@
                     ]
                 },
                 {
-                    "name": "Head",
+                    "name": "head",
                     "parent": "RootBone",
                     "pivot": [0, 42, 0],
                     "cubes": [
