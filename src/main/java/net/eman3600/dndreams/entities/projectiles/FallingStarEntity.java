@@ -167,7 +167,7 @@ public class FallingStarEntity extends BeamProjectileEntity {
         DataTracker tracker = getDataTracker();
 
         tracker.set(LIFE, nbt.getInt("Life"));
-        phaseTicks = nbt.getInt("PhaseTicks");
+        this.phaseTicks = nbt.getInt("PhaseTicks");
     }
 
     public static float randomlyDistance(World world) {

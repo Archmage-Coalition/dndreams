@@ -170,7 +170,7 @@
   "item.dndreams.tormite_boots.tooltip": "§3Idk yet",
 
   "item.dndreams.cloud_sword": "Cloud Sword",
-  "item.dndreams.cloud_sword.tooltip": "?",
+  "item.dndreams.cloud_sword.tooltip": "§3Carries powerful gusts of wind.",
   "item.dndreams.cloud_pickaxe": "Cloud Pickaxe",
   "item.dndreams.cloud_pickaxe.tooltip": "§3Makes blocks fall from afar.",
   "item.dndreams.cloud_axe": "Cloud Axe",
@@ -910,7 +910,7 @@
   "rei.dndreams.cauldron": "Cauldron Brewing",
   "rei.dndreams.cauldron.dream_only": "Dream World Only",
   "rei.dndreams.cauldron.real_only": "Real World Only",
-  "rei.dndreams.ritual": "Candle Rites",
+  "rei.dndreams.ritual": "Campfire Rituals",
   "rei.dndreams.ritual.cost": "Power Cost: %s",
   "rei.dndreams.apothecary": "Cauldron Apothecary",
   "rei.dndreams.apothecary.capacity": "Capacity: %s",

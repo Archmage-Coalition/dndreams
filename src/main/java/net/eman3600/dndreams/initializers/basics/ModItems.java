@@ -13,6 +13,7 @@ import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
 import net.eman3600.dndreams.items.cloud.CloudArmorItem;
 import net.eman3600.dndreams.items.cloud.CloudPickaxeItem;
+import net.eman3600.dndreams.items.cloud.CloudSwordItem;
 import net.eman3600.dndreams.items.cloud.SkyboundArrowItem;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
@@ -645,7 +646,7 @@ public class ModItems {
 
     // Cloud stuff
     public static final Item CLOUD_SWORD = registerItem("cloud_sword",
-            new SwordItem(ModToolMaterials.CLOUD, 3, -2.4F,
+            new CloudSwordItem(ModToolMaterials.CLOUD, 3, -2.4F,
                     new FabricItemSettings().group(ItemGroup.COMBAT)));
     public static final Item CLOUD_PICKAXE = registerItem("cloud_pickaxe",
             new CloudPickaxeItem(ModToolMaterials.CLOUD, 1, -2.8F,

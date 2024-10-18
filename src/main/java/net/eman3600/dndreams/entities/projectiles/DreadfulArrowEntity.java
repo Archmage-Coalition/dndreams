@@ -15,6 +15,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
@@ -73,5 +74,21 @@ public class DreadfulArrowEntity extends PersistentProjectileEntity {
         super.onHit(target);
         StatusEffectInstance statusEffectInstance = new StatusEffectInstance(ModStatusEffects.HEARTBLEED, dataTracker.get(DURATION), dataTracker.get(AMPLIFIER));
         target.addStatusEffect(statusEffectInstance, this.getEffectCause());
+    }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+
+        nbt.putInt("EffectDuration", dataTracker.get(DURATION));
+        nbt.putInt("EffectAmplifier", dataTracker.get(AMPLIFIER));
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+
+        dataTracker.set(DURATION, nbt.getInt("EffectDuration"));
+        dataTracker.set(AMPLIFIER, nbt.getInt("EffectAmplifier"));
     }
 }

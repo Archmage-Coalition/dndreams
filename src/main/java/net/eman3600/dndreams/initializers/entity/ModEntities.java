@@ -57,6 +57,15 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<CloudSlashEntity> CLOUD_SLASH = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "cloud_slash"),
+            FabricEntityTypeBuilder.<CloudSlashEntity>create(SpawnGroup.MISC, CloudSlashEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .disableSummon()
+                    .build()
+    );
+
     public static final EntityType<FallingStarEntity> FALLING_STAR = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "falling_star"),
             FabricEntityTypeBuilder.<FallingStarEntity>create(SpawnGroup.MISC, FallingStarEntity::new)

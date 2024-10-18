@@ -12,6 +12,7 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.thrown.ThrownEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -89,5 +90,19 @@ public class SparkBoltEntity extends ThrownEntity implements WaterIgnorant {
                 this.world.addParticle(ModParticles.DIAMOND_SPARK, this.getX() + e * (double)i / 4.0, this.getY() + f * (double)i / 4.0, this.getZ() + g * (double)i / 4.0, -e, -f + 0.2, -g);
             }
         }
+    }
+
+    @Override
+    protected void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+
+        nbt.putFloat("Damage", dataTracker.get(DAMAGE));
+    }
+
+    @Override
+    protected void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+
+        dataTracker.set(DAMAGE, nbt.getFloat("Damage"));
     }
 }

@@ -9,7 +9,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:golden_sword",
+          "name": "dndreams:cloud_sword",
 		  "weight": 1,
           "functions": [
             {
@@ -39,7 +39,7 @@
         },
 		{
           "type": "minecraft:item",
-          "name": "minecraft:golden_pickaxe",
+          "name": "dndreams:cloud_pickaxe",
 		  "weight": 1,
           "functions": [
             {
@@ -69,7 +69,7 @@
         },
 		{
           "type": "minecraft:item",
-          "name": "minecraft:golden_axe",
+          "name": "dndreams:cloud_axe",
 		  "weight": 1,
           "functions": [
             {
@@ -99,7 +99,7 @@
         },
 		{
           "type": "minecraft:item",
-          "name": "minecraft:golden_shovel",
+          "name": "dndreams:cloud_shovel",
 		  "weight": 1,
           "functions": [
             {
@@ -129,7 +129,7 @@
         },
 		{
           "type": "minecraft:item",
-          "name": "minecraft:golden_hoe",
+          "name": "dndreams:cloud_hoe",
 		  "weight": 1,
           "functions": [
             {
@@ -159,7 +159,7 @@
         },
 		{
           "type": "minecraft:item",
-          "name": "minecraft:golden_helmet",
+          "name": "dndreams:cloud_helmet",
 		  "weight": 1,
           "functions": [
             {
@@ -189,7 +189,7 @@
         },
 		{
           "type": "minecraft:item",
-          "name": "minecraft:golden_chestplate",
+          "name": "dndreams:cloud_chestplate",
 		  "weight": 1,
           "functions": [
             {
@@ -219,7 +219,7 @@
         },
 		{
           "type": "minecraft:item",
-          "name": "minecraft:golden_leggings",
+          "name": "dndreams:cloud_leggings",
 		  "weight": 1,
           "functions": [
             {
@@ -249,7 +249,7 @@
         },
 		{
           "type": "minecraft:item",
-          "name": "minecraft:golden_boots",
+          "name": "dndreams:cloud_boots",
 		  "weight": 1,
           "functions": [
             {

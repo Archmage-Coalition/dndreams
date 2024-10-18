@@ -22,6 +22,7 @@ public class ModParticles {
     public static final DefaultParticleType CROWNED_BEAM_WEAK = FabricParticleTypes.simple();
     public static final DefaultParticleType CROWNED_WICKED = FabricParticleTypes.simple();
     public static final DefaultParticleType TESLA_SLASH = FabricParticleTypes.simple();
+    public static final DefaultParticleType CLOUD_WIND = FabricParticleTypes.simple();
     public static final DefaultParticleType DIAMOND_SPARK = FabricParticleTypes.simple();
     public static final DefaultParticleType GLOW_SPARK = FabricParticleTypes.simple();
     public static final DefaultParticleType BLOODY_LASER = FabricParticleTypes.simple();
@@ -45,6 +46,7 @@ public class ModParticles {
         registerParticle("crowned_beam_weak", CROWNED_BEAM_WEAK);
         registerParticle("crowned_wicked", CROWNED_WICKED);
         registerParticle("tesla_slash", TESLA_SLASH);
+        registerParticle("cloud_wind", CLOUD_WIND);
         registerParticle("diamond_spark", DIAMOND_SPARK);
         registerParticle("glow_spark", GLOW_SPARK);
         registerParticle("bloody_laser", BLOODY_LASER);
@@ -71,6 +73,7 @@ public class ModParticles {
         ParticleFactoryRegistry.getInstance().register(CROWNED_BEAM_WEAK, BeamParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(CROWNED_WICKED, ExtendedBeamParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(TESLA_SLASH, ExtendedBeamParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(CLOUD_WIND, BeamParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(DIAMOND_SPARK, DiamondSparkParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(GLOW_SPARK, GlowSparkParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(BLOODY_LASER, SlashParticle.Factory::new);

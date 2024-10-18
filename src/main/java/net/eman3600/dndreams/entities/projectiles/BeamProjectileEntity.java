@@ -57,8 +57,8 @@ public class BeamProjectileEntity extends ProjectileEntity {
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
 
         DataTracker tracker = getDataTracker();
 
@@ -71,8 +71,8 @@ public class BeamProjectileEntity extends ProjectileEntity {
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
 
         DataTracker tracker = getDataTracker();
 
