@@ -31,6 +31,7 @@ import java.util.List;
 
 public class HemorrhageItem extends SwordItem implements AirSwingItem, MagicDamageItem {
     private final int magicDamage;
+    public static final int MAX_CHARGES = 2;
 
     public HemorrhageItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, int magicDamage, Settings settings) {
         super(toolMaterial, attackDamage, attackSpeed, settings);
@@ -72,9 +73,9 @@ public class HemorrhageItem extends SwordItem implements AirSwingItem, MagicDama
                 slash.initFromStack(stack, roll);
                 world.spawnEntity(slash);
 
-                int damage = getMaxCharges(stack) - (hit == null ? 0 : 1);
+                int damage = MAX_CHARGES - (hit == null ? 0 : 1);
 
-                if (!MagicCrossbowItem.isCharged(stack) && damage > 0 && !user.isCreative()) {
+                if (!MagicCrossbowItem.isCharged(stack) && !user.isCreative()) {
                     stack.damage(damage, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
                 }
             } else {
@@ -107,8 +108,7 @@ public class HemorrhageItem extends SwordItem implements AirSwingItem, MagicDama
                     user.getItemCooldownManager().set(this, 10);
                     user.damage(BloodlustItem.CRIMSON_SACRIFICE, 6);
 
-                    setMaxCharges(stack, scars.size());
-                    MagicCrossbowItem.setCharges(stack, scars.size());
+                    MagicCrossbowItem.setCharges(stack, MAX_CHARGES);
                 }
 
                 return TypedActionResult.consume(stack);
@@ -138,7 +138,7 @@ public class HemorrhageItem extends SwordItem implements AirSwingItem, MagicDama
         if (MagicCrossbowItem.isCharged(stack)) {
             int charges = MagicCrossbowItem.getCharges(stack);
 
-            return charges * 13 / Math.max(1, getMaxCharges(stack));
+            return charges * 13 / MAX_CHARGES;
         }
 
         return super.getItemBarStep(stack);
@@ -157,17 +157,5 @@ public class HemorrhageItem extends SwordItem implements AirSwingItem, MagicDama
     @Override
     public boolean isItemBarVisible(ItemStack stack) {
         return super.isItemBarVisible(stack) || MagicCrossbowItem.isCharged(stack);
-    }
-
-    public void setMaxCharges(ItemStack stack, int max) {
-        NbtCompound nbt = stack.getOrCreateNbt();
-
-        nbt.putInt("MaxCharges", max);
-    }
-
-    public int getMaxCharges(ItemStack stack) {
-        NbtCompound nbt = stack.getNbt();
-
-        return nbt != null ? nbt.getInt("MaxCharges") : 0;
     }
 }
