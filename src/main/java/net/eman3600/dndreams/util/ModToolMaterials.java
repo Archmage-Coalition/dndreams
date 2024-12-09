@@ -29,7 +29,7 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
     CLOUD(4, 1561, 15.0F, 3.0F, 10,
             () -> Ingredient.ofItems(ModItems.CLOUD)),
-    HEMORRHAGE(4, 2145, 12.0F, 4.0F, 15,
+    HEMORRHAGE(4, 2185, 12.0F, 4.0F, 15,
             () -> Ingredient.ofItems(ModItems.RAVAGED_FLESH));
 
     private final int miningLevel;
