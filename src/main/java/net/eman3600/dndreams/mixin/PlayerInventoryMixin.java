@@ -28,7 +28,7 @@ public abstract class PlayerInventoryMixin implements Inventory, Nameable {
         if (stack.getItem() instanceof AtlasItem item && item.isActive(stack)) {
 
             cir.setReturnValue(player.world.isClient ? stack : ItemStack.EMPTY);
-            item.setForm(stack, AtlasItem.InstrumentForm.INACTIVE);
+            item.setForm(stack, AtlasItem.AtlasForm.INACTIVE);
         }
     }
 }

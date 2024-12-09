@@ -2,7 +2,6 @@ package net.eman3600.dndreams.mixin;
 
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
-import net.eman3600.dndreams.blocks.energy.BonfireBlock;
 import net.eman3600.dndreams.cardinal_components.InfusionComponent;
 import net.eman3600.dndreams.cardinal_components.ShockComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
@@ -17,9 +16,7 @@ import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.VariableMineSpeedItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.PlayerEntityAccess;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.RespawnAnchorBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -33,11 +30,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stat;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -50,7 +45,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
@@ -122,7 +116,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @ModifyConstant(method = "attack", constant = @Constant(floatValue = 1.5f))
     private float dndreams$attack$critDamage(float constant) {
 
-        if (getMainHandStack().getItem() instanceof AtlasItem item && item.getForm(getMainHandStack()) == AtlasItem.InstrumentForm.KATANA) {
+        if (getMainHandStack().getItem() instanceof AtlasItem item && item.getForm(getMainHandStack()) == AtlasItem.AtlasForm.KATANA) {
 
             return 3f;
         }

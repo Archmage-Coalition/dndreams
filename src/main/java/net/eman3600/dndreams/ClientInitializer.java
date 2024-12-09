@@ -126,6 +126,8 @@ ClientInitializer implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.CROWNED_BEAM, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.TESLA_SLASH, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.CLOUD_SLASH, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.HEMORRHAGE_SCAR, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.HEMORRHAGE_SLASH, EmptyEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SPARK_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, SparkBoltEntity.TEXTURE));
         EntityRendererRegistry.register(ModEntities.GLOW_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, GlowBoltEntity.TEXTURE));
         EntityRendererRegistry.register(ModEntities.FLAME_BOLT, (EntityRendererFactory.Context context) -> new FlatEntityRenderer(context, FlameBoltEntity.TEXTURE));

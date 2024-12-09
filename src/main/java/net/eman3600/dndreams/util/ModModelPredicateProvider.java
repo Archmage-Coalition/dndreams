@@ -33,7 +33,7 @@ public class ModModelPredicateProvider {
 
         registerItem(new Identifier("charged"),
                 (stack, world, entity, seed) -> MagicCrossbowItem.isCharged(stack) ? 1.0f : 0.0f,
-                ModItems.STRIFE);
+                ModItems.STRIFE, ModItems.HEMORRHAGE);
     }
 
 

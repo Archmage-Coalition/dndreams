@@ -125,16 +125,17 @@
   "item.dndreams.celestium_leggings": "Celestium Leggings",
   "item.dndreams.celestium_boots": "Celestium Boots",
   
-  "item.dndreams.vital_sword": "Lifecoil",
-  "item.dndreams.broken_vital_sword": "Broken Lifecoil",
   "item.dndreams.shattered_sword": "Shattered Sword",
-  "item.dndreams.slumbering_sword": "Archaic Edge",
   "item.dndreams.crowned_edge": "Crowned Edge",
   "item.dndreams.crowned_edge.tooltip.0": "§3Cleaves a beam of energy.",
   "item.dndreams.crowned_edge.tooltip.1": "§3The revitalized sword of spirit.",
   "item.dndreams.true_crowned_edge": "True Crowned Edge",
   "item.dndreams.true_crowned_edge.tooltip.0": "§3Cleaves a beam of energy.",
   "item.dndreams.true_crowned_edge.tooltip.1": "§3Only now, fully realized.",
+
+  "item.dndreams.hemorrhage": "Spatial Hemorrhage",
+  "item.dndreams.hemorrhage.tooltip.0": "§3Scar the air itself and",
+  "item.dndreams.hemorrhage.tooltip.1": "§3open the wounds it marks.",
   
   "item.dndreams.book_of_dreams": "Codex Memorium",
   "item.dndreams.book_of_dreams.tooltip.0": "§3A compendium of ancient knowledge.",

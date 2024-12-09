@@ -66,6 +66,24 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<HemorrhageScarEntity> HEMORRHAGE_SCAR = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "hemorrhage_scar"),
+            FabricEntityTypeBuilder.<HemorrhageScarEntity>create(SpawnGroup.MISC, HemorrhageScarEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .disableSummon()
+                    .build()
+    );
+
+    public static final EntityType<HemorrhageSlashEntity> HEMORRHAGE_SLASH = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "hemorrhage_slash"),
+            FabricEntityTypeBuilder.<HemorrhageSlashEntity>create(SpawnGroup.MISC, HemorrhageSlashEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeBlocks(4).trackedUpdateRate(10)
+                    .disableSummon()
+                    .build()
+    );
+
     public static final EntityType<FallingStarEntity> FALLING_STAR = Registry.register(
             Registry.ENTITY_TYPE, new Identifier(MODID, "falling_star"),
             FabricEntityTypeBuilder.<FallingStarEntity>create(SpawnGroup.MISC, FallingStarEntity::new)

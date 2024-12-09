@@ -23,6 +23,8 @@ public class ModParticles {
     public static final DefaultParticleType CROWNED_WICKED = FabricParticleTypes.simple();
     public static final DefaultParticleType TESLA_SLASH = FabricParticleTypes.simple();
     public static final DefaultParticleType CLOUD_WIND = FabricParticleTypes.simple();
+    public static final DefaultParticleType HEMORRHAGE_SCAR = FabricParticleTypes.simple();
+    public static final DefaultParticleType HEMORRHAGE_SLASH = FabricParticleTypes.simple();
     public static final DefaultParticleType DIAMOND_SPARK = FabricParticleTypes.simple();
     public static final DefaultParticleType GLOW_SPARK = FabricParticleTypes.simple();
     public static final DefaultParticleType BLOODY_LASER = FabricParticleTypes.simple();
@@ -47,6 +49,8 @@ public class ModParticles {
         registerParticle("crowned_wicked", CROWNED_WICKED);
         registerParticle("tesla_slash", TESLA_SLASH);
         registerParticle("cloud_wind", CLOUD_WIND);
+        registerParticle("hemorrhage_scar", HEMORRHAGE_SCAR);
+        registerParticle("hemorrhage_slash", HEMORRHAGE_SLASH);
         registerParticle("diamond_spark", DIAMOND_SPARK);
         registerParticle("glow_spark", GLOW_SPARK);
         registerParticle("bloody_laser", BLOODY_LASER);
@@ -74,9 +78,11 @@ public class ModParticles {
         ParticleFactoryRegistry.getInstance().register(CROWNED_WICKED, ExtendedBeamParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(TESLA_SLASH, ExtendedBeamParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(CLOUD_WIND, BeamParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(HEMORRHAGE_SCAR, SlashParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(HEMORRHAGE_SLASH, BeamParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(DIAMOND_SPARK, DiamondSparkParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(GLOW_SPARK, GlowSparkParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(BLOODY_LASER, SlashParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(BLOODY_LASER, BeamParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(GOLDEN_LAND, GoldenLandParticle.Factory::new);
 
         ParticleFactoryRegistry.getInstance().register(COSMIC_CANDLE_FLAME, FlameParticle.Factory::new);
@@ -108,6 +114,9 @@ public class ModParticles {
         registerAtlasTexture("crowned_slash");
         registerAtlasTexture("crowned_wicked");
         registerAtlasTexture("diamond_spark");
+        registerAtlasTexture("cloud_wind");
+        registerAtlasTexture("hemorrhage_scar");
+        registerAtlasTexture("hemorrhage_slash");
         registerAtlasTexture("echo_candle_flame");
         registerAtlasTexture("glow_spark");
         registerAtlasTexture("golden_land");

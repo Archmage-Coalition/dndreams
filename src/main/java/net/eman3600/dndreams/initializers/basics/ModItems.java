@@ -24,6 +24,7 @@ import net.eman3600.dndreams.items.consumable.permanent.FidiFruitItem;
 import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
 import net.eman3600.dndreams.items.dreadful.DreadfulArrowItem;
 import net.eman3600.dndreams.items.dreadful.GhostArrowItem;
+import net.eman3600.dndreams.items.dreadful.HemorrhageItem;
 import net.eman3600.dndreams.items.dreadful.StrifeItem;
 import net.eman3600.dndreams.items.edge_series.CrownedEdgeItem;
 import net.eman3600.dndreams.items.edge_series.TrueCrownedEdgeItem;
@@ -396,6 +397,9 @@ public class ModItems {
             new BloodyCarbineItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(735)).withTooltip(null, 1).withTooltip("tooltip.dndreams.sacrifice", 1));
     public static final Item STRIFE = registerItem("strife",
             new StrifeItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxDamage(735)).withTooltip(null, 1).withTooltip("tooltip.dndreams.sacrifice", 1));
+    public static final Item HEMORRHAGE = registerItem("hemorrhage",
+            new HemorrhageItem(ModToolMaterials.HEMORRHAGE, 3, -2.3F, 6,
+                    new FabricItemSettings().group(ItemGroup.COMBAT)));
 
     // Magic Arrows & Quivers
     public static final Item MANAGOLD_ARROW = registerItem("managold_arrow",

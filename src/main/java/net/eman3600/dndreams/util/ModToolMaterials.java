@@ -17,8 +17,6 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(ModItems.CELESTIUM)),
     CELESTIUM_SLOW(4, 2145, 7F, 6.0F, 18,
             () -> Ingredient.ofItems(ModItems.CELESTIUM)),
-    VITAL(1, 575, 4.0F, 1.0F, 12,
-            () -> Ingredient.ofItems(ModItems.VITAL_SHARD)),
     MANAGOLD(2, 32, 12.0F, 2.0F, 22,
             () -> Ingredient.ofItems(ModItems.MANAGOLD_INGOT)),
     TORMITE(4, 2145, 20F, 8.0F, 22,
@@ -30,7 +28,9 @@ public enum ModToolMaterials implements ToolMaterial {
     TRUE_EDGE(4, 6244, 26.0F, 6.0F, 18,
             () -> Ingredient.ofItems(ModItems.NIGHTMARE_FUEL)),
     CLOUD(4, 1561, 15.0F, 3.0F, 10,
-            () -> Ingredient.ofItems(ModItems.CLOUD));
+            () -> Ingredient.ofItems(ModItems.CLOUD)),
+    HEMORRHAGE(4, 2145, 12.0F, 4.0F, 15,
+            () -> Ingredient.ofItems(ModItems.RAVAGED_FLESH));
 
     private final int miningLevel;
     private final int itemDurability;

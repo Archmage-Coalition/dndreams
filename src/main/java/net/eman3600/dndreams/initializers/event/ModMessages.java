@@ -21,6 +21,8 @@ public class ModMessages {
     public static final Identifier CROWNED_BEAM_ID = new Identifier(MODID, "crowned_beam");
     public static final Identifier TESLA_SLASH_ID = new Identifier(MODID, "tesla_slash");
     public static final Identifier CLOUD_SLASH_ID = new Identifier(MODID, "cloud_slash");
+    public static final Identifier HEMORRHAGE_SCAR_ID = new Identifier(MODID, "hemorrhage_scar");
+    public static final Identifier HEMORRHAGE_SLASH_ID = new Identifier(MODID, "hemorrhage_slash");
     public static final Identifier ANCIENT_PORTAL_SOUND_ID = new Identifier(MODID, "ancient_portal_sound");
     public static final Identifier ENERGY_PARTICLE_ID = new Identifier(MODID, "energy_particle");
     public static final Identifier MOTION_UPDATE_ID = new Identifier(MODID, "motion_update");
@@ -43,6 +45,8 @@ public class ModMessages {
         ClientPlayNetworking.registerGlobalReceiver(CROWNED_BEAM_ID, CrownedBeamPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(TESLA_SLASH_ID, TeslaSlashPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(CLOUD_SLASH_ID, CloudSlashPacket::receive);
+        ClientPlayNetworking.registerGlobalReceiver(HEMORRHAGE_SCAR_ID, HemorrhageScarPacket::receive);
+        ClientPlayNetworking.registerGlobalReceiver(HEMORRHAGE_SLASH_ID, HemorrhageSlashPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(ANCIENT_PORTAL_SOUND_ID, AncientPortalSoundPacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(ENERGY_PARTICLE_ID, EnergyParticlePacket::receive);
         ClientPlayNetworking.registerGlobalReceiver(MOTION_UPDATE_ID, MotionUpdatePacket::receive);

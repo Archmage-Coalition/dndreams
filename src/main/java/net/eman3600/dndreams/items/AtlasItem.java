@@ -77,15 +77,15 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
         return getForm(stack).isActive();
     }
 
-    public InstrumentForm getForm(ItemStack stack) {
+    public AtlasForm getForm(ItemStack stack) {
         if (stack.hasNbt()) {
-            return InstrumentForm.stateMap.getOrDefault(stack.getNbt().getInt("Form"), InstrumentForm.INACTIVE);
+            return AtlasForm.stateMap.getOrDefault(stack.getNbt().getInt("Form"), AtlasForm.INACTIVE);
         } else {
-            return InstrumentForm.INACTIVE;
+            return AtlasForm.INACTIVE;
         }
     }
 
-    public void setForm(ItemStack stack, InstrumentForm form) {
+    public void setForm(ItemStack stack, AtlasForm form) {
         NbtCompound nbt = stack.getOrCreateNbt();
 
         nbt.putInt("Form", form.id);
@@ -145,34 +145,34 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
     @Override
     public void swingItem(ServerPlayerEntity user, Hand hand, ServerWorld world, ItemStack stack, @Nullable Entity hit) {
 
-        if (hit instanceof LivingEntity target && getForm(stack) == InstrumentForm.KATANA && user.getAttackCooldownProgress(0.5f) > 0.9f) {
+        if (hit instanceof LivingEntity target && getForm(stack) == AtlasForm.KATANA && user.getAttackCooldownProgress(0.5f) > 0.9f) {
 
             target.damage(DamageSourceAccess.magic(user), getMagicDamage(stack));
             target.timeUntilRegen = 0;
-        } else if (getForm(stack) != InstrumentForm.AXE && getForm(stack).miningTool) {
+        } else if (getForm(stack) != AtlasForm.AXE && getForm(stack).miningTool) {
 
-            setForm(stack, InstrumentForm.KATANA);
+            setForm(stack, AtlasForm.KATANA);
         }
     }
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        InstrumentForm form = getForm(stack);
+        AtlasForm form = getForm(stack);
 
         if (!world.isClient && form.isActive() && entity instanceof PlayerEntity player) {
             TormentComponent torment = EntityComponents.TORMENT.get(player);
 
             if (!torment.isTruthActive()) {
 
-                setForm(stack, InstrumentForm.INACTIVE);
+                setForm(stack, AtlasForm.INACTIVE);
                 torment.setTruthActive(false);
-            } else if (selected && form.miningTool && form != InstrumentForm.AXE) {
+            } else if (selected && form.miningTool && form != AtlasForm.AXE) {
 
                 EntityHitResult cast = AirSwingItem.castWithDistance(player, 3, e -> !e.isSpectator() && e.canHit());
 
                 if (cast != null && cast.getEntity() instanceof LivingEntity && cast.getEntity().getType() != EntityType.ARMOR_STAND) {
 
-                    setForm(stack, InstrumentForm.KATANA);
+                    setForm(stack, AtlasForm.KATANA);
                 }
             }
         }
@@ -180,21 +180,21 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return getForm(stack) == InstrumentForm.STAFF ? UseAction.BOW : UseAction.NONE;
+        return getForm(stack) == AtlasForm.STAFF ? UseAction.BOW : UseAction.NONE;
     }
 
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return getForm(stack) == InstrumentForm.STAFF ? 72000 : 0;
+        return getForm(stack) == AtlasForm.STAFF ? 72000 : 0;
     }
 
-    public InstrumentForm getBestForm(World world, PlayerEntity player, InstrumentForm currentForm, @Nullable BlockState state) {
+    public AtlasForm getBestForm(World world, PlayerEntity player, AtlasForm currentForm, @Nullable BlockState state) {
 
         EntityHitResult cast = AirSwingItem.castWithDistance(player, 6, entity -> !entity.isSpectator() && entity.canHit());
 
         if (cast != null && cast.getEntity() instanceof LivingEntity && cast.getEntity().getType() != EntityType.ARMOR_STAND) {
 
-            return currentForm == InstrumentForm.AXE ? currentForm : InstrumentForm.KATANA;
+            return currentForm == AtlasForm.AXE ? currentForm : AtlasForm.KATANA;
         }
 
         HitResult blockHit = player.raycast(6, 0, false);
@@ -205,10 +205,10 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
         }
 
         if (state != null && !state.isAir()) {
-            return state.isIn(BlockTags.PICKAXE_MINEABLE) ? InstrumentForm.PICKAXE : state.isIn(BlockTags.AXE_MINEABLE) || state.isIn(BlockTags.HOE_MINEABLE) ? InstrumentForm.AXE : state.isIn(BlockTags.SHOVEL_MINEABLE) ? InstrumentForm.SHOVEL : InstrumentForm.PICKAXE;
+            return state.isIn(BlockTags.PICKAXE_MINEABLE) ? AtlasForm.PICKAXE : state.isIn(BlockTags.AXE_MINEABLE) || state.isIn(BlockTags.HOE_MINEABLE) ? AtlasForm.AXE : state.isIn(BlockTags.SHOVEL_MINEABLE) ? AtlasForm.SHOVEL : AtlasForm.PICKAXE;
         }
 
-        return InstrumentForm.STAFF;
+        return AtlasForm.STAFF;
     }
 
     @Override
@@ -219,7 +219,7 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
         if (!isActive(stack) && !torment.isTruthActive()) {
 
             torment.setTruthActive(true);
-            setForm(stack, getBestForm(world, user, InstrumentForm.INACTIVE, null));
+            setForm(stack, getBestForm(world, user, AtlasForm.INACTIVE, null));
 
             return TypedActionResult.success(stack);
         } else if (getForm(stack).miningTool && user.isSneaking()) {
@@ -227,7 +227,7 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
             setHyper(stack, !isHyper(stack));
 
             return TypedActionResult.success(stack);
-        } else if (getForm(stack) == InstrumentForm.STAFF && !user.isSneaking()) {
+        } else if (getForm(stack) == AtlasForm.STAFF && !user.isSneaking()) {
 
             user.setCurrentHand(hand);
             return TypedActionResult.consume(stack);
@@ -258,7 +258,7 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
                 world.setBlockState(pos, optional.get(), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
                 world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, optional.get()));
 
-                setForm(stack, InstrumentForm.AXE);
+                setForm(stack, AtlasForm.AXE);
                 return ActionResult.success(world.isClient);
             }
         }
@@ -292,7 +292,7 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
         return isHyper(stack) ? 0xEE00EE : 0x00EEEE;
     }
 
-    public enum InstrumentForm {
+    public enum AtlasForm {
         INACTIVE(0, false, 0),
         STAFF(1, false, 18),
         KATANA(2, false, 13, -2.4f, 10),
@@ -304,16 +304,16 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
         public final float magicDamage;
         public final boolean miningTool;
         public final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
-        public static final Map<Integer, InstrumentForm> stateMap;
+        public static final Map<Integer, AtlasForm> stateMap;
 
-        InstrumentForm(int id, boolean miningTool, float magicDamage) {
+        AtlasForm(int id, boolean miningTool, float magicDamage) {
             this.id = id;
             this.magicDamage = magicDamage;
             this.miningTool = miningTool;
             attributeModifiers = ImmutableMultimap.of();
         }
 
-        InstrumentForm(int id, boolean miningTool, double attackDamage, double attackSpeed, float magicDamage) {
+        AtlasForm(int id, boolean miningTool, double attackDamage, double attackSpeed, float magicDamage) {
             this.id = id;
             this.miningTool = miningTool;
             this.magicDamage = magicDamage;
@@ -333,7 +333,7 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
         static {
             stateMap = new HashMap<>();
 
-            for (InstrumentForm state: values()) {
+            for (AtlasForm state: values()) {
                 stateMap.put(state.id, state);
             }
         }
