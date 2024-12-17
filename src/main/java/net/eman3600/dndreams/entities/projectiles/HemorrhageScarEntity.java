@@ -58,7 +58,7 @@ public class HemorrhageScarEntity extends BeamProjectileEntity {
         return true;
     }
 
-    public void initFromStack(ItemStack stack, float roll) {
+    public void initFromStack(ItemStack stack) {
         if (stack.getItem() instanceof MagicDamageItem item) {
             setDamage(item.getMagicDamage(stack));
         } else {
@@ -74,12 +74,15 @@ public class HemorrhageScarEntity extends BeamProjectileEntity {
 
             setPosition(updated);
         }
-
-        getDataTracker().set(ROLL, roll);
     }
 
     @Override
     public void tick() {
+
+        if (!world.isClient && firstUpdate) {
+            dataTracker.set(ROLL, CrownedSlashEntity.randomlyRoll(world));
+        }
+
         try {
 
             if (world instanceof ServerWorld serverWorld && !firstUpdate) {

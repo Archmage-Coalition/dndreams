@@ -2,13 +2,11 @@ package net.eman3600.dndreams.items.edge_series;
 
 import net.eman3600.dndreams.entities.projectiles.CrownedBeamEntity;
 import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
-import net.eman3600.dndreams.initializers.basics.ModEnchantments;
 import net.eman3600.dndreams.items.enchantments.AliasedEnchantment;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -45,12 +43,10 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
                 world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, user.getSoundCategory(), 1.0f, 1.5f);
 
 
-                float roll = CrownedSlashEntity.randomlyRoll(world);
-
                 spendMana(user, stack);
 
                 CrownedBeamEntity beam = new CrownedBeamEntity(user, world);
-                beam.initFromStack(stack, roll);
+                beam.initFromStack(stack);
                 world.spawnEntity(beam);
             }
         }

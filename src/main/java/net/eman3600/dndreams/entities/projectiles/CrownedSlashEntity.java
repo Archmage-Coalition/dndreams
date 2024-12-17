@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.entities.projectiles;
 
-import net.eman3600.dndreams.events.damage_sources.AfflictionProjectileDamageSource;
 import net.eman3600.dndreams.initializers.basics.ModEnchantments;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
@@ -68,7 +67,7 @@ public class CrownedSlashEntity extends BeamProjectileEntity {
         return getDataTracker().get(LIFE);
     }
 
-    public void initFromStack(ItemStack stack, float roll) {
+    public void initFromStack(ItemStack stack) {
         if (stack.getItem() instanceof MagicDamageItem item) {
             setDamage(item.getMagicDamage(stack));
         } else {
@@ -85,8 +84,6 @@ public class CrownedSlashEntity extends BeamProjectileEntity {
             setPosition(updated);
         }
 
-        getDataTracker().set(ROLL, roll);
-
         getDataTracker().set(WICKED, EnchantmentHelper.getLevel(ModEnchantments.WICKED, stack) > 0);
     }
 
@@ -97,6 +94,11 @@ public class CrownedSlashEntity extends BeamProjectileEntity {
 
     @Override
     public void tick() {
+
+        if (!world.isClient && firstUpdate) {
+            dataTracker.set(ROLL, randomlyRoll(world));
+        }
+
         super.tick();
 
         try {

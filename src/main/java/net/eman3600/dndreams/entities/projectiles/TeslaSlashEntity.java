@@ -38,7 +38,6 @@ public class TeslaSlashEntity extends BeamProjectileEntity {
     public TeslaSlashEntity(LivingEntity owner, World world, float shock) {
         super(ModEntities.TESLA_SLASH, owner, world);
         setDamage(shock);
-        getDataTracker().set(ROLL, CrownedSlashEntity.randomlyRoll(world));
 
         if (getOwner() != null) {
             setYaw(getOwner().getYaw());
@@ -73,6 +72,11 @@ public class TeslaSlashEntity extends BeamProjectileEntity {
 
     @Override
     public void tick() {
+
+        if (!world.isClient && firstUpdate) {
+            dataTracker.set(ROLL, CrownedSlashEntity.randomlyRoll(world));
+        }
+
         try {
 
             if (world instanceof ServerWorld serverWorld && !firstUpdate) {

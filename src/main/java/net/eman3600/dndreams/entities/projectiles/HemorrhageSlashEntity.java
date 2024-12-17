@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.entities.projectiles;
 
-import net.eman3600.dndreams.initializers.basics.ModEnchantments;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.event.ModMessages;
@@ -9,11 +8,9 @@ import net.eman3600.dndreams.items.interfaces.BloodlustItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -66,7 +63,7 @@ public class HemorrhageSlashEntity extends BeamProjectileEntity {
         return getDataTracker().get(LIFE);
     }
 
-    public void initFromStack(ItemStack stack, float roll) {
+    public void initFromStack(ItemStack stack) {
         if (stack.getItem() instanceof MagicDamageItem item) {
             setDamage(item.getMagicDamage(stack));
         } else {
@@ -82,8 +79,6 @@ public class HemorrhageSlashEntity extends BeamProjectileEntity {
 
             setPosition(updated);
         }
-
-        getDataTracker().set(ROLL, roll);
     }
 
     public void initFromScar(HemorrhageScarEntity scar, float roll) {
@@ -106,6 +101,11 @@ public class HemorrhageSlashEntity extends BeamProjectileEntity {
 
     @Override
     public void tick() {
+
+        if (!world.isClient && firstUpdate && dataTracker.get(ROLL) == 0) {
+            dataTracker.set(ROLL, CrownedSlashEntity.randomlyRoll(world));
+        }
+
         super.tick();
 
         try {

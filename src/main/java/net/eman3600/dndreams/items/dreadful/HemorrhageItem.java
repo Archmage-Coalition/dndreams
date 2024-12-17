@@ -1,6 +1,5 @@
 package net.eman3600.dndreams.items.dreadful;
 
-import net.eman3600.dndreams.entities.projectiles.CrownedSlashEntity;
 import net.eman3600.dndreams.entities.projectiles.HemorrhageScarEntity;
 import net.eman3600.dndreams.entities.projectiles.HemorrhageSlashEntity;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
@@ -16,7 +15,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
@@ -63,14 +61,12 @@ public class HemorrhageItem extends SwordItem implements AirSwingItem, MagicDama
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_DROWNED_AMBIENT, user.getSoundCategory(), 1.0f, 2f);
 
 
-            float roll = CrownedSlashEntity.randomlyRoll(world);
-
             if (MagicCrossbowItem.isCharged(stack)) {
 
                 MagicCrossbowItem.setCharges(stack, MagicCrossbowItem.getCharges(stack) - 1);
 
                 HemorrhageSlashEntity slash = new HemorrhageSlashEntity(user, world);
-                slash.initFromStack(stack, roll);
+                slash.initFromStack(stack);
                 world.spawnEntity(slash);
 
                 int damage = MAX_CHARGES - (hit == null ? 0 : 1);
@@ -81,7 +77,7 @@ public class HemorrhageItem extends SwordItem implements AirSwingItem, MagicDama
             } else {
 
                 HemorrhageScarEntity scar = new HemorrhageScarEntity(user, world);
-                scar.initFromStack(stack, roll);
+                scar.initFromStack(stack);
                 world.spawnEntity(scar);
 
                 if (hit == null && !user.isCreative()) {

@@ -1,15 +1,11 @@
 package net.eman3600.dndreams.entities.projectiles;
 
-import net.eman3600.dndreams.initializers.basics.ModEnchantments;
-import net.eman3600.dndreams.initializers.basics.ModItems;
-import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.MagicDamageItem;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +13,6 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -28,9 +23,6 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CloudSlashEntity extends BeamProjectileEntity {
     private static final int DURATION = 7;
@@ -70,7 +62,7 @@ public class CloudSlashEntity extends BeamProjectileEntity {
         return true;
     }
 
-    public void initFromStack(ItemStack stack, float roll) {
+    public void initFromStack(ItemStack stack) {
         if (stack.getItem() instanceof MagicDamageItem item) {
             setDamage(item.getMagicDamage(stack));
         } else {
@@ -86,12 +78,15 @@ public class CloudSlashEntity extends BeamProjectileEntity {
 
             setPosition(updated);
         }
-
-        getDataTracker().set(ROLL, roll);
     }
 
     @Override
     public void tick() {
+
+        if (!world.isClient && firstUpdate) {
+            dataTracker.set(ROLL, CrownedSlashEntity.randomlyRoll(world));
+        }
+
         try {
 
             if (world instanceof ServerWorld serverWorld && !firstUpdate) {
