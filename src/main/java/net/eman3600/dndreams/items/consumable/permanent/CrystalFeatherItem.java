@@ -44,9 +44,9 @@ public class CrystalFeatherItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if (world instanceof ClientWorldAccess access && access.getPlayer() != null) {
+        if (world instanceof ClientWorldAccess access && access.dndreams$getPlayer() != null) {
 
-            InfusionComponent infusion = EntityComponents.INFUSION.get(access.getPlayer());
+            InfusionComponent infusion = EntityComponents.INFUSION.get(access.dndreams$getPlayer());
 
             tooltip.add(Text.translatable(getTranslationKey() + (infusion.hasDodge() ? ".tooltip.used" : ".tooltip")));
         }

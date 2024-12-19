@@ -84,12 +84,12 @@ public class ManifestBrewItem extends Item {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         try {
             if (world instanceof ClientWorldAccess access) {
-                DreamingComponent component = EntityComponents.DREAMING.get(access.getClient().player);
+                DreamingComponent component = EntityComponents.DREAMING.get(access.dndreams$getClient().player);
 
                 if (component.isCongealed()) {
                     tooltip.add(Text.translatable("item.dndreams.manifest_brew.tooltip_after"));
                     tooltip.add(Text.translatable("item.dndreams.manifest_brew.tooltip_after2"));
-                } else if (access.getClient().player.getInventory().contains(stack)) {
+                } else if (access.dndreams$getClient().player.getInventory().contains(stack)) {
                     tooltip.add(Text.translatable("item.dndreams.manifest_brew.tooltip_before"));
                     tooltip.add(Text.translatable("item.dndreams.manifest_brew.tooltip_before2"));
                 } else {

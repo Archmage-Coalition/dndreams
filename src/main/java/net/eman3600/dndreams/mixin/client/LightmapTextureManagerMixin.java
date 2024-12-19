@@ -54,13 +54,13 @@ public abstract class LightmapTextureManagerMixin implements LightmapTextureMana
 
             image.setColor(o, n, 0xFF << 24 | z << 16 | y << 8 | x);
         } else */if (clientWorld instanceof ClientWorldAccess access) {
-            float strength = (float)(EntityComponents.TORMENT.get(access.getPlayer()).getShroud()) / TormentComponent.MAX_SHROUD * DEPTHS;
+            float strength = (float)(EntityComponents.TORMENT.get(access.dndreams$getPlayer()).getShroud()) / TormentComponent.MAX_SHROUD * DEPTHS;
 
             z = recalculatedLight(z, strength);
             y = recalculatedLight(y, strength);
             x = recalculatedLight(x, strength);
 
-            TormentComponent component = EntityComponents.TORMENT.get(access.getPlayer());
+            TormentComponent component = EntityComponents.TORMENT.get(access.dndreams$getPlayer());
 
             if (component.getAttunedSanity() < DARKNESS_THRESHOLD && !component.isTruthActive()) {
                 float clamped = MathHelper.clamp(component.getAttunedSanity(), 0, DARKNESS_THRESHOLD);
@@ -79,7 +79,7 @@ public abstract class LightmapTextureManagerMixin implements LightmapTextureMana
                 x = brightenLight(x, haunt/2);
             }
 
-            if (CelestiumArmorItem.wornPieces(access.getPlayer()) >= 4) {
+            if (CelestiumArmorItem.wornPieces(access.dndreams$getPlayer()) >= 4) {
                 z = brightenLight(z, CELESTIUM);
                 y = brightenLight(y, CELESTIUM);
                 x = brightenLight(x, CELESTIUM);

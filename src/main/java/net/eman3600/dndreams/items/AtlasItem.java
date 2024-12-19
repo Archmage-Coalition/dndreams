@@ -126,8 +126,8 @@ public class AtlasItem extends Item implements ActivateableToolItem, AirSwingIte
         super.appendTooltip(stack, world, tooltip, context);
 
         try {
-            if (world instanceof ClientWorldAccess access && access.getPlayer() != null) {
-                if (access.getPlayer().getInventory().contains(stack)) {
+            if (world instanceof ClientWorldAccess access && access.dndreams$getPlayer() != null) {
+                if (access.dndreams$getPlayer().getInventory().contains(stack)) {
                     tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.0"));
                     tooltip.add(Text.translatable(getTranslationKey() + ".tooltip.1"));
                 } else {

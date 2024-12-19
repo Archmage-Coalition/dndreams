@@ -4,6 +4,9 @@ import net.eman3600.dndreams.blocks.energy.CosmicFountainBlock;
 import net.eman3600.dndreams.initializers.basics.ModBlocks;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.initializers.event.ModParticles;
+import net.eman3600.dndreams.util.DelayedClientExecution;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -15,11 +18,23 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
 public class EnergyParticlePacket {
-    public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf packet, PacketSender sender) {
-        BlockPos pos = new BlockPos(packet.readInt(), packet.readInt(), packet.readInt());
-        BlockPos blockPos = new BlockPos(packet.readInt(), packet.readInt(), packet.readInt());
+    @Environment(EnvType.CLIENT)
+    public static void receive(MinecraftClient client, DelayedClientExecution exe) {
+        BlockPos pos = new BlockPos(exe.popInt(), exe.popInt(), exe.popInt());
+        BlockPos blockPos = new BlockPos(exe.popInt(), exe.popInt(), exe.popInt());
 
         if (client.world != null) ((CosmicFountainBlock)ModBlocks.COSMIC_FOUNTAIN).displayEnchantParticle(client.world, pos, blockPos, ModParticles.COSMIC_ENERGY);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static void pack(PacketByteBuf buf, DelayedClientExecution exe) {
+        exe.pushInt(buf.readInt());
+        exe.pushInt(buf.readInt());
+        exe.pushInt(buf.readInt());
+
+        exe.pushInt(buf.readInt());
+        exe.pushInt(buf.readInt());
+        exe.pushInt(buf.readInt());
     }
 
     public static void send(ServerPlayerEntity player, BlockPos pos, BlockPos offset) {

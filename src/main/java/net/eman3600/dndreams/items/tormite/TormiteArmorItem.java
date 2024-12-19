@@ -23,7 +23,7 @@ public class TormiteArmorItem extends ModArmorItem {
         super.appendTooltip(stack, world, tooltip, context);
 
         tooltip.add(Text.translatable("tooltip.dndreams.tormite_armor"));
-        if (world instanceof ClientWorldAccess access && access.getPlayer() != null && wornPieces(access.getPlayer()) >= 4) {
+        if (world instanceof ClientWorldAccess access && access.dndreams$getPlayer() != null && wornPieces(access.dndreams$getPlayer()) >= 4) {
             tooltip.add(Text.translatable("tooltip.dndreams.tormite_armor.set_bonus.0"));
             tooltip.add(Text.translatable("tooltip.dndreams.tormite_armor.set_bonus.1"));
         }

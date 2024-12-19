@@ -1,13 +1,9 @@
 package net.eman3600.dndreams.items.celestium;
 
-import net.eman3600.dndreams.items.ModArmorItem;
-import net.eman3600.dndreams.items.hellsteel.CorruptArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
@@ -26,7 +22,7 @@ public class CelestiumArmorItem extends ArmorItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 
         super.appendTooltip(stack, world, tooltip, context);
-        if (world instanceof ClientWorldAccess access && access.getPlayer() != null && wornPieces(access.getPlayer()) >= 4) {
+        if (world instanceof ClientWorldAccess access && access.dndreams$getPlayer() != null && wornPieces(access.dndreams$getPlayer()) >= 4) {
             tooltip.add(Text.translatable("tooltip.dndreams.celestium_armor.set_bonus.0"));
             tooltip.add(Text.translatable("tooltip.dndreams.celestium_armor.set_bonus.1"));
         }

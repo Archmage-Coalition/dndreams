@@ -3,6 +3,9 @@ package net.eman3600.dndreams.networking.packet_s2c;
 import net.eman3600.dndreams.initializers.event.ModMessages;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
+import net.eman3600.dndreams.util.DelayedClientExecution;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -22,11 +25,12 @@ public class GoldenLandPacket {
     private static final float HALF_DIST = DISTANCE * .5f;
     private static final float SPACING = .5f;
 
-    public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf packet, PacketSender sender) {
+    @Environment(EnvType.CLIENT)
+    public static void receive(MinecraftClient client, DelayedClientExecution exe) {
         ClientWorld world = client.world;
 
-        Vec3d pos = new Vec3d(packet.readDouble(), packet.readDouble(), packet.readDouble());
-        float yaw = packet.readFloat();
+        Vec3d pos = new Vec3d(exe.popDouble(), exe.popDouble(), exe.popDouble());
+        float yaw = exe.popFloat();
 
         Vec3d offsetX = AirSwingItem.rayXVector(yaw, 0).multiply(SPACING);
         Vec3d offsetZ = AirSwingItem.rayZVector(yaw, 0).multiply(SPACING);
@@ -44,6 +48,14 @@ public class GoldenLandPacket {
 
             pos = pos.add(dir);
         }
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static void pack(PacketByteBuf buf, DelayedClientExecution exe) {
+        exe.pushDouble(buf.readDouble());
+        exe.pushDouble(buf.readDouble());
+        exe.pushDouble(buf.readDouble());
+        exe.pushFloat(buf.readFloat());
     }
 
     public static void send(ServerWorld world, Vec3d pos, float yaw) {

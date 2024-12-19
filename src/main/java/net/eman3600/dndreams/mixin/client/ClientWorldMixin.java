@@ -8,7 +8,7 @@ import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.event.ModParticles;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
-import net.eman3600.dndreams.mixin_interfaces.WorldAccess;
+import net.eman3600.dndreams.util.DelayedClientExecution;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -16,8 +16,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particle.BlockStateParticleEffect;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -38,7 +37,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
@@ -49,6 +51,8 @@ public abstract class ClientWorldMixin extends World implements ClientWorldAcces
     @Shadow public abstract void setTimeOfDay(long timeOfDay);
 
     @Shadow public abstract Scoreboard getScoreboard();
+
+    @Unique private final List<DelayedClientExecution> delayedExecutions = new ArrayList<>(40);
 
     protected ClientWorldMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, RegistryEntry<DimensionType> dimension, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed, int maxChainedNeighborUpdates) {
         super(properties, registryRef, dimension, profiler, isClient, debugWorld, seed, maxChainedNeighborUpdates);
@@ -66,6 +70,17 @@ public abstract class ClientWorldMixin extends World implements ClientWorldAcces
             return false;
         } else {
             return instance.getBoolean(rule);
+        }
+    }
+
+    @Inject(method = "tick", at = @At(value = "TAIL"))
+    private void dndreams$tick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
+        synchronized (delayedExecutions) {
+            for (DelayedClientExecution execution : delayedExecutions) {
+                execution.run();
+            }
+
+            delayedExecutions.clear();
         }
     }
 
@@ -96,12 +111,28 @@ public abstract class ClientWorldMixin extends World implements ClientWorldAcces
 
 
     @Override
-    public MinecraftClient getClient() {
+    public MinecraftClient dndreams$getClient() {
         return this.client;
     }
 
     @Override
-    public PlayerEntity getPlayer() {
+    public PlayerEntity dndreams$getPlayer() {
         return this.client.player;
+    }
+
+    @Override
+    public void dndreams$delayPacket(PacketByteBuf packet, BiConsumer<MinecraftClient, DelayedClientExecution> function) {
+        DelayedClientExecution e = new DelayedClientExecution(function);
+        synchronized (delayedExecutions) {
+            delayedExecutions.add(e);
+        }
+    }
+
+    @Override
+    public void dndreams$delayPacket(PacketByteBuf packet, BiConsumer<MinecraftClient, DelayedClientExecution> function, BiConsumer<PacketByteBuf, DelayedClientExecution> setup) {
+        DelayedClientExecution e = new DelayedClientExecution(packet, function, setup);
+        synchronized (delayedExecutions) {
+            delayedExecutions.add(e);
+        }
     }
 }

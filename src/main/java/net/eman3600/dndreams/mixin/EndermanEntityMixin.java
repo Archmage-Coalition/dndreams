@@ -57,10 +57,10 @@ public abstract class EndermanEntityMixin extends HostileEntity implements Anger
     @Inject(method = "playAngrySound", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FFZ)V"))
     private void dndreams$playAngrySound(CallbackInfo ci) {
 
-        if (world instanceof ClientWorldAccess access && this.isPlayerStaring(access.getPlayer()) && world.getScoreboard() != null && !WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
+        if (world instanceof ClientWorldAccess access && this.isPlayerStaring(access.dndreams$getPlayer()) && world.getScoreboard() != null && !WorldComponents.BOSS_STATE.get(world.getScoreboard()).dragonSlain()) {
 
-            ((HudAccess)access.getClient().inGameHud).setDragonFlash(24);
-            world.playSound(access.getPlayer(), access.getPlayer().getBlockPos(), SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.HOSTILE, 1f, 1f);
+            ((HudAccess)access.dndreams$getClient().inGameHud).setDragonFlash(24);
+            world.playSound(access.dndreams$getPlayer(), access.dndreams$getPlayer().getBlockPos(), SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.HOSTILE, 1f, 1f);
         }
     }
 

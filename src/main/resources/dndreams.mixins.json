@@ -34,7 +34,6 @@
     "EnderChestBlockEntityMixin",
     "EnderChestBlockMixin",
     "EndermanEntityMixin",
-    "EndermanEyesFeatureRendererMixin",
     "EnderPearlEntityMixin",
     "EnderPearlItemMixin",
     "EndPortalFeatureMixin",
@@ -90,7 +89,8 @@
     "client.MinecraftClientMixin",
     "client.MusicTrackerMixin",
     "client.PlayerEntityRendererMixin",
-    "client.WorldRendererMixin"
+    "client.WorldRendererMixin",
+    "client.EndermanEyesFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

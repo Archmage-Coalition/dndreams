@@ -1,6 +1,9 @@
 package net.eman3600.dndreams.networking.packet_s2c;
 
 import net.eman3600.dndreams.initializers.event.ModMessages;
+import net.eman3600.dndreams.util.DelayedClientExecution;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -18,13 +21,22 @@ import net.minecraft.util.math.Vec3d;
 
 public class ManagoldFlashPacket {
 
-    public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler, PacketByteBuf packet, PacketSender sender) {
+    @Environment(EnvType.CLIENT)
+    public static void receive(MinecraftClient client, DelayedClientExecution exe) {
 
-        Vec3d pos = new Vec3d(packet.readDouble(), packet.readDouble(), packet.readDouble());
+        Vec3d pos = new Vec3d(exe.popDouble(), exe.popDouble(), exe.popDouble());
         ParticleManager manager = client.particleManager;
 
         Particle flash = manager.addParticle(ParticleTypes.FLASH, pos.x, pos.y, pos.z, 0, 0, 0);
-        flash.setColor(.965f, .761f, .263f);
+        if (flash != null)
+            flash.setColor(.965f, .761f, .263f);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static void pack(PacketByteBuf buf, DelayedClientExecution exe) {
+        exe.pushDouble(buf.readDouble());
+        exe.pushDouble(buf.readDouble());
+        exe.pushDouble(buf.readDouble());
     }
 
     public static void send(ServerWorld world, Vec3d pos) {

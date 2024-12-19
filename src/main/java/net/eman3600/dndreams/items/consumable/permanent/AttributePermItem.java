@@ -59,7 +59,7 @@ public class AttributePermItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         if (world instanceof ClientWorldAccess access) {
-            EntityComponents.PERM_ITEM.maybeGet(access.getPlayer()).ifPresent(perms -> {
+            EntityComponents.PERM_ITEM.maybeGet(access.dndreams$getPlayer()).ifPresent(perms -> {
                 if (perms.canUse(this)) {
                     tooltip.add(Text.translatable(getTranslationKey(stack) + ".tooltip").formatted(Formatting.DARK_AQUA));
                 } else {

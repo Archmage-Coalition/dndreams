@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.mixin;
+package net.eman3600.dndreams.mixin.client;
 
 import net.eman3600.dndreams.Initializer;
 import net.eman3600.dndreams.cardinal_components.BossStateComponent;
