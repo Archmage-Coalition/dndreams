@@ -21,6 +21,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.ConcurrentModificationException;
+
 public class HemorrhageScarEntity extends BeamProjectileEntity {
     private static final int DURATION = 120;
     public static TrackedData<Integer> LIFE = DataTracker.registerData(HemorrhageScarEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -80,7 +82,7 @@ public class HemorrhageScarEntity extends BeamProjectileEntity {
     public void tick() {
 
         if (!world.isClient && firstUpdate) {
-            dataTracker.set(ROLL, CrownedSlashEntity.randomlyRoll(world));
+            dataTracker.set(ROLL, randomlyRoll(world));
         }
 
         try {
@@ -142,6 +144,16 @@ public class HemorrhageScarEntity extends BeamProjectileEntity {
             return getOwner().isTeammate(entity);
         } catch (NullPointerException e) {
             return false;
+        }
+    }
+
+    public static float randomlyRoll(World world) {
+        try {
+            int i = world.random.nextBetween(10, 170);
+
+            return i + 90;
+        } catch (ConcurrentModificationException e) {
+            return 120;
         }
     }
 

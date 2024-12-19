@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B#B",
+    "BAB",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "dndreams:demonic_core_charged"
+    },
+    "X": {
+      "item": "dndreams:ravaged_flesh"
+    },
+    "A": {
+      "item": "dndreams:nightmarrow"
+    },
+    "B": {
+      "item": "dndreams:wither_bud"
+    }
+  },
+  "result": {
+    "item": "dndreams:hemorrhage"
+  }
+}
