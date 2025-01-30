@@ -2,7 +2,7 @@ package net.eman3600.dndreams.items.hellsteel;
 
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
-import net.eman3600.dndreams.items.ModArmorItem;
+import net.eman3600.dndreams.items.tool_mirror.ModArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.minecraft.client.item.TooltipContext;

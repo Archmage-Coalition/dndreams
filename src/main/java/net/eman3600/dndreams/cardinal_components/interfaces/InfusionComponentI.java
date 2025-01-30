@@ -13,6 +13,10 @@ public interface InfusionComponentI extends AutoSyncedComponent, ServerTickingCo
 
     void setHasDodge(boolean allow);
 
+    void startParry();
+
+    boolean isParrying();
+
     void markDirty();
 
     void giveImmunity();

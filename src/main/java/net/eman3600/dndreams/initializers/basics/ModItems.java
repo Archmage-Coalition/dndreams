@@ -288,6 +288,10 @@ public class ModItems {
     public static final Item MIND_SHEARS = registerItem("mind_shears", new MindShearsItem(
             new FabricItemSettings().group(ItemGroup.TOOLS).fireproof().maxCount(1).maxDamage(256)).withTooltip(null, 1));
 
+    // Chargeback Gauntlet
+    public static final Item CHARGEBACK = registerItem("chargeback", new ChargebackItem(
+            new FabricItemSettings().group(ItemGroup.TOOLS).fireproof().maxCount(1)).withTooltip(null, 2));
+
     // Ancient Portal Activation
     public static final Item RADIANT_KEY = registerItem("radiant_key", new RadiantKeyItem(new FabricItemSettings()
             .group(ItemGroup.TOOLS).maxCount(1).rarity(Rarity.UNCOMMON)).withTooltip(null, 1));

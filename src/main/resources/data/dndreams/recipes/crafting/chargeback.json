@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ETE",
+    "#X#",
+    "# #"
+  ],
+  "key": {
+    "X": {
+      "item": "dndreams:charged_shard"
+    },
+	  "#": {
+      "item": "dndreams:cloud"
+    },
+	  "E": {
+      "item": "minecraft:echo_shard"
+    },
+	  "T": {
+      "item": "dndreams:tormite_ingot"
+    }
+  },
+  "result": {
+    "item": "dndreams:chargeback",
+	"count": 1
+  }
+}

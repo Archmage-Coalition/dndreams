@@ -8,27 +8,31 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public interface DamageSourceAccess {
 
-    void setElectric();
-    boolean isElectric();
-    void setAffliction();
-    boolean isAffliction();
-
+    void dndreams$setElectric();
+    boolean dndreams$isElectric();
+    void dndreams$setAffliction();
+    boolean dndreams$isAffliction();
+    void dndreams$setParryable(boolean parryable);
+    boolean dndreams$isParryable();
 
 
 
 
     static boolean isElectric(DamageSource source) {
-        return source instanceof DamageSourceAccess access && access.isElectric();
+        return source instanceof DamageSourceAccess access && access.dndreams$isElectric();
     }
     static boolean isAffliction(DamageSource source) {
-        return source instanceof DamageSourceAccess access && access.isAffliction();
+        return source instanceof DamageSourceAccess access && access.dndreams$isAffliction();
+    }
+    static boolean isParryable(DamageSource source) {
+        return source instanceof DamageSourceAccess access && access.dndreams$isParryable();
     }
 
     static DamageSource create(String name, boolean electric, boolean affliction) {
         DamageSource source = new DamageSource(name);
         if (source instanceof DamageSourceAccess access) {
-            if (electric) access.setElectric();
-            if (affliction) access.setAffliction();
+            if (electric) access.dndreams$setElectric();
+            if (affliction) access.dndreams$setAffliction();
         }
         return source;
     }

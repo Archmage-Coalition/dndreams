@@ -1,3 +1,5 @@
 accessWidener v1 named
 
 accessible class net/minecraft/client/gui/hud/InGameHud$HeartType
+accessible class net/minecraft/entity/mob/DrownedEntity$TridentAttackGoal
+accessible class net/minecraft/entity/mob/DrownedEntity$DrownedAttackGoal

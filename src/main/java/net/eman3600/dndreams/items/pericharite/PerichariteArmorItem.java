@@ -1,7 +1,7 @@
 package net.eman3600.dndreams.items.pericharite;
 
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
-import net.eman3600.dndreams.items.ModArmorItem;
+import net.eman3600.dndreams.items.tool_mirror.ModArmorItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;

@@ -28,6 +28,7 @@
     "DamageSourceMixin",
     "DragonFightMixin",
     "DragonFireballEntityMixin",
+    "DrownedAttackGoalMixin",
     "DrownedEntityMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMixin",
@@ -57,6 +58,7 @@
     "PlantBlockMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",
+    "ProjectileAttackGoalMixin",
     "RocketItemMixin",
     "SculkShriekerBlockEntityMixin",
     "SculkShriekerBlockMixin",
@@ -80,6 +82,7 @@
     "client.ClientPlayerEntityMixin",
     "client.ClientPlayNetworkHandlerMixin",
     "client.ClientWorldMixin",
+    "client.EndermanEyesFeatureRendererMixin",
     "client.GameOptionsMixin",
     "client.GameRendererMixin",
     "client.HeldItemRendererMixin",
@@ -89,8 +92,7 @@
     "client.MinecraftClientMixin",
     "client.MusicTrackerMixin",
     "client.PlayerEntityRendererMixin",
-    "client.WorldRendererMixin",
-    "client.EndermanEyesFeatureRendererMixin"
+    "client.WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

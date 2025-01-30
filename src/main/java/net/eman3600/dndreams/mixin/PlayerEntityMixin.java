@@ -14,8 +14,10 @@ import net.eman3600.dndreams.initializers.world.ModGameRules;
 import net.eman3600.dndreams.items.AtlasItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.interfaces.VariableMineSpeedItem;
+import net.eman3600.dndreams.items.misc_tool.ChargebackItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.PlayerEntityAccess;
+import net.eman3600.dndreams.networking.packet_s2c.ParryFlashPacket;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -23,16 +25,24 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.HungerManager;
+import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stat;
 import net.minecraft.util.Arm;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -73,6 +83,12 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Shadow public float experienceProgress;
 
     @Shadow public abstract void addExperience(int experience);
+
+    @Shadow public abstract void increaseStat(Identifier stat, int amount);
+
+    @Shadow public abstract HungerManager getHungerManager();
+
+    @Shadow public abstract ItemCooldownManager getItemCooldownManager();
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -182,6 +198,50 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         if (source == DamageSource.DROWN && torment.isFearDrowning()) {
 
             torment.lowerSanity(4f);
+        }
+    }
+
+    @Inject(method = "damageShield", at = @At("HEAD"))
+    private void dndreams$damageShield(float amount, CallbackInfo ci) {
+        if (EntityComponents.INFUSION.isProvidedBy(this) && EntityComponents.INFUSION.get(this).isParrying() && !world.isClient()) {
+            Vec3d pos = getEyePos();
+            Vec3d flashPos = pos.add(AirSwingItem.rayZVector(getHeadYaw(), getPitch()).multiply(.3f));
+
+            ParryFlashPacket.send((ServerWorld) getWorld(), flashPos);
+
+            getItemCooldownManager().set(ModItems.CHARGEBACK, 10);
+
+            HungerManager manager = getHungerManager();
+            if (manager.getSaturationLevel() < manager.getFoodLevel()) {
+                manager.setSaturationLevel(manager.getFoodLevel());
+            }
+
+            Box box = Box.of(pos, 4d, 5d, 4d);
+
+            for (Entity entity : world.getOtherEntities(this, box, (e) -> true)) {
+                entity.timeUntilRegen = 0;
+                entity.damage(DamageSourceAccess.magic(this), 4 + amount);
+
+                if (entity instanceof LivingEntity livingEntity) {
+                    Vec3d angle = pos.subtract(entity.getPos());
+                    angle = angle.normalize().multiply(ChargebackItem.KNOCKBACK);
+                    livingEntity.takeKnockback(angle.length(), angle.x, angle.z);
+                } else if (entity instanceof PersistentProjectileEntity projectile) {
+                    Vec3d vel = AirSwingItem.rayZVector(getHeadYaw(), getPitch()).multiply(ChargebackItem.PROJ_KNOCKBACK * -10);
+                    if (projectile instanceof TridentEntity) {
+                        vel = vel.multiply(5, .5f, 5);
+                    } else {
+                        projectile.setOwner(this);
+                    }
+                    projectile.setVelocity(vel);
+                    projectile.setPitch(getPitch());
+                    projectile.setYaw(getHeadYaw());
+                    projectile.setDamage(projectile.getDamage() + 1);
+                }
+
+                entity.velocityDirty = true;
+                entity.velocityModified = true;
+            }
         }
     }
 

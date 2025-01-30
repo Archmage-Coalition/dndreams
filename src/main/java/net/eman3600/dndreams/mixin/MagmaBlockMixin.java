@@ -3,7 +3,6 @@ package net.eman3600.dndreams.mixin;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.initializers.basics.ModItems;
-import net.eman3600.dndreams.items.ModArmorItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.MagmaBlock;

@@ -11,7 +11,7 @@ public class AfflictionProjectileDamageSource extends ProjectileDamageSource {
 
     public AfflictionProjectileDamageSource(String name, Entity projectile, @Nullable Entity attacker) {
         super(name, projectile, attacker);
-        ((DamageSourceAccess)this).setAffliction();
+        ((DamageSourceAccess)this).dndreams$setAffliction();
     }
 
     public static DamageSource projectile(Entity magic, @Nullable Entity attacker) {

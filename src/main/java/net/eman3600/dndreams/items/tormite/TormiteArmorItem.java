@@ -1,6 +1,6 @@
 package net.eman3600.dndreams.items.tormite;
 
-import net.eman3600.dndreams.items.ModArmorItem;
+import net.eman3600.dndreams.items.tool_mirror.ModArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;

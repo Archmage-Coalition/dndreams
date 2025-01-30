@@ -16,7 +16,7 @@ public class ModAttributes {
     public static final EntityAttribute PLAYER_RECLAMATION = register("player.reclamation",
             (new ClampedEntityAttribute("attribute.dndreams.name.player.reclamation", 1.0D, 0.0D, 1024.0D)).setTracked(true));
     public static final EntityAttribute PLAYER_EVASION = register("player.evasion",
-            (new ClampedEntityAttribute("attribute.dndreams.name.player.evasion", 0.5D, 0.0D, 1024.0D)).setTracked(true));
+            (new ClampedEntityAttribute("attribute.dndreams.name.player.evasion", 5D, 0.0D, 1024.0D)).setTracked(true));
     public static final EntityAttribute PLAYER_LUNGE = register("player.lunge",
             (new ClampedEntityAttribute("attribute.dndreams.name.player.lunge", 1D, 0.0D, 1024.0D)).setTracked(true));
 

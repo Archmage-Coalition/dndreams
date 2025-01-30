@@ -11,7 +11,7 @@ import net.eman3600.dndreams.initializers.cca.WorldComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.items.AscendItem;
+import net.eman3600.dndreams.items.misc_tool.AscendItem;
 import net.eman3600.dndreams.items.celestium.CelestiumArmorItem;
 import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
@@ -125,6 +125,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     @Shadow private int jumpingCooldown;
 
     @Shadow public abstract int getArmor();
+
+    @Shadow public abstract float getHeadYaw();
 
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -243,6 +245,25 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     private static void dndreams$getPreferredEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> cir) {
 
         if (stack.isOf(ModItems.CLOUD_WINGS) || stack.isOf(ModItems.EVERGALE)) cir.setReturnValue(EquipmentSlot.CHEST);
+    }
+
+    @Inject(method = "blockedByShield", at = @At("HEAD"), cancellable = true)
+    private void dndreams$blockedByShield$parry(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+        if (EntityComponents.INFUSION.isProvidedBy(this) && EntityComponents.INFUSION.get(this).isParrying()) {
+            Vec3d vec3d = source.getPosition();
+
+            if (DamageSourceAccess.isParryable(source) && vec3d != null) {
+                Vec3d vec3d2 = this.getRotationVec(1.0f);
+                Vec3d vec3d3 = vec3d.relativize(this.getPos()).normalize();
+                vec3d3 = new Vec3d(vec3d3.x, 0.0, vec3d3.z);
+                if (vec3d3.dotProduct(vec3d2) < 0.0) {
+                    cir.setReturnValue(true);
+                    return;
+                }
+            }
+
+            cir.setReturnValue(false);
+        }
     }
 
 
@@ -371,7 +392,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         // 2. Something gives this entity chip damage immunity
         // 3. The entity has neither heartbleed nor mortality
         // 4. The damage source is not out of world, affliction, or electric
-        if ((amount <= 1.25f || (amount <= (1.25f + 0.175f * this.getArmor()) && !source.bypassesArmor())) && (TormiteArmorItem.wornPieces(this) >= 4 || this.getType().isIn(ModTags.CHIP_IMMUNE_ENEMIES)) && !this.hasStatusEffect(ModStatusEffects.HEARTBLEED) && !this.hasStatusEffect(ModStatusEffects.MORTAL) && !source.isOutOfWorld() && source instanceof DamageSourceAccess access && !access.isAffliction() && !access.isElectric()) {
+        if ((amount <= 1.25f || (amount <= (1.25f + 0.175f * this.getArmor()) && !source.bypassesArmor())) && (TormiteArmorItem.wornPieces(this) >= 4 || this.getType().isIn(ModTags.CHIP_IMMUNE_ENEMIES)) && !this.hasStatusEffect(ModStatusEffects.HEARTBLEED) && !this.hasStatusEffect(ModStatusEffects.MORTAL) && !source.isOutOfWorld() && source instanceof DamageSourceAccess access && !access.dndreams$isAffliction() && !access.dndreams$isElectric()) {
             cir.setReturnValue(false);
         }
     }

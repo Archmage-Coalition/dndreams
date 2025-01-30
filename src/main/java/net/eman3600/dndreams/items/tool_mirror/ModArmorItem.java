@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.items;
+package net.eman3600.dndreams.items.tool_mirror;
 
 import com.google.common.collect.ImmutableMultimap;
 import net.eman3600.dndreams.mixin_interfaces.ArmorItemAccess;

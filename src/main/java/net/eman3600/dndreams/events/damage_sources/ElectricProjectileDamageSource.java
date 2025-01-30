@@ -11,7 +11,7 @@ public class ElectricProjectileDamageSource extends ProjectileDamageSource {
 
     public ElectricProjectileDamageSource(String name, Entity projectile, @Nullable Entity attacker) {
         super(name, projectile, attacker);
-        ((DamageSourceAccess)this).setElectric();
+        ((DamageSourceAccess)this).dndreams$setElectric();
     }
 
     public static DamageSource projectile(Entity magic, @Nullable Entity attacker) {

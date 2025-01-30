@@ -9,7 +9,7 @@ import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.entity.ModAttributes;
 import net.eman3600.dndreams.initializers.world.ModGameRules;
-import net.eman3600.dndreams.items.AscendItem;
+import net.eman3600.dndreams.items.misc_tool.AscendItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.misc_armor.EvergaleItem;
 import net.eman3600.dndreams.items.trinket.AirJumpItem;
@@ -21,7 +21,6 @@ import net.eman3600.dndreams.networking.packet_c2s.GaleBoostPacket;
 import net.eman3600.dndreams.networking.packet_s2c.MotionUpdatePacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -29,7 +28,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -40,9 +38,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class InfusionComponent implements InfusionComponentI {
-    public static final int LINK_LENGTH = 40;
     public static final int DODGE_COST = 4;
     public static final int DODGE_COOLDOWN = 24;
+    public static final int PARRY_TIME = 6;
     public static final int ROSE_COOLDOWN = 30;
     public static final int ROSE_RANGE = 20;
 
@@ -53,12 +51,12 @@ public class InfusionComponent implements InfusionComponentI {
     /**
      * How long the player has left being linked to their bonfire.
      */
-    private int linkTicks = 0;
     private boolean needsKit = true;
-    private boolean hasDodge = false;
+    private boolean hasDodge = true;
     private int dodgeCooldown = 0;
     private boolean dodgeLanded = true;
     private int iTicks = 0;
+    private int parryTicks = 0;
     private int airJumps = 0;
     private int jumpCooldown = 0;
     private boolean roseGlasses = false;
@@ -81,11 +79,11 @@ public class InfusionComponent implements InfusionComponentI {
 
     @Override
     public void readFromNbt(NbtCompound tag) {
-        linkTicks = tag.getInt("link_ticks");
         needsKit = tag.getBoolean("needs_kit");
         hasDodge = tag.getBoolean("has_dodge");
         dodgeCooldown = tag.getInt("dodge_cooldown");
         iTicks = tag.getInt("i_ticks");
+        parryTicks = tag.getInt("p_ticks");
         airJumps = tag.getInt("air_jumps");
         dodgeLanded = tag.getBoolean("dodge_landed");
         ascendState = tag.getInt("ascend_state");
@@ -94,11 +92,11 @@ public class InfusionComponent implements InfusionComponentI {
 
     @Override
     public void writeToNbt(NbtCompound tag) {
-        tag.putInt("link_ticks", linkTicks);
         tag.putBoolean("needs_kit", needsKit);
         tag.putBoolean("has_dodge", hasDodge);
         tag.putInt("dodge_cooldown", dodgeCooldown);
         tag.putInt("i_ticks", iTicks);
+        tag.putInt("p_ticks", parryTicks);
         tag.putInt("air_jumps", airJumps);
         tag.putBoolean("dodge_landed", dodgeLanded);
         tag.putInt("ascend_state", ascendState);
@@ -107,11 +105,6 @@ public class InfusionComponent implements InfusionComponentI {
 
     @Override
     public void serverTick() {
-        if (linkTicks > 0) {
-            linkTicks--;
-            markDirty();
-        }
-
         if (needsKit) {
             needsKit = false;
             markDirty();
@@ -132,6 +125,10 @@ public class InfusionComponent implements InfusionComponentI {
         if (iTicks > 0) {
             iTicks--;
             markDirty();
+        }
+
+        if (parryTicks > 0) {
+            parryTicks--;
         }
 
         if (!dodgeLanded && (player.isOnGround() || player.isTouchingWater())) {
@@ -188,6 +185,17 @@ public class InfusionComponent implements InfusionComponentI {
         dodgeCooldown = 0;
         dodgeLanded = true;
         markDirty();
+    }
+
+    @Override
+    public void startParry() {
+        this.parryTicks = PARRY_TIME;
+        markDirty();
+    }
+
+    @Override
+    public boolean isParrying() {
+        return this.parryTicks > 0;
     }
 
     @Override

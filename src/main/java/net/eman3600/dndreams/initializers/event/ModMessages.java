@@ -32,6 +32,7 @@ public class ModMessages {
     public static final Identifier BLOODY_LASER_ID = new Identifier(MODID, "bloody_laser");
     public static final Identifier GOLDEN_LAND_ID = new Identifier(MODID, "golden_land");
     public static final Identifier MANAGOLD_FLASH_ID = new Identifier(MODID, "managold_flash");
+    public static final Identifier PARRY_FLASH_ID = new Identifier(MODID, "parry_flash");
 
     public static void registerC2SPackets() {
         ServerPlayNetworking.registerGlobalReceiver(AIR_SWING_ID, AirSwingPacket::receive);
@@ -57,5 +58,6 @@ public class ModMessages {
         ClientPlayNetworking.registerGlobalReceiver(BLOODY_LASER_ID, DelayedS2CPacket.create(BloodyLaserPacket::receive, BloodyLaserPacket::pack));
         ClientPlayNetworking.registerGlobalReceiver(GOLDEN_LAND_ID, DelayedS2CPacket.create(GoldenLandPacket::receive, GoldenLandPacket::pack));
         ClientPlayNetworking.registerGlobalReceiver(MANAGOLD_FLASH_ID, DelayedS2CPacket.create(ManagoldFlashPacket::receive, ManagoldFlashPacket::pack));
+        ClientPlayNetworking.registerGlobalReceiver(PARRY_FLASH_ID, DelayedS2CPacket.create(ParryFlashPacket::receive, ParryFlashPacket::pack));
     }
 }

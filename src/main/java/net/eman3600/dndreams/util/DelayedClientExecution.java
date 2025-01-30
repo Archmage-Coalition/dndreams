@@ -9,6 +9,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.function.BiConsumer;
 
+/*
+ * Oh my god why does the particle engine break when
+ * accessed by multiple threads?!
+ */
 @Environment(EnvType.CLIENT)
 public class DelayedClientExecution {
 
