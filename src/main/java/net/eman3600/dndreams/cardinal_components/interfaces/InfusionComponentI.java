@@ -3,6 +3,8 @@ package net.eman3600.dndreams.cardinal_components.interfaces;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ClientTickingComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.util.math.Vec3d;
 
@@ -16,6 +18,10 @@ public interface InfusionComponentI extends AutoSyncedComponent, ServerTickingCo
     void startParry();
 
     boolean isParrying();
+
+    void hitParryPunch(LivingEntity target);
+
+    void hitParry(float damageAbsorbed, Entity source);
 
     void markDirty();
 

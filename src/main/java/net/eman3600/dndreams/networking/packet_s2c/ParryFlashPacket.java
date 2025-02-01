@@ -14,6 +14,8 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
@@ -28,6 +30,9 @@ public class ParryFlashPacket {
         Particle flash = manager.addParticle(ParticleTypes.FLASH, pos.x, pos.y, pos.z, 0, 0, 0);
         if (flash != null)
             flash.setColor(.404f, .165f, .631f);
+
+        if (client.world != null)
+            client.world.playSound(pos.x, pos.y, pos.z, SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.PLAYERS, 1, exe.popFloat(), true);
     }
 
     @Environment(EnvType.CLIENT)
@@ -35,6 +40,7 @@ public class ParryFlashPacket {
         exe.pushDouble(buf.readDouble());
         exe.pushDouble(buf.readDouble());
         exe.pushDouble(buf.readDouble());
+        exe.pushFloat(buf.readFloat());
     }
 
     public static void send(ServerWorld world, Vec3d pos) {
@@ -43,6 +49,7 @@ public class ParryFlashPacket {
         packet.writeDouble(pos.x);
         packet.writeDouble(pos.y);
         packet.writeDouble(pos.z);
+        packet.writeFloat(1 + world.random.nextFloat());
 
         for (ServerPlayerEntity player: PlayerLookup.tracking(world, new BlockPos(pos))) {
 

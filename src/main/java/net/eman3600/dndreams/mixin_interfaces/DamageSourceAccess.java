@@ -45,6 +45,18 @@ public interface DamageSourceAccess {
         return new ProjectileDamageSource("dndreams.fire", projectile, attacker).setFire();
     }
 
+    static DamageSource chargeback(Entity attacker) {
+        DamageSource source = new EntityDamageSource("dndreams.chargeback", attacker);
+        ((DamageSourceAccess)source).dndreams$setParryable(false);
+        return source;
+    }
+
+    static DamageSource parry(Entity attacker) {
+        DamageSource source = new EntityDamageSource("dndreams.parry", attacker).setBypassesArmor().setUsesMagic();
+        ((DamageSourceAccess)source).dndreams$setAffliction();
+        return source;
+    }
+
     default boolean isTransethereal() {
         return this instanceof DamageSource source && source.getAttacker() instanceof PlayerEntity player && player.isCreative();
     }

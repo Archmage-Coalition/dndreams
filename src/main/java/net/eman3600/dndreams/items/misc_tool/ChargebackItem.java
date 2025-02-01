@@ -17,9 +17,7 @@ import net.minecraft.world.World;
 
 public class ChargebackItem extends TooltipItem {
 
-    private static final int COOLDOWN = 24;
-    public static final double KNOCKBACK = 1.25;
-    public static final double PROJ_KNOCKBACK = 2.5;
+    private static final int COOLDOWN = 18;
 
     public ChargebackItem(Settings settings) {
         super(settings);

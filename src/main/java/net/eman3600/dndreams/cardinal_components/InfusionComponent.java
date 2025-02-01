@@ -4,6 +4,7 @@ import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.eman3600.dndreams.blocks.VitalOreBlock;
 import net.eman3600.dndreams.cardinal_components.interfaces.InfusionComponentI;
+import net.eman3600.dndreams.entities.mobs.ParryableEntity;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
@@ -13,15 +14,22 @@ import net.eman3600.dndreams.items.misc_tool.AscendItem;
 import net.eman3600.dndreams.items.interfaces.AirSwingItem;
 import net.eman3600.dndreams.items.misc_armor.EvergaleItem;
 import net.eman3600.dndreams.items.trinket.AirJumpItem;
+import net.eman3600.dndreams.mixin_interfaces.DamageSourceAccess;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.networking.packet_c2s.AirJumpPacket;
 import net.eman3600.dndreams.networking.packet_c2s.AscendPacket;
 import net.eman3600.dndreams.networking.packet_c2s.DodgePacket;
 import net.eman3600.dndreams.networking.packet_c2s.GaleBoostPacket;
 import net.eman3600.dndreams.networking.packet_s2c.MotionUpdatePacket;
+import net.eman3600.dndreams.networking.packet_s2c.ParryFlashPacket;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -29,10 +37,12 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameRules;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +53,10 @@ public class InfusionComponent implements InfusionComponentI {
     public static final int PARRY_TIME = 6;
     public static final int ROSE_COOLDOWN = 30;
     public static final int ROSE_RANGE = 20;
+    public static final float PUNCH_DAMAGE = 2.5f;
+    public static final double PUNCH_KNOCKBACK = 0.5;
+    public static final double PARRY_KNOCKBACK = 1.25;
+    public static final double PARRY_PROJ_KNOCKBACK = 2.5;
 
     private final PlayerEntity player;
     private final LivingEntityAccess access;
@@ -57,6 +71,7 @@ public class InfusionComponent implements InfusionComponentI {
     private boolean dodgeLanded = true;
     private int iTicks = 0;
     private int parryTicks = 0;
+    private boolean canParryPunch = false;
     private int airJumps = 0;
     private int jumpCooldown = 0;
     private boolean roseGlasses = false;
@@ -84,6 +99,7 @@ public class InfusionComponent implements InfusionComponentI {
         dodgeCooldown = tag.getInt("dodge_cooldown");
         iTicks = tag.getInt("i_ticks");
         parryTicks = tag.getInt("p_ticks");
+        canParryPunch = tag.getBoolean("p_punch");
         airJumps = tag.getInt("air_jumps");
         dodgeLanded = tag.getBoolean("dodge_landed");
         ascendState = tag.getInt("ascend_state");
@@ -97,6 +113,7 @@ public class InfusionComponent implements InfusionComponentI {
         tag.putInt("dodge_cooldown", dodgeCooldown);
         tag.putInt("i_ticks", iTicks);
         tag.putInt("p_ticks", parryTicks);
+        tag.putBoolean("p_punch", canParryPunch);
         tag.putInt("air_jumps", airJumps);
         tag.putBoolean("dodge_landed", dodgeLanded);
         tag.putInt("ascend_state", ascendState);
@@ -129,6 +146,23 @@ public class InfusionComponent implements InfusionComponentI {
 
         if (parryTicks > 0) {
             parryTicks--;
+
+            if (canParryPunch) {
+                Vec3d pos = player.getEyePos().add(AirSwingItem.rayZVector(player.getHeadYaw(), player.getPitch()).multiply(.75f));
+                Box box = Box.of(pos, 1.5d, 1.5d, 1.5d);
+
+                for (LivingEntity target : player.world.getEntitiesByClass(LivingEntity.class, box, (entity) -> entity != player)) {
+                    if (target instanceof ParryableEntity parryable && parryable.canParry()) {
+                        float damage = parryable.parryInterruptDamage();
+                        parryable.onParry(player);
+                        hitParry(damage, target.isAlive() ? target : null);
+                        break;
+                    } else {
+                        hitParryPunch(target);
+                    }
+                    canParryPunch = false;
+                }
+            }
         }
 
         if (!dodgeLanded && (player.isOnGround() || player.isTouchingWater())) {
@@ -190,12 +224,80 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public void startParry() {
         this.parryTicks = PARRY_TIME;
+        this.canParryPunch = true;
         markDirty();
     }
 
     @Override
     public boolean isParrying() {
         return this.parryTicks > 0;
+    }
+
+    @Override
+    public void hitParryPunch(LivingEntity target) {
+        target.timeUntilRegen = 0;
+        if (target.damage(DamageSourceAccess.chargeback(player), PUNCH_DAMAGE)) {
+            Vec3d kb = AirSwingItem.rayZVector(player.getHeadYaw(), player.getPitch()).multiply(PUNCH_KNOCKBACK);
+
+            target.addVelocity(kb.x, kb.y, kb.z);
+            target.velocityDirty = true;
+            target.velocityModified = true;
+
+            target.getWorld().playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.PLAYERS, 1, 1);
+        } else {
+            target.getWorld().playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_NODAMAGE, SoundCategory.PLAYERS, 1, 1);
+        }
+    }
+
+    @Override
+    public void hitParry(float damageAbsorbed, @Nullable Entity source) {
+        Vec3d pos = player.getEyePos();
+        Vec3d flashPos = pos.add(AirSwingItem.rayZVector(player.getHeadYaw(), player.getPitch()).multiply(.3f));
+
+        ParryFlashPacket.send((ServerWorld) player.getWorld(), flashPos);
+
+        player.getItemCooldownManager().set(ModItems.CHARGEBACK, 10);
+
+        HungerManager manager = player.getHungerManager();
+        if (manager.getSaturationLevel() < manager.getFoodLevel()) {
+            manager.setSaturationLevel(manager.getFoodLevel());
+        }
+
+        if (source instanceof LivingEntity entity && this.canParryPunch) {
+            hitParryPunch(entity);
+        }
+
+        Box box = Box.of(pos, 4d, 5d, 4d);
+
+        for (Entity entity : player.world.getOtherEntities(player, box, (e) -> true)) {
+            if (this.canParryPunch)
+                entity.timeUntilRegen = 0;
+            entity.damage(DamageSourceAccess.parry(player), 4 + damageAbsorbed);
+
+            if (entity instanceof LivingEntity livingEntity) {
+                Vec3d angle = pos.subtract(entity.getPos());
+                angle = angle.normalize().multiply(PARRY_KNOCKBACK);
+                livingEntity.takeKnockback(angle.length(), angle.x, angle.z);
+            } else if (entity instanceof PersistentProjectileEntity projectile) {
+                Vec3d vel = AirSwingItem.rayZVector(player.getHeadYaw(), player.getPitch()).multiply(PARRY_PROJ_KNOCKBACK * -10);
+                if (projectile instanceof TridentEntity) {
+                    vel = vel.multiply(5, .5f, 5);
+                } else {
+                    PersistentProjectileEntity.PickupPermission pickupType = projectile.pickupType;
+                    projectile.setOwner(player);
+                    projectile.pickupType = pickupType;
+                }
+                projectile.setVelocity(vel);
+                projectile.setPitch(player.getPitch());
+                projectile.setYaw(player.getHeadYaw());
+                projectile.setDamage(projectile.getDamage() + 1);
+            }
+
+            entity.velocityDirty = true;
+            entity.velocityModified = true;
+        }
+
+        this.canParryPunch = false;
     }
 
     @Override

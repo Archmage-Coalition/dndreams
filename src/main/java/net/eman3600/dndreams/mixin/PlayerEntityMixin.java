@@ -201,50 +201,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         }
     }
 
-    @Inject(method = "damageShield", at = @At("HEAD"))
-    private void dndreams$damageShield(float amount, CallbackInfo ci) {
-        if (EntityComponents.INFUSION.isProvidedBy(this) && EntityComponents.INFUSION.get(this).isParrying() && !world.isClient()) {
-            Vec3d pos = getEyePos();
-            Vec3d flashPos = pos.add(AirSwingItem.rayZVector(getHeadYaw(), getPitch()).multiply(.3f));
-
-            ParryFlashPacket.send((ServerWorld) getWorld(), flashPos);
-
-            getItemCooldownManager().set(ModItems.CHARGEBACK, 10);
-
-            HungerManager manager = getHungerManager();
-            if (manager.getSaturationLevel() < manager.getFoodLevel()) {
-                manager.setSaturationLevel(manager.getFoodLevel());
-            }
-
-            Box box = Box.of(pos, 4d, 5d, 4d);
-
-            for (Entity entity : world.getOtherEntities(this, box, (e) -> true)) {
-                entity.timeUntilRegen = 0;
-                entity.damage(DamageSourceAccess.magic(this), 4 + amount);
-
-                if (entity instanceof LivingEntity livingEntity) {
-                    Vec3d angle = pos.subtract(entity.getPos());
-                    angle = angle.normalize().multiply(ChargebackItem.KNOCKBACK);
-                    livingEntity.takeKnockback(angle.length(), angle.x, angle.z);
-                } else if (entity instanceof PersistentProjectileEntity projectile) {
-                    Vec3d vel = AirSwingItem.rayZVector(getHeadYaw(), getPitch()).multiply(ChargebackItem.PROJ_KNOCKBACK * -10);
-                    if (projectile instanceof TridentEntity) {
-                        vel = vel.multiply(5, .5f, 5);
-                    } else {
-                        projectile.setOwner(this);
-                    }
-                    projectile.setVelocity(vel);
-                    projectile.setPitch(getPitch());
-                    projectile.setYaw(getHeadYaw());
-                    projectile.setDamage(projectile.getDamage() + 1);
-                }
-
-                entity.velocityDirty = true;
-                entity.velocityModified = true;
-            }
-        }
-    }
-
     @Inject(method = "canFoodHeal", at = @At("HEAD"), cancellable = true)
     private void dndreams$canFoodHeal(CallbackInfoReturnable<Boolean> cir) {
 

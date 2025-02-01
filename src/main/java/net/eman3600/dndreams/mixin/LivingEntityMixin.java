@@ -266,6 +266,13 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
     }
 
+    @Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damageShield(F)V"))
+    private void dndreams$damage$testParry(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (EntityComponents.INFUSION.isProvidedBy(this) && EntityComponents.INFUSION.get(this).isParrying() && !world.isClient()) {
+            EntityComponents.INFUSION.get(this).hitParry(amount, source.getSource());
+        }
+    }
+
 
 
 
