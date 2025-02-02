@@ -42,7 +42,7 @@ public abstract class CreeperEntityMixin extends HostileEntity implements Creepe
 
     @Override
     public boolean canParry() {
-        return this.fuseTime - this.currentFuseTime <= 8;
+        return this.fuseTime - this.currentFuseTime <= 7;
     }
 
     @Override
