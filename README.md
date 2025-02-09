@@ -7,3 +7,5 @@ Music by me, Eman3600. Completed tracks can be found at https://soundcloud.com/e
 ## Current Tracks
 - dread_moon.ogg - So the Moon Cried Out v1 by Eman3600
 - insanity.ogg - Mental Mire Flute Version by Eman3600
+- mire_mental.ogg - Mire Mental Flute Version by Eman3600
+- storm.ogg - Storm on the Starry Sea by Eman3600
