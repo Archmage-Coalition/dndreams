@@ -337,7 +337,7 @@ public class InfusionComponent implements InfusionComponentI {
             }
             double velY = player.isOnGround() ? 0 : playerVelocity.y;
 
-            Vec3d newVelocity = AirSwingItem.rotateVector(addedInput, player.getHeadYaw(), player.getPitch());
+            Vec3d newVelocity = AirSwingItem.rotateVector(addedInput, player.getHeadYaw(), 0);
 
             newVelocity = newVelocity.normalize().multiply(player.getAttributeValue(ModAttributes.PLAYER_LUNGE));
 
