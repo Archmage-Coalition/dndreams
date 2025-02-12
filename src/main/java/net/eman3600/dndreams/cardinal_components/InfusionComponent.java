@@ -49,7 +49,7 @@ import java.util.Optional;
 
 public class InfusionComponent implements InfusionComponentI {
     public static final int DODGE_COST = 4;
-    public static final int DODGE_COOLDOWN = 24;
+    public static final int DODGE_COOLDOWN = 14;
     public static final int PARRY_TIME = 6;
     public static final int ROSE_COOLDOWN = 30;
     public static final int ROSE_RANGE = 20;
@@ -336,10 +336,11 @@ public class InfusionComponent implements InfusionComponentI {
                 addedInput = addedInput.add(0, 0, 1);
             }
             double velY = player.isOnGround() ? 0 : playerVelocity.y;
+            double velX = AirSwingItem.rotateVector(addedInput.normalize(), player.getHeadYaw() - 90, 0).dotProduct(playerVelocity);
 
             Vec3d newVelocity = AirSwingItem.rotateVector(addedInput, player.getHeadYaw(), 0);
 
-            newVelocity = newVelocity.normalize().multiply(player.getAttributeValue(ModAttributes.PLAYER_LUNGE));
+            newVelocity = newVelocity.normalize().multiply(player.getAttributeValue(ModAttributes.PLAYER_LUNGE)).add(addedInput.rotateY((float)Math.toRadians(-player.getHeadYaw() + 90)).multiply(velX));
 
             player.setVelocityClient(newVelocity.x, velY, newVelocity.z);
 
