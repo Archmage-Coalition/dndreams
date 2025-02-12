@@ -30,7 +30,7 @@ public abstract class ZombieEntityMixin extends HostileEntity {
             List<Entity> list = this.world.getOtherEntities(this, box);
             for (Entity collider : list) {
                 if (collider instanceof TridentEntityAccess trident) {
-                    trident.collideWithDrowned(drowned);
+                    trident.dndreams$collideWithDrowned(drowned);
                 }
             }
         }

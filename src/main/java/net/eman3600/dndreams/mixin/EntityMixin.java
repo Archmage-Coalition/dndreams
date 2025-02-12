@@ -9,7 +9,6 @@ import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.world.ModDimensions;
-import net.eman3600.dndreams.items.tormite.TormiteArmorItem;
 import net.eman3600.dndreams.mixin_interfaces.LivingEntityAccess;
 import net.eman3600.dndreams.util.ModTags;
 import net.minecraft.entity.Entity;
@@ -121,7 +120,7 @@ public abstract class EntityMixin implements Nameable, EntityLike, CommandOutput
     private void dndreams$setOnFireFromLava(CallbackInfo ci) {
         if ((Object)this instanceof LivingEntity entity) {
             Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent(entity);
-            if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS) && this instanceof LivingEntityAccess access && access.hasNotBrokenLava()) {
+            if (trinketOptional.isPresent() && trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS) && this instanceof LivingEntityAccess access && access.dndreams$hasNotBrokenLava()) {
                 ci.cancel();
             }
         }

@@ -5,15 +5,14 @@ import dev.onyxstudios.cca.api.v3.component.tick.ClientTickingComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.ServerTickingComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.util.math.Vec3d;
 
 public interface InfusionComponentI extends AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
-    boolean hasDodge();
+    boolean hasAerialDodge();
 
     boolean canDodge();
 
-    void setHasDodge(boolean allow);
+    void setHasAerialDodge(boolean allow);
 
     void startParry();
 

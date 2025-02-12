@@ -34,14 +34,14 @@ public abstract class TridentEntityMixin extends PersistentProjectileEntity impl
     }
 
     @Override
-    public void setTridentStack(ItemStack stack) {
+    public void dndreams$setTridentStack(ItemStack stack) {
         this.tridentStack = stack.copy();
         this.dataTracker.set(LOYALTY, (byte) EnchantmentHelper.getLoyalty(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
     }
 
     @Override
-    public void collideWithDrowned(DrownedEntity drowned) {
+    public void dndreams$collideWithDrowned(DrownedEntity drowned) {
         if (dataTracker.get(LOYALTY) > 0 ? this.isNoClip() && this.isOwner(drowned) : this.pickupType == PickupPermission.ALLOWED) {
             if (this.world.isClient || !this.inGround && !this.isNoClip() || this.shake > 0) {
                 return;

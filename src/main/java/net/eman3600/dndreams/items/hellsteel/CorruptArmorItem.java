@@ -25,7 +25,7 @@ public class CorruptArmorItem extends ModArmorItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (!world.isClient() && this == ModItems.CORRUPT_HELMET && entity instanceof LivingEntity living && wornPieces(living) >= 4 && living instanceof LivingEntityAccess access && access.hasNotBrokenLava()) {
+        if (!world.isClient() && this == ModItems.CORRUPT_HELMET && entity instanceof LivingEntity living && wornPieces(living) >= 4 && living instanceof LivingEntityAccess access && access.dndreams$hasNotBrokenLava()) {
             living.addStatusEffect(new StatusEffectInstance(ModStatusEffects.FLAME_GUARD, 145, 0, true, true));
         }
         super.inventoryTick(stack, world, entity, slot, selected);

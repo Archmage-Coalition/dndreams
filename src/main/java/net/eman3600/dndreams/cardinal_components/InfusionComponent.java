@@ -66,7 +66,7 @@ public class InfusionComponent implements InfusionComponentI {
      * How long the player has left being linked to their bonfire.
      */
     private boolean needsKit = true;
-    private boolean hasDodge = true;
+    private boolean hasAerialDodge = false;
     private int dodgeCooldown = 0;
     private boolean dodgeLanded = true;
     private int iTicks = 0;
@@ -95,7 +95,7 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public void readFromNbt(NbtCompound tag) {
         needsKit = tag.getBoolean("needs_kit");
-        hasDodge = tag.getBoolean("has_dodge");
+        hasAerialDodge = tag.getBoolean("has_aerial_dodge");
         dodgeCooldown = tag.getInt("dodge_cooldown");
         iTicks = tag.getInt("i_ticks");
         parryTicks = tag.getInt("p_ticks");
@@ -109,7 +109,7 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putBoolean("needs_kit", needsKit);
-        tag.putBoolean("has_dodge", hasDodge);
+        tag.putBoolean("has_aerial_dodge", hasAerialDodge);
         tag.putInt("dodge_cooldown", dodgeCooldown);
         tag.putInt("i_ticks", iTicks);
         tag.putInt("p_ticks", parryTicks);
@@ -203,19 +203,19 @@ public class InfusionComponent implements InfusionComponentI {
     }
 
     @Override
-    public boolean hasDodge() {
-        return hasDodge;
+    public boolean hasAerialDodge() {
+        return hasAerialDodge;
     }
 
     @Override
     public boolean canDodge() {
-        return hasDodge && dodgeCooldown <= 0 && dodgeLanded && !player.hasStatusEffect(ModStatusEffects.STIFLED);
+        return (hasAerialDodge || player.isOnGround()) && dodgeCooldown <= 0 && dodgeLanded && !player.hasStatusEffect(ModStatusEffects.STIFLED);
     }
 
     @Override
-    public void setHasDodge(boolean allow) {
+    public void setHasAerialDodge(boolean allow) {
 
-        hasDodge = allow;
+        hasAerialDodge = allow;
         dodgeCooldown = 0;
         dodgeLanded = true;
         markDirty();
@@ -323,7 +323,7 @@ public class InfusionComponent implements InfusionComponentI {
     }
 
     @Environment(EnvType.CLIENT)
-    public void tryDodgeClient() {
+    public void tryDodgeClient(Vec3d addedInput) {
 
         if (!canDodge()) return;
 
@@ -331,19 +331,19 @@ public class InfusionComponent implements InfusionComponentI {
 
         if (mana.canAfford(DODGE_COST)) {
 
-            Vec3d velocity = player.getVelocity();
-            double velY = player.isOnGround() ? 0.4 : velocity.y;
-            velocity = velocity.subtract(0, velocity.y, 0);
-
-            if (velocity.lengthSquared() <= .0025) {
-                velocity = Vec3d.fromPolar(0, player.getYaw());
+            Vec3d playerVelocity = player.getVelocity();
+            if (addedInput.lengthSquared() <= .0025) {
+                addedInput = addedInput.add(0, 0, 1);
             }
+            double velY = player.isOnGround() ? 0 : playerVelocity.y;
 
-            velocity = velocity.normalize().multiply(player.getAttributeValue(ModAttributes.PLAYER_LUNGE));
+            Vec3d newVelocity = AirSwingItem.rotateVector(addedInput, player.getHeadYaw(), player.getPitch());
 
-            player.setVelocityClient(velocity.x, velY, velocity.z);
+            newVelocity = newVelocity.normalize().multiply(player.getAttributeValue(ModAttributes.PLAYER_LUNGE));
 
-            DodgePacket.send(velocity);
+            player.setVelocityClient(newVelocity.x, velY, newVelocity.z);
+
+            DodgePacket.send(newVelocity);
         }
     }
 
@@ -388,7 +388,7 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public void clientTick() {
 
-        if (access.isJumping() && !player.isFallFlying() && jumpCooldown <= 0 && airJumps < getMaxJumps()) {
+        if (access.dndreams$isJumping() && !player.isFallFlying() && jumpCooldown <= 0 && airJumps < getMaxJumps()) {
 
             jumpCooldown = 9;
 
@@ -403,7 +403,7 @@ public class InfusionComponent implements InfusionComponentI {
             player.velocityModified = true;
             player.velocityDirty = true;
             AirJumpPacket.send(velocity);
-        } else if (access.isJumping() && EvergaleItem.isUsing(player)) {
+        } else if (access.dndreams$isJumping() && EvergaleItem.isUsing(player)) {
 
             Vec3d velocity = player.getVelocity().add(AirSwingItem.rayZVector(player.getYaw(), player.getPitch()).multiply(EvergaleItem.ACCELERATION));
 
@@ -475,7 +475,7 @@ public class InfusionComponent implements InfusionComponentI {
         if (airJumps < getMaxJumps()) {
             airJumps++;
             player.fallDistance = 0;
-            access.setJumpingCooldown(10);
+            access.dndreams$setJumpingCooldown(10);
 
             markDirty();
             return true;

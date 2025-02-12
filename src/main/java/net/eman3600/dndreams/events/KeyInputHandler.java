@@ -5,8 +5,12 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.mixin.client.keybinding.KeyBindingAccessor;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.math.Vec2f;
+import net.minecraft.util.math.Vec3d;
 import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
@@ -23,7 +27,9 @@ public class KeyInputHandler {
 
                 if (!holdingDodgeKey) {
                     holdingDodgeKey = true;
-                    EntityComponents.INFUSION.get(client.player).tryDodgeClient();
+                    Vec2f movementInput = client.player.input.getMovementInput();
+                    EntityComponents.INFUSION.get(client.player)
+                            .tryDodgeClient(new Vec3d(movementInput.x, 0, movementInput.y));
                 }
             } else if (holdingDodgeKey) {
                 holdingDodgeKey = false;

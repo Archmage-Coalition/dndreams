@@ -33,7 +33,7 @@ public abstract class DrownedEntityMixin extends ZombieEntity implements RangedA
         ItemStack stack = getMainHandStack();
 
         if (stack.isOf(Items.TRIDENT) && tridentEntity instanceof TridentEntityAccess access) {
-            access.setTridentStack(stack);
+            access.dndreams$setTridentStack(stack);
             tridentEntity.pickupType = EnchantmentHelper.getLoyalty(stack) > 0 ? PersistentProjectileEntity.PickupPermission.DISALLOWED : PersistentProjectileEntity.PickupPermission.ALLOWED;
         }
     }

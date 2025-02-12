@@ -33,6 +33,13 @@ public interface AirSwingItem {
         return rot;
     }
 
+    static Vec3d rotateVector(Vec3d vec, float yaw, float pitch) {
+        vec = vec.rotateX((float)Math.toRadians(-pitch));
+        vec = vec.rotateY((float)Math.toRadians(-yaw));
+
+        return vec;
+    }
+
     static Vec3d flatRayZVector(float yaw, float pitch) {
         Vec3d rot = new Vec3d(0, 0, 0.1d);
         rot = rot.rotateX((float)Math.toRadians(-pitch));

@@ -54,6 +54,7 @@ import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -133,7 +134,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     }
 
     @Inject(method = "onDeath", at = @At("HEAD"))
-    public void injectDeath(DamageSource damageSource, CallbackInfo info) {
+    public void dnddreams$injectDeath(DamageSource damageSource, CallbackInfo info) {
         if ((Entity)this instanceof WitherEntity) {
             WorldComponents.BOSS_STATE.get(world.getScoreboard()).flagWitherSlain(true);
         } else if ((Entity)this instanceof MerchantEntity) {
@@ -189,36 +190,40 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     private void dndreams$canWalkOnFluid(FluidState state, CallbackInfoReturnable<Boolean> cir) {
         Optional<TrinketComponent> trinketOptional = TrinketsApi.getTrinketComponent((LivingEntity)(Object)this);
         if (trinketOptional.isPresent() &&
-                (trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS) && state.isIn(FluidTags.LAVA) && hasNotBrokenLava() ||
-                        trinketOptional.get().isEquipped(ModItems.WATER_STRIDERS) && state.isIn(ModTags.HYDRO) && hasNotBrokenHydro())) {
+                (trinketOptional.get().isEquipped(ModItems.LAVA_STRIDERS) && state.isIn(FluidTags.LAVA) && dndreams$hasNotBrokenLava() ||
+                        trinketOptional.get().isEquipped(ModItems.WATER_STRIDERS) && state.isIn(ModTags.HYDRO) && dndreams$hasNotBrokenHydro())) {
             cir.setReturnValue(true);
         }
     }
 
+    @Unique
     private boolean isAtLavaSurface() {
-        return hasNotBrokenLava() && isInLava();
+        return dndreams$hasNotBrokenLava() && isInLava();
     }
 
+    @Unique
     private boolean isAtHydroSurface() {
-        return hasNotBrokenHydro() && isInHydro();
+        return dndreams$hasNotBrokenHydro() && isInHydro();
     }
 
+    @Unique
     private boolean isInHydro() {
         return !this.firstUpdate && (this.fluidHeight.getDouble(FluidTags.WATER) > 0.0 || this.fluidHeight.getDouble(ModTags.FLOWING_SPIRIT) > 0.0 || this.fluidHeight.getDouble(ModTags.SORROW) > 0.0);
     }
 
     @Override
-    public boolean hasNotBrokenLava() {
+    public boolean dndreams$hasNotBrokenLava() {
         if (this.isSneaking() && this.isInLava()) return false;
         return this.fluidHeight.getDouble(FluidTags.LAVA) <= 0.7 && !isOnFire();
     }
 
     @Override
-    public boolean hasNotBrokenHydro() {
+    public boolean dndreams$hasNotBrokenHydro() {
         if (this.isSneaking() && isInHydro()) return false;
         return this.fluidHeight.getDouble(ModTags.HYDRO) <= 0.7;
     }
 
+    @Unique
     private void updateLavaFloating() {
         if (isAtLavaSurface()) {
             ShapeContext shapeContext = ShapeContext.of(this);
@@ -230,6 +235,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
         }
     }
 
+    @Unique
     private void updateHydroFloating() {
         if (isAtHydroSurface()) {
             ShapeContext shapeContext = ShapeContext.of(this);
@@ -413,7 +419,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
 
     @Inject(method = "modifyAppliedDamage", at = @At("RETURN"), cancellable = true)
     private void dndreams$modifyAppliedDamage(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
-        if (shouldResist(amount, source)) {
+        if (dndreams$shouldResist(amount, source)) {
             float hp = getHealth() + getAbsorptionAmount();
             float wouldRemain = hp - amount;
             float cap = getMaxHealth();
@@ -434,7 +440,7 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     }
 
     @Override
-    public boolean shouldResist(float damage, DamageSource source) {
+    public boolean dndreams$shouldResist(float damage, DamageSource source) {
 
         return false;
     }
@@ -543,17 +549,17 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityAc
     }
 
     @Override
-    public boolean isJumping() {
+    public boolean dndreams$isJumping() {
         return jumping;
     }
 
     @Override
-    public int getJumpingCooldown() {
+    public int dndreams$getJumpingCooldown() {
         return jumpingCooldown;
     }
 
     @Override
-    public void setJumpingCooldown(int jumpingCooldown) {
+    public void dndreams$setJumpingCooldown(int jumpingCooldown) {
         this.jumpingCooldown = jumpingCooldown;
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 public interface TridentEntityAccess {
 
-    void setTridentStack(ItemStack stack);
+    void dndreams$setTridentStack(ItemStack stack);
 
-    void collideWithDrowned(DrownedEntity drowned);
+    void dndreams$collideWithDrowned(DrownedEntity drowned);
 }

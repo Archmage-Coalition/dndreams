@@ -29,8 +29,8 @@ public class CrystalFeatherItem extends Item {
         ItemStack stack = user.getStackInHand(hand);
 
         InfusionComponent infusion = EntityComponents.INFUSION.get(user);
-        if (!infusion.hasDodge()) {
-            infusion.setHasDodge(true);
+        if (!infusion.hasAerialDodge()) {
+            infusion.setHasAerialDodge(true);
 
             user.playSound(SoundEvents.ENTITY_WITHER_SPAWN, SoundCategory.PLAYERS, 1f, 1f);
 
@@ -48,7 +48,7 @@ public class CrystalFeatherItem extends Item {
 
             InfusionComponent infusion = EntityComponents.INFUSION.get(access.dndreams$getPlayer());
 
-            tooltip.add(Text.translatable(getTranslationKey() + (infusion.hasDodge() ? ".tooltip.used" : ".tooltip")));
+            tooltip.add(Text.translatable(getTranslationKey() + (infusion.hasAerialDodge() ? ".tooltip.used" : ".tooltip")));
         }
     }
 }
