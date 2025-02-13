@@ -19,7 +19,6 @@ import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewThrownItem;
 import net.eman3600.dndreams.items.consumable.permanent.AttributePermItem;
-import net.eman3600.dndreams.items.consumable.permanent.CrystalFeatherItem;
 import net.eman3600.dndreams.items.consumable.permanent.FidiFruitItem;
 import net.eman3600.dndreams.items.consumable.permanent.ManifestBrewItem;
 import net.eman3600.dndreams.items.dreadful.DreadfulArrowItem;
@@ -585,7 +584,8 @@ public class ModItems {
 
     // Crystal Feather
     public static final Item CRYSTAL_FEATHER = registerItem("crystal_feather",
-            new CrystalFeatherItem(new FabricItemSettings().group(ItemGroup.TOOLS)));
+            new AttributePermItem(new FabricItemSettings().group(ItemGroup.TOOLS),
+                    1, ModAttributes.PLAYER_DASHES, 1d));
 
     // Fruit of Fidi
     public static final Item FIDI_FRUIT = registerItem("fidi_fruit",

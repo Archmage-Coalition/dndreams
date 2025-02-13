@@ -8,11 +8,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.Vec3d;
 
 public interface InfusionComponentI extends AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
-    boolean hasAerialDodge();
 
     boolean canDodge();
-
-    void setHasAerialDodge(boolean allow);
 
     void startParry();
 

@@ -101,9 +101,6 @@
   "item.dndreams.bloodflame_vessel": "Bloodflame Catalyst",
   "item.dndreams.mind_shears": "Mind Shears",
   "item.dndreams.mind_shears.tooltip": "§3Tear your mind to pieces.",
-  "item.dndreams.crystal_feather": "Crystal Feather",
-  "item.dndreams.crystal_feather.tooltip": "§3Allows you to dash midair.",
-  "item.dndreams.crystal_feather.tooltip.used": "§cYou can already dash midair.",
   "item.dndreams.chargeback": "Chargeback Gauntlet",
   "item.dndreams.chargeback.tooltip.0": "§3Parries attacks, launching foes.",
   "item.dndreams.chargeback.tooltip.1": "§3Can parry some unblockable attacks.",
@@ -313,6 +310,9 @@
   "item.dndreams.brilliant_spirit": "Brilliant Spirit",
   "item.dndreams.brilliant_spirit.tooltip": "The light offers you energy.",
   "item.dndreams.brilliant_spirit.tooltip.spent": "The light offers no more.",
+  "item.dndreams.crystal_feather": "Crystal Feather",
+  "item.dndreams.crystal_feather.tooltip": "§3Grants an extra consecutive dash.",
+  "item.dndreams.crystal_feather.tooltip.spent": "§cYou already have an extra dash.",
 
   "item.dndreams.essence_imagination": "Essence of Imagination",
   "item.dndreams.essence_imagination.tooltip": "§3Heals the mind's corruption.",
@@ -558,7 +558,8 @@
   "attribute.dndreams.name.player.revival": "Revival",
   "attribute.dndreams.name.player.reclamation": "Healing Received",
   "attribute.dndreams.name.player.evasion": "Evasion Time",
-  "attribute.dndreams.name.player.lunge": "Dodge Distance",
+  "attribute.dndreams.name.player.lunge": "Dash Distance",
+  "attribute.dndreams.name.player.dashes": "Dash Count",
   
   
   "item.minecraft.potion.effect.dreamy": "Potion of Flowing Magic",

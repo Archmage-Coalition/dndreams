@@ -49,7 +49,8 @@ import java.util.Optional;
 
 public class InfusionComponent implements InfusionComponentI {
     public static final int DODGE_COST = 4;
-    public static final int DODGE_COOLDOWN = 14;
+    public static final int DODGE_COOLDOWN = 20;
+    public static final int DODGE_COOLDOWN_MINI = 3;
     public static final int PARRY_TIME = 6;
     public static final int ROSE_COOLDOWN = 30;
     public static final int ROSE_RANGE = 20;
@@ -66,8 +67,9 @@ public class InfusionComponent implements InfusionComponentI {
      * How long the player has left being linked to their bonfire.
      */
     private boolean needsKit = true;
-    private boolean hasAerialDodge = false;
     private int dodgeCooldown = 0;
+    private int dodgeCooldownMini = 0;
+    private int dashes = 0;
     private boolean dodgeLanded = true;
     private int iTicks = 0;
     private int parryTicks = 0;
@@ -95,8 +97,9 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public void readFromNbt(NbtCompound tag) {
         needsKit = tag.getBoolean("needs_kit");
-        hasAerialDodge = tag.getBoolean("has_aerial_dodge");
         dodgeCooldown = tag.getInt("dodge_cooldown");
+        dodgeCooldownMini = tag.getInt("dodge_cooldown_mini");
+        dashes = tag.getInt("dashes");
         iTicks = tag.getInt("i_ticks");
         parryTicks = tag.getInt("p_ticks");
         canParryPunch = tag.getBoolean("p_punch");
@@ -109,8 +112,9 @@ public class InfusionComponent implements InfusionComponentI {
     @Override
     public void writeToNbt(NbtCompound tag) {
         tag.putBoolean("needs_kit", needsKit);
-        tag.putBoolean("has_aerial_dodge", hasAerialDodge);
         tag.putInt("dodge_cooldown", dodgeCooldown);
+        tag.putInt("dodge_cooldown_mini", dodgeCooldownMini);
+        tag.putInt("dashes", dashes);
         tag.putInt("i_ticks", iTicks);
         tag.putInt("p_ticks", parryTicks);
         tag.putBoolean("p_punch", canParryPunch);
@@ -136,6 +140,10 @@ public class InfusionComponent implements InfusionComponentI {
 
         if (dodgeCooldown > 0) {
             dodgeCooldown--;
+            markDirty();
+        }
+        if (dodgeCooldownMini > 0) {
+            dodgeCooldownMini--;
             markDirty();
         }
 
@@ -168,6 +176,14 @@ public class InfusionComponent implements InfusionComponentI {
         if (!dodgeLanded && (player.isOnGround() || player.isTouchingWater())) {
             dodgeLanded = true;
             markDirty();
+        }
+
+        {
+            int maxDashes;
+            if (canRefillDashes() && dashes < (maxDashes = getMaxDashes())) {
+                dashes = maxDashes;
+                markDirty();
+            }
         }
 
         if (airJumps > 0 && (player.isOnGround() || player.isTouchingWater())) {
@@ -203,22 +219,12 @@ public class InfusionComponent implements InfusionComponentI {
     }
 
     @Override
-    public boolean hasAerialDodge() {
-        return hasAerialDodge;
-    }
-
-    @Override
     public boolean canDodge() {
-        return (hasAerialDodge || player.isOnGround()) && dodgeCooldown <= 0 && dodgeLanded && !player.hasStatusEffect(ModStatusEffects.STIFLED);
+        return dodgeCooldownMini <= 0 && dashes > 0 && !player.hasStatusEffect(ModStatusEffects.STIFLED);
     }
 
-    @Override
-    public void setHasAerialDodge(boolean allow) {
-
-        hasAerialDodge = allow;
-        dodgeCooldown = 0;
-        dodgeLanded = true;
-        markDirty();
+    public boolean canRefillDashes() {
+        return dodgeLanded && dodgeCooldown <= 0;
     }
 
     @Override
@@ -358,12 +364,22 @@ public class InfusionComponent implements InfusionComponentI {
             mana.useMana(DODGE_COST);
             giveImmunity();
             dodgeCooldown = DODGE_COOLDOWN;
+            dodgeCooldownMini = DODGE_COOLDOWN_MINI;
+            dashes--;
             dodgeLanded = false;
 
             player.setVelocity(velocity);
 
             player.world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_CREEPER_DEATH, SoundCategory.NEUTRAL, 5, 2);
         }
+    }
+
+    public int getMaxDashes() {
+        return (int)player.getAttributeValue(ModAttributes.PLAYER_DASHES);
+    }
+
+    public int getDashes() {
+        return dashes;
     }
 
     public int getMaxJumps() {
