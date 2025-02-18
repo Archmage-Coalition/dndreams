@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.entities.projectiles;
 
+import net.eman3600.dndreams.entities.mobs.ParryableEntity;
 import net.eman3600.dndreams.initializers.basics.ModEnchantments;
 import net.eman3600.dndreams.initializers.basics.ModItems;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
@@ -18,6 +19,7 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -31,7 +33,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrownedBeamEntity extends BeamProjectileEntity {
+public class CrownedBeamEntity extends BeamProjectileEntity implements ParryableEntity {
     private static final int DURATION = 60;
     private static final int DURATION_WEAK = 5;
     private static final double SPEED = 1.0d;
@@ -150,7 +152,7 @@ public class CrownedBeamEntity extends BeamProjectileEntity {
                                         livingEntity.takeKnockback(0.4f, MathHelper.sin(getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getYaw() * ((float) Math.PI / 180)));
 
                                         if (dataTracker.get(WICKED)) {
-                                            livingEntity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.MORTAL, 200));
+                                            livingEntity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.MORTAL, 300));
                                         }
                                     }
                                     target.damage(DamageSource.magic(this, getOwner()), this.getDamage());
@@ -229,5 +231,20 @@ public class CrownedBeamEntity extends BeamProjectileEntity {
         Vec3d offset = AirSwingItem.rollYVector(getYaw(), getPitch(), getDataTracker().get(ROLL)).multiply(distance);
 
         return result.add(offset);
+    }
+
+    @Override
+    public boolean canParry() {
+        return true;
+    }
+
+    @Override
+    public float parryInterruptDamage() {
+        return getDamage();
+    }
+
+    @Override
+    public void onParry(PlayerEntity player) {
+        kill();
     }
 }

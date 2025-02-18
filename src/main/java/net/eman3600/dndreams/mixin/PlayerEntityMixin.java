@@ -101,7 +101,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 .add(ModAttributes.PLAYER_MAX_MANA, 0d)
                 .add(ModAttributes.PLAYER_REVIVAL, 1d)
                 .add(ModAttributes.PLAYER_RECLAMATION, 1d)
-                .add(ModAttributes.PLAYER_EVASION, 7d)
+                .add(ModAttributes.PLAYER_EVASION, 5d)
                 .add(ModAttributes.PLAYER_LUNGE, .75d)
                 .add(ModAttributes.PLAYER_DASHES, 1d));
     }

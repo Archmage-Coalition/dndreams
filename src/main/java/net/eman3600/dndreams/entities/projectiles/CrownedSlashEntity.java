@@ -146,7 +146,7 @@ public class CrownedSlashEntity extends BeamProjectileEntity {
                                     livingEntity.takeKnockback(0.4f, MathHelper.sin(getYaw() * ((float) Math.PI / 180)), -MathHelper.cos(getYaw() * ((float) Math.PI / 180)));
 
                                     if (dataTracker.get(WICKED)) {
-                                        livingEntity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.MORTAL, 200));
+                                        livingEntity.addStatusEffect(new StatusEffectInstance(ModStatusEffects.MORTAL, 300));
                                     }
                                 }
                                 target.damage(DamageSource.magic(this, getOwner()), this.getDamage());

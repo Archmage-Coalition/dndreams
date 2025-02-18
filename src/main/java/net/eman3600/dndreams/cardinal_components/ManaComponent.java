@@ -90,10 +90,11 @@ public class ManaComponent implements ManaComponentI, AutoSyncedComponent {
             regenRate *= 3f;
         }
 
-        if (TormiteArmorItem.wornPieces(player) > 0) {
+        int tormitePieces;
+        if ((tormitePieces = TormiteArmorItem.wornPieces(player)) > 0) {
             TormentComponent torment = EntityComponents.TORMENT.get(player);
 
-            regenRate *= 1f + (TormiteArmorItem.wornPieces(player) * (1f - torment.getSanity()/100) * .375f);
+            regenRate *= 1f + (tormitePieces * (1f - torment.getSanity()/100) * .375f);
         }
 
         return (int)regenRate;

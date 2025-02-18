@@ -40,8 +40,11 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     @Unique
     private static final Identifier DNDREAMS_GUI_ICONS = new Identifier(Initializer.MODID, "textures/gui/icons.png");
 
+    @Unique
     private static final Identifier DNDREAMS_GUI_MANA_BAR = new Identifier(Initializer.MODID, "textures/gui/mana_bar.png");
+    @Unique
     private static final Identifier DNDREAMS_GUI_HEARTS = new Identifier(Initializer.MODID, "textures/gui/hearts.png");
+    @Unique
     private static final Identifier DNDREAMS_GUI_SANITY_METER = new Identifier(Initializer.MODID, "textures/gui/sanity_meter.png");
 
     @Unique private static final Identifier DRAGON_FLASH_IMAGE = new Identifier(Initializer.MODID, "textures/gui/shader/dragon_flash.png");
@@ -122,68 +125,8 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
     public void dndreams$renderManaModifier(MatrixStack matrices, int x, CallbackInfo ci) {
         PlayerEntity player = getCameraPlayer();
 
-
-        EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
-            int mana = manaComponent.getMana();
-            int maxMana = manaComponent.getManaMax();
-            int xpBonus = manaComponent.getXPBonus();
-
-            if (xpBonus > 0) {
-                String string = "+" + xpBonus;
-                int k = x + 182 + 2;
-                int l = this.scaledHeight - 31 + 1;
-                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
-                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, 0x009295);
-            }
-
-            if (manaComponent.shouldRender()) {
-                int xPos = client.options.getMainArm().getValue() == Arm.LEFT ? scaledWidth - MANA_X_OFFSET - MANA_WIDTH : MANA_X_OFFSET;
-                int yPos = scaledHeight - MANA_Y_OFFSET - MANA_HEIGHT;
-
-                String string = mana + "/" + maxMana;
-                int k = xPos + 9;
-                int l = (yPos - MANA_HEIGHT - 3);
-                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
-                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, 0x009295);
-            }
-        });
-
-
-
-        EntityComponents.REVIVE.maybeGet(player).ifPresent(revive -> {
-            if (revive.shouldDisplay()) {
-                int amount = revive.remainingRevives();
-                String string = amount >= 0 ? "x" + amount : "x0";
-
-                int k = client.options.getMainArm().getValue() == Arm.RIGHT ? REVIVE_X_OFFSET + REVIVE_WIDTH + 5 : scaledWidth - REVIVE_X_OFFSET - REVIVE_WIDTH - 5 - 10;
-                int l = scaledHeight - (revive.shouldOffsetRender() ? REVIVE_Y_BIG_OFFSET : REVIVE_Y_OFFSET) - 12;
-
-                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
-                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
-                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, Color.RED.getRGB());
-            }
-        });
-    }
-
-    @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
-    private void dndreams$renderStatusBars(MatrixStack matrices, CallbackInfo callbackInfo) {
         int xPos = client.options.getMainArm().getValue() == Arm.LEFT ? scaledWidth - MANA_X_OFFSET - MANA_WIDTH : MANA_X_OFFSET;
         int yPos = scaledHeight - MANA_Y_OFFSET - MANA_HEIGHT;
-
-
-
-        PlayerEntity player = getCameraPlayer();
-
-
-
 
         EntityComponents.MANA.maybeGet(player).ifPresent(manaComponent -> {
             if (!manaComponent.shouldRender()) return;
@@ -201,6 +144,31 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
             }
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
+
+            int realMana = manaComponent.getMana();
+            int xpBonus = manaComponent.getXPBonus();
+
+            if (xpBonus > 0) {
+                String string = "+" + xpBonus;
+                int k = x + 182 + 2;
+                int l = this.scaledHeight - 31 + 1;
+                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, 0x009295);
+            }
+
+            if (manaComponent.shouldRender()) {
+                String string = realMana + "/" + maxMana;
+                int k = xPos + 9;
+                int l = (yPos - MANA_HEIGHT - 3);
+                this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
+                this.getTextRenderer().draw(matrices, string, (float)k, (float)l, 0x009295);
+            }
         });
 
         int tormentXPos;
@@ -276,6 +244,18 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
             RenderSystem.setShaderColor(1, 1, 1, 1);
             RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
+
+            int amount = revive.remainingRevives();
+            String string = amount >= 0 ? "x" + amount : "x0";
+
+            int k = client.options.getMainArm().getValue() == Arm.RIGHT ? REVIVE_X_OFFSET + REVIVE_WIDTH + 5 : scaledWidth - REVIVE_X_OFFSET - REVIVE_WIDTH - 5 - 10;
+            int l = scaledHeight - (revive.shouldOffsetRender() ? REVIVE_Y_BIG_OFFSET : REVIVE_Y_OFFSET) - 12;
+
+            this.getTextRenderer().draw(matrices, string, (float)(k + 1), (float)l, 0);
+            this.getTextRenderer().draw(matrices, string, (float)(k - 1), (float)l, 0);
+            this.getTextRenderer().draw(matrices, string, (float)k, (float)(l + 1), 0);
+            this.getTextRenderer().draw(matrices, string, (float)k, (float)(l - 1), 0);
+            this.getTextRenderer().draw(matrices, string, (float)k, (float)l, Color.RED.getRGB());
         });
 
         if (dragonFlashTicks > 0) {
@@ -296,6 +276,11 @@ public abstract class HudMixin extends DrawableHelper implements HudAccess {
 
             RenderSystem.setShaderColor(1, 1, 1, 1);
         }
+    }
+
+    @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", shift = At.Shift.AFTER, ordinal = 2, target = "Lnet/minecraft/client/MinecraftClient;getProfiler()Lnet/minecraft/util/profiler/Profiler;"))
+    private void dndreams$renderStatusBars(MatrixStack matrices, CallbackInfo callbackInfo) {
+
     }
 
     @Inject(method = "drawHeart", at = @At("HEAD"), cancellable = true)

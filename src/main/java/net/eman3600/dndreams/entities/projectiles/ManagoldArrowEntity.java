@@ -37,8 +37,7 @@ public class ManagoldArrowEntity extends PersistentProjectileEntity {
         return new ItemStack(ModItems.MANAGOLD_ARROW);
     }
 
-    private void burst() {
-        Vec3d origin = getPos();
+    private void burst(Vec3d origin) {
         Box box = Box.of(origin, BLAST_RANGE, BLAST_RANGE, BLAST_RANGE);
 
         int i = MathHelper.ceil(MathHelper.clamp(this.getVelocity().length() * getDamage() * .5, 0.0, 2.147483647E9));
@@ -60,7 +59,7 @@ public class ManagoldArrowEntity extends PersistentProjectileEntity {
         setDamage(d);
 
         if (!world.isClient)
-            burst();
+            burst(getPos());
     }
 
     @Override
@@ -68,7 +67,7 @@ public class ManagoldArrowEntity extends PersistentProjectileEntity {
         super.onBlockHit(blockHitResult);
 
         if (!world.isClient)
-            burst();
+            burst(blockHitResult.getPos());
         kill();
     }
 }

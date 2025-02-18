@@ -1,5 +1,6 @@
 package net.eman3600.dndreams.mixin_interfaces;
 
+import net.eman3600.dndreams.entities.mobs.ParryableEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.EntityDamageSource;
@@ -25,7 +26,7 @@ public interface DamageSourceAccess {
         return source instanceof DamageSourceAccess access && access.dndreams$isAffliction();
     }
     static boolean isParryable(DamageSource source) {
-        return source instanceof DamageSourceAccess access && access.dndreams$isParryable();
+        return (source instanceof DamageSourceAccess access && access.dndreams$isParryable()) || (source.getSource() instanceof ParryableEntity parryable && parryable.canParry());
     }
 
     static DamageSource create(String name, boolean electric, boolean affliction) {

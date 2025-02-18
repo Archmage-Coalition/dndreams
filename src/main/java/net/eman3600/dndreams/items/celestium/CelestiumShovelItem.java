@@ -1,63 +1,58 @@
 package net.eman3600.dndreams.items.celestium;
 
-import net.eman3600.dndreams.entities.misc.RisingBlockEntity;
+import net.eman3600.dndreams.items.interfaces.ManaCostItem;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.FallingBlockEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CelestiumShovelItem extends ShovelItem {
+public class CelestiumShovelItem extends ShovelItem implements ManaCostItem {
 
     public CelestiumShovelItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack stack = user.getStackInHand(hand);
+    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
 
-        HitResult hit = user.raycast(30, 0, false);
-        if (hit.getType() == HitResult.Type.BLOCK) {
-            BlockHitResult result = (BlockHitResult) hit;
+        float hardnessThreshold = state.getHardness(world, pos) * 1.5f;
 
-            BlockPos pos = result.getBlockPos();
-            BlockState state = world.getBlockState(pos);
+        if (!world.isClient && hardnessThreshold != 0.0f) {
+            int damage = 1;
 
-            if (state.getHardness(world, pos) >= 0 && world.getBlockEntity(pos) == null && state.getBlock().getBlastResistance() < 1000f && FallingBlock.canFallThrough(world.getBlockState(pos.up()))) {
+            if (isSuitableFor(state) && !miner.isSneaking() && miner instanceof PlayerEntity player && canAffordMana(player, stack)) {
+                for (int i = -1; i < 2; i++) for (int j = -1; j < 2; j++) for (int k = -1; k < 2; k++) {
 
-                if (!world.isClient) {
-                    RisingBlockEntity.spawnFromBlock(world, pos, state);
-                    stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+                    BlockPos extraPos = pos.add(i, j, k);
+                    BlockState extraState = world.getBlockState(extraPos);
+
+                    if (isSuitableFor(extraState) && extraState.getHardness(world, extraPos) > 0 && extraState.getHardness(world, extraPos) < hardnessThreshold) {
+                        world.breakBlock(extraPos, true, miner);
+                        damage += 1;
+                    }
                 }
-                return TypedActionResult.success(stack);
+                spendMana(player, stack);
             }
-        }
 
-        return super.use(world, user, hand);
+            stack.damage(damage, miner, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+        }
+        return true;
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        if (context.getPlayer() != null && context.getPlayer().isSneaking()) return ActionResult.PASS;
-
-        return super.useOnBlock(context);
+    public int getBaseManaCost() {
+        return 3;
     }
 
     @Override
@@ -65,5 +60,6 @@ public class CelestiumShovelItem extends ShovelItem {
         super.appendTooltip(stack, world, tooltip, context);
 
         tooltip.add(Text.translatable(getTranslationKey() + ".tooltip"));
+        tooltip.add(getTooltipMana(stack));
     }
 }

@@ -11,10 +11,7 @@ import net.eman3600.dndreams.items.block_item.AliasedPlaceableOnWaterItem;
 import net.eman3600.dndreams.items.celestium.*;
 import net.eman3600.dndreams.items.charge.AttunedShardItem;
 import net.eman3600.dndreams.items.charge.ChargedShardItem;
-import net.eman3600.dndreams.items.cloud.CloudArmorItem;
-import net.eman3600.dndreams.items.cloud.CloudPickaxeItem;
-import net.eman3600.dndreams.items.cloud.CloudSwordItem;
-import net.eman3600.dndreams.items.cloud.SkyboundArrowItem;
+import net.eman3600.dndreams.items.cloud.*;
 import net.eman3600.dndreams.items.consumable.*;
 import net.eman3600.dndreams.items.consumable.brew.BrewIngestedItem;
 import net.eman3600.dndreams.items.consumable.brew.BrewThrownItem;
@@ -311,10 +308,10 @@ public class ModItems {
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item CELESTIUM_SHOVEL = registerItem("celestium_shovel",
-            new CelestiumShovelItem(ModToolMaterials.CELESTIUM, 1.5F, -3.0F,
+            new CelestiumShovelItem(ModToolMaterials.CELESTIUM_SLOW, 1.5F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CELESTIUM_HOE = registerItem("celestium_hoe",
-            new ScytheItem(ModToolMaterials.CELESTIUM, 6, -3.4F,
+            new CelestiumScytheItem(ModToolMaterials.CELESTIUM, 6, -3.4F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
 
     public static final Item CELESTIUM_HELMET = registerItem("celestium_helmet",
@@ -663,7 +660,7 @@ public class ModItems {
             new ModAxeItem(ModToolMaterials.CLOUD, 5.0F, -3.0F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CLOUD_SHOVEL = registerItem("cloud_shovel",
-            new ModShovelItem(ModToolMaterials.CLOUD, 1.5F, -3F,
+            new CloudShovelItem(ModToolMaterials.CLOUD, 1.5F, -3F,
                     new FabricItemSettings().group(ItemGroup.TOOLS)));
     public static final Item CLOUD_HOE = registerItem("cloud_hoe",
             new ModHoeItem(ModToolMaterials.CLOUD, -3, 0F,
