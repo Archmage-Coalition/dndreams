@@ -5,6 +5,7 @@ import net.eman3600.dndreams.cardinal_components.MusicTrackerComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
 import net.eman3600.dndreams.initializers.cca.WorldComponents;
+import net.eman3600.dndreams.initializers.world.ModDimensions;
 import net.minecraft.sound.MusicSound;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
@@ -18,6 +19,8 @@ public class ModSoundEvents {
     public static final MusicSound PLAYER_DREAD_MOON = new MusicSound(MUSIC_DREAD_MOON, 0, 0, true);
     public static final SoundEvent MUSIC_INSANITY = registerSound("music.insanity");
     public static final MusicSound PLAYER_INSANITY = new MusicSound(MUSIC_INSANITY, 0, 0, true);
+    public static final SoundEvent MUSIC_NIGHTSTORM = registerSound("music.nightstorm");
+    public static final MusicSound PLAYER_NIGHTSTORM = new MusicSound(MUSIC_NIGHTSTORM, 0, 0, true);
 
     public static final SoundEvent RECORD_STORM = registerSound("record.storm");
     public static final SoundEvent RECORD_MIRE_MENTAL = registerSound("record.mire_mental");
@@ -33,12 +36,25 @@ public class ModSoundEvents {
 
     public static void registerSoundtrack() {
 
+        // Nightmare Storm
+        MusicTrackerComponent.registerTrack(PLAYER_NIGHTSTORM, player -> {
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            return player.getWorld().getRegistryKey() == ModDimensions.DREAM_DIMENSION_KEY && torment.isInStorm();
+
+        }, player -> {
+            TormentComponent torment = EntityComponents.TORMENT.get(player);
+
+            return torment.isInStorm() || player.getWorld().getRainGradient(0f) > .6f;
+
+        });
+
         // Dread Moon
         MusicTrackerComponent.registerTrack(PLAYER_DREAD_MOON, player -> {
             if (player.world != null) {
-                BloodMoonComponent component = WorldComponents.BLOOD_MOON.get(player.world);
+                BloodMoonComponent component = WorldComponents.BLOOD_MOON.get(player.getWorld());
 
-                return component.isBloodMoon();
+                return component.isBloodMoon() && player.getWorld().getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY;
             }
 
             return false;

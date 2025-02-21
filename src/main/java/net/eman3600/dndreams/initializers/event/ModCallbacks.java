@@ -101,7 +101,12 @@ public class ModCallbacks {
                 revive.deathReset();
 
                 if (newPlayer.getServer() != null && newPlayer.getServer().getGameRules().getBoolean(ModGameRules.DO_SANITY_TAX)) {
-                    torment.lowerMaxSanity(TormentComponent.THREAD_VALUE);
+
+                    if (torment.hasDeathShield()) {
+                        torment.setDeathShield(false);
+                    } else {
+                        torment.lowerMaxSanity(TormentComponent.THREAD_VALUE);
+                    }
                 }
             }
         });

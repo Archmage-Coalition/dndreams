@@ -11,6 +11,12 @@
       {"name":"dndreams:music/insanity", "stream":true}
     ]
   },
+  "music.nightstorm": {
+    "category": "music",
+    "sounds": [
+      {"name":"dndreams:music/nightstorm", "stream":true}
+    ]
+  },
   "tunes.triumph": {
     "category": "master",
     "sounds": [

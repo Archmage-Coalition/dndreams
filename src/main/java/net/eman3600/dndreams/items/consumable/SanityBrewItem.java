@@ -1,8 +1,13 @@
 package net.eman3600.dndreams.items.consumable;
 
+import net.eman3600.dndreams.cardinal_components.DreamingComponent;
 import net.eman3600.dndreams.cardinal_components.TormentComponent;
+import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.cca.EntityComponents;
+import net.eman3600.dndreams.mixin_interfaces.ClientWorldAccess;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,10 +15,14 @@ import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class SanityBrewItem extends Item {
     public SanityBrewItem(Settings settings) {
@@ -28,7 +37,10 @@ public class SanityBrewItem extends Item {
             }
 
             TormentComponent component = EntityComponents.TORMENT.get(player);
-            component.lowerMaxSanity(-100f);
+            component.lowerSanity(-100f);
+            component.setDeathShield(true);
+
+            player.addStatusEffect(new StatusEffectInstance(ModStatusEffects.SPIRIT_WARD, 6000));
         }
 
         return stack;
@@ -62,5 +74,21 @@ public class SanityBrewItem extends Item {
     @Override
     public boolean hasGlint(ItemStack stack) {
         return true;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        try {
+            if (world instanceof ClientWorldAccess access) {
+                TormentComponent component = EntityComponents.TORMENT.get(access.dndreams$getPlayer());
+
+                if (component.hasDeathShield()) {
+                    tooltip.add(Text.translatable("item.dndreams.sanity_brew.tooltip_after"));
+                } else {
+                    tooltip.add(Text.translatable("item.dndreams.sanity_brew.tooltip_before"));
+                    tooltip.add(Text.translatable("item.dndreams.sanity_brew.tooltip_before2"));
+                }
+            }
+        } catch (NullPointerException ignored) {}
     }
 }

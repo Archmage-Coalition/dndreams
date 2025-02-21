@@ -22,6 +22,7 @@ import net.eman3600.dndreams.networking.packet_c2s.DodgePacket;
 import net.eman3600.dndreams.networking.packet_c2s.GaleBoostPacket;
 import net.eman3600.dndreams.networking.packet_s2c.MotionUpdatePacket;
 import net.eman3600.dndreams.networking.packet_s2c.ParryFlashPacket;
+import net.eman3600.dndreams.util.ModTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
@@ -269,8 +270,14 @@ public class InfusionComponent implements InfusionComponentI {
             manager.setSaturationLevel(manager.getFoodLevel());
         }
 
-        if (source instanceof LivingEntity entity && this.canParryPunch) {
-            hitParryPunch(entity);
+        if (source instanceof LivingEntity entity) {
+
+            if (entity.getType().isIn(ModTags.MORTALLY_PARRYABLE)) {
+                entity.timeUntilRegen = 0;
+                entity.damage(DamageSourceAccess.parry(player), entity.getHealth() * 2.5f);
+            } else if (this.canParryPunch) {
+                hitParryPunch(entity);
+            }
         }
 
         Box box = Box.of(pos, 4d, 5d, 4d);

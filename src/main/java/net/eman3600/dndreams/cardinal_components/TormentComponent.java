@@ -57,6 +57,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
     private int haunt = 0;
     private boolean truthActive = false;
     private boolean inStorm = false;
+    private boolean deathShield = false;
     private boolean dirty = false;
 
     private float staticFrame = 0;
@@ -218,6 +219,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         facelessCooldown = tag.getInt("faceless_cooldown");
         tension = tag.getInt("tension");
         truthActive = tag.getBoolean("truth_active");
+        deathShield = tag.getBoolean("death_shield");
         inStorm = tag.getBoolean("in_storm");
         fearDrowning = tag.getInt("fear_drowning");
         if (tag.containsUuid("faceless")) {
@@ -236,6 +238,7 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
         tag.putInt("faceless_cooldown", facelessCooldown);
         tag.putInt("tension", tension);
         tag.putBoolean("truth_active", truthActive);
+        tag.putBoolean("death_shield", deathShield);
         tag.putBoolean("in_storm", inStorm);
         tag.putInt("fear_drowning", fearDrowning);
         tag.putFloat("prevalence", getFacelessPrevalence());
@@ -377,6 +380,15 @@ public class TormentComponent implements TormentComponentI, AutoSyncedComponent,
 
     public void setInStorm(boolean inStorm) {
         this.inStorm = inStorm;
+        markDirty();
+    }
+
+    public boolean hasDeathShield() {
+        return deathShield;
+    }
+
+    public void setDeathShield(boolean deathShield) {
+        this.deathShield = deathShield;
         markDirty();
     }
 

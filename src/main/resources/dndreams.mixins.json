@@ -67,6 +67,7 @@
     "SonicBoomTaskMixin",
     "ThrownEntityMixin",
     "TridentEntityMixin",
+    "VexEntityMixin",
     "WardenEntityMixin",
     "WitchEntityMixin",
     "WorldMixin",
