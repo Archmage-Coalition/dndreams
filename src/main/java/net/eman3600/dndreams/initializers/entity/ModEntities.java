@@ -15,7 +15,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 
 import static net.eman3600.dndreams.Initializer.MODID;
-import static net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity.createBloodSkeletonAttributes;
+import static net.eman3600.dndreams.entities.mobs.MarrowbornEntity.createBloodSkeletonAttributes;
 import static net.eman3600.dndreams.entities.mobs.DreamSheepEntity.createDreamSheepAttributes;
 import static net.eman3600.dndreams.entities.mobs.FacelessEntity.createFacelessAttributes;
 import static net.eman3600.dndreams.entities.mobs.ShamblerEntity.createShamblerAttributes;
@@ -176,9 +176,9 @@ public class ModEntities {
 
 
 
-    public static final EntityType<BloodSkeletonEntity> BLOOD_SKELETON = Registry.register(
-            Registry.ENTITY_TYPE, new Identifier(MODID, "blood_moon/blood_skeleton"),
-            FabricEntityTypeBuilder.<BloodSkeletonEntity>create(SpawnGroup.MONSTER, BloodSkeletonEntity::new)
+    public static final EntityType<MarrowbornEntity> MARROWBORN = Registry.register(
+            Registry.ENTITY_TYPE, new Identifier(MODID, "marrowborn"),
+            FabricEntityTypeBuilder.<MarrowbornEntity>create(SpawnGroup.MONSTER, MarrowbornEntity::new)
                     .dimensions(EntityType.STRAY.getDimensions())
                     .build()
     );
@@ -299,7 +299,7 @@ public class ModEntities {
 
 
     public static void registerEntities() {
-        FabricDefaultAttributeRegistry.register(BLOOD_SKELETON, createBloodSkeletonAttributes());
+        FabricDefaultAttributeRegistry.register(MARROWBORN, createBloodSkeletonAttributes());
         FabricDefaultAttributeRegistry.register(SHAMBLER, createShamblerAttributes());
         FabricDefaultAttributeRegistry.register(TORMENTOR, createTormentorAttributes());
         FabricDefaultAttributeRegistry.register(FACELESS, createFacelessAttributes());

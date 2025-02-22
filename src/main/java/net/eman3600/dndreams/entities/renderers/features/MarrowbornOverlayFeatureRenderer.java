@@ -14,14 +14,14 @@ import net.minecraft.util.Identifier;
 
 import static net.eman3600.dndreams.Initializer.MODID;
 
-public class BloodSkeletonOverlayFeatureRenderer<T extends MobEntity & RangedAttackMob, M extends EntityModel<T>> extends StrayOverlayFeatureRenderer<T, M> {
-    private static final Identifier SKIN = new Identifier(MODID, "textures/entity/blood_moon/blood_skeleton_overlay.png");
+public class MarrowbornOverlayFeatureRenderer<T extends MobEntity & RangedAttackMob, M extends EntityModel<T>> extends StrayOverlayFeatureRenderer<T, M> {
+    private static final Identifier SKIN = new Identifier(MODID, "textures/entity/marrowborn_overlay.png");
     private final SkeletonEntityModel<T> model;
 
 
-    public BloodSkeletonOverlayFeatureRenderer(FeatureRendererContext context, EntityModelLoader loader) {
+    public MarrowbornOverlayFeatureRenderer(FeatureRendererContext<T, M> context, EntityModelLoader loader) {
         super(context, loader);
-        this.model = new SkeletonEntityModel(loader.getModelPart(EntityModelLayers.STRAY_OUTER));
+        this.model = new SkeletonEntityModel<>(loader.getModelPart(EntityModelLayers.STRAY_OUTER));
     }
 
     @Override

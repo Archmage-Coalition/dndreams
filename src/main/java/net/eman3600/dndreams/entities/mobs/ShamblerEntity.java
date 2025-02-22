@@ -1,5 +1,7 @@
 package net.eman3600.dndreams.entities.mobs;
 
+import net.eman3600.dndreams.entities.ai.HiveRageGoal;
+import net.eman3600.dndreams.entities.ai.SeekLargerHiveGoal;
 import net.eman3600.dndreams.entities.ai.ShamblerHiveGoal;
 import net.eman3600.dndreams.entities.ai.WanderTowardsHiveGoal;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
@@ -8,11 +10,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -40,6 +44,14 @@ public class ShamblerEntity extends ZombieEntity {
         super.initGoals();
 
         goalSelector.add(6, new WanderTowardsHiveGoal(this, 1d));
+        goalSelector.add(1, new SeekLargerHiveGoal(this, 1d));
+
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, ShamblerEntity.class, true, target -> {
+            int hiveSize = ((ShamblerEntity)target).hiveGoal.getHiveSize();
+
+            return hiveSize > hiveGoal.getHiveSize() && target.squaredDistanceTo(this) > 128;
+        }));
+        this.targetSelector.add(6, new HiveRageGoal(this, true, false));
     }
 
     public static boolean canSpawn(EntityType<ShamblerEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {

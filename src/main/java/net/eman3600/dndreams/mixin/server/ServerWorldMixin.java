@@ -2,7 +2,7 @@ package net.eman3600.dndreams.mixin.server;
 
 import com.google.common.collect.ImmutableList;
 import net.eman3600.dndreams.cardinal_components.BloodMoonComponent;
-import net.eman3600.dndreams.entities.mobs.BloodSkeletonEntity;
+import net.eman3600.dndreams.entities.mobs.MarrowbornEntity;
 import net.eman3600.dndreams.entities.mobs.ShamblerEntity;
 import net.eman3600.dndreams.entities.spawners.FacelessSpawner;
 import net.eman3600.dndreams.entities.spawners.ShadeRiftSpawner;
@@ -77,7 +77,7 @@ public abstract class ServerWorldMixin extends World implements StructureWorldAc
         if (entity.getType() == EntityType.ZOMBIE) {
             result = new ShamblerEntity(world);
         } else if (entity.getType() == EntityType.SKELETON) {
-            result = new BloodSkeletonEntity(world);
+            result = new MarrowbornEntity(world);
         }
 
         if (entity != result) {
