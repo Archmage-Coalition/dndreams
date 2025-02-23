@@ -62,8 +62,9 @@ public class ShamblerHiveGoal extends Goal {
 
         cooldown = 50;
 
+        // Because the shambler's hive radius increases as their hive grows,
+        // a loop is necessary to recalculate the hive if its size increases
         int size = hiveSize;
-
         List<ShamblerEntity> partners;
         do {
             partners = getNearbyShamblers(size);

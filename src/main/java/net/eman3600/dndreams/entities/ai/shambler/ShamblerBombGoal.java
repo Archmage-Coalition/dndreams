@@ -28,6 +28,8 @@ public class ShamblerBombGoal extends Goal {
     private int bombCooldown;
     private int updateCountdownTicks;
 
+    private static final int BOMB_COOLDOWN = 100;
+
     private long lastUpdateTime;
 
     public ShamblerBombGoal(ShamblerEntity mob, double speed) {
@@ -57,7 +59,7 @@ public class ShamblerBombGoal extends Goal {
             return false;
         }
 
-        if (this.mob.hiveGoal.getHiveSize() < 3) return false;
+        if (this.mob.hiveGoal.getHiveSize() < 2) return false;
 
         List<ShamblerEntity> hive = this.mob.hiveGoal.getNearbyShamblers();
 
@@ -85,7 +87,7 @@ public class ShamblerBombGoal extends Goal {
         if (creeper == null || !creeper.isAlive() || this.mob.getTarget() == null) {
             return false;
         }
-        if (!(creeper.squaredDistanceTo(this.mob.getTarget()) > 9 && this.mob.squaredDistanceTo(this.mob.getTarget()) > 9)) {
+        if (!(creeper.squaredDistanceTo(this.mob.getTarget()) > 7 && this.mob.squaredDistanceTo(this.mob.getTarget()) > 9)) {
             return false;
         }
         return this.mob.isInWalkTargetRange(creeper.getBlockPos());
@@ -114,7 +116,7 @@ public class ShamblerBombGoal extends Goal {
         double d = this.mob.squaredDistanceTo(creeper.getX(), creeper.getY(), creeper.getZ());
         if (d < getSquaredMaxAttackDistance(creeper)) {
             throwEntity(creeper, this.mob.getTarget());
-            this.bombCooldown = 300;
+            this.bombCooldown = BOMB_COOLDOWN;
             this.creeper = null;
             return;
         }
@@ -163,7 +165,7 @@ public class ShamblerBombGoal extends Goal {
 
     protected CreeperEntity findClosestCreeper() {
 
-        return this.mob.world.getClosestEntity(this.mob.world.getEntitiesByClass(CreeperEntity.class, this.getSearchBox(14d), creeper -> (creeper.isOnGround() && creeper.squaredDistanceTo(this.mob.getTarget()) > 16 && this.mob.squaredDistanceTo(creeper) > this.mob.squaredDistanceTo(this.mob.getTarget()))), TargetPredicate.DEFAULT, this.mob, this.mob.getX(), this.mob.getEyeY(), this.mob.getZ());
+        return this.mob.world.getClosestEntity(this.mob.world.getEntitiesByClass(CreeperEntity.class, this.getSearchBox(14d), creeper -> (creeper.isOnGround() && creeper.squaredDistanceTo(this.mob.getTarget()) > 10 && this.mob.squaredDistanceTo(creeper) < this.mob.squaredDistanceTo(this.mob.getTarget()))), TargetPredicate.DEFAULT, this.mob, this.mob.getX(), this.mob.getEyeY(), this.mob.getZ());
     }
 
     protected Box getSearchBox(double distance) {
