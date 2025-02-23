@@ -1,4 +1,4 @@
-package net.eman3600.dndreams.entities.ai;
+package net.eman3600.dndreams.entities.ai.shambler;
 
 import net.eman3600.dndreams.entities.mobs.ShamblerEntity;
 import net.minecraft.entity.ai.goal.Goal;

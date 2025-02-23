@@ -1,9 +1,6 @@
 package net.eman3600.dndreams.entities.mobs;
 
-import net.eman3600.dndreams.entities.ai.HiveRageGoal;
-import net.eman3600.dndreams.entities.ai.SeekLargerHiveGoal;
-import net.eman3600.dndreams.entities.ai.ShamblerHiveGoal;
-import net.eman3600.dndreams.entities.ai.WanderTowardsHiveGoal;
+import net.eman3600.dndreams.entities.ai.shambler.*;
 import net.eman3600.dndreams.initializers.basics.ModStatusEffects;
 import net.eman3600.dndreams.initializers.entity.ModEntities;
 import net.minecraft.entity.Entity;
@@ -16,7 +13,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -26,17 +22,20 @@ import net.minecraft.world.World;
 public class ShamblerEntity extends ZombieEntity {
 
     public final ShamblerHiveGoal hiveGoal = new ShamblerHiveGoal(this);
+    public final ShamblerBombGoal bombGoal = new ShamblerBombGoal(this, 1.2);
 
     public ShamblerEntity(EntityType<? extends ZombieEntity> entityType, World world) {
         super(entityType, world);
 
         goalSelector.add(0, hiveGoal);
+        goalSelector.add(1, bombGoal);
     }
 
     public ShamblerEntity(World world) {
         super(ModEntities.SHAMBLER, world);
 
         goalSelector.add(0, hiveGoal);
+        goalSelector.add(1, bombGoal);
     }
 
     @Override

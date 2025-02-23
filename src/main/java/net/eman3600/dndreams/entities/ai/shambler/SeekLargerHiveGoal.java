@@ -1,10 +1,9 @@
-package net.eman3600.dndreams.entities.ai;
+package net.eman3600.dndreams.entities.ai.shambler;
 
 import net.eman3600.dndreams.entities.mobs.ShamblerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.pathing.Path;
-import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.EnumSet;
 
@@ -21,6 +20,13 @@ public class SeekLargerHiveGoal extends Goal {
     private int cooldown;
 
     private long lastUpdateTime;
+
+    public SeekLargerHiveGoal(ShamblerEntity mob, double speed) {
+        this.mob = mob;
+        this.speed = speed;
+
+        this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
+    }
 
     @Override
     public boolean canStart() {
@@ -50,13 +56,6 @@ public class SeekLargerHiveGoal extends Goal {
             return false;
         }
         return this.mob.isInWalkTargetRange(livingEntity.getBlockPos());
-    }
-
-    public SeekLargerHiveGoal(ShamblerEntity mob, double speed) {
-        this.mob = mob;
-        this.speed = speed;
-
-        this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
     @Override
