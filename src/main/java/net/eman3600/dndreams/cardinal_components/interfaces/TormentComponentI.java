@@ -4,6 +4,25 @@ import dev.onyxstudios.cca.api.v3.component.Component;
 
 public interface TormentComponentI extends Component {
     float getSanity();
+
+    /**
+     * Returns the effective sanity of the player.
+     * Sanity is divided into 6 tiers:
+     * <p>
+     * 1. sanity >= 85
+     * <p>
+     * 2. 85 > sanity >= 65
+     * <p>
+     * 3. 65 > sanity >= 45
+     * <p>
+     * 4. 45 > sanity >= 25
+     * <p>
+     * 5. 25 > sanity >= 5
+     * <p>
+     * 6. sanity < 5
+     *
+     * @return effective sanity
+     */
     float getAttunedSanity();
     float getTrueMaxSanity();
 

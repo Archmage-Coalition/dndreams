@@ -64,7 +64,7 @@ public class ModSoundEvents {
         MusicTrackerComponent.registerTrack(PLAYER_INSANITY, player -> {
             TormentComponent torment = EntityComponents.TORMENT.get(player);
 
-            return torment.getAttunedSanity() < 25;
+            return torment.getAttunedSanity() < 25 && player.getWorld().getRegistryKey() != ModDimensions.DREAM_DIMENSION_KEY && player.getWorld().getRegistryKey() != ModDimensions.HAVEN_DIMENSION_KEY;
 
         }, player -> {
             TormentComponent torment = EntityComponents.TORMENT.get(player);

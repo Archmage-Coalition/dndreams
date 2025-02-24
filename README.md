@@ -6,7 +6,7 @@ Music by me, Eman3600. Completed tracks can be found at https://soundcloud.com/e
 
 ## Current Tracks
 - dread_moon.ogg - So the Moon Cried Out by Eman3600
-- insanity.ogg - Mental Mire by Eman3600 (to be replaced)
+- insanity.ogg - Mindburn by Eman3600
 - nightstorm.ogg - Mental Mire by Eman3600
 - mire_mental.ogg - Mire Mental by Eman3600
 - storm.ogg - Storm on the Starry Sea by Eman3600
