@@ -33,6 +33,7 @@ import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Items;
 import net.minecraft.world.LightType;
+import net.minecraft.world.World;
 
 public class ModRegistries {
 
@@ -179,9 +180,10 @@ public class ModRegistries {
         TormentComponent.registerPredicate(player -> player.world.getLightLevel(player.getBlockPos(), player.world.getAmbientDarkness()) < 1 && !player.hasStatusEffect(StatusEffects.NIGHT_VISION) ? 4f : 0);
         TormentComponent.registerPredicate(player -> WorldComponents.BLOOD_MOON.get(player.world).isBloodMoon() ? 2f : 0);
         TormentComponent.registerPredicate(player -> -player.getFrozenTicks() / 10f);
-        TormentComponent.registerPredicate((player, torment) -> torment.getShroud() > 0 ? 2.5f : 0);
+        TormentComponent.registerPredicate((player, torment) -> torment.getShroud() > 0 ? 3f : 0);
         TormentComponent.registerPredicate(player -> player.hasStatusEffect(ModStatusEffects.HAUNTED) ? 60f : 0f);
         TormentComponent.registerPredicate(player -> player.hasStatusEffect(StatusEffects.NIGHT_VISION) ? -3f : 0f);
+        TormentComponent.registerPredicate(player -> player.getWorld().getRegistryKey() == World.NETHER ? 3f : 0f);
         TormentComponent.registerPredicate((player, torment) -> {
             TrinketComponent component = TrinketsApi.getTrinketComponent(player).get();
 
