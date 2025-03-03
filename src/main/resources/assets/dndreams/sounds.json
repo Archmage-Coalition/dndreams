@@ -17,6 +17,12 @@
       {"name":"dndreams:music/nightstorm", "stream":true}
     ]
   },
+  "music.fortress": {
+    "category": "music",
+    "sounds": [
+      {"name":"dndreams:music/fortress", "stream":true}
+    ]
+  },
   "tunes.triumph": {
     "category": "master",
     "sounds": [

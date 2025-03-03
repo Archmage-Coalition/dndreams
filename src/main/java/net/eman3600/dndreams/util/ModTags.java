@@ -41,6 +41,7 @@ public class ModTags {
 
     public static final TagKey<Structure> TAINTED_PEARL_LOCATED = ofStructure("tainted_pearl_located");
     public static final TagKey<Structure> ENSHROUDED = ofStructure("enshrouded");
+    public static final TagKey<Structure> FORTRESS = ofStructure("fortress");
 
     public static final TagKey<Item> SMELTING_TOOLS = ofItem("smelting_tools");
     public static final TagKey<Item> SILKY_TOOLS = ofItem("silky_tools");

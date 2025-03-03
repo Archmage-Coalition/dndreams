@@ -36,6 +36,7 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
         if (user.getAttackCooldownProgress(0.5f) > 0.9f) {
 
             if (canAffordMana(user, stack)) {
+                ItemStack stackCopy = stack.copy();
                 if (hit == null) {
                     stack.damage(1, user, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
                 }
@@ -46,7 +47,7 @@ public class CrownedEdgeItem extends SwordItem implements AirSwingItem, ManaCost
                 spendMana(user, stack);
 
                 CrownedBeamEntity beam = new CrownedBeamEntity(user, world);
-                beam.initFromStack(stack);
+                beam.initFromStack(stackCopy);
                 world.spawnEntity(beam);
             }
         }
