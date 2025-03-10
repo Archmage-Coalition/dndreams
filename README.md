@@ -9,5 +9,6 @@ Music by me, Eman3600. Completed tracks can be found at https://soundcloud.com/e
 - insanity.ogg - Mindburn by Eman3600
 - nightstorm.ogg - Mental Mire by Eman3600
 - fortress.ogg - Fortress of an Ashen Heart (Alpha) by Eman3600
+- wither.ogg - Cold, Calculated Wrath by Eman3600
 - mire_mental.ogg - Mire Mental by Eman3600
 - storm.ogg - Storm on the Starry Sea by Eman3600

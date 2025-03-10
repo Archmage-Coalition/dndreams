@@ -23,6 +23,12 @@
       {"name":"dndreams:music/fortress", "stream":true}
     ]
   },
+  "music.wither": {
+    "category": "music",
+    "sounds": [
+      {"name":"dndreams:music/wither", "stream":true}
+    ]
+  },
   "tunes.triumph": {
     "category": "master",
     "sounds": [
