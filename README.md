@@ -12,3 +12,10 @@ Music by me, Eman3600. Completed tracks can be found at https://soundcloud.com/e
 - wither.ogg - Cold, Calculated Wrath by Eman3600
 - mire_mental.ogg - Mire Mental by Eman3600
 - storm.ogg - Storm on the Starry Sea by Eman3600
+
+## Sprites
+
+credit for the vast majority of the sprites goes to MoltenCookie62 and Robot Simp
+
+- MoltenCookie62 - The Pericharite Set, among may others
+- Robot Simp - The Cloud Set, among may others
