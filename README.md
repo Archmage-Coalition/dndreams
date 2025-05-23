@@ -17,5 +17,5 @@ Music by me, Eman3600. Completed tracks can be found at https://soundcloud.com/e
 
 credit for the vast majority of the sprites goes to MoltenCookie62 and Robot Simp
 
-- MoltenCookie62 - The Pericharite Set, among may others
-- Robot Simp - The Cloud Set, among may others
+- MoltenCookie62 - The Pericharite Set, among many others
+- Robot Simp - The Cloud Set, among many others
